@@ -1,0 +1,84 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable max-lines-per-function */
+/* eslint-disable  @typescript-eslint/require-await */
+"use client";
+
+import restDataProvider from "@/lib/provider/data/custom";
+import { type AuthBindings, type HttpError, Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/nextjs-router/app";
+import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
+import { authContext } from "./authContext";
+import { getIdentity, getLogin, getLogout } from "@/lib/provider/auth/authOperation";
+import { notificationProvider } from "@/lib/provider/notification";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { accessControlProvider } from "@/lib/provider/access/control";
+import { ThemedLayoutV2 } from "@/shadcn/components/themedLayoutV2";
+import { ViteDarkModeProvider } from "@/shadcn/providers";
+import { User } from "lucide-react";
+
+interface Props {
+  children?: React.ReactNode
+}
+
+const resources = [
+  {
+    name: "user",
+    list: "/user",
+    create: "/user/create",
+    edit: "/user/edit/:id",
+    show: "/user/show/:id",
+    icon: <User/>,
+  },
+  {
+    name: "employee",
+    list: "/employee",
+    create: "/employee/create",
+    edit: "/employee/edit/:id",
+    show: "/employee/show/:id",
+    // icon: User,
+  },
+];
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const RefineProvider = ({ children }: Props): JSX.Element => {
+  const { data, status } = useSession();
+  const to = usePathname();
+
+  const authProvider: AuthBindings = {
+    login: getLogin(to),
+    logout: getLogout(),
+    onError: async(error: HttpError | Error | undefined) => { return { error }; },
+    check: async() => ({
+      authenticated: status !== "unauthenticated",
+      redirectTo: status === "unauthenticated" ? "/" : undefined,
+    }),
+    getPermissions: async() => { return null; },
+    getIdentity: async() => getIdentity(data),
+  };
+  return (
+    <authContext.Provider value={authProvider}>
+      <Refine
+        authProvider={authProvider}
+        routerProvider={routerProvider}
+        dataProvider={restDataProvider(process.env.NEXT_PUBLIC_API_URL as string)}
+        notificationProvider={notificationProvider}
+        accessControlProvider={accessControlProvider}
+        resources={resources as any}
+        options={{
+          syncWithLocation: true,
+        }}>
+        <ThemedLayoutV2
+          darkModeProvider={
+            ViteDarkModeProvider
+          }
+          defaultDarkMode="system"
+          storageKey="darkMode"
+        >
+          {children}
+        </ThemedLayoutV2>
+        <ToastContainer/>
+      </Refine>
+    </authContext.Provider>
+  );
+};

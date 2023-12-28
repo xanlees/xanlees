@@ -1,0 +1,15 @@
+# npm
+node_modules
+# next.js build files
+.next
+# environment variables
+.env
+.env.*
+!.env.example
+# junk
+.idea
+.vscode
+.DS_Store
+coverage
+package-lock.json
+yarn.lock
