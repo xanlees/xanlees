@@ -3,9 +3,9 @@ import { type IGender, type MaritalStatusType } from "../interface";
 export const getGenderDisplayText = (gender: IGender["gender"]): string => {
   switch (gender) {
     case "MALE":
-      return "ຜູ້ຊາຍ";
+      return "ຊາຍ";
     case "FEMALE":
-      return "ຜູ້ຍິ";
+      return "ຍິງ";
     case "OTHER":
       return "ອື່ນໆ";
     default:

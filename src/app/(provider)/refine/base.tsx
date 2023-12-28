@@ -16,7 +16,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { accessControlProvider } from "@/lib/provider/access/control";
 import { ThemedLayoutV2 } from "@/shadcn/components/themedLayoutV2";
 import { ViteDarkModeProvider } from "@/shadcn/providers";
-import { User } from "lucide-react";
 
 interface Props {
   children?: React.ReactNode
@@ -29,7 +28,6 @@ const resources = [
     create: "/user/create",
     edit: "/user/edit/:id",
     show: "/user/show/:id",
-    icon: <User/>,
   },
   {
     name: "employee",
@@ -37,7 +35,13 @@ const resources = [
     create: "/employee/create",
     edit: "/employee/edit/:id",
     show: "/employee/show/:id",
-    // icon: User,
+  },
+  {
+    name: "position",
+    list: "/position",
+    create: "/position/create",
+    edit: "/position/edit/:id",
+    show: "/position/show/:id",
   },
 ];
 // eslint-disable-next-line @typescript-eslint/naming-convention

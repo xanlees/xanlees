@@ -6,7 +6,7 @@
 
 import { List } from "@/shadcn/components/crud";
 import { Table, type TableFilterProps } from "@/shadcn/components/table";
-import { Checkbox, CommandItem } from "@/shadcn/ui";
+import { Badge, Checkbox, CommandItem } from "@/shadcn/ui";
 import { useMany, useUserFriendlyName } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { Edit, Eye, Trash2 } from "lucide-react";
@@ -136,7 +136,7 @@ export default function EmployeeList(): JSX.Element {
               cell={(props) => {
                 const gender = props.getValue() as unknown as GenderType;
                 const displayText = getGenderDisplayText(gender);
-                return <>{displayText}</>;
+                return <Badge>{displayText}</Badge>;
               }}
             />
             <Table.Column
@@ -148,7 +148,7 @@ export default function EmployeeList(): JSX.Element {
               cell={(props) => {
                 const maritalStatus = props.getValue() as unknown as MaritalStatusType;
                 const displayText = getMaritalStatusDisplayText(maritalStatus);
-                return <>{displayText}</>;
+                return <Badge className="bg-green-500">{displayText}</Badge>;
               }}
             />
             <Table.Column

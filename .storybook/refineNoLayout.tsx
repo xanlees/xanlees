@@ -47,6 +47,10 @@ export const RefineNoLayout = (Story: React.FC) => {
             name: "employee",
             list: "/employee",
           },
+          {
+            name: "position",
+            list: "/position",
+          },
         ]}
       >
         <SessionProvider basePath={`${basePath}/api/auth`}>
