@@ -21,7 +21,6 @@ const RenderAccordionContent: React.FC<AccordionContentProps> = ({
   isOpen,
   className,
 }: AccordionContentProps) => {
-  console.log("item", item);
   return (
     <AccordionContent className="pb-1 mt-2 ml-4 space-y-4">
       {item.children?.map((child) => (

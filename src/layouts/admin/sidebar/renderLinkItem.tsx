@@ -19,7 +19,6 @@ const RenderLinkItem: React.FC<LinkItemProps> = ({
   isOpen,
   className,
 }: LinkItemProps) => {
-  console.log("isOpen", isOpen);
   return (
     <Link
       key={item.name}

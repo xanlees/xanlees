@@ -79,7 +79,6 @@ export const Form = <
             : undefined;
     // @ts-ignore
     const onSubmit = props.handleSubmit((data: TQueryFnData) => {
-        console.log(data)
         // @ts-ignore
         saveButtonProps?.onClick?.(data);
     });

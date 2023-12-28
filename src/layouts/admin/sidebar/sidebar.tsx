@@ -7,7 +7,7 @@ import { useSidebar } from "@src/shadcn/hooks/useSidebar";
 import { Separator } from "@src/shadcn/ui/separator";
 import { Button } from "@src/shadcn/ui/button";
 import { ChevronRight } from "lucide-react";
-import { useMenu } from "@refinedev/core";
+// import { useMenu } from "@refinedev/core";
 import { resources } from "../constants/side-nav";
 interface SidebarProps {
   className?: string
@@ -15,8 +15,7 @@ interface SidebarProps {
 
 const Timeout = 500;
 export default function Sidebar({ className }: SidebarProps) {
-  const { menuItems } = useMenu();
-  console.log("console menuItems", menuItems);
+  // const { menuItems } = useMenu();
   const { isOpen, toggle } = useSidebar();
   const [swith, setSwitch] = useState(false);
   const handleToggle = () => {
@@ -26,8 +25,6 @@ export default function Sidebar({ className }: SidebarProps) {
       setSwitch(false);
     }, Timeout);
   };
-  console.log("className", className);
-  console.log("resources", resources);
   return (
     <nav
       className={cn("relative hidden h-screen border-r pt-16 md:block", swith && "duration-500", isOpen ? "w-72" : "w-[78px]", className)}

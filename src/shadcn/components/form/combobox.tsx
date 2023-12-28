@@ -44,7 +44,6 @@ export const Combobox = forwardRef<
     const [open, setOpen] = useState(false);
 
     const value = () => {
-        console.log(props.value)
         if (typeof props.value === "object" && "id" in props.value) {
             return (props.value as BaseRecord).id;
         }

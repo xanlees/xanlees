@@ -74,8 +74,6 @@ export const ThemedSiderV2Menu: FC<{
             )),
         [menuItems, selectedKey],
     );
-    console.log("MenuItems", MenuItems);
-
     return (
         <ul role="list" className="flex w-full flex-1 flex-col gap-y-1.5">
             {MenuItems}
@@ -121,7 +119,6 @@ export const ThemedSiderV2: FC<ThemedSiderV2Props> = ({
     className,
     Title = DefaultTitle,
 }) => {
-    console.log("meta", className)
     return (
         <div
             className={cn(

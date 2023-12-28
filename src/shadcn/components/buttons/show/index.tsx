@@ -51,8 +51,6 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             enabled: accessControlEnabled,
         },
     });
-    console.log(data)
-
     const showButtonDisabledTitle = () => {
         if (data?.can) return "";
         else if (data?.reason) return data.reason;

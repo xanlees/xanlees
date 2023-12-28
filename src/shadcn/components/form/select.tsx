@@ -27,7 +27,6 @@ export const Select = forwardRef<
     React.ElementRef<typeof SelectContentType>,
     SelectProps
 >(({ ...props }, ref) => {
-    console.log(props)
     return (
         <SelectUI
             disabled={props.options?.length === 0}
