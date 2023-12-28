@@ -30,7 +30,7 @@ export default function EmployeeList(): JSX.Element {
     <List>
       <EmployeeContainer>
         <CardSection>
-          <Card />
+          <Card key="uniqueKey1" />
         </CardSection>
         <TableSection>
           <Table table={table}>
