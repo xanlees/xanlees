@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as z from "zod";
 const validGenders = ["MALE", "FEMALE", "OTHER"] as const;
 const validMaritalStatus = [
@@ -77,10 +78,28 @@ export const educationSchema = z.object({
   sector: z.string().min(1, {
     message: "Sector must be at least 1 character.",
   }),
-  year: z.string().refine((value) => {
-    const date = new Date(value);
-    return !isNaN(date.getTime());
-  }, {
-    message: "Invalid year format. It should be a valid date string.",
+  year: z.string().refine(
+    (value) => {
+      const date = new Date(value);
+      return !isNaN(date.getTime());
+    },
+    {
+      message: "Invalid year format. It should be a valid date string.",
+    },
+  ),
+});
+
+export const employeeSchema = z.object({
+  positionId: z.number().min(1, {
+    message: "positionId ID must be a non-negative number.",
+  }),
+  joiningDate: z.string().min(1, {
+    message: "joiningDate must be a non-empty string.",
+  }),
+  isLatest: z.string().min(1, {
+    message: "isLatest must be a non-empty string.",
+  }),
+  profileId: z.number().min(1, {
+    message: "profileId must be a non-negative number.",
   }),
 });

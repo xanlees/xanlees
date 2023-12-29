@@ -1,14 +1,14 @@
 "use client";
 
 import { Create } from "@/shadcn/components/crud";
-import { EmployeeCreate } from "../components/employeeCreate";
 import { CounterProvider } from "../components/counterContext";
+import { PositionCreate } from "../components/positionCreate";
 
 export default function UserCreate(): JSX.Element {
   return (
     <Create>
       <CounterProvider>
-        <EmployeeCreate />
+        <PositionCreate />
       </CounterProvider>
     </Create>
   );

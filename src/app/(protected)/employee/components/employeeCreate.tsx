@@ -3,6 +3,9 @@ import Stepper from "@keyvaluesystems/react-stepper";
 import React, { useState } from "react";
 import { PersonalAddressForm } from "./personalAddressForm";
 import { ProfileForm } from "./profileForm";
+import { GraduationForm } from "./graduationForm";
+import { EducationForm } from "./educationForm";
+import { EmployeeForm } from "./employeeForm";
 
 export const initialStepsArr = [
   {
@@ -12,12 +15,22 @@ export const initialStepsArr = [
   },
   {
     stepLabel: "Creating Profile",
-    stepDescription: <ProfileForm redirect="edit" />,
+    stepDescription: <ProfileForm redirect="create" />,
     completed: false,
   },
   {
-    stepLabel: "Adding description",
-    stepDescription: "Adding description to Employee",
+    stepLabel: "Create Graduation",
+    stepDescription: <GraduationForm redirect="create" />,
+    completed: false,
+  },
+  {
+    stepLabel: "Create Education",
+    stepDescription: <EducationForm redirect="create" />,
+    completed: false,
+  },
+  {
+    stepLabel: "Create Employee",
+    stepDescription: <EmployeeForm redirect="create" />,
     completed: false,
   },
 ];
