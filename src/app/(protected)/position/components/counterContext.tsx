@@ -8,11 +8,10 @@ import React, {
 
 interface CounterState {
   id: number
-  profileId?: number
-  graduationId?: number
-  personalAddressId?: number
+  branchId?: number
+  sectorId?: number
 }
-type CounterActionType = "SET_PROFILE_ID" | "SET_GRADUATION_ID" | "PERSONAL_ADDRESS";
+type CounterActionType = "SET_BRANCH" | "SET_SECTOR";
 interface CounterAction {
   type: CounterActionType
   payload: number
@@ -28,12 +27,10 @@ const counterReducer = (
   action: CounterAction,
 ): CounterState => {
   switch (action.type) {
-    case "SET_PROFILE_ID":
-      return { ...state, profileId: action.payload };
-    case "SET_GRADUATION_ID":
-      return { ...state, graduationId: action.payload };
-    case "PERSONAL_ADDRESS":
-      return { ...state, personalAddressId: action.payload };
+    case "SET_BRANCH":
+      return { ...state, branchId: action.payload };
+    case "SET_SECTOR":
+      return { ...state, sectorId: action.payload };
     default:
       return state;
   }
