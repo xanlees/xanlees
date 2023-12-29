@@ -3,12 +3,12 @@
 "use client";
 
 import { Edit } from "@/shadcn/components/crud";
-import { UserForm } from "../../components/form";
+import EmployeeList from '../../page';
 
-export default function UserCreate(): JSX.Element {
+export default function EmployeeEdit(): JSX.Element {
   return (
     <Edit>
-      <UserForm redirect="edit" />
+      {/* <UserForm redirect="edit" /> */}
     </Edit>
   );
 }

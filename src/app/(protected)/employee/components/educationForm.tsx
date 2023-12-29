@@ -7,25 +7,28 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Form } from "@ferdiunal/refinedev-shadcn-ui";
 import { InputFromLayout } from "./form";
 import { Input } from "@/shadcn/ui";
-import { graduationSchema } from "../validation/validation";
+import { educationSchema } from "../validation/validation";
 import { useCounter } from "./counterContext";
 
 interface EducationFormProps {
   redirect: RedirectAction
 }
 interface EducationFormValues {
-  degree: number
-  sector: number
+  profileId: number
+  graduationId: number
+  branch: string
+  sector: string
+  year: string
   id?: number
 }
 
 export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
   const { state } = useCounter();
   const { ...form } = useForm<EducationFormValues>({
-    resolver: zodResolver(graduationSchema),
+    resolver: zodResolver(educationSchema),
     defaultValues: {
-      profileId: state.id,
-      graduationId: state.id,
+      profileId: state.profileId,
+      graduationId: state.graduationId,
       year: "2023-12-28T18:46:30.879Z",
     },
     refineCoreProps: {

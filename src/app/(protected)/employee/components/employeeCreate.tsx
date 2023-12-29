@@ -5,6 +5,7 @@ import { PersonalAddressForm } from "./personalAddressForm";
 import { ProfileForm } from "./profileForm";
 import { GraduationForm } from "./graduationForm";
 import { EducationForm } from "./educationForm";
+import { EmployeeForm } from "./employeeForm";
 
 export const initialStepsArr = [
   {
@@ -19,12 +20,17 @@ export const initialStepsArr = [
   },
   {
     stepLabel: "Create Graduation",
-    stepDescription: <GraduationForm redirect="create"/>,
+    stepDescription: <GraduationForm redirect="create" />,
     completed: false,
   },
   {
-    stepLabel: "Create EducationForm",
-    stepDescription: <EducationForm redirect="create"/>,
+    stepLabel: "Create Education",
+    stepDescription: <EducationForm redirect="create" />,
+    completed: false,
+  },
+  {
+    stepLabel: "Create Employee",
+    stepDescription: <EmployeeForm redirect="create" />,
     completed: false,
   },
 ];

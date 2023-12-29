@@ -40,8 +40,8 @@ export const SectorForm: React.FC<SectorProps> = ({ redirect }) => {
     <div className="w-full">
       <Form {...form}>
         <div className="w-full">
-          <Form.Field {...form} name="name" label="Branch Name">
-            <Input placeholder="Branch Name" className="block w-full" />
+          <Form.Field {...form} name="name" label="Sector Name">
+            <Input placeholder="Sector Name" className="block w-full" />
           </Form.Field>
         </div>
       </Form>
