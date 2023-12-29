@@ -2,7 +2,7 @@
 
 import { Create } from "@/shadcn/components/crud";
 import { EmployeeCreate } from "../components/employeeCreate";
-import { CounterProvider } from "../components/counterContext";
+import { CounterProvider } from "../components/context";
 
 export default function UserCreate(): JSX.Element {
   return (

@@ -41,3 +41,17 @@ and go url: http://localhost:6006/
 - <a href="https://github.com/TanStack/table" target="_blank">TanStack Table</a>: Headless UI for powerful table & datagrids
 ### Paginate Logic
 - <a href="https://www.npmjs.com/package/react-paginate" target="_blank">react-paginate</a>: React Pagination
+
+
+### Generate report
+
+    docker build \
+        --platform linux/amd64 \
+        -t asia.gcr.io/bamboo-bi-356406/sbs_workhublink_ui:v0.1.0 \
+        --build-arg SECRET_KEY_ARG=$SECRET_KEY \
+        --build-arg API_ENDPOINT_ARG=$API_ENDPOINT \
+        --build-arg NEXTAUTH_URL_ARG=$NEXTAUTH_URL \
+        --network=host \
+        --progress=plain .
+
+    docker -- push  asia.gcr.io/bamboo-bi-356406/sbs_workhublink_ui:v0.2.3

@@ -7,7 +7,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Form } from "@ferdiunal/refinedev-shadcn-ui";
 import { Input } from "@/shadcn/ui";
 import { employeeSchema } from "../validation/validation";
-import { useCounter } from "./counterContext";
+import { useCounter } from "./context";
 import { type IPosition } from "../../position/interface";
 
 interface EmployeeFormProps {
@@ -44,7 +44,7 @@ export const EmployeeForm: React.FC<EmployeeFormProps> = ({ redirect }) => {
     optionValue: "id",
   });
   return (
-    <div className="w-full">
+    <div className="w-1/2">
       <Form {...form}>
         <div className="w-full">
           <Form.Field {...form} name="isLatest" label="Latest Position">

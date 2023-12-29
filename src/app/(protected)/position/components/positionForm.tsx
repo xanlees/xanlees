@@ -6,7 +6,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Form } from "@ferdiunal/refinedev-shadcn-ui";
 import { Input } from "@/shadcn/ui";
 import { positionSchema } from "../validation/validation";
-import { useCounter } from "./counterContext";
+import { useCounter } from "./context";
 
 interface PositionFormProps {
   redirect: RedirectAction

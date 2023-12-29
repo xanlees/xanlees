@@ -6,3 +6,5 @@ next-env.d.ts
 ./node_modules/*
 node_modules/*
 src/shadcn/*
+node_modules/*
+node_modules

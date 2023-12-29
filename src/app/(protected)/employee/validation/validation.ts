@@ -21,15 +21,7 @@ export const profileSchema = z.object({
   gender: z.enum(validGenders).refine((value) => validGenders.includes(value), {
     message: "Gender must be one of 'MALE', 'FEMALE', or 'OTHER'.",
   }),
-  birthday: z.string().refine(
-    (value) => {
-      const date = new Date(value);
-      return !isNaN(date.getTime());
-    },
-    {
-      message: "Invalid birthday format. It should be a valid date string.",
-    },
-  ),
+  birthday: z.date(),
   personalAddressId: z.number().min(0, {
     message: "Personal Address ID must be a non-negative number.",
   }),

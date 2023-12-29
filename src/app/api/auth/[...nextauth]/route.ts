@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { authOptions } from "@/lib/provider/auth/authOption";
 import NextAuth from "next-auth";
 

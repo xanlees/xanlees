@@ -1,4 +1,3 @@
-import React from "react";
 import { type NotificationProvider } from "@refinedev/core";
 import { toast, type TypeOptions } from "react-toastify";
 import { UndoableNoti } from "@/common/components/undoablerNotification";
