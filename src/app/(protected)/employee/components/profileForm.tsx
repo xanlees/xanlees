@@ -16,15 +16,15 @@ import { useCounter } from "./context";
 import { InputFromLayout } from "./form";
 
 interface ProfileFormProps {
-  redirect: RedirectAction
+  redirect: RedirectAction;
 }
 interface ProfileFormValues {
-  fullname: string
-  nickname: string
-  phoneNumber: string
-  gender: string
-  maritalStatus: string
-  id?: number
+  fullname: string;
+  nickname: string;
+  phoneNumber: string;
+  gender: string;
+  maritalStatus: string;
+  id?: number;
 }
 export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
   const { state, dispatch } = useCounter();
@@ -46,32 +46,38 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
     warnWhenUnsavedChanges: true,
   });
   return (
-    <div className="w-2/3">
+    <div className="w-1/2 capitalize rounded-lg">
       <Form {...form}>
-        <InputFromLayout>
+        <div className="gap-2 sm:flex">
           <div className="w-full">
             <Form.Field {...form} name="fullname" label="fullname">
-              <Input placeholder="fullname" className="block w-2/3" />
+              <Input placeholder="fullname" className="w-full" />
             </Form.Field>
           </div>
           <div className="w-full">
             <Form.Field {...form} name="nickname" label="nickname">
-              <Input placeholder="nickname" className="block w-2/3" />
+              <Input placeholder="nickname" className="w-full" />
             </Form.Field>
           </div>
-        </InputFromLayout>
-        <div className="w-full">
-          <Form.Field {...form} name="phoneNumber" label="Phone Number">
-            <Input placeholder="phoneNumber" className="block w-1/3" />
+        </div>
+        <div className="gap-2 sm:flex">
+          <div className="w-full">
+            <Form.Field {...form} name="phoneNumber" label="Phone Number">
+              <Input placeholder="Phone Number" className="w-1/2 " />
+            </Form.Field>
+          </div>
+          <DatePickerField {...form} name="birthday" label="Date of Birth" />
+        </div>
+
+        <div className="gap-2 sm:flex">
+          <Form.Field {...form} name="gender" label="Gender">
+            <Form.Select options={genderOptions} />
+          </Form.Field>
+          <Form.Field {...form} name="maritalStatus" label="Marital Status">
+            <Form.Select options={maritalStatusOptions} />
           </Form.Field>
         </div>
-        <DatePickerField {...form} name="birthday" label="Date of Birth" />
-        <Form.Field {...form} name="gender" label="Gender">
-          <Form.Select options={genderOptions} />
-        </Form.Field>
-        <Form.Field {...form} name="maritalStatus" label="Marital Status">
-          <Form.Select options={maritalStatusOptions} />
-        </Form.Field>
+
         {/* <InputImage /> */}
       </Form>
     </div>
@@ -88,7 +94,7 @@ export const InputImage: React.FC = () => {
         >
           <input id="upload" type="file" className="hidden" accept="image/*" />
           <label htmlFor="upload" className="cursor-pointer">
-            <Upload className="w-8 h-8 mx-auto mb-4 text-gray-700"/>
+            <Upload className="w-8 h-8 mx-auto mb-4 text-gray-700" />
             <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-700">
               Upload picture
             </h5>
