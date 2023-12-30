@@ -39,7 +39,7 @@ const ThemedSiderV2MenuItem: FC<{
                     size="lg"
                     asChild
                     className={cn(
-                        active ? "bg-accent-foreground text-accent" : "",
+                        active ? "bg-primary text-accent" : "",
                         "gap-x-3 w-full justify-start p-0 pl-2.5",
                     )}
                 >
