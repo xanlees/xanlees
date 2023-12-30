@@ -66,11 +66,14 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
               {...(district as any)}
               onChange={(value) => {
                 form.setValue("bornDistrictId", value);
-
               }}
             />
           </Form.Field>
-          <Form.Field {...form} name="currentDistrictId" label="Current District">
+          <Form.Field
+            {...form}
+            name="currentDistrictId"
+            label="Current District"
+          >
             <Form.Combobox
               {...(district as any)}
               onChange={(value) => {
@@ -80,7 +83,6 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
             />
           </Form.Field>
         </div>
-
       </Form>
     </div>
   );
