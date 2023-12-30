@@ -13,18 +13,17 @@ import React from "react";
 import { genderOptions, maritalStatusOptions } from "../lib/constant";
 import { profileSchema } from "../validation/validation";
 import { useCounter } from "./context";
-import { InputFromLayout } from "./form";
 
 interface ProfileFormProps {
-  redirect: RedirectAction;
+  redirect: RedirectAction
 }
 interface ProfileFormValues {
-  fullname: string;
-  nickname: string;
-  phoneNumber: string;
-  gender: string;
-  maritalStatus: string;
-  id?: number;
+  fullname: string
+  nickname: string
+  phoneNumber: string
+  gender: string
+  maritalStatus: string
+  id?: number
 }
 export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
   const { state, dispatch } = useCounter();
