@@ -9,6 +9,7 @@ import { useTable } from "@refinedev/react-table";
 import { Edit, Eye, Trash2 } from "lucide-react";
 import moment from "moment";
 import { type IUser } from "./interface";
+import { statusBadge } from "./lib/utils";
 
 // eslint-disable-next-line max-lines-per-function
 export default function UserList(): JSX.Element {
@@ -137,7 +138,3 @@ export default function UserList(): JSX.Element {
   );
 }
 
-export const statusBadge = (status: boolean) => {
-  const statusText = (status) ? "ເປິດໃຊ້ງານ" : "ປິດການໃຊ້ງານ";
-  return (<Badge className={`${status ? "bg-green-600" : "bg-red-600"}`}>{statusText}</Badge>);
-};
