@@ -73,3 +73,4 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
     </div>
   );
 };
+
