@@ -56,7 +56,7 @@ export const RefineProvider = ({ children }: Props): JSX.Element => {
           darkModeProvider={
             ViteDarkModeProvider
           }
-          defaultDarkMode="system"
+          defaultDarkMode="light"
           storageKey="darkMode"
         >
           <Suspense fallback={<Loading/>}>
