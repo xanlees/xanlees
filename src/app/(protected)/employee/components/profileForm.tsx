@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/naming-convention */
 import React from "react";
@@ -11,6 +12,7 @@ import { profileSchema } from "../validation/validation";
 import { genderOptions, maritalStatusOptions } from "../lib/constant";
 import { useCounter } from "./context";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
+import { Upload } from "lucide-react";
 interface ProfileFormProps {
   redirect: RedirectAction
 }
@@ -28,7 +30,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
     resolver: zodResolver(profileSchema),
     defaultValues: {
       personalAddressId: state.personalAddressId,
-      birthday: "2023-12-28T18:46:30.879Z",
     },
     refineCoreProps: {
       resource: "profile",
@@ -62,14 +63,52 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
             <Input placeholder="phoneNumber" className="block w-1/3" />
           </Form.Field>
         </div>
-        <DatePickerField {...form} name="birthday" label="Date of Birth"/>
+        <DatePickerField {...form} name="birthday" label="Date of Birth" />
         <Form.Field {...form} name="gender" label="Gender">
           <Form.Select options={genderOptions} />
         </Form.Field>
         <Form.Field {...form} name="maritalStatus" label="Marital Status">
           <Form.Select options={maritalStatusOptions} />
         </Form.Field>
+        <InputImage />
       </Form>
+    </div>
+  );
+};
+
+export const InputImage: React.FC = () => {
+  return (
+    <div className="overflow-hidden bg-white rounded-lg shadow-md w-80">
+      <div className="px-4 py-6">
+        <div
+          id="image-preview"
+          className="items-center max-w-sm p-6 mx-auto mb-4 text-center bg-gray-100 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer"
+        >
+          <input id="upload" type="file" className="hidden" accept="image/*" />
+          <label htmlFor="upload" className="cursor-pointer">
+            <Upload className="w-8 h-8 mx-auto mb-4 text-gray-700"/>
+            <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-700">
+              Upload picture
+            </h5>
+            <p className="text-sm font-normal text-gray-400 md:px-6">
+              Choose photo size should be less than
+              <b className="text-gray-600">2mb</b>
+            </p>
+            <p className="text-sm font-normal text-gray-400 md:px-6">
+              and should be in <b className="text-gray-600">JPG, PNG, or GIF</b>
+              format.
+            </p>
+            <span id="filename" className="z-50 text-gray-500 bg-gray-200" />
+          </label>
+        </div>
+        <div className="flex items-center justify-center">
+          <div className="w-full">
+            <label className="w-full text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 flex items-center justify-center mr-2 mb-2 cursor-pointer">
+              <span className="ml-2 text-center">Upload</span>
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
