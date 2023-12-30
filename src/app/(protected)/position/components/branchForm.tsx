@@ -6,7 +6,7 @@ import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Form } from "@ferdiunal/refinedev-shadcn-ui";
 import { Input } from "@/shadcn/ui";
-import { useCounter } from "./context";
+import { usePositionContext } from "./context";
 import { branchSchema } from "../validation/validation";
 
 interface BranchProps {
@@ -18,7 +18,7 @@ interface BranchValues {
 }
 
 export const BranchForm: React.FC<BranchProps> = ({ redirect }) => {
-  const { dispatch } = useCounter();
+  const { dispatch } = usePositionContext();
   const { ...form } = useForm<BranchValues>({
     resolver: zodResolver(branchSchema),
     refineCoreProps: {

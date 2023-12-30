@@ -6,7 +6,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Form } from "@ferdiunal/refinedev-shadcn-ui";
 import { Input } from "@/shadcn/ui";
 import { positionSchema } from "../validation/validation";
-import { useCounter } from "./context";
+import { usePositionContext } from "./context";
 
 interface PositionFormProps {
   redirect: RedirectAction
@@ -17,7 +17,7 @@ interface PositionFormValues {
 }
 
 export const PositionForm: React.FC<PositionFormProps> = ({ redirect }) => {
-  const { state } = useCounter();
+  const { state } = usePositionContext();
   const { ...form } = useForm<PositionFormValues>({
     resolver: zodResolver(positionSchema),
     defaultValues: {

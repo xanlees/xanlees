@@ -5,7 +5,7 @@ import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Form } from "@ferdiunal/refinedev-shadcn-ui";
 import { Input } from "@/shadcn/ui";
-import { useCounter } from "./context";
+import { usePositionContext } from "./context";
 import { sectorSchema } from "../validation/validation";
 
 interface SectorProps {
@@ -18,7 +18,7 @@ interface SectorValues {
 }
 
 export const SectorForm: React.FC<SectorProps> = ({ redirect }) => {
-  const { state, dispatch } = useCounter();
+  const { state, dispatch } = usePositionContext();
   const { ...form } = useForm<SectorValues>({
     resolver: zodResolver(sectorSchema),
     defaultValues: {
