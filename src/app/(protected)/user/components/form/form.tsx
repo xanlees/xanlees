@@ -2,7 +2,7 @@ import { useSelect, type RedirectAction } from "@refinedev/core";
 import { Input } from "@src/shadcn/elements";
 import { Form } from "@/shadcn/components/form";
 import { type IGroup } from "../../interface";
-import { useFormConfig, userStatus } from "./config";
+import { useFormConfig } from "./config";
 
 interface IFormConfig {
   form: {
