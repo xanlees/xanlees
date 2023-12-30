@@ -25,6 +25,7 @@ const ThemedSiderV2MenuItem: FC<{
     const href = useMemo(() => {
         return String(resource.route);
     }, [resource]);
+    console.log(resource.name.toString())
 
     return (
         <CanAccess
@@ -62,6 +63,7 @@ export const ThemedSiderV2Menu: FC<{
     meta?: Record<string, unknown>;
 }> = ({ meta }) => {
     const { menuItems, selectedKey } = useMenu({ meta });
+    console.log(menuItems)
 
     const MenuItems = useMemo(
         () =>
@@ -74,6 +76,7 @@ export const ThemedSiderV2Menu: FC<{
             )),
         [menuItems, selectedKey],
     );
+    console.log(MenuItems)
     return (
         <ul role="list" className="flex w-full flex-1 flex-col gap-y-1.5">
             {MenuItems}

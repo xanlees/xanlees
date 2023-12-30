@@ -46,7 +46,7 @@ export const RefineProvider = ({ children }: Props): JSX.Element => {
         dataProvider={restDataProvider(process.env.NEXT_PUBLIC_API_URL as string)}
         notificationProvider={notificationProvider}
         accessControlProvider={accessControlProvider}
-        resources={resources as any}
+        resources={resources}
         options={{
           syncWithLocation: true,
         }}>
