@@ -41,12 +41,14 @@ export const EmployeeCreate: React.FC = () => {
     setCurrentStep(index);
   };
   return (
-    <Stepper
-      steps={initialStepsArr}
-      orientation="vertical"
-      currentStepIndex={currentStep}
-      onStepClick={handleStepClick}
-      stepContent={() => <div className="w-[1600px]" />}
-    />
+    <div className="mx-auto">
+      <Stepper
+        steps={initialStepsArr}
+        orientation="vertical"
+        currentStepIndex={currentStep}
+        onStepClick={handleStepClick}
+        stepContent={() => <div className="w-[1600px]" />}
+      />
+    </div>
   );
 };

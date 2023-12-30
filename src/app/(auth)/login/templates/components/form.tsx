@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/naming-convention */
 import Input from "./elements/formInput";
 import { useForm } from "@refinedev/react-hook-form";
 import {

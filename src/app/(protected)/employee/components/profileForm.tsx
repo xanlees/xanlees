@@ -9,7 +9,8 @@ import { InputFromLayout } from "./form";
 import { Input } from "@/shadcn/ui";
 import { profileSchema } from "../validation/validation";
 import { genderOptions, maritalStatusOptions } from "../lib/constant";
-import { useCounter } from "./counterContext";
+import { useCounter } from "./context";
+import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 interface ProfileFormProps {
   redirect: RedirectAction
 }
@@ -42,25 +43,26 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
     warnWhenUnsavedChanges: true,
   });
   return (
-    <div className="w-full">
+    <div className="w-2/3">
       <Form {...form}>
         <InputFromLayout>
           <div className="w-full">
             <Form.Field {...form} name="fullname" label="fullname">
-              <Input placeholder="fullname" className="block w-full" />
+              <Input placeholder="fullname" className="block w-2/3" />
             </Form.Field>
           </div>
           <div className="w-full">
             <Form.Field {...form} name="nickname" label="nickname">
-              <Input placeholder="nickname" className="block w-full" />
+              <Input placeholder="nickname" className="block w-2/3" />
             </Form.Field>
           </div>
         </InputFromLayout>
         <div className="w-full">
-          <Form.Field {...form} name="phoneNumber" label="phoneNumber">
-            <Input placeholder="phoneNumber" className="block w-full" />
+          <Form.Field {...form} name="phoneNumber" label="Phone Number">
+            <Input placeholder="phoneNumber" className="block w-1/3" />
           </Form.Field>
         </div>
+        <DatePickerField {...form} name="birthday" label="Date of Birth"/>
         <Form.Field {...form} name="gender" label="Gender">
           <Form.Select options={genderOptions} />
         </Form.Field>

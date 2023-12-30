@@ -8,7 +8,7 @@ import { Form } from "@ferdiunal/refinedev-shadcn-ui";
 import { InputFromLayout } from "./form";
 import { Input } from "@/shadcn/ui";
 import { graduationSchema } from "../validation/validation";
-import { useCounter } from "./counterContext";
+import { useCounter } from "./context";
 
 interface GraduationFormProps {
   redirect: RedirectAction
@@ -37,7 +37,7 @@ export const GraduationForm: React.FC<GraduationFormProps> = ({ redirect }) => {
     warnWhenUnsavedChanges: true,
   });
   return (
-    <div className="w-full">
+    <div className="w-1/2">
       <Form {...form}>
         <InputFromLayout>
           <div className="w-full">

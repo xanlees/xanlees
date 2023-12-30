@@ -18,3 +18,4 @@ export * from "./calendar";
 export * from "./textarea";
 export * from "./scroll-area";
 export * from "./select";
+export * from "./datepicker";

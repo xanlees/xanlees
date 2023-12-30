@@ -6,27 +6,27 @@ import React, {
   type ReactNode,
 } from "react";
 
-interface CounterState {
+interface EmployeeState {
   id: number
   profileId?: number
   graduationId?: number
   personalAddressId?: number
 }
-type CounterActionType = "SET_PROFILE_ID" | "SET_GRADUATION_ID" | "PERSONAL_ADDRESS";
-interface CounterAction {
-  type: CounterActionType
+type EmployeeActionType = "SET_PROFILE_ID" | "SET_GRADUATION_ID" | "PERSONAL_ADDRESS";
+interface EmployeeAction {
+  type: EmployeeActionType
   payload: number
   payloadType?: string
 }
 
 const CounterContext = createContext<
-{ state: CounterState, dispatch: React.Dispatch<CounterAction> } | undefined
+{ state: EmployeeState, dispatch: React.Dispatch<EmployeeAction> } | undefined
 >(undefined);
 
-const counterReducer = (
-  state: CounterState,
-  action: CounterAction,
-): CounterState => {
+const EmployeeReducer = (
+  state: EmployeeState,
+  action: EmployeeAction,
+): EmployeeState => {
   switch (action.type) {
     case "SET_PROFILE_ID":
       return { ...state, profileId: action.payload };
@@ -39,12 +39,12 @@ const counterReducer = (
   }
 };
 
-interface CounterProviderProps {
+interface EmployeeProviderProps {
   children: ReactNode
 }
 
-const CounterProvider: React.FC<CounterProviderProps> = ({ children }) => {
-  const [state, dispatch] = useReducer(counterReducer, { id: 0 });
+const EmployeeProvider: React.FC<EmployeeProviderProps> = ({ children }) => {
+  const [state, dispatch] = useReducer(EmployeeReducer, { id: 0 });
 
   return (
     <CounterContext.Provider value={{ state, dispatch }}>
@@ -53,9 +53,9 @@ const CounterProvider: React.FC<CounterProviderProps> = ({ children }) => {
   );
 };
 
-const useCounter = (): {
-  state: CounterState
-  dispatch: React.Dispatch<CounterAction>
+const useEmployeeContext = (): {
+  state: EmployeeState
+  dispatch: React.Dispatch<EmployeeAction>
 } => {
   const context = useContext(CounterContext);
   if (context == null) {
@@ -64,4 +64,4 @@ const useCounter = (): {
   return context;
 };
 
-export { CounterProvider, useCounter };
+export { EmployeeProvider as CounterProvider, useEmployeeContext as useCounter };

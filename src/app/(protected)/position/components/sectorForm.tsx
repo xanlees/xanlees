@@ -5,7 +5,7 @@ import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Form } from "@ferdiunal/refinedev-shadcn-ui";
 import { Input } from "@/shadcn/ui";
-import { useCounter } from "./counterContext";
+import { useCounter } from "./context";
 import { sectorSchema } from "../validation/validation";
 
 interface SectorProps {

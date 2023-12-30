@@ -8,6 +8,7 @@ import { getIdentity, getLogin, getLogout } from "@/lib/provider/auth/authOperat
 import {notificationProvider} from "@/lib/provider/notification"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CLIENT_API_V1_URL, CLIENT_API_URL } from "@/lib/client-constants";
 
 export const RefineNoLayout = (Story: React.FC) => {
   const { data, status } = useSession();
@@ -30,11 +31,11 @@ export const RefineNoLayout = (Story: React.FC) => {
     getPermissions: async() => { return null; },
     getIdentity: async() => getIdentity(data),
   };
-  const basePath=process.env.NEXTAUTH_URL || "http://127.0.0.1:3000";
+  const basePath=CLIENT_API_URL || "http://127.0.0.1:3000";
 
   return (
       <Refine
-        dataProvider={restDataProvider(process.env.NEXT_PUBLIC_API_URL as string)}
+        dataProvider={restDataProvider(CLIENT_API_V1_URL as string)}
         routerProvider={routerProvider}
         authProvider={authProvider}
         notificationProvider={notificationProvider}

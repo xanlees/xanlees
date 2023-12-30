@@ -19,8 +19,7 @@ import type {
   ISector,
 } from "./interface";
 // import { statusBadge } from "./lib/utils";
-import { EmployeeContainer, CardSection, TableSection } from "./employeeLayout";
-import Card from "./lib/card";
+import { EmployeeContainer, TableSection } from "./employeeLayout";
 import { getGenderDisplayText, getMaritalStatusDisplayText } from "./lib/genderUtils";
 
 // eslint-disable-next-line max-lines-per-function
@@ -62,9 +61,6 @@ export default function EmployeeList(): JSX.Element {
   return (
     <List>
       <EmployeeContainer>
-        <CardSection>
-          <Card key="uniqueKey1" />
-        </CardSection>
         <TableSection>
           <Table table={table}>
             <Table.Column

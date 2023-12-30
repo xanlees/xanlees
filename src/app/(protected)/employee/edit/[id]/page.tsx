@@ -3,7 +3,6 @@
 "use client";
 
 import { Edit } from "@/shadcn/components/crud";
-import EmployeeList from '../../page';
 
 export default function EmployeeEdit(): JSX.Element {
   return (

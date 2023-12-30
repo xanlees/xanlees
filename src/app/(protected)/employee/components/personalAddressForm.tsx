@@ -6,10 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSelect, type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Form } from "@ferdiunal/refinedev-shadcn-ui";
-import { InputFromLayout } from "./form";
 import { Input } from "@/shadcn/ui";
 import { personalAddressSchema } from "../validation/validation";
-import { useCounter } from "./counterContext";
+import { useCounter } from "./context";
 import { type IDistrict } from "../interface/interface";
 interface PersonalAddressFormProps {
   redirect: RedirectAction
@@ -44,39 +43,44 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
     resource: "district",
     optionLabel: "districtName",
     optionValue: "id",
+    filters: [{ field: "pageSize", operator: "eq", value: 140 }],
   });
   return (
-    <div className="w-full">
+    <div className="w-1/2">
       <Form {...form}>
-        <InputFromLayout>
-          <div className="w-full">
+        <div className="flex flex-row w-full gap-x-48">
+          <div className="block w-full">
             <Form.Field {...form} name="bornVillage" label="Born Village">
-              <Input placeholder="Born Village" className="block w-full" />
+              <Input placeholder="Born Village" />
             </Form.Field>
           </div>
           <div className="w-full">
             <Form.Field {...form} name="currentVillage" label="Current Village">
-              <Input placeholder="Current Village" className="block w-full" />
+              <Input placeholder="Current Village" />
             </Form.Field>
           </div>
-        </InputFromLayout>
-        <Form.Field {...form} name="bornDistrictId" label="Born District">
-          <Form.Combobox
-            {...(district as any)}
-            onChange={(value) => {
-              form.setValue("bornDistrictId", value);
-              console.log(value);
-            }}
-          />
-        </Form.Field>
-        <Form.Field {...form} name="currentDistrictId" label="Current District">
-          <Form.Combobox
-            {...(district as any)}
-            onChange={(value) => {
-              form.setValue("currentDistrictId", value);
-            }}
-          />
-        </Form.Field>
+        </div>
+        <div className="flex flex-row w-full gap-x-56">
+          <Form.Field {...form} name="bornDistrictId" label="Born District">
+            <Form.Combobox
+              {...(district as any)}
+              onChange={(value) => {
+                form.setValue("bornDistrictId", value);
+                console.log(value);
+              }}
+            />
+          </Form.Field>
+          <Form.Field {...form} name="currentDistrictId" label="Current District">
+            <Form.Combobox
+              {...(district as any)}
+              onChange={(value) => {
+                form.setValue("currentDistrictId", value);
+              }}
+              className="mx-10"
+            />
+          </Form.Field>
+        </div>
+
       </Form>
     </div>
   );
