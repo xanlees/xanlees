@@ -47,7 +47,7 @@ export const EmployeeCreate: React.FC = () => {
         orientation="vertical"
         currentStepIndex={currentStep}
         onStepClick={handleStepClick}
-        stepContent={() => <div className="w-[1600px]" />}
+        stepContent={() => <div className="w-[1600px] rounded-lg" />}
       />
     </div>
   );

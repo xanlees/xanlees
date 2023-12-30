@@ -13,17 +13,18 @@ import React from "react";
 import { genderOptions, maritalStatusOptions } from "../lib/constant";
 import { profileSchema } from "../validation/validation";
 import { useCounter } from "./context";
+import { InputImage } from "./InputImage";
 
 interface ProfileFormProps {
-  redirect: RedirectAction
+  redirect: RedirectAction;
 }
 interface ProfileFormValues {
-  fullname: string
-  nickname: string
-  phoneNumber: string
-  gender: string
-  maritalStatus: string
-  id?: number
+  fullname: string;
+  nickname: string;
+  phoneNumber: string;
+  gender: string;
+  maritalStatus: string;
+  id?: number;
 }
 export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
   const { state, dispatch } = useCounter();
@@ -45,77 +46,50 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
     warnWhenUnsavedChanges: true,
   });
   return (
-    <div className="w-1/2 capitalize rounded-lg">
+    <div className="w-2/5 capitalize rounded-lg">
       <Form {...form}>
         <div className="gap-2 sm:flex">
           <div className="w-full">
             <Form.Field {...form} name="fullname" label="fullname">
-              <Input placeholder="fullname" className="w-full" />
+              <Input placeholder="Fullname" className="w-full" />
             </Form.Field>
           </div>
           <div className="w-full">
             <Form.Field {...form} name="nickname" label="nickname">
-              <Input placeholder="nickname" className="w-full" />
+              <Input placeholder="Nickname" className="w-full" />
             </Form.Field>
           </div>
+        </div>
+        <div className="w-full">
+          <Form.Field {...form} name="image" label="image">
+            <Input placeholder="image" className="w-full"  type />
+          </Form.Field>
         </div>
         <div className="gap-2 sm:flex">
           <div className="w-full">
             <Form.Field {...form} name="phoneNumber" label="Phone Number">
-              <Input placeholder="Phone Number" className="w-1/2 " />
+              <Input placeholder="Phone Number" className="w-full " />
             </Form.Field>
           </div>
-          <DatePickerField {...form} name="birthday" label="Date of Birth" />
+          <div className="w-full pt-2.5">
+            <DatePickerField {...form} name="birthday" label="Date of Birth" />
+          </div>
         </div>
 
         <div className="gap-2 sm:flex">
-          <Form.Field {...form} name="gender" label="Gender">
-            <Form.Select options={genderOptions} />
-          </Form.Field>
-          <Form.Field {...form} name="maritalStatus" label="Marital Status">
-            <Form.Select options={maritalStatusOptions} />
-          </Form.Field>
-        </div>
-
-        {/* <InputImage /> */}
-      </Form>
-    </div>
-  );
-};
-
-export const InputImage: React.FC = () => {
-  return (
-    <div className="overflow-hidden bg-white rounded-lg w-80">
-      <div className="px-4 py-6">
-        <div
-          id="image-preview"
-          className="items-center max-w-sm p-6 mx-auto mb-4 text-center bg-gray-100 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer"
-        >
-          <input id="upload" type="file" className="hidden" accept="image/*" />
-          <label htmlFor="upload" className="cursor-pointer">
-            <Upload className="w-8 h-8 mx-auto mb-4 text-gray-700" />
-            <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-700">
-              Upload picture
-            </h5>
-            <p className="text-sm font-normal text-gray-400 md:px-6">
-              Choose photo size should be less than
-              <b className="text-gray-600">2mb</b>
-            </p>
-            <p className="text-sm font-normal text-gray-400 md:px-6">
-              and should be in <b className="text-gray-600">JPG, PNG, or GIF</b>
-              format.
-            </p>
-            <span id="filename" className="z-50 text-gray-500 bg-gray-200" />
-          </label>
-        </div>
-        <div className="flex items-center justify-center">
           <div className="w-full">
-            <label className="w-full text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 flex items-center justify-center mr-2 mb-2 cursor-pointer">
-              <span className="ml-2 text-center">Upload</span>
-            </label>
+            <Form.Field {...form} name="gender" label="Gender">
+              <Form.Select options={genderOptions} />
+            </Form.Field>
+          </div>
+          <div className="w-full">
+            <Form.Field {...form} name="maritalStatus" label="Marital Status">
+              <Form.Select options={maritalStatusOptions} />
+            </Form.Field>
           </div>
         </div>
-      </div>
+        {/* <InputImage {...form} /> */}
+      </Form>
     </div>
   );
 };
