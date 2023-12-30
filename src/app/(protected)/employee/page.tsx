@@ -312,20 +312,20 @@ export default function EmployeeList(): JSX.Element {
                   <Table.ShowAction
                     title="Detail"
                     row={original}
-                    resource="user"
+                    resource="employee"
                     icon={<Eye size={16} />}
                   />
                   <Table.EditAction
                     title="Edit"
                     row={original}
-                    resource="user"
+                    resource="employee"
                     icon={<Edit size={16} />}
                   />
                   <Table.DeleteAction
                     title="Delete"
                     row={original}
                     withForceDelete={true}
-                    resource="user"
+                    resource="employee"
                     icon={<Trash2 size={16} />}
                   />
                 </Table.Actions>

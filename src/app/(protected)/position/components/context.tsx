@@ -36,11 +36,11 @@ const PositionReducer = (
   }
 };
 
-interface CounterProviderProps {
+interface PositionProviderProps {
   children: ReactNode
 }
 
-const PositionProvider: React.FC<CounterProviderProps> = ({ children }) => {
+const PositionProvider: React.FC<PositionProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(PositionReducer, { id: 0 });
 
   return (
@@ -56,9 +56,9 @@ const usePositionContext = (): {
 } => {
   const context = useContext(PositionContext);
   if (context == null) {
-    throw new Error("useCounter must be used within a CounterProvider");
+    throw new Error("usePosition must be used within a PositionProvider");
   }
   return context;
 };
 
-export { PositionProvider as CounterProvider, usePositionContext as useCounter };
+export { PositionProvider, usePositionContext };
