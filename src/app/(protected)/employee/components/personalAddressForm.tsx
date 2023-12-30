@@ -66,7 +66,7 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
               {...(district as any)}
               onChange={(value) => {
                 form.setValue("bornDistrictId", value);
-                console.log(value);
+
               }}
             />
           </Form.Field>
