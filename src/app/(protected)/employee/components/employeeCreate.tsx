@@ -10,12 +10,12 @@ import { EmployeeForm } from "./employeeForm";
 export const initialStepsArr = [
   {
     stepLabel: "Personal Address",
-    stepDescription: <PersonalAddressForm redirect="create" />,
+    stepDescription: <ProfileForm redirect="create" />,
     completed: false,
   },
   {
     stepLabel: "Creating Profile",
-    stepDescription: <ProfileForm redirect="create" />,
+    stepDescription: <PersonalAddressForm redirect="create" />,
     completed: false,
   },
   {

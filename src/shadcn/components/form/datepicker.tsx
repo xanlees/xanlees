@@ -31,7 +31,6 @@ export const DatePickerField = ({ ...props }) => {
                                         !field.value && "text-muted-foreground"
                                     )}
                                 >
-                                    {console.log(field.value)}
                                     {field.value ? (
                                         format(new Date(field.value), "PPP")
                                     ) : (
