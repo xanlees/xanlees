@@ -9,7 +9,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
     Link,
-} from "../../../ui";
+} from "../../../elements";
 
 interface RowActionsProps {
     children?: ReactNode;

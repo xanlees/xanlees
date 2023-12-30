@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { Button, Sheet, SheetContent, SheetTrigger } from "../../../ui";
+import { Button, Sheet, SheetContent, SheetTrigger } from "../../../elements";
 import { SidebarMobileProps } from "./type";
 
 export const SidebarMobile: FC<SidebarMobileProps> = ({ children }) => {

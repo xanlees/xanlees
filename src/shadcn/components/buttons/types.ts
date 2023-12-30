@@ -6,7 +6,7 @@ import {
     RefineSaveButtonProps,
     RefineShowButtonProps,
 } from "@refinedev/ui-types";
-import { ButtonProps } from "../../ui";
+import { ButtonProps } from "../../elements";
 
 export type ShowButtonProps = RefineShowButtonProps<ButtonProps>;
 

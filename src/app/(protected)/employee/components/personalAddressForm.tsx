@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSelect, type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Form } from "@ferdiunal/refinedev-shadcn-ui";
-import { Input } from "@/shadcn/ui";
+import { Input } from "@src/shadcn/elements";
 import { personalAddressSchema } from "../validation/validation";
 import { useCounter } from "./context";
 import { type IDistrict } from "../interface/interface";

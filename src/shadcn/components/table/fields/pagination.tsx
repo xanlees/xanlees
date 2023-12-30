@@ -13,7 +13,7 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "../../../ui";
+} from "../../../elements";
 import { BaseRecord } from "@refinedev/core";
 
 interface DataTablePaginationProps<TData extends BaseRecord = BaseRecord> {

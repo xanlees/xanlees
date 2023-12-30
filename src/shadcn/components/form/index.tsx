@@ -13,7 +13,7 @@ import type {
     PropsWithChildren,
 } from "react";
 import { type FieldValues } from "react-hook-form";
-import { Button, Card, CardContent, CardFooter, FormUI } from "../../ui";
+import { Button, Card, CardContent, CardFooter, FormUI } from "../../elements";
 import { SaveButton } from "../buttons";
 import { Combobox } from "./combobox";
 import { FormField } from "./field";

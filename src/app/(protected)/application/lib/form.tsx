@@ -2,7 +2,7 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/naming-convention */
 import React from "react";
-import { Button, Input, Label, Textarea } from "@src/shadcn/ui";
+import { Button, Input, Label, Textarea } from "@src/shadcn/elements";
 
 export default function ApplicationForm(): JSX.Element {
   return (

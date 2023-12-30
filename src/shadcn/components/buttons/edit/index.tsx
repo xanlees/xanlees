@@ -12,7 +12,7 @@ import {
 import React, { useContext } from "react";
 
 import { cn } from "../../../lib/utils";
-import { Button, Link } from "../../../ui";
+import { Button, Link } from "../../../elements";
 import { Edit } from "lucide-react";
 import { EditButtonProps } from "../types";
 

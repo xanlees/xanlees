@@ -13,8 +13,8 @@ import * as z from "zod";
 import { Form } from "@/shadcn/components/form";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@src/shadcn/ui/button";
-import { Calendar } from "@src/shadcn/ui/calendar";
+import { Button } from "@src/shadcn/elements/button";
+import { Calendar } from "@src/shadcn/elements/calendar";
 import {
   FormControl,
   FormDescription,
@@ -22,13 +22,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@src/shadcn/ui/form";
+} from "@src/shadcn/elements/form";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@src/shadcn/ui/popover";
-import { toast } from "@src/shadcn/ui/use-toast";
+} from "@src/shadcn/elements/popover";
+import { toast } from "@src/shadcn/elements/use-toast";
 
 const FormSchema = z.object({
   dob: z.date({

@@ -11,7 +11,7 @@ import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "../../../ui";
+} from "../../../elements";
 import { PropsWithChildren } from "react";
 
 type CheckAllProps = PropsWithChildren & {

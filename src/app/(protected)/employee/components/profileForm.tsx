@@ -6,7 +6,7 @@ import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Form } from "@ferdiunal/refinedev-shadcn-ui";
 import { InputFromLayout } from "./form";
-import { Input } from "@/shadcn/ui";
+import { Input } from "@src/shadcn/elements";
 import { profileSchema } from "../validation/validation";
 import { genderOptions, maritalStatusOptions } from "../lib/constant";
 import { useCounter } from "./context";

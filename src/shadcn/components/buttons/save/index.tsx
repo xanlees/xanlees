@@ -6,7 +6,7 @@ import {
 import React from "react";
 
 import { Save } from "lucide-react";
-import { Button } from "../../../ui";
+import { Button } from "../../../elements";
 import { SaveButtonProps } from "../types";
 import { ReloadIcon } from "@radix-ui/react-icons";
 

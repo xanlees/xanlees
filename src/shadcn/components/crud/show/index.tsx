@@ -6,7 +6,7 @@ import {
     useUserFriendlyName,
 } from "@refinedev/core";
 import { ReactNode } from "react";
-import { Card, CardContent } from "../../../ui";
+import { Card, CardContent } from "../../../elements";
 import { ListProps } from "../types";
 import { Row } from "./components/row";
 import { PageHeader } from "../../pageHeader";

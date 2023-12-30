@@ -16,7 +16,7 @@ import {
     PopoverContent,
     PopoverTrigger,
     Separator,
-} from "../../../ui";
+} from "../../../elements";
 
 export function TableFilterDropdown({
     column,

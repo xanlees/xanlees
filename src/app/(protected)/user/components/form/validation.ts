@@ -1,5 +1,6 @@
 /* eslint-disable max-lines */
 import * as z from "zod";
+
 export const userSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -19,6 +20,11 @@ export const userSchema = z.object({
         "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.",
     },
   ),
+  confirmPassword: z.string(),
   isActive: z.union([z.string(), z.boolean()]),
   groups: z.array(z.string()),
+}).refine((value) => value.password === value.confirmPassword, {
+  message: "Passwords don't match",
+  path: ["confirmPassword"],
 });
+

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { ColumnFiltersState, Table } from "@tanstack/react-table";
-import { Input } from '@/shadcn/ui';
+import { Input } from '@src/shadcn/elements';
 
 interface DataTableSearchBarProps<TData> {
   table: Table<TData>;

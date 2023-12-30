@@ -24,7 +24,7 @@ import {
     PopoverContent,
     PopoverTrigger,
     ScrollArea,
-} from "../../ui";
+} from "../../elements";
 
 type ComboboxProps = Omit<
     ComponentPropsWithoutRef<typeof CommandPrimitive>,

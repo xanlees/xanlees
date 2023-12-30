@@ -5,13 +5,13 @@ import { format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/shadcn/ui/button"
-import { Calendar } from "@/shadcn/ui/calendar"
+import { Button } from "@src/shadcn/elements/button"
+import { Calendar } from "@src/shadcn/elements/calendar"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/shadcn/ui/popover"
+} from "@src/shadcn/elements/popover"
 
 export function DatePicker(){
   const [date, setDate] = React.useState<Date>()

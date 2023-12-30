@@ -11,7 +11,7 @@ import {
 } from "@refinedev/ui-types";
 import React, { useContext } from "react";
 
-import { Button, Link } from "../../../ui";
+import { Button, Link } from "../../../elements";
 import { EyeIcon } from "lucide-react";
 import { ShowButtonProps } from "../types";
 

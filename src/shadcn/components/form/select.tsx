@@ -14,7 +14,7 @@ import {
     SelectTrigger,
     Select as SelectUI,
     SelectValue,
-} from "../../ui";
+} from "../../elements";
 
 type SelectProps = SelectCoreProps & {
     placeholder?: string;

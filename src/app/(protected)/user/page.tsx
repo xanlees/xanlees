@@ -3,7 +3,7 @@
 
 import { List } from "@/shadcn/components/crud";
 import { Table, type TableFilterProps } from "@/shadcn/components/table"; // Assuming this is the correct import path
-import { Badge, Checkbox, CommandItem } from "@/shadcn/ui";
+import { Badge, Checkbox, CommandItem } from "@src/shadcn/elements";
 import { useUserFriendlyName } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { Edit, Eye, Trash2 } from "lucide-react";

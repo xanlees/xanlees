@@ -17,7 +17,7 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "../../ui";
+} from "../../elements";
 import { UserNavProps } from "./types";
 
 export const UserNav: FC<UserNavProps> = ({ name, title, avatar, menus }) => {

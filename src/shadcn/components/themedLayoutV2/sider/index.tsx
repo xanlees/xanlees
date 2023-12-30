@@ -3,7 +3,7 @@ import { List } from "lucide-react";
 import { FC, ReactNode, useMemo } from "react";
 
 import { cn } from "../../../lib/utils";
-import { Button, Link } from "../../../ui";
+import { Button, Link } from "../../../elements";
 import { ThemedSiderV2Props } from "./type";
 import { RefineLayoutTitleProps } from "@refinedev/ui-types";
 

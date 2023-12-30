@@ -5,7 +5,7 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-} from "../../ui";
+} from "../../elements";
 import { FC } from "react";
 import { DarkModeProps } from "./type";
 import { useDarkMode } from "../../hooks";

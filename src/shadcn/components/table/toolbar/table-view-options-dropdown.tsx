@@ -10,7 +10,7 @@ import {
     DropdownMenuContent,
     DropdownMenuLabel,
     DropdownMenuSeparator,
-} from "../../../ui";
+} from "../../../elements";
 import { useMemo } from "react";
 
 interface DataTableViewOptionsProps<TData> {

@@ -13,7 +13,7 @@ import React, { useContext } from "react";
 
 import { Trash2 } from "lucide-react";
 import { cn } from "../../../lib/utils";
-import { Button } from "../../../ui";
+import { Button } from "../../../elements";
 import { DeleteButtonProps } from "../types";
 import { useDeleteHelper } from "@/shadcn/hooks";
 import { DeleteContext } from "@/shadcn/providers";
