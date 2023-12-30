@@ -51,9 +51,9 @@ export const UserNav: FC<UserNavProps> = ({ name, title, avatar, menus }) => {
             <DropdownMenuTrigger asChild>
                 <Button
                     variant="ghost"
-                    className="relative h-8 w-8 rounded-full"
+                    className="relative w-8 h-8 rounded-full"
                 >
-                    <Avatar className="h-8 w-8">
+                    <Avatar className="w-8 h-8">
                         <AvatarImage
                             src={
                                 avatar ??

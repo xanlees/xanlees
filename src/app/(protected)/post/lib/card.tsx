@@ -11,7 +11,7 @@ const Card = () => {
     <>
       {cardData.map((card) => (
         <div className="w-full p-4 md:w-1/2 " key={card.id}>
-          <div className="p-6 bg-white rounded-md shadow-md">
+          <div className="p-6 bg-white shadow-md rounded-md">
             <h2 className="mb-4 text-lg font-bold">{card.title}</h2>
             <p className="text-gray-600">{card.content}</p>
           </div>

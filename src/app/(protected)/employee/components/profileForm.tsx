@@ -1,18 +1,20 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/naming-convention */
-import React from "react";
+import { Form } from "@ferdiunal/refinedev-shadcn-ui";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import { Form } from "@ferdiunal/refinedev-shadcn-ui";
-import { InputFromLayout } from "./form";
-import { Input } from "@src/shadcn/elements";
-import { profileSchema } from "../validation/validation";
-import { genderOptions, maritalStatusOptions } from "../lib/constant";
-import { useCounter } from "./context";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
+import { Input } from "@src/shadcn/elements";
 import { Upload } from "lucide-react";
+import React from "react";
+
+import { genderOptions, maritalStatusOptions } from "../lib/constant";
+import { profileSchema } from "../validation/validation";
+import { useCounter } from "./context";
+import { InputFromLayout } from "./form";
+
 interface ProfileFormProps {
   redirect: RedirectAction
 }
@@ -36,7 +38,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
       autoSave: {
         enabled: true,
       },
-      onMutationSuccess: (data, variables) => {
+      onMutationSuccess: (data) => {
         dispatch({ type: "SET_PROFILE_ID", payload: data?.data?.id ?? 0 });
       },
       redirect,
@@ -70,7 +72,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
         <Form.Field {...form} name="maritalStatus" label="Marital Status">
           <Form.Select options={maritalStatusOptions} />
         </Form.Field>
-        <InputImage />
+        {/* <InputImage /> */}
       </Form>
     </div>
   );
@@ -78,7 +80,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
 
 export const InputImage: React.FC = () => {
   return (
-    <div className="overflow-hidden bg-white rounded-lg shadow-md w-80">
+    <div className="overflow-hidden bg-white rounded-lg w-80">
       <div className="px-4 py-6">
         <div
           id="image-preview"

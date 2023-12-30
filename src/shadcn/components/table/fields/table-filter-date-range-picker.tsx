@@ -55,7 +55,7 @@ export function TableFilterDateRangePickerFilter({
                             <>
                                 <Separator
                                     orientation="vertical"
-                                    className="mx-2 h-4"
+                                    className="h-4 mx-2"
                                 />
                                 <Badge
                                     variant="secondary"
@@ -107,7 +107,7 @@ export function TableFilterDateRangePickerFilter({
                             <Button
                                 variant="outline"
                                 size="sm"
-                                className="h-8 border-dashed px-2"
+                                className="h-8 px-2 border-dashed"
                                 onClick={() => {
                                     column?.setFilterValue(undefined);
                                     setDate({ from: undefined, to: undefined });

@@ -1,11 +1,11 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import Stepper from "@keyvaluesystems/react-stepper";
 import React, { useState } from "react";
-import { PersonalAddressForm } from "./personalAddressForm";
-import { ProfileForm } from "./profileForm";
-import { GraduationForm } from "./graduationForm";
+
 import { EducationForm } from "./educationForm";
 import { EmployeeForm } from "./employeeForm";
+import { GraduationForm } from "./graduationForm";
+import { PersonalAddressForm } from "./personalAddressForm";
+import { ProfileForm } from "./profileForm";
 
 export const initialStepsArr = [
   {

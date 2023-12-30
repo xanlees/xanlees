@@ -9,7 +9,7 @@ interface ChildrenProps {
 
 const ApplicationContainer: React.FC<ChildrenProps> = ({ children, title }) => {
   return (
-    <div className="w-full min-h-full p-5 space-y-3 bg-red-500 rounded-lg">
+    <div className="w-full min-h-full p-5 bg-red-500 rounded-lg space-y-3">
       <div className="w-full px-2 py-3 text-4xl font-bold text-center bg-white rounded-lg">{title}</div>
       <div className="flex flex-col max-h-full bg-green-500 rounded-lg md:flex-row">
         {children}

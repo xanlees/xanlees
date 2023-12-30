@@ -8,7 +8,7 @@ export default function ApplicationForm(): JSX.Element {
   return (
     <div className="p-4 bg-white shadow rounded-xl sm:p-7 dark:bg-slate-900">
       <form className="">
-        <div className="grid gap-2 py-8 border-t border-gray-200 sm:grid-cols-12 sm:gap-4 first:pt-0 last:pb-0 first:border-transparent dark:border-gray-700 dark:first:border-transparent">
+        <div className="py-8 border-t border-gray-200 grid gap-2 sm:grid-cols-12 sm:gap-4 first:pt-0 last:pb-0 first:border-transparent dark:border-gray-700 dark:first:border-transparent">
           <div className="sm:col-span-12">
             <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
               Submit your application

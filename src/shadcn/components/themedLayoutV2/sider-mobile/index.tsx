@@ -13,7 +13,7 @@ export const SidebarMobile: FC<SidebarMobileProps> = ({ children }) => {
                 >
                     <span className="sr-only">Open sidebar</span>
                     <svg
-                        className="h-6 w-6"
+                        className="w-6 h-6"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                         aria-hidden="true"

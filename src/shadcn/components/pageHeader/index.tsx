@@ -10,15 +10,15 @@ export const PageHeader: FC<PageHeaderProps> = ({ extra, ...props }) => {
                 props.className,
             )}
         >
-            <div className="min-w-0 flex-1">
+            <div className="flex-1 min-w-0">
                 {props.breadcrumb}
-                <div className="inline-flex flex-row items-center gap-x-4 mt-3">
+                <div className="inline-flex flex-row items-center mt-3 gap-x-4">
                     <div className="inline-flex flex-col">
-                        <h2 className="text-2xl font-bold leading-7 text-black dark:text-white sm:truncate sm:text-3xl sm:tracking-tight">
+                        <h2 className="text-2xl font-bold text-black leading-7 dark:text-white sm:truncate sm:text-3xl sm:tracking-tight">
                             {props.title}
                         </h2>
                         {props.subTitle && (
-                            <div className="mt-2 flex items-center text-sm text-gray-300">
+                            <div className="flex items-center mt-2 text-sm text-gray-300">
                                 {props.subTitle}
                             </div>
                         )}
