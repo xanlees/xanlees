@@ -39,7 +39,7 @@ const Profile: React.FC<{ record?: IEmployee }> = ({ record }) => {
         {phoneNumber?.length > 0 && (
           <a
             href={`tel:${phoneNumber}`}
-            className="px-8 py-2 text-white bg-black rounded hover:bg-black"
+            className="px-8 py-2 text-white bg-black rounded dark:text-black dark:bg-white hover:bg-black"
           >
             Contact
           </a>
