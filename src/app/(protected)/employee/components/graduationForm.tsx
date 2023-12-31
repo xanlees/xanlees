@@ -3,13 +3,14 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
-import { InputFromLayout } from "./form";
 import { Input } from "@src/shadcn/elements";
 import { graduationSchema } from "../validation/validation";
 import { useCounter } from "./context";
 import { type RedirectAction } from "@refinedev/core";
 import { useFieldArray } from "react-hook-form";
 import { Form } from "@src/shadcn/components/form";
+import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
+import { ArrayField } from "@src/shadcn/components/form/array-field";
 
 interface GraduationFormProps {
   redirect: RedirectAction
@@ -41,53 +42,23 @@ export const GraduationForm: React.FC<GraduationFormProps> = ({ redirect }) => {
     warnWhenUnsavedChanges: true,
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append } = useFieldArray({
     control: form.control,
     name: "graduation",
   });
   console.log("fields", fields);
+  console.log("form", form.watch("graduation"));
   return (
     <div className="w-1/2">
       <Form {...form}>
-        <InputFromLayout>
-          {fields.map((field, index) => (
-            <div key={field.id}>
-              <div className="w-full">
-                <Form.Field
-                  {...form}
-                  name={`graduation[${index}].degrees`}
-                  label={`Degrees ${index + 1}`}
-                >
-                  <Input
-                    placeholder={`Degrees ${index + 1}`}
-                    className="block w-full"
-                  />
-                </Form.Field>
-              </div>
-              <div className="w-full">
-                <Form.Field
-                  {...form}
-                  name={`graduation[${index}].sectors`}
-                  label={`Sectors ${index + 1}`}
-                >
-                  <Input
-                    placeholder={`Sectors ${index + 1}`}
-                    className="block w-full"
-                  />
-                </Form.Field>
-              </div>
-              <button type="button" onClick={() => { remove(index); }}>
-                Remove
-              </button>
-            </div>
-          ))}
-          <button
-            type="button"
-            onClick={() => { append({ degrees: "", sectors: "" }); }}
-          >
-            Add Graduation
-          </button>
-        </InputFromLayout>
+        <DynamicForm form={form} fields={fields} append={append} name="graduation" label="Graduation">
+          <ArrayField {...form} name="degree" label="Degree">
+            <Input placeholder="Degree" className="block w-full" />
+          </ArrayField>
+          <ArrayField {...form} name="sector" label="Sector">
+            <Input placeholder="Degree" className="block w-full" />
+          </ArrayField>
+        </DynamicForm>
       </Form>
     </div>
   );
