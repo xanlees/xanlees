@@ -36,19 +36,17 @@ export const initialStepsArr = [
 ];
 
 export const EmployeeCreate: React.FC = () => {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(2);
   const handleStepClick = (_: any, index: number) => {
     setCurrentStep(index);
   };
   return (
-    <div className="mx-auto">
-      <Stepper
-        steps={initialStepsArr}
-        orientation="vertical"
-        currentStepIndex={currentStep}
-        onStepClick={handleStepClick}
-        stepContent={() => <div className="w-[1600px] rounded-lg" />}
-      />
-    </div>
+    <Stepper
+      steps={initialStepsArr}
+      orientation="vertical"
+      currentStepIndex={currentStep}
+      onStepClick={handleStepClick}
+      stepContent={() => <div className="w-[1600px] rounded-lg" />}
+    />
   );
 };

@@ -49,33 +49,32 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
     warnWhenUnsavedChanges: true,
   });
   return (
-    <div className="flex flex-col capitalize rounded-lg min-h-scree sm:flex-row">
+    <div className="w-[39%] rounded-full ">
       <Form {...form}>
-        <div className="flex-1 p-4">
-          <Form.Field {...form} name="fullname" label="fullname">
-            <Input placeholder="Fullname" />
-          </Form.Field>
-          <Form.Field {...form} name="phoneNumber" label="Phone Number">
-            <Input placeholder="Phone Number" />
-          </Form.Field>
-          <Form.Field {...form} name="gender" label="Gender" >
-            <Form.Select options={genderOptions} />
-          </Form.Field>
-          <Form.FileInput label={"Profile"} {...form} name="profilePicture" />
+        <div className="flex flex-col w-full capitalize rounded-lg sm:w-1/2 sm:flex-row">
+          <div className="flex-1 p-4">
+            <Form.Field {...form} name="fullname" label="fullname">
+              <Input placeholder="Fullname" />
+            </Form.Field>
+            <Form.Field {...form} name="phoneNumber" label="Phone Number">
+              <Input placeholder="Phone Number" />
+            </Form.Field>
+            <Form.Field {...form} name="gender" label="Gender">
+              <Form.Select options={genderOptions} />
+            </Form.Field>
+            <Form.FileInput label={"Profile"} {...form} name="profilePicture" />
+          </div>
+          <div className="flex-1 p-4 ">
+            <Form.Field {...form} name="nickname" label="nickname">
+              <Input placeholder="Nickname" />
+            </Form.Field>
+            <Form.DatePicker {...form} name="birthday" label="Date of Birth" />
+            <Form.Field {...form} name="maritalStatus" label="Marital Status">
+              <Form.Select options={maritalStatusOptions} />
+            </Form.Field>
+          </div>
         </div>
-        <div className="flex-1 p-4 ">
-          <Form.Field {...form} name="nickname" label="nickname">
-            <Input placeholder="Nickname" />
-          </Form.Field>
-          <Form.DatePicker {...form} name="birthday" label="Date of Birth" />
-          <Form.Field {...form} name="maritalStatus" label="Marital Status">
-            <Form.Select options={maritalStatusOptions} />
-          </Form.Field>
-        </div>
-
-
       </Form>
     </div>
   );
 };
-

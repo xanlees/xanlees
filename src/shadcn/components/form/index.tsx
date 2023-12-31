@@ -88,7 +88,7 @@ export const Form = <
     return (
         <FormUI {...props}>
             <form {...formProps} onSubmit={onSubmit}>
-                <Card>
+                <Card className="rounded-lg">
                     <CardContent className="pt-6 space-y-4">
                         {props.children}
                     </CardContent>
