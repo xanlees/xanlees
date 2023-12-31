@@ -36,7 +36,7 @@ export const initialStepsArr = [
 ];
 
 export const EmployeeCreate: React.FC = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(2);
   const handleStepClick = (_: any, index: number) => {
     setCurrentStep(index);
   };
