@@ -1,21 +1,21 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import Stepper from "@keyvaluesystems/react-stepper";
 import React, { useState } from "react";
-import { PersonalAddressForm } from "./personalAddressForm";
-import { ProfileForm } from "./profileForm";
-import { GraduationForm } from "./graduationForm";
+
 import { EducationForm } from "./educationForm";
 import { EmployeeForm } from "./employeeForm";
+import { GraduationForm } from "./graduationForm";
+import { PersonalAddressForm } from "./personalAddressForm";
+import { ProfileForm } from "./profileForm";
 
 export const initialStepsArr = [
   {
     stepLabel: "Personal Address",
-    stepDescription: <ProfileForm redirect="create" />,
+    stepDescription: <PersonalAddressForm redirect="create" />,
     completed: false,
   },
   {
     stepLabel: "Creating Profile",
-    stepDescription: <PersonalAddressForm redirect="create" />,
+    stepDescription: <ProfileForm redirect="create" />,
     completed: false,
   },
   {
@@ -36,19 +36,17 @@ export const initialStepsArr = [
 ];
 
 export const EmployeeCreate: React.FC = () => {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(1);
   const handleStepClick = (_: any, index: number) => {
     setCurrentStep(index);
   };
   return (
-    <div className="mx-auto">
-      <Stepper
-        steps={initialStepsArr}
-        orientation="vertical"
-        currentStepIndex={currentStep}
-        onStepClick={handleStepClick}
-        stepContent={() => <div className="w-[1600px]" />}
-      />
-    </div>
+    <Stepper
+      steps={initialStepsArr}
+      orientation="vertical"
+      currentStepIndex={currentStep}
+      onStepClick={handleStepClick}
+      stepContent={() => <div className="w-[1600px] rounded-lg" />}
+    />
   );
 };

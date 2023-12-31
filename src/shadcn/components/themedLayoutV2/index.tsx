@@ -3,7 +3,7 @@ import Navbar from "./navbar";
 import ThemedSiderV2 from "./sider";
 import SidebarMobile from "./sider-mobile";
 import { LayoutProps } from "./type";
-import { Toaster } from "@/shadcn/ui/toaster";
+import { Toaster } from "@src/shadcn/elements/toaster";
 
 export const ThemedLayoutV2: FC<LayoutProps> = ({
   children,

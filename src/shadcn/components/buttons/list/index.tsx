@@ -14,7 +14,7 @@ import {
 import React, { useContext } from "react";
 
 import { List } from "lucide-react";
-import { Button, Link } from "../../../ui";
+import { Button, Link } from "../../../elements";
 import { ListButtonProps } from "../types";
 
 export const ListButton: React.FC<ListButtonProps> = ({

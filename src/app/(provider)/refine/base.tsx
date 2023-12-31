@@ -17,6 +17,8 @@ import { accessControlProvider } from "@/lib/provider/access/control";
 import { ThemedLayoutV2 } from "@/shadcn/components/themedLayoutV2";
 import { ViteDarkModeProvider } from "@/shadcn/providers";
 import { resources } from "@src/lib/resources/constant";
+import { Suspense } from "react";
+import Loading from "@src/app/loading";
 
 interface Props {
   children?: React.ReactNode
@@ -46,7 +48,7 @@ export const RefineProvider = ({ children }: Props): JSX.Element => {
         dataProvider={restDataProvider(process.env.NEXT_PUBLIC_API_URL as string)}
         notificationProvider={notificationProvider}
         accessControlProvider={accessControlProvider}
-        resources={resources as any}
+        resources={resources}
         options={{
           syncWithLocation: true,
         }}>
@@ -54,10 +56,12 @@ export const RefineProvider = ({ children }: Props): JSX.Element => {
           darkModeProvider={
             ViteDarkModeProvider
           }
-          defaultDarkMode="system"
+          defaultDarkMode="light"
           storageKey="darkMode"
         >
-          {children}
+          <Suspense fallback={<Loading/>}>
+            {children}
+          </Suspense>
         </ThemedLayoutV2>
         <ToastContainer/>
       </Refine>

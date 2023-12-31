@@ -32,7 +32,7 @@ export const LayoutTable = ({ children }: { children: React.ReactNode }) => {
 
 const HeaderTable = () => {
   return (
-    <div className="grid gap-3 px-6 py-4 border-b border-gray-200 md:flex md:justify-between md:items-center dark:border-gray-700">
+    <div className="px-6 py-4 border-b border-gray-200 grid gap-3 md:flex md:justify-between md:items-center dark:border-gray-700">
       <div>
         <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
           Table

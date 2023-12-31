@@ -17,7 +17,7 @@ import {
     TableHeader,
     TableRow,
     Table as TableUi,
-} from "../../ui/table";
+} from "../../elements/table";
 import { RowAction, RowActions } from "./actions";
 import { DeleteAction } from "./actions/delete";
 import { EditAction } from "./actions/edit";

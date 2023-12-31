@@ -15,7 +15,7 @@ import {
     DialogFooter,
     DialogHeader,
     DialogTitle,
-} from "../../../ui";
+} from "../../../elements";
 import { ReloadIcon } from "@radix-ui/react-icons";
 
 type DeleteActionProps = RowActionProps & {

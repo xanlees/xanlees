@@ -7,7 +7,7 @@ import {
 import { RefineBreadcrumbProps } from "@refinedev/ui-types";
 import { HomeIcon } from "lucide-react";
 import { FC } from "react";
-import { Link } from "../../ui";
+import { Link } from "../../elements";
 
 export type BreadcrumbProps = RefineBreadcrumbProps;
 

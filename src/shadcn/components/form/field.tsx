@@ -12,7 +12,7 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-} from "../../ui";
+} from "../../elements";
 
 type FormFieldProps<
     TFieldValues extends FieldValues = FieldValues,

@@ -6,7 +6,7 @@
 
 import { List } from "@/shadcn/components/crud";
 import { Table, type TableFilterProps } from "@/shadcn/components/table";
-import { Badge, Checkbox, CommandItem } from "@/shadcn/ui";
+import { Badge, Checkbox, CommandItem } from "@src/shadcn/elements";
 import { useMany, useUserFriendlyName } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { Edit, Eye, Trash2 } from "lucide-react";

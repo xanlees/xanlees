@@ -1,4 +1,4 @@
-import { toast, dismiss } from "@/shadcn/ui/use-toast";
+import { toast, dismiss } from "@src/shadcn/elements/use-toast";
 import { NotificationProvider } from "@refinedev/core";
 
 export const notificationProvider: NotificationProvider = {

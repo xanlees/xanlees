@@ -10,7 +10,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@src/shadcn/ui";
+} from "@src/shadcn/elements";
 
 export function SelectScrollable() {
   const positions = [

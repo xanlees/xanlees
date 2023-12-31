@@ -35,7 +35,7 @@ const Profile: React.FC<{ record?: IEmployee }> = ({ record }) => {
       />
       <div className="text-xl font-bold">{record?.profileDetail.fullname}</div>
       <p className="">{record?.positionDetail.name}</p>
-      <div className="flex flex-wrap justify-center w-1/2 gap-4 mt-6">
+      <div className="flex flex-wrap justify-center w-1/2 mt-6 gap-4">
         {phoneNumber?.length > 0 && (
           <a
             href={`tel:${phoneNumber}`}

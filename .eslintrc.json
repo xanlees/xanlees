@@ -44,17 +44,26 @@
     "@typescript-eslint/naming-convention": [
       "error",
       {
-        "format": ["camelCase"],
-        "leadingUnderscore": "forbid",
+        "format": ["PascalCase", "camelCase"],
         "selector": "default"
       },
+      {
+        "format": ["camelCase", "PascalCase"],
+        "leadingUnderscore": "forbid",
+        "selector": "variable"
+      },
+      {
+        "format": ["camelCase"],
+        "leadingUnderscore": "allow",
+        "selector": "parameter"
+      },    
       {
         "format": ["PascalCase"],
         "selector": "typeLike"
       },
       {
         "selector": "function",
-        "format": []
+        "format": ["PascalCase", "camelCase"]
       },
       {
         "format": ["PascalCase"],

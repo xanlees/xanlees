@@ -3,10 +3,10 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import { Form } from "@ferdiunal/refinedev-shadcn-ui";
-import { Input } from "@/shadcn/ui";
+import { Input } from "@src/shadcn/elements";
 import { usePositionContext } from "./context";
 import { sectorSchema } from "../validation/validation";
+import { Form } from "@src/shadcn/components/form";
 
 interface SectorProps {
   redirect: RedirectAction

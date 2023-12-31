@@ -1,4 +1,4 @@
-import { Badge } from "@/shadcn/ui/badge";
+import { Badge } from "@src/shadcn/elements/badge";
 
 export const statusBadge = (status: boolean) => {
   const statusText = (status) ? "ເປິດໃຊ້ງານ" : "ປິດການໃຊ້ງານ";

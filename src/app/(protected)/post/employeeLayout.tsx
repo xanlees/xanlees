@@ -8,7 +8,7 @@ interface ChildrenProps {
 
 const EmployeeContainer: React.FC<ChildrenProps> = ({ children }) => {
   return (
-    <div className="w-full min-h-full p-5 space-y-3 bg-red-500 rounded-lg">{children}</div>
+    <div className="w-full min-h-full p-5 bg-red-500 rounded-lg space-y-3">{children}</div>
   );
 };
 

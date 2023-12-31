@@ -6,37 +6,33 @@ import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { InputFromLayout } from "./form";
 import { Input } from "@src/shadcn/elements";
-import { educationSchema } from "../validation/validation";
+import { graduationSchema } from "../validation/validation";
 import { useCounter } from "./context";
 import { Form } from "@src/shadcn/components/form";
 
-interface EducationFormProps {
+interface GraduationFormProps {
   redirect: RedirectAction
 }
-interface EducationFormValues {
-  profileId: number
-  graduationId: number
-  branch: string
-  sector: string
-  year: string
+interface GraduationFormValues {
+  degree: number
+  sector: number
   id?: number
 }
 
-export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
-  const { state } = useCounter();
-  const { ...form } = useForm<EducationFormValues>({
-    resolver: zodResolver(educationSchema),
-    defaultValues: {
-      profileId: state.profileId,
-      graduationId: state.graduationId,
-      year: "2023-12-28T18:46:30.879Z",
-    },
+export const GraduationForm: React.FC<GraduationFormProps> = ({ redirect }) => {
+  const { dispatch } = useCounter();
+
+  const { ...form } = useForm<GraduationFormValues>({
+    resolver: zodResolver(graduationSchema),
     refineCoreProps: {
-      resource: "education",
+      resource: "graduation",
       autoSave: {
         enabled: true,
       },
       redirect,
+      onMutationSuccess: (data) => {
+        dispatch({ type: "SET_GRADUATION_ID", payload: data?.data?.id ?? 0 });
+      },
     },
     warnWhenUnsavedChanges: true,
   });
@@ -45,8 +41,8 @@ export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
       <Form {...form}>
         <InputFromLayout>
           <div className="w-full">
-            <Form.Field {...form} name="branch" label="Branch">
-              <Input placeholder="Branch" className="block w-full" />
+            <Form.Field {...form} name="degree" label="Degree">
+              <Input placeholder="Degree" className="block w-full" />
             </Form.Field>
           </div>
           <div className="w-full">

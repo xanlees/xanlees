@@ -13,11 +13,13 @@ import type {
     PropsWithChildren,
 } from "react";
 import { type FieldValues } from "react-hook-form";
-import { Button, Card, CardContent, CardFooter, FormUI } from "../../ui";
+import { Button, Card, CardContent, CardFooter, FormUI } from "../../elements";
 import { SaveButton } from "../buttons";
 import { Combobox } from "./combobox";
 import { FormField } from "./field";
 import { Select } from "./select";
+import { DatePickerField } from "./datepicker";
+import { FileInputField } from "./fileinput";
 
 type NativeFormProps = Omit<
     DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>,
@@ -86,7 +88,7 @@ export const Form = <
     return (
         <FormUI {...props}>
             <form {...formProps} onSubmit={onSubmit}>
-                <Card>
+                <Card className="rounded-lg">
                     <CardContent className="pt-6 space-y-4">
                         {props.children}
                     </CardContent>
@@ -115,3 +117,5 @@ export const Form = <
 Form.Field = FormField;
 Form.Combobox = Combobox;
 Form.Select = Select;
+Form.DatePicker = DatePickerField;
+Form.FileInput = FileInputField;

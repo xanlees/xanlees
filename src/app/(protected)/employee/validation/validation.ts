@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 /* eslint-disable max-lines */
 import * as z from "zod";
 const validGenders = ["MALE", "FEMALE", "OTHER"] as const;
@@ -25,6 +26,34 @@ export const profileSchema = z.object({
   personalAddressId: z.number().min(0, {
     message: "Personal Address ID must be a non-negative number.",
   }),
+  profilePicture: z.string().refine(
+    (value) => {
+      const isImageUrl = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i.test(value);
+      const isBase64Image = /^data:image\/(png|jpeg|jpg|gif);base64,/i.test(
+        value,
+      );
+      console.log("value", value);
+      const isValidFormat = /\.(jpg|jpeg|png|gif)$/i.test(value);
+      const maxFileSize = 1 * 500 * 500;
+      const isSizeValid = value.length <= maxFileSize;
+      if (!((isImageUrl || isBase64Image) && isValidFormat && isSizeValid)) {
+        if (!isImageUrl && !isBase64Image) {
+          return { message: "Invalid image URL or base64 encoding." };
+        }
+        if (!isValidFormat) {
+          return { message: "Invalid image format. Choose JPG, PNG, or GIF." };
+        }
+        if (!isSizeValid) {
+          return { message: "Image size exceeds the maximum limit of 2MB." };
+        }
+      }
+      return true;
+    },
+    {
+      message:
+        "Choose a valid photo (max size 2MB) in JPG, PNG, or GIF format.",
+    },
+  ),
   maritalStatus: z
     .enum(validMaritalStatus)
     .refine((value) => validMaritalStatus.includes(value), {

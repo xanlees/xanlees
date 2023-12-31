@@ -4,7 +4,7 @@ import { createContext } from "react";
 import { DarkModeProviderState } from "./types";
 
 export const initialState: DarkModeProviderState = {
-    theme: "system",
+    theme: "light",
     setDarkMode: () => null,
 };
 

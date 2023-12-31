@@ -3,7 +3,7 @@ import { List } from "lucide-react";
 import { FC, ReactNode, useMemo } from "react";
 
 import { cn } from "../../../lib/utils";
-import { Button, Link } from "../../../ui";
+import { Button, Link } from "../../../elements";
 import { ThemedSiderV2Props } from "./type";
 import { RefineLayoutTitleProps } from "@refinedev/ui-types";
 
@@ -25,7 +25,6 @@ const ThemedSiderV2MenuItem: FC<{
     const href = useMemo(() => {
         return String(resource.route);
     }, [resource]);
-
     return (
         <CanAccess
             resource={resource.name.toString()}
@@ -40,7 +39,7 @@ const ThemedSiderV2MenuItem: FC<{
                     size="lg"
                     asChild
                     className={cn(
-                        active ? "bg-accent-foreground text-accent" : "",
+                        active ? "bg-primary text-accent" : "",
                         "gap-x-3 w-full justify-start p-0 pl-2.5",
                     )}
                 >
@@ -62,6 +61,7 @@ export const ThemedSiderV2Menu: FC<{
     meta?: Record<string, unknown>;
 }> = ({ meta }) => {
     const { menuItems, selectedKey } = useMenu({ meta });
+
 
     const MenuItems = useMemo(
         () =>

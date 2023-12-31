@@ -5,11 +5,11 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSelect, type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import { Form } from "@ferdiunal/refinedev-shadcn-ui";
-import { Input } from "@/shadcn/ui";
+import { Input } from "@src/shadcn/elements";
 import { personalAddressSchema } from "../validation/validation";
 import { useCounter } from "./context";
 import { type IDistrict } from "../interface/interface";
+import { Form } from "@src/shadcn/components/form";
 interface PersonalAddressFormProps {
   redirect: RedirectAction
 }
@@ -66,11 +66,14 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
               {...(district as any)}
               onChange={(value) => {
                 form.setValue("bornDistrictId", value);
-                console.log(value);
               }}
             />
           </Form.Field>
-          <Form.Field {...form} name="currentDistrictId" label="Current District">
+          <Form.Field
+            {...form}
+            name="currentDistrictId"
+            label="Current District"
+          >
             <Form.Combobox
               {...(district as any)}
               onChange={(value) => {
@@ -80,7 +83,6 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
             />
           </Form.Field>
         </div>
-
       </Form>
     </div>
   );

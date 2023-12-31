@@ -26,7 +26,7 @@ const Checkbox = React.forwardRef<
             )}
         >
             {props.checked === "indeterminate" && <DividerHorizontalIcon />}
-            {props.checked === true && <CheckIcon className="h-4 w-4" />}
+            {props.checked === true && <CheckIcon className="w-4 h-4" />}
         </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
 ));

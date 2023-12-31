@@ -4,7 +4,7 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/naming-convention */
 import React from "react";
-import { Button } from "@src/shadcn/ui/button";
+import { Button } from "@src/shadcn/elements/button";
 import { FileEdit, Share } from "lucide-react";
 
 const Index = () => {
@@ -14,7 +14,7 @@ const Index = () => {
         {jobOpen.map((job, index) => (
           <div
             key={index}
-            className="overflow-hidden transition-all duration-500 transform bg-white shadow-lg w-96 rounded-xl hover:scale-105 hover:shadow-2xl"
+            className="overflow-hidden bg-white shadow-lg transition-all duration-500 transform w-96 rounded-xl hover:scale-105 hover:shadow-2xl"
           >
             <a href="#">
               <div className="relative">
@@ -23,7 +23,7 @@ const Index = () => {
                   src={job.image ?? ""}
                   alt="Sunset in the mountains"
                 />
-                <div className="absolute top-0 bottom-0 left-0 right-0 transition duration-300 bg-gray-900 opacity-25 hover:bg-transparent"></div>
+                <div className="absolute top-0 bottom-0 left-0 right-0 bg-gray-900 opacity-25 transition duration-300 hover:bg-transparent"></div>
               </div>
             </a>
             <div className="px-6 py-4">
@@ -39,7 +39,7 @@ const Index = () => {
                 </p>
               ))}
             </div>
-            <div className="flex flex-row items-center gap-2 px-6 py-4">
+            <div className="flex flex-row items-center px-6 py-4 gap-2">
               <Button className="justify-between w-full">
                 Edit <FileEdit />
               </Button>

@@ -11,7 +11,7 @@ import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "../../../ui";
+} from "../../../elements";
 import { PropsWithChildren } from "react";
 
 type CheckAllProps = PropsWithChildren & {
@@ -45,7 +45,7 @@ export const CheckAll = ({ table, children }: CheckAllProps) => {
                             }
                             size={"icon"}
                             variant={"ghost"}
-                            className="px-0 w-5"
+                            className="w-5 px-0"
                         >
                             <DotsVerticalIcon className="w-4 h-4" />
                         </Button>
