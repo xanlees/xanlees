@@ -1,8 +1,3 @@
-/* eslint-disable max-nested-callbacks */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
 "use client";
 
