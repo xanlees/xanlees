@@ -1,10 +1,8 @@
 import {
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
-    FormMessage,
   } from "@src/shadcn/elements/form"
 import { cn } from "@/lib/utils"
 import { Button } from "@src/shadcn/elements/button"
@@ -19,7 +17,7 @@ export const DatePickerField = ({ ...props }) => {
             control={props.control}
             name={props.name}
             render={({ field }) => (
-                <FormItem className="flex flex-col">
+                <FormItem className="flex flex-col pt-2.5">
                     <FormLabel>{props.label}</FormLabel>
                     <Popover>
                         <PopoverTrigger asChild>
@@ -52,10 +50,6 @@ export const DatePickerField = ({ ...props }) => {
                             />
                         </PopoverContent>
                     </Popover>
-                    <FormDescription>
-                        Your date of birth is used to calculate your age.
-                    </FormDescription>
-                    <FormMessage />
                 </FormItem>
             )}
         />
