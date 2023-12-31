@@ -8,13 +8,8 @@ const validMaritalStatus = [
   "DIVORCED",
   "WIDOWED",
 ] as const;
-const MAX_FILE_SIZE = 5000000;
-const ACCEPTED_IMAGE_TYPES = [
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
-];
+const maxFileSize = 5000000;
+const acceptedImageTypes = ["image/jpg", "image/jpeg", "image/png", "image/webp"];
 
 export const profileSchema = z.object({
   fullname: z.string().min(1, {
@@ -35,7 +30,10 @@ export const profileSchema = z.object({
   }),
   profilePicture: z
     .instanceof(FileList)
-    .refine((file) => file[0]?.size <= MAX_FILE_SIZE, "Max image size is 5MB."),
+    .refine((fileList) => {
+      const file = fileList[0];
+      return file?.size <= maxFileSize && acceptedImageTypes.includes(file?.type);
+    }, "Max image size is 5MB. Only .jpg, .jpeg, .png and .webp formats are supported."),
   maritalStatus: z
     .enum(validMaritalStatus)
     .refine((value) => validMaritalStatus.includes(value), {

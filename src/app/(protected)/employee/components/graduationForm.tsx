@@ -45,7 +45,6 @@ export const GraduationForm: React.FC<GraduationFormProps> = ({ redirect }) => {
     control: form.control,
     name: "graduation",
   });
-  console.log("fields", fields);
   return (
     <div className="w-1/2">
       <Form {...form}>

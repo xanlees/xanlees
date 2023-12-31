@@ -1,3 +1,5 @@
+/* eslint-disable max-nested-callbacks */
+/* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
 "use client";
 
@@ -79,41 +81,29 @@ export default function BranchShow({
         </CardHeader>
         <CardContent>
           <Card className="flex flex-col gap-2 p-2 rounded-lg md:flex-row">
-            <div className="w-full md:w-1/2">
-              <CardHeader>
-                <CardTitle className="text-2xl text-center">
-                  ຂະແໜງ ບັນຊີ
-                </CardTitle>
-              </CardHeader>
-              <Card className="p-2 rounded-lg">
+            {joinedData?.map((item) => (
+              <div className="w-full md:w-1/2" key={item.id}>
                 <CardHeader>
-                  <CardTitle className="text-xl text-center">ຕໍາແໜ່ງ</CardTitle>
+                  <CardTitle className="text-2xl text-center">
+                    ຂະແໜງ {item.sector[0].name}
+                  </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <ul>
-                    <li>ການຕະຫຼາດ</li>
-                    <li>ບັນຊີ</li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
-            <div className="w-full md:w-1/2">
-              <CardHeader>
-                <CardTitle className="text-2xl text-center">
-                  ຂະແໜງ ການຕະຫຼາດ
-                </CardTitle>
-              </CardHeader>
-              <Card className="p-2 rounded-lg">
-                <CardHeader>
-                  <CardTitle className="text-xl text-center">ຕໍາແໜ່ງ</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul>
-                    <li>ໜ່ວຍບໍລິການ-ການບັນຊີ</li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
+                <Card className="p-2 rounded-lg">
+                  <CardHeader>
+                    <CardTitle className="text-xl text-center">
+                      ຕໍາແໜ່ງ
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul>
+                      {item?.sector?.[0]?.position?.map((position) => (
+                        <li key={position.id}>{position.name}</li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
           </Card>
         </CardContent>
       </Card>
