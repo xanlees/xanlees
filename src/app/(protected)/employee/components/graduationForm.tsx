@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable max-lines-per-function */
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,16 +8,18 @@ import { InputFromLayout } from "./form";
 import { Input } from "@src/shadcn/elements";
 import { graduationSchema } from "../validation/validation";
 import { useCounter } from "./context";
-import { useFieldArray } from "react-hook-form";
 import { type RedirectAction } from "@refinedev/core";
+import { useFieldArray } from "react-hook-form/dist/useFieldArray";
 
 interface GraduationFormProps {
   redirect: RedirectAction
 }
 
 interface GraduationFormValues {
-  degrees: string[]
-  sectors: string[]
+  graduation: Array<{
+    degrees: string
+    sectors: string
+  }>
   id?: number
 }
 
@@ -40,49 +43,50 @@ export const GraduationForm: React.FC<GraduationFormProps> = ({ redirect }) => {
 
   const { fields, append, remove } = useFieldArray({
     control: form.control,
-    name: "degrees",
+    name: "graduation",
   });
   console.log("fields", fields);
   return (
     <div className="w-1/2">
       <Form {...form}>
         <InputFromLayout>
-          <div className="w-full">
-            {fields.map((field, index) => (
-              <Form.Field
-                key={field.id}
-                {...form}
-                name={`degrees[${index}]`}
-                label={`Degree ${index + 1}`}
-              >
-                <Input
-                  placeholder={`Degree ${index + 1}`}
-                  className="block w-full"
-                />
-              </Form.Field>
-            ))}
-            <button type="button" onClick={() => append("")}>
-              Add Degree
-            </button>
-          </div>
-          <div className="w-full">
-            {fields.map((field, index) => (
-              <Form.Field
-                key={field.id}
-                {...form}
-                name={`sectors[${index}]`}
-                label={`Sector ${index + 1}`}
-              >
-                <Input
-                  placeholder={`Sector ${index + 1}`}
-                  className="block w-full"
-                />
-              </Form.Field>
-            ))}
-            <button type="button" onClick={() => append("")}>
-              Add Sector
-            </button>
-          </div>
+          {fields.map((field, index) => (
+            <div key={field.id}>
+              <div className="w-full">
+                <Form.Field
+                  {...form}
+                  name={`graduation[${index}].degrees`}
+                  label={`Degrees ${index + 1}`}
+                >
+                  <Input
+                    placeholder={`Degrees ${index + 1}`}
+                    className="block w-full"
+                  />
+                </Form.Field>
+              </div>
+              <div className="w-full">
+                <Form.Field
+                  {...form}
+                  name={`graduation[${index}].sectors`}
+                  label={`Sectors ${index + 1}`}
+                >
+                  <Input
+                    placeholder={`Sectors ${index + 1}`}
+                    className="block w-full"
+                  />
+                </Form.Field>
+              </div>
+              <button type="button" onClick={() => remove(index)}>
+                Remove
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() => append({ degrees: "", sectors: "" })}
+          >
+            Add Graduation
+          </button>
         </InputFromLayout>
       </Form>
     </div>
