@@ -7,34 +7,39 @@ import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 import { Input } from "@src/shadcn/elements";
-import { Upload } from "lucide-react";
 import React from "react";
 
 import { genderOptions, maritalStatusOptions } from "../lib/constant";
 import { profileSchema } from "../validation/validation";
 import { useCounter } from "./context";
-import { InputImage } from "./InputImage";
+import InputImage from "./InputImage";
 
 interface ProfileFormProps {
-  redirect: RedirectAction;
+  redirect: RedirectAction
 }
 interface ProfileFormValues {
-  fullname: string;
-  nickname: string;
-  phoneNumber: string;
-  gender: string;
-  maritalStatus: string;
-  id?: number;
+  fullname: string
+  nickname: string
+  phoneNumber: string
+  gender: string
+  maritalStatus: string
+  id?: number
 }
 export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
   const { state, dispatch } = useCounter();
   const { ...form } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
+    mode: "onChange",
     defaultValues: {
       personalAddressId: state.personalAddressId,
     },
     refineCoreProps: {
       resource: "profile",
+      meta: {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      },
       autoSave: {
         enabled: true,
       },
@@ -60,11 +65,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
             </Form.Field>
           </div>
         </div>
-        <div className="w-full">
-          <Form.Field {...form} name="image" label="image">
-            <Input placeholder="image" className="w-full"  type />
-          </Form.Field>
-        </div>
         <div className="gap-2 sm:flex">
           <div className="w-full">
             <Form.Field {...form} name="phoneNumber" label="Phone Number">
@@ -78,8 +78,8 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
 
         <div className="gap-2 sm:flex">
           <div className="w-full">
-            <Form.Field {...form} name="gender" label="Gender">
-              <Form.Select options={genderOptions} />
+            <Form.Field {...form} name="gender" label="Gender" >
+              <Form.Select options={genderOptions}/>
             </Form.Field>
           </div>
           <div className="w-full">
@@ -88,8 +88,9 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
             </Form.Field>
           </div>
         </div>
-        {/* <InputImage {...form} /> */}
+        <InputImage label={"Profile"} {...form} name="profilePicture"/>
       </Form>
     </div>
   );
 };
+

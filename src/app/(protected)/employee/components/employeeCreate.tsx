@@ -10,12 +10,12 @@ import { ProfileForm } from "./profileForm";
 export const initialStepsArr = [
   {
     stepLabel: "Personal Address",
-    stepDescription: <ProfileForm redirect="create" />,
+    stepDescription: <PersonalAddressForm redirect="create" />,
     completed: false,
   },
   {
     stepLabel: "Creating Profile",
-    stepDescription: <PersonalAddressForm redirect="create" />,
+    stepDescription: <ProfileForm redirect="create" />,
     completed: false,
   },
   {
