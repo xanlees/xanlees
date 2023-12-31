@@ -11,7 +11,7 @@ import { genderOptions, maritalStatusOptions } from "../lib/constant";
 import { profileSchema } from "../validation/validation";
 import { useCounter } from "./context";
 import { Form } from "@src/shadcn/components/form";
-import { DatePickerField } from "@src/shadcn/components/form/datepicker2";
+import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 
 interface ProfileFormProps {
   redirect: RedirectAction
@@ -62,7 +62,9 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
           <Form.Field {...form} name="gender" label="Gender" >
             <Form.Select options={genderOptions} />
           </Form.Field>
-          <Form.FileInput label={"Profile"} {...form} name="profilePicture" />
+          <Form.Field {...form} name="profilePicture" label="Profile" >
+            <Form.FileInput />
+          </Form.Field>
         </div>
         <div className="flex-1 p-4 ">
           <Form.Field {...form} name="nickname" label="nickname">
