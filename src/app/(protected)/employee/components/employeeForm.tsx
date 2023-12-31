@@ -4,11 +4,11 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSelect, type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import { Form } from "@ferdiunal/refinedev-shadcn-ui";
 import { Input } from "@src/shadcn/elements";
 import { employeeSchema } from "../validation/validation";
 import { useCounter } from "./context";
 import { type IPosition } from "../../position/interface";
+import { Form } from "@src/shadcn/components/form";
 
 interface EmployeeFormProps {
   redirect: RedirectAction

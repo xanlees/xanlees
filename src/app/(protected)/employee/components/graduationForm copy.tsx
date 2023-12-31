@@ -4,11 +4,11 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import { Form } from "@ferdiunal/refinedev-shadcn-ui";
 import { InputFromLayout } from "./form";
 import { Input } from "@src/shadcn/elements";
 import { graduationSchema } from "../validation/validation";
 import { useCounter } from "./context";
+import { Form } from "@src/shadcn/components/form";
 
 interface GraduationFormProps {
   redirect: RedirectAction

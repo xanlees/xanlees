@@ -18,6 +18,8 @@ import { SaveButton } from "../buttons";
 import { Combobox } from "./combobox";
 import { FormField } from "./field";
 import { Select } from "./select";
+import { DatePickerField } from "./datepicker";
+import { FileInputField } from "./fileinput";
 
 type NativeFormProps = Omit<
     DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>,
@@ -115,3 +117,5 @@ export const Form = <
 Form.Field = FormField;
 Form.Combobox = Combobox;
 Form.Select = Select;
+Form.DatePicker = DatePickerField;
+Form.FileInput = FileInputField;
