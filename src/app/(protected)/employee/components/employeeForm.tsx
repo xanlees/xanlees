@@ -7,7 +7,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Input } from "@src/shadcn/elements";
 import { employeeSchema } from "../validation/validation";
 import { useCounter } from "./context";
-import { type IPosition } from "../../position/interface";
+import { type IPosition } from "../../branch/interface";
 import { Form } from "@src/shadcn/components/form";
 
 interface EmployeeFormProps {

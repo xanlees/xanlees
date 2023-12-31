@@ -18,10 +18,10 @@ export const resources = [
     icon: <BookUser />,
   },
   {
-    name: "position",
-    list: "/position",
-    create: "/position/create",
-    edit: "/position/edit/:id",
-    show: "/position/show/:id",
+    name: "branch",
+    list: "/branch",
+    create: "/branch/create",
+    edit: "/branch/edit/:id",
+    show: "/branch/show/:id",
   },
 ];

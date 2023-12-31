@@ -3,13 +3,13 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
-import { Form } from "@ferdiunal/refinedev-shadcn-ui";
 import { InputFromLayout } from "./form";
 import { Input } from "@src/shadcn/elements";
 import { graduationSchema } from "../validation/validation";
 import { useCounter } from "./context";
 import { type RedirectAction } from "@refinedev/core";
 import { useFieldArray } from "react-hook-form";
+import { Form } from "@src/shadcn/components/form";
 
 interface GraduationFormProps {
   redirect: RedirectAction
@@ -76,14 +76,14 @@ export const GraduationForm: React.FC<GraduationFormProps> = ({ redirect }) => {
                   />
                 </Form.Field>
               </div>
-              <button type="button" onClick={() => remove(index)}>
+              <button type="button" onClick={() => { remove(index); }}>
                 Remove
               </button>
             </div>
           ))}
           <button
             type="button"
-            onClick={() => append({ degrees: "", sectors: "" })}
+            onClick={() => { append({ degrees: "", sectors: "" }); }}
           >
             Add Graduation
           </button>
