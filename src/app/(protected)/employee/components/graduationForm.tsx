@@ -9,7 +9,7 @@ import { Input } from "@src/shadcn/elements";
 import { graduationSchema } from "../validation/validation";
 import { useCounter } from "./context";
 import { type RedirectAction } from "@refinedev/core";
-import { useFieldArray } from "react-hook-form/dist/useFieldArray";
+import { useFieldArray } from "react-hook-form";
 
 interface GraduationFormProps {
   redirect: RedirectAction
