@@ -8,6 +8,13 @@ const validMaritalStatus = [
   "DIVORCED",
   "WIDOWED",
 ] as const;
+const MAX_FILE_SIZE = 5000000;
+const ACCEPTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
 
 export const profileSchema = z.object({
   fullname: z.string().min(1, {
@@ -22,38 +29,13 @@ export const profileSchema = z.object({
   gender: z.enum(validGenders).refine((value) => validGenders.includes(value), {
     message: "Gender must be one of 'MALE', 'FEMALE', or 'OTHER'.",
   }),
-  birthday: z.date(),
+  birthday: z.date().transform((value) => (new Date(value)).toISOString()),
   personalAddressId: z.number().min(0, {
     message: "Personal Address ID must be a non-negative number.",
   }),
-  profilePicture: z.string().refine(
-    (value) => {
-      const isImageUrl = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i.test(value);
-      const isBase64Image = /^data:image\/(png|jpeg|jpg|gif);base64,/i.test(
-        value,
-      );
-      console.log("value", value);
-      const isValidFormat = /\.(jpg|jpeg|png|gif)$/i.test(value);
-      const maxFileSize = 1 * 500 * 500;
-      const isSizeValid = value.length <= maxFileSize;
-      if (!((isImageUrl || isBase64Image) && isValidFormat && isSizeValid)) {
-        if (!isImageUrl && !isBase64Image) {
-          return { message: "Invalid image URL or base64 encoding." };
-        }
-        if (!isValidFormat) {
-          return { message: "Invalid image format. Choose JPG, PNG, or GIF." };
-        }
-        if (!isSizeValid) {
-          return { message: "Image size exceeds the maximum limit of 2MB." };
-        }
-      }
-      return true;
-    },
-    {
-      message:
-        "Choose a valid photo (max size 2MB) in JPG, PNG, or GIF format.",
-    },
-  ),
+  profilePicture: z
+    .instanceof(FileList)
+    .refine((file) => file[0]?.size <= MAX_FILE_SIZE, "Max image size is 5MB."),
   maritalStatus: z
     .enum(validMaritalStatus)
     .refine((value) => validMaritalStatus.includes(value), {
