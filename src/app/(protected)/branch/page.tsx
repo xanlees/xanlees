@@ -1,39 +1,59 @@
 /* eslint-disable max-lines */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable max-lines-per-function */
 "use client";
 
 import { List } from "@/shadcn/components/crud";
 import { Table, type TableFilterProps } from "@/shadcn/components/table";
 import { Checkbox, CommandItem } from "@src/shadcn/elements";
-import { useMany, useUserFriendlyName } from "@refinedev/core";
+import { useList, useUserFriendlyName } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { Edit, Eye, Trash2 } from "lucide-react";
-import type { IBranch, IPosition } from "./interface";
+import type { IBranch, IPosition, ISector } from "./interface";
 
-// eslint-disable-next-line max-lines-per-function
 export default function PositionList(): JSX.Element {
-  const table = useTable<IPosition>({
+  const table = useTable<IBranch>({
     columns: [],
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {
-      resource: "position",
+      resource: "branch",
     },
   });
-
-  const position = table.options.data ?? [];
-  const branchId = position.map((item) =>
-    item?.sectorDetail?.branchId !== undefined ? item.sectorDetail?.branchId : 0,
+  const branch = table.options.data ?? [];
+  const branchId = branch.map((item) =>
+    item?.id !== undefined ? item.id : [0],
+  );
+  const { data: sectorData } = useList<ISector>({
+    resource: "sector",
+    errorNotification: false,
+    filters: [
+      {
+        field: "branch_id",
+        operator: "eq",
+        value: branchId,
+      },
+    ],
+    queryOptions: {
+      enabled: branch.length > 0,
+    },
+  });
+  const sectorIs = sectorData?.data.map((item) =>
+    item?.id !== undefined ? item.id : [0],
   );
 
-  const { data: branchData } = useMany<IBranch>({
-    resource: "branch",
-    ids: branchId,
+  const { data: positionData } = useList<IPosition>({
+    resource: "position",
+    filters: [
+      {
+        field: "sector_id",
+        operator: "eq",
+        value: sectorIs,
+      },
+    ],
     queryOptions: {
-      enabled: position.length > 0,
+      enabled: branch.length > 0,
     },
   });
-
   const friendly = useUserFriendlyName();
   return (
     <div className="w-1/2 mx-auto mt-10">
@@ -70,36 +90,45 @@ export default function PositionList(): JSX.Element {
             )}
           />
           <Table.Column
-            header={"Position"}
+            header={"Branch"}
             accessorKey="name"
             id="name"
             enableSorting
             enableHiding
             filter={(props: TableFilterProps) => (
-              <Table.Filter.Search {...props} title="Search Position" />
+              <Table.Filter.Search {...props} title="Search Branch" />
             )}
           />
           <Table.Column
-            header={"sectorDetail"}
-            accessorKey="sectorDetail.name"
-            id="sectorName"
+            header={"Sector"}
+            accessorKey="id"
+            id="id"
+            enableSorting
+            enableHiding
+            cell={({ row: { original } }) => {
+              const displaySector = sectorData?.data.find(
+                (item) => item?.branchId === original.id,
+              ) as ISector;
+              return <div>{displaySector?.name}</div>;
+            }}
+          />
+          <Table.Column
+            header={"Position"}
+            accessorKey="id"
+            id="position"
             enableSorting
             enableHiding
             filter={(props: TableFilterProps) => (
-              <Table.Filter.Search {...props} title="Search nickname" />
+              <Table.Filter.Search {...props} title="Search position" />
             )}
-          />
-          <Table.Column
-            header={"Branch"}
-            id="branchId"
-            accessorKey="sectorDetail.branchId"
-            enableSorting
-            enableHiding
-            cell={({ row }) => {
-              const displayText = branchData?.data.find(
-                (item) => item?.id === row.original.sectorDetail.branchId,
-              ) as IBranch;
-              return <div>{displayText?.name}</div>;
+            cell={({ row: { original } }) => {
+              const sectorRecord = sectorData?.data.find(
+                (item) => item?.branchId === original.id,
+              ) as ISector;
+              const displayPosition = positionData?.data.find(
+                (item) => item?.sectorId === sectorRecord?.id,
+              ) as IPosition;
+              return <div>{displayPosition?.name}</div>;
             }}
           />
           <Table.Column
@@ -110,20 +139,20 @@ export default function PositionList(): JSX.Element {
                 <Table.ShowAction
                   title="Detail"
                   row={original}
-                  resource="user"
+                  resource="branch"
                   icon={<Eye size={16} />}
                 />
                 <Table.EditAction
                   title="Edit"
                   row={original}
-                  resource="user"
+                  resource="branch"
                   icon={<Edit size={16} />}
                 />
                 <Table.DeleteAction
                   title="Delete"
                   row={original}
                   withForceDelete={true}
-                  resource="user"
+                  resource="branch"
                   icon={<Trash2 size={16} />}
                 />
               </Table.Actions>

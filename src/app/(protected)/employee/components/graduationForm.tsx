@@ -76,14 +76,14 @@ export const GraduationForm: React.FC<GraduationFormProps> = ({ redirect }) => {
                   />
                 </Form.Field>
               </div>
-              <button type="button" onClick={() => remove(index)}>
+              <button type="button" onClick={() => { remove(index); }}>
                 Remove
               </button>
             </div>
           ))}
           <button
             type="button"
-            onClick={() => append({ degrees: "", sectors: "" })}
+            onClick={() => { append({ degrees: "", sectors: "" }); }}
           >
             Add Graduation
           </button>
