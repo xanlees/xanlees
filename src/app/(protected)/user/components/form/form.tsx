@@ -21,6 +21,7 @@ export const UserForm = ({
     optionLabel: "name",
     optionValue: "name",
   });
+  console.log("groups", groups);
 
   return (
     <div className="w-1/2 mx-auto">

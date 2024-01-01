@@ -7,8 +7,8 @@ import { useForm } from "@refinedev/react-hook-form";
 import { InputFromLayout } from "../../../(career)/employee/components/form";
 import { Input } from "@src/shadcn/elements";
 import { educationSchema } from "../../../(career)/employee/validation/validation";
-import { useEmployeeContext } from "../../../(career)/context/context";
 import { Form } from "@src/shadcn/components/form";
+import { useProfileContext } from "../../context/context";
 
 interface EducationFormProps {
   redirect: RedirectAction
@@ -23,7 +23,7 @@ interface EducationFormValues {
 }
 
 export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
-  const { state } = useEmployeeContext();
+  const { state } = useProfileContext();
   const { ...form } = useForm<EducationFormValues>({
     resolver: zodResolver(educationSchema),
     defaultValues: {

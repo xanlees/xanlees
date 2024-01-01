@@ -9,9 +9,9 @@ import React from "react";
 
 import { genderOptions, maritalStatusOptions } from "../../../(career)/employee/lib/constant";
 import { profileSchema } from "../../../(career)/employee/validation/validation";
-import { useEmployeeContext } from "../../../(career)/context/context";
 import { Form } from "@src/shadcn/components/form";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
+import { useProfileContext } from "../../context/context";
 
 interface ProfileFormProps {
   redirect: RedirectAction
@@ -24,8 +24,9 @@ interface ProfileFormValues {
   maritalStatus: string
   id?: number
 }
+
 export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
-  const { state, dispatch } = useEmployeeContext();
+  const { state, dispatch } = useProfileContext();
   const { ...form } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
     mode: "onChange",

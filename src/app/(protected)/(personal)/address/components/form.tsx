@@ -1,44 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable max-lines-per-function */
-/* eslint-disable @typescript-eslint/naming-convention */
 import React from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useSelect, type RedirectAction } from "@refinedev/core";
-import { useForm } from "@refinedev/react-hook-form";
 import { Input } from "@src/shadcn/elements";
-import { personalAddressSchema } from "../../../(career)/employee/validation/validation";
-import { useEmployeeContext } from "../../../(career)/context/context";
 import { type IDistrict } from "../../../(career)/employee/interface/interface";
 import { Form } from "@src/shadcn/components/form";
+import { useFormConfig } from "./config";
+
 interface PersonalAddressFormProps {
   redirect: RedirectAction
 }
-interface PersonalAddressFormValues {
-  bornDistrictId: number
-  currentDistrictId: number
-  bornVillage: string
-  currentVillage: string
-  id?: number
+interface IFormConfig {
+  form: {
+    setValue: any
+  }
 }
 
 export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
   redirect,
 }) => {
-  const { dispatch } = useEmployeeContext();
-  const { ...form } = useForm<PersonalAddressFormValues>({
-    resolver: zodResolver(personalAddressSchema),
-    refineCoreProps: {
-      resource: "personal_address",
-      autoSave: {
-        enabled: true,
-      },
-      redirect,
-      onMutationSuccess: (data) => {
-        dispatch({ type: "PERSONAL_ADDRESS", payload: data?.data?.id ?? 0 });
-      },
-    },
-    warnWhenUnsavedChanges: true,
-  });
+  const formConfig = useFormConfig(redirect);
   const district = useSelect<IDistrict>({
     resource: "district",
     optionLabel: "districtName",
@@ -47,43 +26,55 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
   });
   return (
     <div className="w-1/2">
-      <Form {...form}>
+      <Form {...formConfig.form}>
         <div className="flex flex-row w-full gap-x-48">
           <div className="block w-full">
-            <Form.Field {...form} name="bornVillage" label="Born Village">
-              <Input placeholder="Born Village" />
-            </Form.Field>
+            <InputBornVillage {...formConfig} name="bornVillage" label="Born Village" />
           </div>
           <div className="w-full">
-            <Form.Field {...form} name="currentVillage" label="Current Village">
-              <Input placeholder="Current Village" />
-            </Form.Field>
+            <InputBornVillage {...formConfig} name="currentVillage" label="Current Village"/>
           </div>
         </div>
         <div className="flex flex-row w-full gap-x-56">
-          <Form.Field {...form} name="bornDistrictId" label="Born District">
-            <Form.Combobox
-              {...(district as any)}
-              onChange={(value) => {
-                form.setValue("bornDistrictId", value);
-              }}
-            />
-          </Form.Field>
-          <Form.Field
-            {...form}
-            name="currentDistrictId"
-            label="Current District"
-          >
-            <Form.Combobox
-              {...(district as any)}
-              onChange={(value) => {
-                form.setValue("currentDistrictId", value);
-              }}
-              className="mx-10"
-            />
-          </Form.Field>
+          <InputBornDistrict formConfig={formConfig} district={district} />
+          <CurrentDistrictId formConfig={formConfig} district={district} />
         </div>
       </Form>
     </div>
   );
 };
+
+interface InputBornVillageProps extends IFormConfig {
+  name: string
+  label: string
+}
+
+const InputBornVillage: React.FC<InputBornVillageProps> = (props) => (
+  <Form.Field {...props} name={props.name} label={props.label}>
+    <Input placeholder={props.label} />
+  </Form.Field>
+);
+
+const CurrentDistrictId = ({ formConfig, district }: { formConfig: IFormConfig, district: any }) => (
+  <Form.Field {...formConfig.form} name="currentDistrictId" label="Current District" >
+    <Form.Combobox
+      {...(district)}
+      onChange={(value) => {
+        formConfig.form.setValue("currentDistrictId", value);
+      }}
+      className="mx-10"
+    />
+  </Form.Field>
+);
+
+const InputBornDistrict = ({ formConfig, district }: { formConfig: IFormConfig, district: any }) => (
+  <Form.Field {...formConfig.form} name="bornDistrictId" label="Current Village" >
+    <Form.Combobox
+      {...(district)}
+      onChange={(value) => {
+        formConfig.form.setValue("bornDistrictId", value);
+      }}
+      className="mx-10"
+    />
+  </Form.Field>
+);

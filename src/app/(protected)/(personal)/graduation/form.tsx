@@ -5,13 +5,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import { Card, Input } from "@src/shadcn/elements";
 import { graduationSchema } from "../../(career)/employee/validation/validation";
-import { useEmployeeContext } from "../../(career)/context/context";
 import { type RedirectAction } from "@refinedev/core";
 import { useFieldArray } from "react-hook-form";
 import { Form } from "@src/shadcn/components/form";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
-import { AccordionDemo } from "../../(career)/employee/components/accordion";
+import { useProfileContext } from "../context/context";
 
 interface GraduationFormProps {
   redirect: RedirectAction
@@ -26,7 +25,7 @@ interface GraduationFormValues {
 }
 
 export const GraduationForm: React.FC<GraduationFormProps> = ({ redirect }) => {
-  const { dispatch } = useEmployeeContext();
+  const { dispatch } = useProfileContext();
 
   const { ...form } = useForm<GraduationFormValues>({
     resolver: zodResolver(graduationSchema),
