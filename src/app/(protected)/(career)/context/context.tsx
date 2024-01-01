@@ -59,9 +59,9 @@ const useEmployeeContext = (): {
 } => {
   const context = useContext(CounterContext);
   if (context == null) {
-    throw new Error("useCounter must be used within a CounterProvider");
+    throw new Error("useEmployeeContext must be used within a EmployeeProvider");
   }
   return context;
 };
 
-export { EmployeeProvider as CounterProvider, useEmployeeContext as useCounter };
+export { EmployeeProvider, useEmployeeContext };

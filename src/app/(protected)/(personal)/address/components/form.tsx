@@ -6,9 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSelect, type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Input } from "@src/shadcn/elements";
-import { personalAddressSchema } from "../validation/validation";
-import { useCounter } from "../../context/context";
-import { type IDistrict } from "../interface/interface";
+import { personalAddressSchema } from "../../../(career)/employee/validation/validation";
+import { useEmployeeContext } from "../../../(career)/context/context";
+import { type IDistrict } from "../../../(career)/employee/interface/interface";
 import { Form } from "@src/shadcn/components/form";
 interface PersonalAddressFormProps {
   redirect: RedirectAction
@@ -24,7 +24,7 @@ interface PersonalAddressFormValues {
 export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
   redirect,
 }) => {
-  const { dispatch } = useCounter();
+  const { dispatch } = useEmployeeContext();
   const { ...form } = useForm<PersonalAddressFormValues>({
     resolver: zodResolver(personalAddressSchema),
     refineCoreProps: {

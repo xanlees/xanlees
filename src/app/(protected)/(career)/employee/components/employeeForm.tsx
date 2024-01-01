@@ -6,7 +6,7 @@ import { useSelect, type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Input } from "@src/shadcn/elements";
 import { employeeSchema } from "../validation/validation";
-import { useCounter } from "../../context/context";
+import { useEmployeeContext } from "../../context/context";
 import { type IPosition } from "../../../branch/interface";
 import { Form } from "@src/shadcn/components/form";
 
@@ -22,7 +22,7 @@ interface EmployeeFormValues {
 }
 
 export const EmployeeForm: React.FC<EmployeeFormProps> = ({ redirect }) => {
-  const { state } = useCounter();
+  const { state } = useEmployeeContext();
   const { ...form } = useForm<EmployeeFormValues>({
     resolver: zodResolver(employeeSchema),
     defaultValues: {

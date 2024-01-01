@@ -4,10 +4,10 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import { InputFromLayout } from "./form";
+import { InputFromLayout } from "../../../(career)/employee/components/form";
 import { Input } from "@src/shadcn/elements";
-import { educationSchema } from "../validation/validation";
-import { useCounter } from "../../context/context";
+import { educationSchema } from "../../../(career)/employee/validation/validation";
+import { useEmployeeContext } from "../../../(career)/context/context";
 import { Form } from "@src/shadcn/components/form";
 
 interface EducationFormProps {
@@ -23,7 +23,7 @@ interface EducationFormValues {
 }
 
 export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
-  const { state } = useCounter();
+  const { state } = useEmployeeContext();
   const { ...form } = useForm<EducationFormValues>({
     resolver: zodResolver(educationSchema),
     defaultValues: {

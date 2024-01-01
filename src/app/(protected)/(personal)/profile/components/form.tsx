@@ -7,9 +7,9 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Input } from "@src/shadcn/elements";
 import React from "react";
 
-import { genderOptions, maritalStatusOptions } from "../lib/constant";
-import { profileSchema } from "../validation/validation";
-import { useCounter } from "../../context/context";
+import { genderOptions, maritalStatusOptions } from "../../../(career)/employee/lib/constant";
+import { profileSchema } from "../../../(career)/employee/validation/validation";
+import { useEmployeeContext } from "../../../(career)/context/context";
 import { Form } from "@src/shadcn/components/form";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 
@@ -25,7 +25,7 @@ interface ProfileFormValues {
   id?: number
 }
 export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
-  const { state, dispatch } = useCounter();
+  const { state, dispatch } = useEmployeeContext();
   const { ...form } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
     mode: "onChange",
