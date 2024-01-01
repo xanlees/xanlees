@@ -24,4 +24,11 @@ export const resources = [
     edit: "/branch/edit/:id",
     show: "/branch/show/:id",
   },
+  {
+    name: "branch",
+    list: "/branch",
+    create: "/branch/create",
+    edit: "/branch/edit/:id",
+    show: "/branch/show/:id",
+  },
 ];

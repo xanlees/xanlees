@@ -3,14 +3,15 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
-import { Input } from "@src/shadcn/elements";
+import { Card, Input } from "@src/shadcn/elements";
 import { graduationSchema } from "../validation/validation";
-import { useCounter } from "./context";
+import { useCounter } from "../../context/context";
 import { type RedirectAction } from "@refinedev/core";
 import { useFieldArray } from "react-hook-form";
 import { Form } from "@src/shadcn/components/form";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
+import { AccordionDemo } from "./accordion";
 
 interface GraduationFormProps {
   redirect: RedirectAction
@@ -46,12 +47,16 @@ export const GraduationForm: React.FC<GraduationFormProps> = ({ redirect }) => {
     control: form.control,
     name: "graduation",
   });
-  console.log("fields", fields);
-  console.log("form", form.watch("graduation"));
   return (
-    <div className="w-1/2">
+    <div className="w-1/2 rounded-lg">
       <Form {...form}>
-        <DynamicForm form={form} fields={fields} append={append} name="graduation" label="Graduation">
+        <DynamicForm
+          form={form}
+          fields={fields}
+          append={append}
+          name="graduation"
+          label="Graduation"
+        >
           <ArrayField {...form} name="degree" label="Degree">
             <Input placeholder="Degree" className="block w-full" />
           </ArrayField>
@@ -60,6 +65,9 @@ export const GraduationForm: React.FC<GraduationFormProps> = ({ redirect }) => {
           </ArrayField>
         </DynamicForm>
       </Form>
+      <Card className="p-2 mt-2 rounded-lg">
+        {/* <AccordionDemo /> */}
+      </Card>
     </div>
   );
 };

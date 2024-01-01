@@ -6,8 +6,8 @@ import { useSelect, type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Input } from "@src/shadcn/elements";
 import { employeeSchema } from "../validation/validation";
-import { useCounter } from "./context";
-import { type IPosition } from "../../branch/interface";
+import { useCounter } from "../../context/context";
+import { type IPosition } from "../../../branch/interface";
 import { Form } from "@src/shadcn/components/form";
 
 interface EmployeeFormProps {

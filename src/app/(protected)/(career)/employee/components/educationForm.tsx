@@ -7,7 +7,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { InputFromLayout } from "./form";
 import { Input } from "@src/shadcn/elements";
 import { educationSchema } from "../validation/validation";
-import { useCounter } from "./context";
+import { useCounter } from "../../context/context";
 import { Form } from "@src/shadcn/components/form";
 
 interface EducationFormProps {

@@ -9,7 +9,7 @@ import React from "react";
 
 import { genderOptions, maritalStatusOptions } from "../lib/constant";
 import { profileSchema } from "../validation/validation";
-import { useCounter } from "./context";
+import { useCounter } from "../../context/context";
 import { Form } from "@src/shadcn/components/form";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 
