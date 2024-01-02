@@ -18,7 +18,6 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({
     const { breadcrumbs } = useBreadcrumb({
         meta,
     });
-    console.log(breadcrumbs)
 
     const { hasDashboard } = useRefineContext();
 
