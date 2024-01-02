@@ -94,7 +94,7 @@ export default function EmployeeList(): JSX.Element {
               )}
             />
             <Table.Column
-              header={"Fullname"}
+              header={"ຊື່ ແລະ ນາມສະກຸນ (ຊຶ່ຫຼີ້ນ)"}
               accessorKey="profileDetail.fullname"
               id="fullname"
               enableSorting
@@ -102,19 +102,14 @@ export default function EmployeeList(): JSX.Element {
               filter={(props: TableFilterProps) => (
                 <Table.Filter.Search {...props} title="Search fullname" />
               )}
+              cell={(props) => {
+                const fullName = props.row.original.profileDetail.fullname;
+                const nickName = props.row.original.profileDetail.nickname;
+                return <p className="font-bold">{`${fullName} (${nickName})`}</p>;
+              }}
             />
             <Table.Column
-              header={"Nickname"}
-              accessorKey="profileDetail.nickname"
-              id="nickname"
-              enableSorting
-              enableHiding
-              filter={(props: TableFilterProps) => (
-                <Table.Filter.Search {...props} title="Search nickname" />
-              )}
-            />
-            <Table.Column
-              header={"phoneNumber"}
+              header={"ເບີໂທລະສັບ"}
               accessorKey="profileDetail.phoneNumber"
               id="phoneNumber"
               enableSorting
@@ -122,9 +117,12 @@ export default function EmployeeList(): JSX.Element {
               filter={(props: TableFilterProps) => (
                 <Table.Filter.Search {...props} title="Search phoneNumber" />
               )}
+              cell={(props) => {
+                return <p className="-mx-5 italic text-blue-500 underline ">{`+856 ${props.getValue() as unknown as string}`}</p>;
+              }}
             />
             <Table.Column
-              header="Gender"
+              header="ເພດ"
               id="gender"
               accessorKey="profileDetail.gender"
               enableSorting
@@ -136,7 +134,7 @@ export default function EmployeeList(): JSX.Element {
               }}
             />
             <Table.Column
-              header="Marital Status"
+              header="ສະຖານະ"
               id="maritalStatus"
               accessorKey="profileDetail.maritalStatus"
               enableSorting
@@ -148,7 +146,7 @@ export default function EmployeeList(): JSX.Element {
               }}
             />
             <Table.Column
-              header="birthday"
+              header="ວັນເດືອນປີ ເກີດ"
               id="birthday"
               accessorKey="profileDetail.birthday"
               enableSorting
@@ -162,7 +160,7 @@ export default function EmployeeList(): JSX.Element {
               }}
             />
             <Table.Column
-              header="Joining Date"
+              header="ວັນທີ່ເຂົ້າບໍລິສັດ"
               id="joiningDate"
               accessorKey="joiningDate"
               enableSorting
@@ -176,53 +174,7 @@ export default function EmployeeList(): JSX.Element {
               }}
             />
             <Table.Column
-              header="Born Village"
-              id="bornVillage"
-              accessorKey="profileDetail.personalAddressId"
-              enableSorting
-              enableHiding
-              cell={({ row }) => {
-                const displayText = personalAddressData?.data.find(
-                  (item) =>
-                    item?.id === row.original.profileDetail.personalAddressId,
-                ) as IPersonalAddress;
-                return <div>{displayText?.bornVillage}</div>;
-              }}
-            />
-            <Table.Column
-              header="Born District"
-              id="districtName"
-              accessorKey="profileDetail.personalAddressId"
-              enableSorting
-              enableHiding
-              cell={({ row }) => {
-                const displayText = personalAddressData?.data.find(
-                  (item) =>
-                    item?.id === row.original.profileDetail.personalAddressId,
-                );
-                return (
-                  <div>{displayText?.bornDistrictDetail.districtName}</div>
-                );
-              }}
-            />
-            <Table.Column
-              header="Born Province"
-              id="provinceName"
-              accessorKey="profileDetail.personalAddressId"
-              enableSorting
-              enableHiding
-              cell={({ row }) => {
-                const displayText = personalAddressData?.data.find(
-                  (item) =>
-                    item?.id === row.original.profileDetail.personalAddressId,
-                );
-                return (
-                  <div>{displayText?.bornDistrictDetail.provinceName}</div>
-                );
-              }}
-            />
-            <Table.Column
-              header="Current Village"
+              header="ທີ່ຢູ່ ປະຈຸບັນ"
               id="currentVillage"
               accessorKey="profileDetail.personalAddressId"
               enableSorting
@@ -232,54 +184,22 @@ export default function EmployeeList(): JSX.Element {
                   (item) =>
                     item?.id === row.original.profileDetail.personalAddressId,
                 );
-                return <div>{displayText?.currentVillage}</div>;
+                return <div>{`${displayText?.currentVillage}, ${displayText?.currentDistrictDetail.districtName}, ${displayText?.currentDistrictDetail.provinceName}`}</div>;
               }}
             />
             <Table.Column
-              header="Current District"
-              id="currentDistrictDetail"
-              accessorKey="profileDetail.personalAddressId"
-              enableSorting
-              enableHiding
-              cell={({ row }) => {
-                const displayText = personalAddressData?.data.find(
-                  (item) =>
-                    item?.id === row.original.profileDetail.personalAddressId,
-                );
-                return (
-                  <div>{displayText?.currentDistrictDetail.districtName}</div>
-                );
-              }}
-            />
-            <Table.Column
-              header="Current Province"
-              id="currentDistrictProvince"
-              accessorKey="profileDetail.personalAddressId"
-              enableSorting
-              enableHiding
-              cell={({ row }) => {
-                const displayText = personalAddressData?.data.find(
-                  (item) =>
-                    item?.id === row.original.profileDetail.personalAddressId,
-                );
-                return (
-                  <div>{displayText?.currentDistrictDetail.provinceName}</div>
-                );
-              }}
-            />
-            <Table.Column
-              header="Position"
+              header="ຕຳແໜ່ງ"
               id="position"
               accessorKey="positionDetail.name"
               enableSorting
               enableHiding
               cell={(props) => {
-                const dateValue = props?.getValue<string>();
-                return <div>{dateValue ?? ""}</div>;
+                const position = props?.getValue<string>();
+                return <div>{position ?? ""}</div>;
               }}
             />
             <Table.Column
-              header="sector"
+              header="ສັງກັດ"
               id="sector"
               accessorKey="positionDetail.id"
               enableSorting
@@ -288,20 +208,7 @@ export default function EmployeeList(): JSX.Element {
                 const displayText = sectorData?.data.find(
                   (item) => item?.id === row.original.positionDetail.sectorId,
                 );
-                return <div>{displayText?.name}</div>;
-              }}
-            />
-            <Table.Column
-              header="Branch"
-              id="branchDetail"
-              accessorKey="positionDetail.id"
-              enableSorting
-              enableHiding
-              cell={({ row }) => {
-                const displayText = sectorData?.data.find(
-                  (item) => item?.id === row.original.positionDetail.sectorId,
-                );
-                return <div>{displayText?.branchDetail?.name}</div>;
+                return <div>{`${displayText?.name}, ${displayText?.branchDetail?.name}`}</div>;
               }}
             />
             <Table.Column

@@ -10,6 +10,6 @@ export const UsernameInput = (formConfig: IFormConfig) => (
 
 export const PasswordInput = (formConfig: IFormConfig) => (
   <Form.Field {...formConfig.form} name="password" label="Password">
-    <Input placeholder="Password" />
+    <Input type="password" placeholder="Password" />
   </Form.Field>
 );
