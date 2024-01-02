@@ -28,7 +28,6 @@ export const Create: React.FC<ListProps> = ({
         typeof breadcrumbFromProps === "undefined"
             ? globalBreadcrumb
             : breadcrumbFromProps;
-
     return (
         <>
             <PageHeader
@@ -55,7 +54,7 @@ export const Create: React.FC<ListProps> = ({
                 }
                 extra={
                     <>
-                        <ListButton />
+                        <ListButton resource={resourceFromProps}/>
                     </>
                 }
             />

@@ -1,13 +1,7 @@
 "use client";
 
-import React from "react";
-import { EmployeeForm } from "../components/form";
-import { Create } from "@/shadcn/components/crud";
+import { redirect } from "next/navigation";
 
 export default function EmployeeCreate(): JSX.Element {
-  return (
-    <Create>
-      <EmployeeForm redirect="list" />
-    </Create>
-  );
+  redirect("/profile/create");
 }

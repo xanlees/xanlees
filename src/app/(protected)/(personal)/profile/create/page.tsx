@@ -5,6 +5,7 @@ import { createEmployeeSteps } from "../lib/settings";
 import React, { useState } from "react";
 import Stepper from "@keyvaluesystems/react-stepper";
 import { ProfileProvider } from "../../context/context";
+import { Button, Link } from "@src/shadcn/elements";
 
 export default function ProfileCreate(): JSX.Element {
   const [currentStep, setCurrentStep] = useState(2);
@@ -12,7 +13,7 @@ export default function ProfileCreate(): JSX.Element {
     setCurrentStep(index);
   };
   return (
-    <Create>
+    <><Create resource="employee">
       <ProfileProvider>
         <Stepper
           steps={createEmployeeSteps.map((step) => ({
@@ -22,9 +23,12 @@ export default function ProfileCreate(): JSX.Element {
           orientation="vertical"
           currentStepIndex={currentStep}
           onStepClick={handleStepClick}
-          stepContent={() => <div className="w-[1600px] rounded-lg" />}
-        />
+          stepContent={() => <div className="w-[1600px] rounded-lg" />} />
       </ProfileProvider>
     </Create>
+    <Button>
+      <Link href="/employee/create/2"> Next</Link>
+    </Button>
+    </>
   );
 }
