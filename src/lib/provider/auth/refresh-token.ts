@@ -11,8 +11,7 @@ export async function refreshAccessToken(token: IToken) {
     });
     const data: IRefreshToken = await res.json() as IRefreshToken;
     console.log("Refresh token response:", data);
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (res.ok && data?.access) {
+    if (res.ok && data?.access !== undefined) {
       token.user.accessToken = data.access;
       token.user.refreshToken = data.refresh;
       token.user.expires = data.accessExpiration;
