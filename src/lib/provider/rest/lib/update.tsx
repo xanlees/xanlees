@@ -3,7 +3,7 @@
 
 import { type AxiosInstance } from "axios";
 import { type DataProvider } from "@refinedev/core";
-import createDataProvider from "@/lib/provider/data/create";
+import createDataProvider from "@src/lib/provider/rest/lib/create";
 import { axiosInstance } from "@refinedev/simple-rest/src/utils";
 import { getSessionToken } from "./sessionToken";
 const updateDataProvider = (

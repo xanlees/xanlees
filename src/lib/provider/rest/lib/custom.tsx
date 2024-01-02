@@ -54,7 +54,7 @@ async function configHeader(headers: undefined | { Authorization: string }, http
   return true;
 }
 
-const restDataProvider = (
+const CustomDataProvider = (
   apiUrl: string,
   httpClient: AxiosInstance = axiosInstance,
 ): Omit<Required<DataProvider>, "createMany" | "updateMany" | "deleteMany"> => {
@@ -91,4 +91,4 @@ const restDataProvider = (
     },
   };
 };
-export default restDataProvider;
+export default CustomDataProvider;

@@ -7,7 +7,7 @@ import { stringify } from "query-string";
 import { type CrudFilters, type CrudSorting, type DataProvider, type Pagination } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import { axiosInstance, generateFilter } from "@refinedev/simple-rest/src/utils";
-import { getSessionToken } from "@/lib/provider/data/sessionToken";
+import { getSessionToken } from "@src/lib/provider/rest/lib/sessionToken";
 
 const initialQuery: {
   page_size?: number

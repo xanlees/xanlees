@@ -3,22 +3,19 @@
 /* eslint-disable  @typescript-eslint/require-await */
 "use client";
 
-import restDataProvider from "@/lib/provider/data/custom";
-import { type AuthBindings, type HttpError, Refine } from "@refinedev/core";
+import { accessControlProvider } from "@/lib/provider/access/";
+import { getIdentity, getLogin, getLogout } from "@/lib/provider/auth/authOperation";
+import { ThemedLayoutV2 } from "@/shadcn/components/themedLayoutV2";
+import { ViteDarkModeProvider, notificationProvider } from "@/shadcn/providers";
+import { Refine, type AuthBindings, type HttpError } from "@refinedev/core";
 import routerProvider from "@refinedev/nextjs-router/app";
+import Loading from "@src/app/loading";
+import { RestDataProvider } from "@src/lib/provider/rest/";
+import { resources } from "@src/lib/resources/constant";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import { authContext } from "./authContext";
-import { getIdentity, getLogin, getLogout } from "@/lib/provider/auth/authOperation";
-import { notificationProvider } from "@/lib/provider/notification";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { accessControlProvider } from "@/lib/provider/access/control";
-import { ThemedLayoutV2 } from "@/shadcn/components/themedLayoutV2";
-import { ViteDarkModeProvider } from "@/shadcn/providers";
-import { resources } from "@src/lib/resources/constant";
 import { Suspense } from "react";
-import Loading from "@src/app/loading";
+import { authContext } from "./context/auth";
 
 interface Props {
   children?: React.ReactNode
@@ -45,7 +42,7 @@ export const RefineProvider = ({ children }: Props): JSX.Element => {
       <Refine
         authProvider={authProvider}
         routerProvider={routerProvider}
-        dataProvider={restDataProvider(process.env.NEXT_PUBLIC_API_URL as string)}
+        dataProvider={RestDataProvider(process.env.NEXT_PUBLIC_API_URL as string)}
         notificationProvider={notificationProvider}
         accessControlProvider={accessControlProvider}
         resources={resources}
@@ -63,7 +60,6 @@ export const RefineProvider = ({ children }: Props): JSX.Element => {
             {children}
           </Suspense>
         </ThemedLayoutV2>
-        <ToastContainer/>
       </Refine>
     </authContext.Provider>
   );

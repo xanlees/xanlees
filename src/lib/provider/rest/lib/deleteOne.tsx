@@ -2,7 +2,7 @@
 
 import { type AxiosInstance } from "axios";
 import { type DataProvider } from "@refinedev/core";
-import getOneDataProvider from "@/lib/provider/data/getOne";
+import getOneDataProvider from "@src/lib/provider/rest/lib/getOne";
 import { axiosInstance } from "@refinedev/simple-rest/src/utils";
 import { getSessionToken } from "./sessionToken";
 const deleteOneDataProvider = (
