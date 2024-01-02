@@ -1,6 +1,6 @@
 import { PersonalAddressForm } from "@src/app/(protected)/(personal)/address/components/form";
 import { EducationForm } from "@src/app/(protected)/(personal)/education/components/form";
-import { GraduationForm } from "@src/app/(protected)/(personal)/graduation/form";
+import { GraduationForm } from "@src/app/(protected)/(personal)/graduation/components/form";
 import { ProfileForm } from "@src/app/(protected)/(personal)/profile/components/form";
 import { EmployeeForm } from "../components/employeeForm";
 

@@ -80,7 +80,7 @@ export default function BranchShow({
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Card className="flex flex-col gap-2 p-2 rounded-lg md:flex-row">
+          <Card className="flex flex-col p-2 rounded-lg gap-2 md:flex-row">
             {joinedData?.map((item) => (
               <div className="w-full md:w-1/2" key={item.id}>
                 <CardHeader>

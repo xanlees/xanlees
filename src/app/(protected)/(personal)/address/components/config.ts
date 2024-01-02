@@ -12,7 +12,7 @@ interface PersonalAddressFormValues {
   id?: number
 }
 
-export const useFormConfig = (redirect: RedirectAction) => {
+export const useFormConfig = (redirect: RedirectAction, setCurrentStep: any) => {
   const { dispatch } = useProfileContext();
   const { ...form } = useForm<PersonalAddressFormValues>({
     resolver: zodResolver(personalAddressSchema),
@@ -24,10 +24,10 @@ export const useFormConfig = (redirect: RedirectAction) => {
       redirect,
       onMutationSuccess: (data) => {
         dispatch({ type: "PERSONAL_ADDRESS", payload: data?.data?.id ?? 0 });
+        setCurrentStep(1);
       },
     },
     warnWhenUnsavedChanges: true,
   });
-
   return { form };
 };

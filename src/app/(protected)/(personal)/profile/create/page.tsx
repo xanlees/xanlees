@@ -2,12 +2,12 @@
 
 import { Create } from "@/shadcn/components/crud";
 import { createEmployeeSteps } from "../lib/settings";
-import { useState } from "react";
+import React, { useState } from "react";
 import Stepper from "@keyvaluesystems/react-stepper";
 import { ProfileProvider } from "../../context/context";
 
 export default function ProfileCreate(): JSX.Element {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(2);
   const handleStepClick = (_: any, index: number) => {
     setCurrentStep(index);
   };
@@ -15,7 +15,10 @@ export default function ProfileCreate(): JSX.Element {
     <Create>
       <ProfileProvider>
         <Stepper
-          steps={createEmployeeSteps}
+          steps={createEmployeeSteps.map((step) => ({
+            ...step,
+            stepDescription: React.cloneElement(step.stepDescription, { setCurrentStep }),
+          }))}
           orientation="vertical"
           currentStepIndex={currentStep}
           onStepClick={handleStepClick}

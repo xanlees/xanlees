@@ -15,6 +15,7 @@ import { useProfileContext } from "../../context/context";
 
 interface ProfileFormProps {
   redirect: RedirectAction
+  setCurrentStep: any
 }
 interface ProfileFormValues {
   fullname: string
@@ -25,7 +26,7 @@ interface ProfileFormValues {
   id?: number
 }
 
-export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
+export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect, setCurrentStep }) => {
   const { state, dispatch } = useProfileContext();
   const { ...form } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
@@ -45,6 +46,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect }) => {
       },
       onMutationSuccess: (data) => {
         dispatch({ type: "SET_PROFILE_ID", payload: data?.data?.id ?? 0 });
+        setCurrentStep(2);
       },
       redirect,
     },

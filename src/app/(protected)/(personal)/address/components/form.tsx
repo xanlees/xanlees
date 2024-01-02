@@ -7,6 +7,7 @@ import { useFormConfig } from "./config";
 
 interface PersonalAddressFormProps {
   redirect: RedirectAction
+  setCurrentStep: any
 }
 interface IFormConfig {
   form: {
@@ -16,8 +17,9 @@ interface IFormConfig {
 
 export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
   redirect,
+  setCurrentStep,
 }) => {
-  const formConfig = useFormConfig(redirect);
+  const formConfig = useFormConfig(redirect, setCurrentStep);
   const district = useSelect<IDistrict>({
     resource: "district",
     optionLabel: "districtName",
@@ -25,21 +27,23 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
     filters: [{ field: "pageSize", operator: "eq", value: 140 }],
   });
   return (
-    <div className="w-1/2">
-      <Form {...formConfig.form}>
-        <div className="flex flex-row w-full gap-x-48">
-          <div className="block w-full">
-            <InputBornVillage {...formConfig} name="bornVillage" label="Born Village" />
+    <div className="flex flex-col w-full capitalize rounded-lg sm:w-1/2 sm:flex-row">
+      <div className="flex-1 p-4">
+        <Form {...formConfig.form}>
+          <div className="flex flex-row w-full gap-x-48">
+            <div className="block w-full">
+              <InputBornVillage {...formConfig} name="bornVillage" label="Born Village" />
+            </div>
+            <div className="w-full">
+              <InputBornVillage {...formConfig} name="currentVillage" label="Current Village"/>
+            </div>
           </div>
-          <div className="w-full">
-            <InputBornVillage {...formConfig} name="currentVillage" label="Current Village"/>
+          <div className="flex flex-row w-full gap-x-56">
+            <InputBornDistrict formConfig={formConfig} district={district} />
+            <CurrentDistrictId formConfig={formConfig} district={district} />
           </div>
-        </div>
-        <div className="flex flex-row w-full gap-x-56">
-          <InputBornDistrict formConfig={formConfig} district={district} />
-          <CurrentDistrictId formConfig={formConfig} district={district} />
-        </div>
-      </Form>
+        </Form>
+      </div>
     </div>
   );
 };
