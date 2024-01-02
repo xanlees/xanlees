@@ -19,7 +19,7 @@ import {
   DateOfBirth,
   EntryDate,
   Position,
-} from "./elements/column";
+} from "./container/column";
 
 import { getCurrentAddress } from "./lib/column/current-address";
 import { getOperatorColumn } from "../../../../lib/column/operator";
