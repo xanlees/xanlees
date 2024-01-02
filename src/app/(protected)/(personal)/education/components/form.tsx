@@ -11,7 +11,7 @@ import { Card, Input } from "@src/shadcn/elements";
 import React from "react";
 import { useFieldArray } from "react-hook-form";
 
-import { graduationSchema } from "../../../(career)/employee/validation/validation";
+import { graduationSchema } from "../../../(career)/employee/container/form/validation";
 import { useProfileContext } from "../../context/context";
 import { type IGraduation } from "../interface";
 import { FormGraduation } from "../../graduation/components/form";

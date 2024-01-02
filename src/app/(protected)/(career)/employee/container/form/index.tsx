@@ -7,7 +7,7 @@ import {
 } from "@refinedev/core";
 import { Input } from "@src/shadcn/elements";
 import { Form } from "@/shadcn/components/form";
-import { type IProfile } from "../interface";
+import { type IProfile } from "../../interface";
 import { type IPosition } from "@src/app/(protected)/branch/interface";
 import { useFormConfig } from "./config";
 
