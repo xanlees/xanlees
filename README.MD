@@ -34,6 +34,7 @@ and go url: http://localhost:6006/
 ## Deploy to Google Cloud Run
 ### Build docker image locally
 
+    source .env.prod.sh
     docker build \
         --platform linux/amd64 \
         -t asia.gcr.io/bamboo-bi-356406/sbs_workhublink_ui:v0.1.0 \
