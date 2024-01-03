@@ -22,7 +22,7 @@ import {
 } from "./container/column";
 
 import { getCurrentAddress } from "./lib/column/current-address";
-import { getOperatorColumn } from "@src/lib/column/operator";
+import { getOperatorColumn } from "@src/lib/column/action";
 import { getSector } from "./lib/column/sector";
 import { usePersonalAddress } from "./service/useCurrentAddress";
 import { useSectorID } from "./service/useSectorID";
