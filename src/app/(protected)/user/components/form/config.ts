@@ -20,6 +20,5 @@ export const useFormConfig = (redirect: RedirectAction) => {
     },
     warnWhenUnsavedChanges: true,
   });
-
   return { form };
 };

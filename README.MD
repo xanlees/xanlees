@@ -2,7 +2,7 @@
 
 the application using refinedjs, nextjs, storybook and tailwindcss
 
-## Install dependency
+### Install dependency
 
     npm install
 
@@ -31,20 +31,10 @@ and go url: http://localhost:6006/
 ### Fix automatically
     npm run lint -- --fix
 
+## Deploy to Google Cloud Run
+### Build docker image locally
 
-# React UI Component Dependencies (Tailwindcss Compatible)
-### Notification
-- <a href="https://github.com/fkhadra/react-toastify" target="_blank">react-toastify</a>: Toaster with hooks support
-### Form Logic
-- <a href="https://github.com/react-hook-form/react-hook-form" target="_blank">react-hook-form</a>: React hooks for form validation
-### Table Logic
-- <a href="https://github.com/TanStack/table" target="_blank">TanStack Table</a>: Headless UI for powerful table & datagrids
-### Paginate Logic
-- <a href="https://www.npmjs.com/package/react-paginate" target="_blank">react-paginate</a>: React Pagination
-
-
-### Generate report
-
+    source .env.prod.sh
     docker build \
         --platform linux/amd64 \
         -t asia.gcr.io/bamboo-bi-356406/sbs_workhublink_ui:v0.1.0 \
@@ -53,5 +43,7 @@ and go url: http://localhost:6006/
         --build-arg NEXTAUTH_URL_ARG=$NEXTAUTH_URL \
         --network=host \
         --progress=plain .
+
+### Push Docker image to Cloud image registry
 
     docker -- push  asia.gcr.io/bamboo-bi-356406/sbs_workhublink_ui:v0.2.3

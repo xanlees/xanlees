@@ -2,8 +2,8 @@
 
 import "@/styles/globals.css";
 
-import { NextAuthProvider } from "./(provider)/nextauth";
-import { RefineProvider } from "./(provider)/refine/base";
+import { NextAuthProvider } from "../lib/provider/auth/";
+import { RefineProvider } from "../lib/provider/refine";
 
 export default function RootLayout({
   children,

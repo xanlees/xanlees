@@ -125,7 +125,6 @@
     "no-unneeded-ternary": "error",
     "one-var-declaration-per-line": ["error", "always"],
     "operator-assignment": ["error", "always"],
-    "operator-linebreak": ["error", "none"],
     "react/prop-types": "off",
     "@typescript-eslint/comma-dangle": "off",
     "@typescript-eslint/restrict-plus-operands": "off",

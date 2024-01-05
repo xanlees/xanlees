@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 "use client";
 
-import { useAuth } from "@/app/(provider)/refine/authContext";
+import { useAuth } from "@src/lib/provider/refine/context/auth";
 import { useRouter } from "next/navigation";
 import type React from "react";
 
