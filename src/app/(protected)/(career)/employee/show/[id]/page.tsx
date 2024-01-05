@@ -11,9 +11,9 @@ import type {
   IPersonalAddress,
   ISector,
 } from "../../interface";
-import { EmployeeCard } from "../../lib/employeeCardProfile";
+import { EmployeeCard } from "../element/employeeCardProfile";
 import React from "react";
-import { AddressSection, EducationSection, JoiningDateSection, SectionPosition } from "../../lib/employeeCardInfo";
+import { AddressSection, EducationSection, JoiningDateSection, SectionPosition } from "../element/employeeCardInfo";
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export default function EmployeeShow({

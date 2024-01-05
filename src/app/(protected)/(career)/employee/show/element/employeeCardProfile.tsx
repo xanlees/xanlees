@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import React from "react";
 import moment from "moment";
-import { type IEmployee } from "../interface";
+import { type IEmployee } from "../../interface";
 import {
   getGenderDisplayText,
   getMaritalStatusDisplayText,
-} from "./genderUtils";
+} from "../../lib/genderUtils";
 
 export const EmployeeCard: React.FC<{ record?: IEmployee }> = ({ record }) => {
   return (
