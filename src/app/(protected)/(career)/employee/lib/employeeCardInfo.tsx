@@ -3,7 +3,7 @@
 import { MapPinned, GraduationCap, CalendarDays, Badge } from "lucide-react";
 import moment from "moment";
 import React from "react";
-import { type IEmployee, type ISector } from "../interface/interface";
+import { type IEmployee, type ISector } from "../interface";
 
 interface AddressSectionProps {
   personalAddressData?: {

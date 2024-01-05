@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import React from "react";
 import moment from "moment";
-import { type IEmployee } from "../interface/interface";
+import { type IEmployee } from "../interface";
 import {
   getGenderDisplayText,
   getMaritalStatusDisplayText,

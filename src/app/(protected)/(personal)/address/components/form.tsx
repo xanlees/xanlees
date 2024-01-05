@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelect, type RedirectAction } from "@refinedev/core";
 import { Input } from "@src/shadcn/elements";
-import { type IDistrict } from "../../../(career)/employee/interface/interface";
+import { type IDistrict } from "../../../(career)/employee/interface";
 import { Form } from "@src/shadcn/components/form";
 import { useFormConfig } from "./config";
 
