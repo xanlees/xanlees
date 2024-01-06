@@ -1,15 +1,15 @@
-/* eslint-disable max-lines */
 "use client";
 
 import { List } from "@/shadcn/components/crud";
 import { Table, type TableFilterProps } from "@/shadcn/components/table"; // Assuming this is the correct import path
-import { Badge, Checkbox, CommandItem } from "@src/shadcn/elements";
+import { Badge } from "@src/shadcn/elements";
 import { useUserFriendlyName } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
-import { Edit, Eye, Trash2 } from "lucide-react";
 import moment from "moment";
 import { type IUser } from "./interface";
 import { statusBadge } from "./lib/utils";
+import { getSelectColumn } from "@src/common/containers/column/select";
+import { getActionsColumn } from "@src/common/containers/column/action";
 
 // eslint-disable-next-line max-lines-per-function
 export default function UserList(): JSX.Element {
@@ -26,35 +26,7 @@ export default function UserList(): JSX.Element {
     <div className="w-1/2 mx-auto mt-10">
       <List>
         <Table table={table}>
-          <Table.Column
-            id={"select"}
-            accessorKey="id"
-            header={({ table }) => (
-              <Table.CheckAll table={table}>
-                <CommandItem
-                  onSelect={() => { alert("Delete Selected"); }}
-                >
-                Delete Selected (
-                  {table.getSelectedRowModel().rows.length}){" "}
-                  {friendly(
-                    "Row",
-                    table.getSelectedRowModel().rows.length > 1 ? "plural" : "singular",
-                  )}
-                </CommandItem>
-              </Table.CheckAll>
-            )}
-            cell={({ row }) => (
-              <Checkbox
-                className="translate-y-[2px]"
-                checked={row.getIsSelected()}
-                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-                onCheckedChange={(value) => { row.toggleSelected(!!value); }
-                }
-                aria-label="Select row"
-                key={`checkbox-${row.original.id}`}
-              />
-            )}
-          />
+          {getSelectColumn(friendly)}
           <Table.Column
             header="Username"
             id="username"
@@ -104,33 +76,7 @@ export default function UserList(): JSX.Element {
               return "";
             }}
           />
-          <Table.Column
-            accessorKey={"id"}
-            id={"actions"}
-            cell={({ row: { original } }) => (
-              <Table.Actions>
-                <Table.ShowAction
-                  title="Detail"
-                  row={original}
-                  resource="user"
-                  icon={<Eye size={16} />}
-                />
-                <Table.EditAction
-                  title="Edit"
-                  row={original}
-                  resource="user"
-                  icon={<Edit size={16} />}
-                />
-                <Table.DeleteAction
-                  title="Delete"
-                  row={original}
-                  withForceDelete={true}
-                  resource="user"
-                  icon={<Trash2 size={16} />}
-                />
-              </Table.Actions>
-            )}
-          />
+          {getActionsColumn("user")}
         </Table>
       </List>
     </div>

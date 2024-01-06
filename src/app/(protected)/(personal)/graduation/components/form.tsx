@@ -25,7 +25,7 @@ export const FormGraduation: React.FC<IGraduationFormProps> = ({
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">
-        <AccordionTrigger>ບໍ່ສາມາດເລືອກສາຂາຮຽນໄດ້</AccordionTrigger>
+        <AccordionTrigger className="italic text-blue-500 underline">*ຊອກສາຂາຮຽນທີ່ຕົນຮຽນບໍ່ເຫັນ, ກົດທີ່ນີ້</AccordionTrigger>
         <AccordionContent>
           <Form {...formConfig.form}>
             <div className="w-full sm:flex gap-x-2">

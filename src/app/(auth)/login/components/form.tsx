@@ -4,7 +4,7 @@ import {
   type TSubmitFunc,
 } from "../interface/interface";
 import { useFormConfig } from "./config";
-import { PasswordInput, UsernameInput } from "@src/common/elements/user-input";
+import { PasswordInput, UsernameInput } from "@src/common/elements/input/user";
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const LoginForm = ({ onSubmit }: { onSubmit: TSubmitFunc }) => {

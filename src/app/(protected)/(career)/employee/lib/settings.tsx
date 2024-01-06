@@ -1,4 +1,4 @@
-import { EmployeeForm } from "../container/form";
+import { EmployeeForm } from "../components/form";
 
 export const createEmployeeSteps = [
   {
