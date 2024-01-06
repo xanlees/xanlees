@@ -10,7 +10,6 @@ export async function refreshAccessToken(token: IToken) {
       headers: { "Content-Type": "application/json" },
     });
     const data: IRefreshToken = await res.json() as IRefreshToken;
-    console.log("Refresh token response:", data);
     if (res.ok && data?.access !== undefined) {
       token.user.accessToken = data.access;
       token.user.refreshToken = data.refresh;
