@@ -4,15 +4,11 @@ import { Input } from "@src/shadcn/elements";
 import { type IDistrict } from "../../../(career)/employee/interface";
 import { Form } from "@src/shadcn/components/form";
 import { useFormConfig } from "./config";
+import { type IFormConfig } from "@src/common/interface";
 
 interface PersonalAddressFormProps {
   redirect: RedirectAction
   setCurrentStep: any
-}
-interface IFormConfig {
-  form: {
-    setValue: any
-  }
 }
 
 export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
@@ -63,9 +59,6 @@ const CurrentDistrictId = ({ formConfig, district }: { formConfig: IFormConfig, 
   <Form.Field {...formConfig.form} name="currentDistrictId" label="Current District" >
     <Form.Combobox
       {...(district)}
-      onChange={(value) => {
-        formConfig.form.setValue("currentDistrictId", value);
-      }}
       className="mx-10"
     />
   </Form.Field>
@@ -75,9 +68,6 @@ const InputBornDistrict = ({ formConfig, district }: { formConfig: IFormConfig, 
   <Form.Field {...formConfig.form} name="bornDistrictId" label="Current Village" >
     <Form.Combobox
       {...(district)}
-      onChange={(value) => {
-        formConfig.form.setValue("bornDistrictId", value);
-      }}
       className="mx-10"
     />
   </Form.Field>
