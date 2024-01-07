@@ -1,6 +1,6 @@
 # Boilerplate for RAD frontend
 
-the application using refinedjs, nextjs, storybook and tailwindcss
+the application using refinejs, nextjs, storybook and tailwindcss
 
 ### Install dependency
 
@@ -10,28 +10,34 @@ the application using refinedjs, nextjs, storybook and tailwindcss
 
     npm run dev
 
-and go url: http://localhost:3000/   
+and go url: <http://localhost:3000/>
 
 ## Run story book
 
     npm run storybook
 
 ### Run storybook testing code coverage
+
     npm run test-storybook -- --coverage
 
 ### Generate report
+
     npx nyc report --reporter=lcov -t coverage/storybook --report-dir coverage/storybook
-    
-and go url: http://localhost:6006/    
+
+and go url: <http://localhost:6006/>
 
 ## Quality Control
+
 ### Check
+
     npm run lint
 
 ### Fix automatically
+
     npm run lint -- --fix
 
 ## Deploy to Google Cloud Run
+
 ### Build docker image locally
 
     source .env.prod.sh
