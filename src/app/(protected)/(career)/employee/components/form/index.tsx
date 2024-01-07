@@ -10,6 +10,7 @@ import { Form } from "@/shadcn/components/form";
 import { type IProfile } from "../../interface";
 import { type IPosition } from "@src/app/(protected)/(career)/branch/interface";
 import { useFormConfig } from "./config";
+import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 
 interface IFormConfig {
   form: {
@@ -18,7 +19,7 @@ interface IFormConfig {
 }
 
 export const EmployeeForm = ({
-  redirect = "edit",
+  redirect = "list",
 }: {
   redirect: RedirectAction
 }) => {
@@ -45,11 +46,18 @@ export const EmployeeForm = ({
         <div className="flex flex-col w-full gap-3 flex-warp">
           <ProfileSection formConfig={formConfig} profile={profile} />
           <PositionSection formConfig={formConfig} position={position} />
+          <Form.Field
+            {...formConfig.form}
+            name="joiningDate"
+            label="Joining Date"
+          >
+            <DatePickerField className="w-80"/>
+          </Form.Field>
           <div className="flex justify-start ">
             <Form.Field {...formConfig.form} name="isLatest" label="Is Latest">
               <Input
                 placeholder="isLatest"
-                className="block w-5 h-5 "
+                className="block w-5 h-5 rounded-lg"
                 type="checkbox"
                 defaultValue={"true"}
               />
@@ -71,6 +79,7 @@ const PositionSection = ({
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
     <Form.Field {...formConfig.form} name="positionId" label="position">
       <Form.Combobox
+        className="w-80"
         {...position}
         onChange={(value) => {
           formConfig.form.setValue("positionId", value);
@@ -94,6 +103,7 @@ const ProfileSection = ({
         onChange={(value) => {
           formConfig.form.setValue("profileId", value);
         }}
+        className="w-80"
       />
     </Form.Field>
   </div>
