@@ -14,7 +14,7 @@ export const PageHeader: FC<PageHeaderProps> = ({ extra, ...props }) => {
                 {props.breadcrumb}
                 <div className="inline-flex flex-row items-center mt-3 gap-x-4">
                     <div className="inline-flex flex-col">
-                        <h2 className="text-2xl font-bold text-black leading-7 dark:text-white sm:truncate sm:text-3xl sm:tracking-tight">
+                        <h2 className="text-2xl font-bold leading-7 text-black dark:text-white sm:truncate sm:text-3xl sm:tracking-tight">
                             {props.title}
                         </h2>
                         {props.subTitle && (

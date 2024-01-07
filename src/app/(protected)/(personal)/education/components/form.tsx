@@ -11,7 +11,7 @@ import { Card, Input } from "@src/shadcn/elements";
 import React from "react";
 import { useFieldArray } from "react-hook-form";
 
-import { graduationSchema } from "../../../(career)/employee/container/form/validation";
+import { graduationSchema } from "../../../(career)/employee/components/form/validation";
 import { useProfileContext } from "../../context/context";
 import { type IGraduation } from "../interface";
 import { FormGraduation } from "../../graduation/components/form";
@@ -90,9 +90,6 @@ export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
           <ArrayField {...form} name="graduationId" label="Graduation">
             <Form.Combobox
               {...(graduation as any)}
-              onChange={(value) => {
-                form.setValue("graduationId", value);
-              }}
             />
           </ArrayField>
           <ArrayField {...form} name="year" label="year">

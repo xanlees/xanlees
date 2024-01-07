@@ -12,6 +12,9 @@ export default function RootLayout({
 }): React.ReactNode {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/logo.png" sizes="any" />
+      </head>
       <body>
         <NextAuthProvider>
           <RefineProvider>{children}</RefineProvider>

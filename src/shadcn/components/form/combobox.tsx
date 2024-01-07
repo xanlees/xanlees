@@ -7,7 +7,6 @@ import { BaseOption, BaseRecord, UseSelectReturnType } from "@refinedev/core";
 import {
     ComponentPropsWithoutRef,
     forwardRef,
-    useMemo,
     useState,
     type ElementRef,
 } from "react";
@@ -47,8 +46,11 @@ export const Combobox = forwardRef<
         if (typeof props.value === "object" && "id" in props.value) {
             return (props.value as BaseRecord).id;
         }
+        if (props.value?.length === 0) {
+            return undefined;
+        }
 
-        return `${props.value}`;
+        return props.value;
     };
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -65,8 +67,8 @@ export const Combobox = forwardRef<
                     >
                         {value()
                             ? props.options?.find(
-                                  (option) => option.value === value(),
-                              )?.label
+                                (option) => option.value === value(),
+                            )?.label
                             : props.placeholder ?? "Select"}
                         <CaretSortIcon className="w-4 h-4 ml-2 opacity-50 shrink-0" />
                     </Button>

@@ -8,7 +8,7 @@ import { Input } from "@src/shadcn/elements";
 import React from "react";
 
 import { genderOptions, maritalStatusOptions } from "../../../(career)/employee/lib/constant";
-import { profileSchema } from "../../../(career)/employee/container/form/validation";
+import { profileSchema } from "../../../(career)/employee/components/form/validation";
 import { Form } from "@src/shadcn/components/form";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 import { useProfileContext } from "../../context/context";

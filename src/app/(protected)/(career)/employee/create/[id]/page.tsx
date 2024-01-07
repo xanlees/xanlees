@@ -1,7 +1,7 @@
 "use client";
 
 import { Create } from "@src/shadcn/components/crud";
-import { EmployeeForm } from "../../container/form";
+import { EmployeeForm } from "../../components/form";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 
 const breadcrumbs = [

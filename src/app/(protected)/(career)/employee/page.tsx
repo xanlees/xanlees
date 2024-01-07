@@ -10,7 +10,7 @@ import type {
   IEmployee,
 } from "./interface";
 import { EmployeeContainer, TableSection } from "./employeeLayout";
-import { getSelectColumn } from "@src/lib/column/select";
+import { getSelectColumn } from "@src/common/containers/column/select";
 import {
   FullNameColumn,
   PhoneNumberColumn,
@@ -19,15 +19,15 @@ import {
   DateOfBirth,
   EntryDate,
   Position,
-} from "./container/column";
+} from "./containers/column";
 
-import { getCurrentAddress } from "./lib/column/current-address";
-import { getOperatorColumn } from "@src/lib/column/action";
-import { getSector } from "./lib/column/sector";
-import { usePersonalAddress } from "./service/useCurrentAddress";
-import { useSectorID } from "./service/useSectorID";
-import { useCurrentAddressID } from "./service/useCurrentAddressID";
-import { useSector } from "./service/useSector";
+import { getCurrentAddress } from "./containers/column/current-address";
+import { getActionsColumn } from "@src/common/containers/column/action";
+import { getSector } from "./containers/column/sector";
+import { usePersonalAddress } from "./hooks/useCurrentAddress";
+import { useSectorID } from "./hooks/useSectorID";
+import { useCurrentAddressID } from "./hooks/useCurrentAddressID";
+import { useSector } from "./hooks/useSector";
 
 const resource = "employee";
 export default function EmployeeList(): JSX.Element {
@@ -58,7 +58,7 @@ export default function EmployeeList(): JSX.Element {
             {getCurrentAddress(currentAddressData)}
             {Position}
             {getSector(sectorData)}
-            {getOperatorColumn(resource)}
+            {getActionsColumn(resource)}
           </Table>
         </TableSection>
       </EmployeeContainer>
