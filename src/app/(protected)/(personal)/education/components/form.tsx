@@ -65,7 +65,6 @@ export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
     value: item.id,
   }));
   graduation.options = options as BaseOption[];
-  console.log("form", form.watch());
 
   return (
     <div className="w-2/3 rounded-lg">

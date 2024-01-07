@@ -16,7 +16,7 @@ const LoginForm = ({ onSubmit }: { onSubmit: TSubmitFunc }) => {
   return (
     <FormUI {...formConfig.form} >
       <form {...formConfig.form} onSubmit={onSubmitHandler}>
-        <Card>
+        <Card className="rounded-lg ">
           <CardContent className="pt-6 space-y-4">
             <div className="w-full p-10 text-center">
               <Label className="text-3xl font-bold"> Sign in</Label>

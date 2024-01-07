@@ -1,10 +1,11 @@
 import React from "react";
-import LoginFormTemplate from "@/app/(auth)/login/templates/base";
+
 import useSubmitService from "@/app/(auth)/login/service/submit";
+import LoginForm from "../components/form";
 
 export default {
   title: "Login",
-  component: LoginFormTemplate,
+  component: LoginForm,
   parameters: {
     nextjs: {
       appDirectory: true,
@@ -18,5 +19,5 @@ export default {
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const form = () => {
   const onSubmit = useSubmitService();
-  return <LoginFormTemplate onSubmit={onSubmit} />;
+  return <LoginForm onSubmit={onSubmit} />;
 };
