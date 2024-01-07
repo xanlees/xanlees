@@ -1,9 +1,12 @@
 import React from "react";
-import BranchList from "../page";
+import BranchShow from "../show/[id]/page";
+
+
+
 
 export default {
-  title: "Career/branch/branchList",
-  component: BranchList,
+  title: "Career/branch/branchShow",
+  component: BranchShow,
   parameters: {
     nextjs: {
       appDirectory: true,
@@ -14,6 +17,8 @@ export default {
   },
 };
 
-export const list = () => (
-  <BranchList/>
+export const show = () => (
+  <BranchShow params={{
+    id: 1
+  }}/>
 );

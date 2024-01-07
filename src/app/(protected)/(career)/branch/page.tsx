@@ -10,7 +10,7 @@ import { useTable } from "@refinedev/react-table";
 import { Edit, Eye, Trash2 } from "lucide-react";
 import type { IBranch, IPosition, ISector } from "./interface";
 
-export default function PositionList(): JSX.Element {
+export default function BranchList(): JSX.Element {
   const table = useTable<IBranch>({
     columns: [],
     enableSorting: true,

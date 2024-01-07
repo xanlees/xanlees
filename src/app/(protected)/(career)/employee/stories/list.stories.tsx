@@ -2,7 +2,7 @@ import React from "react";
 import EmployeeList from "../page";
 
 export default {
-  title: "employee/EmployeeList",
+  title: "Career/employee/EmployeeList",
   component: EmployeeList,
   parameters: {
     nextjs: {

@@ -1,9 +1,10 @@
 import React from "react";
-import BranchList from "../page";
+import BranchCreate from "../create/page";
+
 
 export default {
-  title: "Career/branch/branchList",
-  component: BranchList,
+  title: "Career/branch/branchCreate",
+  component: BranchCreate,
   parameters: {
     nextjs: {
       appDirectory: true,
@@ -14,6 +15,6 @@ export default {
   },
 };
 
-export const list = () => (
-  <BranchList/>
+export const create = () => (
+  <BranchCreate/>
 );
