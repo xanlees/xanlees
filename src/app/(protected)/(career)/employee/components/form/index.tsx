@@ -8,7 +8,7 @@ import {
 import { Input } from "@src/shadcn/elements";
 import { Form } from "@/shadcn/components/form";
 import { type IProfile } from "../../interface";
-import { type IPosition } from "@src/app/(protected)/branch/interface";
+import { type IPosition } from "@src/app/(protected)/(career)/branch/interface";
 import { useFormConfig } from "./config";
 
 interface IFormConfig {

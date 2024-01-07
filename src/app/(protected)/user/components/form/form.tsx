@@ -3,7 +3,7 @@ import { Input } from "@src/shadcn/elements";
 import { Form } from "@/shadcn/components/form";
 import { type IGroup } from "../../interface";
 import { useFormConfig } from "./config";
-import { IFormConfig } from "@src/common/interface";
+import { type IFormConfig } from "@src/common/interface";
 
 export const UserForm = ({
   redirect = "edit",
@@ -16,8 +16,6 @@ export const UserForm = ({
     optionLabel: "name",
     optionValue: "name",
   });
-  console.log("groups", groups);
-
   return (
     <div className="w-1/2 mx-auto">
       <Form {...formConfig.form}>

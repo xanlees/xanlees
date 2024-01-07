@@ -20,3 +20,9 @@ export interface IPosition {
     branchId: number
   }
 }
+
+export interface IFormConfig {
+  form: {
+    setValue: any
+  }
+}

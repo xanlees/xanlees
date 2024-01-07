@@ -10,40 +10,35 @@ import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { Card, Input } from "@src/shadcn/elements";
 import React from "react";
 import { useFieldArray } from "react-hook-form";
-
-import { graduationSchema } from "../../../(career)/employee/components/form/validation";
 import { useProfileContext } from "../../context/context";
 import { type IGraduation } from "../interface";
 import { FormGraduation } from "../../graduation/components/form";
+import { sObjectMetadataSchema } from "../lib/vadidation";
 
 interface EducationFormProps {
   redirect: RedirectAction
 }
-interface EducationFormValues {
-  education: Array<{
-    branch: string
-    profileId: string
-    graduationId: string
-    year: string
-  }>
-  id?: number
-}
+
+type EducationFormValues = Array<{
+  branch: string
+  profileId: number
+  graduationId: number
+  year: string
+}>;
 
 export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
   const { state } = useProfileContext();
 
   const { ...form } = useForm<EducationFormValues>({
-    resolver: zodResolver(graduationSchema),
-    defaultValues: {
-      education: [
-        {
-          branch: "",
-          profileId: state.profileId,
-          graduationId: "",
-          year: "",
-        },
-      ],
-    },
+    resolver: zodResolver(sObjectMetadataSchema),
+    defaultValues: [
+      {
+        branch: "",
+        profileId: state.profileId,
+        graduationId: 0,
+        year: "",
+      },
+    ],
     refineCoreProps: {
       resource: "education",
       autoSave: {
@@ -70,9 +65,7 @@ export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
     value: item.id,
   }));
   graduation.options = options as BaseOption[];
-
   console.log("form", form.watch());
-  console.log("fields", fields);
 
   return (
     <div className="w-2/3 rounded-lg">
