@@ -4,7 +4,7 @@
 import { Table } from "@/shadcn/components/table";
 import { Edit, Eye, Trash2 } from "lucide-react";
 
-export function getOperatorColumn(resource: string) {
+export function getActionsColumn(resource: string) {
   return <Table.Column
     accessorKey={"id"}
     id={"actions"}

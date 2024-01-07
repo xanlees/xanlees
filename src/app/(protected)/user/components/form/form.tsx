@@ -3,12 +3,7 @@ import { Input } from "@src/shadcn/elements";
 import { Form } from "@/shadcn/components/form";
 import { type IGroup } from "../../interface";
 import { useFormConfig } from "./config";
-
-interface IFormConfig {
-  form: {
-    setValue: any
-  }
-}
+import { IFormConfig } from "@src/common/interface";
 
 export const UserForm = ({
   redirect = "edit",
@@ -61,9 +56,6 @@ const GroupSection = ({ formConfig, groups }: { formConfig: IFormConfig, groups:
     <Form.Field {...formConfig.form} name="groups" label="Group">
       <Form.Combobox
         {...(groups)}
-        onChange={(value) => {
-          formConfig.form.setValue("groups", [value]);
-        }}
       />
     </Form.Field>
   </div>

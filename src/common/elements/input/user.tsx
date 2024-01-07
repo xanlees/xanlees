@@ -1,5 +1,5 @@
 import { Form } from "@src/shadcn/components/form";
-import { type IFormConfig } from "../interface";
+import { type IFormConfig } from "../../interface";
 import { Input } from "@src/shadcn/elements";
 
 export const UsernameInput = (formConfig: IFormConfig) => (
