@@ -26,12 +26,12 @@ export function Pagination<TData extends BaseRecord = BaseRecord>({
     return (
         <div className="flex flex-col items-center justify-between sm:flex-row gap-y-4 sm-gap-y-0">
             <div className="flex-1 text-sm text-muted-foreground">
-                {table.getFilteredSelectedRowModel().rows.length} of{" "}
-                {table.getFilteredRowModel().rows.length} row(s) selected.
+                {table.getFilteredSelectedRowModel().rows.length} ໃນ{" "}
+                {table.getFilteredRowModel().rows.length} ແຖວ.
             </div>
-            <div className="flex flex-col-reverse items-center gap-y-4 sm:gap-y-0 sm:flex-row space-x-6 lg:space-x-8">
+            <div className="flex flex-col-reverse items-center space-x-6 gap-y-4 sm:gap-y-0 sm:flex-row lg:space-x-8">
                 <div className="flex items-center space-x-2">
-                    <p className="text-sm font-medium">Rows per page</p>
+                    <p className="text-sm font-medium">ແຖວຂໍ້ມູນຕໍ່ຫນ້າ</p>
                     <Select
                         value={`${table.getState().pagination.pageSize}`}
                         onValueChange={(value) => {
@@ -58,7 +58,7 @@ export function Pagination<TData extends BaseRecord = BaseRecord>({
                     </Select>
                 </div>
                 <div className="flex items-center justify-center text-sm font-medium w-fit">
-                    Page {table.getState().pagination.pageIndex + 1} of{" "}
+                    ໜ້າ {table.getState().pagination.pageIndex + 1} ໃນ{" "}
                     {table.getPageCount()}
                 </div>
                 <div className="flex items-center space-x-2">
