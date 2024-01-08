@@ -5,6 +5,12 @@ import { useForm } from "@refinedev/react-hook-form";
 import { profileSchema } from "@src/app/(protected)/(career)/employee/components/form/validation";
 import { useProfileContext } from "../../context/context";
 
+interface FormConfigParams {
+  redirect: RedirectAction
+  setCurrentStep?: ((step: number) => void) | undefined
+  setProfileID?: ((id: number) => void) | undefined
+}
+
 interface ProfileFormValues {
   fullname: string
   nickname: string
@@ -14,11 +20,11 @@ interface ProfileFormValues {
   id?: number
 }
 
-export const useFormConfig = (
-  redirect: RedirectAction,
-  setCurrentStep: any,
-  setProfileID: any,
-) => {
+export const useFormConfig = ({
+  redirect,
+  setCurrentStep,
+  setProfileID,
+}: FormConfigParams) => {
   const { state, dispatch } = useProfileContext();
   const { ...form } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
@@ -37,9 +43,9 @@ export const useFormConfig = (
         enabled: true,
       },
       onMutationSuccess: (data) => {
-        dispatch({ type: "SET_PROFILE_ID", payload: data?.data?.id ?? 0 });
-        setCurrentStep(2);
-        setProfileID(data?.data?.id ?? 0);
+        dispatch({ type: "setProfileId", payload: data?.data?.id ?? 0 });
+        (setCurrentStep != null) && setCurrentStep(2);
+        (setProfileID != null) && setProfileID(data?.data?.id ?? 0);
       },
       redirect,
     },
