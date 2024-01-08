@@ -30,7 +30,7 @@ export default function BranchList(): JSX.Element {
 
   const friendly = useUserFriendlyName();
   return (
-    <div className="w-1/2 mx-auto mt-10">
+    <div className="mx-auto">
       <List>
         <Table table={table}>
           {getSelectColumn(friendly)}
