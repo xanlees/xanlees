@@ -4,12 +4,12 @@ import { EducationForm } from "../../education/components/form";
 
 export const createEmployeeSteps = [
   {
-    stepLabel: "Personal Address",
+    stepLabel: "ສ້າງທີຢູ່",
     stepDescription: <PersonalAddressForm redirect="create" setCurrentStep={undefined} />,
     completed: false,
   },
   {
-    stepLabel: "Creating Profile",
+    stepLabel: "ສ້າງໂປຣໄຟລ໌",
     stepDescription: <ProfileForm redirect="create" setCurrentStep={undefined}/>,
     completed: false,
   },
