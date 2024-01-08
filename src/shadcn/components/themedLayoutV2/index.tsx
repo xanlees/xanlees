@@ -24,7 +24,7 @@ export const ThemedLayoutV2: FC<LayoutProps> = ({
             </SidebarMobile>
             <Navbar darkMode={!!darkModeProvider} />
           </header>
-          <main className="relative px-4 space-y-1">
+          <main className="relative px-4 space-y-1 h-[80dvh]">
             {children as ReactNode}
           </main>
           {Footer ? (
