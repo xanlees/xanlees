@@ -6,7 +6,6 @@ import {
 import { useFormConfig } from "./config";
 import { PasswordInput, UsernameInput } from "@src/common/elements/input/user";
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 const LoginForm = ({ onSubmit }: { onSubmit: TSubmitFunc }) => {
   const formConfig = useFormConfig(false);
   const onSubmitHandler = formConfig.form.handleSubmit((formData) => {
@@ -19,14 +18,14 @@ const LoginForm = ({ onSubmit }: { onSubmit: TSubmitFunc }) => {
         <Card className="rounded-lg ">
           <CardContent className="pt-6 space-y-4">
             <div className="w-full p-10 text-center">
-              <Label className="text-3xl font-bold"> Sign in</Label>
+              <Label className="text-3xl font-bold">ເຂົ້າສູ່ລະບົບ</Label>
             </div>
             <UsernameInput {...formConfig} />
             <PasswordInput {...formConfig} />
             <Button
               className="justify-center w-full"
               type="submit">
-            Sign in
+            ເຂົ້າສູ່ລະບົບ
             </Button>
           </CardContent>
         </Card>

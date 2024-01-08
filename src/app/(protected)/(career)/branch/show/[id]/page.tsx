@@ -1,8 +1,7 @@
-/* eslint-disable max-nested-callbacks */
 /* eslint-disable max-lines */
+/* eslint-disable max-nested-callbacks */
 /* eslint-disable max-lines-per-function */
 "use client";
-
 import { cn } from "@src/lib/utils";
 import {
   Card,
@@ -13,7 +12,6 @@ import {
 import { Show } from "@/shadcn/components/crud";
 import { useList, useShow } from "@refinedev/core";
 import type { ISector, IPosition, IBranch } from "../../interface/interface";
-
 export default function BranchShow({
   params,
 }: {
@@ -33,7 +31,6 @@ export default function BranchShow({
     ],
     errorNotification: false,
   });
-
   const sectorIs = sectorData?.data.map((item) =>
     item?.id !== undefined ? item.id : [0],
   );
