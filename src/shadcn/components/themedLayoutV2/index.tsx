@@ -47,14 +47,14 @@ export const ThemedLayoutV2: FC<LayoutProps> = ({
                       Proud partner of
                       <a
                         className="font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-500 dark:hover:text-blue-400"
-                        href="#"
+                        href="https://bestech.la"
                       >
-                        SBS
+                        {` besTech `}
                       </a>
                       team.
                     </p>
                     <p className="text-gray-500">
-                      © SBS. 2023 Workhub Link Webapp. All rights reserved.
+                      © SBS. 2024 Workhub Link Webapp. All rights reserved.
                     </p>
                   </div>
                 </div>
