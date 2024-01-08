@@ -75,14 +75,15 @@ export default function BranchShow({
       <Card className={cn("w-2/3 mx-auto my-5 rounded-lg p-2")}>
         <CardHeader>
           <CardTitle className="text-4xl text-center">
-            {`ສາຂາ ${record?.name}`}
+            <div>ສາຂາ</div>
+            {`${record?.name}`}
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Card className="flex flex-col gap-2 p-2 rounded-lg md:flex-row">
+          <Card className="grid grid-cols-1 gap-3 p-2 rounded-lg sm:grid-cols-2 md:grid-cols-3 ">
             {joinedData?.map((item) => {
               return (
-                <div className="w-full p-2 border rounded-lg md:w-1/2" key={item.id}>
+                <div className="p-2 border rounded-lg w-90" key={item.id}>
                   <CardHeader>
                     <CardTitle className="text-2xl text-center">
                       ຂະແໜງ {item.sector[0].name}
