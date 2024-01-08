@@ -64,7 +64,7 @@ export const Show = ({
                 }
             />
             <div className="relative pt-4 !mt-0">
-                <Card>
+                <Card className="rounded-sm shadow-md">
                     <CardContent>{children as ReactNode}</CardContent>
                 </Card>
             </div>
