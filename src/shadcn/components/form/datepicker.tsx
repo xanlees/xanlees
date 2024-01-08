@@ -15,12 +15,12 @@ export const DatePickerField = ({ ...props }) => {
                 <FormControl>
                     <Button
                         variant={"outline"}
-                        className={cn("w-[240px] justify-start text-left font-normal", !props.value && "text-muted-foreground")}
-                        // className={cn(
-                        //     "pl-3 text-left font-normal",
-                        //     props?.className ? props.className : "w-[250px]",
-                        //     !props.value && "text-muted-foreground"
-                        // )}
+                        // className={cn("w-[240px] justify-start text-left font-normal", !props.value && "text-muted-foreground")}
+                        className={cn(
+                            "pl-3 text-left font-normal",
+                            props?.className ? props.className : "w-[250px]",
+                            !props.value && "text-muted-foreground"
+                        )}
                     >
                         {props.value ? (
                             format(new Date(props.value), "PPP")

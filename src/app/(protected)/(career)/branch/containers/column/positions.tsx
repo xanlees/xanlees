@@ -1,7 +1,27 @@
 import { Table, type TableFilterProps } from "@/shadcn/components/table";
 import type { IPosition, ISector } from "../../interface";
+import { Badge } from "@src/shadcn/elements";
 
-export function positionsColumn(sectorData: ISector[], positionData: IPosition[]) {
+function renderPositionData({
+  positionData,
+  sectorId,
+}: {
+  positionData: IPosition[]
+  sectorId: number | undefined
+}) {
+  return (
+    (positionData as { data?: IPosition[] }).data
+      ?.filter((position) => position?.sectorId === sectorId)
+      ?.flatMap((position, positionIndex) => (
+        <div key={positionIndex}>{`  - ${position?.name}`}</div>
+      )) ?? []
+  );
+}
+
+export function positionsColumn(
+  sectorData: ISector[],
+  positionData: IPosition[],
+) {
   return (
     <Table.Column
       header="ຕໍາແໜ່ງ"
@@ -13,13 +33,22 @@ export function positionsColumn(sectorData: ISector[], positionData: IPosition[]
         <Table.Filter.Search {...props} title="Search position" />
       )}
       cell={({ row: { original } }) => {
-        const sectorRecord = (sectorData as { data?: ISector[] })?.data?.find(
-          (item) => item?.branchId === original.id,
-        ) as ISector;
-        const displayPositionNames = (positionData as { data?: IPosition[] })?.data
-          ?.filter((item) => item?.sectorId === sectorRecord?.id)
-          .map((position) => position?.name) as string[];
-        return <div>{displayPositionNames?.map((position) => (<div>{`- ${position}`}</div>))}</div>;
+        const filteredSectorData = (
+          sectorData as { data?: ISector[] }
+        )?.data?.filter((item) => item?.branchId === original?.id) as ISector[];
+        return (
+          <div>
+            {filteredSectorData?.map((sector, index) => (
+              <div key={index}>
+                <Badge>{`${sector?.name}`}</Badge>
+                {renderPositionData({
+                  positionData,
+                  sectorId: sector?.id,
+                })}
+              </div>
+            ))}
+          </div>
+        );
       }}
     />
   );

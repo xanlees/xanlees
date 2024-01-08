@@ -13,23 +13,32 @@ const breadcrumbs = [
 ];
 
 export default function ProfileCreate(): JSX.Element {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
   const [profileID, setProfileID] = useState(0);
   return (
     <>
-      <Create resource="employee" breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}>
+      <Create
+        resource="employee"
+        breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
+      >
         <ProfileProvider>
-          <Stepper
-            steps={createEmployeeSteps.map((step) => ({
-              ...step,
-              stepDescription: React.cloneElement(step.stepDescription, { setCurrentStep, setProfileID }),
-            }))}
-            orientation="vertical"
-            currentStepIndex={currentStep}
-            stepContent={() => <div className="w-[1600px] rounded-lg" />} />
+          <div>
+            <Stepper
+              steps={createEmployeeSteps.map((step) => ({
+                ...step,
+                stepDescription: React.cloneElement(step.stepDescription, {
+                  setCurrentStep,
+                  setProfileID,
+                }),
+              }))}
+              orientation="vertical"
+              currentStepIndex={currentStep}
+              stepContent={() => <div className="w-[1600px] rounded-lg" />}
+            />
+          </div>
         </ProfileProvider>
       </Create>
-      <Button>
+      <Button className="w-20">
         <Link href={`/employee/create/${profileID}`}>ຕໍ່ໄປ</Link>
       </Button>
     </>

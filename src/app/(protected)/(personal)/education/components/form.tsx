@@ -19,7 +19,6 @@ export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
   const formConfig = useFormConfig(redirect);
   const graduation = useGraduationSelect();
   const { fields, append } = useFieldArray({ control: formConfig.form.control, name: "education" });
-  console.log("formConfig", formConfig.form.watch());
 
   return (
     <div className="w-[50%] rounded-lg">

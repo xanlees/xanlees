@@ -5,7 +5,9 @@ import { EducationForm } from "../../education/components/form";
 export const createEmployeeSteps = [
   {
     stepLabel: "ສ້າງທີຢູ່",
-    stepDescription: <PersonalAddressForm redirect="create" setCurrentStep={undefined} />,
+    stepDescription: (
+      <PersonalAddressForm redirect="create" setCurrentStep={undefined} />
+    ),
     completed: false,
   },
   {
