@@ -6,14 +6,20 @@ export function sectorColumn(sectorData: ISector[]) {
     <Table.Column
       header={"ຂະແໜງ"}
       accessorKey="id"
-      id="id"
+      id="sector"
       enableSorting
       enableHiding
       cell={({ row: { original } }) => {
-        const displaySector = (sectorData as { data?: ISector[] })?.data?.find(
-          (item) => item?.branchId === original.id,
-        ) as ISector;
-        return <div>{displaySector?.name}</div>;
+        const displaySectors = (sectorData as { data?: ISector[] })?.data
+          ?.filter((item) => item?.branchId === original.id)
+          .map((sector) => sector?.name) as string[];
+        return (
+          <div>
+            {displaySectors?.map((name, index) => (
+              <div key={index}>{name}</div>
+            ))}
+          </div>
+        );
       }}
     />
   );

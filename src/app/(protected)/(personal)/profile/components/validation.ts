@@ -29,7 +29,7 @@ export const profileSchema = z.object({
   profilePicture: (z.any() as z.ZodType<FileList>)
     .refine(
       (fileList) => {
-        const file = fileList[0];
+        const file = fileList?.[0];
         return (
           file?.size <= maxFileSize && acceptedImageTypes.includes(file?.type)
         );

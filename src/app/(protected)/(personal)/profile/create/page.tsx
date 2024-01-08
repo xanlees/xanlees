@@ -38,7 +38,7 @@ export default function ProfileCreate(): JSX.Element {
           </div>
         </ProfileProvider>
       </Create>
-      <Button>
+      <Button className="w-20">
         <Link href={`/employee/create/${profileID}`}>ຕໍ່ໄປ</Link>
       </Button>
     </>

@@ -10,10 +10,9 @@ const breadcrumbs = [
 ];
 
 export default function EmployeeCreate({ params }: { params: { id: number } }): JSX.Element {
-  console.log(params);
   return (
     <Create resource="employee" breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs}/>}>
-      <EmployeeForm redirect="edit" {...params} />
+      <EmployeeForm redirect="list" {...params} />
     </Create>
   );
 }
