@@ -1,4 +1,8 @@
+/* eslint-disable max-nested-callbacks */
+/* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
+"use client";
+
 import { cn } from "@src/lib/utils";
 import {
   Card,
@@ -7,8 +11,9 @@ import {
   CardTitle,
 } from "@src/shadcn/elements/card";
 import { Show } from "@/shadcn/components/crud";
-import { useList, useShow } from "@refinedev/core";
+import { type GetListResponse, useList, useShow } from "@refinedev/core";
 import type { ISector, IPosition, IBranch } from "../../interface/interface";
+
 export default function BranchShow({
   params,
 }: {
@@ -28,6 +33,7 @@ export default function BranchShow({
     ],
     errorNotification: false,
   });
+
   const sectorIs = sectorData?.data.map((item) =>
     item?.id !== undefined ? item.id : [0],
   );
@@ -42,28 +48,9 @@ export default function BranchShow({
     ],
     errorNotification: false,
   });
-  const joinedData = sectorData?.data.map((sector) => {
-    const sectorId = sector.id;
-    const positionsInSector = positionData?.data
-      .filter((position) => position.sectorId === sectorId)
-      .map((position) => ({
-        ...position,
-        sectorDetail: {
-          name: sector.name,
-          id: sectorId,
-          branchId: sector.branchId,
-        },
-      }));
-    return {
-      name: sector.branchDetail.name,
-      id: sector.branchDetail.id,
-      sector: [
-        {
-          ...sector,
-          position: positionsInSector,
-        },
-      ],
-    };
+  const branchDetailsWithPositions = mapSectorToBranchDetails({
+    sectorData,
+    positionData,
   });
   return (
     <Show>
@@ -75,12 +62,15 @@ export default function BranchShow({
         </CardHeader>
         <CardContent>
           <Card className="flex flex-col gap-2 p-2 rounded-lg md:flex-row">
-            {joinedData?.map((item) => {
+            {branchDetailsWithPositions?.map((item) => {
               return (
-                <div className="w-full p-2 border rounded-lg md:w-1/2" key={item.id}>
+                <div
+                  className="w-full p-2 border rounded-lg md:w-1/2"
+                  key={item?.id}
+                >
                   <CardHeader>
                     <CardTitle className="text-2xl text-center">
-                      ຂະແໜງ {item.sector[0].name}
+                      ຂະແໜງ {item?.sector[0]?.name}
                     </CardTitle>
                   </CardHeader>
                   <Card className="p-2 rounded-lg">
@@ -92,7 +82,7 @@ export default function BranchShow({
                     <CardContent>
                       <ul>
                         {item?.sector?.[0]?.position?.map((position) => (
-                          <li key={position.id}>{position.name}</li>
+                          <li key={position.id}>{position?.name}</li>
                         ))}
                       </ul>
                     </CardContent>
@@ -105,4 +95,42 @@ export default function BranchShow({
       </Card>
     </Show>
   );
+}
+
+function mapSectorToBranchDetails({
+  sectorData,
+  positionData,
+}: {
+  sectorData: ISector[] | undefined
+  positionData: GetListResponse<IPosition> | undefined
+}) {
+  if (!Array.isArray(sectorData)) {
+    return [];
+  }
+
+  const positions = positionData?.data ?? [];
+  return sectorData.map((sector) => {
+    const sectorId = sector.id;
+    const positionsInSector = positions
+      ?.filter((position) => position?.sectorId === sectorId)
+      ?.map((position) => ({
+        ...position,
+        sectorDetail: {
+          name: sector.name,
+          id: sectorId,
+          branchId: sector.branchId,
+        },
+      }));
+
+    return {
+      name: sector.branchDetail.name,
+      id: sector.branchDetail.id,
+      sector: [
+        {
+          ...sector,
+          position: positionsInSector,
+        },
+      ],
+    };
+  });
 }
