@@ -16,12 +16,11 @@ export function positionsColumn(sectorData: ISector[], positionData: IPosition[]
         const sectorRecord = (sectorData as { data?: ISector[] })?.data?.find(
           (item) => item?.branchId === original.id,
         ) as ISector;
-        const displayPosition = (positionData as { data?: IPosition[] })?.data?.find(
-          (item) => item?.sectorId === sectorRecord?.id,
-        ) as IPosition;
-        return <div>{displayPosition?.name}</div>;
+        const displayPositionNames = (positionData as { data?: IPosition[] })?.data
+          ?.filter((item) => item?.sectorId === sectorRecord?.id)
+          .map((position) => position?.name) as string[];
+        return <div>{displayPositionNames?.map((position) => (<div>{`- ${position}`}</div>))}</div>;
       }}
     />
   );
 }
-
