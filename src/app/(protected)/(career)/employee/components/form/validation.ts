@@ -94,9 +94,7 @@ export const employeeSchema = z.object({
   positionId: z.number().min(1, {
     message: "positionId ID must be a non-negative number.",
   }),
-  joiningDate: z.date().transform((value) => new Date(value).toISOString()),
+  joiningDate: z.date().transform((value) => (new Date(value)).toISOString()),
   isLatest: z.boolean().default(true),
-  profileId: z.number().min(1, {
-    message: "profileId must be a non-negative number.",
-  }),
+  profileId: z.number(),
 });

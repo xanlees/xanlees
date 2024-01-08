@@ -3,7 +3,7 @@ import { Input } from "@src/shadcn/elements";
 import { Form } from "@/shadcn/components/form";
 import { useFormConfig } from "./config";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
-import { useGraduationSelect, usePositionSelect } from "../../lib/select";
+import { usePositionSelect } from "../../lib/select";
 
 interface IFormConfig {
   form: {
@@ -11,15 +11,13 @@ interface IFormConfig {
   }
 }
 
-export const EmployeeForm = ({ redirect = "list" }: { redirect: RedirectAction }) => {
-  const formConfig = useFormConfig(redirect);
-  const profile = useGraduationSelect();
+export const EmployeeForm = ({ redirect = "list", id }: { redirect: RedirectAction, id: number }) => {
+  const formConfig = useFormConfig(redirect, id);
   const position = usePositionSelect();
   return (
     <div className="w-1/5 mx-auto ">
       <Form {...formConfig.form}>
         <div className="flex flex-col w-full gap-3 flex-warp">
-          <ProfileSection formConfig={formConfig} profile={profile} />
           <PositionSection formConfig={formConfig} position={position} />
           <Form.Field
             {...formConfig.form}
@@ -63,24 +61,3 @@ const PositionSection = ({
     </Form.Field>
   </div>
 );
-
-const ProfileSection = ({
-  formConfig,
-  profile,
-}: {
-  formConfig: IFormConfig
-  profile: any
-}) => (
-  <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...formConfig.form} name="profileId" label="ໂປຣໄຟລ໌">
-      <Form.Combobox
-        {...profile}
-        onChange={(value) => {
-          formConfig.form.setValue("profileId", value);
-        }}
-        className="w-80"
-      />
-    </Form.Field>
-  </div>
-);
-
