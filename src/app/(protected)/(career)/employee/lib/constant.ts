@@ -14,19 +14,11 @@ export const genderOptions = [
 ];
 export const maritalStatusOptions = [
   {
-    label: "SINGLE",
+    label: "ໂສດ",
     value: "SINGLE",
   },
   {
-    label: "MARRIED",
+    label: "ແຕ່ງງານແລ້ວ",
     value: "MARRIED",
-  },
-  {
-    label: "DIVORCED",
-    value: "DIVORCED",
-  },
-  {
-    label: "WIDOWED",
-    value: "WIDOWED",
   },
 ];

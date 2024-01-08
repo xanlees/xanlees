@@ -1,12 +1,12 @@
 import { useList } from "@refinedev/core";
-import type { IPosition, IBranch } from "../interface";
+import type { IPosition, IBranch, ISector } from "../interface";
 
 interface UseSectorProps {
-  sectorIs: number[]
+  sectorId: Array<number | number[]>
   branch: IBranch[]
 }
 
-export function usePosition({ sectorIs, branch }: UseSectorProps): {
+export function usePosition({ sectorId, branch }: UseSectorProps): {
   data: IPosition[]
 } {
   const { data, error, isError } = useList<IPosition>({
@@ -16,7 +16,7 @@ export function usePosition({ sectorIs, branch }: UseSectorProps): {
       {
         field: "sector_id",
         operator: "eq",
-        value: sectorIs,
+        value: sectorId,
       },
     ],
     queryOptions: {
@@ -29,6 +29,8 @@ export function usePosition({ sectorIs, branch }: UseSectorProps): {
   return { data: (data as unknown as IPosition[]) ?? [] };
 }
 
-export function useBranchID(branch: IBranch[]) {
-  return branch.flatMap((item) => (item?.id !== undefined ? [item.id] : [0]));
+export function useSectorID(sectorData: ISector[]) {
+  return (sectorData as { data?: ISector[] })?.data?.map((item) => item?.id !== undefined ? item.id : [0],
+  ) ?? [];
 }
+
