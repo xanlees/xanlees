@@ -39,10 +39,12 @@ export default function EmployeeShow({
       {
         field: "profile_id",
         operator: "eq",
-        value: record?.positionId ?? 0,
+        value: record?.profileId ?? 0,
       },
     ],
   });
+  console.log("educationData", educationData);
+  console.log("educationData", record);
   return (
     <Show>
       <div className="py-5">

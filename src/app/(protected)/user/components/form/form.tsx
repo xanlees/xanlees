@@ -32,26 +32,26 @@ export const UserForm = ({
 };
 
 const UsernameInput = (formConfig: IFormConfig) => (
-  <Form.Field {...formConfig.form} name="username" label="Username">
-    <Input placeholder="Username" />
+  <Form.Field {...formConfig.form} name="username" label="ຊື່ບັນຊີເຂົ້າໃຊ້ງານລະບົບ">
+    <Input placeholder="ຊື່ບັນຊີເຂົ້າໃຊ້ງານລະບົບ" />
   </Form.Field>
 );
 
 const PasswordInput = (formConfig: IFormConfig) => (
-  <Form.Field {...formConfig.form} name="password" label="Password">
-    <Input placeholder="Password" />
+  <Form.Field {...formConfig.form} name="password" label="ລະລັດຜ່ານ">
+    <Input placeholder="ລະລັດຜ່ານ" />
   </Form.Field>
 );
 
 const Password2ndInput = (formConfig: IFormConfig) => (
-  <Form.Field {...formConfig.form} name="confirmPassword" label="Confirm Password">
-    <Input placeholder="Confirm Password" />
+  <Form.Field {...formConfig.form} name="confirmPassword" label="ຢືນ​ຢັນ​ລະ​ຫັດ">
+    <Input placeholder="ຢືນ​ຢັນ​ລະ​ຫັດ" />
   </Form.Field>
 );
 
 const GroupSection = ({ formConfig, groups }: { formConfig: IFormConfig, groups: any }) => (
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...formConfig.form} name="groups" label="Group">
+    <Form.Field {...formConfig.form} name="groups" label="ສິດຂອງບັນຊີໃຊ້ງານລະບົບ">
       <Form.Combobox
         {...(groups)}
       />
@@ -60,7 +60,7 @@ const GroupSection = ({ formConfig, groups }: { formConfig: IFormConfig, groups:
 );
 
 const StatusSection = ({ formConfig }: { formConfig: IFormConfig }) => (
-  <Form.Field {...formConfig.form} name="isActive" label="Status">
+  <Form.Field {...formConfig.form} name="isActive" label="ສະຖານະ">
     <Form.Select
       options={[
         {

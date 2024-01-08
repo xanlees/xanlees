@@ -27,12 +27,12 @@ export const AddressSection: React.FC<AddressSectionProps> = ({
 }) => {
   return (
     <>
-      <div className="my-4 text-2xl font-bold">Address</div>
+      <div className="my-4 text-2xl font-bold">ທີ່ຢູ່</div>
       <div className="flex flex-wrap">
         <div className="px-2">
           <MapPinned className="w-5 h-5 mt-0.5" />
         </div>
-        <div className="font-bold">Born Address:</div>
+        <div className="font-bold">ສະຖານທີ່ເກີດ:</div>
         <div className="px-2">
           {`ບ້ານ${personalAddressData?.data.bornVillage} - ${personalAddressData?.data.bornDistrictDetail.districtName} - ແຂວງ${personalAddressData?.data.bornDistrictDetail.provinceName}`}
         </div>
@@ -41,7 +41,7 @@ export const AddressSection: React.FC<AddressSectionProps> = ({
         <div className="px-2">
           <MapPinned className="w-5 h-5 mt-0.5" />
         </div>
-        <div className="font-bold">Current Address:</div>
+        <div className="font-bold">ທີ່ຢູ່ປະຈຸບັນ:</div>
         <div className="px-2">
           {`ບ້ານ${personalAddressData?.data.currentVillage} - ${personalAddressData?.data.currentDistrictDetail.districtName} - ແຂວງ${personalAddressData?.data.currentDistrictDetail.provinceName}`}
         </div>
@@ -65,16 +65,9 @@ export const EducationSection: React.FC<EducationSectionProps> = ({
 }) => {
   return (
     <>
-      <div className="my-4 text-2xl font-bold">Education</div>
+      <div className="my-4 text-2xl font-bold">ການສຶກສາ</div>
       {educationData?.data?.map((education, index) => (
         <React.Fragment key={index}>
-          <div className="flex flex-wrap">
-            <div className="px-2">
-              <GraduationCap className="w-5 h-5 mt-0.5" />
-            </div>
-            <div className="font-bold">ລະດັບການສຶກສາສາມັນ:</div>
-            <div className="px-2">{`${education?.sector} - ${education?.branch}`}</div>
-          </div>
           <div className="flex flex-wrap">
             <div className="px-2">
               <GraduationCap className="w-5 h-5 mt-0.5" />
@@ -96,7 +89,7 @@ export const JoiningDateSection: React.FC<JoiningDateSectionProps> = ({
 }) => {
   return (
     <>
-      <div className="my-4 text-2xl font-bold">Joining Date - Company</div>
+      <div className="my-4 text-2xl font-bold">ວັນທີ ເດືອນປີ ເຂົ້າວຽກກັບ</div>
       <div className="flex flex-wrap">
         <div className="px-2">
           <CalendarDays className="w-5 h-5 mt-0.5" />
@@ -116,26 +109,26 @@ export const SectionPosition: React.FC<{
 }> = ({ record, sectorData }) => {
   return (
     <div>
-      <div className="mb-4 text-2xl font-bold">Position</div>
+      <div className="mb-4 text-2xl font-bold">ຕໍາແໜ່ງ</div>
       <div className="flex flex-wrap">
         <div className="px-2">
           <Badge className="w-5 h-5 mt-0.5" />
         </div>
-        <div className="font-bold">Position:</div>
+        <div className="font-bold">ຕໍາແໜ່ງ:</div>
         <div className="px-2">{record?.positionDetail.name}</div>
       </div>
       <div className="flex flex-wrap">
         <div className="px-2">
           <Badge className="w-5 h-5 mt-0.5" />
         </div>
-        <div className="font-bold">Sector:</div>
+        <div className="font-bold">ຂະແໜງ:</div>
         <div className="px-2">{sectorData?.name}</div>
       </div>
       <div className="flex flex-wrap">
         <div className="px-2">
           <Badge className="w-5 h-5 mt-0.5" />
         </div>
-        <div className="font-bold">Branch:</div>
+        <div className="font-bold">ສາຂາ:</div>
         <div className="px-2">{sectorData?.name}</div>
       </div>
     </div>
