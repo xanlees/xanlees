@@ -1,13 +1,12 @@
 "use client"
 
 import * as React from "react"
+import { buttonVariants } from "./button"
+import { ScrollArea } from "./scroll-area"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./select"
 import { cn } from "@/lib/utils"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { DayPicker, DropdownProps } from "react-day-picker"
-import { buttonVariants } from "./button"
-import { ScrollArea } from "./scroll-area"
-import { Select } from "../components/form/select"
-import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "./select"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -57,7 +56,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
           return (
             <Select
               value={value?.toString()}
-              onValueChange={(value: string) => {
+              onValueChange={(value) => {
                 handleChange(value)
               }}
             >
