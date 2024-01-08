@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable no-irregular-whitespace */
 import React from "react";
 import moment from "moment";
 import { type IEmployee } from "../../interface";
