@@ -30,7 +30,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
             ) : (
                 <Save className="mr-2" size={16} />
             )}
-            {!hideText && (children ?? translate("buttons.save", "Save"))}
+            {!hideText && (children ?? translate("buttons.save", "ບັນທຶກ"))}
         </Button>
     );
 };

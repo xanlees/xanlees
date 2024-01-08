@@ -19,13 +19,13 @@ export const FormBranch: React.FC<IGraduationFormProps> = ({ redirect }) => {
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">
         <AccordionTrigger className="italic text-blue-500 underline">
-          *ຊອກສາຂາທີ່ຕົນຮຽນບໍ່ເຫັນ, ກົດທີ່ນີ້
+          *ຊອກສາຂາບໍ່ເຫັນ, ກົດທີ່ນີ້
         </AccordionTrigger>
         <AccordionContent>
           <Form {...formConfig.form}>
             <div className="w-full">
-              <Form.Field {...formConfig.form} name="name" label="Branch Name">
-                <Input placeholder="Branch Name" className="block w-full" />
+              <Form.Field {...formConfig.form} name="name" label="ສາຂາ">
+                <Input placeholder="ສາຂາ" className="block w-full" />
               </Form.Field>
             </div>
           </Form>

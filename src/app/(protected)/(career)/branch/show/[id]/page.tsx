@@ -17,7 +17,7 @@ import type { ISector, IPosition, IBranch } from "../../interface/interface";
 export default function BranchShow({
   params,
 }: {
-  params: { id: number }
+  params: { id: number };
 }): JSX.Element {
   const { queryResult } = useShow<IBranch>();
   const { data } = queryResult;
@@ -35,7 +35,7 @@ export default function BranchShow({
   });
 
   const sectorIs = sectorData?.data.map((item) =>
-    item?.id !== undefined ? item.id : [0],
+    item?.id !== undefined ? item.id : [0]
   );
   const { data: positionData } = useList<IPosition>({
     resource: "position",
@@ -80,30 +80,32 @@ export default function BranchShow({
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Card className="flex flex-col p-2 rounded-lg gap-2 md:flex-row">
-            {joinedData?.map((item) => (
-              <div className="w-full md:w-1/2" key={item.id}>
-                <CardHeader>
-                  <CardTitle className="text-2xl text-center">
-                    ຂະແໜງ {item.sector[0].name}
-                  </CardTitle>
-                </CardHeader>
-                <Card className="p-2 rounded-lg">
+          <Card className="flex flex-col gap-2 p-2 rounded-lg md:flex-row">
+            {joinedData?.map((item) => {
+              return (
+                <div className="w-full p-2 border rounded-lg md:w-1/2" key={item.id}>
                   <CardHeader>
-                    <CardTitle className="text-xl text-center">
-                      ຕໍາແໜ່ງ
+                    <CardTitle className="text-2xl text-center">
+                      ຂະແໜງ {item.sector[0].name}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <ul>
-                      {item?.sector?.[0]?.position?.map((position) => (
-                        <li key={position.id}>{position.name}</li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
+                  <Card className="p-2 rounded-lg">
+                    <CardHeader>
+                      <CardTitle className="text-xl text-center">
+                        ຕໍາແໜ່ງ
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul>
+                        {item?.sector?.[0]?.position?.map((position) => (
+                          <li key={position.id}>{position.name}</li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </div>
+              );
+            })}
           </Card>
         </CardContent>
       </Card>

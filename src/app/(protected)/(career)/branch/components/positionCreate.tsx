@@ -32,8 +32,8 @@ export const PositionCreate: React.FC<PositionFormProps> = ({ redirect }) => {
       <div className="w-full">
         <Form {...formConfig.form}>
           <div className="w-full">
-            <Form.Field {...formConfig.form} name="name" label="Position Name">
-              <Input placeholder="Position Name" className="block w-full" />
+            <Form.Field {...formConfig.form} name="name" label="ຕໍາແໜ່ງ">
+              <Input placeholder="ຕໍາແໜ່ງ" className="block w-full" />
             </Form.Field>
           </div>
           <SectorSection formConfig={formConfig} sector={sector} />
@@ -54,7 +54,7 @@ const SectorSection = ({
   sector: any
 }) => (
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...formConfig.form} name="sectorId" label="Sector">
+    <Form.Field {...formConfig.form} name="sectorId" label="ເລືອກຂະແໜງ">
       <Form.Combobox {...sector} />
     </Form.Field>
   </div>

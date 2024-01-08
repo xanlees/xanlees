@@ -90,7 +90,7 @@ export default function BranchList(): JSX.Element {
             )}
           />
           <Table.Column
-            header={"Branch"}
+            header={"ສາຂາ"}
             accessorKey="name"
             id="name"
             enableSorting
@@ -100,7 +100,7 @@ export default function BranchList(): JSX.Element {
             )}
           />
           <Table.Column
-            header={"Sector"}
+            header={"ຂະແໜ່ງ"}
             accessorKey="id"
             id="id"
             enableSorting
@@ -113,7 +113,7 @@ export default function BranchList(): JSX.Element {
             }}
           />
           <Table.Column
-            header={"Position"}
+            header={"ຕໍາແໜງ"}
             accessorKey="id"
             id="position"
             enableSorting

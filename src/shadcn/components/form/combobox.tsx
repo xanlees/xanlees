@@ -52,7 +52,6 @@ export const Combobox = forwardRef<
 
     return props.value;
   };
-  console.log(props?.className);
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -69,7 +68,7 @@ export const Combobox = forwardRef<
           >
             {value()
               ? props.options?.find((option) => option.value === value())?.label
-              : props.placeholder ?? "Select"}
+              : props.placeholder ?? "ເລືອກ"}
             <CaretSortIcon className="w-4 h-4 ml-2 opacity-50 shrink-0" />
           </Button>
         </FormControl>

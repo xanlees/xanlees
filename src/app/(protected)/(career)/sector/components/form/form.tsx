@@ -26,13 +26,13 @@ export const FormSector: React.FC<ISectorFormProps> = ({ redirect }) => {
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">
         <AccordionTrigger className="italic text-blue-500 underline">
-          *ຊອກຂະແໜງທີ່ຕົນຮຽນບໍ່ເຫັນ, ກົດທີ່ນີ້
+          *ຊອກຂະແໜງບໍ່ເຫັນ, ກົດທີ່ນີ້
         </AccordionTrigger>
         <AccordionContent>
           <Form {...formConfig.form}>
             <div className="w-full">
-              <Form.Field {...formConfig.form} name="name" label="Sector Name">
-                <Input placeholder="Sector Name" className="block w-full" />
+              <Form.Field {...formConfig.form} name="name" label="ຂະແໜງ">
+                <Input placeholder="ຂະແໜງ" className="block w-full" />
               </Form.Field>
             </div>
             <BranchSection formConfig={formConfig} branch={branch} />
@@ -54,7 +54,7 @@ const BranchSection = ({
   branch: any
 }) => (
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...formConfig.form} name="branchId" label="Branch">
+    <Form.Field {...formConfig.form} name="branchId" label="ເລືອກສາຂາ">
       <Form.Combobox {...branch} />
     </Form.Field>
   </div>

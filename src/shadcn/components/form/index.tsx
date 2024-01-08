@@ -100,7 +100,7 @@ export const Form = <
                             disabled={props.refineCore.formLoading}
                             variant="outline"
                         >
-                            Cancel
+                            ຍົກເລີກ
                         </Button>
 
                         <SaveButton

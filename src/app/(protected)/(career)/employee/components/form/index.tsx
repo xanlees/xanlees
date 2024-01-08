@@ -1,16 +1,9 @@
-/* eslint-disable max-lines */
-/* eslint-disable max-lines-per-function */
-import {
-  useSelect,
-  type RedirectAction,
-  type BaseOption,
-} from "@refinedev/core";
+import { type RedirectAction } from "@refinedev/core";
 import { Input } from "@src/shadcn/elements";
 import { Form } from "@/shadcn/components/form";
-import { type IProfile } from "../../interface";
-import { type IPosition } from "@src/app/(protected)/(career)/branch/interface";
 import { useFormConfig } from "./config";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
+import { useGraduationSelect, usePositionSelect } from "../../lib/select";
 
 interface IFormConfig {
   form: {
@@ -18,28 +11,10 @@ interface IFormConfig {
   }
 }
 
-export const EmployeeForm = ({
-  redirect = "list",
-}: {
-  redirect: RedirectAction
-}) => {
+export const EmployeeForm = ({ redirect = "list" }: { redirect: RedirectAction }) => {
   const formConfig = useFormConfig(redirect);
-  const profile = useSelect<IProfile>({
-    resource: "profile",
-    optionLabel: "fullname",
-    optionValue: "id",
-  });
-  const options = profile.queryResult.data?.data.map((item) => ({
-    label: `${item.fullname} - ${item.nickname}`,
-    value: item.id,
-  }));
-  profile.options = options as BaseOption[];
-
-  const position = useSelect<IPosition>({
-    resource: "position",
-    optionLabel: "name",
-    optionValue: "id",
-  });
+  const profile = useGraduationSelect();
+  const position = usePositionSelect();
   return (
     <div className="w-1/5 mx-auto ">
       <Form {...formConfig.form}>
@@ -49,12 +24,12 @@ export const EmployeeForm = ({
           <Form.Field
             {...formConfig.form}
             name="joiningDate"
-            label="Joining Date"
+            label="ວັນທີ ເດືອນປີ ເຂົ້າວຽກ"
           >
             <DatePickerField className="w-80"/>
           </Form.Field>
           <div className="flex justify-start ">
-            <Form.Field {...formConfig.form} name="isLatest" label="Is Latest">
+            <Form.Field {...formConfig.form} name="isLatest" label="ແມ່ນຕໍາແໜ່ງລ່າ​ສຸດບໍ ?">
               <Input
                 placeholder="isLatest"
                 className="block w-5 h-5 rounded-lg"
@@ -77,7 +52,7 @@ const PositionSection = ({
   position: any
 }) => (
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...formConfig.form} name="positionId" label="position">
+    <Form.Field {...formConfig.form} name="positionId" label="ຕໍາແໜ່ງ">
       <Form.Combobox
         className="w-80"
         {...position}
@@ -97,7 +72,7 @@ const ProfileSection = ({
   profile: any
 }) => (
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...formConfig.form} name="profileId" label="profile">
+    <Form.Field {...formConfig.form} name="profileId" label="ໂປຣໄຟລ໌">
       <Form.Combobox
         {...profile}
         onChange={(value) => {
@@ -108,3 +83,4 @@ const ProfileSection = ({
     </Form.Field>
   </div>
 );
+

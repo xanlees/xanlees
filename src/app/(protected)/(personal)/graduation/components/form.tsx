@@ -29,8 +29,8 @@ export const FormGraduation: React.FC<IGraduationFormProps> = ({
         <AccordionContent>
           <Form {...formConfig.form}>
             <div className="w-full sm:flex gap-x-2">
-              <InputBase {...formConfig} name="degree" label="Degree" />
-              <InputBase {...formConfig} name="sector" label="Sector" />
+              <InputBase {...formConfig} name="degree" label="ລະດັບການສຶກສາ" />
+              <InputBase {...formConfig} name="sector" label="ຂະແໜງ" />
             </div>
           </Form>
         </AccordionContent>

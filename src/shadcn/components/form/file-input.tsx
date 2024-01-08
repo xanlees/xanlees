@@ -38,7 +38,7 @@ export const FileInputField = ({ ...props }) => {
       />
       <Avatar className="w-64 h-64 mx-auto">
         <AvatarImage src={preview} />
-        <AvatarFallback>Avatar</AvatarFallback>
+        <AvatarFallback>ຮູບໂປຣໄຟລ໌</AvatarFallback>
       </Avatar>
     </>
   )
