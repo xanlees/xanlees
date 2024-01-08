@@ -12,6 +12,8 @@ import {
 import { Show } from "@/shadcn/components/crud";
 import { useList, useShow } from "@refinedev/core";
 import type { ISector, IPosition, IBranch } from "../../interface/interface";
+import { Badge } from "@src/shadcn/elements";
+
 export default function BranchShow({
   params,
 }: {
@@ -93,11 +95,11 @@ export default function BranchShow({
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <ul>
+                      <div className="flex flex-wrap gap-2">
                         {item?.sector?.[0]?.position?.map((position) => (
-                          <li key={position.id}>{position.name}</li>
+                          <Badge key={position.id}>{position.name}</Badge>
                         ))}
-                      </ul>
+                      </div>
                     </CardContent>
                   </Card>
                 </div>

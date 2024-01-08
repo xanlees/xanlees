@@ -40,7 +40,7 @@ export function positionsColumn(
           <div>
             {filteredSectorData?.map((sector, index) => (
               <div key={index}>
-                <Badge>{`${sector?.name}`}</Badge>
+                {/* <Badge>{`${sector?.name}`}</Badge> */}
                 {renderPositionData({
                   positionData,
                   sectorId: sector?.id,
