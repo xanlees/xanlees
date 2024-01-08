@@ -14,7 +14,7 @@ export const createEmployeeSteps = [
     completed: false,
   },
   {
-    stepLabel: "Create Graduation",
+    stepLabel: "ສ້າງທີ່ຈົບການສຶກສາວິຊາສະເພາະ",
     stepDescription: <EducationForm redirect="create" />,
     completed: false,
   },

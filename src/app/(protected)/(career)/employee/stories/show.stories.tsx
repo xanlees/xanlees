@@ -2,7 +2,7 @@ import React from "react";
 import Show from "../page";
 
 export default {
-  title: "employee/show",
+  title: "Career/employee/show",
   component: Show,
   parameters: {
     nextjs: {

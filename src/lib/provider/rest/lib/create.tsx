@@ -26,8 +26,6 @@ const createDataProvider = (
       const isFormData = headers["content-type"] === "multipart/form-data";
       if (isFormData) {
         for (const key in variables) {
-          console.log("key", key);
-
           const fileOrText = variables[key] instanceof FileList ? ((variables[key] as FileList).item(0) as File) : (variables[key] as string);
           formData.append(key, fileOrText);
         }

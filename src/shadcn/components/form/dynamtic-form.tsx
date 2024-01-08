@@ -26,7 +26,7 @@ export const DynamicForm = ({ ...props }) => {
                     });
                 }}
             >
-                {`Add ${props.label}`}
+                {`ເພີ່ມ ${props.label}`}
             </Button>
         </div>
 

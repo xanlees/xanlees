@@ -15,7 +15,8 @@ export const DatePickerField = ({ ...props }) => {
                     <Button
                         variant={"outline"}
                         className={cn(
-                            "w-[240px] pl-3 text-left font-normal",
+                            "pl-3 text-left font-normal",
+                            props?.className ? props.className : "w-[250px]",
                             !props.value && "text-muted-foreground"
                         )}
                     >

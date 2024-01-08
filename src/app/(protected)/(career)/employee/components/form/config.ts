@@ -14,6 +14,7 @@ export const useFormConfig = (redirect: RedirectAction) => {
       autoSave: {
         enabled: true,
       },
+      resource: "employee",
       redirect,
     },
     warnWhenUnsavedChanges: true,
