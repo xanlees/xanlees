@@ -2,8 +2,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import { profileSchema } from "@src/app/(protected)/(career)/employee/components/form/validation";
 import { useProfileContext } from "../../context/context";
+import { profileSchema } from "./validation";
 
 interface FormConfigParams {
   redirect: RedirectAction

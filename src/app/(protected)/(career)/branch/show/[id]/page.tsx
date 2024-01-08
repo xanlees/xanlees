@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-nested-callbacks */
 /* eslint-disable max-lines-per-function */
+"use client";
 import { cn } from "@src/lib/utils";
 import {
   Card,
