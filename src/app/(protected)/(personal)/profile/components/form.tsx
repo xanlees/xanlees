@@ -46,8 +46,8 @@ const PersonalInformationSection: React.FC<{ formConfig: IFormConfig }> = ({ for
   </div>
 );
 
-export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect, setCurrentStep }) => {
-  const formConfig = useFormConfig(redirect, setCurrentStep);
+export const ProfileForm: React.FC<ProfileFormProps> = ({ redirect, setCurrentStep, setProfileID }) => {
+  const formConfig = useFormConfig(redirect, setCurrentStep, setProfileID);
   return (
     <div className="w-[39%] rounded-full ">
       <Form {...formConfig.form}>

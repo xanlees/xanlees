@@ -1,4 +1,3 @@
-
 /* eslint-disable @typescript-eslint/naming-convention */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type RedirectAction } from "@refinedev/core";
@@ -15,7 +14,11 @@ interface ProfileFormValues {
   id?: number
 }
 
-export const useFormConfig = (redirect: RedirectAction, setCurrentStep: any) => {
+export const useFormConfig = (
+  redirect: RedirectAction,
+  setCurrentStep: any,
+  setProfileID: any,
+) => {
   const { state, dispatch } = useProfileContext();
   const { ...form } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
@@ -36,6 +39,7 @@ export const useFormConfig = (redirect: RedirectAction, setCurrentStep: any) => 
       onMutationSuccess: (data) => {
         dispatch({ type: "SET_PROFILE_ID", payload: data?.data?.id ?? 0 });
         setCurrentStep(2);
+        setProfileID(data?.data?.id ?? 0);
       },
       redirect,
     },
