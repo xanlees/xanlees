@@ -10,7 +10,7 @@ export const createEmployeeSteps = [
   },
   {
     stepLabel: "ສ້າງໂປຣໄຟລ໌",
-    stepDescription: <ProfileForm redirect="create" setCurrentStep={undefined} setProfileID/>,
+    stepDescription: <ProfileForm redirect="create" />,
     completed: false,
   },
   {

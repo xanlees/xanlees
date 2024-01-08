@@ -4,7 +4,7 @@ import { Create } from "@/shadcn/components/crud";
 import { createEmployeeSteps } from "../lib/settings";
 import React, { useState } from "react";
 import Stepper from "@keyvaluesystems/react-stepper";
-import { ProfileProvider, useProfileContext } from "../../context/context";
+import { ProfileProvider } from "../../context/context";
 import { Button, Link } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 
@@ -14,13 +14,8 @@ const breadcrumbs = [
 ];
 
 export default function ProfileCreate(): JSX.Element {
-
   const [currentStep, setCurrentStep] = useState(0);
   const [profileID, setProfileID] = useState(0);
-  const handleStepClick = (_: any, index: number) => {
-    setCurrentStep(index);
-  };
-  console.log("state", profileID);
   return (
     <>
       <Create resource="employee" breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}>
@@ -32,7 +27,6 @@ export default function ProfileCreate(): JSX.Element {
             }))}
             orientation="vertical"
             currentStepIndex={currentStep}
-            onStepClick={handleStepClick}
             stepContent={() => <div className="w-[1600px] rounded-lg" />} />
         </ProfileProvider>
       </Create>

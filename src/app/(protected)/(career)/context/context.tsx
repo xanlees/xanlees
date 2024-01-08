@@ -12,7 +12,7 @@ interface EmployeeState {
   graduationId?: number
   personalAddressId?: number
 }
-type EmployeeActionType = "SET_PROFILE_ID" | "SET_GRADUATION_ID" | "PERSONAL_ADDRESS";
+type EmployeeActionType = "setProfileId" | "SET_GRADUATION_ID" | "PERSONAL_ADDRESS";
 interface EmployeeAction {
   type: EmployeeActionType
   payload: number
@@ -28,7 +28,7 @@ const EmployeeReducer = (
   action: EmployeeAction,
 ): EmployeeState => {
   switch (action.type) {
-    case "SET_PROFILE_ID":
+    case "setProfileId":
       return { ...state, profileId: action.payload };
     case "SET_GRADUATION_ID":
       return { ...state, graduationId: action.payload };
