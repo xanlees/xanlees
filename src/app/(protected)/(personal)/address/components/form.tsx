@@ -23,23 +23,19 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
     filters: [{ field: "pageSize", operator: "eq", value: 140 }],
   });
   return (
-    <div className="flex flex-col w-full capitalize rounded-lg sm:w-1/2 sm:flex-row">
-      <div className="flex-1 p-4">
-        <Form {...formConfig.form}>
-          <div className="flex flex-row w-full gap-x-48">
-            <div className="block w-full">
-              <InputBornVillage {...formConfig} name="bornVillage" label="Born Village" />
-            </div>
-            <div className="w-full">
-              <InputBornVillage {...formConfig} name="currentVillage" label="Current Village"/>
-            </div>
-          </div>
-          <div className="flex flex-row w-full gap-x-56">
+    <div className="w-[39%] rounded-full ">
+      <Form {...formConfig.form}>
+        <div className="flex flex-col w-full capitalize rounded-lg sm:w-1/2 sm:flex-row">
+          <div className="flex-1 p-4">
+            <InputBornVillage {...formConfig} name="bornVillage" label="ບ້ານເກີດ" />
             <InputBornDistrict formConfig={formConfig} district={district} />
+          </div>
+          <div className="flex-1 p-4">
+            <InputBornVillage {...formConfig} name="currentVillage" label="ບ້ານຢູ່ປະຈຸບັນ"/>
             <CurrentDistrictId formConfig={formConfig} district={district} />
           </div>
-        </Form>
-      </div>
+        </div>
+      </Form>
     </div>
   );
 };
@@ -56,19 +52,18 @@ const InputBornVillage: React.FC<InputBornVillageProps> = (props) => (
 );
 
 const CurrentDistrictId = ({ formConfig, district }: { formConfig: IFormConfig, district: any }) => (
-  <Form.Field {...formConfig.form} name="currentDistrictId" label="Current District" >
+  <Form.Field {...formConfig.form} name="currentDistrictId" label="ເລືອກເມືອງເກີດ" >
     <Form.Combobox
       {...(district)}
-      className="mx-10"
+      className=""
     />
   </Form.Field>
 );
 
 const InputBornDistrict = ({ formConfig, district }: { formConfig: IFormConfig, district: any }) => (
-  <Form.Field {...formConfig.form} name="bornDistrictId" label="Current Village" >
+  <Form.Field {...formConfig.form} name="bornDistrictId" label="ເລືອງຢູ່ປະຈຸບັນ" >
     <Form.Combobox
       {...(district)}
-      className="mx-10"
     />
   </Form.Field>
 );
