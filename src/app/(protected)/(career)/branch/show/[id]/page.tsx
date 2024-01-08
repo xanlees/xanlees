@@ -48,28 +48,9 @@ export default function BranchShow({
     ],
     errorNotification: false,
   });
-  const joinedData = sectorData?.data.map((sector) => {
-    const sectorId = sector.id;
-    const positionsInSector = positionData?.data
-      .filter((position) => position.sectorId === sectorId)
-      .map((position) => ({
-        ...position,
-        sectorDetail: {
-          name: sector.name,
-          id: sectorId,
-          branchId: sector.branchId,
-        },
-      }));
-    return {
-      name: sector.branchDetail.name,
-      id: sector.branchDetail.id,
-      sector: [
-        {
-          ...sector,
-          position: positionsInSector,
-        },
-      ],
-    };
+  const branchDetailsWithPositions = mapSectorToBranchDetails({
+    sectorData,
+    positionData,
   });
   return (
     <Show>
@@ -81,9 +62,12 @@ export default function BranchShow({
         </CardHeader>
         <CardContent>
           <Card className="flex flex-col gap-2 p-2 rounded-lg md:flex-row">
-            {joinedData?.map((item) => {
+            {branchDetailsWithPositions?.map((item) => {
               return (
-                <div className="w-full p-2 border rounded-lg md:w-1/2" key={item.id}>
+                <div
+                  className="w-full p-2 border rounded-lg md:w-1/2"
+                  key={item.id}
+                >
                   <CardHeader>
                     <CardTitle className="text-2xl text-center">
                       ຂະແໜງ {item.sector[0].name}
@@ -111,4 +95,45 @@ export default function BranchShow({
       </Card>
     </Show>
   );
+}
+
+function mapSectorToBranchDetails({
+  sectorData,
+  positionData,
+}: {
+  sectorData: ISector[] | undefined;
+  positionData: GetListResponse<IPosition> | undefined;
+}) {
+  if (!sectorData) {
+    // Handle the case when sectorData is undefined, for example, return an empty array.
+    return [];
+  }
+
+  // Extract the 'data' property from positionData if it exists
+  const positions = positionData?.data || [];
+
+  return sectorData.map((sector) => {
+    const sectorId = sector.id;
+    const positionsInSector = positions
+      ?.filter((position) => position.sectorId === sectorId)
+      ?.map((position) => ({
+        ...position,
+        sectorDetail: {
+          name: sector.name,
+          id: sectorId,
+          branchId: sector.branchId,
+        },
+      }));
+
+    return {
+      name: sector.branchDetail.name,
+      id: sector.branchDetail.id,
+      sector: [
+        {
+          ...sector,
+          position: positionsInSector,
+        },
+      ],
+    };
+  });
 }
