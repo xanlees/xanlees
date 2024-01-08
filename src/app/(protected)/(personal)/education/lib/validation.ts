@@ -35,3 +35,10 @@ const mapEducation = ({ branch, graduationId, year, profileId }: Education) => (
   profileId,
   graduationId,
 });
+
+// export const sObjectMetadataSchema = z
+//   .array(graduationSchema.or(graduationSchema.array()))
+//   .transform((rel) => {
+//     console.log("rel", rel);
+//     return Array.isArray(rel) ? rel : [rel];
+//   });
