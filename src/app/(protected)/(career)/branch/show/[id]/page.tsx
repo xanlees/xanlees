@@ -17,7 +17,7 @@ import type { ISector, IPosition, IBranch } from "../../interface/interface";
 export default function BranchShow({
   params,
 }: {
-  params: { id: number };
+  params: { id: number }
 }): JSX.Element {
   const { queryResult } = useShow<IBranch>();
   const { data } = queryResult;
@@ -35,7 +35,7 @@ export default function BranchShow({
   });
 
   const sectorIs = sectorData?.data.map((item) =>
-    item?.id !== undefined ? item.id : [0]
+    item?.id !== undefined ? item.id : [0],
   );
   const { data: positionData } = useList<IPosition>({
     resource: "position",
