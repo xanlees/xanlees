@@ -1,5 +1,5 @@
-import { CanAccess, ITreeMenu, useMenu } from "@refinedev/core";
-import { List } from "lucide-react";
+import { CanAccess, ITreeMenu, useLogout, useMenu } from "@refinedev/core";
+import { List, LogOut } from "lucide-react";
 import { FC, ReactNode, useMemo } from "react";
 
 import { cn } from "../../../lib/utils";
@@ -82,7 +82,7 @@ export const ThemedSiderV2Menu: FC<{
     );
 };
 const defaultIcon = (
-    <Image src={"/logo.png"} alt={"SBS logo"} width={46} height={25} className="-mt-1 rounded-full"/>
+    <Image src={"/logo.png"} alt={"SBS logo"} width={46} height={25} className="-mt-1 rounded-full" />
 );
 
 const DefaultTitle: FC<RefineLayoutTitleProps> = () => {
@@ -98,11 +98,29 @@ const DefaultTitle: FC<RefineLayoutTitleProps> = () => {
     );
 };
 
+const LogOutButton: FC = () => {
+    const { mutate: logout } = useLogout();
+    return (
+        <CanAccess resource="user" action="show">
+            <Button
+                variant="ghost"
+                className="my-5 gap-x-3 w-full justify-start p-0 pl-2.5"
+                onClick={() => logout({ redirectPath: "/" })}
+            >
+                <LogOut />
+                Sign Out
+            </Button>
+        </CanAccess>
+
+    )
+}
+
 export const ThemedSiderV2: FC<ThemedSiderV2Props> = ({
     meta,
     className,
     Title = DefaultTitle,
 }) => {
+
     return (
         <div
             className={cn(
@@ -120,7 +138,9 @@ export const ThemedSiderV2: FC<ThemedSiderV2Props> = ({
                 </div>
                 <nav className="flex flex-1 flex-col px-1.5">
                     <ThemedSiderV2Menu meta={meta} />
+                    <LogOutButton />
                 </nav>
+
             </div>
         </div>
     );
