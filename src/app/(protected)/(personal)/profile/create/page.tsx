@@ -4,7 +4,7 @@ import { Create } from "@/shadcn/components/crud";
 import { createEmployeeSteps } from "../lib/settings";
 import React, { useState } from "react";
 import Stepper from "@keyvaluesystems/react-stepper";
-import { ProfileProvider } from "../../context/context";
+import { ProfileProvider, useProfileContext } from "../../context/context";
 import { Button, Link } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 
@@ -14,10 +14,12 @@ const breadcrumbs = [
 ];
 
 export default function ProfileCreate(): JSX.Element {
-  const [currentStep, setCurrentStep] = useState(2);
+  const { state } = useProfileContext();
+  const [currentStep, setCurrentStep] = useState(0);
   const handleStepClick = (_: any, index: number) => {
     setCurrentStep(index);
   };
+  console.log("state", state);
   return (
     <>
       <Create resource="employee" breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}>
@@ -34,7 +36,7 @@ export default function ProfileCreate(): JSX.Element {
         </ProfileProvider>
       </Create>
       <Button>
-        <Link href="/employee/create/2"> Next</Link>
+        <Link href={`/employee/create/${state?.profileId}`}>ຕໍ່ໄປ</Link>
       </Button>
     </>
   );
