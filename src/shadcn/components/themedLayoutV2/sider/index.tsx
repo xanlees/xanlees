@@ -140,7 +140,7 @@ export const ThemedSiderV2: FC<ThemedSiderV2Props> = ({
                     <ThemedSiderV2Menu meta={meta} />
                     <LogOutButton />
                 </nav>
-
+˛
             </div>
         </div>
     );
