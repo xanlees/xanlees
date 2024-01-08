@@ -1,8 +1,9 @@
-import { Button, Input } from "@src/shadcn/elements"
+import { Button } from "@src/shadcn/elements"
 import React, { Children, cloneElement } from "react"
 
 export const DynamicForm = ({ ...props }) => {
-    const { fields, append } = props
+    const { fields, append, defaultConfig } = props
+    const initialState = defaultConfig? {...defaultConfig}:{}
     return (
         <div>
             {fields.map((_: any, index: React.Key | null | undefined) => {
@@ -21,9 +22,7 @@ export const DynamicForm = ({ ...props }) => {
                 className="mt-3"
                 type="button"
                 onClick={() => {
-                    append({
-
-                    });
+                    append(initialState);
                 }}
             >
                 {`ເພີ່ມ ${props.label}`}

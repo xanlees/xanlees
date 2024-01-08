@@ -61,7 +61,7 @@ const CurrentDistrictId = ({ formConfig, district }: { formConfig: IFormConfig, 
 );
 
 const InputBornDistrict = ({ formConfig, district }: { formConfig: IFormConfig, district: any }) => (
-  <Form.Field {...formConfig.form} name="bornDistrictId" label="ເລືອງຢູ່ປະຈຸບັນ" >
+  <Form.Field {...formConfig.form} name="bornDistrictId" label="ເລືອກເມືອງຢູ່ປະຈຸບັນ" >
     <Form.Combobox
       {...(district)}
     />

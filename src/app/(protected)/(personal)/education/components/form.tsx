@@ -9,15 +9,16 @@ import { useFieldArray } from "react-hook-form";
 import { type IGraduation } from "../interface";
 import { FormGraduation } from "../../graduation/components/form";
 import { useFormConfig } from "./config";
+import { useProfileContext } from "../../context/context";
 
 interface EducationFormProps {
   redirect: RedirectAction
 }
 export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
+  const { state } = useProfileContext();
   const formConfig = useFormConfig(redirect);
   const graduation = useGraduationSelect();
   const { fields, append } = useFieldArray({ control: formConfig.form.control, name: "education" });
-  console.log("fields", fields);
   console.log("formConfig", formConfig.form.watch());
 
   return (
@@ -29,6 +30,7 @@ export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
           append={append}
           name="education"
           label="ການສຶກສາວິຊາສະເພາະທີ່ຈົບ"
+          defaultConfig={{ profileId: state.profileId } }
         >
           <ArrayField {...formConfig.form} name="branch" label="ສາຂາ">
             <Input placeholder="ສາຂາ" className="block w-56" />

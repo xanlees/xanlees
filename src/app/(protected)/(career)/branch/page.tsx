@@ -9,7 +9,7 @@ import { useList, useUserFriendlyName } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { Edit, Eye, Trash2 } from "lucide-react";
 import type { IBranch, IPosition, ISector } from "./interface";
-
+import { useBranchID, useSector } from "./hook/useSector";
 export default function BranchList(): JSX.Element {
   const table = useTable<IBranch>({
     columns: [],
@@ -20,24 +20,10 @@ export default function BranchList(): JSX.Element {
     },
   });
   const branch = table.options.data ?? [];
-  const branchId = branch.map((item) =>
-    item?.id !== undefined ? item.id : [0],
-  );
-  const { data: sectorData } = useList<ISector>({
-    resource: "sector",
-    errorNotification: false,
-    filters: [
-      {
-        field: "branch_id",
-        operator: "eq",
-        value: branchId,
-      },
-    ],
-    queryOptions: {
-      enabled: branch.length > 0,
-    },
-  });
-  const sectorIs = sectorData?.data.map((item) =>
+  const branchId = useBranchID(branch);
+  const { data: sectorData }: { data: ISector[] } = useSector({ branchId, branch });
+  console.log("sectorData", sectorData)
+  const sectorIs = sectorData?.data?.map((item) =>
     item?.id !== undefined ? item.id : [0],
   );
 
@@ -106,7 +92,7 @@ export default function BranchList(): JSX.Element {
             enableSorting
             enableHiding
             cell={({ row: { original } }) => {
-              const displaySector = sectorData?.data.find(
+              const displaySector = sectorData?.data?.find(
                 (item) => item?.branchId === original.id,
               ) as ISector;
               return <div>{displaySector?.name}</div>;
@@ -122,10 +108,10 @@ export default function BranchList(): JSX.Element {
               <Table.Filter.Search {...props} title="Search position" />
             )}
             cell={({ row: { original } }) => {
-              const sectorRecord = sectorData?.data.find(
+              const sectorRecord = sectorData?.data?.find(
                 (item) => item?.branchId === original.id,
               ) as ISector;
-              const displayPosition = positionData?.data.find(
+              const displayPosition = positionData?.data?.find(
                 (item) => item?.sectorId === sectorRecord?.id,
               ) as IPosition;
               return <div>{displayPosition?.name}</div>;
@@ -163,3 +149,4 @@ export default function BranchList(): JSX.Element {
     </div>
   );
 }
+
