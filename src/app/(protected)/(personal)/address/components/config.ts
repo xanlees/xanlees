@@ -3,6 +3,7 @@ import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { useProfileContext } from "../../context/context";
 import { personalAddressSchema } from "@src/app/(protected)/(career)/employee/components/form/validation";
+// import { useCustomCreate } from "@src/app/(protected)/(career)/branch/components/form/useCreateSector";
 
 interface PersonalAddressFormValues {
   bornDistrictId: number
@@ -12,7 +13,10 @@ interface PersonalAddressFormValues {
   id?: number
 }
 
-export const useFormConfig = (redirect: RedirectAction, setCurrentStep: any) => {
+export const useFormConfig = (
+  redirect: RedirectAction,
+  setCurrentStep: any,
+) => {
   const { dispatch } = useProfileContext();
   const { ...form } = useForm<PersonalAddressFormValues>({
     resolver: zodResolver(personalAddressSchema),

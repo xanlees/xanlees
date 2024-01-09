@@ -1,6 +1,5 @@
 import { Table, type TableFilterProps } from "@/shadcn/components/table";
 import type { IPosition, ISector } from "../../interface";
-import { Badge } from "@src/shadcn/elements";
 
 function renderPositionData({
   positionData,
@@ -40,7 +39,6 @@ export function positionsColumn(
           <div>
             {filteredSectorData?.map((sector, index) => (
               <div key={index}>
-                <Badge>{`${sector?.name}`}</Badge>
                 {renderPositionData({
                   positionData,
                   sectorId: sector?.id,

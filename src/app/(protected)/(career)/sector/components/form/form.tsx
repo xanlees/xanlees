@@ -21,6 +21,7 @@ export const FormSector: React.FC<ISectorFormProps> = ({ redirect }) => {
     resource: "branch",
     optionLabel: "name",
     optionValue: "id",
+    filters: [{ field: "pageSize", operator: "eq", value: 50 }],
   });
   return (
     <Accordion type="single" collapsible className="w-full">

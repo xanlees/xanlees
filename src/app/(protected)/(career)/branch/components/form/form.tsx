@@ -27,6 +27,12 @@ export const FormBranch: React.FC<IGraduationFormProps> = ({ redirect }) => {
               <Form.Field {...formConfig.form} name="name" label="ສາຂາ">
                 <Input placeholder="ສາຂາ" className="block w-full" />
               </Form.Field>
+              {/* <Form.Field {...formConfig.form} name="name" label="ຂະແໜງທໍາອິດ">
+                <Input placeholder="ຂະແໜງທໍາອິດ" className="block w-full" />
+              </Form.Field>
+              <Form.Field {...formConfig.form} name="name" label="ຕໍາແໜ່ງທໍາອິດ">
+                <Input placeholder="ຕໍາແໜ່ງທໍາອິດ" className="block w-full" />
+              </Form.Field> */}
             </div>
           </Form>
         </AccordionContent>

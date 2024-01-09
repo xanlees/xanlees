@@ -19,6 +19,7 @@ export const PositionCreate: React.FC<PositionFormProps> = ({ redirect }) => {
     resource: "sector",
     optionLabel: "name",
     optionValue: "id",
+    filters: [{ field: "pageSize", operator: "eq", value: 50 }],
   });
   const options = sector.queryResult.data?.data.map((item) => {
     return {

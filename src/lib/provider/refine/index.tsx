@@ -16,6 +16,7 @@ import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
 import { authContext } from "./context/auth";
+import "moment/locale/lo";
 
 interface Props {
   children?: React.ReactNode
