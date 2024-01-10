@@ -52,7 +52,7 @@ const InputBornVillage: React.FC<InputBornVillageProps> = (props) => (
 );
 
 const CurrentDistrictId = ({ formConfig, district }: { formConfig: IFormConfig, district: any }) => (
-  <Form.Field {...formConfig.form} name="currentDistrictId" label="ເລືອກເມືອງເກີດ" >
+  <Form.Field {...formConfig.form} name="currentDistrictId" label="ເລືອກເມືອງຢູ່ປະຈຸບັນ" >
     <Form.Combobox
       {...(district)}
       className=""
@@ -61,7 +61,7 @@ const CurrentDistrictId = ({ formConfig, district }: { formConfig: IFormConfig, 
 );
 
 const InputBornDistrict = ({ formConfig, district }: { formConfig: IFormConfig, district: any }) => (
-  <Form.Field {...formConfig.form} name="bornDistrictId" label="ເລືອກເມືອງຢູ່ປະຈຸບັນ" >
+  <Form.Field {...formConfig.form} name="bornDistrictId" label="ເລືອກເມືອງເກີດ" >
     <Form.Combobox
       {...(district)}
     />
