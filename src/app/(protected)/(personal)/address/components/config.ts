@@ -27,7 +27,7 @@ export const useFormConfig = (
       },
       redirect,
       onMutationSuccess: (data) => {
-        dispatch({ type: "PERSONAL_ADDRESS", payload: data?.data?.id ?? 0 });
+        dispatch({ type: "setPersonalAddressId", payload: data?.data?.id ?? 0 });
         setCurrentStep(1);
       },
     },
