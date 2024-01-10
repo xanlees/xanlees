@@ -28,8 +28,8 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
     setCurrentStep(1);
     console.log("test create personal address 1");
   }
-  const { state, dispatch } = useProfileContext();
-  console.log("test create personal address state", state.personalAddressId);
+  const { state } = useProfileContext();
+  console.log("personalAddressId", state.personalAddressId);
   return (
     <div className="w-[39%] rounded-full ">
       <Form {...formConfig.form}>
