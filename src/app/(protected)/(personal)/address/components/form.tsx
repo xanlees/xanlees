@@ -5,6 +5,7 @@ import { type IDistrict } from "../../../(career)/employee/interface";
 import { Form } from "@src/shadcn/components/form";
 import { useFormConfig } from "./config";
 import { type IFormConfig } from "@src/common/interface";
+import { useProfileContext } from "../../context/context";
 
 interface PersonalAddressFormProps {
   redirect: RedirectAction
@@ -22,6 +23,13 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
     optionValue: "id",
     filters: [{ field: "pageSize", operator: "eq", value: 140 }],
   });
+  console.log("formConfig.form.refineCore.mutationResult?.data?.data ", formConfig.form.refineCore.mutationResult?.data?.data);
+  if (formConfig.form.refineCore.mutationResult?.data?.data !== undefined) {
+    setCurrentStep(1);
+    console.log("test create personal address 1");
+  }
+  const { state, dispatch } = useProfileContext();
+  console.log("test create personal address state", state.personalAddressId);
   return (
     <div className="w-[39%] rounded-full ">
       <Form {...formConfig.form}>

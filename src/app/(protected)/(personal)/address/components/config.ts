@@ -28,7 +28,6 @@ export const useFormConfig = (
       redirect,
       onMutationSuccess: (data) => {
         dispatch({ type: "setPersonalAddressId", payload: data?.data?.id ?? 0 });
-        setCurrentStep(1);
       },
     },
     warnWhenUnsavedChanges: true,
