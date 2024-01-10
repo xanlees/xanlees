@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "cross-env NODE_OPTIONS=--max_old_space_size=4096 next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 80",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
     "refine": "refine",
     "storybook": "storybook dev -p 6006",

@@ -43,8 +43,7 @@ export default function EmployeeShow({
       },
     ],
   });
-  console.log("educationData", educationData);
-  console.log("educationData", record);
+
   return (
     <Show>
       <div className="py-5">

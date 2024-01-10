@@ -12,7 +12,7 @@ export const useFormConfig = (redirect: RedirectAction) => {
       autoSave: {
         enabled: true,
       },
-      redirect,
+      redirect: false,
     },
     warnWhenUnsavedChanges: true,
   });

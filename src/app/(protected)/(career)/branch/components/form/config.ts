@@ -4,47 +4,29 @@ import { useForm } from "@refinedev/react-hook-form";
 import type * as z from "zod";
 import { branchSchema, positionSchema } from "./validation";
 
-const useFormConfig = <T extends z.ZodType<any, any, any>>({
-  schema,
-  resource,
-  redirect,
-  defaultValues,
-}: {
-  schema: T
-  resource?: string
-  redirect?: RedirectAction
-  defaultValues?: Record<string, any>
-}) => {
-  const { ...form } = useForm<z.infer<T>>({
-    resolver: zodResolver(schema),
-    defaultValues,
+export const useFormBranchConfig = (redirect: RedirectAction) => {
+  const { ...form } = useForm<z.infer<typeof branchSchema>>({
+    resolver: zodResolver(branchSchema),
     refineCoreProps: {
       autoSave: {
         enabled: true,
       },
-      resource,
-      redirect,
+      resource: "branch",
+      redirect: false,
     },
     warnWhenUnsavedChanges: true,
   });
   return { form };
 };
 
-export const useFormBranchConfig = (redirect: RedirectAction) => {
-  return useFormConfig({
-    schema: branchSchema,
-    resource: "branch",
-    redirect: false,
-  });
-};
-
 export const useFormPositionConfig = (redirect: RedirectAction) => {
-  return useFormConfig({
-    schema: positionSchema,
-    resource: "position",
-    redirect: false,
-    defaultValues: {
-      name: "",
+  const { ...form } = useForm<z.infer<typeof positionSchema>>({
+    resolver: zodResolver(positionSchema),
+    refineCoreProps: {
+      resource: "position",
+      redirect: false,
     },
+    warnWhenUnsavedChanges: true,
   });
+  return { form };
 };
