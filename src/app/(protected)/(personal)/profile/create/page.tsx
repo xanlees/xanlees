@@ -14,7 +14,6 @@ const breadcrumbs = [
 
 export default function ProfileCreate(): JSX.Element {
   const [currentStep, setCurrentStep] = useState(0);
-  console.log("currentStep", currentStep);
   const [profileID, setProfileID] = useState(0);
   return (
     <>

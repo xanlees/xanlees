@@ -47,7 +47,7 @@ export const useFormConfig = ({
         (setCurrentStep != null) && setCurrentStep(2);
         (setProfileID != null) && setProfileID(data?.data?.id ?? 0);
       },
-      redirect,
+      redirect: false,
     },
     warnWhenUnsavedChanges: true,
   });
