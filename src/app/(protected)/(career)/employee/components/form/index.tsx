@@ -15,7 +15,7 @@ export const EmployeeForm = ({ redirect = "list", id }: { redirect: RedirectActi
   const formConfig = useFormConfig(redirect, id);
   const position = usePositionSelect();
   return (
-    <div className="w-1/5 mx-auto ">
+    <div className="mx-auto w-96 ">
       <Form {...formConfig.form}>
         <div className="flex flex-col w-full gap-3 flex-warp">
           <PositionSection formConfig={formConfig} position={position} />

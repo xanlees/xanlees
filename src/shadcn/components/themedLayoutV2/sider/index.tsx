@@ -112,7 +112,6 @@ const LogOutButton: FC = () => {
                 Sign Out
             </Button>
             </div>
-            
         </CanAccess>
 
     )
