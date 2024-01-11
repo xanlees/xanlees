@@ -8,6 +8,7 @@ import { ArrayField } from "@src/shadcn/components/form/array-field";
 interface IFormConfig {
   form: {
     control: any
+    setValue: any
   }
 }
 export const DynamicNumberForm: React.FC<{ formConfig: IFormConfig }> = ({

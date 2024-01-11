@@ -1,14 +1,10 @@
-/* eslint-disable max-nested-callbacks */
+/* eslint-disable max-params */
 import * as z from "zod";
+import type { ProfileSendData } from "../interface";
+import { maxFileSize, acceptedImageTypes } from "../lib/imageTypes";
+
 const validGenders = ["MALE", "FEMALE", "OTHER"] as const;
-const validMaritalStatus = ["SINGLE", "MARRIED"] as const;
-const maxFileSize = 5000000;
-const acceptedImageTypes = [
-  "image/jpg",
-  "image/jpeg",
-  "image/png",
-  "image/webp",
-];
+export const validMaritalStatus = ["SINGLE", "MARRIED"] as const;
 
 export const profileSchema = z.object({
   fullname: z.string().min(1, {
@@ -32,12 +28,7 @@ export const profileSchema = z.object({
       z.object({
         uniqueNumber: z.string(),
       }),
-    )
-    .transform((val) => {
-      const listUniqueNumber = val.map((item) => item.uniqueNumber);
-      console.log("listUniqueNumber", listUniqueNumber);
-      return listUniqueNumber;
-    }),
+    ),
   profilePicture: (z.any() as z.ZodType<FileList>).refine(
     (fileList) => {
       const file = fileList?.[0];
@@ -55,4 +46,18 @@ export const profileSchema = z.object({
     .refine((value) => validMaritalStatus.includes(value), {
       message: "Marital status must be one of 'SINGLE', 'MARRIED'.",
     }),
+}).transform((val) => {
+  const profileVal = transformUniqueNumber(val);
+  delete profileVal.uniqueNumber;
+  return profileVal;
 });
+
+function transformUniqueNumber(val: ProfileSendData): Record<string, any> {
+  return {
+    ...val,
+    ...(val.uniqueNumber.reduce<Record<string, string>>((acc, curr, index) => {
+      acc[`uniqueNumber[${index}]`] = curr.uniqueNumber;
+      return acc;
+    }, {})),
+  };
+}

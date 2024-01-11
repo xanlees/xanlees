@@ -8,25 +8,18 @@ import {
   genderOptions,
   maritalStatusOptions,
 } from "../../../(career)/employee/lib/constant";
-import { useFieldArray } from "react-hook-form";
 import { typeOfUniqueNumber } from "../lib/settings";
 import { DynamicNumberForm } from "../containers/form/inputUniqueNumber";
+import { type IFormConfig } from "../interface";
 
 interface ProfileFormProps {
   redirect: RedirectAction
   setCurrentStep?: (step: number) => void
   setProfileID?: (id: number) => void
 }
-interface IFormConfig {
-  form: {
-    setValue: any
-    control: any
-  }
-}
+
 const BasicInformationSection: React.FC<{
   formConfig: IFormConfig
-  append: any
-  fields: any
 }> = ({ formConfig }) => (
   <div className="flex-1 p-4">
     <Form.Field
@@ -42,7 +35,7 @@ const BasicInformationSection: React.FC<{
     <Form.Field {...formConfig.form} name="gender" label="ເລືອກເພດ">
       <Form.Select options={genderOptions} />
     </Form.Field>
-    <DynamicNumberForm formConfig={formConfig}/>
+    <DynamicNumberForm formConfig={formConfig} />
     <Form.Field {...formConfig.form} name="profilePicture" label="ເລືອກໂປຣໄຟລ໌">
       <Form.FileInput />
     </Form.Field>
@@ -67,7 +60,10 @@ const PersonalInformationSection: React.FC<{ formConfig: IFormConfig }> = ({
       <Form.Select options={maritalStatusOptions} />
     </Form.Field>
     <Form.Field
-      {...formConfig.form} name="typeOfUniqueNumber" label="ເລືອກປະເພດ">
+      {...formConfig.form}
+      name="typeOfUniqueNumber"
+      label="ເລືອກປະເພດ"
+    >
       <Form.Select options={typeOfUniqueNumber} />
     </Form.Field>
   </div>
@@ -79,19 +75,11 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
   setProfileID,
 }) => {
   const formConfig = useFormConfig({ redirect, setCurrentStep, setProfileID });
-  const { fields, append } = useFieldArray({
-    control: formConfig.form.control,
-    name: "uniqueNumber",
-  });
   return (
     <div className="w-[39%] rounded-full ">
       <Form {...formConfig.form}>
         <div className="flex flex-col w-full capitalize rounded-lg sm:w-1/2 sm:flex-row">
-          <BasicInformationSection
-            formConfig={formConfig}
-            append={append}
-            fields={fields}
-          />
+          <BasicInformationSection formConfig={formConfig} />
           <PersonalInformationSection formConfig={formConfig} />
         </div>
       </Form>

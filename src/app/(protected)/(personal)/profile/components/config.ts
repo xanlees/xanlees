@@ -4,20 +4,12 @@ import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { useProfileContext } from "../../context/context";
 import { profileSchema } from "./validation";
+import type { ProfileFormValues } from "../interface";
 
 interface FormConfigParams {
   redirect: RedirectAction
   setCurrentStep?: ((step: number) => void) | undefined
   setProfileID?: ((id: number) => void) | undefined
-}
-
-interface ProfileFormValues {
-  fullname: string
-  nickname: string
-  phoneNumber: string
-  gender: string
-  maritalStatus: string
-  id?: number
 }
 
 export const useFormConfig = ({
