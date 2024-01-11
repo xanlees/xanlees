@@ -1,3 +1,4 @@
+/* eslint-disable max-nested-callbacks */
 import * as z from "zod";
 const validGenders = ["MALE", "FEMALE", "OTHER"] as const;
 const validMaritalStatus = ["SINGLE", "MARRIED"] as const;
@@ -26,19 +27,29 @@ export const profileSchema = z.object({
   personalAddressId: z.number().min(0, {
     message: "Personal Address ID must be a non-negative number.",
   }),
-  profilePicture: (z.any() as z.ZodType<FileList>)
-    .refine(
-      (fileList) => {
-        const file = fileList?.[0];
-        return (
-          file?.size <= maxFileSize && acceptedImageTypes.includes(file?.type)
-        );
-      },
-      {
-        message:
-          "Max image size is 5MB. Only .jpg, .jpeg, .png, and .webp formats are supported.",
-      },
-    ),
+  uniqueNumber: z
+    .array(
+      z.object({
+        uniqueNumber: z.string(),
+      }),
+    )
+    .transform((val) => {
+      const listUniqueNumber = val.map((item) => item.uniqueNumber);
+      console.log("listUniqueNumber", listUniqueNumber);
+      return listUniqueNumber;
+    }),
+  profilePicture: (z.any() as z.ZodType<FileList>).refine(
+    (fileList) => {
+      const file = fileList?.[0];
+      return (
+        file?.size <= maxFileSize && acceptedImageTypes.includes(file?.type)
+      );
+    },
+    {
+      message:
+        "Max image size is 5MB. Only .jpg, .jpeg, .png, and .webp formats are supported.",
+    },
+  ),
   maritalStatus: z
     .enum(validMaritalStatus)
     .refine((value) => validMaritalStatus.includes(value), {
