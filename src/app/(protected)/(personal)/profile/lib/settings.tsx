@@ -21,3 +21,19 @@ export const createEmployeeSteps = [
     completed: false,
   },
 ];
+
+export const typeOfUniqueNumber = [
+  {
+    label: "ເລກເຄື່ອງຂາຍເລກ",
+    value: "MACHINE",
+  },
+  {
+    label: "ເລກບັດປະຈໍາຕົວ",
+    value: "IDENTIFY",
+  },
+  {
+    label: "ປື້ມສໍາມະໂມຄົວເລກທີ",
+    value: "CENSUS_BOOK",
+  },
+];
+
