@@ -4,7 +4,7 @@ import { MapPinned, GraduationCap, CalendarDays, Badge } from "lucide-react";
 import moment from "moment";
 import React from "react";
 import { type IEmployee, type ISector } from "../../interface";
-
+import { Badge as ShadcnBadge } from "@src/shadcn/elements/badge";
 interface AddressSectionProps {
   personalAddressData?: {
     data: {
@@ -133,4 +133,38 @@ export const SectionPosition: React.FC<{
       </div>
     </div>
   );
+};
+
+export const UniqueNumber: React.FC<{
+  record?: IEmployee
+}> = ({ record }) => {
+  const codeType = getTypeDisplayText(
+    record?.profileDetail?.typeOfUniqueNumber,
+  );
+  console.log("codeType", codeType);
+  console.log("record", record?.profileDetail.typeOfUniqueNumber);
+  const uniqueNumberList = record?.profileDetail?.uniqueNumber ?? [];
+  return (
+    <div>
+      <div className="mb-4 text-2xl font-bold">{codeType}</div>
+      <div className="flex flex-wrap">
+        <div className="gap-2 px-2">
+          {uniqueNumberList.map((item) => (
+            <ShadcnBadge className="mx-1.5">{item}</ShadcnBadge>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const getTypeDisplayText = (type: string | undefined): string => {
+  if (type === "IDENTIFY") {
+    return "ເລກບັດປະຈໍາຕົວ";
+  } else if (type === "CENSUS_BOOK") {
+    return "ປື້ມສໍາມະໂມຄົວເລກທີ";
+  } else if (type === "MACHINE") {
+    return "ເລກເຄື່ອງຂາຍເລກ";
+  }
+  return "ເລືອກລະຫັດ";
 };

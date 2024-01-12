@@ -9,6 +9,7 @@ interface IFormConfig {
   form: {
     control: any
     setValue: any
+    watch: any
   }
 }
 export const DynamicNumberForm: React.FC<{ formConfig: IFormConfig }> = ({
@@ -18,23 +19,37 @@ export const DynamicNumberForm: React.FC<{ formConfig: IFormConfig }> = ({
     control: formConfig.form.control,
     name: "uniqueNumber",
   });
+  const type: string | undefined = formConfig.form.watch("typeOfUniqueNumber");
+  const classNames = type != null ? "cursor-pointer" : "pointer-events-none";
+  const displayText = getTypeDisplayText(type);
   return (
-    <div className="mt-2">
+    <div className={classNames}>
+      {<div className="pt-2">{displayText}</div>}
       <DynamicForm
         form={formConfig.form}
         fields={fields}
         append={append}
         name="uniqueNumber"
-        label="uniqueNumber"
+        label={displayText}
       >
         <ArrayField
           {...formConfig.form}
           name="uniqueNumber"
-          label="uniqueNumber"
         >
-          <Input placeholder="uniqueNumber" className="block w-56" />
+          <Input placeholder={displayText} className="block w-56" />
         </ArrayField>
       </DynamicForm>
     </div>
   );
+};
+
+const getTypeDisplayText = (type: string | undefined): string => {
+  if (type === "IDENTIFY") {
+    return "ເລກບັດປະຈໍາຕົວ";
+  } else if (type === "CENSUS_BOOK") {
+    return "ປື້ມສໍາມະໂມຄົວເລກທີ";
+  } else if (type === "MACHINE") {
+    return "ເລກເຄື່ອງຂາຍເລກ";
+  }
+  return "ເລືອກລະຫັດ";
 };
