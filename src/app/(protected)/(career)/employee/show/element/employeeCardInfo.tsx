@@ -66,6 +66,7 @@ export const EducationSection: React.FC<EducationSectionProps> = ({
   return (
     <>
       <div className="my-4 text-2xl font-bold">ການສຶກສາ</div>
+      {educationData?.data?.[0] === undefined ? "ຍັງບໍ່ທັນຕື່ມຂໍ້ມູນ" : "" }
       {educationData?.data?.map((education, index) => (
         <React.Fragment key={index}>
           <div className="flex flex-wrap">
