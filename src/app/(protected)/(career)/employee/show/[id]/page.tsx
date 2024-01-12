@@ -13,7 +13,13 @@ import type {
 } from "../../interface";
 import { EmployeeCard } from "../element/employeeCardProfile";
 import React from "react";
-import { AddressSection, EducationSection, JoiningDateSection, SectionPosition } from "../element/employeeCardInfo";
+import {
+  AddressSection,
+  EducationSection,
+  JoiningDateSection,
+  SectionPosition,
+  UniqueNumber,
+} from "../element/employeeCardInfo";
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export default function EmployeeShow({
@@ -43,7 +49,6 @@ export default function EmployeeShow({
       },
     ],
   });
-
   return (
     <Show>
       <div className="py-5">
@@ -51,12 +56,19 @@ export default function EmployeeShow({
           <div className="col-span-4 sm:col-span-3">
             <EmployeeCard record={record} />
           </div>
-          <div className="col-span-4 sm:col-span-9 ">
-            <div className="p-6 border rounded-lg">
+          <div className="col-span-4 sm:col-span-9">
+            <div className="p-6 my-2 border rounded-lg">
               <SectionPosition record={record} sectorData={sectorData?.data} />
               <AddressSection personalAddressData={personalAddressData} />
               <EducationSection educationData={educationData} />
               <JoiningDateSection joiningDate={record?.joiningDate} />
+            </div>
+            <div className="col-span-4 sm:col-span-9">
+              <div className="p-6 border rounded-lg">
+                <UniqueNumber
+                  record={record}
+                />
+              </div>
             </div>
           </div>
         </div>

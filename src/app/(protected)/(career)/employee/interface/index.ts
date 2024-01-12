@@ -26,8 +26,10 @@ export interface IProfile {
     currentVillage: string
     id: number
   }
-  maritalStatus: "SINGLE" | "MARRIED" | "DIVORCED" | "WIDOWED"
+  maritalStatus: "SINGLE" | "MARRIED"
   profilePicture: string | null
+  uniqueNumber: string[]
+  typeOfUniqueNumber: "IDENTIFY" | "CENSUS_BOOK" | "MACHINE"
 }
 export interface IGender {
   gender: "MALE" | "FEMALE" | "OTHER" | null
