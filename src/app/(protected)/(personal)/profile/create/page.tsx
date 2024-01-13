@@ -13,7 +13,7 @@ const breadcrumbs = [
 ];
 
 export default function ProfileCreate(): JSX.Element {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(2);
   const [profileID, setProfileID] = useState(0);
   return (
     <>

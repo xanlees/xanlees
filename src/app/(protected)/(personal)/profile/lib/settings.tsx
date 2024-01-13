@@ -1,6 +1,7 @@
 import { PersonalAddressForm } from "@src/app/(protected)/(personal)/address/components/form";
 import { ProfileForm } from "@src/app/(protected)/(personal)/profile/components/form";
 import { EducationForm } from "../../education/components/form";
+import { DocumentForm } from "../../document/components/form";
 
 export const createEmployeeSteps = [
   {
@@ -13,6 +14,11 @@ export const createEmployeeSteps = [
   {
     stepLabel: "ສ້າງໂປຣໄຟລ໌",
     stepDescription: <ProfileForm redirect="create" />,
+    completed: false,
+  },
+  {
+    stepLabel: "ເອກສານ",
+    stepDescription: <DocumentForm redirect="create" />,
     completed: false,
   },
   {
@@ -36,4 +42,3 @@ export const typeOfUniqueNumber = [
     value: "CENSUS_BOOK",
   },
 ];
-
