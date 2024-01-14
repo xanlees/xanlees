@@ -24,12 +24,12 @@ export function Pagination<TData extends BaseRecord = BaseRecord>({
     table,
 }: DataTablePaginationProps<TData>) {
     return (
-        <div className="flex flex-col items-center justify-between sm:flex-row gap-y-4 sm-gap-y-0">
+        <div className="flex">
             <div className="flex-1 text-sm text-muted-foreground">
                 {table.getFilteredSelectedRowModel().rows.length} ໃນ{" "}
                 {table.getFilteredRowModel().rows.length} ແຖວ.
             </div>
-            <div className="flex flex-col-reverse items-center space-x-6 gap-y-4 sm:gap-y-0 sm:flex-row lg:space-x-8">
+            <div className="flex">
                 <div className="flex items-center space-x-2">
                     <p className="text-sm font-medium">ແຖວຂໍ້ມູນຕໍ່ຫນ້າ</p>
                     <Select
