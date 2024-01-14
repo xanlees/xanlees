@@ -27,8 +27,8 @@ export function PdfViewerContent({
       style={{ height: "calc(100vh - 64px)" }}
       className="flex items-center"
     >
-      <PdfViewerControls goToPreviousPage={goToPreviousPage} goToNextPage={goToNextPage}
-        pageNumber={pageNumber} numPages={numPages} />
+      {/* <PdfViewerControls goToPreviousPage={goToPreviousPage} goToNextPage={goToNextPage}
+        pageNumber={pageNumber} numPages={numPages} /> */}
       <PdfViewerDocument file={file} options={options}
         pageNumber={pageNumber} onDocumentLoadSuccess={onDocumentLoadSuccess}
         onPageLoadSuccess={onPageLoadSuccess} pageWidth={pageWidth}

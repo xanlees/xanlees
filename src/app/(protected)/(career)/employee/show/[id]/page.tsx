@@ -21,7 +21,6 @@ import {
   SectionPosition,
   UniqueNumber,
 } from "../element/employeeCardInfo";
-import PDFViewer from "@src/common/components/pdfviewer";
 import DialogPDF from "../../containers/show/DialogPDF";
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -66,18 +65,17 @@ export default function EmployeeShow({
               <EducationSection educationData={educationData} />
               <JoiningDateSection joiningDate={record?.joiningDate} />
             </div>
-            <div className="col-span-4 sm:col-span-9">
-              <div className="p-6 border rounded-lg">
-                <UniqueNumber
-                  record={record}
-                />
+            <div className="flex-row gap-x-2 gap-y-2 sm:flex">
+              <div className="w-full p-6 my-1 border rounded-lg sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
+                <UniqueNumber record={record} />
               </div>
-              <DialogPDF/>
+              <div className="w-full my-1 border rounded-lg sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
+                <DialogPDF record={record} />
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <PDFViewer file={"https://pdfobject.com/pdf/sample.pdf"} />
     </Show>
   );
 }

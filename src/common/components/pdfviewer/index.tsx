@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { pdfjs } from "react-pdf";
@@ -11,7 +12,11 @@ export default function PDFViewer(props: { file: any }) {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [loading, setLoading] = useState(true);
   const [pageWidth, setPageWidth] = useState(0);
-  function onDocumentLoadSuccess({ numPages: nextNumPages }: { numPages: number }) {
+  function onDocumentLoadSuccess({
+    numPages: nextNumPages,
+  }: {
+    numPages: number
+  }) {
     setNumPages(nextNumPages);
   }
   function onPageLoadSuccess() {
@@ -29,16 +34,24 @@ export default function PDFViewer(props: { file: any }) {
   function goToPreviousPage() {
     setPageNumber((prevPageNumber) => prevPageNumber - 1);
   }
-  return (<>
-    <Nav pageNumber={pageNumber} numPages={numPages} />
-    <PdfViewerContent loading={loading} goToNextPage={goToNextPage}
-      goToPreviousPage={goToPreviousPage} pageNumber={pageNumber}
-      numPages={numPages} pageWidth={pageWidth}
-      setLoading={setLoading} onDocumentLoadSuccess={onDocumentLoadSuccess}
-      onPageLoadSuccess={onPageLoadSuccess} options={options}
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      file={props.file}
-    /> </>
+  return (
+    <div className="flex flex-col">
+      <Nav pageNumber={pageNumber} numPages={numPages} />
+      <PdfViewerContent
+        loading={loading}
+        goToNextPage={goToNextPage}
+        goToPreviousPage={goToPreviousPage}
+        pageNumber={pageNumber}
+        numPages={numPages}
+        pageWidth={pageWidth}
+        setLoading={setLoading}
+        onDocumentLoadSuccess={onDocumentLoadSuccess}
+        onPageLoadSuccess={onPageLoadSuccess}
+        options={options}
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        file={props.file}
+      />{" "}
+    </div>
   );
 }
 
@@ -54,19 +67,11 @@ export function PdfViewerControls({
   numPages: number
 }) {
   return (
-    <div
-      className={"flex items-center justify-between w-full absolute z-10 px-2"}
-    >
-      <PdfViewerButton
-        onClick={goToPreviousPage}
-        disabled={pageNumber <= 1}
-      >
+    <div className="absolute z-10 flex items-center justify-between w-full px-2 ">
+      <PdfViewerButton onClick={goToPreviousPage} disabled={pageNumber <= 1}>
         <ChevronLeft className="w-10 h-10" aria-hidden="true" />
       </PdfViewerButton>
-      <PdfViewerButton
-        onClick={goToNextPage}
-        disabled={pageNumber >= numPages}
-      >
+      <PdfViewerButton onClick={goToNextPage} disabled={pageNumber >= numPages}>
         <ChevronRight className="w-10 h-10" aria-hidden="true" />
       </PdfViewerButton>
     </div>
@@ -86,10 +91,9 @@ function PdfViewerButton({
     <button
       onClick={onClick}
       disabled={disabled}
-      className="relative h-[calc(100vh - 64px)] px-2 py-24 text-gray-400 hover:text-gray-50 focus:z-20"
+      className="relative h-[calc(100vh - 64px)] px-2 py-24 text-gray-400 hover:text-gray-50 focus:z-20 "
     >
       {children}
     </button>
   );
 }
-

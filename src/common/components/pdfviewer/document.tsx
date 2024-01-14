@@ -19,7 +19,7 @@ export function PdfViewerDocument({
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   return (
-    <div className="flex justify-center h-full mx-auto">
+    <div className="justify-center h-full mx-auto overflow-y-scroll">
       <Document
         file={file}
         onLoadSuccess={onDocumentLoadSuccess}
