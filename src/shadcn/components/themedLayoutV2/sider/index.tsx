@@ -12,21 +12,21 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@src/shadcn/elements/accordion";
+
 const ThemedSiderV2MenuItem: FC<{
     selectedKey?: string;
     resource: ITreeMenu;
     asChild?: boolean;
     children?: ReactNode;
     icon?: ReactNode;
-}> = ({ resource, selectedKey, asChild = false, children }) => {
+}> = ({ resource, selectedKey, asChild = false, children}) => {
     const active = useMemo(() => {
         return resource.key === selectedKey;
     }, [resource, selectedKey]);
-
+    console.log("resource.label", resource.label);
     const label = useMemo(() => {
         return String(resource.label ?? resource.meta?.label);
     }, [resource]);
-
     const href = useMemo(() => {
         return String(resource.route);
     }, [resource]);
@@ -67,15 +67,12 @@ export const ThemedSiderV2Menu: FC<{
 }> = ({ meta }) => {
     const { menuItems, selectedKey } = useMenu({ meta });
 
-
     const MenuItems = useMemo(
         () =>
             menuItems.map((item: ITreeMenu) => (
-                <ThemedSiderV2MenuItem
-                    key={item.key}
-                    resource={item}
-                    selectedKey={selectedKey}
-                />
+                <ThemedSiderV2MenuItem key={item.key}
+                resource={item}
+                selectedKey={selectedKey} />
             )),
         [menuItems, selectedKey],
     );
@@ -102,6 +99,8 @@ const DefaultTitle: FC<RefineLayoutTitleProps> = () => {
     );
 };
 
+
+  
 const LogOutButton: FC = () => {
     const { mutate: logout } = useLogout();
     return (
@@ -147,7 +146,6 @@ export const ThemedSiderV2: FC<ThemedSiderV2Props> = ({
     className,
     Title = DefaultTitle,
 }) => {
-
     return (
         <div
             className={cn(
