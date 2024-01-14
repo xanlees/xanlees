@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment, max-lines-per-function */
 import { Document, Page } from "react-pdf";
-
-const scale = 0.8;
-const maxWidth = 390;
+import { useEffect, useState } from "react";
 export function PdfViewerDocument({
   file, options, pageNumber, onDocumentLoadSuccess, onPageLoadSuccess, pageWidth, setLoading,
 }: {
@@ -18,6 +16,27 @@ export function PdfViewerDocument({
   pageWidth: number
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }) {
+  const [containerWidth, setContainerWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setContainerWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const calculateResponsiveWidth = () => {
+    const scale = 0.5;
+    const maxWidth = 100;
+    const responsiveWidth = Math.min(containerWidth, pageWidth) * scale;
+    return Math.max(responsiveWidth, maxWidth);
+  };
+
   return (
     <div className="flex justify-center h-full mx-auto">
       <Document
@@ -33,7 +52,8 @@ export function PdfViewerDocument({
           renderTextLayer={false}
           onLoadSuccess={onPageLoadSuccess}
           onRenderError={() => { setLoading(false); }}
-          width={Math.max(pageWidth * scale, maxWidth)} />
+          width={calculateResponsiveWidth()}
+        />
       </Document>
     </div>
   );

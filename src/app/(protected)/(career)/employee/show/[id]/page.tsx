@@ -75,7 +75,9 @@ export default function EmployeeShow({
           </div>
         </div>
       </div>
+      {/* <div className="w-96 h-96"> */}
       <PDFViewer file={"https://pdfobject.com/pdf/sample.pdf"} />
+      {/* </div> */}
     </Show>
   );
 }
