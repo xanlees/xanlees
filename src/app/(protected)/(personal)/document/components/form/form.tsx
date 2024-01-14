@@ -11,9 +11,10 @@ import { useFormConfig } from "./config";
 
 interface DocumentFormProps {
   redirect: RedirectAction
+  setCurrentStep: any
 }
-export const DocumentForm: React.FC<DocumentFormProps> = ({ redirect }) => {
-  const formConfig = useFormConfig(redirect);
+export const DocumentForm: React.FC<DocumentFormProps> = ({ redirect, setCurrentStep }) => {
+  const formConfig = useFormConfig(redirect, setCurrentStep);
   const { fields, append } = useFieldArray({ control: formConfig.form.control, name: "document" });
   const { state } = useProfileContext();
 

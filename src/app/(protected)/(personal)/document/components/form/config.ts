@@ -5,16 +5,10 @@ import { useForm } from "@refinedev/react-hook-form";
 import { documentFormSchema } from "./validation";
 import { type z } from "zod";
 
-export const useFormConfig = (redirect: RedirectAction) => {
+const step = 3;
+export const useFormConfig = (redirect: RedirectAction, setCurrentStep: any) => {
   const { ...form } = useForm<z.infer<typeof documentFormSchema>>({
     resolver: zodResolver(documentFormSchema),
-    defaultValues: {
-      document: [
-       {
-        documentName: "documentName",
-       }
-      ]
-    },
     refineCoreProps: {
       resource: "document",
       redirect: false,
@@ -22,6 +16,9 @@ export const useFormConfig = (redirect: RedirectAction) => {
         headers: {
           "content-type": "multipart/form-data",
         },
+      },
+      onMutationSuccess: () => {
+        setCurrentStep(step);
       },
     },
     warnWhenUnsavedChanges: true,
