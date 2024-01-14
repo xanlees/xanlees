@@ -22,6 +22,7 @@ import {
   UniqueNumber,
 } from "../element/employeeCardInfo";
 import PDFViewer from "@src/common/components/pdfviewer";
+import DialogPDF from "../../containers/show/DialogPDF";
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export default function EmployeeShow({
@@ -71,13 +72,12 @@ export default function EmployeeShow({
                   record={record}
                 />
               </div>
+              <DialogPDF/>
             </div>
           </div>
         </div>
       </div>
-      {/* <div className="w-96 h-96"> */}
       <PDFViewer file={"https://pdfobject.com/pdf/sample.pdf"} />
-      {/* </div> */}
     </Show>
   );
 }
