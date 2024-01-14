@@ -8,6 +8,13 @@ import { type z } from "zod";
 export const useFormConfig = (redirect: RedirectAction) => {
   const { ...form } = useForm<z.infer<typeof documentFormSchema>>({
     resolver: zodResolver(documentFormSchema),
+    defaultValues: {
+      document: [
+       {
+        documentName: "documentName",
+       }
+      ]
+    },
     refineCoreProps: {
       resource: "document",
       redirect: false,

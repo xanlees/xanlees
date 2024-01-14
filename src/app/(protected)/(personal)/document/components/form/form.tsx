@@ -26,10 +26,11 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ redirect }) => {
           append={append}
           name="document"
           label="ເອກສານ"
+          className="grid"
           defaultConfig={{ profileId: state.profileId }}
         >
           <ArrayField {...formConfig.form} name="documentName" label="ຊື່ເອກກະສານ">
-            <Input placeholder="ຊື່ເອກສານ" className="w-64" />
+            <Input placeholder="ຊື່ເອກສານ" className="w-full" />
           </ArrayField>
           <ArrayField {...formConfig.form} name="documentFile" label="ເອກກະສານ">
             <Form.FileInput />
