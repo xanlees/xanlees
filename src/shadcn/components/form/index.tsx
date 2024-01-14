@@ -19,6 +19,7 @@ import { Combobox } from "./combobox";
 import { FormField } from "./field";
 import { Select } from "./select";
 import { DatePickerField } from "./datepicker";
+import { FileInputImage } from "./file-input-image";
 import { FileInputField } from "./file-input";
 
 type NativeFormProps = Omit<
@@ -118,4 +119,5 @@ Form.Field = FormField;
 Form.Combobox = Combobox;
 Form.Select = Select;
 Form.DatePicker = DatePickerField;
+Form.FileInputImage = FileInputImage;
 Form.FileInput = FileInputField;

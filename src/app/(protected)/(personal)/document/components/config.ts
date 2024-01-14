@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
@@ -9,10 +10,12 @@ export const useFormConfig = (redirect: RedirectAction) => {
     resolver: zodResolver(documentFormSchema),
     refineCoreProps: {
       resource: "document",
-      autoSave: {
-        enabled: true,
-      },
       redirect: false,
+      meta: {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      },
     },
     warnWhenUnsavedChanges: true,
   });

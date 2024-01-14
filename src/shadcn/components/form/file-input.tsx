@@ -1,4 +1,9 @@
-import { Avatar, AvatarFallback, AvatarImage, Input } from "@src/shadcn/elements";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Input,
+} from "@src/shadcn/elements";
 import {
   FormControl,
   FormDescription,
@@ -6,9 +11,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@src/shadcn/elements/form"
+} from "@src/shadcn/elements/form";
+import { FileText } from "lucide-react";
 import { ChangeEvent, useState } from "react";
-
 
 function getImageData(event: ChangeEvent<HTMLInputElement>) {
   const dataTransfer = new DataTransfer();
@@ -25,21 +30,27 @@ function getImageData(event: ChangeEvent<HTMLInputElement>) {
 
 export const FileInputField = ({ ...props }) => {
   const [preview, setPreview] = useState("");
+  const [fileType, setFileType] = useState("");
+  const [fileName, setFileName] = useState("");
   return (
     <>
       <Input
         type="file"
         {...props.rest}
         onChange={(event) => {
-          const { files, displayUrl } = getImageData(event)
+          const { files, displayUrl } = getImageData(event);
           setPreview(displayUrl);
+          const fileName = event.target.files![0].name;
+          const fileExtension = fileName.split(".").pop();
+          setFileType(fileExtension as any);
+          setFileName(fileName)
+
           props.onChange(files);
         }}
       />
-      <Avatar className="w-64 h-64 mx-auto">
-        <AvatarImage src={preview} />
-        <AvatarFallback>ຮູບໂປຣໄຟລ໌</AvatarFallback>
-      </Avatar>
+      <div className="flex mt-2 text-sm text-gray-500">
+        {fileType && <FileText color="#ff0000" />} <span className="mt-1"> {fileName}</span>
+      </div>
     </>
-  )
-}
+  );
+};

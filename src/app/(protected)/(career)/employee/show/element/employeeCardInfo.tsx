@@ -142,8 +142,6 @@ export const UniqueNumber: React.FC<{
   const codeType = getTypeDisplayText(
     record?.profileDetail?.typeOfUniqueNumber,
   );
-  console.log("codeType", codeType);
-  console.log("record", record?.profileDetail.typeOfUniqueNumber);
   const uniqueNumberList = record?.profileDetail?.uniqueNumber ?? [];
   return (
     <div>

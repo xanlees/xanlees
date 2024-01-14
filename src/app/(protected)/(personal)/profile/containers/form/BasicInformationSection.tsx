@@ -35,7 +35,7 @@ export const BasicInformationSection: React.FC<{ formConfig: IFormConfig }> = ({
         name="profilePicture"
         label="ເລືອກໂປຣໄຟລ໌"
       >
-        <Form.FileInput />
+        <Form.FileInputImage />
       </Form.Field>
     </div>
   );

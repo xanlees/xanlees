@@ -32,7 +32,7 @@ export const FormField = (props: FormFieldProps) => {
             render={({ field }: { field: any }) => {
                 return (
                     <FormItem>
-                        <div className="flex flex-col mt-3 gap-2">
+                        <div className="flex flex-col">
                             <FormLabel>{props.label}</FormLabel>
                             <FormControl>
                                 {cloneElement(props.children, {
