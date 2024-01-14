@@ -1,13 +1,13 @@
-import { type RedirectAction } from '@refinedev/core';
-import { Form } from '@src/shadcn/components/form';
-import { ArrayField } from '@src/shadcn/components/form/array-field';
+import { type RedirectAction } from "@refinedev/core";
+import { Form } from "@src/shadcn/components/form";
+import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
-import { Input } from '@src/shadcn/elements';
-import React from 'react';
-import { useFieldArray } from 'react-hook-form';
+import { Input } from "@src/shadcn/elements";
+import React from "react";
+import { useFieldArray } from "react-hook-form";
 
-import { useProfileContext } from '../../../context/context';
-import { useFormConfig } from './config';
+import { useProfileContext } from "../../../context/context";
+import { useFormConfig } from "./config";
 
 interface DocumentFormProps {
   redirect: RedirectAction

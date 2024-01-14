@@ -1,10 +1,5 @@
 import * as z from "zod";
-
-interface IDocument {
-  documentName: string
-  profileId: number
-  documentFile: FileList
-}
+import { type IDocument } from "../../interface";
 
 function transformDocumentItemToRecord({ documentName, profileId, documentFile }: IDocument, index: number): Record<string, any> {
   return {

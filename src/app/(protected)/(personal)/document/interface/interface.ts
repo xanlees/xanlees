@@ -1,5 +1,5 @@
-export interface IGraduation {
-  id: number
-  degree: string
-  sector: string
+export interface IDocument {
+  documentName: string
+  profileId: number
+  documentFile: FileList | string
 }
