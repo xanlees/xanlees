@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable max-lines-per-function */
 
@@ -20,6 +21,7 @@ import {
   SectionPosition,
   UniqueNumber,
 } from "../element/employeeCardInfo";
+import PDFViewer from "@src/common/components/pdfviewer";
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export default function EmployeeShow({
@@ -73,6 +75,7 @@ export default function EmployeeShow({
           </div>
         </div>
       </div>
+      <PDFViewer file={"https://pdfobject.com/pdf/sample.pdf"} />
     </Show>
   );
 }
