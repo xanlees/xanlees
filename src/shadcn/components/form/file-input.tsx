@@ -1,17 +1,6 @@
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
   Input,
 } from "@src/shadcn/elements";
-import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@src/shadcn/elements/form";
 import { FileText } from "lucide-react";
 import { ChangeEvent, useState } from "react";
 
@@ -29,7 +18,6 @@ function getImageData(event: ChangeEvent<HTMLInputElement>) {
 }
 
 export const FileInputField = ({ ...props }) => {
-  const [preview, setPreview] = useState("");
   const [fileType, setFileType] = useState("");
   const [fileName, setFileName] = useState("");
   return (
@@ -38,8 +26,7 @@ export const FileInputField = ({ ...props }) => {
         type="file"
         {...props.rest}
         onChange={(event) => {
-          const { files, displayUrl } = getImageData(event);
-          setPreview(displayUrl);
+          const { files } = getImageData(event);
           const fileName = event.target.files![0].name;
           const fileExtension = fileName.split(".").pop();
           setFileType(fileExtension as any);

@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import { documentFormSchema } from "../lib/validation";
+import { documentFormSchema } from "./validation";
 import { type z } from "zod";
 
 export const useFormConfig = (redirect: RedirectAction) => {

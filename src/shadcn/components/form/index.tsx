@@ -19,7 +19,7 @@ import { Combobox } from "./combobox";
 import { FormField } from "./field";
 import { Select } from "./select";
 import { DatePickerField } from "./datepicker";
-import { FileInputImage } from "./file-input-image";
+import { FileInputImage } from "./image-input";
 import { FileInputField } from "./file-input";
 
 type NativeFormProps = Omit<
