@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Document, Page } from "react-pdf";
 
-const scale = 0.8;
-const maxWidth = 390;
+const scale = 0.5;
+const maxWidth = 100;
 export function PdfViewerDocument({
   file, options, pageNumber, onDocumentLoadSuccess, onPageLoadSuccess, pageWidth, setLoading,
 }: {
@@ -19,7 +19,7 @@ export function PdfViewerDocument({
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   return (
-    <div className="justify-center h-full mx-auto overflow-y-scroll">
+    <div className="mx-auto overflow-y-scroll ">
       <Document
         file={file}
         onLoadSuccess={onDocumentLoadSuccess}

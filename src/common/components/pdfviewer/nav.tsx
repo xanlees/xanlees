@@ -1,12 +1,12 @@
-export function Nav({ pageNumber, numPages }: { pageNumber: number, numPages: number }) {
+export function Nav({ pageNumber, numPages, title }: { pageNumber: number, numPages: number, title: string }) {
   return (
-    <nav className="bg-black">
+    <nav className="mt-10 bg-black">
       <div className="px-2 mx-auto sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
             <div className="flex items-center flex-shrink-0">
               <p className="text-2xl font-bold tracking-tighter text-white">
-                Papermark
+                {title}
               </p>
             </div>
           </div>

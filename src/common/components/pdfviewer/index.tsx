@@ -7,7 +7,7 @@ import { PdfViewerContent } from "./content";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export default function PDFViewer(props: { file: any }) {
+export default function PDFViewer(props: { file: any, title: string }) {
   const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [loading, setLoading] = useState(true);
@@ -36,7 +36,7 @@ export default function PDFViewer(props: { file: any }) {
   }
   return (
     <div className="flex flex-col">
-      <Nav pageNumber={pageNumber} numPages={numPages} />
+      <Nav pageNumber={pageNumber} numPages={numPages} title={props.title} />
       <PdfViewerContent
         loading={loading}
         goToNextPage={goToNextPage}
@@ -67,7 +67,7 @@ export function PdfViewerControls({
   numPages: number
 }) {
   return (
-    <div className="absolute z-10 flex items-center justify-between w-full px-2 ">
+    <div className="items-center ">
       <PdfViewerButton onClick={goToPreviousPage} disabled={pageNumber <= 1}>
         <ChevronLeft className="w-10 h-10" aria-hidden="true" />
       </PdfViewerButton>
@@ -91,7 +91,7 @@ function PdfViewerButton({
     <button
       onClick={onClick}
       disabled={disabled}
-      className="relative h-[calc(100vh - 64px)] px-2 py-24 text-gray-400 hover:text-gray-50 focus:z-20 "
+      className="relative h-[calc(100vh - 64px)] px-2 py-24 text-gray-400 hover:text-gray-50 focus:z-20"
     >
       {children}
     </button>

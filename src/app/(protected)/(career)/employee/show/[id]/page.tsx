@@ -3,7 +3,6 @@
 /* eslint-disable max-lines-per-function */
 
 "use client";
-
 import { useList, useOne, useShow } from "@refinedev/core";
 import { Show } from "@/shadcn/components/crud";
 import type {
@@ -21,9 +20,8 @@ import {
   SectionPosition,
   UniqueNumber,
 } from "../element/employeeCardInfo";
-import DialogPDF from "../../containers/show/DialogPDF";
+import { DocumentPDF } from "../element/DocumentPDF";
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export default function EmployeeShow({
   params,
 }: {
@@ -69,9 +67,7 @@ export default function EmployeeShow({
               <div className="w-full p-6 my-1 border rounded-lg sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
                 <UniqueNumber record={record} />
               </div>
-              <div className="w-full my-1 border rounded-lg sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
-                <DialogPDF record={record} />
-              </div>
+              <DocumentPDF record={record}/>
             </div>
           </div>
         </div>
