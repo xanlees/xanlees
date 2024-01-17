@@ -23,7 +23,7 @@ export default function DocumentShow({ params }: { params: { id: number } }): JS
       },
     ],
   });
-  const title = documentData?.data?.[0].documentName;
+  const title = documentData?.data?.[0].documentName ?? "";
   const file = documentData?.data?.[0].documentFile;
   return (
     <Show
