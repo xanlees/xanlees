@@ -14,7 +14,7 @@ import { RestDataProvider } from "@src/lib/provider/rest/";
 import { resources } from "@src/lib/resources/constant";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useMemo } from "react";
 import { authContext } from "./context/auth";
 import "moment/locale/lo";
 
@@ -27,17 +27,19 @@ export const RefineProvider = ({ children }: Props): JSX.Element => {
   const { data, status } = useSession();
   const to = usePathname();
 
-  const authProvider: AuthBindings = {
-    login: getLogin(to),
-    logout: getLogout(),
-    onError: async(error: HttpError | Error | undefined) => { return { error }; },
-    check: async() => ({
-      authenticated: status !== "unauthenticated",
-      redirectTo: status === "unauthenticated" ? "/" : undefined,
-    }),
-    getPermissions: async() => { return null; },
-    getIdentity: async() => getIdentity(data),
-  };
+  const authProvider: AuthBindings = useMemo(() => {
+    return {
+      login: getLogin(to),
+      logout: getLogout(),
+      onError: async(error: HttpError | Error | undefined) => ({ error }),
+      check: async() => ({
+        authenticated: status !== "unauthenticated",
+        redirectTo: status === "unauthenticated" ? "/" : undefined,
+      }),
+      getPermissions: async() => null,
+      getIdentity: async() => getIdentity(data),
+    };
+  }, [to, status, data]);
   return (
     <authContext.Provider value={authProvider}>
       <Refine
