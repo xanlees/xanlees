@@ -23,7 +23,6 @@ const ThemedSiderV2MenuItem: FC<{
     const active = useMemo(() => {
         return resource.key === selectedKey;
     }, [resource, selectedKey]);
-    console.log("resource.label", resource.label);
     const label = useMemo(() => {
         return String(resource.label ?? resource.meta?.label);
     }, [resource]);

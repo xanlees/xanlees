@@ -33,4 +33,14 @@ export const resources = [
       label: "ຜູ້ໃຊ້ລະບົບ",
     }
   },
+  {
+    name: "application",
+    list: "/application",
+    create: "/application/create",
+    edit: "/application/edit/:id",
+    show: "/application/show/:id",
+    meta: {
+      label: "application",
+    }
+  },
 ];
