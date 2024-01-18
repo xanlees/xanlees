@@ -3,14 +3,14 @@ import { Input } from "@src/shadcn/elements";
 import { Form } from "@src/shadcn/components/form";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 import { type IFormConfig } from "../../interface";
-import { DynamicNumberForm } from "./inputUniqueNumber";
+import { UniqueNumberInput } from "./inputUniqueNumber";
 import { maritalStatusOptions } from "@src/app/(protected)/(career)/employee/lib/constant";
 
 export const PersonalInformationSection: React.FC<{
   formConfig: IFormConfig
 }> = ({ formConfig }) => {
   return (
-    <div className="flex-1 p-4 ">
+    <div className="flex-1 p-4 space-y-1.5 ">
       <Form.Field {...formConfig.form} name="nickname" label="ຊື່ຫຼິ້ນ">
         <Input placeholder="ຊື່ຫຼິ້ນ" />
       </Form.Field>
@@ -24,7 +24,7 @@ export const PersonalInformationSection: React.FC<{
       <Form.Field {...formConfig.form} name="maritalStatus" label="ສະຖານະພາບ">
         <Form.Select options={maritalStatusOptions} />
       </Form.Field>
-      <DynamicNumberForm formConfig={formConfig} />
+      <UniqueNumberInput formConfig={formConfig} />
     </div>
   );
 };

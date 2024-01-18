@@ -42,7 +42,6 @@ export const applicationFromStep = [
   },
 ];
 
-
 export const typeOfUniqueNumber = [
   {
     label: "ເລກເຄື່ອງຂາຍເລກ",

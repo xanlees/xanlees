@@ -21,9 +21,6 @@ export const useFormConfig = (
     resolver: zodResolver(personalAddressSchema),
     refineCoreProps: {
       resource: "personal_address",
-      autoSave: {
-        enabled: true,
-      },
       redirect: false,
       onMutationSuccess: (data) => {
         dispatch({ type: "setPersonalAddressId", payload: data?.data?.id ?? 0 });

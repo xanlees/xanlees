@@ -9,9 +9,7 @@ import {
   DrivingLicenceOptions,
   DynamicVaccineInput,
 } from "../../containers/form";
-import { Label, Textarea } from "@src/shadcn/elements";
-import { RadioGroup } from "@radix-ui/react-dropdown-menu";
-import { RadioGroupItem } from "@src/shadcn/elements/radio-group";
+import { Textarea } from "@src/shadcn/elements";
 
 export const ApplicationForm = ({ redirect = "list", id }: { redirect: RedirectAction, id: number }) => {
   const formConfig = useFormConfig(redirect, id);
@@ -21,7 +19,7 @@ export const ApplicationForm = ({ redirect = "list", id }: { redirect: RedirectA
         <EmergencyInformationSection formConfig={formConfig} />
         <ComputerSkillSection formConfig={formConfig} />
         <LanguageSkillSection formConfig={formConfig} />
-        <SectionInput formConfig={formConfig} options={DrivingLicenceOptions} name="typeDrivingLicence" label="ໃບຂັບຂີ່"/>
+        <SectionInput formConfig={formConfig} options={DrivingLicenceOptions} name="typeDrivingLicence" label="ໃບຂັບຂີ່" />
         <DynamicVaccineInput formConfig={formConfig} />
         <Form.Field {...formConfig.form} name="appliedReason" label="ເປັນຫຍັງທ່ານຈື່ງຢາກເຮັດວຽກກັບ ວິສາຫະກິດສ່ນບຸກຄົນ ເອັສບີເອັສ">
           <Textarea className="h-28" />

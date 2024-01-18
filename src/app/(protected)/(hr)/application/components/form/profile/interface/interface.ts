@@ -5,9 +5,7 @@ export interface ProfileSendData {
   gender: "MALE" | "FEMALE" | "OTHER"
   birthday: string
   personalAddressId: number
-  uniqueNumber: Array<{
-    uniqueNumber: string
-  }>
+  uniqueNumber: string
   profilePicture: FileList
   maritalStatus: "SINGLE" | "MARRIED"
 }

@@ -5,6 +5,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { profileSchema } from "./validation";
 import type { ProfileFormValues } from "../interface";
 import { useApplicationContext } from "@src/app/(protected)/(hr)/context/context";
+import { formConfig } from "@src/common/interface";
 
 interface FormConfigParams {
   redirect: RedirectAction
@@ -12,10 +13,7 @@ interface FormConfigParams {
   setProfileID?: ((id: number) => void) | undefined
 }
 
-export const useFormConfig = ({
-  setCurrentStep,
-  setProfileID,
-}: FormConfigParams) => {
+export const useFormConfig = ({ setCurrentStep, setProfileID }: FormConfigParams) => {
   const { state, dispatch } = useApplicationContext();
   const { ...form } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
@@ -25,11 +23,7 @@ export const useFormConfig = ({
     },
     refineCoreProps: {
       resource: "profile",
-      meta: {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      },
+      meta: formConfig,
       autoSave: {
         enabled: true,
       },

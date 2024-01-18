@@ -22,17 +22,19 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
     filters: [{ field: "pageSize", operator: "eq", value: 140 }],
   });
   return (
-    <Form {...formConfig.form}>
-      <div className="flex flex-col w-full capitalize rounded-lg sm:w-1/2 sm:flex-row">
-        <div className="flex-1 p-4">
-          <InputBornVillage {...formConfig} name="bornVillage" label="ບ້ານເກີດ" />
-          <BornDistrictSelect formConfig={formConfig} district={district} />
+    <div className="rounded-full w-96 sm:w-[38%] ">
+      <Form {...formConfig.form}>
+        <div className="flex flex-col w-full capitalize rounded-lg sm:w-1/2 sm:flex-row">
+          <div className="flex-1 p-4">
+            <InputBornVillage {...formConfig} name="bornVillage" label="ບ້ານເກີດ" />
+            <BornDistrictSelect formConfig={formConfig} district={district} />
+          </div>
+          <div className="flex-1 p-4">
+            <InputBornVillage {...formConfig} name="currentVillage" label="ບ້ານຢູ່ປະຈຸບັນ"/>
+            <CurrentDistrictSelect formConfig={formConfig} district={district} />
+          </div>
         </div>
-        <div className="flex-1 p-4">
-          <InputBornVillage {...formConfig} name="currentVillage" label="ບ້ານຢູ່ປະຈຸບັນ"/>
-          <CurrentDistrictSelect formConfig={formConfig} district={district} />
-        </div>
-      </div>
-    </Form>
+      </Form>
+    </div>
   );
 };

@@ -42,10 +42,6 @@ export const BasicInformationSection: React.FC<{ formConfig: IFormConfig }> = ({
 
 export const typeOfUniqueNumber = [
   {
-    label: "ເລກເຄື່ອງຂາຍເລກ",
-    value: "MACHINE",
-  },
-  {
     label: "ເລກບັດປະຈໍາຕົວ",
     value: "IDENTIFY",
   },

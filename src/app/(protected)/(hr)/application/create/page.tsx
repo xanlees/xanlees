@@ -13,7 +13,7 @@ const breadcrumbs = [
 ];
 
 export default function ApplicationCreate(): JSX.Element {
-  const [currentStep, setCurrentStep] = useState(4);
+  const [currentStep, setCurrentStep] = useState(1);
   const [profileID, setProfileID] = useState(0);
   return (
     <>
