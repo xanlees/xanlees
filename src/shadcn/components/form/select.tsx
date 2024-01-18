@@ -35,8 +35,8 @@ export const Select = forwardRef<
             value={props.value}
         >
             <FormControl>
-                <SelectTrigger className={cn("sm:w-[250px]")}>
-                    <SelectValue placeholder={props.value ?? "Select"} />
+                <SelectTrigger className={cn("sm:w-[250px] my-2")}>
+                    <SelectValue placeholder={props.value ?? "ເລືອກ"} />
                 </SelectTrigger>
             </FormControl>
             <SelectContent className={cn("sm:w-[250px]")} ref={ref}>

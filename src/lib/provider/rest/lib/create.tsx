@@ -1,7 +1,6 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable  @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable  @typescript-eslint/no-unsafe-member-access  */
-
 import { type AxiosInstance } from "axios";
 import { type DataProvider } from "@refinedev/core";
 import getManyDataProvider from "./many";
@@ -13,11 +12,10 @@ const createDataProvider = (
 ): Omit<Required<DataProvider>, "createMany" | "updateMany" | "deleteMany"> => {
   const baseDataProvider = getManyDataProvider(apiUrl, httpClient);
   return {
-    ...baseDataProvider, // Include the base methods
+    ...baseDataProvider,
     create: async({ resource, variables, meta }) => {
       const headers = meta?.headers ?? {};
       const token = await getSessionToken(httpClient);
-
       if (token !== "") {
         headers.Authorization = `Bearer ${token}`;
       }
@@ -31,7 +29,6 @@ const createDataProvider = (
         }
       }
       const formDataOrJson = isFormData ? formData : variables;
-
       const { data } = await httpClient.post(url, formDataOrJson, { headers });
       return {
         data,

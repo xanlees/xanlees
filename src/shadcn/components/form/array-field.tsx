@@ -10,9 +10,9 @@ export const ArrayField = ({ ...props }) => {
             control={props.control}
             name={fieldName}
             render={({ field }) => (
-                <FormItem className="flex flex-col">
+                <FormItem className="flex flex-col my-2">
                     <FormLabel>{props.label}</FormLabel>
-                    <FormControl>
+                    <FormControl> 
                         {cloneElement(props.children, {
                             ...field,
                             ...props.children.props

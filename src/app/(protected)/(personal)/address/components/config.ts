@@ -3,7 +3,6 @@ import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { useProfileContext } from "../../context/context";
 import { personalAddressSchema } from "@src/app/(protected)/(career)/employee/components/form/validation";
-// import { useCustomCreate } from "@src/app/(protected)/(career)/branch/components/form/useCreateSector";
 
 interface PersonalAddressFormValues {
   bornDistrictId: number
@@ -25,9 +24,9 @@ export const useFormConfig = (
       autoSave: {
         enabled: true,
       },
-      redirect,
+      redirect: false,
       onMutationSuccess: (data) => {
-        dispatch({ type: "PERSONAL_ADDRESS", payload: data?.data?.id ?? 0 });
+        dispatch({ type: "setPersonalAddressId", payload: data?.data?.id ?? 0 });
         setCurrentStep(1);
       },
     },

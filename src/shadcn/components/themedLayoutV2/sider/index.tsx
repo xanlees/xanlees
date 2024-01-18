@@ -1,12 +1,17 @@
 import { CanAccess, ITreeMenu, useLogout, useMenu } from "@refinedev/core";
-import { List, LogOut } from "lucide-react";
+import { GraduationCap, List, LogOut, BadgeCheck } from "lucide-react";
 import { FC, ReactNode, useMemo } from "react";
 
 import { cn } from "../../../lib/utils";
-import { Button, Link } from "../../../elements";
+import { Button, Link, Badge, Card } from "../../../elements";
 import { ThemedSiderV2Props } from "./type";
 import { RefineLayoutTitleProps } from "@refinedev/ui-types";
 import Image from "next/image";
+import {
+    Accordion, AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@src/shadcn/elements/accordion";
 
 const ThemedSiderV2MenuItem: FC<{
     selectedKey?: string;
@@ -14,15 +19,13 @@ const ThemedSiderV2MenuItem: FC<{
     asChild?: boolean;
     children?: ReactNode;
     icon?: ReactNode;
-}> = ({ resource, selectedKey, asChild = false, children }) => {
+}> = ({ resource, selectedKey, asChild = false, children}) => {
     const active = useMemo(() => {
         return resource.key === selectedKey;
     }, [resource, selectedKey]);
-
     const label = useMemo(() => {
         return String(resource.label ?? resource.meta?.label);
     }, [resource]);
-
     const href = useMemo(() => {
         return String(resource.route);
     }, [resource]);
@@ -63,15 +66,12 @@ export const ThemedSiderV2Menu: FC<{
 }> = ({ meta }) => {
     const { menuItems, selectedKey } = useMenu({ meta });
 
-
     const MenuItems = useMemo(
         () =>
             menuItems.map((item: ITreeMenu) => (
-                <ThemedSiderV2MenuItem
-                    key={item.key}
-                    resource={item}
-                    selectedKey={selectedKey}
-                />
+                <ThemedSiderV2MenuItem key={item.key}
+                resource={item}
+                selectedKey={selectedKey} />
             )),
         [menuItems, selectedKey],
     );
@@ -98,22 +98,44 @@ const DefaultTitle: FC<RefineLayoutTitleProps> = () => {
     );
 };
 
+
+  
 const LogOutButton: FC = () => {
     const { mutate: logout } = useLogout();
     return (
         <CanAccess resource="user" action="show">
             <div className="my-3">
-            <Button
-                variant="ghost"
-                className="mt-1 gap-x-3 w-full justify-start p-0 pl-2.5"
-                onClick={() => logout({ redirectPath: "/" })}
-            >
-                <LogOut />
-                Sign Out
-            </Button>
+                <Button
+                    variant="ghost"
+                    className="mt-1 gap-x-3 w-full justify-start p-0 pl-2.5"
+                    onClick={() => logout({ redirectPath: "/" })}
+                >
+                    <LogOut />
+                    Sign Out
+                </Button>
             </div>
-            
         </CanAccess>
+
+    )
+}
+
+const WebVersion: FC = () => {
+    return (
+        <Card className="px-1 rounded-md">
+            <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="item-1">
+                    <AccordionTrigger className="italic text-blue-500 underline">version: 0.1<Badge>ມາໃໝ່</Badge></AccordionTrigger>
+                    <AccordionContent>
+                        <div className="flex flex-wrap">
+                            <div className="px-1">
+                                <BadgeCheck color="#0055ff" />
+                            </div>
+                            <div className="pt-0.5 font-bold">ເພີ່ມເອກະສານ</div>
+                        </div>
+                    </AccordionContent>
+                </AccordionItem>
+            </Accordion>
+        </Card>
 
     )
 }
@@ -123,7 +145,6 @@ export const ThemedSiderV2: FC<ThemedSiderV2Props> = ({
     className,
     Title = DefaultTitle,
 }) => {
-
     return (
         <div
             className={cn(
@@ -141,9 +162,10 @@ export const ThemedSiderV2: FC<ThemedSiderV2Props> = ({
                 </div>
                 <nav className="flex flex-1 flex-col px-1.5">
                     <ThemedSiderV2Menu meta={meta} />
+                    <WebVersion />
                     <LogOutButton />
                 </nav>
-˛
+                ˛
             </div>
         </div>
     );

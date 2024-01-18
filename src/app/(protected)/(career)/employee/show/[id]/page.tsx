@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable max-lines-per-function */
 
 "use client";
-
 import { useList, useOne, useShow } from "@refinedev/core";
 import { Show } from "@/shadcn/components/crud";
 import type {
@@ -13,9 +13,15 @@ import type {
 } from "../../interface";
 import { EmployeeCard } from "../element/employeeCardProfile";
 import React from "react";
-import { AddressSection, EducationSection, JoiningDateSection, SectionPosition } from "../element/employeeCardInfo";
+import {
+  AddressSection,
+  EducationSection,
+  JoiningDateSection,
+  SectionPosition,
+  UniqueNumber,
+} from "../element/employeeCardInfo";
+import { DocumentPDF } from "../element/DocumentPDF";
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export default function EmployeeShow({
   params,
 }: {
@@ -43,8 +49,6 @@ export default function EmployeeShow({
       },
     ],
   });
-  console.log("educationData", educationData);
-  console.log("educationData", record);
   return (
     <Show>
       <div className="py-5">
@@ -52,12 +56,18 @@ export default function EmployeeShow({
           <div className="col-span-4 sm:col-span-3">
             <EmployeeCard record={record} />
           </div>
-          <div className="col-span-4 sm:col-span-9 ">
-            <div className="p-6 border rounded-lg">
+          <div className="col-span-4 sm:col-span-9">
+            <div className="p-6 my-2 border rounded-lg">
               <SectionPosition record={record} sectorData={sectorData?.data} />
               <AddressSection personalAddressData={personalAddressData} />
               <EducationSection educationData={educationData} />
               <JoiningDateSection joiningDate={record?.joiningDate} />
+            </div>
+            <div className="flex-row gap-x-2 gap-y-2 sm:flex">
+              <div className="w-full p-6 my-1 border rounded-lg sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
+                <UniqueNumber record={record} />
+              </div>
+              <DocumentPDF record={record}/>
             </div>
           </div>
         </div>

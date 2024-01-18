@@ -29,6 +29,7 @@ export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
           append={append}
           name="education"
           label="ການສຶກສາວິຊາສະເພາະທີ່ຈົບ"
+          className="flex gap-2"
           defaultConfig={{ profileId: state.profileId } }
         >
           <ArrayField {...formConfig.form} name="branch" label="ສາຂາ">

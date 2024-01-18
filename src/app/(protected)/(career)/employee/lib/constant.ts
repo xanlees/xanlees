@@ -12,6 +12,7 @@ export const genderOptions = [
     value: "OTHER",
   },
 ];
+
 export const maritalStatusOptions = [
   {
     label: "ໂສດ",

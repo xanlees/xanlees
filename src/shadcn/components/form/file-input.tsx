@@ -1,14 +1,6 @@
-import { Avatar, AvatarFallback, AvatarImage, Input } from "@src/shadcn/elements";
-import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@src/shadcn/elements/form"
-import { ChangeEvent, useState } from "react";
-
+import React, { ChangeEvent, useState } from "react";
+import { Input } from "@src/shadcn/elements";
+import { FileText } from "lucide-react";
 
 function getImageData(event: ChangeEvent<HTMLInputElement>) {
   const dataTransfer = new DataTransfer();
@@ -24,22 +16,42 @@ function getImageData(event: ChangeEvent<HTMLInputElement>) {
 }
 
 export const FileInputField = ({ ...props }) => {
-  const [preview, setPreview] = useState("");
+  const [fileType, setFileType] = useState("");
+  const [fileName, setFileName] = useState("");
+  const [fileSize, setFileSize] = useState("");
   return (
     <>
       <Input
         type="file"
         {...props.rest}
         onChange={(event) => {
-          const { files, displayUrl } = getImageData(event)
-          setPreview(displayUrl);
+          const { files } = getImageData(event);
+          const selectedFile = event.target.files![0];
+
+          const fileName = selectedFile.name;
+          const fileExtension = fileName.split(".").pop();
+          setFileType(fileExtension as any);
+          setFileName(fileName);
+
+          const fileSizeInBytes = selectedFile.size;
+          const fileSizeInKB = fileSizeInBytes / 1024;
+          setFileSize(`${fileSizeInKB.toFixed(2)} KB`);
           props.onChange(files);
         }}
       />
-      <Avatar className="w-64 h-64 mx-auto">
-        <AvatarImage src={preview} />
-        <AvatarFallback>ຮູບໂປຣໄຟລ໌</AvatarFallback>
-      </Avatar>
+      <div className="flex h-12 mt-2 text-sm ">
+        {fileType && (
+          <div className="flex w-full pt-2 pl-2 bg-blue-300 rounded-md">
+            <div className="mr-2">
+              <FileText className="w-9 h-9" />
+            </div>
+            <div className="flex flex-col">
+              <div className="text-md">{fileName}</div>
+              <div className="text-sm">{fileSize}</div>
+            </div>
+          </div>
+        )}
+      </div>
     </>
-  )
-}
+  );
+};

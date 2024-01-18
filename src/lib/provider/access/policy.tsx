@@ -7,4 +7,6 @@ p, admin, employee, (list)|(create)
 p, admin, employee/*, (edit)|(show)|(delete)
 p, admin, branch, (list)|(create)
 p, admin, branch/*, (edit)|(show)|(delete)
+p, admin, application, (list)|(create)
+p, admin, application/*, (edit)|(show)|(delete)
 `);

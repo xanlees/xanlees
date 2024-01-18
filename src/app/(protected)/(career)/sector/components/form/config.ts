@@ -7,13 +7,7 @@ import { sectorSchema } from "./validation";
 export const useFormConfig = (redirect: RedirectAction) => {
   const { ...form } = useForm<z.infer<typeof sectorSchema>>({
     resolver: zodResolver(sectorSchema),
-    defaultValues: {
-      name: "",
-    },
     refineCoreProps: {
-      autoSave: {
-        enabled: true,
-      },
       resource: "sector",
       redirect: false,
     },

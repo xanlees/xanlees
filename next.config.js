@@ -21,6 +21,15 @@ module.exports = {
           { key: "Access-Control-Allow-Methods", value: "GET,OPTIONS,POST" },
           { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" },
         ]
+      },
+      {
+        source: "/api/auth/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Credentials", value: "true" },
+          { key: "Access-Control-Allow-Origin", value: "http://workhublink.la" },
+          { key: "Access-Control-Allow-Methods", value: "GET,OPTIONS,POST" },
+          { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" },
+        ]
       }
     ]
   },
@@ -52,6 +61,10 @@ module.exports = {
         },
       ],
     });
+    config.module.rules.push({
+      test: /\.node/,
+      use: "raw-loader",
+    },)
     return config;
   },
 };
