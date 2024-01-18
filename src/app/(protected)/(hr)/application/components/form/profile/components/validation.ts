@@ -1,8 +1,5 @@
-/* eslint-disable max-params */
 import * as z from "zod";
-import type { ProfileSendData } from "../interface";
-
-const typeUniqueNumber = ["MACHINE", "IDENTIFY", "CENSUS_BOOK"] as const;
+const typeUniqueNumber = ["IDENTIFY", "CENSUS_BOOK"] as const;
 const validGenders = ["MALE", "FEMALE", "OTHER"] as const;
 export const validMaritalStatus = ["SINGLE", "MARRIED"] as const;
 export const acceptedImageTypes = [
@@ -38,11 +35,7 @@ export const profileSchema = z
     personalAddressId: z.number().min(0, {
       message: "Personal Address ID must be a non-negative number.",
     }),
-    uniqueNumber: z.array(
-      z.object({
-        uniqueNumber: z.string(),
-      }),
-    ),
+    uniqueNumber: z.string(),
     profilePicture: (z.any() as z.ZodType<FileList>).refine(
       (fileList) => {
         const file = fileList?.[0];
@@ -62,17 +55,10 @@ export const profileSchema = z
       }),
   })
   .transform((val) => {
-    const profileVal = transformUniqueNumber(val);
-    delete profileVal.uniqueNumber;
-    return profileVal;
+    const sendData = {
+      ...val,
+      uniqueNumber: [val.uniqueNumber],
+    };
+    console.log("sendData", sendData);
+    return sendData;
   });
-
-function transformUniqueNumber(val: ProfileSendData): Record<string, any> {
-  return {
-    ...val,
-    ...val.uniqueNumber.reduce<Record<string, string>>((acc, curr, index) => {
-      acc[`uniqueNumber[${index}]`] = curr.uniqueNumber;
-      return acc;
-    }, {}),
-  };
-}

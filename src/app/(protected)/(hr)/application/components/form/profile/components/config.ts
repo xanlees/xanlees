@@ -21,7 +21,9 @@ export const useFormConfig = ({
     resolver: zodResolver(profileSchema),
     mode: "onChange",
     defaultValues: {
-      personalAddressId: state.personalAddressId,
+      personalAddressId: 1,
+      // personalAddressId: state.personalAddressId,
+      typeOfUniqueNumber: "IDENTIFY",
     },
     refineCoreProps: {
       resource: "profile",

@@ -22,7 +22,6 @@ interface Props {
   children?: React.ReactNode
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const RefineProvider = ({ children }: Props): JSX.Element => {
   const { data, status } = useSession();
   const to = usePathname();
