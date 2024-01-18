@@ -11,8 +11,8 @@ import {
 } from "../../containers/form";
 import { Textarea } from "@src/shadcn/elements";
 
-export const ApplicationForm = ({ redirect = "list", id }: { redirect: RedirectAction, id: number }) => {
-  const formConfig = useFormConfig(redirect, id);
+export const ApplicationForm = ({ redirect = "list", setCurrentStep }: { redirect: RedirectAction, setCurrentStep: any }) => {
+  const formConfig = useFormConfig(redirect, setCurrentStep);
   return (
     <div className="rounded-full w-96 sm:w-[37%] ">
       <Form {...formConfig.form}>
@@ -31,5 +31,3 @@ export const ApplicationForm = ({ redirect = "list", id }: { redirect: RedirectA
     </div>
   );
 };
-
-

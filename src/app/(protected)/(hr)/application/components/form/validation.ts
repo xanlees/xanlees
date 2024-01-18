@@ -1,7 +1,6 @@
 import * as z from "zod";
 export interface IApplication {
   profileId: number
-  postId: number
   emergencyFullname: string
   emergencyRelationship: string
   emergencyPhoneNumber: string
@@ -28,7 +27,6 @@ function transformApplication(val: IApplication): Record<string, any> {
 
 export const applicationSchema = z.object({
   profileId: z.number(),
-  postId: z.number(),
   emergencyFullname: z.string(),
   emergencyRelationship: z.string(),
   emergencyPhoneNumber: z.string(),

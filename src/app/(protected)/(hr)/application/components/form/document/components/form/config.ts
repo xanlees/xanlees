@@ -3,7 +3,6 @@ import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { formConfig } from "@src/common/interface";
 import { type z } from "zod";
-
 import { documentFormSchema } from "./validation";
 
 const step = 3;

@@ -8,14 +8,12 @@ import { PersonalInformationSection } from "../containers/form/PersonalInformati
 interface ProfileFormProps {
   redirect: RedirectAction
   setCurrentStep?: (step: number) => void
-  setProfileID?: (id: number) => void
 }
 export const ProfileForm: React.FC<ProfileFormProps> = ({
   redirect,
   setCurrentStep,
-  setProfileID,
 }) => {
-  const formConfig = useFormConfig({ redirect, setCurrentStep, setProfileID });
+  const formConfig = useFormConfig({ redirect, setCurrentStep });
   return (
     <div className="w-[39%] rounded-full ">
       <Form {...formConfig.form}>

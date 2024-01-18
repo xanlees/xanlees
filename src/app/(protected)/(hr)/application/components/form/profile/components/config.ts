@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
@@ -10,10 +9,9 @@ import { formConfig } from "@src/common/interface";
 interface FormConfigParams {
   redirect: RedirectAction
   setCurrentStep?: ((step: number) => void) | undefined
-  setProfileID?: ((id: number) => void) | undefined
 }
 
-export const useFormConfig = ({ setCurrentStep, setProfileID }: FormConfigParams) => {
+export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
   const { state, dispatch } = useApplicationContext();
   const { ...form } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
@@ -30,7 +28,6 @@ export const useFormConfig = ({ setCurrentStep, setProfileID }: FormConfigParams
       onMutationSuccess: (data) => {
         dispatch({ type: "setProfileId", payload: data?.data?.id ?? 0 });
         (setCurrentStep != null) && setCurrentStep(2);
-        (setProfileID != null) && setProfileID(data?.data?.id ?? 0);
       },
       redirect: false,
     },
