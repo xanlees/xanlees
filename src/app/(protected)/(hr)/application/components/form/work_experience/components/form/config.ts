@@ -7,6 +7,9 @@ import { WorkExperienceSchema } from "./validation";
 export const useFormConfig = (redirect: RedirectAction, setCurrentStep: any) => {
   const { ...form } = useForm<z.infer<typeof WorkExperienceSchema>>({
     resolver: zodResolver(WorkExperienceSchema),
+    defaultValues: {
+      applicationId: Number(1),
+    },
     refineCoreProps: {
       resource: "work_experience",
       autoSave: {
