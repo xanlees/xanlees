@@ -4,10 +4,10 @@ import { Input } from "@src/shadcn/elements";
 import { Form } from "@src/shadcn/components/form";
 interface IFormConfig {
   form: {
-    control: any;
-    setValue: any;
-    watch: any;
-  };
+    control: any
+    setValue: any
+    watch: any
+  }
 }
 export const UniqueNumberInput: React.FC<{ formConfig: IFormConfig }> = ({
   formConfig,

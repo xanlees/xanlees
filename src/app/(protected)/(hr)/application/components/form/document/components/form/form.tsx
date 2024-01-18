@@ -6,7 +6,7 @@ import { Input } from "@src/shadcn/elements";
 import React from "react";
 import { useFieldArray } from "react-hook-form";
 import { useFormConfig } from "./config";
-import { useApplicationContext } from "@src/app/(protected)/(hr)/context/context";
+import { useApplicationContext } from "@src/app/(protected)/(hr)/application/context/context";
 
 interface DocumentFormProps {
   redirect: RedirectAction

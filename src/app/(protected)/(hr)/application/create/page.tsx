@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Stepper from "@keyvaluesystems/react-stepper";
 import { Button, Link } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
-import { ApplicationProvider } from "../../context/context";
+import { ApplicationProvider } from "../context/context";
 
 const breadcrumbs = [
   { label: "Employee", href: "/employee" },
@@ -13,7 +13,7 @@ const breadcrumbs = [
 ];
 
 export default function ApplicationCreate(): JSX.Element {
-  const [currentStep, setCurrentStep] = useState(3);
+  const [currentStep, setCurrentStep] = useState(0);
   const [profileID, setProfileID] = useState(0);
   return (
     <>

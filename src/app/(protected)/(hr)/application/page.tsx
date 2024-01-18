@@ -15,7 +15,7 @@ export default function ApplicationList(): JSX.Element {
     enableColumnFilters: true,
     refineCoreProps: { resource },
   });
-  const application = table.options.data ?? [];
+  // const application = table.options.data ?? [];
   const friendly = useUserFriendlyName();
   return (
     <List>

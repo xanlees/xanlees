@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import { useApplicationContext } from "@src/app/(protected)/(hr)/context/context";
+import { useApplicationContext } from "@src/app/(protected)/(hr)/application/context/context";
 import { personalAddressSchema } from "./validation";
 
 interface PersonalAddressFormValues {
