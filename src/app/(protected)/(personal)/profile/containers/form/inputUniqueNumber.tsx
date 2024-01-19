@@ -15,7 +15,7 @@ interface IFormConfig {
 export const DynamicNumberForm: React.FC<{ formConfig: IFormConfig }> = ({
   formConfig,
 }) => {
-  const { fields, append } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control: formConfig.form.control,
     name: "uniqueNumber",
   });
@@ -29,12 +29,15 @@ export const DynamicNumberForm: React.FC<{ formConfig: IFormConfig }> = ({
         form={formConfig.form}
         fields={fields}
         append={append}
+        remove={remove}
         name="uniqueNumber"
         label={displayText}
+        classNameButton="mt-2"
       >
         <ArrayField
           {...formConfig.form}
           name="uniqueNumber"
+          className="flex"
         >
           <Input placeholder={displayText} className="block w-56" />
         </ArrayField>

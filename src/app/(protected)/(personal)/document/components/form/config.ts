@@ -2,6 +2,7 @@ import { documentFormSchema } from "./validation";
 import { useForm } from "@refinedev/react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type z } from "zod";
+import { formHeadersConfig } from "@src/common/interface";
 
 const step = 3;
 interface FormConfigParams {
@@ -14,12 +15,7 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
     refineCoreProps: {
       resource: "document",
       redirect: false,
-      meta: {
-        headers: {
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          "content-type": "multipart/form-data",
-        },
-      },
+      meta: formHeadersConfig,
       onMutationSuccess: (data) => {
         (setCurrentStep != null) && setCurrentStep(step);
       },

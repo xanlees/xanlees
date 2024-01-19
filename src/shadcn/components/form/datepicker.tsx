@@ -15,9 +15,8 @@ export const DatePickerField = ({ ...props }) => {
                 <FormControl>
                     <Button
                         variant={"outline"}
-                        // className={cn("w-[240px] justify-start text-left font-normal", !props.value && "text-muted-foreground")}
                         className={cn(
-                            "pl-3 text-left font-normal",
+                            "pl-3 my-2 text-left font-normal",
                             props?.className ? props.className : "w-[250px]",
                             !props.value && "text-muted-foreground"
                         )}
@@ -25,7 +24,7 @@ export const DatePickerField = ({ ...props }) => {
                         {props.value ? (
                             format(new Date(props.value), "PPP")
                         ) : (
-                            <span>Pick a date</span>
+                            <span>ເລືອກວັນທີ</span>
                         )}
                         <CalendarIcon className="w-4 h-4 ml-auto opacity-50" />
                     </Button>

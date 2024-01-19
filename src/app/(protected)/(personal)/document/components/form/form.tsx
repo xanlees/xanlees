@@ -26,6 +26,7 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ setCurrentStep }) =>
           name="document"
           label="ເອກສານ"
           className="grid"
+          classNameButton="mt-1"
           defaultConfig={{ profileId: state.profileId }}
         >
           <ArrayField {...formConfig.form} name="documentName" label="ຊື່ເອກກະສານ">
