@@ -1,11 +1,11 @@
-import { documentFormSchema } from "./validation"
-import { useForm } from "@refinedev/react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { type z } from "zod"
+import { documentFormSchema } from "./validation";
+import { useForm } from "@refinedev/react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type z } from "zod";
 
 const step = 3;
 interface FormConfigParams {
-  setCurrentStep: ((step: number) => void) | undefined;
+  setCurrentStep: ((step: number) => void) | undefined
 }
 
 export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
