@@ -39,8 +39,8 @@ export const FileInputField = ({ ...props }) => {
           props.onChange(files);
         }}
       />
-      <div className="flex h-12 mt-2 text-sm ">
-        {fileType && (
+      {fileType && (
+        <div className="flex h-12 mt-2 text-sm ">
           <div className="flex w-full pt-2 pl-2 bg-blue-300 rounded-md">
             <div className="mr-2">
               <FileText className="w-9 h-9" />
@@ -50,8 +50,8 @@ export const FileInputField = ({ ...props }) => {
               <div className="text-sm">{fileSize}</div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 };
