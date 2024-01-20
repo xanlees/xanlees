@@ -15,13 +15,11 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ setCurrentStep }) =>
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "document" });
   const [fileName, setFileName] = useState("");
   const [file, setFile] = useState<FileList | null>(null);
-  const handleInput = handleInputChange(setFileName);
-  const handleFileInput = handleFileInputChange(setFile);
   return (
     <div className="w-[32%] rounded-lg">
       <Form {...formConfig.form}>
-        <Input placeholder="ຊື່ເອກສານ" className="flex w-full" onChange={handleInput}/>
-        <Form.FileInput onChange={handleFileInput} />
+        <Input placeholder="ຊື່ເອກສານ" className="flex w-full" onChange={handleInputChange(setFileName)} />
+        <Form.FileInput onChange={handleFileInputChange(setFile)} />
         {fields.map((field, index) => (
           <RenderFile key={field.id} field={field} removeField={() => { remove(index); }} />
         ))}
