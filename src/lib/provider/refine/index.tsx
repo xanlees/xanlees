@@ -24,6 +24,7 @@ interface Props {
 
 export const RefineProvider = ({ children }: Props): JSX.Element => {
   const { data, status } = useSession();
+  console.log("data", data)
   const to = usePathname();
 
   const authProvider: AuthBindings = useMemo(() => {
@@ -62,6 +63,19 @@ export const RefineProvider = ({ children }: Props): JSX.Element => {
             {children}
           </Suspense>
         </ThemedLayoutV2>
+        {/* <Suspense fallback={<Loading />}>
+          {status !== "unauthenticated" ? (
+            <ThemedLayoutV2
+              darkModeProvider={ViteDarkModeProvider}
+              defaultDarkMode="light"
+              storageKey="darkMode"
+            >
+              {children}
+            </ThemedLayoutV2>
+          ) : (
+            <>{children}</>
+          )}
+        </Suspense> */}
       </Refine>
     </authContext.Provider>
   );
