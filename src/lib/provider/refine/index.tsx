@@ -7,9 +7,9 @@ import { accessControlProvider } from "@/lib/provider/access/";
 import { getIdentity, getLogin, getLogout } from "@/lib/provider/auth/authOperation";
 import { ThemedLayoutV2 } from "@/shadcn/components/themedLayoutV2";
 import { ViteDarkModeProvider, notificationProvider } from "@/shadcn/providers";
+import Loading from "@src/app/loading";
 import { Refine, type AuthBindings, type HttpError } from "@refinedev/core";
 import routerProvider from "@refinedev/nextjs-router/app";
-import Loading from "@src/app/loading";
 import { RestDataProvider } from "@src/lib/provider/rest/";
 import { resources } from "@src/lib/resources/constant";
 import { useSession } from "next-auth/react";
@@ -24,7 +24,6 @@ interface Props {
 
 export const RefineProvider = ({ children }: Props): JSX.Element => {
   const { data, status } = useSession();
-  console.log("data", data)
   const to = usePathname();
 
   const authProvider: AuthBindings = useMemo(() => {
@@ -59,23 +58,10 @@ export const RefineProvider = ({ children }: Props): JSX.Element => {
           defaultDarkMode="light"
           storageKey="darkMode"
         >
-          <Suspense fallback={<Loading/>}>
+          <Suspense fallback={<Loading />}>
             {children}
           </Suspense>
         </ThemedLayoutV2>
-        {/* <Suspense fallback={<Loading />}>
-          {status !== "unauthenticated" ? (
-            <ThemedLayoutV2
-              darkModeProvider={ViteDarkModeProvider}
-              defaultDarkMode="light"
-              storageKey="darkMode"
-            >
-              {children}
-            </ThemedLayoutV2>
-          ) : (
-            <>{children}</>
-          )}
-        </Suspense> */}
       </Refine>
     </authContext.Provider>
   );
