@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars, no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable max-lines-per-function */
 /* eslint-disable  @typescript-eslint/require-await */
@@ -29,9 +30,9 @@ export const RefineProviderVisitor = ({ children }: Props): JSX.Element => {
       options={{
         syncWithLocation: true,
       }}>
-        <Suspense fallback={<Loading />}>
-          {children}
-        </Suspense>
+      <Suspense fallback={<Loading />}>
+        {children}
+      </Suspense>
     </Refine>
   );
 };
