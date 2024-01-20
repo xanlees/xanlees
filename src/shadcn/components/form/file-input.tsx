@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
-import { Input } from "@src/shadcn/elements";
+import { Badge, Input } from "@src/shadcn/elements";
 import { FileText } from "lucide-react";
+import { cn } from "@src/shadcn/lib/utils";
 
 function getImageData(event: ChangeEvent<HTMLInputElement>) {
   const dataTransfer = new DataTransfer();
@@ -19,10 +20,12 @@ export const FileInputField = ({ ...props }) => {
   const [fileType, setFileType] = useState("");
   const [fileName, setFileName] = useState("");
   const [fileSize, setFileSize] = useState("");
+  const  { className } = props;
   return (
     <>
       <Input
         type="file"
+        className={cn("",className)}
         {...props.rest}
         onChange={(event) => {
           const { files } = getImageData(event);
@@ -36,22 +39,25 @@ export const FileInputField = ({ ...props }) => {
           const fileSizeInBytes = selectedFile.size;
           const fileSizeInKB = fileSizeInBytes / 1024;
           setFileSize(`${fileSizeInKB.toFixed(2)} KB`);
-          props.onChange(files);
+          props.onChange(event);
         }}
       />
       {fileType && (
-        <div className="flex h-12 mt-2 text-sm ">
-          <div className="flex w-full pt-2 pl-2 bg-blue-300 rounded-md">
-            <div className="mr-2">
-              <FileText className="w-9 h-9" />
-            </div>
-            <div className="flex flex-col">
-              <div className="text-md">{fileName}</div>
-              <div className="text-sm">{fileSize}</div>
-            </div>
-          </div>
-        </div>
-      )}
+  <div className="flex flex-col mt-4 space-y-2 text-sm">
+    <div className="flex items-center p-1 bg-blue-100 rounded-md">
+      <div className="mr-4">
+        <FileText className="w-16 h-16 text-blue-700" />
+        <Badge className="flex items-center justify-center text-center rounded-none w-14 mx-1 -my-1.5">
+         {fileName.substring(fileName.length - 3, fileName.length)}
+        </Badge>
+      </div>
+      <div className="flex flex-col">
+        <div className="emibold text-l">{fileName}</div>
+        <div className="text-gray-500">{fileSize}</div>
+      </div>
+    </div>
+  </div>
+)}
     </>
   );
 };
