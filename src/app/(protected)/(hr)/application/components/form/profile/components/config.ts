@@ -4,7 +4,6 @@ import { useForm } from "@refinedev/react-hook-form";
 import { profileSchema } from "./validation";
 import type { ProfileFormValues } from "../interface";
 import { useApplicationContext } from "@src/app/(protected)/(hr)/application/context/context";
-import { formConfig } from "@src/common/interface";
 
 interface FormConfigParams {
   redirect: RedirectAction
@@ -21,7 +20,12 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
     },
     refineCoreProps: {
       resource: "profile",
-      meta: formConfig,
+      meta: {
+        headers: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "content-type": "multipart/form-data",
+        },
+      },
       autoSave: {
         enabled: true,
       },

@@ -1,4 +1,4 @@
-interface IProfile {
+export interface IProfile {
   profileDetail: {
     id: number
     fullname: string
@@ -48,10 +48,21 @@ export interface IApplication {
   pledgeReason: string
   appliedReason: string
   id?: number
+  createdOn: string
 }
 
 export interface IFormConfig {
   form: {
     setValue: any
   }
+}
+
+export interface IWorkExperience {
+  company: string
+  position: string
+  time: string
+  salary: string
+  reasonOfResignation: string
+  applicationId: number
+  id: number
 }
