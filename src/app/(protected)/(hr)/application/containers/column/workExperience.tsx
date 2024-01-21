@@ -10,14 +10,23 @@ export function workExperienceColumn(dataWorkExperience: IWorkExperience[]) {
       enableSorting
       enableHiding
       cell={({ row: { original } }) => {
-        const displaySectors = (dataWorkExperience as { data?: IWorkExperience[] })?.data
-          ?.filter((item) => item?.applicationId === original.id);
+        const display = (
+          dataWorkExperience as { data?: IWorkExperience[] }
+        )?.data?.filter((item) => item?.applicationId === original.id);
         return (
-          <div>
-            {displaySectors?.map((item, index) => (
-              <div key={index}>
-                <div>{item.time}</div>
-                <div>{item.position}</div>
+          <div className="space-y-2">
+            {display?.map((item, index) => (
+              <div key={item.id} className="flex items-center p-2 bg-gray-100 rounded-md shadow-md">
+                <div className="font-semibold text-md">
+                  <div className="flex items-start">
+                    <span className="pr-2 text-gray-400">ປະສົບການ:</span>
+                    <span>{`${item.time}: ${item.position}`}</span>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="pr-2 text-gray-400">ຢູ່ທີ:</span>
+                    <span>{item.company}</span>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
