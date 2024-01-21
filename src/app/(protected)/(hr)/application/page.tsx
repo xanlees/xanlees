@@ -7,8 +7,8 @@ import { useTable } from "@refinedev/react-table";
 import { getSelectColumn } from "@src/common/containers/column/select";
 import { getActionsColumn } from "@src/common/containers/column/action";
 import type { IApplication } from "./interface";
-import { FullNameColumn, PhoneNumberColumn, GenderColumn, ApplicationDate, MarriageStatus, workExperienceColumn} from "./containers/column";
-import { useApplicationID, useWorkExperience } from "./hooks"
+import { FullNameColumn, PhoneNumberColumn, GenderColumn, ApplicationDate, MarriageStatus, workExperienceColumn } from "./containers/column";
+import { useApplicationID, useWorkExperience } from "./hooks";
 
 const resource = "application";
 

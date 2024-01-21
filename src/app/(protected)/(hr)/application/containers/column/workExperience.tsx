@@ -11,7 +11,7 @@ export function workExperienceColumn(dataWorkExperience: IWorkExperience[]) {
       enableHiding
       cell={({ row: { original } }) => {
         const displaySectors = (dataWorkExperience as { data?: IWorkExperience[] })?.data
-          ?.filter((item) => item?.applicationId === original.id)
+          ?.filter((item) => item?.applicationId === original.id);
         return (
           <div>
             {displaySectors?.map((item, index) => (
