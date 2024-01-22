@@ -1,12 +1,7 @@
 import { useList } from "@refinedev/core";
-import type { IWorkExperience, IApplication } from "../interface";
+import type { IWorkExperience } from "../interface";
 
-interface UseSectorProps {
-  applicationID: Array<number | number[]>
-  application: IApplication[]
-}
-
-export function useApplication({ applicationID, application }: UseSectorProps): {
+export function useWorkExperience({ applicationID }: { applicationID: number }): {
   data: IWorkExperience[]
 } {
   const { data, error, isError } = useList<IWorkExperience>({
@@ -19,13 +14,9 @@ export function useApplication({ applicationID, application }: UseSectorProps): 
         value: applicationID,
       },
     ],
-    queryOptions: {
-      enabled: application.length > 0,
-    },
   });
   if (isError) {
     console.error("Error fetching position data:", error);
   }
   return { data: (data as unknown as IWorkExperience[]) ?? [] };
 }
-

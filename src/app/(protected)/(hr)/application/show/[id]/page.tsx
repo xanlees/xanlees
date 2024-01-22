@@ -2,33 +2,39 @@
 
 import { useShow } from "@refinedev/core";
 import { Show } from "@/shadcn/components/crud";
-import { type IApplication } from "../../interface";
-import { Avatar, AvatarFallback, AvatarImage, Card, CardFooter, CardContent } from "@src/shadcn/elements";
-import { Badge } from "@src/shadcn/elements";
+import type { IApplication, IWorkExperience, IProfile } from "../../interface";
+import { Card, CardContent } from "@src/shadcn/elements";
+import { AvatarCard, PersonalInformation, SkillSection, generateTechnicalSkills, generateLanguageSkills, WorkExperience, DocumentList, EducationList } from "../../containers/show";
+import { useWorkExperience, useDocument, useEducation } from "../../hooks";
 
 export default function ApplicationShow({ params }: { params: { id: number } }): JSX.Element {
   const { queryResult } = useShow<IApplication>();
   const { data } = queryResult;
   const record: IApplication | undefined = data?.data;
+  const application = record?.id ?? 0;
+  const { fullname = "", profilePicture = "", id } = (record?.profileDetail as IProfile) ?? {};
+  const { data: dataWorkExperience } = useWorkExperience({ applicationID: application }) as { data: IWorkExperience[] };
+  const { data: documentData } = useDocument({ profileID: id });
+  const { data: educationData } = useEducation({ profileID: id });
   return (
     <Show>
-      <div className="flex gap-2">
-        <Card className="p-2 rounded-sm h-96 w-80">
-          <Avatar className="mx-auto h-72 w-72">
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" className="w-full" />
-            <AvatarFallback>Avatar</AvatarFallback>
-          </Avatar>
-          <CardFooter className="flex justify-center mx-auto mt-2 text-xl font-semibold text-center">
-            {"Thavisouk MINALAVONG"}
-          </CardFooter>
-        </Card>
-        <Card className="p-2 rounded-sm ">
-          <CardContent className="p-2 rounded-sm " >
-            ສະໝັກຕໍາແໜ່ງ
-          </CardContent>
-        </Card>
+      <div className="flex-row gap-2 p-2 sm:flex">
+        <div>
+          <AvatarCard title={fullname} image={profilePicture}/>
+          <PersonalInformation record={record} />
+        </div>
+        <div className="w-full space-y-2">
+          <Card className="w-full p-2 rounded-sm sm:w-full md:w-full">
+            <CardContent className="p-2 rounded-sm">
+              <SkillSection header="ທັກສະໃຊ້ຄວາມພິວເຕີ" skills={generateTechnicalSkills(record)} />
+              <SkillSection header="ທັກສະພາສາຕ່າງປະເທດ" skills={generateLanguageSkills(record)} />
+              <WorkExperience header="ປະສົບການເຮັດວຽກ" dataWorkExperience={dataWorkExperience} />
+              <EducationList header="ການສຶກສາ" educationData={educationData} />
+            </CardContent>
+          </Card>
+          <DocumentList header={""} documentData={documentData} />
+        </div>
       </div>
     </Show>
   );
 }
-

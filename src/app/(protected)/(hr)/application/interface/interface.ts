@@ -1,19 +1,17 @@
 export interface IProfile {
-  profileDetail: {
-    id: number
-    fullname: string
-    nickname: string
-    phoneNumber: string
-    gender: "MALE" | "FEMALE" | "OTHER"
-    birthday: string
-    personalAddressId: number
-    maritalStatus: "SINGLE" | "MARRIED" | "DIVORCED" | "WIDOWED" | "OTHER"
-    profilePicture: string
-    uniqueNumber: string[]
-    typeOfUniqueNumber: "MACHINE" | "OTHER"
-  }
+  id: number
+  fullname: string
+  nickname: string
+  phoneNumber: string
+  gender: "MALE" | "FEMALE" | "OTHER"
+  birthday: string
+  personalAddressId: number
+  maritalStatus: "SINGLE" | "MARRIED" | null
+  profilePicture: string
+  uniqueNumber: string[]
+  typeOfUniqueNumber: "MACHINE" | "OTHER"
 }
-interface IPost {
+export interface IPost {
   profileDetail: {
     id: number
     fullname: string
@@ -22,7 +20,7 @@ interface IPost {
     gender: "MALE" | "FEMALE" | "OTHER"
     birthday: string
     personalAddressId: number
-    maritalStatus: "SINGLE" | "MARRIED" | "DIVORCED" | "WIDOWED" | "OTHER"
+    maritalStatus: "SINGLE" | "MARRIED" | "OTHER"
     profilePicture: string
     uniqueNumber: string[]
     typeOfUniqueNumber: "MACHINE" | "OTHER"
@@ -64,5 +62,24 @@ export interface IWorkExperience {
   salary: string
   reasonOfResignation: string
   applicationId: number
+  id: number
+}
+export interface IEducation {
+  year: string
+  branch: string
+  graduationDetail: {
+    id: number
+    degree: string
+    sector: string
+  }
+  graduationId: number
+  profileId: number
+  id: number
+}
+
+export interface IDocument {
+  documentName: string
+  documentFile: string
+  profileId: number
   id: number
 }
