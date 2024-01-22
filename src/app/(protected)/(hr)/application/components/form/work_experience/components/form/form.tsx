@@ -1,5 +1,4 @@
 import React from "react";
-import { type RedirectAction } from "@refinedev/core";
 import { Form } from "@src/shadcn/components/form";
 import { useFormConfig } from "./config";
 import { Input, Textarea } from "@src/shadcn/elements";
@@ -8,12 +7,11 @@ import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { useApplicationContext } from "@src/app/(protected)/(hr)/application/context/context";
 interface WorkExperienceFormProps {
-  redirect: RedirectAction
-  setCurrentStep: any
+  setCurrentStep?: (step: number) => void
 }
 
-export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ redirect, setCurrentStep }) => {
-  const formConfig = useFormConfig(redirect, setCurrentStep);
+export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurrentStep }) => {
+  const formConfig = useFormConfig(setCurrentStep);
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "work_experience" });
   const { state } = useApplicationContext();
   return (

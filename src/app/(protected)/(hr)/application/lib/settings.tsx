@@ -9,35 +9,35 @@ export const applicationFromStep = [
   {
     stepLabel: "ສ້າງທີຢູ່",
     stepDescription: (
-      <PersonalAddressForm redirect="create" setCurrentStep={undefined} />
+      <PersonalAddressForm/>
     ),
     completed: false,
   },
   {
     stepLabel: "ສ້າງໂປຣໄຟລ໌",
     stepDescription: (
-      <ProfileForm redirect="create" setCurrentStep={undefined} />
+      <ProfileForm/>
     ),
     completed: false,
   },
   {
     stepLabel: "ເອກສານ",
     stepDescription: (
-      <DocumentForm redirect="create" setCurrentStep={undefined} />
+      <DocumentForm/>
     ),
     completed: false,
   },
   {
     stepLabel: "ຟອມສະໝັກວຽກ",
     stepDescription: (
-      <ApplicationForm redirect="create" setCurrentStep={undefined} />
+      <ApplicationForm/>
     ),
     completed: false,
   },
   {
     stepLabel: "ປະສົບການເຮັດວຽກ",
     stepDescription: (
-      <WorkExperienceForm redirect="create" setCurrentStep={undefined} />
+      <WorkExperienceForm/>
     ),
     completed: false,
   },

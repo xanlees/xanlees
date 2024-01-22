@@ -1,20 +1,18 @@
 import React from "react";
-import { useSelect, type RedirectAction } from "@refinedev/core";
+import { useSelect } from "@refinedev/core";
 import { Form } from "@src/shadcn/components/form";
 import { useFormConfig } from "./config";
 import { InputBornVillage, BornDistrictSelect, CurrentDistrictSelect } from "../../containers";
 import type { IDistrict } from "../../interface";
 
 interface PersonalAddressFormProps {
-  redirect: RedirectAction
-  setCurrentStep: any
+  setCurrentStep?: (step: number) => void
 }
 
 export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
-  redirect,
   setCurrentStep,
 }) => {
-  const formConfig = useFormConfig(redirect, setCurrentStep);
+  const formConfig = useFormConfig(setCurrentStep);
   const district = useSelect<IDistrict>({
     resource: "district",
     optionLabel: "districtName",
