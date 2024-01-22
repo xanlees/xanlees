@@ -9,7 +9,7 @@ export const PersonalInformation: React.FC<{ record?: IApplication }> = ({ recor
   const age = calculateAge(birthday);
   return (
     <Card className="flex flex-col p-2 my-2 rounded-sm">
-      <CardTitle className="text-xl text-center">ຂໍ້​ມູນ​ສ່ວນ​ບຸກຄົນ</CardTitle>
+      <CardTitle className="text-xl text-center">{"ຂໍ້​ມູນ​ສ່ວນ​ບຸກຄົນ"}</CardTitle>
       <CardContent className="capitalize">
         <li>{`ຊື່ ແລະ ນາມສະກູນ: ${record?.profileDetail.fullname}`}</li>
         <li>{`ຊື່ຫຼິ້ນ: ${record?.profileDetail.nickname}`}</li>

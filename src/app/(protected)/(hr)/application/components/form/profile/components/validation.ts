@@ -13,18 +13,18 @@ export const maxFileSize = 5000000;
 export const profileSchema = z
   .object({
     fullname: z.string().min(1, {
-      message: "Full name must be at least 1 character.",
+      message: "ກະລຸນາປ້ອນຊື່ແທ້ ແລະນາມສະກຸນ",
     }),
     nickname: z.string().min(1, {
-      message: "Nickname must be at least 1 character.",
+      message: "ກະລຸນາປ້ອນຊື່ຫຼີ້ນ",
     }),
     phoneNumber: z.string().min(1, {
-      message: "Phone number must be at least 1 character.",
+      message: "ກະລຸນາປ້ອນເບີໂທ",
     }),
     gender: z
       .enum(validGenders)
       .refine((value) => validGenders.includes(value), {
-        message: "Gender must be one of 'MALE', 'FEMALE', or 'OTHER'.",
+        message: "ກະລຸນາເລືອກເພດ",
       }),
     typeOfUniqueNumber: z
       .enum(typeUniqueNumber)
@@ -45,7 +45,7 @@ export const profileSchema = z
     maritalStatus: z
       .enum(validMaritalStatus)
       .refine((value) => validMaritalStatus.includes(value), {
-        message: "Marital status must be one of 'SINGLE', 'MARRIED'.",
+        message: "ກະລຸນາເລືອກສະຖານາການແຕ່ງງານ",
       }),
   })
   .transform((val) => {
