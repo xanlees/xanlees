@@ -8,6 +8,7 @@ import { PdfViewerContent } from "./content";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export default function PDFViewer(props: { file: any, title: string }) {
+  console.log("file", props?.file);
   const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [loading, setLoading] = useState(true);
@@ -67,7 +68,7 @@ export function PdfViewerControls({
   numPages: number
 }) {
   return (
-    <div className="items-center ">
+    <div className="flex items-center justify-center">
       <PdfViewerButton onClick={goToPreviousPage} disabled={pageNumber <= 1}>
         <ChevronLeft className="w-10 h-10" aria-hidden="true" />
       </PdfViewerButton>
@@ -91,7 +92,7 @@ function PdfViewerButton({
     <button
       onClick={onClick}
       disabled={disabled}
-      className="relative h-[calc(100vh - 64px)] px-2 py-24 text-gray-400 hover:text-gray-50 focus:z-20"
+      className=""
     >
       {children}
     </button>

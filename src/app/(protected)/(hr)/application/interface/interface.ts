@@ -12,19 +12,17 @@ export interface IProfile {
   typeOfUniqueNumber: "MACHINE" | "OTHER"
 }
 export interface IPost {
-  profileDetail: {
-    id: number
-    fullname: string
-    nickname: string
-    phoneNumber: string
-    gender: "MALE" | "FEMALE" | "OTHER"
-    birthday: string
-    personalAddressId: number
-    maritalStatus: "SINGLE" | "MARRIED" | "OTHER"
-    profilePicture: string
-    uniqueNumber: string[]
-    typeOfUniqueNumber: "MACHINE" | "OTHER"
-  }
+  id: number
+  fullname: string
+  nickname: string
+  phoneNumber: string
+  gender: "MALE" | "FEMALE" | "OTHER"
+  birthday: string
+  personalAddressId: number
+  maritalStatus: "SINGLE" | "MARRIED" | "OTHER"
+  profilePicture: string
+  uniqueNumber: string[]
+  typeOfUniqueNumber: "MACHINE" | "OTHER"
 }
 export interface IApplication {
   profileId: number
