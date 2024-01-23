@@ -1,9 +1,6 @@
 "use client";
+import ApplicationCreate from "../(protected)/(hr)/application/create/page";
 
-export default function ApplyJobForm(): JSX.Element {
-  return (
-    <div>
-      {"Hello"}
-    </div>
-  );
+export default function Application(): JSX.Element {
+  return <ApplicationCreate />;
 }

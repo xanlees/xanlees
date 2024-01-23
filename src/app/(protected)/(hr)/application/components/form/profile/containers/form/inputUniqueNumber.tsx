@@ -18,7 +18,10 @@ export const UniqueNumberInput: React.FC<{ formConfig: IFormConfig }> = ({
   return (
     <div className={classNames}>
       <Form.Field {...formConfig.form} name="uniqueNumber" label={displayText}>
-        <Input placeholder="displayText" className="w-64" />
+        <Input
+          placeholder={displayText}
+          className="w-64"
+        />
       </Form.Field>
     </div>
   );

@@ -1,12 +1,18 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export interface IFormConfig {
   form: {
     setValue: any
   }
 }
 
-export const formConfig = {
+interface FormHeadersConfig {
   headers: {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
+    "content-type": string
+  }
+}
+
+export const formHeadersConfig: FormHeadersConfig = {
+  headers: {
     "content-type": "multipart/form-data",
   },
 };

@@ -39,8 +39,6 @@ export type GenderType = "MALE" | "FEMALE" | "OTHER" | null;
 export type MaritalStatusType =
   | "SINGLE"
   | "MARRIED"
-  | "DIVORCED"
-  | "WIDOWED"
   | null;
 
 export interface IMaritalStatus {

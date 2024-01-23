@@ -1,18 +1,28 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import type * as z from "zod";
 import { applicationSchema } from "./validation";
+import { useApplicationContext } from "../../context/context";
+import type { IApplication } from "../../interface";
 
-export const useFormConfig = (redirect: RedirectAction, id: number) => {
-  const { ...form } = useForm<z.infer<typeof applicationSchema>>({
+interface FormConfigParams {
+  setCurrentStep?: ((step: number) => void) | undefined
+}
+
+const step = 4;
+export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
+  const { state, dispatch } = useApplicationContext();
+  const { ...form } = useForm<IApplication>({
     resolver: zodResolver(applicationSchema),
+    defaultValues: {
+      profileId: state.profileId,
+    },
     refineCoreProps: {
-      autoSave: {
-        enabled: true,
-      },
       resource: "application",
-      redirect,
+      redirect: false,
+      onMutationSuccess: (data) => {
+        dispatch({ type: "setApplicationId", payload: data?.data?.id ?? 0 });
+        (setCurrentStep != null) && setCurrentStep(step);
+      },
     },
     warnWhenUnsavedChanges: true,
   });

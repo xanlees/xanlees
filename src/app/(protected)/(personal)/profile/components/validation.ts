@@ -9,30 +9,29 @@ export const acceptedImageTypes = [
   "image/jpg",
   "image/jpeg",
   "image/png",
-  "image/webp",
 ];
-export const maxFileSize = 5000000;
+export const maxFileSize = 10000000;
 
 export const profileSchema = z
   .object({
     fullname: z.string().min(1, {
-      message: "Full name must be at least 1 character.",
+      message: "ກະລຸນາໃສ່ຊື່ແທ້ ແລະ ນາມສະກຸນ",
     }),
     nickname: z.string().min(1, {
-      message: "Nickname must be at least 1 character.",
+      message: "ກະລຸນາໃສ່ຫຼີ້ນ",
     }),
     phoneNumber: z.string().min(1, {
-      message: "Phone number must be at least 1 character.",
+      message: "ກະລຸນາໃສ່ເບີໂທ",
     }),
     gender: z
       .enum(validGenders)
       .refine((value) => validGenders.includes(value), {
-        message: "Gender must be one of 'MALE', 'FEMALE', or 'OTHER'.",
+        message: "ກະລຸນາເລືອກເພດ",
       }),
     typeOfUniqueNumber: z
       .enum(typeUniqueNumber)
       .refine((value) => typeUniqueNumber.includes(value), {
-        message: "Gender must be one of 'MACHINE', 'CENSUS_BOOK'.",
+        message: "ກະລຸນາເລືອກປະເພດເລກລະຫັດວ່າ ເລກບັດປະຈໍາຕົວ, ເລກເຄື່ອງຂາຍເລກ ຫຼື ປື້ມສໍາມະໂມຄົວເລກທີ",
       }),
     birthday: z.date().transform((value) => new Date(value).toISOString()),
     personalAddressId: z.number().min(0, {
@@ -52,7 +51,7 @@ export const profileSchema = z
       },
       {
         message:
-          "Max image size is 5MB. Only .jpg, .jpeg, .png, and .webp formats are supported.",
+          "ຂະໜາດຮູບບໍ່ເກີນ 10MB. ແລະ ປະເພດຮູບ .jpg, .jpeg, .png",
       },
     ),
     maritalStatus: z

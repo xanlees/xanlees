@@ -24,15 +24,13 @@ export function PdfViewerContent({
   return (
     <div
       hidden={loading}
-      // style={{ height: "calc(100vh - 64px)" }}
-      // className="flex items-center"
+      className="flex flex-col mx-auto"
     >
-      <PdfViewerControls goToPreviousPage={goToPreviousPage} goToNextPage={goToNextPage}
-        pageNumber={pageNumber} numPages={numPages} />
       <PdfViewerDocument file={file} options={options}
         pageNumber={pageNumber} onDocumentLoadSuccess={onDocumentLoadSuccess}
         onPageLoadSuccess={onPageLoadSuccess} pageWidth={pageWidth}
         setLoading={setLoading} />
+      <PdfViewerControls goToPreviousPage={goToPreviousPage} goToNextPage={goToNextPage} pageNumber={pageNumber} numPages={numPages} />
     </div>
   );
 }

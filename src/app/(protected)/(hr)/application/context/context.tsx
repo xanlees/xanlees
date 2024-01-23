@@ -11,8 +11,9 @@ interface ApplicationState {
   profileId?: number
   graduationId?: number
   personalAddressId?: number
+  applicationId?: number
 }
-type ApplicationActionType = "setProfileId" | "setGraduationId" | "setPersonalAddressId";
+type ApplicationActionType = "setProfileId" | "setGraduationId" | "setPersonalAddressId" | "setApplicationId";
 interface ApplicationAction {
   type: ApplicationActionType
   payload: number
@@ -34,6 +35,8 @@ const ApplicationReducer = (
       return { ...state, graduationId: action.payload };
     case "setPersonalAddressId":
       return { ...state, personalAddressId: action.payload };
+    case "setApplicationId":
+      return { ...state, applicationId: action.payload };
     default:
       return state;
   }

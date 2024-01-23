@@ -1,36 +1,41 @@
 import React from "react";
-import { type RedirectAction } from "@refinedev/core";
 import { Form } from "@src/shadcn/components/form";
 import { useFormConfig } from "./config";
-import { BaseInput } from "@src/app/(protected)/(hr)/application/containers/form";
-import { Textarea } from "@src/shadcn/elements";
-
+import { Input, Textarea } from "@src/shadcn/elements";
+import { useFieldArray } from "react-hook-form";
+import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
+import { ArrayField } from "@src/shadcn/components/form/array-field";
+import { useApplicationContext } from "@src/app/(protected)/(hr)/application/context/context";
 interface WorkExperienceFormProps {
-  redirect: RedirectAction
-  setCurrentStep: any
+  setCurrentStep?: (step: number) => void
 }
 
-export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({
-  redirect,
-  setCurrentStep,
-}) => {
-  const formConfig = useFormConfig(redirect, setCurrentStep);
+export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurrentStep }) => {
+  const formConfig = useFormConfig(setCurrentStep);
+  const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "work_experience" });
+  const { state } = useApplicationContext();
   return (
-    <div className="rounded-full w-96 sm:w-[36%] ">
+    <div className="rounded-full w-96 sm:w-[33%] ">
       <Form {...formConfig.form}>
-        <div className="flex flex-col w-full capitalize rounded-lg sm:w-1/2 sm:flex-row gap-x-2">
-          <div className="flex-1">
-            <BaseInput {...formConfig} name="company" label="ບໍລິສັດ" />
-            <BaseInput {...formConfig} name="position" label="ຕໍາແໜງ" />
-          </div>
-          <div className="flex-1">
-            <BaseInput {...formConfig} name="time" label="time" />{" "}
-            <BaseInput {...formConfig} name="salary" label="ເງິນເດືອນ" />
-          </div>
-        </div>
-        <Form.Field {...formConfig.form} name="reasonOfResignation" label="ເຫດຜົນທີ່ລາອອກ">
-          <Textarea className="w-full h-28 " />
-        </Form.Field>
+        <DynamicForm
+          form={formConfig.form} fields={fields} append={append} remove={remove} name="work_experience" className="flex flex-wrap" label="ປະສົບການເຮັດວຽກ" classNameButton="hidden"
+          defaultConfig={{ applicationId: state.applicationId }}>
+          <ArrayField {...formConfig.form} name="company" label="ບໍລິສັດ">
+            <Input placeholder="ບໍລິສັດ" className="block w-56" />
+          </ArrayField>
+          <ArrayField {...formConfig.form} name="position" label="ຕໍາແໜງ">
+            <Input placeholder="ຕໍາແໜງ" className="block w-56" />
+          </ArrayField>
+          <ArrayField {...formConfig.form} name="time" label="ເວລາ">
+            <Input placeholder="ເວລາ" className="block w-56" />
+          </ArrayField>
+          <ArrayField {...formConfig.form} name="salary" label="ເງິນເດືອນ">
+            <Input placeholder="ເວລາ" className="block w-56" />
+          </ArrayField>
+          <ArrayField {...formConfig.form} name="reasonOfResignation" label="ເຫດຜົນທີ່ລາອອກ">
+            <Textarea {...formConfig.form} className="w-96 h-28 sm:w-[450px]" />
+          </ArrayField>
+        </DynamicForm>
       </Form>
     </div>
   );

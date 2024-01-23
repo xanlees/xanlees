@@ -1,6 +1,7 @@
-import React, { ChangeEvent, useState } from "react";
-import { Input } from "@src/shadcn/elements";
-import { FileText } from "lucide-react";
+import React, { ChangeEvent, useState, useRef } from "react";
+import {  Input } from "@src/shadcn/elements"; 
+import { cn } from "@src/shadcn/lib/utils";
+import FileDisplay from "@src/common/components/cardFileDisplay/FileDisplay";
 
 function getImageData(event: ChangeEvent<HTMLInputElement>) {
   const dataTransfer = new DataTransfer();
@@ -16,42 +17,42 @@ function getImageData(event: ChangeEvent<HTMLInputElement>) {
 }
 
 export const FileInputField = ({ ...props }) => {
-  const [fileType, setFileType] = useState("");
-  const [fileName, setFileName] = useState("");
-  const [fileSize, setFileSize] = useState("");
+  const [file, setFile] = useState<File>();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const { className, classNameFile } = props;
+
+  const clearFile = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+    setFile(undefined);
+  };
+
   return (
     <>
       <Input
         type="file"
+        className={cn("", className)}
         {...props.rest}
+        ref={fileInputRef}
         onChange={(event) => {
           const { files } = getImageData(event);
           const selectedFile = event.target.files![0];
-
+          setFile(selectedFile)
           const fileName = selectedFile.name;
           const fileExtension = fileName.split(".").pop();
-          setFileType(fileExtension as any);
-          setFileName(fileName);
-
           const fileSizeInBytes = selectedFile.size;
-          const fileSizeInKB = fileSizeInBytes / 1024;
-          setFileSize(`${fileSizeInKB.toFixed(2)} KB`);
-          props.onChange(files);
+          props.onChange(event);
         }}
       />
-      <div className="flex h-12 mt-2 text-sm ">
-        {fileType && (
-          <div className="flex w-full pt-2 pl-2 bg-blue-300 rounded-md">
-            <div className="mr-2">
-              <FileText className="w-9 h-9" />
-            </div>
-            <div className="flex flex-col">
-              <div className="text-md">{fileName}</div>
-              <div className="text-sm">{fileSize}</div>
-            </div>
-          </div>
-        )}
-      </div>
+      {file && (
+        <FileDisplay
+          className={classNameFile}
+          file={file}
+          onRemove={clearFile}
+        />
+      )}
     </>
   );
 };
+

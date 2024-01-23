@@ -18,7 +18,7 @@ export const createEmployeeSteps = [
   },
   {
     stepLabel: "ເອກສານ",
-    stepDescription: <DocumentForm redirect="create" setCurrentStep={undefined} />,
+    stepDescription: <DocumentForm/>,
     completed: false,
   },
   {

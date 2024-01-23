@@ -24,7 +24,8 @@ export default function DocumentShow({ params }: { params: { id: number } }): JS
     ],
   });
   const title = documentData?.data?.[0].documentName ?? "";
-  const file = documentData?.data?.[0].documentFile;
+  // const file = documentData?.data?.[0].documentFile;
+  const file = "https://pdfobject.com/pdf/sample.pdf";
   return (
     <Show
       resource="employee"

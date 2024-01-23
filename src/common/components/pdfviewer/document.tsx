@@ -1,7 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment, max-lines-per-function */
 import { Document, Page } from "react-pdf";
+import { useMediaQuery } from "react-responsive";
 
-const scale = 0.5;
 const maxWidth = 100;
 export function PdfViewerDocument({
   file, options, pageNumber, onDocumentLoadSuccess, onPageLoadSuccess, pageWidth, setLoading,
@@ -18,6 +19,18 @@ export function PdfViewerDocument({
   pageWidth: number
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }) {
+  const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const bigScale = 0.8;
+  const smallScale = 0.5;
+
+  let scale = bigScale;
+  if (isBigScreen) {
+    scale = bigScale;
+  } else if (isTabletOrMobile) {
+    scale = smallScale;
+  }
+
   return (
     <div className="mx-auto overflow-y-scroll ">
       <Document

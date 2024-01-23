@@ -1,4 +1,3 @@
-import { type RedirectAction } from "@refinedev/core";
 import { Form } from "@/shadcn/components/form";
 import { useFormConfig } from "./config";
 import {
@@ -11,8 +10,12 @@ import {
 } from "../../containers/form";
 import { Textarea } from "@src/shadcn/elements";
 
-export const ApplicationForm = ({ redirect = "list", id }: { redirect: RedirectAction, id: number }) => {
-  const formConfig = useFormConfig(redirect, id);
+interface ApplicationFormProps {
+  setCurrentStep?: (step: number) => void
+}
+
+export const ApplicationForm: React.FC<ApplicationFormProps> = ({ setCurrentStep }) => {
+  const formConfig = useFormConfig(setCurrentStep);
   return (
     <div className="rounded-full w-96 sm:w-[37%] ">
       <Form {...formConfig.form}>
@@ -31,5 +34,3 @@ export const ApplicationForm = ({ redirect = "list", id }: { redirect: RedirectA
     </div>
   );
 };
-
-

@@ -1,32 +1,29 @@
-interface IProfile {
-  profileDetail: {
-    id: number
-    fullname: string
-    nickname: string
-    phoneNumber: string
-    gender: "MALE" | "FEMALE" | "OTHER"
-    birthday: string
-    personalAddressId: number
-    maritalStatus: "SINGLE" | "MARRIED" | "DIVORCED" | "WIDOWED" | "OTHER"
-    profilePicture: string
-    uniqueNumber: string[]
-    typeOfUniqueNumber: "MACHINE" | "OTHER"
-  }
+export interface IProfile {
+  id: number
+  fullname: string
+  nickname: string
+  phoneNumber: string
+  gender: "MALE" | "FEMALE" | "OTHER"
+  birthday: string
+  personalAddressId: number
+  maritalStatus: "SINGLE" | "MARRIED" | null
+  profilePicture: string
+  uniqueNumber: string[]
+  typeOfUniqueNumber: "MACHINE" | "OTHER"
 }
-interface IPost {
-  profileDetail: {
-    id: number
-    fullname: string
-    nickname: string
-    phoneNumber: string
-    gender: "MALE" | "FEMALE" | "OTHER"
-    birthday: string
-    personalAddressId: number
-    maritalStatus: "SINGLE" | "MARRIED" | "DIVORCED" | "WIDOWED" | "OTHER"
-    profilePicture: string
-    uniqueNumber: string[]
-    typeOfUniqueNumber: "MACHINE" | "OTHER"
-  }
+
+export interface IPost {
+  id: number
+  fullname: string
+  nickname: string
+  phoneNumber: string
+  gender: "MALE" | "FEMALE" | "OTHER"
+  birthday: string
+  personalAddressId: number
+  maritalStatus: "SINGLE" | "MARRIED" | "OTHER"
+  profilePicture: string
+  uniqueNumber: string[]
+  typeOfUniqueNumber: "MACHINE" | "OTHER"
 }
 export interface IApplication {
   profileId: number
@@ -48,10 +45,41 @@ export interface IApplication {
   pledgeReason: string
   appliedReason: string
   id?: number
+  createdOn: string
+  applicationStatus: "New" | "Contacted" | "Interviewed" | "Hired"
 }
 
 export interface IFormConfig {
   form: {
     setValue: any
   }
+}
+
+export interface IWorkExperience {
+  company: string
+  position: string
+  time: string
+  salary: string
+  reasonOfResignation: string
+  applicationId: number
+  id: number
+}
+export interface IEducation {
+  year: string
+  branch: string
+  graduationDetail: {
+    id: number
+    degree: string
+    sector: string
+  }
+  graduationId: number
+  profileId: number
+  id: number
+}
+
+export interface IDocument {
+  documentName: string
+  documentFile: string
+  profileId: number
+  id: number
 }

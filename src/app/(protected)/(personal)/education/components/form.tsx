@@ -18,19 +18,18 @@ export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
   const { state } = useProfileContext();
   const formConfig = useFormConfig(redirect);
   const graduation = useGraduationSelect();
-  const { fields, append } = useFieldArray({ control: formConfig.form.control, name: "education" });
+  const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "education" });
 
   return (
-    <div className="w-[50%] rounded-lg">
+    <div className="w-full sm:w-[53%] rounded-lg">
       <Form {...formConfig.form}>
         <DynamicForm
           form={formConfig.form}
           fields={fields}
           append={append}
+          remove={remove}
           name="education"
-          label="ການສຶກສາວິຊາສະເພາະທີ່ຈົບ"
-          className="flex gap-2"
-          defaultConfig={{ profileId: state.profileId } }
+          label="ການສຶກສາວິຊາສະເພາະທີ່ຈົບ" className="flex gap-2" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId } }
         >
           <ArrayField {...formConfig.form} name="branch" label="ສາຂາ">
             <Input placeholder="ສາຂາ" className="block w-56" />

@@ -13,7 +13,7 @@ const breadcrumbs = [
 ];
 
 export default function ProfileCreate(): JSX.Element {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(2);
   const [profileID, setProfileID] = useState(0);
   return (
     <>
@@ -39,7 +39,7 @@ export default function ProfileCreate(): JSX.Element {
         </ProfileProvider>
       </Create>
       <Button className="w-20">
-        <Link href={`/employee/create/${profileID}`}>ຕໍ່ໄປ</Link>
+        <Link className="w-full h-full" href={`/employee/create/${profileID}`}>ຕໍ່ໄປ</Link>
       </Button>
     </>
   );

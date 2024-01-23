@@ -21,10 +21,6 @@ export const getMaritalStatusDisplayText = (
       return "ໂສດ";
     case "MARRIED":
       return "ແຕ່ງງານແລ້ວ";
-    case "DIVORCED":
-      return "ຢ່າຮ້າງ";
-    case "WIDOWED":
-      return "ແມ່ໝ້າຍ";
     default:
       return "ບໍ່ຮູ້ເພດ";
   }

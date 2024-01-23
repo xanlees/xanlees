@@ -124,13 +124,13 @@ const WebVersion: FC = () => {
         <Card className="px-1 rounded-md">
             <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1">
-                    <AccordionTrigger className="italic text-blue-500 underline">version: 0.1<Badge>ມາໃໝ່</Badge></AccordionTrigger>
+                    <AccordionTrigger className="italic text-blue-500 underline">ມາໃໝ່</AccordionTrigger>
                     <AccordionContent>
                         <div className="flex flex-wrap">
                             <div className="px-1">
                                 <BadgeCheck color="#0055ff" />
                             </div>
-                            <div className="pt-0.5 font-bold">ເພີ່ມເອກະສານ</div>
+                            <div className="pt-0.5 font-bold">ເພີ່ມເອກະສານ <Badge>ມາໃໝ່</Badge></div>
                         </div>
                     </AccordionContent>
                 </AccordionItem>
