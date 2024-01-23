@@ -15,7 +15,7 @@ interface ApplicationFormProps {
 }
 
 export const ApplicationForm: React.FC<ApplicationFormProps> = ({ setCurrentStep }) => {
-  const formConfig = useFormConfig(setCurrentStep);
+  const formConfig = useFormConfig({ setCurrentStep });
   return (
     <div className="rounded-full w-96 sm:w-[37%] ">
       <Form {...formConfig.form}>
