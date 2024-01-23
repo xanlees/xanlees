@@ -11,7 +11,7 @@ interface WorkExperienceFormProps {
 }
 
 export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurrentStep }) => {
-  const formConfig = useFormConfig(setCurrentStep);
+  const formConfig = useFormConfig({ setCurrentStep });
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "work_experience" });
   const { state } = useApplicationContext();
   return (

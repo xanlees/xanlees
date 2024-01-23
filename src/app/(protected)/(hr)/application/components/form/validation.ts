@@ -4,7 +4,7 @@ export interface IApplication {
   emergencyFullname: string
   emergencyRelationship: string
   emergencyPhoneNumber: string
-  typeDrivingLicence: "A" | "B" | "C" | "D" | "OTHER"
+  typeDrivingLicense: "A" | "B" | "C" | "D" | "OTHER"
   typeVaccine: Array<{ typeVaccine: string }>
   wordSkill: "Poor" | "Fair" | "Good" | "Excellent"
   excelSkill: "Poor" | "Fair" | "Good" | "Excellent"
@@ -15,6 +15,8 @@ export interface IApplication {
   vietnameseSkill: "Poor" | "Fair" | "Good" | "Excellent"
   pledgeReason: string
   appliedReason: string
+  applicationStatus: string
+
 }
 function transformApplication(val: IApplication): Record<string, any> {
   return {
@@ -30,7 +32,7 @@ export const applicationSchema = z.object({
   emergencyFullname: z.string(),
   emergencyRelationship: z.string(),
   emergencyPhoneNumber: z.string(),
-  typeDrivingLicence: z.enum(["A", "B", "C", "D", "OTHER"]),
+  typeDrivingLicense: z.enum(["A", "B", "C", "D", "OTHER"]),
   typeVaccine: z.array(
     z.object({
       typeVaccine: z.string(),
@@ -45,4 +47,5 @@ export const applicationSchema = z.object({
   vietnameseSkill: z.enum(["Poor", "Fair", "Good", "Excellent"]),
   pledgeReason: z.string(),
   appliedReason: z.string(),
+  applicationStatus: z.string(),
 }).transform((val) => transformApplication(val));

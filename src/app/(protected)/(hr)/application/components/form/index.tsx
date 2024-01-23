@@ -22,7 +22,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ setCurrentStep
         <EmergencyInformationSection formConfig={formConfig} />
         <ComputerSkillSection formConfig={formConfig} />
         <LanguageSkillSection formConfig={formConfig} />
-        <SectionInput formConfig={formConfig} options={DrivingLicenceOptions} name="typeDrivingLicence" label="ໃບຂັບຂີ່" />
+        <SectionInput formConfig={formConfig} options={DrivingLicenceOptions} name="typeDrivingLicense" label="ໃບຂັບຂີ່" />
         <DynamicVaccineInput formConfig={formConfig} />
         <Form.Field {...formConfig.form} name="appliedReason" label="ເປັນຫຍັງທ່ານຈື່ງຢາກເຮັດວຽກກັບ ວິສາຫະກິດສ່ນບຸກຄົນ ເອັສບີເອັສ">
           <Textarea className="h-28" />

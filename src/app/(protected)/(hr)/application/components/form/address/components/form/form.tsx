@@ -12,7 +12,7 @@ interface PersonalAddressFormProps {
 export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
   setCurrentStep,
 }) => {
-  const formConfig = useFormConfig(setCurrentStep);
+  const formConfig = useFormConfig({ setCurrentStep });
   const district = useSelect<IDistrict>({
     resource: "district",
     optionLabel: "districtName",

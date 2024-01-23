@@ -33,7 +33,7 @@ export interface IApplication {
   emergencyFullname: string
   emergencyRelationship: string
   emergencyPhoneNumber: string
-  typeDrivingLicence: "A" | "B" | "C" | "D" | "OTHER"
+  typeDrivingLicense: "A" | "B" | "C" | "D" | "OTHER"
   typeVaccine: string[] | Array<{ typeVaccine: string }>
   wordSkill: "Poor" | "Fair" | "Good" | "Excellent"
   excelSkill: "Poor" | "Fair" | "Good" | "Excellent"

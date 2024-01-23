@@ -15,6 +15,7 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
     resolver: zodResolver(applicationSchema),
     defaultValues: {
       profileId: state.profileId,
+      applicationStatus: "New",
     },
     refineCoreProps: {
       resource: "application",
