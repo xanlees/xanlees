@@ -38,3 +38,4 @@ export default function ApplicationShow({ params }: { params: { id: number } }):
     </Show>
   );
 }
+

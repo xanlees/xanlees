@@ -7,8 +7,8 @@ import { useTable } from "@refinedev/react-table";
 import { getSelectColumn } from "@src/common/containers/column/select";
 import { getActionsColumn } from "@src/common/containers/column/action";
 import type { IApplication } from "./interface";
-import { FullNameColumn, PhoneNumberColumn, GenderColumn, ApplicationDate, MarriageStatus, workExperienceColumn } from "./containers/column";
-import { useApplicationID, useWorkExperience } from "./hooks";
+import { FullNameColumn, PhoneNumberColumn, GenderColumn, ApplicationDate, MarriageStatus, workExperienceColumn, ApplicationStatusColumn } from "./containers/column";
+import { useApplicationID, useApplication } from "./hooks";
 
 const resource = "application";
 
@@ -21,7 +21,7 @@ export default function ApplicationList(): JSX.Element {
   });
   const application = table.options.data ?? [];
   const applicationID = useApplicationID(application);
-  const { data: dataWorkExperience } = useWorkExperience({ applicationID, application });
+  const { data: dataWorkExperience } = useApplication({ applicationID, application });
   const friendly = useUserFriendlyName();
   return (
     <List>
@@ -32,6 +32,7 @@ export default function ApplicationList(): JSX.Element {
         {GenderColumn}
         {MarriageStatus}
         {ApplicationDate}
+        {ApplicationStatusColumn}
         {workExperienceColumn(dataWorkExperience)}
         {getActionsColumn(resource)}
       </Table>

@@ -16,7 +16,6 @@ export function EditAction({
     ...props
 }: EditActionProps) {
     const edit = useGetEditUrl(resource, row.id);
-
     return (
         <RowAction
             {...props}

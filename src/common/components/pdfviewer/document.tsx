@@ -19,16 +19,16 @@ export function PdfViewerDocument({
   pageWidth: number
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }) {
-  
   const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const bigScale = 0.8;
+  const smallScale = 0.5;
 
-  let scale = 0.8;
-
+  let scale = bigScale;
   if (isBigScreen) {
-    scale = 0.8;
+    scale = bigScale;
   } else if (isTabletOrMobile) {
-    scale = 0.5;
+    scale = smallScale;
   }
 
   return (

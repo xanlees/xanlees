@@ -11,6 +11,7 @@ export interface IProfile {
   uniqueNumber: string[]
   typeOfUniqueNumber: "MACHINE" | "OTHER"
 }
+
 export interface IPost {
   id: number
   fullname: string
@@ -45,6 +46,7 @@ export interface IApplication {
   appliedReason: string
   id?: number
   createdOn: string
+  applicationStatus: "New" | "Contacted" | "Interviewed" | "Hired"
 }
 
 export interface IFormConfig {
