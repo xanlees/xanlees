@@ -4,7 +4,7 @@ import { Form } from "@src/shadcn/components/form";
 import RenderFile from "./RenderFile";
 import { useFieldArray } from "react-hook-form";
 import { useFormConfig } from "./config";
-import DocumentDynamicForm from "./DocumentDynamicForm";
+import DocumentDynamicForm from "./DynamicForm";
 
 interface DocumentFormProps {
   setCurrentStep?: (step: number) => void
@@ -16,20 +16,24 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ setCurrentStep }) =>
   const [fileName, setFileName] = useState("");
   const [file, setFile] = useState<FileList | null>(null);
   return (
-    <div className="w-[32%] rounded-lg">
+    <div className="w-[40%] rounded-lg">
       <Form {...formConfig.form}>
-        <Input placeholder="ຊື່ເອກສານ" className="flex w-full" onChange={handleInputChange(setFileName)} />
-        <Form.FileInput onChange={handleFileInputChange(setFile)} />
+        <div className="flex flex-row gap-4">
+          <Input placeholder="ຊື່ເອກສານ" className="flex w-full" onChange={handleInputChange(setFileName)} />
+          <Form.FileInput onChange={handleFileInputChange(setFile)} showFileDisplay={false} />
+          <div className="-mt-1">
+            <DocumentDynamicForm
+              formConfig={formConfig}
+              fields={fields}
+              append={append}
+              fileName={fileName}
+              file={file}
+            />
+          </div>
+        </div>
         {fields.map((field, index) => (
           <RenderFile key={field.id} field={field} removeField={() => { remove(index); }} />
         ))}
-        <DocumentDynamicForm
-          formConfig={formConfig}
-          fields={fields}
-          append={append}
-          fileName={fileName}
-          file={file}
-        />
       </Form>
     </div>
   );

@@ -13,7 +13,7 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
       defaultDarkMode="light"
       storageKey="darkMode"
     >
-      <Authenticated redirectOnFail="/login" key='login' v3LegacyAuthProviderCompatible>{children}</Authenticated>;
+      <Authenticated redirectOnFail="/login" key='login' v3LegacyAuthProviderCompatible>{children}</Authenticated>
     </ThemedLayoutV2>
   );
 }
