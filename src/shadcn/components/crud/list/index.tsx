@@ -11,10 +11,11 @@ import { PageHeader } from "../../pageHeader";
 import { Breadcrumb } from "../../breadcrumb";
 import { CreateButton } from "../../buttons";
 
-export const List: FC<ListProps> = ({
+export const List: FC<ListProps & { showCreate?: boolean }> = ({
     title,
     resource: resourceFromProps,
     breadcrumb: breadcrumbFromProps,
+    showCreate = true,
     children,
 }) => {
     const translate = useTranslate();
@@ -56,7 +57,7 @@ export const List: FC<ListProps> = ({
                 extra={
                     <>
                         <div className="inline-flex flex-row gap-4">
-                            <CreateButton />
+                            {showCreate && <CreateButton />}
                         </div>
                     </>
                 }
