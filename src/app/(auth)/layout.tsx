@@ -2,10 +2,11 @@
 "use client";
 
 import { useAuth } from "@src/lib/provider/refine/context/auth";
+import { ThemedLayoutV1 } from "@src/shadcn/components/themedLayoutV1";
+import { ViteDarkModeProvider } from "@src/shadcn/providers";
 import { useRouter } from "next/navigation";
-import type React from "react";
 
-export default function ProtectedLayout({ children }: { children: React.ReactNode }): React.ReactNode {
+export default function LoginLayout({ children }: { children: React.ReactNode }): React.ReactNode {
   const router = useRouter();
   const authProvider = useAuth();
 
@@ -19,5 +20,15 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
       console.error("Error checking authentication:", error);
     });
 
-  return children;
+  return <>
+    <ThemedLayoutV1
+      darkModeProvider={
+        ViteDarkModeProvider
+      }
+      defaultDarkMode="light"
+      storageKey="darkMode"
+    >
+      {children}
+    </ThemedLayoutV1>
+  </>;
 }

@@ -24,7 +24,7 @@ export default function ApplicationList(): JSX.Element {
   const { data: dataWorkExperience } = useApplication({ applicationID, application });
   const friendly = useUserFriendlyName();
   return (
-    <List>
+    <List showCreate={false}>
       <Table table={table}>
         {getSelectColumn(friendly)}
         {FullNameColumn}

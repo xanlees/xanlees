@@ -1,5 +1,5 @@
 /* eslint-disable  */
-import { User, BookUser } from "lucide-react";
+import { User, BookUser, FileText } from "lucide-react";
 
 export const resources = [
   {
@@ -10,6 +10,7 @@ export const resources = [
     show: "/employee/show/:id",
     icon: <BookUser />,
     meta: {
+      label: "ພະນັກງານ",
     }
   },
   {
@@ -39,8 +40,9 @@ export const resources = [
     create: "/application/create",
     edit: "/application/edit/:id",
     show: "/application/show/:id",
+    icon: <FileText/>,
     meta: {
-      label: "application",
+      label: "ຜູ້ສະໝັກວຽກ",
     }
   },
 ];

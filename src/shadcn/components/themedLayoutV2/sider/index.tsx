@@ -1,13 +1,13 @@
-import { CanAccess, ITreeMenu, useLogout, useMenu } from "@refinedev/core";
-import { List, LogOut } from "lucide-react";
+import { CanAccess, ITreeMenu, useMenu } from "@refinedev/core";
+import { List } from "lucide-react";
 import { FC, ReactNode, useMemo } from "react";
 
 import { cn } from "../../../lib/utils";
-import { Button, Link, Card } from "../../../elements";
+import { Button, Link } from "../../../elements";
 import { ThemedSiderV2Props } from "./type";
-import { RefineLayoutTitleProps } from "@refinedev/ui-types";
-import Image from "next/image";
 import { WebVersion } from "./version";
+import { DefaultTitle } from "./tiltle";
+import { LogOutButton } from "./logout";
 
 const ThemedSiderV2MenuItem: FC<{
     selectedKey?: string;
@@ -77,44 +77,6 @@ export const ThemedSiderV2Menu: FC<{
         </ul>
     );
 };
-const defaultIcon = (
-    <Image src={"/logo.png"} alt={"SBS logo"} width={46} height={25} className="-mt-1 rounded-full" />
-);
-
-const DefaultTitle: FC<RefineLayoutTitleProps> = () => {
-    return (
-        <Link
-            href="/"
-            title={"refine"}
-            className="inline-flex flex-row items-center text-foreground"
-        >
-            {defaultIcon}
-            <span className="ml-2.5 text-xl font-bold">{"Workhub Link"}</span>
-        </Link>
-    );
-};
-
-
-  
-const LogOutButton: FC = () => {
-    const { mutate: logout } = useLogout();
-    return (
-        <CanAccess resource="user" action="show">
-            <div className="my-3">
-                <Button
-                    variant="ghost"
-                    className="mt-1 gap-x-3 w-full justify-start p-0 pl-2.5"
-                    onClick={() => logout({ redirectPath: "/" })}
-                >
-                    <LogOut />
-                    Sign Out
-                </Button>
-            </div>
-        </CanAccess>
-
-    )
-}
-
 export const ThemedSiderV2: FC<ThemedSiderV2Props> = ({
     meta,
     className,

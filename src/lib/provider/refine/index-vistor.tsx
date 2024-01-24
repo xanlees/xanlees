@@ -5,7 +5,7 @@
 "use client";
 
 import { accessControlProvider } from "@/lib/provider/access/";
-import { ThemedLayoutV2 } from "@/shadcn/components/themedLayoutV2";
+import { ThemedLayoutV2 } from "@src/shadcn/components/themedLayoutV2/ThemedLayoutV2";
 import { ViteDarkModeProvider, notificationProvider } from "@/shadcn/providers";
 import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/nextjs-router/app";
