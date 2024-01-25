@@ -12,8 +12,8 @@ interface IFormConfig {
     watch: any
   }
 }
-export const DynamicNumberForm: React.FC<{ formConfig: IFormConfig }> = ({
-  formConfig,
+export const DynamicNumberForm: React.FC<{ formConfig: IFormConfig, isEmployee?: boolean }> = ({
+  formConfig, isEmployee,
 }) => {
   const { fields, append, remove } = useFieldArray({
     control: formConfig.form.control,
@@ -21,7 +21,7 @@ export const DynamicNumberForm: React.FC<{ formConfig: IFormConfig }> = ({
   });
   const type: string | undefined = formConfig.form.watch("typeOfUniqueNumber");
   const classNames = type != null ? "cursor-pointer" : "pointer-events-none";
-  const displayText = getTypeDisplayText(type);
+  const displayText = getTypeDisplayText(type, isEmployee);
   return (
     <div className={classNames}>
       {<div className="pt-2">{displayText}</div>}
@@ -46,13 +46,26 @@ export const DynamicNumberForm: React.FC<{ formConfig: IFormConfig }> = ({
   );
 };
 
-const getTypeDisplayText = (type: string | undefined): string => {
-  if (type === "IDENTIFY") {
-    return "ເລກບັດປະຈໍາຕົວ";
-  } else if (type === "CENSUS_BOOK") {
-    return "ປື້ມສໍາມະໂມຄົວເລກທີ";
-  } else if (type === "MACHINE") {
-    return "ເລກເຄື່ອງຂາຍເລກ";
+const getTypeDisplayText = (type: string | undefined, isEmployee?: boolean): string => {
+  if (isEmployee ?? false) {
+    switch (type) {
+      case "IDENTIFY":
+        return "ເລກບັດປະຈໍາຕົວ";
+      case "CENSUS_BOOK":
+        return "ປື້ມສໍາມະໂມຄົວເລກທີ";
+      case "MACHINE":
+        return "ເລກເຄື່ອງຂາຍເລກ";
+      default:
+        return "ເລືອກລະຫັດ";
+    }
+  } else {
+    switch (type) {
+      case "IDENTIFY":
+        return "ເລກບັດປະຈໍາຕົວ";
+      case "CENSUS_BOOK":
+        return "ປື້ມສໍາມະໂມຄົວເລກທີ";
+      default:
+        return "ເລກບັດປະຈໍາຕົວ";
+    }
   }
-  return "ເລືອກລະຫັດ";
 };

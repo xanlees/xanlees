@@ -1,16 +1,16 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import { applicationSchema } from "./validation";
-import { useApplicationContext } from "../../context/context";
 import type { IApplication } from "../../interface";
+import { useProfileContext } from "@src/app/(protected)/(personal)/context/context";
 
 interface FormConfigParams {
   setCurrentStep?: ((step: number) => void) | undefined
 }
 
-const step = 4;
+const step = 5;
 export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
-  const { state, dispatch } = useApplicationContext();
+  const { state, dispatch } = useProfileContext();
   const { ...form } = useForm<IApplication>({
     resolver: zodResolver(applicationSchema),
     defaultValues: {

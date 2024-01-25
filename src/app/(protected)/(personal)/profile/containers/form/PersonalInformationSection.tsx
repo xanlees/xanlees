@@ -6,9 +6,7 @@ import { type IFormConfig } from "../../interface";
 import { DynamicNumberForm } from "./inputUniqueNumber";
 import { maritalStatusOptions } from "@src/app/(protected)/(career)/employee/lib/constant";
 
-export const PersonalInformationSection: React.FC<{
-  formConfig: IFormConfig
-}> = ({ formConfig }) => {
+export const PersonalInformationSection: React.FC<{ formConfig: IFormConfig, isEmployee?: boolean }> = ({ formConfig, isEmployee }) => {
   return (
     <div className="flex-1 p-4 ">
       <Form.Field {...formConfig.form} name="nickname" label="ຊື່ຫຼິ້ນ">
@@ -24,7 +22,7 @@ export const PersonalInformationSection: React.FC<{
       <Form.Field {...formConfig.form} name="maritalStatus" label="ສະຖານະພາບ">
         <Form.Select options={maritalStatusOptions} />
       </Form.Field>
-      <DynamicNumberForm formConfig={formConfig} />
+      <DynamicNumberForm formConfig={formConfig} isEmployee={isEmployee}/>
     </div>
   );
 };

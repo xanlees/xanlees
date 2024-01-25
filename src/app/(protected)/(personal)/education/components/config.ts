@@ -1,10 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { graduationSchema } from "../lib/validation";
 import { type z } from "zod";
 
-export const useFormConfig = (redirect: RedirectAction) => {
+interface FormConfigParams {
+  setCurrentStep: ((step: number) => void) | undefined
+}
+const step = 4;
+
+export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
   const { ...form } = useForm<z.infer<typeof graduationSchema>>({
     resolver: zodResolver(graduationSchema),
     refineCoreProps: {
@@ -13,6 +17,9 @@ export const useFormConfig = (redirect: RedirectAction) => {
         enabled: true,
       },
       redirect: false,
+      onMutationSuccess: (data) => {
+        (setCurrentStep != null) && setCurrentStep(step);
+      },
     },
     warnWhenUnsavedChanges: true,
   });

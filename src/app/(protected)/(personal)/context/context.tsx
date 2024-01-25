@@ -11,8 +11,10 @@ interface ProfileState {
   profileId?: number
   graduationId?: number
   personalAddressId?: number
+  applicationId?: number
 }
-type ProfileActionType = "setProfileId" | "setGraduationId" | "setPersonalAddressId";
+
+type ProfileActionType = "setProfileId" | "setGraduationId" | "setPersonalAddressId" | "setApplicationId";
 interface ProfileAction {
   type: ProfileActionType
   payload: number
@@ -34,6 +36,8 @@ const ProfileReducer = (
       return { ...state, graduationId: action.payload };
     case "setPersonalAddressId":
       return { ...state, personalAddressId: action.payload };
+    case "setApplicationId":
+      return { ...state, applicationId: action.payload };
     default:
       return state;
   }

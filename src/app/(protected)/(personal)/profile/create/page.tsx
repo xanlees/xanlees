@@ -1,11 +1,11 @@
 "use client";
 import { Create } from "@/shadcn/components/crud";
-import { createEmployeeSteps } from "../lib/settings";
+import { formStepsData } from "../lib/settings";
 import React, { useState } from "react";
-import Stepper from "@keyvaluesystems/react-stepper";
 import { ProfileProvider } from "../../context/context";
 import { Button, Link } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
+import FormStep from "../components/formStep";
 
 const breadcrumbs = [
   { label: "Employee", href: "/employee" },
@@ -13,7 +13,6 @@ const breadcrumbs = [
 ];
 
 export default function ProfileCreate(): JSX.Element {
-  const [currentStep, setCurrentStep] = useState(0);
   const [profileID, setProfileID] = useState(0);
   return (
     <>
@@ -22,20 +21,7 @@ export default function ProfileCreate(): JSX.Element {
         breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
       >
         <ProfileProvider>
-          <div>
-            <Stepper
-              steps={createEmployeeSteps.map((step) => ({
-                ...step,
-                stepDescription: React.cloneElement(step.stepDescription, {
-                  setCurrentStep,
-                  setProfileID,
-                }),
-              }))}
-              orientation="vertical"
-              currentStepIndex={currentStep}
-              stepContent={() => <div className="w-[1600px] rounded-lg" />}
-            />
-          </div>
+          <FormStep setProfileID={setProfileID} formStepsData={formStepsData} />
         </ProfileProvider>
       </Create>
       <Button className="w-20">

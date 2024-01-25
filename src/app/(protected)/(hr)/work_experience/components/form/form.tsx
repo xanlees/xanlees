@@ -5,7 +5,7 @@ import { Input, Textarea } from "@src/shadcn/elements";
 import { useFieldArray } from "react-hook-form";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
-import { useApplicationContext } from "@src/app/(protected)/(hr)/application/context/context";
+import { useProfileContext } from "@src/app/(protected)/(personal)/context/context";
 interface WorkExperienceFormProps {
   setCurrentStep?: (step: number) => void
 }
@@ -13,7 +13,7 @@ interface WorkExperienceFormProps {
 export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurrentStep }) => {
   const formConfig = useFormConfig({ setCurrentStep });
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "work_experience" });
-  const { state } = useApplicationContext();
+  const { state } = useProfileContext();
   return (
     <div className="rounded-full w-96 sm:w-[33%] ">
       <Form {...formConfig.form}>

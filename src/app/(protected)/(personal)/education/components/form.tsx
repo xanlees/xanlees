@@ -1,4 +1,4 @@
-import { type BaseOption, type RedirectAction, useSelect } from "@refinedev/core";
+import { type BaseOption, useSelect } from "@refinedev/core";
 import { Form } from "@src/shadcn/components/form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
@@ -12,11 +12,11 @@ import { useFormConfig } from "./config";
 import { useProfileContext } from "../../context/context";
 
 interface EducationFormProps {
-  redirect: RedirectAction
+  setCurrentStep?: (step: number) => void
 }
-export const EducationForm: React.FC<EducationFormProps> = ({ redirect }) => {
+export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep }) => {
   const { state } = useProfileContext();
-  const formConfig = useFormConfig(redirect);
+  const formConfig = useFormConfig({ setCurrentStep });
   const graduation = useGraduationSelect();
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "education" });
 

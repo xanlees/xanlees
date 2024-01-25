@@ -1,6 +1,6 @@
 import { EmployeeForm } from "../components/form";
 
-export const createEmployeeSteps = [
+export const formStepsData = [
   {
     stepLabel: "Create Employee",
     stepDescription: <EmployeeForm redirect="create" />,

@@ -1,21 +1,22 @@
-import { documentFormSchema } from "./validation";
-import { useForm } from "@refinedev/react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type z } from "zod";
-import { formHeadersConfig } from "@src/common/interface";
+import { useForm } from "@refinedev/react-hook-form";
+import type * as z from "zod";
+import { WorkExperienceSchema } from "./validation";
 
-const step = 3;
 interface FormConfigParams {
   setCurrentStep: ((step: number) => void) | undefined
 }
+const step = 6;
 
 export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
-  const { ...form } = useForm<z.infer<typeof documentFormSchema>>({
-    resolver: zodResolver(documentFormSchema),
+  const { ...form } = useForm<z.infer<typeof WorkExperienceSchema>>({
+    resolver: zodResolver(WorkExperienceSchema),
     refineCoreProps: {
-      resource: "document",
+      resource: "work_experience",
+      autoSave: {
+        enabled: true,
+      },
       redirect: false,
-      meta: formHeadersConfig,
       onMutationSuccess: (data) => {
         (setCurrentStep != null) && setCurrentStep(step);
       },
