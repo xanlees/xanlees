@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { ProfileProvider } from "../../context/context";
 import { Button, Link } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
-import FormStep from "../components/formStep";
+import FormStep from "@src/common/components/stepForm";
 
 const breadcrumbs = [
   { label: "Employee", href: "/employee" },
@@ -21,7 +21,7 @@ export default function ProfileCreate(): JSX.Element {
         breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
       >
         <ProfileProvider>
-          <FormStep setProfileID={setProfileID} formStepsData={formStepsData} />
+          <FormStep formStepsData={formStepsData} stepProps={{ setProfileID }} />
         </ProfileProvider>
       </Create>
       <Button className="w-20">
