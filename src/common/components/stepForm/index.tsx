@@ -1,9 +1,12 @@
 import Stepper from "@keyvaluesystems/react-stepper";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { type FormStepProps } from "./interface";
 
-export default function FormStep({ formStepsData, stepProps }: FormStepProps): JSX.Element {
-  const [currentStep, setCurrentStep] = useState(0);
+export default function FormStep({ formStepsData, stepProps, initialStep }: FormStepProps): JSX.Element {
+  const [currentStep, setCurrentStep] = useState(initialStep);
+  useEffect(() => {
+    setCurrentStep(initialStep);
+  }, [initialStep]);
 
   return (
     <div>

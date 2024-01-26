@@ -1,7 +1,7 @@
 import React from "react";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { type IFormConfig } from "@src/common/interface";
-import { useProfileContext } from "../../../context/context";
+import { useProfileContext } from "../../../context";
 import { type UseFieldArrayAppend } from "react-hook-form";
 
 interface DocumentDynamicFormProps {

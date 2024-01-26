@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import { applicationSchema } from "./validation";
 import type { IApplication } from "../../interface";
-import { useProfileContext } from "@src/app/(protected)/(personal)/context/context";
+import { useProfileContext } from "@src/app/(protected)/(personal)/context";
 
 interface FormConfigParams {
   setCurrentStep?: ((step: number) => void) | undefined

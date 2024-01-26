@@ -5,7 +5,7 @@ import { Input, Textarea } from "@src/shadcn/elements";
 import { useFieldArray } from "react-hook-form";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
-import { useProfileContext } from "@src/app/(protected)/(personal)/context/context";
+import { useProfileContext } from "@src/app/(protected)/(personal)/context";
 interface WorkExperienceFormProps {
   setCurrentStep?: (step: number) => void
 }

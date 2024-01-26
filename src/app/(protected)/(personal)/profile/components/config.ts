@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
-import { useProfileContext } from "../../context/context";
+import { useProfileContext } from "../../context";
 import { profileSchema } from "./validation";
 import type { ProfileFormValues } from "../interface";
 

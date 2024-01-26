@@ -6,5 +6,6 @@ interface IStep {
 }
 export interface FormStepProps {
   formStepsData: IStep[]
-  stepProps: Record<any, any>// You can customize the type based on your step content needs
+  stepProps: Record<any, any>
+  initialStep: number
 }

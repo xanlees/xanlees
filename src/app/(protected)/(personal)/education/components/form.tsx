@@ -9,7 +9,7 @@ import { useFieldArray } from "react-hook-form";
 import { type IGraduation } from "../interface";
 import { FormGraduation } from "../../graduation/components/form";
 import { useFormConfig } from "./config";
-import { useProfileContext } from "../../context/context";
+import { useProfileContext } from "../../context";
 
 interface EducationFormProps {
   setCurrentStep?: (step: number) => void

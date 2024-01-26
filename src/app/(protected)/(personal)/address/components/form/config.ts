@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import { personalAddressSchema } from "./validation";
-import { useProfileContext } from "@src/app/(protected)/(personal)/context/context";
+import { useProfileContext } from "@src/app/(protected)/(personal)/context";
 
 interface PersonalAddressFormValues {
   bornDistrictId: number

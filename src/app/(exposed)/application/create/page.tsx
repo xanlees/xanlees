@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Card } from "@src/shadcn/elements";
-import { ProfileProvider } from "@src/app/(protected)/(personal)/context/context";
+import { ProfileProvider } from "@src/app/(protected)/(personal)/context";
 import { applicationFromStep } from "@src/app/(protected)/(personal)/profile/lib/settings";
 import FormStep from "@src/common/components/stepForm";
 
