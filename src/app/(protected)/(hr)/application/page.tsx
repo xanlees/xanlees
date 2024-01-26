@@ -31,19 +31,21 @@ export default function ApplicationList(): JSX.Element {
   const friendly = useUserFriendlyName();
   return (
     <List showCreate={false}>
-      <p className="mx-2 text-sm font-bold">ສົ່ງລີ້ງໃຫ້ຜູ້ສະໝັກ:</p>
+      <span className="mx-2 mt-10 text-sm font-bold">ສົ່ງລີ້ງໃຫ້ຜູ້ສະໝັກ:</span>
       <InputToClipboard value={`${process.env.NEXTAUTH_URL}/application/create`}></InputToClipboard>
-      <Table table={table}>
-        {getSelectColumn(friendly)}
-        {FullNameColumn}
-        {PhoneNumberColumn}
-        {GenderColumn}
-        {MarriageStatus}
-        {ApplicationDate}
-        {ApplicationStatusColumn}
-        {workExperienceColumn(dataWorkExperience)}
-        {getActionsColumn(resource)}
-      </Table>
+      <div className="-mt-[3.25rem]">
+        <Table table={table}>
+          {getSelectColumn(friendly)}
+          {FullNameColumn}
+          {PhoneNumberColumn}
+          {GenderColumn}
+          {MarriageStatus}
+          {ApplicationDate}
+          {ApplicationStatusColumn}
+          {workExperienceColumn(dataWorkExperience)}
+          {getActionsColumn(resource)}
+        </Table>
+      </div>
     </List>
   );
 }
