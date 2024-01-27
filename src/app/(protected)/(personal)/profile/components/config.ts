@@ -31,7 +31,7 @@ export const useFormConfig = ({
         enabled: true,
       },
       onMutationSuccess: (data) => {
-        dispatch({ type: "setProfileId", payload: data?.data?.id ?? 0 });
+        dispatch({ type: "setProfileId", payload: data?.data?.id ?? 0});
         (setCurrentStep != null) && setCurrentStep(2);
       },
       redirect: false,

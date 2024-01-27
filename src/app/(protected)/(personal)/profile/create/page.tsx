@@ -2,7 +2,7 @@
 import { Create } from "@/shadcn/components/crud";
 import { formStepsData } from "../lib/settings";
 import React from "react";
-import { ProfileProvider, useProfileContext } from "../../context";
+import { PROFILE_STORAGE_KEY, ProfileProvider, useProfileContext } from "../../context";
 import { ProfileAction, type ProfileState } from "../../context/interface";
 import { Button, Link } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
@@ -24,15 +24,25 @@ export default function ProfileCreate(): JSX.Element {
 
 function FormCreate(): JSX.Element {
   const router = useRouter();
-  const { state, dispatch }: { state: ProfileState, dispatch: React.Dispatch<ProfileAction> } = useProfileContext();
+  const { state, dispatch } = useProfileContext();
+  
   let initialStep = state.personalAddressId ? 1 : 0;
   initialStep = state.profileId ? 2 :initialStep;
   initialStep = state.isUploaded ? 3 :initialStep;
 
+  const handleFormStep = () => {
+    // Simulate asynchronous action (e.g., API call) and update the profileId
+    setTimeout(() => {
+      dispatch({ type: 'setProfileId', payload: 123 }); // Replace with your actual action
+    }, 1000);
+  };
+
   const handleButtonClick = () => {
-    if (state.profileId !== 0){
-      router.push(`/employee/create/${state.profileId}`);
-      dispatch({ type: "clearState", payload: false});
+    const storedState = localStorage.getItem(PROFILE_STORAGE_KEY);
+    const profileState = JSON.parse(storedState as string) as ProfileState
+    if (profileState.profileId !== undefined && profileState.profileId !== 0) {
+      router.push(`/employee/create/${profileState.profileId}`);
+      dispatch({ type: "clearState", payload: false });
     }
   };
 
@@ -46,11 +56,13 @@ function FormCreate(): JSX.Element {
           <FormStep formStepsData={formStepsData}
             stepProps={{}}
             initialStep={initialStep} />
+            <Button onClick={handleFormStep}>Simulate FormStep</Button>
+          <Button className="w-20" onClick={handleButtonClick}>
+            ຕໍ່ໄປ
+          </Button>
         </ProfileProvider>
       </Create>
-      <Button className="w-20" onClick={handleButtonClick} disabled={state.profileId === 0}>
-        ຕໍ່ໄປ
-      </Button>
+     
     </>
   );
 }

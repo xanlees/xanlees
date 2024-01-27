@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { ProfileState, ProfileAction } from "./interface";
 
-const PROFILE_STORAGE_KEY = "creatingProfileState";
+export const PROFILE_STORAGE_KEY = "creatingProfileState";
 
 const ProfileContext = createContext<
 { state: ProfileState, dispatch: React.Dispatch<ProfileAction> } | undefined

@@ -11,6 +11,6 @@ type ProfileActionType = "setProfileId" | "setGraduationId" |
   "setIsUploaded" | "loadFromLocalStorage"| "clearState";
 export interface ProfileAction {
   type: ProfileActionType;
-  payload: number | boolean | ProfileState | {};
+  payload: number | boolean | ProfileState | {} ;
   payloadType?: string;
 }
