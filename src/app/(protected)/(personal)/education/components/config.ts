@@ -3,6 +3,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { graduationSchema } from "../lib/validation";
 import { type z } from "zod";
 
+
 interface FormConfigParams {
   setCurrentStep: ((step: number) => void) | undefined
 }

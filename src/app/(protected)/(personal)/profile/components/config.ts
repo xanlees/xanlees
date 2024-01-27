@@ -12,7 +12,6 @@ interface FormConfigParams {
 
 export const useFormConfig = ({
   setCurrentStep,
-  setProfileID,
 }: FormConfigParams) => {
   const { state, dispatch } = useProfileContext();
   const { ...form } = useForm<ProfileFormValues>({
@@ -34,7 +33,6 @@ export const useFormConfig = ({
       onMutationSuccess: (data) => {
         dispatch({ type: "setProfileId", payload: data?.data?.id ?? 0 });
         (setCurrentStep != null) && setCurrentStep(2);
-        (setProfileID != null) && setProfileID(data?.data?.id ?? 0);
       },
       redirect: false,
     },

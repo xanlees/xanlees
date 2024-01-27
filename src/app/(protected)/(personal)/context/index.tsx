@@ -6,21 +6,7 @@ import React, {
   useEffect,
   type ReactNode,
 } from "react";
-
-export interface ProfileState {
-  profileId?: number
-  graduationId?: number
-  personalAddressId?: number
-  applicationId?: number
-}
-
-type ProfileActionType = "setProfileId" | "setGraduationId"
-| "setPersonalAddressId" | "setApplicationId" | "loadFromLocalStorage";
-interface ProfileAction {
-  type: ProfileActionType
-  payload: number | ProfileState
-  payloadType?: string
-}
+import { ProfileState, ProfileAction } from "./interface";
 
 const PROFILE_STORAGE_KEY = "creatingProfileState";
 
@@ -28,8 +14,16 @@ const ProfileContext = createContext<
 { state: ProfileState, dispatch: React.Dispatch<ProfileAction> } | undefined
 >(undefined);
 
+const initialProfileState: ProfileState = {
+  profileId: 0,
+  graduationId: 0,
+  personalAddressId: 0,
+  applicationId: 0,
+  isUploaded: false,
+};
+
 const ProfileReducer = (
-  state: ProfileState,
+  state: ProfileState = initialProfileState,
   action: ProfileAction,
 ): ProfileState => {
   switch (action.type) {
@@ -41,8 +35,12 @@ const ProfileReducer = (
       return { ...state, personalAddressId: action.payload as number };
     case "setApplicationId":
       return { ...state, applicationId: action.payload as number };
+    case "setIsUploaded":
+      return { ...state, isUploaded: action.payload as boolean };
     case "loadFromLocalStorage":
-      return { ...state, ...action.payload as ProfileState };
+      return { ...action.payload as ProfileState };
+    case "clearState":
+        return { ...initialProfileState };
     default:
       return state;
   }
