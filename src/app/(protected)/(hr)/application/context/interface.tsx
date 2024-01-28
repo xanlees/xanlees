@@ -17,3 +17,4 @@ export interface ApplicationAction {
   payload: number | boolean | ApplicationState | {} ;
   payloadType?: string;
 }
+

@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { ProfileAction, ProfileState } from "./interface";
 import { ProfileReducer } from "./reducer";
-import { createContextProvider } from "@src/common/context/provider";
+import { createContextProvider } from "@src/common/localStorageContext/provider";
 
 export const PROFILE_STORAGE_KEY = "creatingProfileState";
 
