@@ -5,19 +5,14 @@ import { useFormConfig } from "./config";
 import { InputBornVillage, BornDistrictSelect, CurrentDistrictSelect } from "../../containers";
 import type { IDistrict } from "../../interface";
 import { InputBase } from "@src/common/elements/input/InputBase";
-import { useProfileContext } from "../../../context";
-
 interface PersonalAddressFormProps {
   setCurrentStep?: (step: number) => void
-  dispatch?: {
-    setPersonalAddressId: (id: number) => void
-  }
 }
 
 export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
-  setCurrentStep, dispatch, 
+  setCurrentStep,
 }) => {
-  const formConfig = useFormConfig({ setCurrentStep, dispatch });
+  const formConfig = useFormConfig({ setCurrentStep });
   const district = useSelect<IDistrict>({
     resource: "district",
     optionLabel: "districtName",
