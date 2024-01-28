@@ -14,10 +14,6 @@ export const ProfileReducer = (
       return { ...state, personalAddressId: action.payload as number };
     case "setPhysicalProfileId":
       return { ...state, physicalProfileId: action.payload as number };
-    case "setApplicationId":
-      return { ...state, applicationId: action.payload as number };
-    case "setWorkExperienceId":
-      return { ...state, workExperienceId: action.payload as number };
     case "setIsUploaded":
       return { ...state, isUploaded: action.payload as boolean };
     case LoadFromStorage:

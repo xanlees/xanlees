@@ -14,9 +14,10 @@ interface FormConfigParams {
   },
   dispatch: React.Dispatch<any>
 }
-const step = 4;
+const step = 3;
 
-export const useFormConfig = ({ setCurrentStep, dispatch, state }: FormConfigParams) => {
+export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
+  const { state } = useProfileContext();
   const { ...form } = useForm<PersonalAddressFormValues>({
     resolver: zodResolver(PhysicalProfileSchema),
     defaultValues: {
@@ -26,8 +27,7 @@ export const useFormConfig = ({ setCurrentStep, dispatch, state }: FormConfigPar
       resource: "physical_profile",
       redirect: false,
       onMutationSuccess: (data) => {
-        dispatch({ type: "setPhysicalProfileId", payload: data?.data?.id ?? 0 });
-        // (setCurrentStep != null) && setCurrentStep(step);
+        (setCurrentStep != null) && setCurrentStep(step);
       },
     },
     warnWhenUnsavedChanges: true,

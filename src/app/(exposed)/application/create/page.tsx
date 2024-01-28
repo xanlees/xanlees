@@ -4,8 +4,7 @@ import { Card } from "@src/shadcn/elements";
 import { applicationFromStep } from "@src/app/(protected)/(personal)/profile/lib/settings";
 import FormStep from "@src/common/components/stepForm";
 import { ApplicationProvider, useApplicationContext } from "@src/app/(protected)/(hr)/application/context";
-import { ApplicationState } from "@src/app/(protected)/(hr)/application/context/interface";
-import { ProfileProvider } from "@src/app/(protected)/(personal)/context";
+import { ProfileProvider, useProfileContext } from "@src/app/(protected)/(personal)/context";
 
 export default function ApplicationCreate(): JSX.Element {
   return (
@@ -20,20 +19,22 @@ export default function ApplicationCreate(): JSX.Element {
 }
 
 function ApplicationForm(): JSX.Element {
-  const { state, dispatch } = useApplicationContext();
-  let initialStep = state.personalAddressId ? 1 : 0;
-  initialStep = state.profileId ? 2 : initialStep;
-  initialStep = state.physicalProfileId ? 3 : initialStep;
-  initialStep = state.isUploaded ? 3 : initialStep;
-  initialStep = state.graduationId ? 3 : initialStep;
-  initialStep = state.personalAddressId ? 3 : initialStep;
-  console.log("state", state.personalAddressId)
-  console.log("initialStep", initialStep)
+  const { state: stateApplication } = useApplicationContext();
+  const { state: stateProfile  } = useProfileContext();
+  let initialStep = stateProfile.personalAddressId ? 1 : 0;
+  initialStep = stateProfile.profileId ? 2 : initialStep;
+  initialStep = stateApplication.physicalProfileId ? 3 : initialStep;
+  initialStep = stateProfile.isUploaded ? 4 : initialStep;
+  initialStep = stateProfile.graduationId ? 5 : initialStep;
+  initialStep = stateApplication.applicationId ? 6 : initialStep;
+  initialStep = stateApplication.workExperienceId ? 7 : initialStep;
+  console.log("stateApplication", stateApplication);
+  console.log("stateProfile", stateProfile);
   return (
     <>
       <FormStep formStepsData={applicationFromStep}
         stepProps={{}}
-        initialStep={initialStep}
+        initialStep={5}
       />
     </>
   );

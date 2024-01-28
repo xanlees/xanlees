@@ -14,7 +14,7 @@ const { LocalStorageProvider, useLocalStorageContext } = createContextProvider<
   storageKey: PROFILE_STORAGE_KEY,
 });
 
-export const ProfileProvider: React.FC<{children: ReactNode;}> = ({ children }) => {
+export const ProfileProvider: React.FC<{children: ReactNode }> = ({ children }) => {
   return (
     <LocalStorageProvider>
       {children}

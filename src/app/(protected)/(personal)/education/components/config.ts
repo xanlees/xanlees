@@ -7,7 +7,7 @@ import { type z } from "zod";
 interface FormConfigParams {
   setCurrentStep: ((step: number) => void) | undefined
 }
-const step = 4;
+const step = 5;
 
 export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
   const { ...form } = useForm<z.infer<typeof graduationSchema>>({

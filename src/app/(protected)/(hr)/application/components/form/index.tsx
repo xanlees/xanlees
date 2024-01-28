@@ -8,18 +8,15 @@ import {
   DrivingLicenceOptions,
   DynamicVaccineInput,
 } from "../../containers/form";
-import { Textarea } from "@src/shadcn/elements";
+import { Input, Textarea } from "@src/shadcn/elements";
+import { IFormConfig } from "@src/common/interface";
 
 interface ApplicationFormProps {
   setCurrentStep?: (step: number) => void
-  state?: {
-    profileId: number
-  }
-  dispatch: any
 }
 
-export const ApplicationForm: React.FC<ApplicationFormProps> = ({ setCurrentStep, state, dispatch }) => {
-  const formConfig = useFormConfig({ setCurrentStep, state, dispatch });
+export const ApplicationForm: React.FC<ApplicationFormProps> = ({ setCurrentStep }) => {
+  const formConfig = useFormConfig({ setCurrentStep });
   return (
     <div className="rounded-full w-96 sm:w-[37%] ">
       <Form {...formConfig.form}>
@@ -34,7 +31,17 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ setCurrentStep
         <Form.Field {...formConfig.form} name="pledgeReason" label="ຖ້າໄດ້ເປັນພະນັກງານຂອງ ເອັສບີເອັສ ແລ້ວທ່ານຈະປະຕິຍານຕົນແນວໃດ ?">
           <Textarea className="h-28" />
         </Form.Field>
+        <ApplicantSignatureChckbox {...formConfig} />
       </Form>
     </div>
   );
 };
+
+const ApplicantSignatureChckbox = (formConfig: IFormConfig) => (
+  <Form.Field {...formConfig.form} name="applicantSignature">
+    <div className="flex">
+      <Input placeholder="ລະລັດຜ່ານ" type="checkbox" className="w-5 h-5" />
+      <p className="pt-1.5 ml-1">ຂ້ອຍຮັບໃນເງື່ອນໄຂຂອງບໍລິສັດ</p>
+    </div>
+  </Form.Field>
+);

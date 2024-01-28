@@ -1,16 +1,12 @@
+import { LoadFromStorage } from "@src/common/localStorageContext/constant";
 
 export interface ApplicationState {
-  profileId?: number;
-  graduationId?: number;
-  personalAddressId?: number;
   applicationId?: number;
   physicalProfileId?: number
-  isUploaded?: boolean
   workExperienceId?: number
 }
-type ApplicationStateActionType = "setProfileId" | "setGraduationId" |
-  "setPersonalAddressId" | "setApplicationId" | "setWorkExperienceId" |
-  "setIsUploaded" | "setPhysicalProfileId" | "loadFromLocalStorage"| "clearState";
+type ApplicationStateActionType =  "setApplicationId" | "setWorkExperienceId" |
+  "setIsUploaded" | "setPhysicalProfileId" | typeof LoadFromStorage | "clearState";
 
 export interface ApplicationAction {
   type: ApplicationStateActionType;

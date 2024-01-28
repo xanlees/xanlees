@@ -5,13 +5,13 @@ import { type z } from "zod";
 import { formHeadersConfig } from "@src/common/interface";
 import { useProfileContext } from "../../../context";
 
-const step = 3;
+
 interface FormConfigParams {
   setCurrentStep: ((step: number) => void) | undefined
 }
-
+const step = 4;
 export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
-  const { state, dispatch } = useProfileContext();
+  const { dispatch } = useProfileContext();
   const { ...form } = useForm<z.infer<typeof documentFormSchema>>({
     resolver: zodResolver(documentFormSchema),
     refineCoreProps: {
