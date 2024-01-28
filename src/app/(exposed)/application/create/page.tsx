@@ -9,7 +9,7 @@ export default function ApplicationCreate(): JSX.Element {
   return (
     <ProfileProvider>
       <Card className="w-1/2 mx-auto mt-10 rounded-md">
-        <FormStep formStepsData={applicationFromStep} stepProps={{ isEmployee: true }} />
+        <FormStep formStepsData={applicationFromStep} stepProps={{ isEmployee: true }} initialStep={2} />
       </Card>
     </ProfileProvider>
   );

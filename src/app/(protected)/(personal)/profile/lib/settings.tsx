@@ -5,6 +5,7 @@ import { PersonalAddressForm } from "../../address/components/form/form";
 import { ApplicationForm } from "@src/app/(protected)/(hr)/application/components/form";
 import { WorkExperienceForm } from "@src/app/(protected)/(hr)/work_experience/components/form/form";
 import { Success } from "@src/app/(protected)/(hr)/application/components/form/sussess";
+import { PhysicalProfile } from "../../physical_profile/components/form/form";
 
 export const formStepsData = [
   {
@@ -57,6 +58,11 @@ export const applicationFromStep = [
   {
     stepLabel: "ສ້າງໂປຣໄຟລ໌",
     stepDescription: <ProfileForm />,
+    completed: false,
+  },
+  {
+    stepLabel: "ສ້າງໂປຣໄຟລ໌",
+    stepDescription: <PhysicalProfile />,
     completed: false,
   },
   {

@@ -12,4 +12,7 @@ export const personalAddressSchema = z.object({
   currentVillage: z.string().min(1, {
     message: "ກະລຸນາເລືອກເມືອງຢູ່ປະຈຸບັນ",
   }),
+  houseNo: z.string().min(1, {
+    message: "ເຮືອນເລກທີ",
+  }),
 });

@@ -13,3 +13,4 @@ export const PasswordInput = (formConfig: IFormConfig) => (
     <Input type="password" placeholder="Password" />
   </Form.Field>
 );
+

@@ -4,6 +4,7 @@ import { Form } from "@src/shadcn/components/form";
 import { useFormConfig } from "./config";
 import { InputBornVillage, BornDistrictSelect, CurrentDistrictSelect } from "../../containers";
 import type { IDistrict } from "../../interface";
+import { InputBase } from "@src/common/elements/input/InputBase";
 
 interface PersonalAddressFormProps {
   setCurrentStep?: (step: number) => void
@@ -30,6 +31,7 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
           <div className="flex-1 p-4">
             <InputBornVillage {...formConfig} name="currentVillage" label="ບ້ານຢູ່ປະຈຸບັນ"/>
             <CurrentDistrictSelect formConfig={formConfig} district={district} />
+            <InputBase {...formConfig} name="houseNo" label="ເຮືອນເລກທີ"/>
           </div>
         </div>
       </Form>
