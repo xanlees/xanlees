@@ -1,3 +1,4 @@
+import { LoadFromStorage } from "@src/common/localStorageContext/constant";
 
 export interface ProfileState {
   profileId?: number;
@@ -10,7 +11,7 @@ export interface ProfileState {
 }
 type ProfileActionType = "setProfileId" | "setGraduationId" |
   "setPersonalAddressId" | "setApplicationId" | "setWorkExperienceId" |
-  "setIsUploaded" | "setPhysicalProfileId" | "loadFromLocalStorage"| "clearState";
+  "setIsUploaded" | "setPhysicalProfileId" | typeof LoadFromStorage | "clearState";
 export interface ProfileAction {
   type: ProfileActionType;
   payload: number | boolean | ProfileState | {} ;

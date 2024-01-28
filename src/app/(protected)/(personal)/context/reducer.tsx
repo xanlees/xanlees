@@ -1,3 +1,4 @@
+import { LoadFromStorage } from "@src/common/localStorageContext/constant";
 import { ProfileState, ProfileAction } from "./interface";
 
 export const ProfileReducer = (
@@ -19,7 +20,7 @@ export const ProfileReducer = (
       return { ...state, workExperienceId: action.payload as number };
     case "setIsUploaded":
       return { ...state, isUploaded: action.payload as boolean };
-    case "loadFromLocalStorage":
+    case LoadFromStorage:
       return { ...action.payload as ProfileState };
     case "clearState":
       return { ...initialProfileState };
