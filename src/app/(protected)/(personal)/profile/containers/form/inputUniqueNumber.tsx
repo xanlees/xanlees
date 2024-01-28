@@ -47,7 +47,7 @@ export const DynamicNumberForm: React.FC<{ formConfig: IFormConfig, isEmployee?:
 };
 
 const getTypeDisplayText = (type: string | undefined, isEmployee?: boolean): string => {
-  if (isEmployee ?? false) {
+  if (isEmployee === true) {
     switch (type) {
       case "IDENTIFY":
         return "ເລກບັດປະຈໍາຕົວ";

@@ -5,8 +5,8 @@ import React from "react";
 import { useProfileContext } from "../../context";
 import { PROFILE_STORAGE_KEY } from "../../context";
 import { ProfileProvider } from "../../context";
-import { ProfileAction, type ProfileState } from "../../context/interface";
-import { Button, Link } from "@src/shadcn/elements";
+import { type ProfileState } from "../../context/interface";
+import { Button } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 import FormStep from "@src/common/components/stepForm";
 import { useRouter } from "next/navigation";
@@ -33,9 +33,8 @@ function FormCreate(): JSX.Element {
   initialStep = state.isUploaded ? 3 :initialStep;
 
   const handleFormStep = () => {
-    // Simulate asynchronous action (e.g., API call) and update the profileId
     setTimeout(() => {
-      dispatch({ type: 'setProfileId', payload: 123 }); // Replace with your actual action
+      dispatch({ type: 'setProfileId', payload: 123 });
     }, 1000);
   };
 

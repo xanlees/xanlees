@@ -57,3 +57,24 @@ export const DrivingLicenceOptions = [
     value: "E",
   },
 ];
+export const VaccinesOptions = [
+  {
+    label: "Sinopharm",
+    value: "Sinopharm",
+  },
+  {
+    label: "AstraZeneca",
+    value: "AstraZeneca",
+  },
+  {
+    label: "Pfizer",
+    value: "Pfizer",
+  },
+  {
+    label: "ອື່ນໆ",
+    value: "Other",
+  },
+];
+
+
+

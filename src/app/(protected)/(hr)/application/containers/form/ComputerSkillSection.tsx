@@ -1,4 +1,5 @@
 import { Label } from "@src/shadcn/elements";
+import { Badge } from "lucide-react";
 import type { IFormConfig } from "../../interface";
 import { SectionInput, SkillOptions } from "./SectionInput";
 export const ComputerSkillSection: React.FC<{ formConfig: IFormConfig }> = ({
@@ -6,7 +7,9 @@ export const ComputerSkillSection: React.FC<{ formConfig: IFormConfig }> = ({
 }) => {
   return (
     <>
-      <Label>ຄວາມສາມາດໃນການໃຊ້ຄວາມພິວເຕີ</Label>
+      <div className="flex gap-x-2">
+        <Badge /> <Label className="text-xl font-bold">ຄວາມສາມາດໃນການໃຊ້ຄວາມພິວເຕີ</Label>
+      </div>
       <div className="flex flex-col w-full gap-2 capitalize rounded-lg sm:w-1/2 sm:flex-row">
         <div className="space-y-2 ">
           <SectionInput

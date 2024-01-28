@@ -4,7 +4,7 @@ import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { Card, Input } from "@src/shadcn/elements";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useFieldArray } from "react-hook-form";
 import { type IGraduation } from "../interface";
 import { FormGraduation } from "../../graduation/components/form";
@@ -19,7 +19,14 @@ export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep }) 
   const formConfig = useFormConfig({ setCurrentStep });
   const graduation = useGraduationSelect();
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "education" });
-
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+      if (!isMounted) {
+          append({ profileId: state.profileId });
+          setIsMounted(true);
+          remove(1);
+      }
+  },[isMounted]);
   return (
     <div className="w-full sm:w-[53%] rounded-lg">
       <Form {...formConfig.form}>

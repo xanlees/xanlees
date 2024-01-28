@@ -8,7 +8,7 @@ import { ProfileProvider, useProfileContext } from "@src/app/(protected)/(person
 
 export default function ApplicationCreate(): JSX.Element {
   return (
-    <Card className="w-1/2 mx-auto mt-10 rounded-md">
+    <Card className="w-1/2 mx-auto mt-10 mb-20 rounded-md">
       <ApplicationProvider>
         <ProfileProvider>
           <ApplicationForm />
@@ -28,13 +28,11 @@ function ApplicationForm(): JSX.Element {
   initialStep = stateProfile.graduationId ? 5 : initialStep;
   initialStep = stateApplication.applicationId ? 6 : initialStep;
   initialStep = stateApplication.workExperienceId ? 7 : initialStep;
-  console.log("stateApplication", stateApplication);
-  console.log("stateProfile", stateProfile);
   return (
     <>
       <FormStep formStepsData={applicationFromStep}
         stepProps={{}}
-        initialStep={5}
+        initialStep={initialStep}
       />
     </>
   );

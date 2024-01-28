@@ -9,10 +9,6 @@ interface PersonalAddressFormValues {
 
 interface FormConfigParams {
   setCurrentStep: ((step: number) => void) | undefined
-  state?: {
-    profileId: number
-  },
-  dispatch: React.Dispatch<any>
 }
 const step = 3;
 

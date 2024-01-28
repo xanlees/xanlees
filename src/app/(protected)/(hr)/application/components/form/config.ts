@@ -3,6 +3,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { applicationSchema } from "./validation";
 import type { IApplication } from "../../interface";
 import { useProfileContext } from "@src/app/(protected)/(personal)/context";
+import { useApplicationContext } from "../../context";
 
 interface FormConfigParams {
   setCurrentStep?: ((step: number) => void) | undefined
@@ -10,11 +11,12 @@ interface FormConfigParams {
 
 const step = 6;
 export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
-  const { state, dispatch } = useProfileContext();
+  const { dispatch } = useApplicationContext();
+  const { state } = useProfileContext();
   const { ...form } = useForm<IApplication>({
     resolver: zodResolver(applicationSchema),
     defaultValues: {
-      profileId: state?.profileId,
+      profileId: 2,
       applicationStatus: "New",
     },
     refineCoreProps: {

@@ -1,26 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "@src/shadcn/components/form";
 import { useFormConfig } from "./config";
 import { Input, Textarea } from "@src/shadcn/elements";
 import { useFieldArray } from "react-hook-form";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
+import { useApplicationContext } from "../../../application/context";
 interface WorkExperienceFormProps {
   setCurrentStep?: (step: number) => void
-  dispatch: any
-  state?: {
-    applicationId: number
-  }
 }
 
-export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurrentStep, dispatch, state }) => {
-  const formConfig = useFormConfig({ setCurrentStep, dispatch });
+export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurrentStep }) => {
+  const { state } = useApplicationContext();
+  const formConfig = useFormConfig({ setCurrentStep });
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "work_experience" });
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    if (!isMounted) {
+      append({ applicationId: state.applicationId });
+      setIsMounted(true);
+      remove(1);
+    }
+  }, [isMounted]);
   return (
     <div className="rounded-full w-96 sm:w-[33%] ">
       <Form {...formConfig.form}>
         <DynamicForm
-          form={formConfig.form} fields={fields} append={append} remove={remove} name="work_experience" className="flex flex-wrap" label="ປະສົບການເຮັດວຽກ" classNameButton="hidden"
+          form={formConfig.form} fields={fields} append={append} remove={remove} name="work_experience" className="flex flex-wrap" label="ປະສົບການເຮັດວຽກ"
+          classNameButton="w-full mr-7"
           defaultConfig={{ applicationId: state?.applicationId }}>
           <ArrayField {...formConfig.form} name="company" label="ບໍລິສັດ">
             <Input placeholder="ບໍລິສັດ" className="block w-56" />

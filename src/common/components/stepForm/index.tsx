@@ -20,7 +20,7 @@ export default function FormStep({ formStepsData, stepProps, initialStep,}: Form
         }))}
         orientation="vertical"
         currentStepIndex={currentStep}
-        stepContent={() => <div className="w-[1600px] rounded-lg" />}
+        stepContent={() => <div className="w-[1600px] rounded-lg"  />}
       />
     </div>
   );

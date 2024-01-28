@@ -1,18 +1,17 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import { WorkExperienceSchema } from "./validation";
+import { useApplicationContext } from "../../../application/context";
 
 interface FormConfigParams {
   setCurrentStep: ((step: number) => void) | undefined
-  dispatch: any
 }
 interface WorkExperienceProps {
   id: number
 }
-const step = 6;
-
-
-export const useFormConfig = ({ setCurrentStep, dispatch }: FormConfigParams) => {
+const step = 8;
+export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
+  const { dispatch } = useApplicationContext();
   const { ...form } = useForm<WorkExperienceProps>({
     resolver: zodResolver(WorkExperienceSchema),
     refineCoreProps: {

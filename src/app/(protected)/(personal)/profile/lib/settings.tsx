@@ -17,7 +17,7 @@ export const formStepsData = [
   },
   {
     stepLabel: "ສ້າງໂປຣໄຟລ໌",
-    stepDescription: <ProfileForm />,
+    stepDescription: <ProfileForm isEmployee={true} />,
     completed: false,
   },
   {
@@ -32,20 +32,7 @@ export const formStepsData = [
   },
 ];
 
-export const typeOfUniqueNumber = [
-  {
-    label: "ເລກເຄື່ອງຂາຍເລກ",
-    value: "MACHINE",
-  },
-  {
-    label: "ເລກບັດປະຈໍາຕົວ",
-    value: "IDENTIFY",
-  },
-  {
-    label: "ປື້ມສໍາມະໂມຄົວເລກທີ",
-    value: "CENSUS_BOOK",
-  },
-];
+
 
 export const applicationFromStep = [
   {
@@ -57,7 +44,7 @@ export const applicationFromStep = [
   },
   {
     stepLabel: "ສ້າງໂປຣໄຟລ໌",
-    stepDescription: <ProfileForm />,
+    stepDescription: <ProfileForm isEmployee={false}/>,
     completed: false,
   },
   {

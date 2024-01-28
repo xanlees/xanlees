@@ -3,11 +3,12 @@ import { Input } from "@src/shadcn/elements";
 import { Form } from "@src/shadcn/components/form";
 import { type IFormConfig } from "../../interface";
 import { genderOptions } from "@src/app/(protected)/(career)/employee/lib/constant";
-import { typeOfUniqueNumber } from "../../lib/settings";
 
-export const BasicInformationSection: React.FC<{ formConfig: IFormConfig }> = ({
-  formConfig,
+export const BasicInformationSection: React.FC<{ formConfig: IFormConfig, isEmployee?: boolean }> = ({
+  formConfig, isEmployee
 }) => {
+  let typeOfUniqueNumber;
+  typeOfUniqueNumber = uniqueNumbe(typeOfUniqueNumber, isEmployee);
   return (
     <div className="flex-1 p-4">
       <Form.Field
@@ -40,3 +41,35 @@ export const BasicInformationSection: React.FC<{ formConfig: IFormConfig }> = ({
     </div>
   );
 };
+
+function uniqueNumbe(typeOfUniqueNumber: any, isEmployee?: boolean) {
+  if (isEmployee) {
+      return [
+          {
+              label: "ເລກເຄື່ອງຂາຍເລກ",
+              value: "MACHINE",
+          },
+          {
+              label: "ເລກບັດປະຈໍາຕົວ",
+              value: "IDENTIFY",
+          },
+          {
+              label: "ປື້ມສໍາມະໂມຄົວເລກທີ",
+              value: "CENSUS_BOOK",
+          },
+      ];
+  } else {
+      return [
+          {
+              label: "ເລກບັດປະຈໍາຕົວ",
+              value: "IDENTIFY",
+          },
+          {
+              label: "ປື້ມສໍາມະໂມຄົວເລກທີ",
+              value: "CENSUS_BOOK",
+          },
+      ];
+  }
+}
+
+
