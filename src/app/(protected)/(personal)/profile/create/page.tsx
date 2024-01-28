@@ -2,7 +2,9 @@
 import { Create } from "@/shadcn/components/crud";
 import { formStepsData } from "../lib/settings";
 import React from "react";
-import { PROFILE_STORAGE_KEY, ProfileProvider, useProfileContext } from "../../context";
+import { useProfileContext } from "../../context";
+import { PROFILE_STORAGE_KEY } from "../../context/provider";
+import { ProfileProvider } from "../../context/provider";
 import { ProfileAction, type ProfileState } from "../../context/interface";
 import { Button, Link } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";

@@ -12,10 +12,14 @@ import { Textarea } from "@src/shadcn/elements";
 
 interface ApplicationFormProps {
   setCurrentStep?: (step: number) => void
+  state?: {
+    profileId: number
+  }
+  dispatch: any
 }
 
-export const ApplicationForm: React.FC<ApplicationFormProps> = ({ setCurrentStep }) => {
-  const formConfig = useFormConfig({ setCurrentStep });
+export const ApplicationForm: React.FC<ApplicationFormProps> = ({ setCurrentStep, state, dispatch }) => {
+  const formConfig = useFormConfig({ setCurrentStep, state, dispatch });
   return (
     <div className="rounded-full w-96 sm:w-[37%] ">
       <Form {...formConfig.form}>

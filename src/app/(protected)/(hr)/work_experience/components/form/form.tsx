@@ -5,21 +5,23 @@ import { Input, Textarea } from "@src/shadcn/elements";
 import { useFieldArray } from "react-hook-form";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
-import { useProfileContext } from "@src/app/(protected)/(personal)/context";
 interface WorkExperienceFormProps {
   setCurrentStep?: (step: number) => void
+  dispatch: any
+  state?: {
+    applicationId: number
+  }
 }
 
-export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurrentStep }) => {
-  const formConfig = useFormConfig({ setCurrentStep });
+export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurrentStep, dispatch, state }) => {
+  const formConfig = useFormConfig({ setCurrentStep, dispatch });
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "work_experience" });
-  const { state } = useProfileContext();
   return (
     <div className="rounded-full w-96 sm:w-[33%] ">
       <Form {...formConfig.form}>
         <DynamicForm
           form={formConfig.form} fields={fields} append={append} remove={remove} name="work_experience" className="flex flex-wrap" label="ປະສົບການເຮັດວຽກ" classNameButton="hidden"
-          defaultConfig={{ applicationId: state.applicationId }}>
+          defaultConfig={{ applicationId: state?.applicationId }}>
           <ArrayField {...formConfig.form} name="company" label="ບໍລິສັດ">
             <Input placeholder="ບໍລິສັດ" className="block w-56" />
           </ArrayField>

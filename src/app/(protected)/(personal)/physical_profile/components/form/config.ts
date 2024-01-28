@@ -9,22 +9,25 @@ interface PersonalAddressFormValues {
 
 interface FormConfigParams {
   setCurrentStep: ((step: number) => void) | undefined
+  state?: {
+    profileId: number
+  },
+  dispatch: React.Dispatch<any>
 }
 const step = 4;
 
-export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
-  const { state, dispatch } = useProfileContext();
+export const useFormConfig = ({ setCurrentStep, dispatch, state }: FormConfigParams) => {
   const { ...form } = useForm<PersonalAddressFormValues>({
     resolver: zodResolver(PhysicalProfileSchema),
     defaultValues: {
-      profileId: state.profileId,
+      profileId: state?.profileId,
     },
     refineCoreProps: {
       resource: "physical_profile",
       redirect: false,
       onMutationSuccess: (data) => {
         dispatch({ type: "setPhysicalProfileId", payload: data?.data?.id ?? 0 });
-        (setCurrentStep != null) && setCurrentStep(step);
+        // (setCurrentStep != null) && setCurrentStep(step);
       },
     },
     warnWhenUnsavedChanges: true,

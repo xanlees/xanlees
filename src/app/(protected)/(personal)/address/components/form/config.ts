@@ -1,7 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import { personalAddressSchema } from "./validation";
-import { useProfileContext } from "@src/app/(protected)/(personal)/context";
 
 interface PersonalAddressFormValues {
   bornDistrictId: number
@@ -11,12 +10,12 @@ interface PersonalAddressFormValues {
   id?: number
 }
 interface FormConfigParams {
-  setCurrentStep: ((step: number) => void) | undefined
+  setCurrentStep?: ((step: number) => void) | undefined
+  dispatch: any
 }
 const step = 1;
 
-export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
-  const { dispatch } = useProfileContext();
+export const useFormConfig = ({ setCurrentStep, dispatch }: FormConfigParams) => {
   const { ...form } = useForm<PersonalAddressFormValues>({
     resolver: zodResolver(personalAddressSchema),
     refineCoreProps: {
@@ -24,7 +23,7 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
       redirect: false,
       onMutationSuccess: (data) => {
         dispatch({ type: "setPersonalAddressId", payload: data?.data?.id ?? 0 });
-        (setCurrentStep != null) && setCurrentStep(step);
+        if (setCurrentStep) { setCurrentStep(step) }
       },
     },
     warnWhenUnsavedChanges: true,

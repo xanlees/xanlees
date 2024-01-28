@@ -7,14 +7,22 @@ import { PersonalInformationSection } from "../containers/form/PersonalInformati
 interface ProfileFormProps {
   setCurrentStep?: (step: number) => void
   setProfileID?: (id: number) => void
+  dispatch?: {
+    setProfileId: (id: number) => void
+  }
   isEmployee?: boolean
+  state?: {
+    personalAddressId?: number
+  },
 }
 export const ProfileForm: React.FC<ProfileFormProps> = ({
   setCurrentStep,
   setProfileID,
   isEmployee,
+  dispatch,
+  state,
 }) => {
-  const formConfig = useFormConfig({ setCurrentStep, setProfileID });
+  const formConfig = useFormConfig({ setCurrentStep, setProfileID, dispatch, state});
   return (
     <div className="w-[39%] rounded-full ">
       <Form {...formConfig.form}>

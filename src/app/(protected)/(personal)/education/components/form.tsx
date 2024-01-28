@@ -9,13 +9,14 @@ import { useFieldArray } from "react-hook-form";
 import { type IGraduation } from "../interface";
 import { FormGraduation } from "../../graduation/components/form";
 import { useFormConfig } from "./config";
-import { useProfileContext } from "../../context";
 
 interface EducationFormProps {
   setCurrentStep?: (step: number) => void
+  state?: {
+    profileId: number
+  },
 }
-export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep }) => {
-  const { state } = useProfileContext();
+export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep, state }) => {
   const formConfig = useFormConfig({ setCurrentStep });
   const graduation = useGraduationSelect();
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "education" });
@@ -29,7 +30,7 @@ export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep }) 
           append={append}
           remove={remove}
           name="education"
-          label="ການສຶກສາວິຊາສະເພາະທີ່ຈົບ" className="flex gap-2" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId } }
+          label="ການສຶກສາວິຊາສະເພາະທີ່ຈົບ" className="flex gap-2" classNameButton="mt-5" defaultConfig={{ profileId: state?.profileId } }
         >
           <ArrayField {...formConfig.form} name="branch" label="ສາຂາ">
             <Input placeholder="ສາຂາ" className="block w-56" />

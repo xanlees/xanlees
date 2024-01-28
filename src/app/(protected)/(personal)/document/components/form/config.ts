@@ -8,10 +8,10 @@ import { useProfileContext } from "../../../context";
 const step = 3;
 interface FormConfigParams {
   setCurrentStep: ((step: number) => void) | undefined
+  dispatch: any
 }
 
-export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
-  const { dispatch } = useProfileContext();
+export const useFormConfig = ({ setCurrentStep, dispatch}: FormConfigParams) => {
   const { ...form } = useForm<z.infer<typeof documentFormSchema>>({
     resolver: zodResolver(documentFormSchema),
     refineCoreProps: {

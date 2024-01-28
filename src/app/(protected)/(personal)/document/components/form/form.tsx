@@ -8,10 +8,11 @@ import DocumentDynamicForm from "./DynamicForm";
 
 interface DocumentFormProps {
   setCurrentStep?: (step: number) => void
+  dispatch: any
 }
 
-export const DocumentForm: React.FC<DocumentFormProps> = ({ setCurrentStep }) => {
-  const formConfig = useFormConfig({ setCurrentStep });
+export const DocumentForm: React.FC<DocumentFormProps> = ({ setCurrentStep, dispatch }) => {
+  const formConfig = useFormConfig({ setCurrentStep, dispatch });
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "document" });
   const [fileName, setFileName] = useState("");
   const [file, setFile] = useState<FileList | null>(null);

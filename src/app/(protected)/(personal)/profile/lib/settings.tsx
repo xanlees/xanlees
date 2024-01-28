@@ -51,7 +51,7 @@ export const applicationFromStep = [
   {
     stepLabel: "ສ້າງທີຢູ່",
     stepDescription: (
-      <PersonalAddressForm/>
+      <PersonalAddressForm />
     ),
     completed: false,
   },
@@ -61,7 +61,7 @@ export const applicationFromStep = [
     completed: false,
   },
   {
-    stepLabel: "ສ້າງໂປຣໄຟລ໌",
+    stepLabel: "ສ້າງໂປຣໄຟລ",
     stepDescription: <PhysicalProfile />,
     completed: false,
   },
