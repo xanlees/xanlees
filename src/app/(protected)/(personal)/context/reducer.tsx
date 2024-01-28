@@ -1,6 +1,4 @@
 import { ProfileState, ProfileAction } from "./interface";
-import { initialProfileState } from ".";
-
 
 export const ProfileReducer = (
   state: ProfileState = initialProfileState,
@@ -28,4 +26,13 @@ export const ProfileReducer = (
     default:
       return state;
   }
+};
+const initialProfileState: ProfileState = {
+  profileId: 0,
+  graduationId: 0,
+  personalAddressId: 0,
+  applicationId: 0,
+  physicalProfileId: 0,
+  workExperienceId: 0,
+  isUploaded: false,
 };

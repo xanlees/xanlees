@@ -5,7 +5,7 @@ import { applicationFromStep } from "@src/app/(protected)/(personal)/profile/lib
 import FormStep from "@src/common/components/stepForm";
 import { ApplicationProvider, useApplicationContext } from "@src/app/(protected)/(hr)/application/context";
 import { ApplicationState } from "@src/app/(protected)/(hr)/application/context/interface";
-import { ProfileProvider } from "@src/app/(protected)/(personal)/context/provider";
+import { ProfileProvider } from "@src/app/(protected)/(personal)/context";
 
 export default function ApplicationCreate(): JSX.Element {
   return (
