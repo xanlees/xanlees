@@ -11,7 +11,7 @@ interface FormConfigParams {
 }
 
 export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
-  const { state, dispatch } = useProfileContext();
+  const { dispatch } = useProfileContext();
   const { ...form } = useForm<z.infer<typeof documentFormSchema>>({
     resolver: zodResolver(documentFormSchema),
     refineCoreProps: {

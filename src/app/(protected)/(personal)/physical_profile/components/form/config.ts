@@ -13,17 +13,17 @@ interface FormConfigParams {
 const step = 4;
 
 export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
-  const { dispatch } = useProfileContext();
+  const { state, dispatch } = useProfileContext();
   const { ...form } = useForm<PersonalAddressFormValues>({
     resolver: zodResolver(PhysicalProfileSchema),
     defaultValues: {
-      profileId: 1,
+      profileId: state.profileId,
     },
     refineCoreProps: {
       resource: "physical_profile",
       redirect: false,
       onMutationSuccess: (data) => {
-        dispatch({ type: "setPersonalAddressId", payload: data?.data?.id ?? 0 });
+        dispatch({ type: "setPhysicalProfileId", payload: data?.data?.id ?? 0 });
         (setCurrentStep != null) && setCurrentStep(step);
       },
     },

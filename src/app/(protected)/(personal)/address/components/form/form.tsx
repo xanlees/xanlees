@@ -11,7 +11,7 @@ interface PersonalAddressFormProps {
 }
 
 export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
-  setCurrentStep,
+  setCurrentStep
 }) => {
   const formConfig = useFormConfig({ setCurrentStep });
   const district = useSelect<IDistrict>({

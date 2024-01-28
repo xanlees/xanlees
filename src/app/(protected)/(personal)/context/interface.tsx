@@ -6,9 +6,10 @@ export interface ProfileState {
   applicationId?: number;
   physicalProfileId?: number
   isUploaded?: boolean;
+  workExperienceId?: number
 }
 type ProfileActionType = "setProfileId" | "setGraduationId" |
-  "setPersonalAddressId" | "setApplicationId" |
+  "setPersonalAddressId" | "setApplicationId" | "setWorkExperienceId" |
   "setIsUploaded" | "setPhysicalProfileId" | "loadFromLocalStorage"| "clearState";
 export interface ProfileAction {
   type: ProfileActionType;
