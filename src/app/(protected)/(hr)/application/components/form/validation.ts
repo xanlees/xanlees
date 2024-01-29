@@ -6,7 +6,7 @@ export interface IApplication {
   emergencyRelationship: string;
   emergencyPhoneNumber: string;
   typeDrivingLicense: "A" | "B" | "C" | "D" | "OTHER";
-  typeVaccine: Array<{ typeVaccine: string }>;
+  typeVaccine: string;
   wordSkill: "Poor" | "Fair" | "Good" | "Excellent";
   excelSkill: "Poor" | "Fair" | "Good" | "Excellent";
   powerpointSkill: "Poor" | "Fair" | "Good" | "Excellent";

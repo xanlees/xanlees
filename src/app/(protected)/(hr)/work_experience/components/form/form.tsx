@@ -39,7 +39,7 @@ export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurre
             <Input placeholder="ເວລາ" className="block w-56" />
           </ArrayField>
           <ArrayField {...formConfig.form} name="salary" label="ເງິນເດືອນ">
-            <Input placeholder="ເວລາ" className="block w-56" />
+            <Input placeholder="ເງິນເດືອນ" className="block w-56" />
           </ArrayField>
           <ArrayField {...formConfig.form} name="reasonOfResignation" label="ເຫດຜົນທີ່ລາອອກ">
             <Textarea {...formConfig.form} className="w-96 h-28 sm:w-[450px]" />
