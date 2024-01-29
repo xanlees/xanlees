@@ -85,3 +85,13 @@ export interface IDocument {
   profileId: number
   id: number
 }
+
+export interface IPhysicalProfile {
+  data?: {
+    id: number
+    profileId: number
+    nationality: string
+    height: number
+    weight: number
+  }
+}

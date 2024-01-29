@@ -4,3 +4,4 @@ export * from "./SkillSection";
 export * from "./WorkExperience";
 export * from "./DocumentList";
 export * from "./EducationList";
+export * from "./Applied";

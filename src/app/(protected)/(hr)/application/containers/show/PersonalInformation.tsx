@@ -3,10 +3,11 @@ import type { IApplication } from "../../interface";
 import { Card, CardContent, CardTitle } from "@src/shadcn/elements";
 import moment from "moment";
 import { getGenderDisplayText, getMaritalStatusDisplayText } from "@src/app/(protected)/(career)/employee/lib/genderUtils";
-export const PersonalInformation: React.FC<{ record?: IApplication }> = ({ record }) => {
+export const PersonalInformation: React.FC<{ record?: IApplication, physicalProfile: any }> = ({ record, physicalProfile }) => {
   const birthday = record?.profileDetail.birthday ?? "";
   const status = record?.profileDetail.maritalStatus ?? null;
   const age = calculateAge(birthday);
+  const { nationality, height, weight } = physicalProfile?.data?.[0] ?? {};
   return (
     <Card className="flex flex-col p-2 my-2 rounded-sm">
       <CardTitle className="text-xl text-center">{"ຂໍ້​ມູນ​ສ່ວນ​ບຸກຄົນ"}</CardTitle>
@@ -20,6 +21,9 @@ export const PersonalInformation: React.FC<{ record?: IApplication }> = ({ recor
         <li>{`ວັນເດືອນປີເກີດ: ${moment(birthday).format("MMMM DD, YYYY")}`}</li>
         <li>{`ອາຍຸ: ${age}`}</li>
         <li>{`ເບີໂທ: ${record?.profileDetail.phoneNumber}`}</li>
+        <li>{`ຊັນຊາດ: ${nationality}`}</li>
+        <li>{`ນໍ້າໜັກ: ${weight} Kg`}</li>
+        <li>{`ລວງສູງ: ${height} Cm`}</li>
       </CardContent>
     </Card>
   );
