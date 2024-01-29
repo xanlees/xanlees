@@ -15,3 +15,4 @@ export const ApplicationDate = <Table.Column
     }
     return "";
   }} />;
+

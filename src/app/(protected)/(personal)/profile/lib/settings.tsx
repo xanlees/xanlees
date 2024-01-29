@@ -83,6 +83,6 @@ export const applicationFromStep = [
     stepDescription: (
       <Success />
     ),
-    completed: true,
+    completed: false,
   },
 ];

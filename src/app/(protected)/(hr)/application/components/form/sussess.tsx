@@ -1,8 +1,16 @@
 
 import { Button, Card } from "@src/shadcn/elements";
 import { BadgeCheck } from "lucide-react";
+import { useState } from "react";
 
 export const Success = () => {
+  const [, setRefresh] = useState(false);
+  const handleButtonClick = () => {
+    localStorage.removeItem("creatingApplication");
+    localStorage.removeItem("creatingProfileState");
+    setRefresh(prevRefresh => !prevRefresh);
+  };
+
   return (
     <Card className="w-full sm:w-[39%] rounded-md border-dashed p-2 flex-row">
       <div className="bg-white md:mx-auto">
@@ -13,7 +21,7 @@ export const Success = () => {
         </div>
       </div>
       <div className="text-center">
-        <Button >ກັບຄືນໜ້າຫຼັກ</Button>
+        <Button onClick={handleButtonClick}>ກັບຄືນໜ້າຫຼັກ</Button>
       </div>
     </Card>
   );

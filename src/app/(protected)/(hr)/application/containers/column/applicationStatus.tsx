@@ -4,7 +4,7 @@ import type { IApplication } from "../../interface";
 import { SelectColumn } from "./SelectColumn";
 
 export const ApplicationStatusColumn = <Table.Column
-  header="status"
+  header="ສະຖານະຂອງຟອມ"
   id="application_status"
   accessorKey="applicationStatus"
   enableSorting

@@ -6,3 +6,5 @@ export * from "./applicationDate";
 export * from "./workExperience";
 export * from "./SelectColumn";
 export * from "./applicationStatus";
+export * from "./positionAppliedFor";
+export * from "./expectedSalary";

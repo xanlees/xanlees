@@ -13,7 +13,6 @@ export function workExperienceColumn(dataWorkExperience: IWorkExperience[]) {
         const display = (
           dataWorkExperience as { data?: IWorkExperience[] }
         )?.data?.filter((item) => item?.applicationId === original.id);
-        console.log("dataWorkExperience");
         return (
           <div className="space-y-2">
             {display?.map((item, index) => (

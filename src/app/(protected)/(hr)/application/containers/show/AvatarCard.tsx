@@ -18,4 +18,3 @@ export const AvatarCard: React.FC<AvatarCardProps> = ({ title, image }) => {
     </Card>
   );
 };
-

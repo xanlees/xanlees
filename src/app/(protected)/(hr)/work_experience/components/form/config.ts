@@ -21,7 +21,13 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
       },
       redirect: false,
       onMutationSuccess: (data) => {
-        dispatch({ type: "setWorkExperienceId", payload: data?.data?.id ?? 0 });
+        let id: number;
+        if (Array.isArray(data?.data)) {
+          id = data?.data[0]?.id ?? 0;
+        } else {
+          id = data?.data?.id ?? 0;
+        }
+        dispatch({ type: "setWorkExperienceId", payload: id });
         (setCurrentStep != null) && setCurrentStep(step);
       },
     },
