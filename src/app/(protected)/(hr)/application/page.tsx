@@ -13,7 +13,6 @@ import {
   PhoneNumberColumn, workExperienceColumn,
 } from "./containers/column";
 import { useApplication, useApplicationID } from "./hooks";
-
 import type { IApplication } from "./interface";
 
 const resource = "application";

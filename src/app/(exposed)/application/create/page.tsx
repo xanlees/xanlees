@@ -20,7 +20,7 @@ export default function ApplicationCreate(): JSX.Element {
 
 function ApplicationForm(): JSX.Element {
   const { state: stateApplication } = useApplicationContext();
-  const { state: stateProfile  } = useProfileContext();
+  const { state: stateProfile } = useProfileContext();
   let initialStep = stateProfile.personalAddressId ? 1 : 0;
   initialStep = stateProfile.profileId ? 2 : initialStep;
   initialStep = stateApplication.physicalProfileId ? 3 : initialStep;

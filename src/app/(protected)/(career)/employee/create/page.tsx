@@ -1,7 +1,12 @@
 "use client";
-
+import { useEffect } from "react";
 import { redirect } from "next/navigation";
 
-export default function EmployeeCreate(): JSX.Element {
-  redirect("/profile/create");
-}
+const EmployeeCreate = () => {
+  useEffect(() => {
+    redirect("/profile/create");
+  }, []);
+  return null;
+};
+
+export default EmployeeCreate;

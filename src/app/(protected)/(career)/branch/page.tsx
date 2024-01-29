@@ -11,6 +11,8 @@ import { usePosition, useSectorID } from "./hook/usePosition";
 import { positionsColumn } from "./containers/column/positions";
 import { branchColumn } from "./containers/column/branch";
 import { sectorColumn } from "./containers/column/sector";
+import Loading from "@src/app/loading";
+import { Suspense } from "react";
 
 const resource = "branch";
 export default function BranchList(): JSX.Element {
