@@ -15,13 +15,7 @@ export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurre
   const formConfig = useFormConfig({ setCurrentStep });
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "work_experience" });
   const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    if (!isMounted) {
-      append({ applicationId: state.applicationId });
-      setIsMounted(true);
-      remove(1);
-    }
-  }, [isMounted]);
+  useEffect(() => { if (!isMounted) { append({ applicationId: state.applicationId }), setIsMounted(true), remove(1)}}, [isMounted]);
   return (
     <div className="rounded-full w-96 sm:w-[33%] ">
       <Form {...formConfig.form}>
