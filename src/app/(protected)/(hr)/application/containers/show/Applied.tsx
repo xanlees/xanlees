@@ -5,7 +5,7 @@ import { IApplication } from "../../interface";
 
 export const Applied: React.FC<{ record?: IApplication, header: string }> = ({ record, header }) => {
   const expectedSalary = record?.expectedSalary ?? "";
-  const positionAppliedFor = record?.positionAppliedFor ?? "";
+  const appliedPosition = record?.appliedPosition ?? "";
   const numericSalary = parseFloat(expectedSalary);
   const formattedSalary = numericSalary?.toLocaleString()
   return (
@@ -16,7 +16,7 @@ export const Applied: React.FC<{ record?: IApplication, header: string }> = ({ r
       <div className="flex flex-wrap w-full sm:flex sm:w-1/2 ">
         <div className="flex w-1/2 sm:w-1/2 gap-x-2">
           <CircleDashed className="w-5 h-5 mt-0.5" />
-          <div className="">{`ຕໍາແໜ່ງ: ${positionAppliedFor}`}</div>
+          <div className="">{`ຕໍາແໜ່ງ: ${appliedPosition}`}</div>
         </div>
         <div className="flex w-1/2 sm:w-1/2 gap-x-2">
           <CircleDashed className="w-5 h-5 mt-0.5" />

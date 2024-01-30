@@ -18,7 +18,7 @@ export interface IApplication {
   appliedReason: string;
   applicationStatus: string;
   applicantSignature: boolean;
-  positionAppliedFor: string;
+  appliedPosition: string;
   expectedSalary: string;
 }
 
@@ -34,7 +34,7 @@ export const applicationSchema = z.object({
   emergencyFullname: z.string().min(2, {
     message: "ກະລຸນາປ້ອນຂອງຊື່ກໍລະນີ້ສຸກເສີນ",
   }),
-  positionAppliedFor: z.string().min(2, {
+  appliedPosition: z.string().min(2, {
     message: "ກະລຸນາປ້ອນຕໍາແຫນ່ງທີ່ສະຫມັກ",
   }),
   expectedSalary: z.string().min(2, {

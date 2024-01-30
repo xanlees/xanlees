@@ -2,16 +2,16 @@
 import { Table, TableFilterProps } from "@/shadcn/components/table";
 import { IApplication } from "../../interface";
 
-export const PositionAppliedFor = <Table.Column
+export const AppliedPosition = <Table.Column
   header="ສະໝັກຕໍາແໜ່ງ"
-  accessorKey="positionAppliedFor"
-  id="positionAppliedFor"
+  accessorKey="appliedPosition"
+  id="appliedPosition"
   enableSorting
   enableHiding
   filter={(props: TableFilterProps) => (
     <Table.Filter.Search {...props} title="Search Position" />
   )}
   cell={(props) => {
-    const { positionAppliedFor } = props.row.original as IApplication ?? {};
-    return <p className="font-bold">{`${positionAppliedFor}`}</p>;
+    const { appliedPosition } = props.row.original as IApplication ?? {};
+    return <p className="font-bold">{`${appliedPosition}`}</p>;
   }} />;

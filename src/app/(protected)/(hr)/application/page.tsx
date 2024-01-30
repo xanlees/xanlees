@@ -10,7 +10,7 @@ import { getSelectColumn } from "@src/common/containers/column/select";
 
 import {
   ApplicationDate, ApplicationStatusColumn, FullNameColumn, GenderColumn, MarriageStatus,
-  PhoneNumberColumn, workExperienceColumn, PositionAppliedFor, ExpectedSalary
+  PhoneNumberColumn, workExperienceColumn, AppliedPosition, ExpectedSalary
 } from "./containers/column";
 import { useApplication, useApplicationID } from "./hooks";
 import type { IApplication } from "./interface";
@@ -40,7 +40,7 @@ export default function ApplicationList(): JSX.Element {
           {GenderColumn}
           {MarriageStatus}
           {ApplicationDate}
-          {PositionAppliedFor}
+          {AppliedPosition}
           {ExpectedSalary}
           {ApplicationStatusColumn}
           {workExperienceColumn(dataWorkExperience)}

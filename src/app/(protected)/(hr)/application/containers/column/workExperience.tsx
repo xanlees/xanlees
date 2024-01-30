@@ -7,8 +7,6 @@ export function workExperienceColumn(dataWorkExperience: IWorkExperience[]) {
       header={"ປະສົບການເຮັດວຽກ"}
       accessorKey="id"
       id="applicationId"
-      enableSorting
-      enableHiding
       cell={({ row: { original } }) => {
         const display = (
           dataWorkExperience as { data?: IWorkExperience[] }

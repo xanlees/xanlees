@@ -27,7 +27,7 @@ export interface IPost {
 }
 export interface IApplication {
   profileId: number
-  positionAppliedFor: string
+  appliedPosition: string
   expectedSalary: string
   profileDetail: IProfile
   postId: number
