@@ -27,6 +27,7 @@ export const PositionCreate: React.FC<PositionFormProps> = ({ redirect }) => {
       value: item.id,
     };
   });
+  
   sector.options = options as BaseOption[];
   return (
     <div className="w-1/3 mx-auto">
