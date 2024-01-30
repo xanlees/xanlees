@@ -56,6 +56,10 @@ export const DrivingLicenceOptions = [
     label: "ປະເພດ E",
     value: "E",
   },
+  {
+    label: "ບໍ່ມີໃບຂັບຂີ່",
+    value: "NO_LICENSE",
+  },
 ];
 export const VaccinesOptions = [
   {
@@ -69,6 +73,10 @@ export const VaccinesOptions = [
   {
     label: "Pfizer",
     value: "Pfizer",
+  },
+  {
+    label: "ບໍ່ໄດ້ຊັກ",
+    value: "Unvaccinated",
   },
   {
     label: "ອື່ນໆ",

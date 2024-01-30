@@ -56,7 +56,7 @@
         "format": ["camelCase"],
         "leadingUnderscore": "allow",
         "selector": "parameter"
-      },    
+      },
       {
         "format": ["PascalCase"],
         "selector": "typeLike"

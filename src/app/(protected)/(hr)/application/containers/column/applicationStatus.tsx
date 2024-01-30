@@ -1,7 +1,7 @@
 "use client";
 import { Table, type TableFilterProps } from "@/shadcn/components/table";
 import type { IApplication } from "../../interface";
-import { SelectColumn } from "./SelectColumn";
+import { UpdateDropdownSelect } from "../DropdownSelectUpdateProps/components";
 
 export const ApplicationStatusColumn = <Table.Column
   header="ສະຖານະຂອງຟອມ"
@@ -15,6 +15,13 @@ export const ApplicationStatusColumn = <Table.Column
   cell={(props) => {
     const { applicationStatus, id } = props.row.original as IApplication ?? {};
     const applicationID = id ?? 0;
-    return <SelectColumn applicationStatus={applicationStatus} id={applicationID} />;
+    return <UpdateDropdownSelect defaultValue={applicationStatus} id={applicationID} options={options} field="applicationStatus" resource="application"/>;
   }}
 />;
+
+export const options = [
+  { value: "New", label: "ໃຫມ່" },
+  { value: "Contacted", label: "ຕິດຕໍ່" },
+  { value: "Interviewed", label: "ສຳພາດແລ້ວ" },
+  { value: "Hired", label: "ຈ້າງເປັນພະນັກງານແລ້ວ" }
+];
