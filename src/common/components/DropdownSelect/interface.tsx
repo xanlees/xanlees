@@ -1,4 +1,4 @@
-export interface UpdateDropdownSelectProps {
+export interface IUpdateDropdownSelectProps {
   readonly defaultValue?: string;
   readonly id: number;
   readonly optionsConfig?: { value: string; label: string }[];
