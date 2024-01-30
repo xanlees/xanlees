@@ -4,10 +4,6 @@ import { personalAddressSchema } from "./validation";
 import { useProfileContext } from "@src/app/(protected)/(personal)/context";
 
 interface PersonalAddressFormValues {
-  bornDistrictId: number
-  currentDistrictId: number
-  bornVillage: string
-  currentVillage: string
   houseNo: string
   id?: number
 }
