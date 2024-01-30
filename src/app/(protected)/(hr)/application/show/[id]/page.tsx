@@ -6,6 +6,7 @@ import type { IApplication, IWorkExperience, IProfile } from "../../interface";
 import { Card, CardContent } from "@src/shadcn/elements";
 import { AvatarCard, Applied, PersonalInformation, SkillSection, generateTechnicalSkills, generateLanguageSkills, WorkExperience, DocumentList, EducationList } from "../../containers/show";
 import { useWorkExperience, useDocument, useEducation, useProfile } from "../../hooks";
+import { DialogCloseButton } from "../../Dialog";
 
 export default function ApplicationShow({ params }: { params: { id: number } }): JSX.Element {
   const { queryResult } = useShow<IApplication>();
@@ -34,6 +35,7 @@ export default function ApplicationShow({ params }: { params: { id: number } }):
               <EducationList header="ການສຶກສາ" educationData={educationData} />
             </CardContent>
           </Card>
+          <DialogCloseButton/>
           <DocumentList header={""} documentData={documentData} />
         </div>
       </div>

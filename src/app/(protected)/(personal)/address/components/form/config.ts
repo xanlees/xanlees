@@ -8,17 +8,24 @@ interface PersonalAddressFormValues {
   currentDistrictId: number
   bornVillage: string
   currentVillage: string
+  houseNo: string
   id?: number
 }
 interface FormConfigParams {
   setCurrentStep: ((step: number) => void) | undefined
+  showHouseNo?: boolean
 }
 const step = 1;
 
-export const useFormConfig = ({ setCurrentStep,  }: FormConfigParams) => {
+export const useFormConfig = ({ setCurrentStep, showHouseNo }: FormConfigParams) => {
   const { dispatch } = useProfileContext();
+  const defaultValues: Partial<PersonalAddressFormValues> = {};
+  if (showHouseNo) {
+    defaultValues.houseNo = "0000";
+  }
   const { ...form } = useForm<PersonalAddressFormValues>({
     resolver: zodResolver(personalAddressSchema),
+    defaultValues,
     refineCoreProps: {
       resource: "personal_address",
       redirect: false,

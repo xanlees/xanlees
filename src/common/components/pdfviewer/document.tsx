@@ -38,6 +38,7 @@ export function PdfViewerDocument({
         onLoadSuccess={onDocumentLoadSuccess}
         options={options}
         renderMode="canvas"
+        className="w-[1220px] h-[500px]"
       >
         <Page
           key={pageNumber}

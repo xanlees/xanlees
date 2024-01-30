@@ -11,7 +11,7 @@ export const formStepsData = [
   {
     stepLabel: "ສ້າງທີຢູ່",
     stepDescription: (
-      <PersonalAddressForm />
+      <PersonalAddressForm showHouseNo={true}/>
     ),
     completed: false,
   },
@@ -38,7 +38,7 @@ export const applicationFromStep = [
   {
     stepLabel: "ສ້າງທີຢູ່",
     stepDescription: (
-      <PersonalAddressForm />
+      <PersonalAddressForm showHouseNo={false}/>
     ),
     completed: false,
   },

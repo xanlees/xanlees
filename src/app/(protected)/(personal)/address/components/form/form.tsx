@@ -7,12 +7,13 @@ import type { IDistrict } from "../../interface";
 import { InputBase } from "@src/common/elements/input/InputBase";
 interface PersonalAddressFormProps {
   setCurrentStep?: (step: number) => void
+  showHouseNo: boolean
 }
 
 export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
-  setCurrentStep,
+  setCurrentStep, showHouseNo
 }) => {
-  const formConfig = useFormConfig({ setCurrentStep });
+  const formConfig = useFormConfig({ setCurrentStep, showHouseNo });
   const district = useSelect<IDistrict>({
     resource: "district",
     optionLabel: "districtName",
@@ -28,9 +29,11 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
             <BornDistrictSelect formConfig={formConfig} district={district} />
           </div>
           <div className="flex-1 p-4">
-            <InputBornVillage {...formConfig} name="currentVillage" label="ບ້ານຢູ່ປະຈຸບັນ"/>
+            <InputBornVillage {...formConfig} name="currentVillage" label="ບ້ານຢູ່ປະຈຸບັນ" />
             <CurrentDistrictSelect formConfig={formConfig} district={district} />
-            <InputBase {...formConfig} name="houseNo" label="ເຮືອນເລກທີ"/>
+            <div className={`${showHouseNo ? "hidden" : ""}`}>
+              <InputBase {...formConfig} name="houseNo" label="ເຮືອນເລກທີ" />
+            </div>
           </div>
         </div>
       </Form>
