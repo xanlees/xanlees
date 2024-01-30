@@ -30,8 +30,8 @@ export function WorkExperience({
             <div className="text-lg font-semibold">{item.company}</div>
             <div className="text-md">{item.position}</div>
             <div className="text-sm">{item.time}</div>
-            <div className="text-sm">Salary: {item.salary}</div>
-            <div className="text-sm">Reason of Resignation: {item.reasonOfResignation}</div>
+            <div className="text-sm">ເງີນເດືອນ: {item.salary}</div>
+            <div className="text-sm">ເຫດຜົນທີລາອອກ: {item.reasonOfResignation}</div>
           </div>
         ))}
       </div>
