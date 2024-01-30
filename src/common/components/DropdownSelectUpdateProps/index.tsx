@@ -1,20 +1,12 @@
 import React from "react";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@src/shadcn/elements";
-import { useUpdateDropdownSelect } from "../hooks/useUpdate";
+import { useUpdateDropdownSelect } from "./hooks/useUpdate";
+import { UpdateDropdownSelectProps } from "./interface";
 
-interface UpdateDropdownSelectProps {
-  readonly defaultValue?: string;
-  readonly id: number;
-  readonly options?: { value: string; label: string }[];
-  readonly field: string;
-  readonly resource: string;
-  readonly label?: string;
-}
-
-export const UpdateDropdownSelect: React.FC<UpdateDropdownSelectProps> = ({ defaultValue, id, options, field, resource, label}) => {
+export const UpdateDropdownSelect: React.FC<UpdateDropdownSelectProps> = ({ defaultValue, id, optionsConfig, field, resource, label }) => {
   const { onUpdate } = useUpdateDropdownSelect(resource);
   const handleValueChange = (value: string) => {
-    onUpdate({ id, value, field});
+    onUpdate({ id, value, field });
   };
   return (
     <Select onValueChange={handleValueChange} defaultValue={defaultValue}>
@@ -24,7 +16,7 @@ export const UpdateDropdownSelect: React.FC<UpdateDropdownSelectProps> = ({ defa
       <SelectContent>
         <SelectGroup>
           <SelectLabel>{label !== undefined ? label : "ເລືອກ"}</SelectLabel>
-          {options?.map(option => (
+          {optionsConfig?.map(option => (
             <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
           ))}
         </SelectGroup>
