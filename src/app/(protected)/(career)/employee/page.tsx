@@ -51,7 +51,6 @@ export default function EmployeeList(): JSX.Element {
   const { data: currentAddressData } = usePersonalAddress(currentAddressId, employees);
   const sectorId = usePositionId(employees);
   const { data: sectorData } = usePosition({ sectorId });
-  console.log("sectorId", sectorId)
 
   const friendly = useUserFriendlyName();
   return (
