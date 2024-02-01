@@ -15,18 +15,10 @@ export const EmployeeForm = ({ redirect = "list", id }: { redirect: RedirectActi
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "employee" });
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => { if (!isMounted) { append({ profileId: id }), setIsMounted(true), remove(1) }}, [isMounted]);
-  console.log("formConfig", formConfig.form.watch())
   return (
     <div className="w-full sm:w-[53%] rounded-lg">
       <Form {...formConfig.form}>
-        <DynamicForm
-          form={formConfig.form}
-          fields={fields}
-          append={append}
-          remove={remove}
-          name="employee"
-          label="ຕໍາແໜ່ງ" className="flex flex-row gap-2" classNameButton="mt-5" defaultConfig={{ profileId: id }}
-        >
+        <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="employee" label="ຕໍາແໜ່ງ" className="flex flex-row gap-2" classNameButton="mt-5" defaultConfig={{ profileId: id }}>
           <ArrayField {...formConfig.form} name="positionId" label="ຕໍາແໜ່ງ">
             <Form.Combobox {...(position as any)}/>
           </ArrayField>
@@ -35,15 +27,9 @@ export const EmployeeForm = ({ redirect = "list", id }: { redirect: RedirectActi
           </ArrayField>
           <ArrayField {...formConfig.form} name="isLatest" label="">
             <div className="flex gap-2 pt-3">
-              <Input
-                placeholder="isLatest"
-                className="block w-5 h-5 rounded-lg"
-                type="checkbox"
-                defaultValue={"false"}
-              />
+              <Input placeholder="isLatest" className="block w-5 h-5 rounded-lg" type="checkbox" defaultValue={"false"}/>
               <Label className="pt-2.5 ">ແມ່ນຕໍາແໜ່ງລ່າ​ສຸດບໍ</Label>
             </div>
-
           </ArrayField>
         </DynamicForm>
       </Form>
