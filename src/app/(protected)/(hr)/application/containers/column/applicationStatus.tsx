@@ -1,7 +1,7 @@
 "use client";
 import { Table, type TableFilterProps } from "@/shadcn/components/table";
 import type { IApplication } from "../../interface";
-import UpdateApplicationStatus from "@src/common/components/DropdownSelect";
+import UpdateApplicationStatus from "@src/shadcn/components/updateOnSelect";
 import { optionsConfig } from "../../lib/constant";
 
 export const ApplicationStatusColumn = <Table.Column
