@@ -7,7 +7,7 @@ import moment from "moment";
 export const EntryDate = <Table.Column
   header="ວັນທີ່ເຂົ້າບໍລິສັດ"
   id="joiningDate"
-  accessorKey="joiningDate"
+  accessorKey="employee.joiningDate"
   enableSorting
   enableHiding
   cell={(props) => {

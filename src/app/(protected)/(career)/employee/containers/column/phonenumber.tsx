@@ -5,7 +5,7 @@ import { Table, type TableFilterProps } from "@/shadcn/components/table";
 
 export const PhoneNumberColumn = <Table.Column
   header={"ເບີໂທລະສັບ"}
-  accessorKey="profileDetail.phoneNumber"
+  accessorKey="phoneNumber"
   id="phoneNumber"
   enableSorting
   enableHiding

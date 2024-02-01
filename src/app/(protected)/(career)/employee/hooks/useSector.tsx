@@ -1,18 +1,22 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-"use client";
-import { useMany } from "@refinedev/core";
-import type {
-  IEmployee,
-  ISector,
-} from "../interface";
+import { useList } from "@refinedev/core";
+import type { IPosition } from "../interface";
 
-export function useSector(sectorId: number[], employees: IEmployee[]): { data: any } {
-  return useMany<ISector>({
-    resource: "sector",
-    ids: sectorId,
-    queryOptions: {
-      enabled: employees.length > 0,
-    },
+export function usePosition({ sectorId }: { sectorId: number[] }): { data: IPosition[] } {
+  const { data, error, isError } = useList<IPosition>({
+    resource: "position",
+    errorNotification: false,
+    filters: [
+      {
+        field: "position_id",
+        operator: "eq",
+        value: sectorId,
+      },
+    ],
   });
+
+  if (isError) {
+    console.error("Error fetching position data:", error);
+  }
+  const copiedData = { ...data };
+  return { data: (copiedData as IPosition[]) ?? [] };
 }

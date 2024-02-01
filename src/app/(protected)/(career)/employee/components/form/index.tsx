@@ -1,63 +1,53 @@
-import { type RedirectAction } from "@refinedev/core";
-import { Input } from "@src/shadcn/elements";
-import { Form } from "@/shadcn/components/form";
-import { useFormConfig } from "./config";
+import { RedirectAction } from "@refinedev/core";
+import { Form } from "@src/shadcn/components/form";
+import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
+import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
+import { Input, Label } from "@src/shadcn/elements";
+import React, { useEffect, useState } from "react";
+import { useFieldArray } from "react-hook-form";
+import { useFormConfig } from "./config";
 import { usePositionSelect } from "../../lib/select";
 
-interface IFormConfig {
-  form: {
-    setValue: any
-  }
-}
-
 export const EmployeeForm = ({ redirect = "list", id }: { redirect: RedirectAction, id: number }) => {
-  const formConfig = useFormConfig(redirect, id);
+  const formConfig = useFormConfig(redirect);
   const position = usePositionSelect();
+  const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "employee" });
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => { if (!isMounted) { append({ profileId: id }), setIsMounted(true), remove(1) }}, [isMounted]);
+  console.log("formConfig", formConfig.form.watch())
   return (
-    <div className="mx-auto w-96 ">
+    <div className="w-full sm:w-[53%] rounded-lg">
       <Form {...formConfig.form}>
-        <div className="flex flex-col w-full gap-3 flex-warp">
-          <PositionSection formConfig={formConfig} position={position} />
-          <Form.Field
-            {...formConfig.form}
-            name="joiningDate"
-            label="ວັນທີ ເດືອນປີ ເຂົ້າວຽກ"
-          >
-            <DatePickerField className="w-80"/>
-          </Form.Field>
-          <div className="flex justify-start ">
-            <Form.Field {...formConfig.form} name="isLatest" label="ແມ່ນຕໍາແໜ່ງລ່າ​ສຸດບໍ ?">
+        <DynamicForm
+          form={formConfig.form}
+          fields={fields}
+          append={append}
+          remove={remove}
+          name="employee"
+          label="ຕໍາແໜ່ງ" className="flex flex-row gap-2" classNameButton="mt-5" defaultConfig={{ profileId: id }}
+        >
+          <ArrayField {...formConfig.form} name="positionId" label="ຕໍາແໜ່ງ">
+            <Form.Combobox {...(position as any)}/>
+          </ArrayField>
+          <ArrayField {...formConfig.form} name="joiningDate" label="ວັນທີ ເດືອນປີ ເຂົ້າວຽກ">
+            <DatePickerField />
+          </ArrayField>
+          <ArrayField {...formConfig.form} name="isLatest" label="">
+            <div className="flex gap-2 pt-3">
               <Input
                 placeholder="isLatest"
                 className="block w-5 h-5 rounded-lg"
                 type="checkbox"
-                defaultValue={"true"}
+                defaultValue={"false"}
               />
-            </Form.Field>
-          </div>
-        </div>
+              <Label className="pt-2.5 ">ແມ່ນຕໍາແໜ່ງລ່າ​ສຸດບໍ</Label>
+            </div>
+
+          </ArrayField>
+        </DynamicForm>
       </Form>
     </div>
   );
 };
 
-const PositionSection = ({
-  formConfig,
-  position,
-}: {
-  formConfig: IFormConfig
-  position: any
-}) => (
-  <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...formConfig.form} name="positionId" label="ຕໍາແໜ່ງ">
-      <Form.Combobox
-        className="w-80"
-        {...position}
-        onChange={(value) => {
-          formConfig.form.setValue("positionId", value);
-        }}
-      />
-    </Form.Field>
-  </div>
-);

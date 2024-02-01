@@ -7,9 +7,7 @@ import moment from "moment";
 export const DateOfBirth = <Table.Column
   header="ວັນເດືອນປີ ເກີດ"
   id="birthday"
-  accessorKey="profileDetail.birthday"
-  enableSorting
-  enableHiding
+  accessorKey="birthday"
   cell={(props) => {
     const dateValue = props.getValue();
     if (typeof dateValue === "string") {

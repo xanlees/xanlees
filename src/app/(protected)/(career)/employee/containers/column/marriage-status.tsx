@@ -9,7 +9,7 @@ import { getMaritalStatusDisplayText } from "../../lib/genderUtils";
 export const MarriageStatus = <Table.Column
   header="ສະຖານະ"
   id="maritalStatus"
-  accessorKey="profileDetail.maritalStatus"
+  accessorKey="maritalStatus"
   enableSorting
   enableHiding
   cell={(props) => {

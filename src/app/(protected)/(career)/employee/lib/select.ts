@@ -36,7 +36,7 @@ export const usePositionSelect = () => {
     }
 
     acc[branchId].push({
-      label: `${item.name} - ${item.sectorDetail.name} - ${branchName}`,
+      label: `${item.name} - ${branchName}`,
       value: item.id,
     });
 

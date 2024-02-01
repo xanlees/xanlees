@@ -30,6 +30,7 @@ export interface IProfile {
   profilePicture: string | null
   uniqueNumber: string[]
   typeOfUniqueNumber: "IDENTIFY" | "CENSUS_BOOK" | "MACHINE"
+  employee: Employee
 }
 export interface IGender {
   gender: "MALE" | "FEMALE" | "OTHER" | null
@@ -82,4 +83,25 @@ export interface ISector {
     id: number
     name: string
   }
+}
+
+interface Employee {
+  [x: string]: any
+  id: number;
+  positionId: number;
+  joiningDate: string;
+  isLatest: boolean;
+  updatedOn: string;
+  createdOn: string;
+}
+
+export interface IPosition {
+  name: string;
+  id: number;
+  sectorId: number;
+  sectorDetail: {
+    name: string;
+    id: number;
+    branchId: number;
+  };
 }

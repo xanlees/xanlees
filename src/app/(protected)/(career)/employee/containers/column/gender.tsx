@@ -9,7 +9,7 @@ import { getGenderDisplayText } from "../../lib/genderUtils";
 export const GenderColumn = <Table.Column
   header="ເພດ"
   id="gender"
-  accessorKey="profileDetail.gender"
+  accessorKey="gender"
   enableSorting
   enableHiding
   cell={(props) => {

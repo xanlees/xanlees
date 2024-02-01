@@ -1,19 +1,30 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 import { Table } from "@/shadcn/components/table";
 
-export function getCurrentAddress(personalAddressData: any) {
+interface PersonalAddressData {
+  data: {
+    currentDistrictDetail: {
+      id: number;
+      districtName: string;
+      provinceName: string;
+    };
+    currentVillage: string;
+  }[];
+}
+
+export function getCurrentAddress(personalAddressData: PersonalAddressData) {
   return <Table.Column
     header="ທີ່ຢູ່ ປະຈຸບັນ"
-    id="currentVillage"
-    accessorKey="profileDetail.personalAddressId"
-    enableSorting
-    enableHiding
+    id="personalAddressDetail"
+    accessorKey="personalAddressDetail.currentDistrictId"
     cell={({ row }) => {
       const displayText = personalAddressData?.data.find(
-        (item: { id: number }) => item?.id === row.original.profileDetail.personalAddressId,
+        (item) => item?.currentDistrictDetail.id === row.original.personalAddressDetail.currentDistrictId
       );
-      return <div>{`${displayText?.currentVillage}, ${displayText?.currentDistrictDetail.districtName}, ${displayText?.currentDistrictDetail.provinceName}`}</div>;
-    }} />;
+      return (
+        <div>
+          {`${displayText?.currentVillage}, ${displayText?.currentDistrictDetail.districtName}, ${displayText?.currentDistrictDetail.provinceName}`}
+        </div>
+      );
+    }}/>;
 }
