@@ -1,20 +1,18 @@
 import type { IDocument } from "../../interface";
-import { Card, CardTitle, Button } from "@src/shadcn/elements";
+import { Card, CardTitle } from "@src/shadcn/elements";
 import { FileText } from "lucide-react";
-import Link from "next/link";
+import { PDFDialog } from "./PDFDialog";
 
 export function DocumentList({
-  header,
-  documentData = [] as IDocument[] | { data: IDocument[] },
-}: Readonly<{
+  documentData = [] as IDocument[] | { data: IDocument[] } }: Readonly<{
   header: string
   documentData?: IDocument[] | { data: IDocument[] }
 }>): JSX.Element {
   const documentDataArray = Array.isArray(documentData) ? documentData : documentData.data;
   return (
     <Card className="w-full p-2 rounded-sm sm:w-full md:w-full">
-      <CardTitle className="text-xl">CV/ ປະຫວັດ</CardTitle>
-      {documentDataArray?.map((document, index) => {
+      <CardTitle className="text-xl">ເອກກະສານ</CardTitle>
+      {documentDataArray?.map((document) => {
         return (
           <div
             key={document.id}
@@ -26,11 +24,7 @@ export function DocumentList({
               </div>
               <div className="pt-1 font-bold">{document.documentName}</div>
             </div>
-            <Button className="w-20">
-              <Link className="w-full" href={`/document/show/${document.id}`}>
-                ເຂົາເບີ່ງ
-              </Link>
-            </Button>
+            <PDFDialog documentName={document.documentName} documentFile={document.documentFile}/>
           </div>
         );
       })}

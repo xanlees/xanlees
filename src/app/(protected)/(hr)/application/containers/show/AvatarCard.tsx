@@ -7,7 +7,7 @@ interface AvatarCardProps {
 
 export const AvatarCard: React.FC<AvatarCardProps> = ({ title, image }) => {
   return (
-    <Card className="p-2 rounded-sm h-96 w-80">
+    <Card className="p-2 rounded-sm h-96 w-96">
       <Avatar className="mx-auto h-72 w-72">
         <AvatarImage src={image} alt="@shadcn" className="w-full" />
         <AvatarFallback>Avatar</AvatarFallback>

@@ -38,9 +38,9 @@ export default function EmployeeList(): JSX.Element {
       filters: {
         initial: [
           {
-            field: "has_employee",
+            field: "application_application_status",
             operator: "eq",
-            value: "True",
+            value: "Hired",
           },
         ],
       },

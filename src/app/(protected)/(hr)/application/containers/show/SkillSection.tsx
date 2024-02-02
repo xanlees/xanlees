@@ -32,17 +32,32 @@ export function SkillSection({ header, skills }: SkillSectionProps): JSX.Element
 
 export const generateTechnicalSkills = (record?: IApplication): Array<{ title?: string | number | undefined, item?: string | number | undefined }> => {
   return [
-    { title: "Word", item: record?.wordSkill },
-    { title: "Excel", item: record?.excelSkill },
-    { title: "PowerPoint", item: record?.powerpointSkill },
+    { title: "Word", item: mapSkill(record?.wordSkill ?? "Poor") },
+    { title: "Excel", item: mapSkill(record?.excelSkill ?? "Poor") },
+    { title: "PowerPoint", item: mapSkill(record?.powerpointSkill ?? "Poor") },
   ];
 };
 
 export const generateLanguageSkills = (record?: IApplication): Array<{ title?: string | number | undefined, item?: string | number | undefined }> => {
   return [
-    { title: "ພາສາອັງກິດ", item: record?.englishSkill },
-    { title: "ພາສາຈີນ", item: record?.chineseSkill },
-    { title: "ພາສາຫວຽດນາມ", item: record?.vietnameseSkill },
-    { title: "ພາສາໄທ", item: record?.thaiSkill },
+    { title: "ພາສາອັງກິດ", item: mapSkill(record?.englishSkill ?? "Poor") },
+    { title: "ພາສາຈີນ", item: mapSkill(record?.chineseSkill ?? "Poor") },
+    { title: "ພາສາຫວຽດນາມ", item: mapSkill(record?.vietnameseSkill ?? "Poor") },
+    { title: "ພາສາໄທ", item: mapSkill(record?.thaiSkill ?? "Poor") },
   ];
+};
+
+const mapSkill = (skill: "Poor" | "Fair" | "Good" | "Excellent") => {
+  switch (skill) {
+    case "Poor":
+      return "ໜ້ອຍ";
+    case "Fair":
+      return "ພໍໃຊ້";
+    case "Good":
+      return "ປານກາງ";
+    case "Excellent":
+      return "ດີ";
+    default:
+      return "";
+  }
 };

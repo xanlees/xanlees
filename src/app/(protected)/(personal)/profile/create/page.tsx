@@ -32,12 +32,6 @@ const FormCreate = () => {
   initialStep = state.profileId ? 2 : initialStep;
   initialStep = state.isUploaded ? 3 : initialStep;
 
-  const handleFormStep = () => {
-    setTimeout(() => {
-      dispatch({ type: 'setProfileId', payload: 123 });
-    }, 1000);
-  };
-
   const handleButtonClick = () => {
     const storedState = localStorage.getItem(PROFILE_STORAGE_KEY);
     const profileState = JSON.parse(storedState as string) as ProfileState
@@ -46,14 +40,12 @@ const FormCreate = () => {
       dispatch({ type: "clearState", payload: false });
     }
   };
-
   return (
     <Create
       resource="employee"
       breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
     >
       <FormStep formStepsData={formStepsData} stepProps={{}} initialStep={initialStep} />
-      <Button onClick={handleFormStep}>Simulate FormStep</Button>
       <Button className="w-20" onClick={handleButtonClick}>ຕໍ່ໄປ</Button>
     </Create>
   );

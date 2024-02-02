@@ -20,7 +20,7 @@ export function PdfViewerDocument({
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 100px)" });
   const bigScale = 0.8;
   const smallScale = 0.5;
 
@@ -38,7 +38,7 @@ export function PdfViewerDocument({
         onLoadSuccess={onDocumentLoadSuccess}
         options={options}
         renderMode="canvas"
-        className="w-[1220px] h-[500px]"
+        className="h-[500px]"
       >
         <Page
           key={pageNumber}

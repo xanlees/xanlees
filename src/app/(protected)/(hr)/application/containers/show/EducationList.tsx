@@ -7,7 +7,7 @@ export function EducationList({
 }: Readonly<{ header: string, educationData?: IEducation[] | { data: IEducation[] } }>): JSX.Element {
   const educationDataArray = Array.isArray(educationData) ? educationData : educationData.data;
   return (
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap ">
       <div className="flex w-full h-12 mb-4 text-xl font-bold sm:w-1/4">
         {header}
       </div>

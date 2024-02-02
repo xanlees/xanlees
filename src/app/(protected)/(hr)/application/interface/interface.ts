@@ -95,3 +95,9 @@ export interface IPhysicalProfile {
     weight: number
   }
 }
+
+export interface CrudFilter {
+  field: string;
+  operator: "eq" | "ne";
+  value: string;
+}

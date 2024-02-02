@@ -7,22 +7,20 @@ import { useUserFriendlyName } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { getActionsColumn } from "@src/common/containers/column/action";
 import { getSelectColumn } from "@src/common/containers/column/select";
-
 import {
   ApplicationDate, ApplicationStatusColumn, FullNameColumn, GenderColumn, MarriageStatus,
   PhoneNumberColumn, workExperienceColumn, AppliedPosition, ExpectedSalary
 } from "./containers/column";
 import { useApplication, useApplicationID } from "./hooks";
 import type { IApplication } from "./interface";
-
-const resource = "application";
+import { application_resource, refineCoreProps } from "./lib/constant";
 
 export default function ApplicationList(): JSX.Element {
   const table = useTable<IApplication>({
     columns: [],
     enableSorting: true,
     enableColumnFilters: true,
-    refineCoreProps: { resource },
+    refineCoreProps,
   });
   const application = table.options.data ?? [];
   const applicationID = useApplicationID(application);
@@ -44,7 +42,7 @@ export default function ApplicationList(): JSX.Element {
           {ExpectedSalary}
           {ApplicationStatusColumn}
           {workExperienceColumn(dataWorkExperience)}
-          {getActionsColumn(resource)}
+          {getActionsColumn(application_resource)}
         </Table>
       </div>
     </List>

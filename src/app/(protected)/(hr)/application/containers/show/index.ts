@@ -5,3 +5,4 @@ export * from "./WorkExperience";
 export * from "./DocumentList";
 export * from "./EducationList";
 export * from "./Applied";
+export * from "./AppliedReason";
