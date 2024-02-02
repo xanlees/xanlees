@@ -37,4 +37,3 @@ function ApplicationForm(): JSX.Element {
     </>
   );
 }
-
