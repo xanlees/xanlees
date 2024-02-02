@@ -15,6 +15,7 @@ export default function ApplicationShow({ params }: { params: { id: number } }):
   const { fullname = "", profilePicture = "", id } = (record?.profileDetail as IProfile) ?? {};
   const { data: dataWorkExperience } = useWorkExperience({ applicationID: application }) as { data: IWorkExperience[] };
   const { data: documentData } = useDocument({ profileID: id });
+  
   const { data: educationData } = useEducation({ profileID: id });
   const { data: physicalProfile } = useProfile({ profileID: id });
   return (
