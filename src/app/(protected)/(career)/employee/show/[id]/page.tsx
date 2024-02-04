@@ -36,7 +36,7 @@ export default function EmployeeShow({
   });
   const { data: personalAddressData } = useOne<IPersonalAddress>({
     resource: "personal_address",
-    id: record?.profileDetail.personalAddressId,
+    id: record?.profileId.personalAddressId,
   });
   const { data: educationData } = useList<IEducation>({
     resource: "education",

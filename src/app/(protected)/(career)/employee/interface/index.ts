@@ -9,7 +9,7 @@ export interface IEmployee {
   isLatest: string
   profileId: number
   id: number
-  profileDetail: IProfile
+  profileId: IProfile
 }
 export interface IProfile {
   id: number

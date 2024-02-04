@@ -4,23 +4,23 @@ import { Card, CardContent, CardTitle } from "@src/shadcn/elements";
 import moment from "moment";
 import { getGenderDisplayText, getMaritalStatusDisplayText } from "@src/app/(protected)/(career)/employee/lib/genderUtils";
 export const PersonalInformation: React.FC<{ record?: IApplication, physicalProfile: any }> = ({ record, physicalProfile }) => {
-  const birthday = record?.profileDetail.birthday ?? "";
-  const status = record?.profileDetail.maritalStatus ?? null;
+  const birthday = record?.profileId.birthday ?? "";
+  const status = record?.profileId.maritalStatus ?? null;
   const age = calculateAge(birthday);
   const { nationality, height, weight } = physicalProfile?.data?.[0] ?? {};
   return (
     <Card className="flex flex-col p-2 my-2 rounded-sm ">
       <CardTitle className="text-xl text-center">{"ຂໍ້​ມູນ​ສ່ວນ​ບຸກຄົນ"}</CardTitle>
       <CardContent className="capitalize">
-        <li>{`ຊື່ແທ້: ${record?.profileDetail.fullname}`}</li>
-        <li>{`ຊື່ຫຼິ້ນ: ${record?.profileDetail.nickname}`}</li>
+        <li>{`ຊື່ແທ້: ${record?.profileId.fullname}`}</li>
+        <li>{`ຊື່ຫຼິ້ນ: ${record?.profileId.nickname}`}</li>
         <li>{`ເພດ: ${getGenderDisplayText(
-          record?.profileDetail.gender ?? null,
+          record?.profileId.gender ?? null,
         )}`}</li>
         <li>{`ສະຖານະພາບ: ${getMaritalStatusDisplayText(status)}`}</li>
         <li>{`ວັນເດືອນປີເກີດ: ${moment(birthday).format("MMMM DD, YYYY")}`}</li>
         <li>{`ອາຍຸ: ${age}`}</li>
-        <li>{`ເບີໂທ: ${record?.profileDetail.phoneNumber}`}</li>
+        <li>{`ເບີໂທ: ${record?.profileId.phoneNumber}`}</li>
         <li>{`ຊັນຊາດ: ${nationality}`}</li>
         <li>{`ນໍ້າໜັກ: ${weight} Kg`}</li>
         <li>{`ລວງສູງ: ${height} Cm`}</li>

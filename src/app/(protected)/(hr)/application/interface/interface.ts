@@ -29,7 +29,7 @@ export interface IApplication {
   profileId: IProfile
   appliedPosition: string
   expectedSalary: string
-  profileDetail: IProfile
+  profileId: IProfile
   postId: number
   postDetail: IPost
   emergencyFullname: string

@@ -29,11 +29,9 @@ function ApplicationForm(): JSX.Element {
   initialStep = stateApplication.applicationId ? 6 : initialStep;
   initialStep = stateApplication.workExperienceId ? 7 : initialStep;
   return (
-    <>
-      <FormStep formStepsData={applicationFromStep}
-        stepProps={{}}
-        initialStep={initialStep}
-      />
-    </>
+    <FormStep formStepsData={applicationFromStep}
+      stepProps={{}}
+      initialStep={initialStep}
+    />
   );
 }

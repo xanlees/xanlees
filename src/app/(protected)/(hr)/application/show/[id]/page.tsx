@@ -12,10 +12,8 @@ export default function ApplicationShow({ params }: { params: { id: number } }):
   const { data } = queryResult;
   const record: IApplication | undefined = data?.data;
   const application = record?.id ?? 0;
-  const { fullname = "", profilePicture = "", id } = (record?.profileDetail as IProfile) ?? {};
-  const { data: dataWorkExperience } = 
-  
-  ({ applicationID: application }) as { data: IWorkExperience[] };
+  const { fullname = "", profilePicture = "", id } = (record?.profileId as IProfile) ?? {};
+  const { data: dataWorkExperience } = ({ applicationID: application }) as { data: IWorkExperience[] };
   const { data: documentData } = useDocument({ profileID: id });
   
   const { data: educationData } = useEducation({ profileID: id });

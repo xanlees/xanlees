@@ -25,15 +25,15 @@ const Container: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 };
 
 const Profile: React.FC<{ record?: IEmployee }> = ({ record }) => {
-  const image = record?.profileDetail.profilePicture ?? "";
-  const phoneNumber = record?.profileDetail.phoneNumber ?? "";
+  const image = record?.profileId.profilePicture ?? "";
+  const phoneNumber = record?.profileId.phoneNumber ?? "";
   return (
     <div className="flex flex-col items-center">
       <img
         src={image}
         className="object-cover w-32 h-32 mb-4 bg-gray-300 rounded-full shrink-0"
       />
-      <div className="text-xl font-bold">{record?.profileDetail.fullname}</div>
+      <div className="text-xl font-bold">{record?.profileId.fullname}</div>
       <p className="">{record?.positionDetail.name}</p>
       <div className="flex flex-wrap justify-center w-1/2 gap-4 mt-6">
         {phoneNumber?.length > 0 && (
@@ -50,7 +50,7 @@ const Profile: React.FC<{ record?: IEmployee }> = ({ record }) => {
 };
 
 const PersonalInformation: React.FC<{ record?: IEmployee }> = ({ record }) => {
-  const birthday = record?.profileDetail.birthday ?? "";
+  const birthday = record?.profileId.birthday ?? "";
   const age = calculateAge(birthday);
   return (
     <div className="flex flex-col">
@@ -58,13 +58,13 @@ const PersonalInformation: React.FC<{ record?: IEmployee }> = ({ record }) => {
         ຂໍ້​ມູນ​ສ່ວນ​ບຸກຄົນ
       </span>
       <ul className="capitalize">
-        <li>{`ຊື່ ແລະ ນາມສະກູນ: ${record?.profileDetail.fullname}`}</li>
-        <li>{`ຊື່ຫຼິ້ນ: ${record?.profileDetail.nickname}`}</li>
+        <li>{`ຊື່ ແລະ ນາມສະກູນ: ${record?.profileId.fullname}`}</li>
+        <li>{`ຊື່ຫຼິ້ນ: ${record?.profileId.nickname}`}</li>
         <li>{`ເພດ: ${getGenderDisplayText(
-          record?.profileDetail.gender ?? null,
+          record?.profileId.gender ?? null,
         )}`}</li>
         <li>{`ສະຖານະພາບ: ${getMaritalStatusDisplayText(
-          record?.profileDetail.maritalStatus ?? null,
+          record?.profileId.maritalStatus ?? null,
         )}`}</li>
         <li>{`ວັນເດືອນປີເກີດ: ${moment(birthday).format("MMMM DD, YYYY")}`}</li>
         <li>{`ອາຍຸ: ${age}`}</li>
@@ -72,7 +72,7 @@ const PersonalInformation: React.FC<{ record?: IEmployee }> = ({ record }) => {
         <span className="mb-2 font-bold tracking-wider uppercase">
           Contact
         </span>
-        <li>{`ເບີໂທ: ${record?.profileDetail.phoneNumber}`}</li>
+        <li>{`ເບີໂທ: ${record?.profileId.phoneNumber}`}</li>
       </ul>
     </div>
   );

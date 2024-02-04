@@ -10,20 +10,19 @@ export function createContextProvider<State, Action>({
     const Context = createContext<{ state: State; dispatch: React.Dispatch<Action> } | undefined>(
       undefined
     );
-  
+
     const LocalStorageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       const [state, dispatch] = useReducer(reducer, initialState);
-  
       useEffect(() => {
         const storedState = localStorage.getItem(storageKey);
         if (storedState != null && storedState !== "undefined" && storedState !== "{}") {
-          dispatch({ type: `${LoadFromStorage}`, payload: JSON.parse(storedState) as State });
+          dispatch({ type: `${LoadFromStorage}`, payload: JSON?.parse(storedState) as State });
         }
       }, []);
-  
+
       useEffect(() => {
         if (Object.keys(state as Object).length > 1) {
-          localStorage.setItem(storageKey, JSON.stringify(state));
+          localStorage.setItem(storageKey, JSON?.stringify(state));
         }
       }, [state]);
   
@@ -41,6 +40,5 @@ export function createContextProvider<State, Action>({
       }
       return context;
     };
-  
     return { LocalStorageProvider: LocalStorageProvider, useLocalStorageContext: useLocalStorageContext };
   }

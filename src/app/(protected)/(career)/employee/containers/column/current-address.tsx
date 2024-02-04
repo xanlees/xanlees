@@ -18,8 +18,6 @@ export function getCurrentAddress(personalAddressData: PersonalAddressData) {
     id="personalAddressId"
     accessorKey="personalAddressId"
     cell={({ row }) => {
-      console.log("row.original.personalAddressId", row.original.personalAddressId)
-      console.log("personalAddressData", personalAddressData)
       const displayText = personalAddressData?.data.find(
         (item) => item?.currentDistrictDetail.id === row.original.personalAddressId.currentDistrictId
       );

@@ -140,9 +140,9 @@ export const UniqueNumber: React.FC<{
   record?: IEmployee
 }> = ({ record }) => {
   const codeType = getTypeDisplayText(
-    record?.profileDetail?.typeOfUniqueNumber,
+    record?.profileId?.typeOfUniqueNumber,
   );
-  const uniqueNumberList = record?.profileDetail?.uniqueNumber ?? [];
+  const uniqueNumberList = record?.profileId?.uniqueNumber ?? [];
   return (
     <div>
       <div className="mb-4 text-2xl font-bold">{codeType}</div>
