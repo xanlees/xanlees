@@ -18,8 +18,7 @@ export interface IProfile {
   phoneNumber: string
   gender: "MALE" | "FEMALE" | "OTHER"
   birthday: string
-  personalAddressId: number
-  personalAddressDetail: {
+  personalAddressId: {
     bornDistrictId: number
     currentDistrictId: number
     bornVillage: string

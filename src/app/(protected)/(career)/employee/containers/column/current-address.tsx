@@ -15,11 +15,13 @@ interface PersonalAddressData {
 export function getCurrentAddress(personalAddressData: PersonalAddressData) {
   return <Table.Column
     header="ທີ່ຢູ່ ປະຈຸບັນ"
-    id="personalAddressDetail"
-    accessorKey="personalAddressDetail.currentDistrictId"
+    id="personalAddressId"
+    accessorKey="personalAddressId"
     cell={({ row }) => {
+      console.log("row.original.personalAddressId", row.original.personalAddressId)
+      console.log("personalAddressData", personalAddressData)
       const displayText = personalAddressData?.data.find(
-        (item) => item?.currentDistrictDetail.id === row.original.personalAddressDetail.currentDistrictId
+        (item) => item?.currentDistrictDetail.id === row.original.personalAddressId.currentDistrictId
       );
       return (
         <div>

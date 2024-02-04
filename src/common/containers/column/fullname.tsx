@@ -9,8 +9,7 @@ export function FullNameColumn(accessorKey: string) {
       header={"ຊື່ ແລະ ນາມສະກຸນ (ຊຶ່ຫຼີ້ນ)"}
       id="fullname"
       cell={(props) => {
-        const { fullname, nickname } =
-          (props.row.original.profileId as IProfile) ?? {};
+        const { fullname, nickname } = (props.row.original.profileId as IProfile) ?? {};
         return <p className="font-bold">{`${fullname} (${nickname})`}</p>;
       }}
     />

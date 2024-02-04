@@ -10,15 +10,10 @@ import type {
 import { EmployeeContainer, TableSection } from "./employeeLayout";
 import { getSelectColumn } from "@src/common/containers/column/select";
 import {
-  FullNameColumn,
-  PhoneNumberColumn,
-  GenderColumn,
-  MarriageStatus,
   DateOfBirth,
-  EntryDate,
-  Position,
+  FullNameColumn,
 } from "./containers/column";
-
+import { GenderColumn, PhoneNumberColumn, MarriageColumn, } from "@src/common/containers/column";
 import { getCurrentAddress } from "./containers/column/current-address";
 import { getActionsColumn } from "@src/common/containers/column/action";
 import { getSector } from "./containers/column/sector";
@@ -33,25 +28,13 @@ export default function EmployeeList(): JSX.Element {
     columns: [],
     enableSorting: true,
     enableColumnFilters: true,
-    refineCoreProps: {
-      resource: "profile",
-      filters: {
-        initial: [
-          {
-            field: "application_application_status",
-            operator: "eq",
-            value: "Hired",
-          },
-        ],
-      },
-    },
+    refineCoreProps: { resource },
   });
-  const employees = table.options.data ?? [];
-  const currentAddressId = useCurrentAddressID(employees);
-  const { data: currentAddressData } = usePersonalAddress(currentAddressId, employees);
-  const sectorId = usePositionId(employees);
+  const profile = table.options.data ?? [];
+  const currentAddressId = useCurrentAddressID(profile);
+  const { data: currentAddressData } = usePersonalAddress(currentAddressId, profile);
+  const sectorId = usePositionId(profile);
   const { data: sectorData } = usePosition({ sectorId });
-
   const friendly = useUserFriendlyName();
   return (
     <List>
@@ -60,13 +43,11 @@ export default function EmployeeList(): JSX.Element {
           <Table table={table}>
             {getSelectColumn(friendly)}
             {FullNameColumn}
-            {PhoneNumberColumn}
-            {GenderColumn}
-            {MarriageStatus}
+            {PhoneNumberColumn("phoneNumber")}
+            {GenderColumn("gender")}
+            {MarriageColumn("maritalStatus")}
             {DateOfBirth}
             {getCurrentAddress(currentAddressData)}
-            {/* {Position} */}
-            {/* {getSector(sectorData)} */}
             {getActionsColumn(resource)}
           </Table>
         </TableSection>
