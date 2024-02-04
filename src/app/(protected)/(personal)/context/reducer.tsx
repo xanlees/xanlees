@@ -1,4 +1,4 @@
-import { LoadFromStorage } from "@src/common/localStorageContext/constant";
+import { LoadFromStorage } from "@src/common/components/localStorageContext/constant";
 import { ProfileState, ProfileAction } from "./interface";
 
 export const ProfileReducer = (
