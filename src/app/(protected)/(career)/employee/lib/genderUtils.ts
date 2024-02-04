@@ -13,9 +13,7 @@ export const getGenderDisplayText = (gender: IGender["gender"]): string => {
   }
 };
 
-export const getMaritalStatusDisplayText = (
-  maritalStatus: MaritalStatusType,
-): string => {
+export const getMaritalStatusDisplayText = (maritalStatus: MaritalStatusType ): string => {
   switch (maritalStatus) {
     case "SINGLE":
       return "ໂສດ";

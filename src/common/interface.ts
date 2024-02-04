@@ -16,3 +16,24 @@ export const formHeadersConfig: FormHeadersConfig = {
     "content-type": "multipart/form-data",
   },
 };
+
+export interface IProfile {
+  id: number
+  fullname: string
+  nickname: string
+  phoneNumber: string
+  gender: "MALE" | "FEMALE" | "OTHER"
+  birthday: string
+  personalAddressId: number
+  maritalStatus: "SINGLE" | "MARRIED" | null
+  profilePicture: string
+  uniqueNumber: string[]
+  typeOfUniqueNumber: "MACHINE" | "OTHER"
+}
+
+export type MaritalStatusType =
+  | "SINGLE"
+  | "MARRIED"
+  | null;
+
+export type GenderType = "MALE" | "FEMALE" | "OTHER" | null;

@@ -16,6 +16,11 @@ export const initialFilters: CrudFilter[] = [
     operator: "eq",
     value: "Hired",
   },
+  {
+    field: "expand",
+    operator: "eq",
+    value: "profile_id",
+  },
 ];
 
 export const refineCoreProps = {

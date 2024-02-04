@@ -26,7 +26,7 @@ export interface IPost {
   typeOfUniqueNumber: "MACHINE" | "OTHER"
 }
 export interface IApplication {
-  profileId: number
+  profileId: IProfile
   appliedPosition: string
   expectedSalary: string
   profileDetail: IProfile
