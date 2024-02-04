@@ -22,7 +22,7 @@ export const userSchema = z.object({
   ),
   confirmPassword: z.string(),
   isActive: z.union([z.string(), z.boolean()]),
-  groups: z.array(z.string()),
+  groups: z.string(),
 }).refine((value) => value.password === value.confirmPassword, {
   message: "Passwords don't match",
   path: ["confirmPassword"],

@@ -17,6 +17,7 @@ export const useFormConfig = (redirect: RedirectAction) => {
         enabled: true,
       },
       redirect,
+
     },
     warnWhenUnsavedChanges: true,
   });

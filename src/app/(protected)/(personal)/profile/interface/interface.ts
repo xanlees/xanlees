@@ -21,10 +21,5 @@ export interface IFormConfig {
 }
 
 export interface ProfileFormValues {
-  fullname: string
-  nickname: string
-  phoneNumber: string
-  gender: string
-  maritalStatus: string
   id?: number
 }

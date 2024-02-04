@@ -43,7 +43,6 @@ export const CreateButton: FC<CreateButtonProps> = ({
     const { resource } = useResource(
         resourceNameFromProps ?? propResourceNameOrRouteName,
     );
-
     const { data } = useCan({
         resource: resource?.name,
         action: "create",

@@ -7,7 +7,6 @@ export interface IEmployee {
   }
   joiningDate: string
   isLatest: string
-  profileId: number
   id: number
   profileId: IProfile
 }
