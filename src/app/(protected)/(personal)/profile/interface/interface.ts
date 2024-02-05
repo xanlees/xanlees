@@ -23,3 +23,8 @@ export interface IFormConfig {
 export interface ProfileFormValues {
   id?: number
 }
+
+export interface IErrorMessageNotification {
+  val: string;
+  message: string;
+}

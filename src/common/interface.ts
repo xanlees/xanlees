@@ -37,3 +37,8 @@ export type MaritalStatusType =
   | null;
 
 export type GenderType = "MALE" | "FEMALE" | "OTHER" | null;
+
+export interface ErrorMapMessage {
+  val: string;
+  message: string;
+}
