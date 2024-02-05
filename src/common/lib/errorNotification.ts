@@ -14,11 +14,11 @@ export const getErrorMessageNotification = ({
     let errorMessage: string = defaultMessage;
     for (const key in responseData) {
         if (Object.prototype.hasOwnProperty.call(responseData, key)) {
-            const errorMap = errorMessages.find(
+            const errorMap = errorMessages?.find(
                 (e) => e.val === responseData[key][0]
             );
             if (errorMap) {
-                errorMessage = errorMap.message;
+                errorMessage = errorMap?.message;
                 break;
             }
         }
