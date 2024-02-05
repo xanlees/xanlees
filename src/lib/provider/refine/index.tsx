@@ -49,7 +49,7 @@ export const RefineProvider = ({ children }: Props): JSX.Element => {
         options={{
           syncWithLocation: true,
         }}>
-          {children}
+        {children}
       </Refine>
     </authContext.Provider>
   );

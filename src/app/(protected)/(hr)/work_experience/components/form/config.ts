@@ -6,9 +6,15 @@ import { useApplicationContext } from "../../../application/context";
 interface FormConfigParams {
   setCurrentStep: ((step: number) => void) | undefined
 }
-interface WorkExperienceProps {
+interface WorkExperienceData {
   id: number
 }
+
+interface WorkExperienceProps {
+  id: number
+  data: WorkExperienceData[]
+}
+
 const step = 8;
 export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
   const { dispatch } = useApplicationContext();
@@ -22,8 +28,9 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
       redirect: false,
       onMutationSuccess: (data) => {
         let id: number;
-        if (Array.isArray(data?.data)) {
-          id = data?.data[0]?.id ?? 0;
+        if (Array.isArray(data?.data) && data?.data.length > 0) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+          id = data.data[0].id ?? 0;
         } else {
           id = data?.data?.id ?? 0;
         }

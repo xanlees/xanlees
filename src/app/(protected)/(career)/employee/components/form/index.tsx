@@ -1,4 +1,4 @@
-import { RedirectAction } from "@refinedev/core";
+import { type RedirectAction } from "@refinedev/core";
 import { Form } from "@src/shadcn/components/form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
@@ -14,7 +14,13 @@ export const EmployeeForm = ({ redirect = "list", id }: { redirect: RedirectActi
   const position = usePositionSelect();
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "employee" });
   const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => { if (!isMounted) { append({ profileId: id }), setIsMounted(true), remove(1) }}, [isMounted]);
+  useEffect(() => {
+    if (!isMounted) {
+      append({ profileId: id });
+      setIsMounted(true);
+      remove(1);
+    }
+  }, [isMounted]);
   return (
     <div className="w-full sm:w-[53%] rounded-lg">
       <Form {...formConfig.form}>
@@ -28,7 +34,7 @@ export const EmployeeForm = ({ redirect = "list", id }: { redirect: RedirectActi
           <ArrayField {...formConfig.form} name="isLatest" label="">
             <div className="flex gap-2 pt-3">
               <Input placeholder="isLatest" className="block w-5 h-5 rounded-lg" type="checkbox" defaultValue={"false"}/>
-              <Label className="pt-2.5 ">ແມ່ນຕໍາແໜ່ງລ່າ​ສຸດບໍ</Label>
+              <Label className="pt-2.5 ">{"ແມ່ນຕໍາແໜ່ງລ່າ​ສຸດບໍ"}</Label>
             </div>
           </ArrayField>
         </DynamicForm>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 import { Table, type TableFilterProps } from "@/shadcn/components/table";
 

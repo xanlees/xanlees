@@ -1,31 +1,31 @@
 import * as z from "zod";
 
 export interface IApplication {
-  profileId: number;
-  emergencyFullname: string;
-  emergencyRelationship: string;
-  emergencyPhoneNumber: string;
-  typeDrivingLicense: "A" | "B" | "C" | "D" | "OTHER";
-  typeVaccine: string;
-  wordSkill: "Poor" | "Fair" | "Good" | "Excellent";
-  excelSkill: "Poor" | "Fair" | "Good" | "Excellent";
-  powerpointSkill: "Poor" | "Fair" | "Good" | "Excellent";
-  thaiSkill: "Poor" | "Fair" | "Good" | "Excellent";
-  englishSkill: "Poor" | "Fair" | "Good" | "Excellent";
-  chineseSkill: "Poor" | "Fair" | "Good" | "Excellent";
-  vietnameseSkill: "Poor" | "Fair" | "Good" | "Excellent";
-  pledgeReason: string;
-  appliedReason: string;
-  applicationStatus: string;
-  applicantSignature: boolean;
-  appliedPosition: string;
-  expectedSalary: string;
+  profileId: number
+  emergencyFullname: string
+  emergencyRelationship: string
+  emergencyPhoneNumber: string
+  typeDrivingLicense: "A" | "B" | "C" | "D" | "OTHER"
+  typeVaccine: string
+  wordSkill: "Poor" | "Fair" | "Good" | "Excellent"
+  excelSkill: "Poor" | "Fair" | "Good" | "Excellent"
+  powerpointSkill: "Poor" | "Fair" | "Good" | "Excellent"
+  thaiSkill: "Poor" | "Fair" | "Good" | "Excellent"
+  englishSkill: "Poor" | "Fair" | "Good" | "Excellent"
+  chineseSkill: "Poor" | "Fair" | "Good" | "Excellent"
+  vietnameseSkill: "Poor" | "Fair" | "Good" | "Excellent"
+  pledgeReason: string
+  appliedReason: string
+  applicationStatus: string
+  applicantSignature: boolean
+  appliedPosition: string
+  expectedSalary: string
 }
 
 function transformApplication(val: IApplication): Record<string, any> {
   return {
     ...val,
-    expectedSalary: Number(val.expectedSalary)
+    expectedSalary: Number(val.expectedSalary),
   };
 }
 

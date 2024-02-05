@@ -16,7 +16,7 @@ const step = 1;
 export const useFormConfig = ({ setCurrentStep, showHouseNo }: FormConfigParams) => {
   const { dispatch } = useProfileContext();
   const defaultValues: Partial<PersonalAddressFormValues> = {};
-  if (showHouseNo) {
+  if (showHouseNo ?? false) {
     defaultValues.houseNo = "0000";
   }
   const { ...form } = useForm<PersonalAddressFormValues>({

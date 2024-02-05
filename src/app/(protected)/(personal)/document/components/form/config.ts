@@ -5,7 +5,6 @@ import { type z } from "zod";
 import { formHeadersConfig } from "@src/common/interface";
 import { useProfileContext } from "../../../context";
 
-
 interface FormConfigParams {
   setCurrentStep: ((step: number) => void) | undefined
 }

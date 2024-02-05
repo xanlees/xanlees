@@ -11,7 +11,6 @@ export interface IProfile {
   uniqueNumber: string[]
   typeOfUniqueNumber: "MACHINE" | "OTHER"
 }
-
 export interface IPost {
   id: number
   fullname: string
@@ -49,13 +48,11 @@ export interface IApplication {
   createdOn: string
   applicationStatus: "New" | "Contacted" | "Interviewed" | "Hired"
 }
-
 export interface IFormConfig {
   form: {
     setValue: any
   }
 }
-
 export interface IWorkExperience {
   company: string
   position: string
@@ -77,7 +74,6 @@ export interface IEducation {
   profileId: number
   id: number
 }
-
 export interface IDocument {
   documentName: string
   documentFile: string
@@ -96,7 +92,7 @@ export interface IPhysicalProfile {
 }
 
 export interface CrudFilter {
-  field: string;
-  operator: "eq" | "ne";
-  value: string;
+  field: string
+  operator: "eq" | "ne"
+  value: string
 }

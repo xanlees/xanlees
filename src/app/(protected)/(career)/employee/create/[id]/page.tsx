@@ -17,4 +17,3 @@ export default function EmployeeCreate({ params }: { params: { id: number } }): 
   );
 }
 
-

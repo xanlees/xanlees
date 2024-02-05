@@ -1,9 +1,9 @@
 import { LoadFromStorage } from "@src/common/components/localStorageContext/constant";
 
-import { ApplicationState, ApplicationAction } from "./interface";
+import { type ApplicationState, type ApplicationAction } from "./interface";
 export const ApplicationReducer = (
   state: ApplicationState = initialApplicationState,
-  action: ApplicationAction
+  action: ApplicationAction,
 ): ApplicationState => {
   switch (action.type) {
     case "setApplicationId":

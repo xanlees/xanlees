@@ -4,18 +4,11 @@ import { Form } from "@src/shadcn/components/form";
 import { type IFormConfig } from "../../interface";
 import { genderOptions } from "@src/app/(protected)/(career)/employee/lib/constant";
 
-export const BasicInformationSection: React.FC<{ formConfig: IFormConfig, isEmployee?: boolean }> = ({
-  formConfig, isEmployee
-}) => {
-  let typeOfUniqueNumber;
-  typeOfUniqueNumber = uniqueNumbe(typeOfUniqueNumber, isEmployee);
+export const BasicInformationSection: React.FC<{ formConfig: IFormConfig, isEmployee?: boolean }> = ({ formConfig, isEmployee }) => {
+  const typeOfUniqueNumber = uniqueNumber(isEmployee);
   return (
     <div className="flex-1 p-4">
-      <Form.Field
-        {...formConfig.form}
-        name="fullname"
-        label="ຊື່​ ແລະ ນາມ​ສະ​ກຸນ"
-      >
+      <Form.Field {...formConfig.form} name="fullname" label="ຊື່​ ແລະ ນາມ​ສະ​ກຸນ" >
         <Input placeholder="ຊື່​ ແລະ ນາມ​ສະ​ກຸນ" />
       </Form.Field>
       <Form.Field {...formConfig.form} name="phoneNumber" label="ເບີໂທ">
@@ -24,52 +17,42 @@ export const BasicInformationSection: React.FC<{ formConfig: IFormConfig, isEmpl
       <Form.Field {...formConfig.form} name="gender" label="ເລືອກເພດ">
         <Form.Select options={genderOptions} />
       </Form.Field>
-      <Form.Field
-        {...formConfig.form}
-        name="typeOfUniqueNumber"
-        label="ເລືອກປະເພດ"
-      >
+      <Form.Field {...formConfig.form} name="typeOfUniqueNumber" label="ເລືອກປະເພດ">
         <Form.Select options={typeOfUniqueNumber} />
       </Form.Field>
-      <Form.Field
-        {...formConfig.form}
-        name="profilePicture"
-        label="ເລືອກໂປຣໄຟລ໌"
-      >
+      <Form.Field {...formConfig.form} name="profilePicture" label="ເລືອກໂປຣໄຟລ໌" >
         <Form.FileInputImage />
       </Form.Field>
     </div>
   );
 };
 
-function uniqueNumbe(typeOfUniqueNumber: any, isEmployee?: boolean) {
-  if (isEmployee) {
-      return [
-          {
-              label: "ເລກເຄື່ອງຂາຍເລກ",
-              value: "MACHINE",
-          },
-          {
-              label: "ເລກບັດປະຈໍາຕົວ",
-              value: "IDENTIFY",
-          },
-          {
-              label: "ປື້ມສໍາມະໂມຄົວເລກທີ",
-              value: "CENSUS_BOOK",
-          },
-      ];
-  } else {
-      return [
-          {
-              label: "ເລກບັດປະຈໍາຕົວ",
-              value: "IDENTIFY",
-          },
-          {
-              label: "ປື້ມສໍາມະໂມຄົວເລກທີ",
-              value: "CENSUS_BOOK",
-          },
-      ];
+function uniqueNumber(typeOfUniqueNumber: any, isEmployee?: boolean) {
+  if (isEmployee ?? false) {
+    return [
+      {
+        label: "ເລກເຄື່ອງຂາຍເລກ",
+        value: "MACHINE",
+      },
+      {
+        label: "ເລກບັດປະຈໍາຕົວ",
+        value: "IDENTIFY",
+      },
+      {
+        label: "ປື້ມສໍາມະໂມຄົວເລກທີ",
+        value: "CENSUS_BOOK",
+      },
+    ];
   }
+  return [
+    {
+      label: "ເລກບັດປະຈໍາຕົວ",
+      value: "IDENTIFY",
+    },
+    {
+      label: "ປື້ມສໍາມະໂມຄົວເລກທີ",
+      value: "CENSUS_BOOK",
+    },
+  ];
 }
-
 

@@ -1,6 +1,4 @@
-import { Label } from "@src/shadcn/elements";
 import type { IFormConfig } from "../../interface";
-import { Badge } from "lucide-react";
 import {
   DrivingLicenceOptions,
   SectionInput,
@@ -8,7 +6,7 @@ import {
 } from "./SectionInput";
 
 export const GeneralInfo: React.FC<{
-  formConfig: IFormConfig;
+  formConfig: IFormConfig
 }> = ({ formConfig }) => {
   return (
     <>

@@ -1,10 +1,8 @@
-import { Label } from "@src/shadcn/elements";
 import type { IFormConfig } from "../../interface";
 import { InputBase } from "@src/common/elements/input/InputBase";
-import { Badge } from "lucide-react";
 
 export const AppliedFor: React.FC<{
-  formConfig: IFormConfig;
+  formConfig: IFormConfig
 }> = ({ formConfig }) => {
   return (
     <>

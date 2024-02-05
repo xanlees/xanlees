@@ -9,8 +9,8 @@ import { getSelectColumn } from "@src/common/containers/column/select";
 import { ApplicationDate, ApplicationStatusColumn, workExperienceColumn, AppliedPosition, ExpectedSalary } from "./containers/column";
 import { useApplication, useApplicationID } from "./hooks";
 import type { IApplication } from "./interface";
-import { application_resource, refineCoreProps } from "./lib/constant";
-import { GenderColumn, FullNameColumn, PhoneNumberColumn, MarriageColumn, } from "@src/common/containers/column";
+import { applicationResource, refineCoreProps } from "./lib/constant";
+import { GenderColumn, FullNameColumn, PhoneNumberColumn, MarriageColumn } from "@src/common/containers/column";
 
 export default function ApplicationList(): JSX.Element {
   const table = useTable<IApplication>({ columns: [], enableSorting: true, enableColumnFilters: true, refineCoreProps });
@@ -34,7 +34,7 @@ export default function ApplicationList(): JSX.Element {
           {ExpectedSalary}
           {ApplicationStatusColumn}
           {workExperienceColumn(dataWorkExperience)}
-          {getActionsColumn(application_resource)}
+          {getActionsColumn(applicationResource)}
         </Table>
       </div>
     </List>

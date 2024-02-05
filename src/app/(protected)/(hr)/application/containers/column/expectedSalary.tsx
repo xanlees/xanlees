@@ -1,6 +1,6 @@
 "use client";
-import { Table, TableFilterProps } from "@/shadcn/components/table";
-import { IApplication } from "../../interface";
+import { Table, type TableFilterProps } from "@/shadcn/components/table";
+import { type IApplication } from "../../interface";
 
 export const ExpectedSalary = (
   <Table.Column

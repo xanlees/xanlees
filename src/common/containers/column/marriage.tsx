@@ -1,6 +1,6 @@
 "use client";
 import { Table } from "@/shadcn/components/table";
-import { MaritalStatusType } from "@src/common/interface";
+import { type MaritalStatusType } from "@src/common/interface";
 import { Badge } from "@src/shadcn/elements";
 
 export function MarriageColumn(accessorKey: string) {
@@ -21,7 +21,7 @@ export function MarriageColumn(accessorKey: string) {
 }
 
 const getMaritalStatusDisplayText = (
-  maritalStatus: MaritalStatusType
+  maritalStatus: MaritalStatusType,
 ): string => {
   switch (maritalStatus) {
     case "SINGLE":

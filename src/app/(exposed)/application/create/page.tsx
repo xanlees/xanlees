@@ -3,8 +3,14 @@ import React from "react";
 import { Card } from "@src/shadcn/elements";
 import { applicationFromStep } from "@src/app/(protected)/(personal)/profile/lib/settings";
 import FormStep from "@src/common/components/stepForm";
-import { ApplicationProvider, useApplicationContext } from "@src/app/(protected)/(hr)/application/context";
-import { ProfileProvider, useProfileContext } from "@src/app/(protected)/(personal)/context";
+import {
+  ApplicationProvider,
+  useApplicationContext,
+} from "@src/app/(protected)/(hr)/application/context";
+import {
+  ProfileProvider,
+  useProfileContext,
+} from "@src/app/(protected)/(personal)/context";
 
 export default function ApplicationCreate(): JSX.Element {
   return (
@@ -17,19 +23,29 @@ export default function ApplicationCreate(): JSX.Element {
     </Card>
   );
 }
+const STEPS = {
+  personalAddressStep: 1,
+  profileStep: 2,
+  physicalProfileStep: 3,
+  isUploadedStep: 4,
+  graduationStep: 5,
+  applicationStep: 6,
+  workExperienceStep: 7,
+};
 
 function ApplicationForm(): JSX.Element {
   const { state: stateApplication } = useApplicationContext();
   const { state: stateProfile } = useProfileContext();
-  let initialStep = stateProfile.personalAddressId ? 1 : 0;
-  initialStep = stateProfile.profileId ? 2 : initialStep;
-  initialStep = stateApplication.physicalProfileId ? 3 : initialStep;
-  initialStep = stateProfile.isUploaded ? 4 : initialStep;
-  initialStep = stateProfile.graduationId ? 5 : initialStep;
-  initialStep = stateApplication.applicationId ? 6 : initialStep;
-  initialStep = stateApplication.workExperienceId ? 7 : initialStep;
+  let initialStep = (stateProfile.personalAddressId != null) ? STEPS.personalAddressStep : 0;
+  initialStep = (stateProfile.profileId != null) ? STEPS.profileStep : initialStep;
+  initialStep = (stateApplication.physicalProfileId != null) ? STEPS.physicalProfileStep : initialStep;
+  initialStep = (stateProfile.isUploaded != null) ? STEPS.isUploadedStep : initialStep;
+  initialStep = (stateProfile.graduationId != null) ? STEPS.graduationStep : initialStep;
+  initialStep = (stateApplication.applicationId != null) ? STEPS.applicationStep : initialStep;
+  initialStep = (stateApplication.workExperienceId != null) ? STEPS.workExperienceStep : initialStep;
   return (
-    <FormStep formStepsData={applicationFromStep}
+    <FormStep
+      formStepsData={applicationFromStep}
       stepProps={{}}
       initialStep={initialStep}
     />

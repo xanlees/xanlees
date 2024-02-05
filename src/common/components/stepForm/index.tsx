@@ -2,12 +2,14 @@ import Stepper from "@keyvaluesystems/react-stepper";
 import React, { useEffect, useState } from "react";
 import { type FormStepProp } from "./interface";
 
-export default function FormStep({ formStepsData, stepProps, initialStep,}: FormStepProp ): JSX.Element {
+export default function FormStep({
+  formStepsData,
+  initialStep,
+}: Readonly<FormStepProp>): JSX.Element {
   const [currentStep, setCurrentStep] = useState(initialStep);
   useEffect(() => {
     setCurrentStep(initialStep);
   }, [initialStep]);
-
   return (
     <div>
       <Stepper
@@ -15,12 +17,11 @@ export default function FormStep({ formStepsData, stepProps, initialStep,}: Form
           ...step,
           stepDescription: React.cloneElement(step.stepDescription, {
             setCurrentStep,
-            ...stepProps,
           }),
         }))}
         orientation="vertical"
         currentStepIndex={currentStep}
-        stepContent={() => <div className="w-[1600px] rounded-lg"  />}
+        stepContent={() => <div className="w-[1600px] rounded-lg" />}
       />
     </div>
   );

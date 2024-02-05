@@ -25,6 +25,6 @@ export interface ProfileFormValues {
 }
 
 export interface IErrorMessageNotification {
-  val: string;
-  message: string;
+  val: string
+  message: string
 }

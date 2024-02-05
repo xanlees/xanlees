@@ -22,7 +22,7 @@ export const PhysicalProfile: React.FC<PhysicalProfileProps> = ({
               </div>
               <div className="w-2 pt-7 ">cm</div>
             </div>
-            <InputBase {...formConfig} name="nationality" label="ສັນຊາດ"  placeholder="ປ້ອນສັນຊາດ"/>
+            <InputBase {...formConfig} name="nationality" label="ສັນຊາດ" placeholder="ປ້ອນສັນຊາດ"/>
           </div>
           <div className="flex-1 p-4">
             <div className="flex gap-2">

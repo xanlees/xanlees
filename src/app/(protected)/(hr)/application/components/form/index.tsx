@@ -8,10 +8,10 @@ import {
   GeneralInfo,
 } from "../../containers/form";
 import { Input, Textarea } from "@src/shadcn/elements";
-import { IFormConfig } from "@src/common/interface";
+import { type IFormConfig } from "@src/common/interface";
 
 interface ApplicationFormProps {
-  setCurrentStep?: (step: number) => void;
+  setCurrentStep?: (step: number) => void
 }
 
 export const ApplicationForm: React.FC<ApplicationFormProps> = ({

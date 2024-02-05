@@ -1,6 +1,6 @@
-export interface ProviderProps<State, Action> {
-    reducer: (state: State | Object, action: any) => State;
-    initialState: State;
-    storageKey: string;
-  }
-
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export interface ProviderProps<T, A> {
+  reducer: (state: T | Record<string, unknown>, action: A) => T
+  initialState: T
+  storageKey: string
+}

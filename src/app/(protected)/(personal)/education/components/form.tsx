@@ -21,23 +21,16 @@ export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep }) 
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "education" });
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
-      if (!isMounted) {
-          append({ profileId: state.profileId });
-          setIsMounted(true);
-          remove(1);
-      }
-  },[isMounted]);
+    if (!isMounted) {
+      append({ profileId: state.profileId });
+      setIsMounted(true);
+      remove(1);
+    }
+  }, [isMounted]);
   return (
     <div className="w-full sm:w-[53%] rounded-lg">
       <Form {...formConfig.form}>
-        <DynamicForm
-          form={formConfig.form}
-          fields={fields}
-          append={append}
-          remove={remove}
-          name="education"
-          label="ການສຶກສາວິຊາສະເພາະທີ່ຈົບ" className="flex gap-2" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId } }
-        >
+        <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="education" label="ການສຶກສາວິຊາສະເພາະທີ່ຈົບ" className="flex gap-2" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId } }>
           <ArrayField {...formConfig.form} name="branch" label="ສາຂາ">
             <Input placeholder="ສາຂາ" className="block w-56" />
           </ArrayField>

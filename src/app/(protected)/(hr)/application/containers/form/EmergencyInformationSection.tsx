@@ -2,7 +2,7 @@ import type { IFormConfig } from "../../interface";
 import { InputBase } from "@src/common/elements/input/InputBase";
 
 export const EmergencyInformationSection: React.FC<{
-  formConfig: IFormConfig;
+  formConfig: IFormConfig
 }> = ({ formConfig }) => {
   return (
     <>

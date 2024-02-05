@@ -1,13 +1,13 @@
 "use client";
 
 import { CircleDashed } from "lucide-react";
-import { IApplication } from "../../interface";
+import { type IApplication } from "../../interface";
 
 export const Applied: React.FC<{ record?: IApplication, header: string }> = ({ record, header }) => {
   const expectedSalary = record?.expectedSalary ?? "";
   const appliedPosition = record?.appliedPosition ?? "";
   const numericSalary = parseFloat(expectedSalary);
-  const formattedSalary = numericSalary?.toLocaleString()
+  const formattedSalary = numericSalary?.toLocaleString();
   return (
     <div className="flex flex-wrap">
       <div className="flex w-full h-12 my-auto mb-4 text-xl font-bold text-center sm:w-1/4">
@@ -25,4 +25,4 @@ export const Applied: React.FC<{ record?: IApplication, header: string }> = ({ r
       </div>
     </div>
   );
-}
+};

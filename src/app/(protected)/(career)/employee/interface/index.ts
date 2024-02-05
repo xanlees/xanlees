@@ -34,7 +34,6 @@ export interface IGender {
   gender: "MALE" | "FEMALE" | "OTHER" | null
 }
 export type GenderType = "MALE" | "FEMALE" | "OTHER" | null;
-
 export type MaritalStatusType =
   | "SINGLE"
   | "MARRIED"
@@ -50,10 +49,8 @@ export interface IDistrict {
 }
 export interface IPersonalAddress {
   id: number
-  currentDistrictDetail: IDistrict
-  bornDistrictDetail: IDistrict
-  bornDistrictId: number
-  currentDistrictId: number
+  bornDistrictId: IDistrict
+  currentDistrictId: IDistrict
   bornVillage: string
   currentVillage: string
 }
@@ -62,7 +59,6 @@ interface IGraduation {
   degree: string
   sector: string
 }
-
 export interface IEducation {
   id: number
   profileId: number
@@ -72,7 +68,6 @@ export interface IEducation {
   sector: string
   year: string
 }
-
 export interface ISector {
   id: number
   name: string
@@ -82,24 +77,22 @@ export interface ISector {
     name: string
   }
 }
-
 interface Employee {
   [x: string]: any
-  id: number;
-  positionId: number;
-  joiningDate: string;
-  isLatest: boolean;
-  updatedOn: string;
-  createdOn: string;
+  id: number
+  positionId: number
+  joiningDate: string
+  isLatest: boolean
+  updatedOn: string
+  createdOn: string
 }
-
 export interface IPosition {
-  name: string;
-  id: number;
-  sectorId: number;
+  name: string
+  id: number
+  sectorId: number
   sectorDetail: {
-    name: string;
-    id: number;
-    branchId: number;
-  };
+    name: string
+    id: number
+    branchId: number
+  }
 }

@@ -1,7 +1,6 @@
 import { Form } from "@src/shadcn/components/form";
 import React from "react";
-import { IFormConfig } from "@src/common/interface";
-
+import { type IFormConfig } from "@src/common/interface";
 
 export const PositionSection = ({
   formConfig,

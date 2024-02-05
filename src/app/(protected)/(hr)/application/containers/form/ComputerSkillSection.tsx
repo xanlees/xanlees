@@ -1,5 +1,3 @@
-import { Label } from "@src/shadcn/elements";
-import { Badge } from "lucide-react";
 import type { IFormConfig } from "../../interface";
 import { SectionInput, SkillOptions } from "./SectionInput";
 export const ComputerSkillSection: React.FC<{ formConfig: IFormConfig }> = ({

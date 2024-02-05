@@ -20,4 +20,3 @@ export const ApplicationStatusColumn = <Table.Column
   }}
 />;
 
- 

@@ -1,14 +1,13 @@
-import { CrudFilter } from "@refinedev/core";
+import { type CrudFilter } from "@refinedev/core";
 
 export const optionsConfig = [
-    { value: "New", label: "ໃຫມ່" },
-    { value: "Contacted", label: "ຕິດຕໍ່" },
-    { value: "Interviewed", label: "ສຳພາດແລ້ວ" },
-    { value: "Hired", label: "ຈ້າງເປັນພະນັກງານແລ້ວ" }
+  { value: "New", label: "ໃຫມ່" },
+  { value: "Contacted", label: "ຕິດຕໍ່" },
+  { value: "Interviewed", label: "ສຳພາດແລ້ວ" },
+  { value: "Hired", label: "ຈ້າງເປັນພະນັກງານແລ້ວ" },
 ];
 
-export const application_resource = "application";
-
+export const applicationResource = "application";
 
 export const initialFilters: CrudFilter[] = [
   {
@@ -24,8 +23,8 @@ export const initialFilters: CrudFilter[] = [
 ];
 
 export const refineCoreProps = {
-    application_resource,
+  applicationResource,
   filters: {
     initial: initialFilters,
-  }
+  },
 };

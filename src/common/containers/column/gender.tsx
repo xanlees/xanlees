@@ -1,6 +1,6 @@
 "use client";
 import { Table } from "@/shadcn/components/table";
-import { GenderType } from "@src/common/interface";
+import { type GenderType } from "@src/common/interface";
 import { Badge } from "@src/shadcn/elements";
 
 export function GenderColumn(accessorKey: string) {

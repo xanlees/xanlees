@@ -132,13 +132,6 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/no-unsafe-call": "off",
-    "@typescript-eslint/strict-boolean-expressions": [
-      "error",
-      {
-        "allowNullable": true,
-        "allowSafe": true,
-        "ignoreRhs": true
-      }
-    ]
+    "strict-boolean-expressions": ["off", "allow-boolean-or-undefined"]
   }
 }

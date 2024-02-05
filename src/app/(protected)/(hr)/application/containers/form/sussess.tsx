@@ -8,7 +8,7 @@ export const Success = () => {
   const handleButtonClick = () => {
     localStorage.removeItem("creatingApplication");
     localStorage.removeItem("creatingProfileState");
-    setRefresh(prevRefresh => !prevRefresh);
+    setRefresh((prevRefresh) => !prevRefresh);
   };
 
   return (

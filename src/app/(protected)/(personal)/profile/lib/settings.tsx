@@ -32,8 +32,6 @@ export const formStepsData = [
   },
 ];
 
-
-
 export const applicationFromStep = [
   {
     stepLabel: "ສ້າງທີຢູ່",

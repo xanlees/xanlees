@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
-import { ApplicationAction, ApplicationState } from "./interface";
+/* eslint-disable @typescript-eslint/naming-convention */
+import { type ReactNode } from "react";
+import { type ApplicationAction, type ApplicationState } from "./interface";
 import { ApplicationReducer } from "./reducer";
 import { createContextProvider } from "@src/common/components/localStorageContext/provider";
 
@@ -11,7 +12,7 @@ const { LocalStorageProvider, useLocalStorageContext } = createContextProvider<A
   storageKey: APPLICATION_STORAGE_KEY,
 });
 
-export const ApplicationProvider: React.FC<{ children: ReactNode; }> = ({ children }) => {
+export const ApplicationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <LocalStorageProvider>
       {children}

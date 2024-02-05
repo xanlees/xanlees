@@ -3,8 +3,7 @@ import { Card, CardTitle } from "@src/shadcn/elements";
 import { FileText } from "lucide-react";
 import { PDFDialog } from "./PDFDialog";
 
-export function DocumentList({
-  documentData = [] as IDocument[] | { data: IDocument[] } }: Readonly<{
+export function DocumentList({ documentData = [] as IDocument[] | { data: IDocument[] } }: Readonly<{
   header: string
   documentData?: IDocument[] | { data: IDocument[] }
 }>): JSX.Element {

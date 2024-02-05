@@ -1,7 +1,6 @@
 "use client";
 import { useMany } from "@refinedev/core";
 import type {
-  IEmployee,
   IPersonalAddress,
   IProfile,
 } from "../interface";
