@@ -1,29 +1,14 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
-import { useProfileContext } from "../../context";
 import { profileSchema } from "./validation";
-import type { ProfileFormValues } from "../interface";
+import { useProfileContext } from "../../context";
+import { zodResolver } from "@hookform/resolvers/zod";
 import type * as z from "zod";
-interface FormConfigParams {
-  setCurrentStep?: ((step: number) => void) | undefined
-  setProfileID?: ((id: number) => void) | undefined
-}
+import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
+import { errorMessages } from "./constant";
 
-interface ErrorMapMessage {
-  val: string
-  message: string
-}
+const defaultMessage = "ບໍ່ສາມາດສ້າງຂໍ້ມູນສ່ວນບຸຄົນໄດ້";
 
-const mapErrorMessage: ErrorMapMessage[] = [
-  {
-    val: "Exceeded maximum claims for this prize's rank.",
-    message: "ລາງວັນຫມົດແລ້ວ",
-  },
-];
-export const useFormConfig = ({
-  setCurrentStep,
-}: FormConfigParams) => {
+export const useFormConfig = ({ setCurrentStep, }: { setCurrentStep?: ((step: number) => void) | undefined }) => {
   const { state, dispatch } = useProfileContext();
   const { ...form } = useForm<z.infer<typeof profileSchema>>({
     resolver: zodResolver(profileSchema),
@@ -42,21 +27,14 @@ export const useFormConfig = ({
         enabled: true,
       },
       onMutationSuccess: (data) => {
-        dispatch({ type: "setProfileId", payload: data?.data?.id ?? 0});
-        (setCurrentStep != null) && setCurrentStep(2);
+        dispatch({ type: "setProfileId", payload: data?.data?.id ?? 0 });
+        if (setCurrentStep) setCurrentStep(2);
       },
       errorNotification: (data: any) => {
-        console.log(data);
-        console.log(data.response.data);
-        let errorName: string = data.response.data?.error || "";
-        const errorMap = mapErrorMessage.find((e) => e.val === errorName);
-        if (errorMap != null) {
-          errorName = errorMap.message;
-        } else {
-          errorName = "Error API";
-        }
-        return { message: errorName, description: "", type: "error" };
+        const responseData = data.response.data;
+        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage });
       },
+      successNotification: false,
       redirect: false,
     },
     warnWhenUnsavedChanges: true,
