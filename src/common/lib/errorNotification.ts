@@ -13,7 +13,7 @@ export const getErrorMessageNotification = ({
 }: IErrorMessageNotification) => {
     let errorMessage: string = defaultMessage;
     for (const key in responseData) {
-        if (Object.prototype.hasOwnProperty.call(responseData, key)) {
+        if (Object.hasOwn(responseData, key)) {
             const errorMap = errorMessages.find(
                 (e) => e.val === responseData[key][0]
             );

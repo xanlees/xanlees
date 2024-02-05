@@ -1,4 +1,4 @@
-import { ErrorMapMessage } from "@src/common/interface";
+import { type ErrorMapMessage } from "@src/common/interface";
 
 export const errorMessages: ErrorMapMessage[] = [
   {
@@ -7,7 +7,7 @@ export const errorMessages: ErrorMapMessage[] = [
   },
   {
     val: "Profile with this phone number already exists.",
-    message: "ເບີໂທນີ້ບໍ່ໃນລະບົບແລ້ວ",
+    message: "ເບີໂທນີ້ມີໃນລະບົບແລ້ວ",
   },
 ];
 
