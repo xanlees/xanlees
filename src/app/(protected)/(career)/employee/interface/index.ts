@@ -28,7 +28,7 @@ export interface IProfile {
   profilePicture: string | null
   uniqueNumber: string[]
   typeOfUniqueNumber: "IDENTIFY" | "CENSUS_BOOK" | "MACHINE"
-  employee: Employee
+  employee: Employee[]
 }
 export interface IGender {
   gender: "MALE" | "FEMALE" | "OTHER" | null
@@ -50,7 +50,7 @@ export interface IDistrict {
 export interface IPersonalAddress {
   id: number
   bornDistrictId: IDistrict
-  currentDistrictId: IDistrict
+  currentDistrictDetail: IDistrict
   bornVillage: string
   currentVillage: string
 }

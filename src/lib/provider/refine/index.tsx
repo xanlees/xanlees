@@ -4,7 +4,7 @@
 "use client";
 
 import { accessControlProvider } from "@/lib/provider/access/";
-import { getIdentity, getLogin, getLogout } from "@/lib/provider/auth/authOperation";
+import { getCheck, getIdentity, getLogin, getLogout } from "@/lib/provider/auth/authOperation";
 import { notificationProvider } from "@/shadcn/providers";
 import { Refine, type AuthBindings, type HttpError } from "@refinedev/core";
 import routerProvider from "@refinedev/nextjs-router/app";
@@ -29,10 +29,7 @@ export const RefineProvider = ({ children }: Props): JSX.Element => {
       login: getLogin(to),
       logout: getLogout(),
       onError: async(error: HttpError | Error | undefined) => ({ error }),
-      check: async() => ({
-        authenticated: status !== "unauthenticated",
-        redirectTo: status === "unauthenticated" ? "/" : undefined,
-      }),
+      check: async() => getCheck(data, status),
       getPermissions: async() => null,
       getIdentity: async() => getIdentity(data),
     };

@@ -2,11 +2,12 @@
 import { Table } from "@/shadcn/components/table";
 import type { IPersonalAddress } from "../../interface";
 
-interface PersonalAddressData {
+export interface PersonalAddressData {
   data?: IPersonalAddress[]
 }
 
 export function getCurrentAddress(personalAddressData: PersonalAddressData) {
+  console.log(personalAddressData);
   return (
     <Table.Column
       header="ທີ່ຢູ່ ປະຈຸບັນ"
@@ -17,7 +18,7 @@ export function getCurrentAddress(personalAddressData: PersonalAddressData) {
         const displayText = personalAddressData?.data?.find((item) => item?.id === currentDistrict);
         return (
           <div>
-            {`${displayText?.currentVillage}, ${displayText?.currentDistrictId?.districtName}, ${displayText?.currentDistrictId?.provinceName}`}
+            {`${displayText?.currentVillage}, ${displayText?.currentDistrictDetail?.districtName}, ${displayText?.currentDistrictDetail?.provinceName}`}
           </div>
         );
       }}

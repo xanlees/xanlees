@@ -63,3 +63,9 @@ export function getIdentity(data: Session | null) {
   };
 }
 
+export function getCheck(data: Session | null, status: string) {
+  return {
+    authenticated: status !== "unauthenticated",
+    redirectTo: status === "unauthenticated" ? "/" : undefined,
+  };
+}
