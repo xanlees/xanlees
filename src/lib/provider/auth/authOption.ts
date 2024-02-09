@@ -6,6 +6,8 @@ import { CheckingAndRefreshToken } from "./refresh-token";
 
 const second = 1000;
 const minute = 60;
+const hour = 60;
+const oneThirdDay = 8;
 
 export const authOptions: NextAuthOptions = {
   pages: {
@@ -48,7 +50,7 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
-    maxAge: 2 * minute,
+    maxAge: oneThirdDay * hour * minute,
   },
   secret: process.env.SECRET_KEY as string,
   callbacks: {
@@ -61,6 +63,7 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       const refresh = await CheckingAndRefreshToken(token);
       if (refresh !== undefined) {
+        console.log(refresh);
         (token.user as User).accessToken = refresh.accessToken;
         (token.user as User).refreshToken = refresh.refreshToken;
         (token.user as User).iat = refresh.iat;

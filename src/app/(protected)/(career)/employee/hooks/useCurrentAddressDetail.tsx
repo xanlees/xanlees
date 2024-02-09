@@ -5,7 +5,7 @@ import type {
   IProfile,
 } from "../interface";
 
-export function usePersonalAddress(personalAddressId: number[], employees: IProfile[]): { data: any } {
+export function usePersonalAddressDetail(personalAddressId: number[], employees: IProfile[]): { data: any } {
   return useMany<IPersonalAddress>({
     resource: "personal_address",
     ids: personalAddressId,

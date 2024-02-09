@@ -17,7 +17,7 @@ export function getCurrentAddress(personalAddressData: PersonalAddressData) {
         const displayText = personalAddressData?.data?.find((item) => item?.id === currentDistrict);
         return (
           <div>
-            {`${displayText?.currentVillage}, ${displayText?.currentDistrictDetail?.districtName}, ${displayText?.currentDistrictDetail?.provinceName}`}
+            {`${displayText?.currentVillage}, ${displayText?.currentDistrictId?.districtName}, ${displayText?.currentDistrictId?.provinceName}`}
           </div>
         );
       }}

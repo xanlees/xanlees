@@ -3,6 +3,7 @@ import { type IRefreshToken, type IToken } from "./interface";
 
 const second = 1000;
 const minute = 60;
+const hour = 60;
 const oneThirdDay = 8;
 
 export async function refreshAccessToken(token: IToken) {
@@ -31,7 +32,7 @@ export async function CheckingAndRefreshToken(token: JWT) {
   if (tokenUser !== undefined && tokenUser !== null) {
     const currentTimeInSeconds = Math.floor(Date.now() / second);
     const { iat: tokenIssueTimeInSeconds, refreshToken } = (token as unknown as IToken).user;
-    if (typeof tokenIssueTimeInSeconds === "number" && currentTimeInSeconds - tokenIssueTimeInSeconds > oneThirdDay * minute && (refreshToken.length > 0)) {
+    if (typeof tokenIssueTimeInSeconds === "number" && currentTimeInSeconds - tokenIssueTimeInSeconds > oneThirdDay * hour * minute && (refreshToken.length > 0)) {
       return await refreshAccessToken(token as unknown as IToken);
     }
   }

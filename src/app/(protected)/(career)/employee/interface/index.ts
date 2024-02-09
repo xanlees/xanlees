@@ -50,7 +50,7 @@ export interface IDistrict {
 export interface IPersonalAddress {
   id: number
   bornDistrictId: IDistrict
-  currentDistrictDetail: IDistrict
+  currentDistrictId: IDistrict
   bornVillage: string
   currentVillage: string
 }
