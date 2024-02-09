@@ -14,7 +14,6 @@ interface InputBaseProps extends IFormConfig {
 }
 
 export const InputBase: React.FC<InputBaseProps> = (props) => {
-  console.log("props", props.defaultValue);
   return (
     <Form.Field {...props} name={props.name} label={props.label}>
       <Input

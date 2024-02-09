@@ -7,6 +7,7 @@ export interface User {
   groups: string[]
   accessToken: string
   refreshToken: string
+  iat: number
 }
 
 export interface UserResponse {

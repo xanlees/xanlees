@@ -3,6 +3,7 @@ import { type IRefreshToken, type IToken } from "./interface";
 
 const second = 1000;
 const minute = 60;
+const oneThirdDay = 8;
 
 export async function refreshAccessToken(token: IToken) {
   try {
@@ -18,8 +19,7 @@ export async function refreshAccessToken(token: IToken) {
       const accessToken = data.access;
       const refreshToken = data.refresh;
       const iat = Math.floor(Date.now() / second);
-      const exp = Math.floor(new Date(data.accessExpiration).getTime() / second);
-      return { accessToken, refreshToken, iat, exp };
+      return { accessToken, refreshToken, iat };
     }
   } catch (error) {
     console.error("Failed to refresh token:", error);
@@ -30,9 +30,8 @@ export async function CheckingAndRefreshToken(token: JWT) {
   const tokenUser = token?.user;
   if (tokenUser !== undefined && tokenUser !== null) {
     const currentTimeInSeconds = Math.floor(Date.now() / second);
-    const { refreshToken } = (token as unknown as IToken).user;
-    const { exp: tokenExpInSeconds } = token;
-    if (typeof tokenExpInSeconds === "number" && tokenExpInSeconds - currentTimeInSeconds < minute && (refreshToken.length > 0)) {
+    const { iat: tokenIssueTimeInSeconds, refreshToken } = (token as unknown as IToken).user;
+    if (typeof tokenIssueTimeInSeconds === "number" && currentTimeInSeconds - tokenIssueTimeInSeconds > oneThirdDay * minute && (refreshToken.length > 0)) {
       return await refreshAccessToken(token as unknown as IToken);
     }
   }

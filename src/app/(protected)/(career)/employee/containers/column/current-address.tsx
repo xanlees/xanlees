@@ -7,7 +7,6 @@ export interface PersonalAddressData {
 }
 
 export function getCurrentAddress(personalAddressData: PersonalAddressData) {
-  console.log(personalAddressData);
   return (
     <Table.Column
       header="ທີ່ຢູ່ ປະຈຸບັນ"

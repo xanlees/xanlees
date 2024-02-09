@@ -4,9 +4,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { type Response, type User, type UserResponse } from "@/lib/provider/auth/interface";
 import { CheckingAndRefreshToken } from "./refresh-token";
 
+const second = 1000;
 const minute = 60;
-const oneThirdDay = 8;
-const hour = 60;
 
 export const authOptions: NextAuthOptions = {
   pages: {
@@ -39,6 +38,7 @@ export const authOptions: NextAuthOptions = {
             groups: dataUser.groups,
             accessToken: data.access,
             refreshToken: data?.refresh,
+            iat: Math.floor(Date.now() / second),
           };
           return user;
         }
@@ -48,7 +48,7 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
-    maxAge: oneThirdDay * hour * minute,
+    maxAge: 2 * minute,
   },
   secret: process.env.SECRET_KEY as string,
   callbacks: {
@@ -63,8 +63,7 @@ export const authOptions: NextAuthOptions = {
       if (refresh !== undefined) {
         (token.user as User).accessToken = refresh.accessToken;
         (token.user as User).refreshToken = refresh.refreshToken;
-        token.iat = refresh.iat;
-        token.exp = refresh.exp;
+        (token.user as User).iat = refresh.iat;
       }
       if (user !== undefined && user !== null) {
         token.user = user;
