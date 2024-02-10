@@ -15,25 +15,32 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ setCurrentStep }) =>
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "document" });
   const [fileName, setFileName] = useState("");
   const [file, setFile] = useState<FileList | null>(null);
+  console.log(formConfig.form.watch());
   return (
-    <div className="w-[40%] rounded-lg">
+    <div className="w-[40%] rounded-lg relative">
       <Form {...formConfig.form}>
-        <div className="flex flex-row gap-4">
-          <Input placeholder="ຊື່ເອກສານ" className="flex w-full" onChange={handleInputChange(setFileName)} />
-          <Form.FileInput onChange={handleFileInputChange(setFile)} showFileDisplay={false} />
-          <div className="-mt-1">
-            <DocumentDynamicForm
-              formConfig={formConfig}
-              fields={fields}
-              append={append}
-              fileName={fileName}
-              file={file}
-            />
-          </div>
+        <div className="flex flex-row h-10 gap-4">
+          <Form.Field {...formConfig.form} name="documentName" label="ຊື່ເອກສານ" >
+            <Input placeholder="ຊື່ເອກສານ" className="flex w-full" onChange={handleInputChange(setFileName)} />
+          </Form.Field>
+          <Form.Field {...formConfig.form} name="documentFile" label="ອັບໂຫຼດເອກສານ" >
+            <Form.FileInput onChange={handleFileInputChange(setFile)} showFileDisplay={false} />
+          </Form.Field>
         </div>
+        <div className="h-4 border-b"> </div>
+        <Form.Field {...formConfig.form} name="documentList" label="ລາຍການເອກະສານ" ><></></Form.Field>
         {fields.map((field, index) => (
           <RenderFile key={field.id} field={field} removeField={() => { remove(index); }} />
         ))}
+        <div className="absolute bottom-7 ">
+          <DocumentDynamicForm
+            formConfig={formConfig}
+            fields={fields}
+            append={append}
+            fileName={fileName}
+            file={file}
+          />
+        </div>
       </Form>
     </div>
   );

@@ -7,7 +7,7 @@ export function createContextProvider<T, A>({ reducer, initialState, storageKey 
   const Context = createContext<{ state: T, dispatch: Dispatch<A> } | undefined>(
     undefined,
   );
-  const LocalStorageProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  const LocalStorageProvider: FC<{ children: ReactNode }> = ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     useEffect(() => {
       const storedState = localStorage.getItem(storageKey);

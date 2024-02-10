@@ -1,8 +1,13 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { type IToken, type Response, type User, type UserResponse } from "@/lib/provider/auth/interface";
-import { refreshAccessToken } from "./refresh-token";
+import { type Response, type User, type UserResponse } from "@/lib/provider/auth/interface";
+import { CheckingAndRefreshToken } from "./refresh-token";
+
+const second = 1000;
+const minute = 60;
+const hour = 60;
+const oneThirdDay = 8;
 
 export const authOptions: NextAuthOptions = {
   pages: {
@@ -33,9 +38,11 @@ export const authOptions: NextAuthOptions = {
             email: data.user.email,
             id: data.user?.pk,
             groups: dataUser.groups,
+            accessToken: data.access,
+            refreshToken: data?.refresh,
+            iat: Math.floor(Date.now() / second),
           };
-
-          return { ...user, accessToken: data.access, refreshToken: data?.refresh };
+          return user;
         }
         return null;
       },
@@ -43,6 +50,7 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
+    maxAge: oneThirdDay * hour * minute,
   },
   secret: process.env.SECRET_KEY as string,
   callbacks: {
@@ -50,23 +58,18 @@ export const authOptions: NextAuthOptions = {
       if (token?.user !== undefined) {
         session.user = token.user as User;
       }
-      return { ...session, accessToken: token.accessToken, refreshToken: token.refreshToken };
+      return session;
     },
-    async jwt({ token, user, account }) {
-      const tokenUser = token?.user;
-      if (tokenUser !== undefined && tokenUser !== null) {
-        const second = 1000;
-        const minute = 60;
-        const currentTimeInSeconds = Math.floor(Date.now() / second);
-        const { expires, refreshToken } = (token as unknown as IToken).user;
-        const tokenExpInSeconds = Math.floor(new Date(expires).getTime() / second);
-        if (tokenExpInSeconds - currentTimeInSeconds < minute && (refreshToken.length > 0)) {
-          await refreshAccessToken(token as unknown as IToken);
-        }
+    async jwt({ token, user }) {
+      const refresh = await CheckingAndRefreshToken(token);
+      if (refresh !== undefined) {
+        console.log(refresh);
+        (token.user as User).accessToken = refresh.accessToken;
+        (token.user as User).refreshToken = refresh.refreshToken;
+        (token.user as User).iat = refresh.iat;
       }
       if (user !== undefined && user !== null) {
         token.user = user;
-        token.accessToken = account?.accessToken;
       }
       return token;
     },

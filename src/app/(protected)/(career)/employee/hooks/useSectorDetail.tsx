@@ -1,7 +1,7 @@
 import { useList } from "@refinedev/core";
 import type { IPosition } from "../interface";
 
-export function usePosition({ sectorId }: { sectorId: number[] }): { data: IPosition[] } {
+export function usePositionDetail({ sectorId }: { sectorId: number[] }): { data: IPosition[] } {
   const { data, error, isError } = useList<IPosition>({
     resource: "position",
     errorNotification: false,

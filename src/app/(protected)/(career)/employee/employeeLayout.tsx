@@ -6,7 +6,7 @@ interface ChildrenProps {
 }
 const EmployeeContainer: React.FC<ChildrenProps> = ({ children }) => {
   return (
-    <div className="w-full min-h-full p-5 rounded-lg space-y-3 dark:text-white">
+    <div className="w-full min-h-full p-5 space-y-3 rounded-lg dark:text-white">
       {children}
     </div>
   );

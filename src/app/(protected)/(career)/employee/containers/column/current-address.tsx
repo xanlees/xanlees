@@ -2,7 +2,7 @@
 import { Table } from "@/shadcn/components/table";
 import type { IPersonalAddress } from "../../interface";
 
-interface PersonalAddressData {
+export interface PersonalAddressData {
   data?: IPersonalAddress[]
 }
 

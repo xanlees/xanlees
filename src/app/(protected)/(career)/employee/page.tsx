@@ -5,7 +5,7 @@ import { Table } from "@/shadcn/components/table";
 import { useUserFriendlyName } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import type {
-  IPersonalAddress,
+  IPosition,
   IProfile,
 } from "./interface";
 import { EmployeeContainer, TableSection } from "./employeeLayout";
@@ -15,10 +15,13 @@ import {
   FullNameColumn,
 } from "./containers/column";
 import { GenderColumn, PhoneNumberColumn, MarriageColumn } from "@src/common/containers/column";
-import { getCurrentAddress } from "./containers/column/current-address";
+import { type PersonalAddressData, getCurrentAddress } from "./containers/column/current-address";
 import { getActionsColumn } from "@src/common/containers/column/action";
-import { usePersonalAddress } from "./hooks/useCurrentAddress";
+import { usePersonalAddressDetail } from "./hooks/useCurrentAddressDetail";
 import { useCurrentAddressID } from "./hooks/useCurrentAddressID";
+import { useLatestPositionId } from "./hooks/useLatestPositionId";
+import { useLatestPositionDetail } from "./hooks/useLatestPositionDetails";
+import { getLatestPosition } from "./containers/column/latestPosition";
 
 const resource = "profile";
 export default function EmployeeList(): JSX.Element {
@@ -30,7 +33,9 @@ export default function EmployeeList(): JSX.Element {
   });
   const profile = table.options.data ?? [];
   const currentAddressId = useCurrentAddressID(profile);
-  const { data } = usePersonalAddress(currentAddressId, profile) as { data: IPersonalAddress[] };
+  const personalAddressData: PersonalAddressData = usePersonalAddressDetail(currentAddressId, profile);
+  const positionId = useLatestPositionId(profile);
+  const positionData = useLatestPositionDetail(positionId, profile) as { data: { data: IPosition[] } };
 
   const friendly = useUserFriendlyName();
   return (
@@ -41,10 +46,11 @@ export default function EmployeeList(): JSX.Element {
             {getSelectColumn(friendly)}
             {FullNameColumn}
             {PhoneNumberColumn("phoneNumber")}
+            {getLatestPosition(positionId, positionData.data)}
             {GenderColumn("gender")}
             {MarriageColumn("maritalStatus")}
             {DateOfBirth}
-            {getCurrentAddress(data)}
+            {getCurrentAddress(personalAddressData.data as PersonalAddressData)}
             {getActionsColumn(resource)}
           </Table>
         </TableSection>

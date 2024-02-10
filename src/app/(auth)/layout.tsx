@@ -20,15 +20,11 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
       console.error("Error checking authentication:", error);
     });
 
-  return <>
+  return (
     <ThemedLayoutV1
-      darkModeProvider={
-        ViteDarkModeProvider
-      }
+      darkModeProvider={ViteDarkModeProvider}
       defaultDarkMode="light"
-      storageKey="darkMode"
-    >
+      storageKey="darkMode">
       {children}
-    </ThemedLayoutV1>
-  </>;
+    </ThemedLayoutV1>);
 }

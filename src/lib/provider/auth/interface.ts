@@ -1,9 +1,13 @@
+import { type JWT } from "next-auth/jwt";
 
 export interface User {
   id: string
   name: string
   email: string
   groups: string[]
+  accessToken: string
+  refreshToken: string
+  iat: number
 }
 
 export interface UserResponse {
@@ -14,6 +18,7 @@ export interface UserResponse {
 }
 
 export interface Response {
+  accessExpiration: any
   refresh: string
   access: string
   user: UserResponse
@@ -30,11 +35,11 @@ export interface IRefreshToken {
   refresh: string
   accessExpiration: string
 }
-export interface IToken {
+export interface IToken extends JWT {
   user: {
     accessToken: string
     refreshToken: string
     expires: string
-  }
+  } & User
 }
 

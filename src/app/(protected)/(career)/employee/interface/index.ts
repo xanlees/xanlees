@@ -28,7 +28,7 @@ export interface IProfile {
   profilePicture: string | null
   uniqueNumber: string[]
   typeOfUniqueNumber: "IDENTIFY" | "CENSUS_BOOK" | "MACHINE"
-  employee: Employee
+  employee: Employee[]
 }
 export interface IGender {
   gender: "MALE" | "FEMALE" | "OTHER" | null
