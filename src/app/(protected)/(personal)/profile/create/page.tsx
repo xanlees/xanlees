@@ -28,9 +28,9 @@ const FormCreate = () => {
   const router = useRouter();
   const { state, dispatch } = useProfileContext();
 
-  let initialStep = (state.personalAddressId != null) ? 1 : 0;
-  initialStep = (state.profileId != null) ? profileStep : initialStep;
-  initialStep = (state.isUploaded != null) ? isUploadedStep : initialStep;
+  let initialStep = (state.personalAddressId != null && state.personalAddressId !== 0) ? 1 : 0;
+  initialStep = (state.profileId != null && state.profileId !== 0) ? profileStep : initialStep;
+  initialStep = (state.isUploaded != null && state.isUploaded) ? isUploadedStep : initialStep;
 
   const handleButtonClick = () => {
     const storedState = localStorage.getItem(PROFILE_STORAGE_KEY);
