@@ -3,6 +3,7 @@ import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { type IFormConfig } from "@src/common/interface";
 import { useProfileContext } from "../../../context";
 import { type UseFieldArrayAppend } from "react-hook-form";
+import { ArrayField } from "@src/shadcn/components/form/array-field";
 
 interface DocumentDynamicFormProps {
   formConfig: IFormConfig

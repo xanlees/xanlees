@@ -17,26 +17,23 @@ function transformDocumentDataListToRecord(data: IDocument[]): Record<string, an
 
 export const documentFormSchema = z
   .object({
-    documentNameBase: z.string().min(2, {
-      message: "ກະລຸນາໃສ່ຊື່ເອກະສານ",
-    }),
-    documentFileBase: (z.any() as z.ZodType<FileList>).refine(
-      (fileList) => {
-        const file = fileList?.[0];
-        return file != null && file.type === "application/pdf";
-      },
-      {
-        message: "ກະລຸນາໃສ່ເອກກະສານ PDF",
-      },
-    ),
     document: z.array(
       z.object({
         profileId: z.number(),
+        documentFile: (z.any() as z.ZodType<FileList>).refine(
+          (fileList) => {
+            const file = fileList?.[0];
+            return file != null && file.type === "application/pdf";
+          },
+          {
+            message: "ກະລຸນາໃສ່ເອກກະສານ PDF",
+          },
+        ),
       }),
     ),
-  });
-  // .refine((data) => data.document.length > 0, {
-  //   message: "ກະລຸນາເພີ່ມເອກະສານ",
-  //   path: ["documentList"],
-  // });
-  // .transform((val) => transformDocumentDataListToRecord(val.document));
+  })
+  .refine((data) => data.document.length > 0, {
+    message: "ກະລຸນາເພີ່ມເອກະສານ",
+    path: ["documentList"],
+  })
+  .transform((val) => transformDocumentDataListToRecord(val.document));
