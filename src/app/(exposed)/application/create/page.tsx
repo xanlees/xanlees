@@ -66,10 +66,10 @@ function getStepState(stateProfile: ProfileState, stateApplication: ApplicationS
       return STEPS.applicationStep;
     case hasValid(stateProfile.graduationId):
       return STEPS.graduationStep;
-    case hasValid(stateProfile.isUploaded):
+    case hasValid(stateProfile.isUploaded === false):
       return STEPS.isUploadedStep;
     case hasValid(stateProfile.educationId):
-        return STEPS.educationStep;
+      return STEPS.educationStep;
     case hasValid(stateApplication.physicalProfileId):
       return STEPS.physicalProfileStep;
     case hasValid(stateProfile.profileId):
