@@ -24,7 +24,7 @@ export const AppliedFor: React.FC<{
             <Input
               className="block w-full px-3 py-2 text-sm border-gray-200 shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
               placeholder="10,000,000 ກີບ"
-              type="number"
+              type="currency"
             />
           </Form.Field>
         </div>
