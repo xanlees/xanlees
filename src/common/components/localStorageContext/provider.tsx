@@ -17,7 +17,7 @@ export function createContextProvider<T, A>({ reducer, initialState, storageKey 
       }
     }, []);
     useEffect(() => {
-      if (Object.keys(state as Record<string, unknown>).length > 1) {
+      if (Object.keys(state as Record<string, unknown>).length > 0) {
         localStorage.setItem(storageKey, JSON?.stringify(state));
       }
     }, [state]);
@@ -32,7 +32,7 @@ export function createContextProvider<T, A>({ reducer, initialState, storageKey 
     if (context == null) {
       throw new Error("useGenericContext must be used within a GenericContextProvider");
     }
-    return context;
+    return context;git
   };
   return { LocalStorageProvider, useLocalStorageContext };
 }
