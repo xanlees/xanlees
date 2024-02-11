@@ -8,6 +8,7 @@ import { type ProfileState } from "../../context/interface";
 import { Button } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 import FormStep from "@src/common/components/stepForm";
+import { hasValid } from "../../../../../common/lib/validation/hasValid";
 
 const breadcrumbs = [
   { label: "Employee", href: "/employee" },
@@ -21,16 +22,12 @@ const ProfileCreate = () => {
     </ProfileProvider>
   );
 };
-const profileStep = 2;
-const isUploadedStep = 3;
 
 const FormCreate = () => {
   const router = useRouter();
   const { state, dispatch } = useProfileContext();
 
-  let initialStep = (state.personalAddressId != null && state.personalAddressId !== 0) ? 1 : 0;
-  initialStep = (state.profileId != null && state.profileId !== 0) ? profileStep : initialStep;
-  initialStep = (state.isUploaded != null && state.isUploaded) ? isUploadedStep : initialStep;
+  const initialStep = getStepState(state);
 
   const handleButtonClick = () => {
     const storedState = localStorage.getItem(PROFILE_STORAGE_KEY);
@@ -51,4 +48,23 @@ const FormCreate = () => {
   );
 };
 
+function getStepState(state: ProfileState) {
+  const personalAddressStep = 0;
+  const profileStep = 1;
+  const documentStep = 2;
+  const educationStep = 3;
+
+  switch (true) {
+    case hasValid(state.isUploaded):
+      return educationStep;
+    case hasValid(state.profileId):
+      return documentStep;
+    case hasValid(state.personalAddressId):
+      return profileStep;
+    default:
+      return personalAddressStep;
+  }
+}
+
 export default ProfileCreate;
+

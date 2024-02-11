@@ -17,26 +17,31 @@ function transformDocumentDataListToRecord(data: IDocument[]): Record<string, an
 
 export const documentFormSchema = z
   .object({
-    documentNameBase: z.string().min(2, {
-      message: "ກະລຸນາໃສ່ຊື່ເອກະສານ",
-    }),
-    documentFileBase: (z.any() as z.ZodType<FileList>).refine(
-      (fileList) => {
-        const file = fileList?.[0];
-        return file != null && file.type === "application/pdf";
-      },
-      {
-        message: "ກະລຸນາໃສ່ເອກກະສານ PDF",
-      },
-    ),
     document: z.array(
       z.object({
+        documentName: z.any() as z.ZodType<string>,
         profileId: z.number(),
+        documentFile: z.any() as z.ZodType<File>,
       }),
     ),
-  });
-  // .refine((data) => data.document.length > 0, {
-  //   message: "ກະລຸນາເພີ່ມເອກະສານ",
-  //   path: ["documentList"],
-  // });
-  // .transform((val) => transformDocumentDataListToRecord(val.document));
+  })
+  .refine((data) => {
+    console.log(data.document);
+    if (data.document.length === 0) {
+      return false;
+    }
+    for (const doc of data.document) {
+      console.log(doc.documentName.length < 2);
+      if (doc.documentName === undefined || doc.documentName.length < 2) {
+        return false;
+      }
+      if (doc.documentFile === undefined || doc.documentFile.type !== "application/pdf") {
+        return false;
+      }
+    }
+    return true;
+  }, {
+    message: "ກະລຸນາເພີ່ມເອກະສານ ຫຼື ກະລຸນາໃສ່ຊື່ເອກະສານບາງອັນຄືນ ຫຼື ກະລຸນາອັບໂຫຼດເອກະສານບາງອັນຄືນ",
+    path: ["documentList"],
+  })
+  .transform((val) => transformDocumentDataListToRecord(val.document as IDocument[]));
