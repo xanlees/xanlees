@@ -32,7 +32,7 @@ export function createContextProvider<T, A>({ reducer, initialState, storageKey 
     if (context == null) {
       throw new Error("useGenericContext must be used within a GenericContextProvider");
     }
-    return context;git
+    return context;
   };
   return { LocalStorageProvider, useLocalStorageContext };
 }
