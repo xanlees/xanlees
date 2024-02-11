@@ -17,7 +17,7 @@ export const ProfileReducer = (
     case "setPhysicalProfileId":
       return { ...state, physicalProfileId: action.payload as number };
     case "setIsUploaded":
-      return { ...state, isUploaded: action.payload as boolean };
+      return { ...state, isUploaded: action.payload as number };
     case LoadFromStorage:
       return { ...(action.payload as ProfileState) };
     case "clearState":
@@ -34,5 +34,5 @@ const initialProfileState: ProfileState = {
   physicalProfileId: 0,
   workExperienceId: 0,
   educationId: 0,
-  isUploaded: false,
+  isUploaded: 0,
 };

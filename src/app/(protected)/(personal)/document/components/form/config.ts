@@ -18,7 +18,7 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
       redirect: false,
       meta: formHeadersConfig,
       onMutationSuccess: (data) => {
-        dispatch({ type: "setIsUploaded", payload: true });
+        dispatch({ type: "setIsUploaded", payload: 1 });
         (setCurrentStep != null) && setCurrentStep(step);
       },
     },

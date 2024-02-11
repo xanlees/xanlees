@@ -32,7 +32,6 @@ const STEPS = {
   physicalProfileStep: 3,
   isUploadedStep: 4,
   educationStep: 5,
-  graduationStep: 5,
   applicationStep: 6,
   workExperienceStep: 7,
 };
@@ -64,12 +63,10 @@ function getStepState(stateProfile: ProfileState, stateApplication: ApplicationS
       return STEPS.workExperienceStep;
     case hasValid(stateApplication.applicationId):
       return STEPS.applicationStep;
-    case hasValid(stateProfile.graduationId):
-      return STEPS.graduationStep;
-    case hasValid(stateProfile.isUploaded === false):
-      return STEPS.isUploadedStep;
     case hasValid(stateProfile.educationId):
       return STEPS.educationStep;
+    case hasValid(stateProfile.isUploaded):
+      return STEPS.isUploadedStep;
     case hasValid(stateApplication.physicalProfileId):
       return STEPS.physicalProfileStep;
     case hasValid(stateProfile.profileId):

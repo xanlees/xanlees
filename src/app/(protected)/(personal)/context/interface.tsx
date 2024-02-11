@@ -6,7 +6,7 @@ export interface ProfileState {
   personalAddressId?: number
   applicationId?: number
   physicalProfileId?: number
-  isUploaded?: boolean
+  isUploaded?: number
   workExperienceId?: number
   educationId?: number
 }
