@@ -1,6 +1,6 @@
 export interface IDocument {
   documentName: string
   profileId: number
-  documentFile: FileList | string
+  documentFile: File | string
   id?: number
 }

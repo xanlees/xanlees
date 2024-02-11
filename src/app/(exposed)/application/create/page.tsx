@@ -11,6 +11,9 @@ import {
   ProfileProvider,
   useProfileContext,
 } from "@src/app/(protected)/(personal)/context";
+import { type ApplicationState } from "@src/app/(protected)/(hr)/application/context/interface";
+import { type ProfileState } from "@src/app/(protected)/(personal)/context/interface";
+import { hasValid } from "@src/common/lib/validation/hasValid";
 
 export default function ApplicationCreate(): JSX.Element {
   return (
@@ -36,17 +39,41 @@ const STEPS = {
 function ApplicationForm(): JSX.Element {
   const { state: stateApplication } = useApplicationContext();
   const { state: stateProfile } = useProfileContext();
-  let initialStep = (stateProfile.personalAddressId != null) ? STEPS.personalAddressStep : 0;
-  initialStep = (stateProfile.profileId != null) ? STEPS.profileStep : initialStep;
-  initialStep = (stateApplication.physicalProfileId != null) ? STEPS.physicalProfileStep : initialStep;
-  initialStep = (stateProfile.isUploaded != null) ? STEPS.isUploadedStep : initialStep;
-  initialStep = (stateProfile.graduationId != null) ? STEPS.graduationStep : initialStep;
-  initialStep = (stateApplication.applicationId != null) ? STEPS.applicationStep : initialStep;
-  initialStep = (stateApplication.workExperienceId != null) ? STEPS.workExperienceStep : initialStep;
+  const initialStep = getStepState(stateProfile, stateApplication);
   return (
-    <FormStep
-      formStepsData={applicationFromStep}
-      initialStep={initialStep}
-    />
+    <div className="shadow-lg">
+      <div className="my-3 text-center bg-blue-300 rounded-sm">
+        <p className="mx-auto text-xl font-bold">ຟອມສະໝັກພະນັກງານ </p>
+        <p className="mx-auto text-sm">(ໃຊ້ເວລາປະມານ 10 ນາທີ) </p>
+      </div>
+      <FormStep
+        formStepsData={applicationFromStep}
+        initialStep={initialStep}
+      />
+       <div className="my-3 text-center bg-blue-300 rounded-sm">
+        <p className="mx-auto text-xl font-bold">ຂອບໃຈທ່ານທີ່ໄວ້ໃຈ </p>
+        <p className="mx-auto text-xl font-bold">ນຳບໍລິສັດຂອງພວກເຮົາ </p>
+      </div>
+    </div>
   );
+}
+function getStepState(stateProfile: ProfileState, stateApplication: ApplicationState) {
+  switch (true) {
+    case hasValid(stateApplication.workExperienceId):
+      return STEPS.workExperienceStep;
+    case hasValid(stateApplication.applicationId):
+      return STEPS.applicationStep;
+    case hasValid(stateProfile.graduationId):
+      return STEPS.graduationStep;
+    case hasValid(stateProfile.isUploaded):
+      return STEPS.isUploadedStep;
+    case hasValid(stateApplication.physicalProfileId):
+      return STEPS.physicalProfileStep;
+    case hasValid(stateProfile.profileId):
+      return STEPS.profileStep;
+    case hasValid(stateProfile.personalAddressId):
+      return STEPS.personalAddressStep;
+    default:
+      return 0;
+  }
 }

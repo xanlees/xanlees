@@ -25,7 +25,7 @@ export const FileInputField = ({ showFileDisplay = true,  ...props}) => {
         onChange={(event) => {
           const selectedFile = event.target.files![0];
           setFile(selectedFile)
-          props.onChangeValue(event);
+          props.onChange(selectedFile);
         }}
       />
       {showFileDisplay && file && (

@@ -13,5 +13,5 @@ export const PhoneNumberColumn = <Table.Column
     <Table.Filter.Search {...props} title="Search phoneNumber" />
   )}
   cell={(props) => {
-    return <p className="-mx-5 italic text-blue-500 underline ">{`+856 ${props.getValue() as unknown as string}`}</p>;
+    return <p className="-mx-10 italic text-blue-500 underline ">{`+856 ${props.getValue() as unknown as string}`}</p>;
   }} />;

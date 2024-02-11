@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import React, { useState } from "react";
+import React from "react";
 import { Input } from "@src/shadcn/elements";
 import { Form } from "@src/shadcn/components/form";
 import RenderFile from "./RenderFile";
@@ -15,8 +15,8 @@ interface DocumentFormProps {
 export const DocumentForm: React.FC<DocumentFormProps> = ({ setCurrentStep }) => {
   const formConfig = useFormConfig({ setCurrentStep });
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "document" });
-  const [file, setFile] = useState<FileList | null>(null);
   const fileName: string = formConfig.form.watch("documentName");
+  const fileInput = formConfig.form.watch("documentFile");
 
   return (
     <div className="w-[40%] rounded-lg relative">
@@ -26,7 +26,7 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ setCurrentStep }) =>
             <Input placeholder="ຊື່ເອກສານ" className="flex w-full"/>
           </Form.Field>
           <Form.Field {...formConfig.form} name="documentFile" label="ອັບໂຫຼດເອກສານ" >
-            <Form.FileInput onChangeValue={handleFileInputChange(setFile)} showFileDisplay={false} />
+            <Form.FileInput showFileDisplay={false} />
           </Form.Field>
         </div>
         <div className="h-4 border-b"> </div>
@@ -40,19 +40,10 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ setCurrentStep }) =>
             fields={fields}
             append={append}
             fileName={fileName}
-            file={file}
+            file={fileInput}
           />
         </div>
       </Form>
     </div>
   );
-};
-
-export const handleFileInputChange = (
-  setFile: React.Dispatch<React.SetStateAction<FileList | null>>,
-) => (e: React.ChangeEvent<HTMLInputElement>) => {
-  if (e.target.files != null) {
-    const selectedFile = e.target.files;
-    setFile(selectedFile);
-  }
 };

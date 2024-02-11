@@ -41,6 +41,12 @@ export const FormField = (props: FormFieldProps) => {
                                 })}
 
                             </FormControl>
+                            {props.description && (
+                            <FormDescription>
+                                {props.description}
+                            </FormDescription>
+                            )}
+                            <FormMessage />
                         </div>
 
                     </FormItem>

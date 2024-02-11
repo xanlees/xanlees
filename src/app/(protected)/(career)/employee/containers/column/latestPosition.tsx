@@ -1,6 +1,7 @@
 "use client";
 import { Table } from "@/shadcn/components/table";
 import type { IPosition, IProfile } from "../../interface";
+import { Badge } from "@src/shadcn/elements";
 
 export function getLatestPosition(positionId: number[], positionData: { data: IPosition[] }) {
   return <Table.Column
@@ -12,10 +13,10 @@ export function getLatestPosition(positionId: number[], positionData: { data: IP
       const employee = (row.original as IProfile).employee;
       if (employee.length > 0) {
         const positionDetail = positionData?.data.find((item) => item?.id === latestPositionId);
-        const displayText = (positionDetail !== undefined) ? `${positionDetail?.name} (${positionDetail?.sectorDetail?.name})` : "";
+        const displayText = (positionDetail !== undefined) ? `${positionDetail?.name} (${positionDetail?.sectorDetail?.name})` : "ລໍຖ້າບັນຈູ";
         return (
-          <div>
-            {displayText}
+          <div className="mx-2">
+            <Badge className="bg-gray-400">{displayText}</Badge>
           </div>
         );
       }
