@@ -36,7 +36,7 @@ type ComboboxProps = Omit<
     value?: string | number | BaseRecord;
   };
 
-export const Combobox = forwardRef<
+export const  Combobox = forwardRef<
   ElementRef<typeof CommandPrimitive.Input>,
   Omit<ComboboxProps, "ref">
 >(({ ...props }, ref) => {

@@ -46,7 +46,6 @@ function ApplicationForm(): JSX.Element {
   return (
     <FormStep
       formStepsData={applicationFromStep}
-      stepProps={{}}
       initialStep={initialStep}
     />
   );
