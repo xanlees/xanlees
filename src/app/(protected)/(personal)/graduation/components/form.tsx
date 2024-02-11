@@ -6,22 +6,15 @@ import {
   AccordionTrigger,
 } from "@src/shadcn/elements/accordion";
 import { useFormConfig } from "./config";
-import { type RedirectAction } from "@refinedev/core";
 import { Input } from "@src/shadcn/elements";
-
-interface IGraduationFormProps {
-  redirect: RedirectAction
-}
 
 interface IFormConfig {
   form: {
     setValue: any
   }
 }
-export const FormGraduation: React.FC<IGraduationFormProps> = ({
-  redirect,
-}) => {
-  const formConfig = useFormConfig(redirect);
+export const FormGraduation = () => {
+  const formConfig = useFormConfig();
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">

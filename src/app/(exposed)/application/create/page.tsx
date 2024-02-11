@@ -31,6 +31,7 @@ const STEPS = {
   profileStep: 2,
   physicalProfileStep: 3,
   isUploadedStep: 4,
+  educationStep: 5,
   graduationStep: 5,
   applicationStep: 6,
   workExperienceStep: 7,
@@ -50,7 +51,7 @@ function ApplicationForm(): JSX.Element {
         formStepsData={applicationFromStep}
         initialStep={initialStep}
       />
-       <div className="my-3 text-center bg-blue-300 rounded-sm">
+      <div className="my-3 text-center bg-blue-300 rounded-sm">
         <p className="mx-auto text-xl font-bold">ຂອບໃຈທ່ານທີ່ໄວ້ໃຈ </p>
         <p className="mx-auto text-xl font-bold">ນຳບໍລິສັດຂອງພວກເຮົາ </p>
       </div>
@@ -67,6 +68,8 @@ function getStepState(stateProfile: ProfileState, stateApplication: ApplicationS
       return STEPS.graduationStep;
     case hasValid(stateProfile.isUploaded):
       return STEPS.isUploadedStep;
+    case hasValid(stateProfile.educationId):
+        return STEPS.educationStep;
     case hasValid(stateApplication.physicalProfileId):
       return STEPS.physicalProfileStep;
     case hasValid(stateProfile.profileId):

@@ -8,8 +8,9 @@ export interface ProfileState {
   physicalProfileId?: number
   isUploaded?: boolean
   workExperienceId?: number
+  educationId?: number
 }
-type ProfileActionType = "setProfileId" | "setGraduationId" |
+type ProfileActionType = "setProfileId" | "setGraduationId" | "setEducationId" |
 "setPersonalAddressId" | "setApplicationId" | "setWorkExperienceId" |
 "setIsUploaded" | "setPhysicalProfileId" | typeof LoadFromStorage | "clearState";
 export interface ProfileAction {
