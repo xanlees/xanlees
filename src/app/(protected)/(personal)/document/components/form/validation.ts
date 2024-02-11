@@ -26,12 +26,10 @@ export const documentFormSchema = z
     ),
   })
   .refine((data) => {
-    console.log(data.document);
     if (data.document.length === 0) {
       return false;
     }
     for (const doc of data.document) {
-      console.log(doc.documentName.length < 2);
       if (doc.documentName === undefined || doc.documentName.length < 2) {
         return false;
       }

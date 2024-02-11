@@ -4,7 +4,7 @@ import { DocumentForm } from "../../document/components/form/form";
 import { PersonalAddressForm } from "../../address/components/form/form";
 import { ApplicationForm } from "@src/app/(protected)/(hr)/application/components/form";
 import { WorkExperienceForm } from "@src/app/(protected)/(hr)/work_experience/components/form/form";
-import { Success } from "@src/app/(protected)/(hr)/application/containers/form/sussess";
+import { Success } from "@src/app/(protected)/(hr)/application/containers/form/successSubmit";
 import { PhysicalProfile } from "../../physical_profile/components/form/form";
 
 export const formStepsData = [

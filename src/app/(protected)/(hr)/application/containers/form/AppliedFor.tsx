@@ -1,7 +1,5 @@
-import { Input } from "@src/shadcn/elements";
 import type { IFormConfig } from "../../interface";
 import { InputBase } from "@src/common/elements/input/InputBase";
-import { Form } from "@src/shadcn/components/form";
 
 export const AppliedFor: React.FC<{
   formConfig: IFormConfig
@@ -20,13 +18,14 @@ export const AppliedFor: React.FC<{
             placeholder="ຕໍາແຫນ່ງທີ່ສະຫມັກ"
             className="block w-full px-3 py-2 text-sm border-gray-200 shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
           />
-          <Form.Field {...formConfig} name="expectedSalary" label="ເງິນເດືອນທີ່ຕ້ອງການ (ກີບ)">
-            <Input
-              className="block w-full px-3 py-2 text-sm border-gray-200 shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-              placeholder="10,000,000 ກີບ"
-              type="currency"
-            />
-          </Form.Field>
+          <InputBase
+            {...formConfig}
+            name="expectedSalary"
+            label="ເງິນເດືອນທີ່ຕ້ອງການ (ກີບ)"
+            placeholder="10,000,000"
+            className="block w-full px-3 py-2 text-sm border-gray-200 shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+            type="currency"
+          />
         </div>
       </div>
     </>

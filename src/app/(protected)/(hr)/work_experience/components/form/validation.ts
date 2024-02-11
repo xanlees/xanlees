@@ -16,7 +16,7 @@ export const WorkExperienceSchema = z.object({
         }),
         salary: z.string().min(1, {
           message: "ກະລຸນາປ້ອນເງິນເດືອນ",
-        }),
+        }).transform((val) => Number(val.replace(/,/g, ""))),
         reasonOfResignation: z.string().min(1, {
           message: "ກະລຸນາປ້ອນເຫດຜົນທີອອກ",
         }),
