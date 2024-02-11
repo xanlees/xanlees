@@ -25,7 +25,7 @@ export interface IApplication {
 function transformApplication(val: IApplication): Record<string, any> {
   return {
     ...val,
-    expectedSalary: Number(val.expectedSalary),
+    expectedSalary: Number(val.expectedSalary.replace(/,/g, "")),
   };
 }
 

@@ -31,19 +31,19 @@ export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurre
           classNameButton="w-full mr-7"
           defaultConfig={{ applicationId: state?.applicationId }}>
           <ArrayField {...formConfig.form} name="company" label="ບໍລິສັດ">
-            <Input placeholder="ບໍລິສັດ" className="block w-56" />
+            <Input placeholder="Bestech" className="block w-56" />
           </ArrayField>
           <ArrayField {...formConfig.form} name="position" label="ຕໍາແໜງ">
-            <Input placeholder="ຕໍາແໜງ" className="block w-56" />
+            <Input placeholder="ການຕະຫຼາດ" className="block w-56" />
           </ArrayField>
-          <ArrayField {...formConfig.form} name="time" label="ເວລາ">
-            <Input placeholder="ເວລາ" className="block w-56" />
+          <ArrayField {...formConfig.form} name="time" label="ໄລຍະເວລາ">
+            <Input placeholder="1 ປີ" className="block w-56" />
           </ArrayField>
           <ArrayField {...formConfig.form} name="salary" label="ເງິນເດືອນ">
-            <Input placeholder="ເງິນເດືອນ" className="block w-56" />
+            <Input placeholder="2,000,000" className="block w-56" type="currency"/>
           </ArrayField>
           <ArrayField {...formConfig.form} name="reasonOfResignation" label="ເຫດຜົນທີ່ລາອອກ">
-            <Textarea {...formConfig.form} className="w-96 h-28 sm:w-[450px]" />
+            <Textarea {...formConfig.form} className="w-96 h-28 sm:w-[450px]" placeholder="ຢາກຊອກປະສົບການໃໝ່ໆ"/>
           </ArrayField>
         </DynamicForm>
       </Form>
