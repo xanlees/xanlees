@@ -1,16 +1,6 @@
-import { type Dispatch, type SetStateAction } from "react";
 import { Document, Page } from "react-pdf";
 import { useMediaQuery } from "react-responsive";
-
-interface PdfViewerDocumentProps {
-  file: File | string
-  options: object
-  pageNumber: number
-  onDocumentLoadSuccess: ({ numPages }: { numPages: number }) => void
-  onPageLoadSuccess: () => void
-  pageWidth: number
-  setLoading: Dispatch<SetStateAction<boolean>>
-}
+import type { PdfViewerDocumentProps } from "./interface";
 
 const maxWidth = 100;
 const bigScale = 0.8;
@@ -41,7 +31,7 @@ export function PdfViewerDocument({ file, options, pageNumber, onDocumentLoadSuc
           onRenderError={() => {
             setLoading(false);
           }}
-          width={Math.max(pageWidth * bigScale, maxWidth)}
+          width={Math.max(pageWidth * scale, maxWidth)}
         />
       </Document>
     </div>

@@ -1,4 +1,6 @@
-export function Nav({ pageNumber, numPages, title }: { pageNumber: number, numPages: number, title: string }) {
+import type { NavProps } from "./interface";
+
+export function Nav({ pageNumber, numPages, title }: Readonly<NavProps>) {
   return (
     <nav className="mt-10 bg-black">
       <div className="px-2 mx-auto sm:px-6 lg:px-8">

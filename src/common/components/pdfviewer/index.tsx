@@ -4,10 +4,13 @@ import { useState } from "react";
 import { pdfjs } from "react-pdf";
 import { Nav } from "./nav";
 import { PdfViewerContent } from "./content";
+import type { PDFViewerProps, PdfViewerButtonProps, PdfViewerControlsProps } from "./interface";
 
 // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.js";
-export default function PDFViewer(props: { file: any, title: string }) {
+
+export default function PDFViewer(props: Readonly<PDFViewerProps>) {
   const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [loading, setLoading] = useState(true);
@@ -48,24 +51,13 @@ export default function PDFViewer(props: { file: any, title: string }) {
         onDocumentLoadSuccess={onDocumentLoadSuccess}
         onPageLoadSuccess={onPageLoadSuccess}
         options={options}
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         file={props.file}
-      />{" "}
+      />
     </div>
   );
 }
 
-export function PdfViewerControls({
-  goToPreviousPage,
-  goToNextPage,
-  pageNumber,
-  numPages,
-}: {
-  goToPreviousPage: () => void
-  goToNextPage: () => void
-  pageNumber: number
-  numPages: number
-}) {
+export function PdfViewerControls({ goToPreviousPage, goToNextPage, pageNumber, numPages }: Readonly<PdfViewerControlsProps>) {
   return (
     <div className="flex items-center justify-center">
       <PdfViewerButton onClick={goToPreviousPage} disabled={pageNumber <= 1}>
@@ -78,15 +70,7 @@ export function PdfViewerControls({
   );
 }
 
-function PdfViewerButton({
-  onClick,
-  disabled,
-  children,
-}: {
-  onClick: () => void
-  disabled: boolean
-  children: React.ReactNode
-}) {
+function PdfViewerButton({ onClick, disabled, children }: Readonly<PdfViewerButtonProps>) {
   return (
     <button
       onClick={onClick}

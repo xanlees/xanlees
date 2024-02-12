@@ -1,26 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { PdfViewerControls } from ".";
 import { PdfViewerDocument } from "./document";
+import type { PdfViewerContentProps } from "./interface";
 
 export function PdfViewerContent({
-  loading, goToNextPage, goToPreviousPage, pageNumber, numPages, pageWidth, setLoading, onDocumentLoadSuccess, onPageLoadSuccess, options, file,
-}: {
-  loading: boolean
-  goToNextPage: () => void
-  goToPreviousPage: () => void
-  pageNumber: number
-  numPages: number
-  pageWidth: number
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>
-  onDocumentLoadSuccess: ({
-    numPages,
-  }: {
-    numPages: number
-  }) => void
-  onPageLoadSuccess: () => void
-  options: any
-  file: any
-}) {
+  loading,
+  goToNextPage,
+  goToPreviousPage,
+  pageNumber,
+  numPages,
+  pageWidth,
+  setLoading,
+  onDocumentLoadSuccess,
+  onPageLoadSuccess,
+  options,
+  file,
+}: Readonly<PdfViewerContentProps>) {
   return (
     <div
       hidden={loading}
