@@ -1,6 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { pdfjs } from "react-pdf";
 import { Nav } from "./nav";
 import { PdfViewerContent } from "./content";
@@ -15,6 +15,12 @@ export default function PDFViewer(props: Readonly<PDFViewerProps>) {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [loading, setLoading] = useState(true);
   const [pageWidth, setPageWidth] = useState(0);
+
+  useEffect(() => {
+    setPageWidth(window.innerWidth);
+    setLoading(false);
+  }, []);
+
   function onDocumentLoadSuccess({
     numPages: nextNumPages,
   }: {
@@ -40,7 +46,7 @@ export default function PDFViewer(props: Readonly<PDFViewerProps>) {
   return (
     <div className="flex flex-col">
       <Nav pageNumber={pageNumber} numPages={numPages} title={props.title} />
-      <PdfViewerContent
+      {!loading && (<PdfViewerContent
         loading={loading}
         goToNextPage={goToNextPage}
         goToPreviousPage={goToPreviousPage}
@@ -52,7 +58,7 @@ export default function PDFViewer(props: Readonly<PDFViewerProps>) {
         onPageLoadSuccess={onPageLoadSuccess}
         options={options}
         file={props.file}
-      />
+      />)}
     </div>
   );
 }
