@@ -5,7 +5,7 @@ export interface IApplication {
   emergencyFullname: string
   emergencyRelationship: string
   emergencyPhoneNumber: string
-  typeDrivingLicense: "A" | "B" | "C" | "D" | "OTHER"
+  typeDrivingLicense: "A" | "B" | "C" | "D" | "E" | "NO_LICENSE"
   typeVaccine: string
   wordSkill: "Poor" | "Fair" | "Good" | "Excellent"
   excelSkill: "Poor" | "Fair" | "Good" | "Excellent"
@@ -46,8 +46,8 @@ export const applicationSchema = z.object({
   emergencyPhoneNumber: z.string().min(2, {
     message: "ກະລຸນາປ້ອນເບີໂທ",
   }),
-  typeDrivingLicense: z.enum(["A", "B", "C", "D", "OTHER"]),
-  typeVaccine: z.enum(["Sinopharm", "AstraZeneca", "Pfizer", "Other"]),
+  typeDrivingLicense: z.enum(["A", "B", "C", "D", "E", "NO_LICENSE"]),
+  typeVaccine: z.enum(["Sinopharm", "AstraZeneca", "Pfizer", "Unvaccinated", "Other"]),
   wordSkill: z.enum(["Poor", "Fair", "Good", "Excellent"]),
   excelSkill: z.enum(["Poor", "Fair", "Good", "Excellent"]),
   powerpointSkill: z.enum(["Poor", "Fair", "Good", "Excellent"]),
