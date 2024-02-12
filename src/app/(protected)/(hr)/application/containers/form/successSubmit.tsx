@@ -1,14 +1,12 @@
 
 import { Button, Card } from "@src/shadcn/elements";
 import { BadgeCheck } from "lucide-react";
-import { useState } from "react";
 
 export const Success = () => {
-  const [, setRefresh] = useState(false);
   const handleButtonClick = () => {
     localStorage.removeItem("creatingApplication");
     localStorage.removeItem("creatingProfileState");
-    setRefresh((prevRefresh) => !prevRefresh);
+    window.location.reload();
   };
 
   return (
