@@ -1,5 +1,4 @@
 export interface IEmployee {
-  positionId: number
   positionId: {
     id: number
     sectorId: number

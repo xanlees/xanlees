@@ -48,7 +48,7 @@ export function filterEmployee({ profileId }: { profileId?: number }): FilterObj
   const filters: FilterObjects[] = [];
   if (profileId !== undefined) {
     filters.push({
-      field: "employee",
+      field: "profile_id",
       operator: "eq",
       value: profileId,
     });
@@ -60,7 +60,7 @@ export function filterSector({ sectorId }: { sectorId?: number }): FilterObjects
   const filters: FilterObjects[] = [];
   if (sectorId !== undefined) {
     filters.push({
-      field: "sector",
+      field: "id",
       operator: "eq",
       value: sectorId,
     });

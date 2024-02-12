@@ -9,6 +9,7 @@ import type {
   IEducation,
   ISector,
   IPersonalAddress,
+  IProfile,
 } from "../../interface";
 import { EmployeeCard } from "../element/employeeCardProfile";
 import React from "react";
@@ -24,13 +25,11 @@ import { useListService, filterProfile, filterEmployee, filterSector } from "../
 
 export default function EmployeeShow({ params }: { params: { id: number } }): JSX.Element {
   const filtersProfile = filterProfile({ profileId: params?.id });
-  const dataProfile = useListService<any>({ resource: "profile", filters: filtersProfile });
-  console.log("dataProfile", dataProfile);
-
+  const dataProfile = useListService<IProfile>({ resource: "profile", filters: filtersProfile });
   const filtersEmployee = filterEmployee({ profileId: params?.id });
   const dataEmployee = useListService<any>({ resource: "employee", filters: filtersEmployee });
-
-  const filtersSector = filterSector({ sectorId: dataEmployee?.data?.[0]?.positionId?.sectorId });
+  console.log("dataEmployee", dataEmployee);
+  const filtersSector = filterSector({ sectorId: dataEmployee?.data?.[0]?.positionId?.sectorId ?? 0 });
   const sectorData = useListService<ISector>({ resource: "sector", filters: filtersSector });
 
   const { data: personalAddressData } = useList<IPersonalAddress>({
@@ -60,14 +59,14 @@ export default function EmployeeShow({ params }: { params: { id: number } }): JS
       <div className="py-5">
         <div className="grid grid-cols-4 gap-6 sm:grid-cols-12">
           <div className="col-span-4 sm:col-span-3">
-            <EmployeeCard record={dataEmployee} />
+            <EmployeeCard dataProfile={dataProfile} />
           </div>
           <div className="col-span-4 sm:col-span-9">
             <div className="p-6 my-2 border rounded-lg">
               <SectionPosition record={dataEmployee} sectorData={sectorData} />
               <AddressSection personalAddressData={personalAddressData?.data?.[0]} />
               <EducationSection educationData={educationData} />
-              <JoiningDateSection joiningDate={dataEmployee?.joiningDate} />
+              <JoiningDateSection joiningDate={dataEmployee?.data?.[0]?.joiningDate} />
             </div>
             <div className="flex-row gap-x-2 gap-y-2 sm:flex">
               <div className="w-full p-6 my-1 border rounded-lg sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
