@@ -1,4 +1,5 @@
 export interface IEmployee {
+  [x: string]: any
   positionId: {
     id: number
     sectorId: number

@@ -11,7 +11,7 @@ import type {
   IPersonalAddress,
   IProfile,
 } from "../../interface";
-import { EmployeeCard } from "../element/employeeCardProfile";
+import { EmployeeCard } from "../../containers/show/employeeCardProfile";
 import React from "react";
 import {
   AddressSection,
@@ -19,19 +19,20 @@ import {
   JoiningDateSection,
   SectionPosition,
   UniqueNumber,
-} from "../element/employeeCardInfo";
-import { DocumentPDF } from "../element/DocumentPDF";
+} from "../../containers/show/employeeCardInfo";
+import { DocumentPDF } from "../../containers/show/DocumentPDF";
 import { useListService, filterProfile, filterEmployee, filterSector } from "../../hooks/useEmployee";
+import { usePositionId } from "../../hooks/usePositionId";
 
 export default function EmployeeShow({ params }: { params: { id: number } }): JSX.Element {
   const filtersProfile = filterProfile({ profileId: params?.id });
   const dataProfile = useListService<IProfile>({ resource: "profile", filters: filtersProfile });
   const filtersEmployee = filterEmployee({ profileId: params?.id });
   const dataEmployee = useListService<any>({ resource: "employee", filters: filtersEmployee });
-  console.log("dataEmployee", dataEmployee);
-  const filtersSector = filterSector({ sectorId: dataEmployee?.data?.[0]?.positionId?.sectorId ?? 0 });
+  const position = usePositionId(dataEmployee?.data);
+  const filtersSector = filterSector({ sectorId: position });
   const sectorData = useListService<ISector>({ resource: "sector", filters: filtersSector });
-
+  console.log("filtersSector", filtersSector);
   const { data: personalAddressData } = useList<IPersonalAddress>({
     resource: "personal_address",
     errorNotification: false,
@@ -63,7 +64,7 @@ export default function EmployeeShow({ params }: { params: { id: number } }): JS
           </div>
           <div className="col-span-4 sm:col-span-9">
             <div className="p-6 my-2 border rounded-lg">
-              <SectionPosition record={dataEmployee} sectorData={sectorData} />
+              <SectionPosition employee={dataEmployee} sectorData={sectorData} />
               <AddressSection personalAddressData={personalAddressData?.data?.[0]} />
               <EducationSection educationData={educationData} />
               <JoiningDateSection joiningDate={dataEmployee?.data?.[0]?.joiningDate} />

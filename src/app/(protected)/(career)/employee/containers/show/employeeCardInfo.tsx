@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, max-lines */
+/* eslint-disable @typescript-eslint/member-delimiter-style */
+/* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/strict-boolean-expressions, max-lines, max-lines-per-function, max-nested-callbacks */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { MapPinned, GraduationCap, CalendarDays, Badge } from "lucide-react";
 import moment from "moment";
@@ -89,34 +90,65 @@ export const JoiningDateSection: React.FC<JoiningDateSectionProps> = ({
 };
 
 export const SectionPosition: React.FC<{
-  record?: any
+  employee?: any
   sectorData?: any
-}> = ({ record, sectorData }) => {
+}> = ({ employee, sectorData }) => {
   return (
-    <div>
+    <>
       <div className="mb-4 text-2xl font-bold">ຕໍາແໜ່ງ</div>
-      <div className="flex flex-wrap">
-        <div className="px-2">
-          <Badge className="w-5 h-5 mt-0.5" />
-        </div>
-        <div className="font-bold">ຕໍາແໜ່ງ:</div>
-        <div className="px-2">{record?.data?.[0]?.positionId?.name}</div>
-      </div>
-      <div className="flex flex-wrap">
-        <div className="px-2">
-          <Badge className="w-5 h-5 mt-0.5" />
-        </div>
-        <div className="font-bold">ຂະແໜງ:</div>
-        <div className="px-2">{sectorData?.data?.[0]?.name}</div>
-      </div>
-      <div className="flex flex-wrap">
-        <div className="px-2">
-          <Badge className="w-5 h-5 mt-0.5" />
-        </div>
-        <div className="font-bold">ສາຂາ:</div>
-        <div className="px-2">{sectorData?.data?.[0]?.branchDetail?.name}</div>
-      </div>
-    </div>
+      {employee.data.map((item: {
+        isLatest: any, id: React.Key | null | undefined, positionId: { name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined, id: any }
+      }) => {
+        return <div
+          key={item.id}
+          className="my-4"
+        >
+          <div className="flex flex-wrap ">
+            <div className="px-2">
+              <Badge className="w-5 h-5 mt-0.5" />
+            </div>
+            <div className="font-bold">
+              ຕໍາແໜ່ງ: {item?.isLatest ? "ຕໍາແໜ່ງໃນອະດິດ" : "ຕໍາປະຈຸບັນ"}
+            </div>
+            <div className="px-2">{item.positionId?.name}</div>
+          </div>
+          <div className="flex flex-wrap">
+            <div className="px-2">
+              <Badge className="w-5 h-5 mt-0.5" />
+            </div>
+            <div className="font-bold">ຂະແໜງ:</div>
+            <div className="px-2">
+              {sectorData?.data.map((sector: { id: React.Key | null | undefined, name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined }) => (
+                <div key={sector.id}>
+                  {item.positionId.id === sector.id
+                    ? (
+                      <div>{sector.name}</div>)
+                    : null}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-wrap">
+            <div className="px-2">
+              <Badge className="w-5 h-5 mt-0.5" />
+            </div>
+            <div className="font-bold">ສາຂາ:</div>
+
+            <div className="px-2">
+              {" "}
+              {sectorData?.data.map((sector: { id: React.Key | null | undefined; branchDetail: { name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }; }) => (
+                <div key={sector.id}>
+                  {item.positionId.id === sector.id
+                    ? (
+                      <div>{sector.branchDetail.name}</div>)
+                    : null}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>;
+      })}
+    </>
   );
 };
 
