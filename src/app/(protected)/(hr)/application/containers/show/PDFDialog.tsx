@@ -25,7 +25,7 @@ export function PDFDialog({ documentName, documentFile }: PDFDialogProps) {
           title={documentName}
         />
         <AlertDialogFooter>
-          <AlertDialogCancel className="mr-20">ປິດ</AlertDialogCancel>
+          <AlertDialogCancel className="mr-20 bg-red-500">ປິດ</AlertDialogCancel>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

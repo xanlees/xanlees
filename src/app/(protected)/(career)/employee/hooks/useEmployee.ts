@@ -10,7 +10,7 @@ interface UseResourceListProps {
   }>
 }
 
-export const useEmployee = <T extends BaseRecord>({ resource, filters, pageSize }: UseResourceListProps): GetListResponse<T> | typeof defaultData => {
+export const useListService = <T extends BaseRecord>({ resource, filters, pageSize }: UseResourceListProps): GetListResponse<T> | typeof defaultData => {
   const { data } = useList<T>({
     resource,
     filters,
@@ -32,14 +32,39 @@ const defaultData = {
   total: 0,
 };
 
-export function filterEmployee({ profileId }: { profileId?: number }): FilterObjects[] {
+export function filterProfile({ profileId }: { profileId?: number }): FilterObjects[] {
   const filters: FilterObjects[] = [];
   if (profileId !== undefined) {
     filters.push({
-      field: "profile_id",
+      field: "id",
       operator: "eq",
       value: profileId,
     });
   }
   return filters;
 }
+
+export function filterEmployee({ profileId }: { profileId?: number }): FilterObjects[] {
+  const filters: FilterObjects[] = [];
+  if (profileId !== undefined) {
+    filters.push({
+      field: "employee",
+      operator: "eq",
+      value: profileId,
+    });
+  }
+  return filters;
+}
+
+export function filterSector({ sectorId }: { sectorId?: number }): FilterObjects[] {
+  const filters: FilterObjects[] = [];
+  if (sectorId !== undefined) {
+    filters.push({
+      field: "sector",
+      operator: "eq",
+      value: sectorId,
+    });
+  }
+  return filters;
+}
+

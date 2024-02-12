@@ -48,7 +48,7 @@ export default function EmployeeList(): JSX.Element {
         {MarriageColumn("maritalStatus")}
         {DateOfBirth}
         {getCurrentAddress(personalAddressData.data as PersonalAddressData)}
-        {getActionsColumn(resource)}
+        {getActionsColumn("employee")}
       </Table>
     </List>
   );

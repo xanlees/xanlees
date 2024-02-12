@@ -5,11 +5,11 @@ import { Card, CardContent, CardTitle } from "@src/shadcn/elements";
 import moment from "moment";
 import { getGenderDisplayText, getMaritalStatusDisplayText } from "@src/app/(protected)/(career)/employee/lib/genderUtils";
 
-export const PersonalInformation: React.FC<{ data?: IProfile, physicalProfile: any }> = ({ data, physicalProfile }) => {
-  console.log("data", data);
+export const PersonalInformation: React.FC<{ data?: IProfile, physicalProfile: any, record: any }> = ({ data, physicalProfile, record }) => {
   const birthday = data?.birthday ?? "";
   const status = data?.maritalStatus ?? null;
   const age = calculateAge(birthday);
+  console.log("birthday", birthday);
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { nationality = "ລາວ", height = 0, weight = 0 } = physicalProfile?.data?.[0] ?? {};
   return (
@@ -28,6 +28,12 @@ export const PersonalInformation: React.FC<{ data?: IProfile, physicalProfile: a
         <li>{`ຊັນຊາດ: ${nationality}`}</li>
         <li>{`ນໍ້າໜັກ: ${weight} Kg`}</li>
         <li>{`ລວງສູງ: ${height} Cm`}</li>
+      </CardContent>
+      <CardTitle className="text-xl text-center">{"ກໍລະນີສຸກເສີນຕິດຕໍ່ຫາ"}</CardTitle>
+      <CardContent className="capitalize">
+        <li>{`ຊື່: ${record?.emergencyFullname}`}</li>
+        <li>{`ຄວາມສາພັນ: ${record?.emergencyRelationship}`}</li>
+        <li>{`ເບີໂທ : ${record?.emergencyPhoneNumber}`}</li>
       </CardContent>
     </Card>
   );

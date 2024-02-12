@@ -1,22 +1,45 @@
-import { useList } from "@refinedev/core";
-import type { IWorkExperience } from "../interface";
+import { useList, type BaseRecord, type GetListResponse } from "@refinedev/core";
 
-export function useWorkExperience({ applicationID }: { applicationID: number }): {
-  data: IWorkExperience[]
-} {
-  const { data, error, isError } = useList<IWorkExperience>({
-    resource: "work_experience",
+interface UseResourceListProps {
+  resource?: string
+  pageSize?: number
+  filters?: Array<{
+    field: string
+    operator: "eq"
+    value: string | number | number[]
+  }>
+}
+
+export const useWorkExperience = <T extends BaseRecord>({ resource, filters, pageSize }: UseResourceListProps): GetListResponse<T> | typeof defaultData => {
+  const { data } = useList<T>({
+    resource,
+    filters,
+    pagination: { pageSize },
     errorNotification: false,
-    filters: [
-      {
-        field: "application_id",
-        operator: "eq",
-        value: applicationID,
-      },
-    ],
   });
-  if (isError) {
-    console.error("Error fetching position data:", error);
+  return data ?? defaultData;
+};
+
+export interface FilterObjects {
+  field: string
+  operator: "eq"
+  value: string | number | number[]
+
+}
+
+const defaultData = {
+  data: [],
+  total: 0,
+};
+
+export function filterWorkExperience({ applicationID }: { applicationID?: number }): FilterObjects[] {
+  const filters: FilterObjects[] = [];
+  if (applicationID !== undefined) {
+    filters.push({
+      field: "application_id",
+      operator: "eq",
+      value: applicationID,
+    });
   }
-  return { data: (data as unknown as IWorkExperience[]) ?? [] };
+  return filters;
 }

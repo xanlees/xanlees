@@ -20,34 +20,19 @@ import {
   UniqueNumber,
 } from "../element/employeeCardInfo";
 import { DocumentPDF } from "../element/DocumentPDF";
+import { useListService, filterProfile, filterEmployee, filterSector } from "../../hooks/useEmployee";
 
-export default function EmployeeShow({
-  params,
-}: {
-  params: { id: number }
-}): JSX.Element {
-  const { data: dataEmployee } = useList<any>({
-    resource: "employee",
-    errorNotification: false,
-    filters: [
-      {
-        field: "profile_id",
-        operator: "eq",
-        value: params?.id,
-      },
-    ],
-  });
-  const { data: sectorData } = useList<ISector>({
-    resource: "sector",
-    errorNotification: false,
-    filters: [
-      {
-        field: "id",
-        operator: "eq",
-        value: dataEmployee?.data?.[0]?.positionId?.sectorId,
-      },
-    ],
-  });
+export default function EmployeeShow({ params }: { params: { id: number } }): JSX.Element {
+  const filtersProfile = filterProfile({ profileId: params?.id });
+  const dataProfile = useListService<any>({ resource: "profile", filters: filtersProfile });
+  console.log("dataProfile", dataProfile);
+
+  const filtersEmployee = filterEmployee({ profileId: params?.id });
+  const dataEmployee = useListService<any>({ resource: "employee", filters: filtersEmployee });
+
+  const filtersSector = filterSector({ sectorId: dataEmployee?.data?.[0]?.positionId?.sectorId });
+  const sectorData = useListService<ISector>({ resource: "sector", filters: filtersSector });
+
   const { data: personalAddressData } = useList<IPersonalAddress>({
     resource: "personal_address",
     errorNotification: false,
