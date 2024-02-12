@@ -18,7 +18,7 @@ export default function Loading() {
     const timer = setTimeout(handleTimeout, waitingTime);
 
     return () => {
-      clearTimeout(timer); // Use clearTimeout from the global scope to clear the timeout
+      clearTimeout(timer);
     };
   }, []);
 

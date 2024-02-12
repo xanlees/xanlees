@@ -8,7 +8,7 @@ export default function Home(): JSX.Element {
       key="dashboard"
       redirectOnFail="/"
       appendCurrentPathToQuery={false}>
-      <NavigateToResource resource="profile" />
+      <NavigateToResource resource="employee" />
     </Authenticated>
   );
 }
