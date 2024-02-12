@@ -2,7 +2,6 @@
 import { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { type Response, type User, type UserResponse } from "@/lib/provider/auth/interface";
-import { CheckingAndRefreshToken } from "./refresh-token";
 
 const second = 1000;
 const minute = 60;
@@ -60,14 +59,7 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
-    async jwt({ token, user }) {
-      const refresh = await CheckingAndRefreshToken(token);
-      if (refresh !== undefined) {
-        console.log(refresh);
-        (token.user as User).accessToken = refresh.accessToken;
-        (token.user as User).refreshToken = refresh.refreshToken;
-        (token.user as User).iat = refresh.iat;
-      }
+    jwt({ token, user }) {
       if (user !== undefined && user !== null) {
         token.user = user;
       }
