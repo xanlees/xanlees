@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { PdfViewerControls } from ".";
 import { PdfViewerDocument } from "./document";
 import type { PdfViewerContentProps } from "./interface";
