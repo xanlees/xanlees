@@ -8,7 +8,6 @@ import type {
   IPosition,
   IProfile,
 } from "./interface";
-import { EmployeeContainer, TableSection } from "./employeeLayout";
 import { getSelectColumn } from "@src/common/containers/column/select";
 import {
   DateOfBirth,
@@ -40,21 +39,17 @@ export default function EmployeeList(): JSX.Element {
   const friendly = useUserFriendlyName();
   return (
     <List>
-      <EmployeeContainer>
-        <TableSection>
-          <Table table={table}>
-            {getSelectColumn(friendly)}
-            {FullNameColumn}
-            {PhoneNumberColumn("phoneNumber")}
-            {getLatestPosition(positionId, positionData.data)}
-            {GenderColumn("gender")}
-            {MarriageColumn("maritalStatus")}
-            {DateOfBirth}
-            {getCurrentAddress(personalAddressData.data as PersonalAddressData)}
-            {getActionsColumn(resource)}
-          </Table>
-        </TableSection>
-      </EmployeeContainer>
+      <Table table={table}>
+        {getSelectColumn(friendly)}
+        {FullNameColumn}
+        {PhoneNumberColumn("phoneNumber")}
+        {getLatestPosition(positionId, positionData.data)}
+        {GenderColumn("gender")}
+        {MarriageColumn("maritalStatus")}
+        {DateOfBirth}
+        {getCurrentAddress(personalAddressData.data as PersonalAddressData)}
+        {getActionsColumn(resource)}
+      </Table>
     </List>
   );
 }
