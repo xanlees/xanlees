@@ -6,6 +6,5 @@ export const useDarkMode = () => {
 
     if (context === undefined)
         throw new Error("useDarkMode must be used within a DarkModeProvider");
-
     return context;
 };
