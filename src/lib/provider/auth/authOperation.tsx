@@ -1,6 +1,6 @@
 import { signIn, signOut } from "next-auth/react";
 import { type Session } from "next-auth";
-import { type Credential } from "@/lib/provider/auth/interface";
+import { type User, type Credential } from "@/lib/provider/auth/interface";
 
 export function getLogin(to: string) {
   return async({
@@ -64,8 +64,21 @@ export function getIdentity(data: Session | null) {
 }
 
 export function getCheck(data: Session | null, status: string) {
+  const second = 1000;
+  const minute = 60;
+  const hour = 60;
+  const oneThirdDay = 8;
+
+  const iat = (data?.user as User)?.iat;
+  const currentTimeInSeconds = Math.floor(Date.now() / second);
+  let isTokenExpired = false;
+  if (currentTimeInSeconds - iat > (oneThirdDay * hour * minute)) {
+    isTokenExpired = true;
+  }
+  const authenticated = (status !== "unauthenticated") && !isTokenExpired;
+
   return {
-    authenticated: status !== "unauthenticated",
-    redirectTo: status === "unauthenticated" ? "/" : undefined,
+    authenticated,
+    redirectTo: authenticated ? "/login" : undefined,
   };
 }
