@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 export interface IProfile {
   id: number
   fullname: string
@@ -80,7 +81,6 @@ export interface IDocument {
   profileId: number
   id: number
 }
-
 export interface IPhysicalProfile {
   data?: {
     id: number
@@ -95,4 +95,17 @@ export interface CrudFilter {
   field: string
   operator: "eq" | "ne"
   value: string
+}
+
+export interface IDistrict {
+  id: number
+  provinceName: string
+  districtName: string
+}
+export interface IPersonalAddress {
+  id: number
+  bornDistrictId: IDistrict
+  currentDistrictId: IDistrict
+  bornVillage: string
+  currentVillage: string
 }
