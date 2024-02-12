@@ -1,15 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable max-lines-per-function */
 
 "use client";
-import { useList, useOne, useShow } from "@refinedev/core";
+import { useList } from "@refinedev/core";
 import { Show } from "@/shadcn/components/crud";
 import type {
   IEducation,
-  IEmployee,
-  IPersonalAddress,
   ISector,
+  IPersonalAddress,
 } from "../../interface";
 import { EmployeeCard } from "../element/employeeCardProfile";
 import React from "react";
@@ -27,16 +26,38 @@ export default function EmployeeShow({
 }: {
   params: { id: number }
 }): JSX.Element {
-  const { queryResult } = useShow<IEmployee>();
-  const { data } = queryResult;
-  const record: IEmployee | undefined = data?.data;
-  const { data: sectorData } = useOne<ISector>({
-    resource: "sector",
-    id: record?.positionDetail.sectorId,
+  const { data: dataEmployee } = useList<any>({
+    resource: "employee",
+    errorNotification: false,
+    filters: [
+      {
+        field: "profile_id",
+        operator: "eq",
+        value: params?.id,
+      },
+    ],
   });
-  const { data: personalAddressData } = useOne<IPersonalAddress>({
+  const { data: sectorData } = useList<ISector>({
+    resource: "sector",
+    errorNotification: false,
+    filters: [
+      {
+        field: "id",
+        operator: "eq",
+        value: dataEmployee?.data?.[0]?.positionId?.sectorId,
+      },
+    ],
+  });
+  const { data: personalAddressData } = useList<IPersonalAddress>({
     resource: "personal_address",
-    id: record?.profileId.personalAddressId?.id,
+    errorNotification: false,
+    filters: [
+      {
+        field: "id",
+        operator: "eq",
+        value: dataEmployee?.data?.[0]?.personalAddressId?.id,
+      },
+    ],
   });
   const { data: educationData } = useList<IEducation>({
     resource: "education",
@@ -45,7 +66,7 @@ export default function EmployeeShow({
       {
         field: "profile_id",
         operator: "eq",
-        value: record?.profileId ?? 0,
+        value: params?.id,
       },
     ],
   });
@@ -54,20 +75,20 @@ export default function EmployeeShow({
       <div className="py-5">
         <div className="grid grid-cols-4 gap-6 sm:grid-cols-12">
           <div className="col-span-4 sm:col-span-3">
-            <EmployeeCard record={record} />
+            <EmployeeCard record={dataEmployee} />
           </div>
           <div className="col-span-4 sm:col-span-9">
             <div className="p-6 my-2 border rounded-lg">
-              <SectionPosition record={record} sectorData={sectorData?.data} />
-              <AddressSection personalAddressData={personalAddressData} />
+              <SectionPosition record={dataEmployee} sectorData={sectorData} />
+              <AddressSection personalAddressData={personalAddressData?.data?.[0]} />
               <EducationSection educationData={educationData} />
-              <JoiningDateSection joiningDate={record?.joiningDate} />
+              <JoiningDateSection joiningDate={dataEmployee?.joiningDate} />
             </div>
             <div className="flex-row gap-x-2 gap-y-2 sm:flex">
               <div className="w-full p-6 my-1 border rounded-lg sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
-                <UniqueNumber record={record} />
+                <UniqueNumber record={dataEmployee} />
               </div>
-              <DocumentPDF record={record}/>
+              <DocumentPDF profileId={params?.id}/>
             </div>
           </div>
         </div>

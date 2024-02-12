@@ -1,28 +1,11 @@
-/* eslint-disable max-lines */
+/* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, max-lines */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { MapPinned, GraduationCap, CalendarDays, Badge } from "lucide-react";
 import moment from "moment";
 import React from "react";
-import { type IEmployee, type ISector } from "../../interface";
 import { Badge as ShadcnBadge } from "@src/shadcn/elements/badge";
-interface AddressSectionProps {
-  personalAddressData?: {
-    data: {
-      bornVillage: string
-      currentVillage: string
-      bornDistrictDetail: {
-        districtName: string
-        provinceName: string
-      }
-      currentDistrictDetail: {
-        districtName: string
-        provinceName: string
-      }
-    }
-  }
-}
 
-export const AddressSection: React.FC<AddressSectionProps> = ({
+export const AddressSection: React.FC<any> = ({
   personalAddressData,
 }) => {
   return (
@@ -34,7 +17,7 @@ export const AddressSection: React.FC<AddressSectionProps> = ({
         </div>
         <div className="font-bold">ສະຖານທີ່ເກີດ:</div>
         <div className="px-2">
-          {`ບ້ານ${personalAddressData?.data.bornVillage} - ${personalAddressData?.data.bornDistrictDetail.districtName} - ແຂວງ${personalAddressData?.data.bornDistrictDetail.provinceName}`}
+          {`ບ້ານ${personalAddressData?.bornVillage} - ${personalAddressData?.bornDistrictId?.districtName} - ແຂວງ${personalAddressData?.bornDistrictId?.provinceName}`}
         </div>
       </div>
       <div className="flex flex-wrap">
@@ -43,7 +26,7 @@ export const AddressSection: React.FC<AddressSectionProps> = ({
         </div>
         <div className="font-bold">ທີ່ຢູ່ປະຈຸບັນ:</div>
         <div className="px-2">
-          {`ບ້ານ${personalAddressData?.data.currentVillage} - ${personalAddressData?.data.currentDistrictDetail.districtName} - ແຂວງ${personalAddressData?.data.currentDistrictDetail.provinceName}`}
+          {`ບ້ານ${personalAddressData?.currentVillage} - ${personalAddressData?.currentDistrictId?.districtName} - ແຂວງ${personalAddressData?.currentDistrictId?.provinceName}`}
         </div>
       </div>
     </>
@@ -66,7 +49,7 @@ export const EducationSection: React.FC<EducationSectionProps> = ({
   return (
     <>
       <div className="my-4 text-2xl font-bold">ການສຶກສາ</div>
-      {educationData?.data?.[0] === undefined ? "ຍັງບໍ່ທັນຕື່ມຂໍ້ມູນ" : "" }
+      {educationData?.data?.[0] === undefined ? "ຍັງບໍ່ທັນຕື່ມຂໍ້ມູນ" : ""}
       {educationData?.data?.map((education, index) => (
         <React.Fragment key={index}>
           <div className="flex flex-wrap">
@@ -105,8 +88,8 @@ export const JoiningDateSection: React.FC<JoiningDateSectionProps> = ({
 };
 
 export const SectionPosition: React.FC<{
-  record?: IEmployee
-  sectorData?: ISector
+  record?: any
+  sectorData?: any
 }> = ({ record, sectorData }) => {
   return (
     <div>
@@ -116,39 +99,39 @@ export const SectionPosition: React.FC<{
           <Badge className="w-5 h-5 mt-0.5" />
         </div>
         <div className="font-bold">ຕໍາແໜ່ງ:</div>
-        <div className="px-2">{record?.positionDetail.name}</div>
+        <div className="px-2">{record?.data?.[0]?.positionId?.name}</div>
       </div>
       <div className="flex flex-wrap">
         <div className="px-2">
           <Badge className="w-5 h-5 mt-0.5" />
         </div>
         <div className="font-bold">ຂະແໜງ:</div>
-        <div className="px-2">{sectorData?.name}</div>
+        <div className="px-2">{sectorData?.data?.[0].name}</div>
       </div>
       <div className="flex flex-wrap">
         <div className="px-2">
           <Badge className="w-5 h-5 mt-0.5" />
         </div>
         <div className="font-bold">ສາຂາ:</div>
-        <div className="px-2">{sectorData?.name}</div>
+        <div className="px-2">{sectorData?.data?.[0]?.branchDetail?.name}</div>
       </div>
     </div>
   );
 };
 
 export const UniqueNumber: React.FC<{
-  record?: IEmployee
+  record?: any
 }> = ({ record }) => {
   const codeType = getTypeDisplayText(
-    record?.profileId?.typeOfUniqueNumber,
+    record?.data?.[0]?.profileId?.typeOfUniqueNumber,
   );
-  const uniqueNumberList = record?.profileId?.uniqueNumber ?? [];
+  const uniqueNumberList = record?.data?.[0]?.profileId?.uniqueNumber ?? [];
   return (
     <div>
       <div className="mb-4 text-2xl font-bold">{codeType}</div>
       <div className="flex flex-wrap">
         <div className="gap-2 px-2">
-          {uniqueNumberList.map((item) => (
+          {uniqueNumberList.map((item: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined) => (
             <ShadcnBadge className="mx-1.5">{item}</ShadcnBadge>
           ))}
         </div>

@@ -1,7 +1,6 @@
 import { Button, Link } from "@src/shadcn/elements";
 import { FileText } from "lucide-react";
 import React from "react";
-import type { IEmployee } from "../../interface";
 import type { IDocument } from "@src/app/(protected)/(personal)/document/interface";
 import {
   useList,
@@ -9,8 +8,7 @@ import {
   type GetListResponse,
 } from "@refinedev/core";
 
-export const DocumentPDF: React.FC<{ record?: IEmployee }> = ({ record }) => {
-  const profileId = record?.profileId ?? 0;
+export const DocumentPDF: React.FC<{ profileId: number }> = ({ profileId }) => {
   const documentData = useDocument<IDocument>({ profileId });
   return (
     <div className="w-full my-1 border rounded-lg sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2">

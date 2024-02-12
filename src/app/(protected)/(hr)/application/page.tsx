@@ -6,11 +6,11 @@ import { useUserFriendlyName } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { getActionsColumn } from "@src/common/containers/column/action";
 import { getSelectColumn } from "@src/common/containers/column/select";
-import { ApplicationDate, ApplicationStatusColumn, workExperienceColumn, AppliedPosition, ExpectedSalary } from "./containers/column";
+import { ApplicationDate, ApplicationStatusColumn, workExperienceColumn, AppliedPosition, ExpectedSalary, FullNameColumn } from "./containers/column";
 import { useApplication, useApplicationID } from "./hooks";
 import type { IApplication } from "./interface";
 import { applicationResource, refineCoreProps } from "./lib/constant";
-import { GenderColumn, FullNameColumn, PhoneNumberColumn, MarriageColumn } from "@src/common/containers/column";
+import { GenderColumn, PhoneNumberColumn, MarriageColumn } from "@src/common/containers/column";
 
 export default function ApplicationList(): JSX.Element {
   const table = useTable<IApplication>({ columns: [], enableSorting: true, enableColumnFilters: true, refineCoreProps });

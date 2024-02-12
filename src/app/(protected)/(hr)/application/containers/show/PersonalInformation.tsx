@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 "use client";
-import type { IApplication } from "../../interface";
+import type { IProfile } from "../../interface";
 import { Card, CardContent, CardTitle } from "@src/shadcn/elements";
 import moment from "moment";
 import { getGenderDisplayText, getMaritalStatusDisplayText } from "@src/app/(protected)/(career)/employee/lib/genderUtils";
 
-export const PersonalInformation: React.FC<{ record?: IApplication, physicalProfile: any }> = ({ record, physicalProfile }) => {
-  const birthday = record?.profileId.birthday ?? "";
-  const status = record?.profileId.maritalStatus ?? null;
+export const PersonalInformation: React.FC<{ data?: IProfile, physicalProfile: any }> = ({ data, physicalProfile }) => {
+  console.log("data", data);
+  const birthday = data?.birthday ?? "";
+  const status = data?.maritalStatus ?? null;
   const age = calculateAge(birthday);
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { nationality = "ລາວ", height = 0, weight = 0 } = physicalProfile?.data?.[0] ?? {};
@@ -15,15 +16,15 @@ export const PersonalInformation: React.FC<{ record?: IApplication, physicalProf
     <Card className="flex flex-col p-2 my-2 rounded-sm ">
       <CardTitle className="text-xl text-center">{"ຂໍ້​ມູນ​ສ່ວນ​ບຸກຄົນ"}</CardTitle>
       <CardContent className="capitalize">
-        <li>{`ຊື່ແທ້: ${record?.profileId.fullname}`}</li>
-        <li>{`ຊື່ຫຼິ້ນ: ${record?.profileId.nickname}`}</li>
+        <li>{`ຊື່ແທ້: ${data?.fullname}`}</li>
+        <li>{`ຊື່ຫຼິ້ນ: ${data?.nickname}`}</li>
         <li>{`ເພດ: ${getGenderDisplayText(
-          record?.profileId.gender ?? null,
+          data?.gender ?? null,
         )}`}</li>
         <li>{`ສະຖານະພາບ: ${getMaritalStatusDisplayText(status)}`}</li>
         <li>{`ວັນເດືອນປີເກີດ: ${moment(birthday).format("MMMM DD, YYYY")}`}</li>
         <li>{`ອາຍຸ: ${age}`}</li>
-        <li>{`ເບີໂທ: ${record?.profileId.phoneNumber}`}</li>
+        <li>{`ເບີໂທ: ${data?.phoneNumber}`}</li>
         <li>{`ຊັນຊາດ: ${nationality}`}</li>
         <li>{`ນໍ້າໜັກ: ${weight} Kg`}</li>
         <li>{`ລວງສູງ: ${height} Cm`}</li>

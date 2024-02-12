@@ -1,6 +1,6 @@
 export interface IEmployee {
   positionId: number
-  positionDetail: {
+  positionId: {
     id: number
     sectorId: number
     name: string

@@ -1,6 +1,7 @@
+/* eslint-disable max-lines-per-function */
 "use client";
 
-import { useShow } from "@refinedev/core";
+import { useShow, useOne } from "@refinedev/core";
 import { Show } from "@/shadcn/components/crud";
 import type { IApplication, IWorkExperience, IProfile } from "../../interface";
 import { Card, CardContent } from "@src/shadcn/elements";
@@ -12,7 +13,10 @@ export default function ApplicationShow({ params }: { params: { id: number } }):
   const { data } = queryResult;
   const record: IApplication | undefined = data?.data;
   const application = record?.id ?? 0;
-  const { fullname = "", profilePicture = "", id } = (record?.profileId as IProfile) ?? {};
+
+  const { data: profileData } = useOne<IProfile>({ resource: "profile", id: record?.profileId ?? 0 });
+  const { fullname = "", profilePicture = "", id } = profileData as unknown as IProfile ?? {};
+  console.log("profileData", profileData);
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const { data: dataWorkExperience } = ({ applicationID: application }) as unknown as { data: IWorkExperience[] };
   const { data: documentData } = useDocument({ profileID: id });
@@ -23,7 +27,7 @@ export default function ApplicationShow({ params }: { params: { id: number } }):
       <div className="flex-row gap-2 p-2 sm:flex">
         <div>
           <AvatarCard title={fullname} image={profilePicture} />
-          <PersonalInformation record={record} physicalProfile={physicalProfile} />
+          <PersonalInformation data={profileData?.data} physicalProfile={physicalProfile} />
         </div>
         <div className="w-full space-y-2">
           <Card className="w-full p-2 rounded-sm sm:w-full md:w-full">
