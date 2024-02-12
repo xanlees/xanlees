@@ -9,6 +9,7 @@ import type { PDFViewerProps, PdfViewerButtonProps, PdfViewerControlsProps } fro
 // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.js";
+console.log(`PDF.js version: ${pdfjs.version}`);
 
 export default function PDFViewer(props: Readonly<PDFViewerProps>) {
   const [numPages, setNumPages] = useState<number>(0);
