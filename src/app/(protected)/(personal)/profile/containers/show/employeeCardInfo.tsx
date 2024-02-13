@@ -181,5 +181,5 @@ const getTypeDisplayText = (type: string | undefined): string => {
   } else if (type === "MACHINE") {
     return "ເລກເຄື່ອງຂາຍເລກ";
   }
-  return "ເລືອກລະຫັດ";
+  return "";
 };

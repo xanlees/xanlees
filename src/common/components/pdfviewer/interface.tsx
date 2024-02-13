@@ -1,8 +1,7 @@
 export interface PDFViewerProps {
-  file: File | string
+  file?: File | string
   title: string
 }
-
 export interface PdfViewerControlsProps {
   goToPreviousPage: () => void
   goToNextPage: () => void
@@ -27,11 +26,11 @@ export interface PdfViewerContentProps {
   onDocumentLoadSuccess: ({ numPages }: { numPages: number }) => void
   onPageLoadSuccess: () => void
   options: object
-  file: File | string
+  file?: File | string
 }
 
 export interface PdfViewerDocumentProps {
-  file: File | string
+  file?: File | string
   options: object
   pageNumber: number
   onDocumentLoadSuccess: ({ numPages }: { numPages: number }) => void

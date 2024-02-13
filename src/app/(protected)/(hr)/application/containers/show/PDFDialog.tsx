@@ -10,7 +10,7 @@ import {
 
 interface PDFDialogProps {
   documentName: string
-  documentFile: string
+  documentFile?: File | string
 }
 
 export function PDFDialog({ documentName, documentFile }: PDFDialogProps) {
