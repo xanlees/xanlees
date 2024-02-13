@@ -7,7 +7,7 @@ import { useTable } from "@refinedev/react-table";
 import type {
   IPosition,
   IProfile,
-} from "./interface";
+} from "../../(career)/employee/interface";
 import { getSelectColumn } from "@src/common/containers/column/select";
 import {
   DateOfBirth,
@@ -23,7 +23,7 @@ import { useLatestPositionDetail } from "./hooks/useLatestPositionDetails";
 import { getLatestPosition } from "./containers/column/latestPosition";
 
 const resource = "profile";
-export default function EmployeeList(): JSX.Element {
+export default function ProfileList(): JSX.Element {
   const table = useTable<IProfile>({
     columns: [],
     enableSorting: true,
@@ -48,7 +48,7 @@ export default function EmployeeList(): JSX.Element {
         {MarriageColumn("maritalStatus")}
         {DateOfBirth}
         {getCurrentAddress(personalAddressData.data as PersonalAddressData)}
-        {getActionsColumn("employee")}
+        {getActionsColumn("profile")}
       </Table>
     </List>
   );

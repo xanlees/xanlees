@@ -1,6 +1,6 @@
 import { type BaseOption, useSelect, useMany } from "@refinedev/core";
 import type { IPosition } from "@src/app/(protected)/(career)/branch/interface";
-import type { IBranch } from "../../sector/interface";
+import type { IBranch } from "../../../(career)/sector/interface";
 
 type GroupedOptions = Record<number, BaseOption[]>;
 

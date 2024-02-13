@@ -4,7 +4,7 @@ import { Form } from "@src/shadcn/components/form";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 import { type IFormConfig } from "../../interface";
 import { DynamicNumberForm } from "./inputUniqueNumber";
-import { maritalStatusOptions } from "@src/app/(protected)/(career)/employee/lib/constant";
+import { maritalStatusOptions } from "@src/app/(protected)/(personal)/profile/lib/constant";
 
 export const PersonalInformationSection: React.FC<{ formConfig: IFormConfig, isEmployee?: boolean }> = ({ formConfig, isEmployee }) => {
   return (

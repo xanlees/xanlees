@@ -56,7 +56,7 @@ export function filterEmployee({ profileId }: { profileId?: number }): FilterObj
   return filters;
 }
 
-export function filterSector({ sectorId }: { sectorId?: number }): FilterObjects[] {
+export function filterSector({ sectorId }: { sectorId: number[] }): FilterObjects[] {
   const filters: FilterObjects[] = [];
   if (sectorId !== undefined) {
     filters.push({

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Table } from "@/shadcn/components/table";
-import type { IPersonalAddress } from "../../interface";
+import type { IPersonalAddress } from "../../../../(career)/employee/interface";
 
 export interface PersonalAddressData {
   data?: IPersonalAddress[]

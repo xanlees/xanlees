@@ -1,4 +1,4 @@
-import { type IGender, type MaritalStatusType } from "../interface";
+import { type IGender, type MaritalStatusType } from "../../../(career)/employee/interface";
 
 export const getGenderDisplayText = (gender: IGender["gender"]): string => {
   switch (gender) {

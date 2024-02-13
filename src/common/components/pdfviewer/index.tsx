@@ -6,9 +6,8 @@ import { Nav } from "./nav";
 import { PdfViewerContent } from "./content";
 import type { PDFViewerProps, PdfViewerButtonProps, PdfViewerControlsProps } from "./interface";
 
-// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-
-pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.js";
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+// pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.js";
 
 export default function PDFViewer(props: Readonly<PDFViewerProps>) {
   const [numPages, setNumPages] = useState<number>(0);

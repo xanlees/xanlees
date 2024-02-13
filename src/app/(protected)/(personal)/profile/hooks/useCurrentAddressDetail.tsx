@@ -3,7 +3,7 @@ import { useMany } from "@refinedev/core";
 import type {
   IPersonalAddress,
   IProfile,
-} from "../interface";
+} from "../../../(career)/employee/interface";
 
 export function usePersonalAddressDetail(personalAddressId: number[], employees: IProfile[]): { data: any } {
   return useMany<IPersonalAddress>({

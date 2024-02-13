@@ -3,11 +3,11 @@ import { User, BookUser, FileText } from "lucide-react";
 
 export const resources = [
   {
-    name: "employee",
-    list: "/employee",
-    create: "/employee/create",
-    edit: "/employee/edit/:id",
-    show: "/employee/show/:id",
+    name: "profile",
+    list: "/profile",
+    create: "/profile/create",
+    edit: "/profile/edit/:id",
+    show: "/profile/show/:id",
     icon: <BookUser />,
     meta: {
       label: "ພະນັກງານ",

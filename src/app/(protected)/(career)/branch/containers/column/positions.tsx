@@ -1,4 +1,4 @@
-import { Table, type TableFilterProps } from "@/shadcn/components/table";
+import { Table } from "@/shadcn/components/table";
 import type { IPosition, ISector } from "../../interface";
 
 function renderPositionData({
@@ -26,11 +26,6 @@ export function positionsColumn(
       header="ຕໍາແໜ່ງ"
       accessorKey="id"
       id="position"
-      enableSorting
-      enableHiding
-      filter={(props: TableFilterProps) => (
-        <Table.Filter.Search {...props} title="Search position" />
-      )}
       cell={({ row: { original } }) => {
         const filteredSectorData = (
           sectorData as { data?: ISector[] }

@@ -7,7 +7,7 @@ import { Input, Label } from "@src/shadcn/elements";
 import React, { useEffect, useState } from "react";
 import { useFieldArray } from "react-hook-form";
 import { useFormConfig } from "./config";
-import { usePositionSelect } from "../../lib/select";
+import { usePositionSelect } from "../../../../(personal)/profile/lib/select";
 
 export const EmployeeForm = ({ redirect = "list", id }: { redirect: RedirectAction, id: number }) => {
   const formConfig = useFormConfig(redirect);

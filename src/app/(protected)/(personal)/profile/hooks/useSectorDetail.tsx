@@ -1,5 +1,5 @@
 import { useList } from "@refinedev/core";
-import type { IPosition } from "../interface";
+import type { IPosition } from "../../../(career)/employee/interface";
 
 export function usePositionDetail({ sectorId }: { sectorId: number[] }): { data: IPosition[] } {
   const { data, error, isError } = useList<IPosition>({

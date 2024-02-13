@@ -10,7 +10,7 @@ import type {
   ISector,
   IPersonalAddress,
   IProfile,
-} from "../../interface";
+} from "../../../../(career)/employee/interface";
 import { EmployeeCard } from "../../containers/show/employeeCardProfile";
 import React from "react";
 import {
@@ -32,7 +32,6 @@ export default function EmployeeShow({ params }: { params: { id: number } }): JS
   const position = usePositionId(dataEmployee?.data);
   const filtersSector = filterSector({ sectorId: position });
   const sectorData = useListService<ISector>({ resource: "sector", filters: filtersSector });
-  console.log("filtersSector", filtersSector);
   const { data: personalAddressData } = useList<IPersonalAddress>({
     resource: "personal_address",
     errorNotification: false,

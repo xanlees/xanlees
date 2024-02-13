@@ -1,6 +1,6 @@
 /* eslint-disable max-nested-callbacks */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import type { IProfile } from "../interface";
+import type { IProfile } from "../../../(career)/employee/interface";
 
 export function usePositionId(employees: IProfile[]) {
   const positionIds = employees.flatMap((profile) =>

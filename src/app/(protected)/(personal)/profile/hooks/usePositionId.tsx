@@ -1,4 +1,4 @@
-import type { IEmployee } from "../interface";
+import type { IEmployee } from "../../../(career)/employee/interface";
 export function usePositionId(employees: IEmployee[]) {
   const positionIds: number[] = employees?.map((employee) =>
     employee?.positionId?.sectorId ?? 0,

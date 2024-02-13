@@ -27,6 +27,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(protected)/(career)/employee/containers/show/employeeCardProfile.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(protected)/(personal)/profile/containers/show/employeeCardProfile.tsx"],
   "exclude": ["node_modules"]
 }

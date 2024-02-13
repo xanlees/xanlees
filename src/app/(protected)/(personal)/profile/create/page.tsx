@@ -11,8 +11,8 @@ import FormStep from "@src/common/components/stepForm";
 import { hasValid } from "../../../../../common/lib/validation/hasValid";
 
 const breadcrumbs = [
-  { label: "Employee", href: "/employee" },
-  { label: "Create" },
+  { label: "ພະນັກງານ", href: "/profile" },
+  { label: "ສ້າງພະນັກງານ" },
 ];
 
 const ProfileCreate = () => {
@@ -39,7 +39,7 @@ const FormCreate = () => {
   };
   return (
     <Create
-      resource="employee"
+      resource="profile"
       breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
     >
       <FormStep formStepsData={formStepsData} initialStep={initialStep} />

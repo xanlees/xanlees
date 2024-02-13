@@ -7,8 +7,6 @@ export const ApplicationDate = (
     header="ສະໝັກວັນທີ"
     id="createdOn"
     accessorKey="createdOn"
-    enableSorting
-    enableHiding
     cell={(props) => {
       const createdOn = props.getValue();
       if (typeof createdOn === "string") {

@@ -7,8 +7,6 @@ export function sectorColumn(sectorData: ISector[]) {
       header={"ຂະແໜງ"}
       accessorKey="id"
       id="sector"
-      enableSorting
-      enableHiding
       cell={({ row: { original } }) => {
         const displaySectors = (sectorData as { data?: ISector[] })?.data
           ?.filter((item) => item?.branchId === original.id)

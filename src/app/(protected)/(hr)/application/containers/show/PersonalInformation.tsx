@@ -4,7 +4,7 @@
 import type { IProfile } from "../../interface";
 import { Card, CardContent, CardTitle } from "@src/shadcn/elements";
 import moment from "moment";
-import { getGenderDisplayText, getMaritalStatusDisplayText } from "@src/app/(protected)/(career)/employee/lib/genderUtils";
+import { getGenderDisplayText, getMaritalStatusDisplayText } from "@src/app/(protected)/(personal)/profile/lib/genderUtils";
 
 export const PersonalInformation: React.FC<{ data?: IProfile, physicalProfile: any, record: any, personalAddressData: any }> = ({ data, physicalProfile, record, personalAddressData }) => {
   const birthday = data?.birthday ?? "";

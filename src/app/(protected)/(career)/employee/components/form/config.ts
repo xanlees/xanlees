@@ -3,8 +3,10 @@ import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import type * as z from "zod";
 import { employeeSchema } from "./validation";
+import { useNavigation } from "@refinedev/core";
 
 export const useFormConfig = (redirect: RedirectAction) => {
+  const { goBack } = useNavigation();
   const { ...form } = useForm<z.infer<typeof employeeSchema>>({
     resolver: zodResolver(employeeSchema),
     refineCoreProps: {
@@ -12,7 +14,9 @@ export const useFormConfig = (redirect: RedirectAction) => {
         enabled: true,
       },
       resource: "employee",
-      redirect,
+      onMutationSuccess: () => {
+        goBack();
+      },
     },
     warnWhenUnsavedChanges: true,
   });
