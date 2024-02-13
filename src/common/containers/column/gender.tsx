@@ -1,5 +1,5 @@
 "use client";
-import { Table } from "@/shadcn/components/table";
+import { Table, type TableFilterProps } from "@/shadcn/components/table";
 import { type GenderType } from "@src/common/interface";
 import { Badge } from "@src/shadcn/elements";
 
@@ -11,6 +11,9 @@ export function GenderColumn(accessorKey: string) {
       id="gender"
       enableSorting
       enableHiding
+      filter={(props: TableFilterProps) => (
+        <Table.Filter.Search {...props} title="Search Gender" />
+      )}
       cell={(props) => {
         const gender = props.getValue() as unknown as GenderType;
         const displayText = getGenderDisplayText(gender);

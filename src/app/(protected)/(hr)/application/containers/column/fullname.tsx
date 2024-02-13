@@ -1,6 +1,6 @@
 "use client";
-import { Table } from "@/shadcn/components/table";
 import type { IProfile } from "../../interface";
+import { Table, type TableFilterProps } from "@/shadcn/components/table";
 
 export function FullNameColumn(accessorKey: string) {
   return (
@@ -8,6 +8,11 @@ export function FullNameColumn(accessorKey: string) {
       accessorKey={accessorKey}
       header={"ຊື່ ແລະ ນາມສະກຸນ (ຊຶ່ຫຼີ້ນ)"}
       id="fullname"
+      enableSorting
+      enableHiding
+      filter={(props: TableFilterProps) => (
+        <Table.Filter.Search {...props} title="Search Phone number" />
+      )}
       cell={(props) => {
         console.log("props.row.original.profileId ", props.row.original.profileId);
         const { fullname, nickname } = (props.row.original.profileId as IProfile) ?? {};
