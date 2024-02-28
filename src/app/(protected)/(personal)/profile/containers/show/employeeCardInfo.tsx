@@ -1,185 +1,78 @@
-/* eslint-disable @typescript-eslint/member-delimiter-style */
-/* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/strict-boolean-expressions, max-lines, max-lines-per-function, max-nested-callbacks */
-/* eslint-disable @typescript-eslint/naming-convention */
-import { MapPinned, GraduationCap, CalendarDays, Badge } from "lucide-react";
-import moment from "moment";
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { Badge } from "lucide-react";
 import React from "react";
-import { Badge as ShadcnBadge } from "@src/shadcn/elements/badge";
 
-export const AddressSection: React.FC<any> = ({
-  personalAddressData,
-}) => {
-  return (
-    <>
-      <div className="my-4 text-2xl font-bold">ທີ່ຢູ່</div>
-      <div className="flex flex-wrap">
-        <div className="px-2">
-          <MapPinned className="w-5 h-5 mt-0.5" />
-        </div>
-        <div className="font-bold">ສະຖານທີ່ເກີດ:</div>
-        <div className="px-2">
-          {`ບ້ານ${personalAddressData?.bornVillage} - ${personalAddressData?.bornDistrictId?.districtName} - ແຂວງ${personalAddressData?.bornDistrictId?.provinceName}`}
-        </div>
-      </div>
-      <div className="flex flex-wrap">
-        <div className="px-2">
-          <MapPinned className="w-5 h-5 mt-0.5" />
-        </div>
-        <div className="font-bold">ທີ່ຢູ່ປະຈຸບັນ:</div>
-        <div className="px-2">
-          {`ບ້ານ${personalAddressData?.currentVillage} - ${personalAddressData?.currentDistrictId?.districtName} - ແຂວງ${personalAddressData?.currentDistrictId?.provinceName}`}
-        </div>
-      </div>
-    </>
-  );
-};
-
-interface EducationSectionProps {
-  educationData?: {
-    data?: Array<{
-      sector?: string
-      branch?: string
-      graduationDetail?: { degree?: string, sector?: string }
-    }>
-  }
-}
-
-export const EducationSection: React.FC<EducationSectionProps> = ({
-  educationData,
-}) => {
-  return (
-    <>
-      <div className="my-4 text-2xl font-bold">ການສຶກສາ</div>
-      {educationData?.data?.[0] === undefined ? "ຍັງບໍ່ທັນຕື່ມຂໍ້ມູນ" : ""}
-      {educationData?.data?.map((education, index) => (
-        <React.Fragment key={index}>
-          <div className="flex flex-wrap">
-            <div className="px-2">
-              <GraduationCap className="w-5 h-5 mt-0.5" />
-            </div>
-            <div className="font-bold">ລະດັບຈົບການສຶກສາວິຊາສະເພາະ:</div>
-            <div className="px-2">{`${education?.graduationDetail?.degree} - ${education?.graduationDetail?.sector}`}</div>
-          </div>
-        </React.Fragment>
-      ))}
-    </>
-  );
-};
-
-interface JoiningDateSectionProps {
-  joiningDate?: string
-}
-export const JoiningDateSection: React.FC<JoiningDateSectionProps> = ({
-  joiningDate,
-}) => {
-  const formattedDate = joiningDate !== undefined ? moment(joiningDate).format("MMMM DD, YYYY") : "";
-  return (
-    <>
-      <div className="my-4 text-2xl font-bold">ວັນທີ ເດືອນປີ ເຂົ້າວຽກກັບ</div>
-      <div className="flex flex-wrap">
-        <div className="px-2">
-          <CalendarDays className="w-5 h-5 mt-0.5" />
-        </div>
-        <div className="font-bold">ວັນທີ ເດືອນປີ ເຂົ້າວຽກກັບ ບໍລິສັດ:</div>
-        <div className="px-2">
-          <div>{formattedDate}</div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-export const SectionPosition: React.FC<{
-  employee?: any
-  sectorData?: any
-}> = ({ employee, sectorData }) => {
+export const SectionPosition: React.FC<{ employee?: any, sectorData?: any }> = ({ employee, sectorData }) => {
   return (
     <>
       <div className="mb-4 text-2xl font-bold">ຕໍາແໜ່ງ</div>
-      {employee.data.map((item: {
-        isLatest: any, id: React.Key | null | undefined, positionId: { name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined, id: any }
-      }) => {
-        return <div
-          key={item.id}
-          className="my-4"
-        >
-          <div className="flex flex-wrap ">
-            <div className="px-2">
-              <Badge className="w-5 h-5 mt-0.5" />
+      {employee.data.map((item: { isLatest: any, id: React.Key | null | undefined, positionId: { name: any, id: any, sectorId: any } }) => {
+        return (
+          <div key={item.id} className="my-4">
+            <div className="flex flex-wrap ">
+              <div className="px-2">
+                <Badge className="w-5 h-5 mt-0.5" />
+              </div>
+              <div className="font-bold">
+                  ຕໍາແໜ່ງ: {item?.isLatest ? "ຕໍາແໜ່ງໃນອະດິດ" : "ຕໍາແໜ່ງປະຈຸບັນ"}
+              </div>
+              <div className="px-2">{item.positionId?.name}</div>
             </div>
-            <div className="font-bold">
-              ຕໍາແໜ່ງ: {item?.isLatest ? "ຕໍາແໜ່ງໃນອະດິດ" : "ຕໍາປະຈຸບັນ"}
-            </div>
-            <div className="px-2">{item.positionId?.name}</div>
+            <SectionBranch item={item} sectorData={sectorData}/>
+            <SectionSector item={item} sectorData={sectorData}/>
           </div>
-          <div className="flex flex-wrap">
-            <div className="px-2">
-              <Badge className="w-5 h-5 mt-0.5" />
-            </div>
-            <div className="font-bold">ຂະແໜງ:</div>
-            <div className="px-2">
-              {sectorData?.data.map((sector: { id: React.Key | null | undefined, name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined }) => (
-                <div key={sector.id}>
-                  {item.positionId.id === sector.id
-                    ? (
-                      <div>{sector.name}</div>)
-                    : null}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-wrap">
-            <div className="px-2">
-              <Badge className="w-5 h-5 mt-0.5" />
-            </div>
-            <div className="font-bold">ສາຂາ:</div>
-
-            <div className="px-2">
-              {" "}
-              {sectorData?.data.map((sector: { id: React.Key | null | undefined; branchDetail: { name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }; }) => (
-                <div key={sector.id}>
-                  {item.positionId.id === sector.id
-                    ? (
-                      <div>{sector.branchDetail.name}</div>)
-                    : null}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>;
-      })}
+        );
+      },
+      )}
     </>
   );
 };
 
-export const UniqueNumber: React.FC<{
-  record?: any
-}> = ({ record }) => {
-  const codeType = getTypeDisplayText(
-    record?.data?.[0]?.profileId?.typeOfUniqueNumber,
-  );
-  const uniqueNumberList = record?.data?.[0]?.profileId?.uniqueNumber ?? [];
+export const SectionBranch: React.FC<{ item?: any, sectorData?: any }> = ({ item, sectorData }) => {
   return (
-    <div>
-      <div className="mb-4 text-2xl font-bold">{codeType}</div>
-      <div className="flex flex-wrap">
-        <div className="gap-2 px-2">
-          {uniqueNumberList.map((item: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined) => (
-            <ShadcnBadge className="mx-1.5">{item}</ShadcnBadge>
-          ))}
-        </div>
+    <div className="flex flex-wrap">
+      <div className="px-2">
+        <Badge className="w-5 h-5 mt-0.5" />
+      </div>
+      <div className="font-bold">ຂະແໜງ:</div>
+      <div className="px-2">
+        {sectorData?.data.map((sector: { id: any, name: any }) => {
+          return (
+            <div key={sector.id}>
+              {item.positionId.sectorId === sector.id
+                ? (
+                  <div>{sector.name}</div>)
+                : null}
+            </div>
+          );
+        },
+        )}
       </div>
     </div>
   );
 };
 
-const getTypeDisplayText = (type: string | undefined): string => {
-  if (type === "IDENTIFY") {
-    return "ເລກບັດປະຈໍາຕົວ";
-  } else if (type === "CENSUS_BOOK") {
-    return "ປື້ມສໍາມະໂມຄົວເລກທີ";
-  } else if (type === "MACHINE") {
-    return "ເລກເຄື່ອງຂາຍເລກ";
-  }
-  return "";
+export const SectionSector: React.FC<{ item?: any, sectorData?: any }> = ({ item, sectorData }) => {
+  return (
+    <div className="flex flex-wrap">
+      <div className="px-2">
+        <Badge className="w-5 h-5 mt-0.5" />
+      </div>
+      <div className="font-bold">ສາຂາ:</div>
+      <div className="px-2">
+        {sectorData?.data.map((sector: { id: any, branchDetail: { name: any } }) => {
+          return <div key={sector.id}>
+            {item?.positionId?.sectorId === sector.id
+              ? (
+                <div>{sector.branchDetail.name}</div>)
+              : null}
+          </div>;
+        },
+        )}
+      </div>
+    </div>
+  );
 };
+

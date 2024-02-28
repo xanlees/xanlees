@@ -53,7 +53,7 @@ export const profileSchema = z
         message:
           "ຂະໜາດຮູບບໍ່ເກີນ 10MB. ແລະ ປະເພດຮູບ .jpg, .jpeg, .png",
       },
-    ),
+    ).nullable(),
     maritalStatus: z
       .enum(validMaritalStatus)
       .refine((value) => validMaritalStatus.includes(value), {

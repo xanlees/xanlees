@@ -14,15 +14,15 @@ import type {
 import { EmployeeCard } from "../../containers/show/employeeCardProfile";
 import React from "react";
 import {
-  AddressSection,
-  EducationSection,
-  JoiningDateSection,
   SectionPosition,
-  UniqueNumber,
 } from "../../containers/show/employeeCardInfo";
 import { DocumentPDF } from "../../containers/show/DocumentPDF";
 import { useListService, filterProfile, filterEmployee, filterSector } from "../../hooks/useEmployee";
 import { usePositionId } from "../../hooks/usePositionId";
+import { AddressSection } from "../../containers/show/AddressSection";
+import { EducationSection } from "../../containers/show/EducationSection";
+import { JoiningDateSection } from "../../containers/show/JoiningDateSection";
+import { UniqueNumber } from "../../containers/show/UniqueNumber";
 
 export default function EmployeeShow({ params }: { params: { id: number } }): JSX.Element {
   const filtersProfile = filterProfile({ profileId: params?.id });
@@ -80,3 +80,4 @@ export default function EmployeeShow({ params }: { params: { id: number } }): JS
     </Show>
   );
 }
+

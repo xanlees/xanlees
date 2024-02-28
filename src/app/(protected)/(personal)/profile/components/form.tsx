@@ -11,10 +11,9 @@ interface ProfileFormProps {
 }
 export const ProfileForm: React.FC<ProfileFormProps> = ({
   setCurrentStep,
-  setProfileID,
   isEmployee,
 }) => {
-  const formConfig = useFormConfig({ setCurrentStep, setProfileID });
+  const formConfig = useFormConfig({ setCurrentStep });
   return (
     <div className="w-[39%] rounded-full ">
       <Form {...formConfig.form}>

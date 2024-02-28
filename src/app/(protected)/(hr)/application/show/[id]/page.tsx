@@ -51,3 +51,4 @@ export default function ApplicationShow({ params }: Readonly<{ params: { id: num
     </Show>
   );
 }
+

@@ -9,7 +9,7 @@ export interface ProfileSendData {
   uniqueNumber: Array<{
     uniqueNumber: string
   }>
-  profilePicture: FileList
+  profilePicture: FileList | null
   maritalStatus: "SINGLE" | "MARRIED"
 }
 
