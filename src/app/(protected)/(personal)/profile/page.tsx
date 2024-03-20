@@ -1,42 +1,34 @@
 "use client";
 
-import { List } from "@/shadcn/components/crud";
-import { Table } from "@/shadcn/components/table";
-import { useUserFriendlyName } from "@refinedev/core";
-import { useTable } from "@refinedev/react-table";
-import type {
-  IPosition,
-  IProfile,
-} from "../../(career)/employee/interface";
-import { getSelectColumn } from "@src/common/containers/column/select";
+import { DateOfBirth, FullNameColumn, getLatestPosition } from './containers/column';
+import { getActionsColumn } from '@src/common/containers/column/action';
+import { getSelectColumn } from '@src/common/containers/column/select';
+import { List } from '@/shadcn/components/crud';
+import { Table } from '@/shadcn/components/table';
+import { useUserFriendlyName } from '@refinedev/core';
+import type { IPosition } from "../../(career)/employee/interface";
+import { GenderColumn, PhoneNumberColumn, MarriageColumn, } from "@src/common/containers/column";
 import {
-  DateOfBirth,
-  FullNameColumn,
-} from "./containers/column";
-import { GenderColumn, PhoneNumberColumn, MarriageColumn } from "@src/common/containers/column";
-import { type PersonalAddressData, getCurrentAddress } from "./containers/column/current-address";
-import { getActionsColumn } from "@src/common/containers/column/action";
-import { usePersonalAddressDetail } from "./hooks/useCurrentAddressDetail";
-import { useCurrentAddressID } from "./hooks/useCurrentAddressID";
-import { useLatestPositionId } from "./hooks/useLatestPositionId";
-import { useLatestPositionDetail } from "./hooks/useLatestPositionDetails";
-import { getLatestPosition } from "./containers/column/latestPosition";
+  type PersonalAddressData,
+  getCurrentAddress,
+} from "./containers/column/current-address";
+import {
+  usePersonalAddressDetail,
+  useCurrentAddressID,
+  useLatestPositionId,
+  useLatestPositionDetail,
+  useTableConfig,
+} from "./hooks";
 
-const resource = "profile";
 export default function ProfileList(): JSX.Element {
-  const table = useTable<IProfile>({
-    columns: [],
-    enableSorting: true,
-    enableColumnFilters: true,
-    refineCoreProps: { resource },
-  });
+  const { table } = useTableConfig();
   const profile = table.options.data ?? [];
   const currentAddressId = useCurrentAddressID(profile);
-  const personalAddressData: PersonalAddressData = usePersonalAddressDetail(currentAddressId, profile);
+  const personalAddressData: PersonalAddressData = usePersonalAddressDetail( currentAddressId, profile );
   const positionId = useLatestPositionId(profile);
-  const positionData = useLatestPositionDetail(positionId, profile) as { data: { data: IPosition[] } };
-
+  const positionData = useLatestPositionDetail(positionId, profile) as { data: { data: IPosition[] }; };
   const friendly = useUserFriendlyName();
+
   return (
     <List>
       <Table table={table}>
@@ -53,4 +45,3 @@ export default function ProfileList(): JSX.Element {
     </List>
   );
 }
-
