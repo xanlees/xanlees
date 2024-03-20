@@ -1,17 +1,11 @@
 "use client";
 
-import { DateOfBirth, FullNameColumn, getLatestPosition } from './containers/column';
-import { getActionsColumn } from '@src/common/containers/column/action';
-import { getSelectColumn } from '@src/common/containers/column/select';
+import { DateOfBirth, FullNameColumn, getCurrentAddress, getLatestPosition, PersonalAddressData } from './containers/column';
 import { List } from '@/shadcn/components/crud';
 import { Table } from '@/shadcn/components/table';
 import { useUserFriendlyName } from '@refinedev/core';
 import type { IPosition } from "../../(career)/employee/interface";
-import { GenderColumn, PhoneNumberColumn, MarriageColumn, } from "@src/common/containers/column";
-import {
-  type PersonalAddressData,
-  getCurrentAddress,
-} from "./containers/column/current-address";
+import { GenderColumn, PhoneNumberColumn, MarriageColumn, getSelectColumn, getActionsColumn, } from "@src/common/containers/column";
 import {
   usePersonalAddressDetail,
   useCurrentAddressID,

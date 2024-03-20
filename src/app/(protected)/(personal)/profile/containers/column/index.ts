@@ -4,3 +4,4 @@ export * from "./fullname";
 export * from "./phonenumber";
 export * from "./Position";
 export * from "./latestPosition"
+export * from './current-address'
