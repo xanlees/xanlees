@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable max-lines-per-function */
-
 "use client";
 import { useList } from "@refinedev/core";
 import { Show } from "@/shadcn/components/crud";
@@ -17,12 +13,14 @@ import {
   SectionPosition,
 } from "../../containers/show/employeeCardInfo";
 import { DocumentPDF } from "../../containers/show/DocumentPDF";
-import { useListService, filterProfile, filterEmployee, filterSector } from "../../hooks/useEmployee";
+import { useListService } from "../../hooks/useEmployee";
 import { usePositionId } from "../../hooks/usePositionId";
 import { AddressSection } from "../../containers/show/AddressSection";
 import { EducationSection } from "../../containers/show/EducationSection";
 import { JoiningDateSection } from "../../containers/show/JoiningDateSection";
 import { UniqueNumber } from "../../containers/show/UniqueNumber";
+import { filterSector } from "../../hooks/useSectorID";
+import { filterEmployee, filterProfile } from "../../hooks/useFilterProfile";
 
 export default function EmployeeShow({ params }: { params: { id: number } }): JSX.Element {
   const filtersProfile = filterProfile({ profileId: params?.id });

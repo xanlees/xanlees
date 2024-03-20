@@ -9,6 +9,12 @@ interface UseResourceListProps {
     value: string | number | number[]
   }>
 }
+export interface FilterObjects {
+  field: string
+  operator: "eq"
+  value: string | number | number[]
+
+}
 
 export const useListService = <T extends BaseRecord>({ resource, filters, pageSize }: UseResourceListProps): GetListResponse<T> | typeof defaultData => {
   const { data } = useList<T>({
@@ -17,54 +23,9 @@ export const useListService = <T extends BaseRecord>({ resource, filters, pageSi
     pagination: { pageSize },
     errorNotification: false,
   });
+  const defaultData = {
+    data: [],
+    total: 0,
+  };
   return data ?? defaultData;
 };
-
-export interface FilterObjects {
-  field: string
-  operator: "eq"
-  value: string | number | number[]
-
-}
-
-const defaultData = {
-  data: [],
-  total: 0,
-};
-
-export function filterProfile({ profileId }: { profileId?: number }): FilterObjects[] {
-  const filters: FilterObjects[] = [];
-  if (profileId !== undefined) {
-    filters.push({
-      field: "id",
-      operator: "eq",
-      value: profileId,
-    });
-  }
-  return filters;
-}
-
-export function filterEmployee({ profileId }: { profileId?: number }): FilterObjects[] {
-  const filters: FilterObjects[] = [];
-  if (profileId !== undefined) {
-    filters.push({
-      field: "profile_id",
-      operator: "eq",
-      value: profileId,
-    });
-  }
-  return filters;
-}
-
-export function filterSector({ sectorId }: { sectorId: number[] }): FilterObjects[] {
-  const filters: FilterObjects[] = [];
-  if (sectorId !== undefined) {
-    filters.push({
-      field: "id",
-      operator: "eq",
-      value: sectorId,
-    });
-  }
-  return filters;
-}
-
