@@ -17,6 +17,7 @@ import {
     DialogTitle,
 } from "../../../elements";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import React from "react";
 
 type DeleteActionProps = RowActionProps & {
     row: any;

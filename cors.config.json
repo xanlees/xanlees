@@ -1,0 +1,8 @@
+[
+    {
+      "origin": ["https://workhub.bestech.la/"],
+      "method": ["GET"],
+      "responseHeader": ["Content-Type"],
+      "maxAgeSeconds": 3600
+    }
+  ]
