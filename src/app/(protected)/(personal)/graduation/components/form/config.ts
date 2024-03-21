@@ -1,10 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import type * as z from "zod";
 import { graduationSchema } from "./validation";
 
-export const useFormConfig = (redirect: RedirectAction) => {
+export const useFormConfig = () => {
   const { ...form } = useForm<z.infer<typeof graduationSchema>>({
     resolver: zodResolver(graduationSchema),
     refineCoreProps: {
@@ -12,7 +11,7 @@ export const useFormConfig = (redirect: RedirectAction) => {
       autoSave: {
         enabled: true,
       },
-      redirect,
+      redirect: false,
     },
     warnWhenUnsavedChanges: true,
   });

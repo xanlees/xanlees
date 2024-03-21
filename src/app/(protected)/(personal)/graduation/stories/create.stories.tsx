@@ -1,5 +1,5 @@
 import React from "react";
-import { FormGraduation } from "../components/form";
+import { FormGraduation } from "../components/form/form";
 
 export default {
   title: "Personal/graduation/graduationCreate",

@@ -7,7 +7,7 @@ import { Card, Input } from "@src/shadcn/elements";
 import React, { useEffect, useState } from "react";
 import { useFieldArray } from "react-hook-form";
 import { type IGraduation } from "../interface";
-import { FormGraduation } from "../../graduation/components/form";
+import { FormGraduation } from "../../graduation/components/form/form";
 import { useFormConfig } from "./config";
 import { useProfileContext } from "../../context";
 
