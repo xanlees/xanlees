@@ -1,4 +1,4 @@
-import { FilterObjects } from "./useEmployee";
+import { type FilterObjects } from "./useEmployee";
 
 export function filterEmployee({ profileId }: { profileId?: number }): FilterObjects[] {
   const filters: FilterObjects[] = [];
@@ -11,7 +11,6 @@ export function filterEmployee({ profileId }: { profileId?: number }): FilterObj
   }
   return filters;
 }
-
 
 export function filterProfile({ profileId }: { profileId?: number }): FilterObjects[] {
   const filters: FilterObjects[] = [];

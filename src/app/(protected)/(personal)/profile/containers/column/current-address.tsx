@@ -13,7 +13,7 @@ export function getCurrentAddress(personalAddressData: PersonalAddressData) {
       id="personalAddressId"
       accessorKey="personalAddressId"
       cell={({ row }) => {
-        const currentDistrict = row.original.personalAddressId.id as number;
+        const currentDistrict = row.original?.personalAddressId?.id as number;
         const displayText = personalAddressData?.data?.find((item) => item?.id === currentDistrict);
         return (
           <div>

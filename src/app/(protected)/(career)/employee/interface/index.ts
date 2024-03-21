@@ -1,12 +1,11 @@
 export interface IEmployee {
-  [x: string]: any
   positionId: {
     id: number
     sectorId: number
     name: string
   }
   joiningDate: string
-  isLatest: string
+  isLatest: boolean
   id: number
   profileId: IProfile
 }
@@ -29,6 +28,15 @@ export interface IProfile {
   uniqueNumber: string[]
   typeOfUniqueNumber: "IDENTIFY" | "CENSUS_BOOK" | "MACHINE"
   employee: Employee[]
+}
+interface Employee {
+  [x: string]: any
+  id: number
+  positionId: number
+  joiningDate: string
+  isLatest: boolean
+  updatedOn: string
+  createdOn: string
 }
 export interface IGender {
   gender: "MALE" | "FEMALE" | "OTHER" | null
@@ -62,8 +70,7 @@ interface IGraduation {
 export interface IEducation {
   id: number
   profileId: number
-  graduationId: number
-  graduationDetail: IGraduation
+  graduationId: IGraduation
   branch: string
   sector: string
   year: string
@@ -71,21 +78,12 @@ export interface IEducation {
 export interface ISector {
   id: number
   name: string
-  branchId: number
-  branchDetail: {
+  branchId: {
     id: number
     name: string
   }
 }
-interface Employee {
-  [x: string]: any
-  id: number
-  positionId: number
-  joiningDate: string
-  isLatest: boolean
-  updatedOn: string
-  createdOn: string
-}
+
 export interface IPosition {
   name: string
   id: number

@@ -30,14 +30,13 @@ export interface IErrorMessageNotification {
   message: string
 }
 export interface IEmployee {
-  [x: string]: any
   positionId: {
     id: number
     sectorId: number
     name: string
   }
   joiningDate: string
-  isLatest: string
+  isLatest: boolean
   id: number
   profileId: IProfile
 }
@@ -80,11 +79,12 @@ export interface IDistrict {
 }
 export interface IPersonalAddress {
   id: number
-  bornDistrictId: IDistrict
-  currentDistrictId: IDistrict
-  bornVillage: string
-  currentVillage: string
+  village: string
+  status: string
+  houseNo: string
+  profile: number
 }
+
 interface IGraduation {
   id: number
   degree: string
@@ -93,8 +93,7 @@ interface IGraduation {
 export interface IEducation {
   id: number
   profileId: number
-  graduationId: number
-  graduationDetail: IGraduation
+  graduationId: IGraduation
   branch: string
   sector: string
   year: string
@@ -102,14 +101,12 @@ export interface IEducation {
 export interface ISector {
   id: number
   name: string
-  branchId: number
-  branchDetail: {
+  branchId: {
     id: number
     name: string
   }
 }
 interface Employee {
-  [x: string]: any
   id: number
   positionId: number
   joiningDate: string

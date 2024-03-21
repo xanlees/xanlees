@@ -1,77 +1,35 @@
 "use client";
-import { useList } from "@refinedev/core";
 import { Show } from "@/shadcn/components/crud";
-import type {
-  IEducation,
-  ISector,
-  IPersonalAddress,
-  IProfile,
-} from "../../../../(career)/employee/interface";
-import { EmployeeCard } from "../../containers/show/employeeCardProfile";
 import React from "react";
-import {
-  SectionPosition,
-} from "../../containers/show/employeeCardInfo";
+import { useEmployees, usePersonalAddress, useProfile } from "../../hooks";
+import { ProfileDetail } from "../../containers/show/ProfileDetail";
+import { EmployeeDetail } from "../../containers/show/Employee";
+import { useSector, useSectorId } from "../../hooks/useSector";
+import { EducationDetail } from "../../containers/show/Education";
+import { useEducation } from "../../hooks/useEducation";
+import type { IEducation, IEmployee, IPersonalAddress, IProfile, ISector } from "@src/common/interface/interface";
 import { DocumentPDF } from "../../containers/show/DocumentPDF";
-import { useListService } from "../../hooks/useEmployee";
-import { usePositionId } from "../../hooks/usePositionId";
-import { AddressSection } from "../../containers/show/AddressSection";
-import { EducationSection } from "../../containers/show/EducationSection";
-import { JoiningDateSection } from "../../containers/show/JoiningDateSection";
-import { UniqueNumber } from "../../containers/show/UniqueNumber";
-import { filterSector } from "../../hooks/useSectorID";
-import { filterEmployee, filterProfile } from "../../hooks/useFilterProfile";
+import { AddressDetail } from "../../containers/show/Address";
 
-export default function EmployeeShow({ params }: { params: { id: number } }): JSX.Element {
-  const filtersProfile = filterProfile({ profileId: params?.id });
-  const dataProfile = useListService<IProfile>({ resource: "profile", filters: filtersProfile });
-  const filtersEmployee = filterEmployee({ profileId: params?.id });
-  const dataEmployee = useListService<any>({ resource: "employee", filters: filtersEmployee });
-  const position = usePositionId(dataEmployee?.data);
-  const filtersSector = filterSector({ sectorId: position });
-  const sectorData = useListService<ISector>({ resource: "sector", filters: filtersSector });
-  const { data: personalAddressData } = useList<IPersonalAddress>({
-    resource: "personal_address",
-    errorNotification: false,
-    filters: [
-      {
-        field: "id",
-        operator: "eq",
-        value: dataEmployee?.data?.[0]?.personalAddressId?.id,
-      },
-    ],
-  });
-  const { data: educationData } = useList<IEducation>({
-    resource: "education",
-    errorNotification: false,
-    filters: [
-      {
-        field: "profile_id",
-        operator: "eq",
-        value: params?.id,
-      },
-    ],
-  });
+export default function ProfileShow({ params }: { params: { id: number } }): JSX.Element {
+  const { data: profileData } = useProfile<IProfile>({ profileId: params.id });
+  const { data: employeeData } = useEmployees<IEmployee>({ profileId: params.id });
+  const { data: educationData } = useEducation<IEducation[]>({ profileId: params.id });
+  const { data: personalAddressData } = usePersonalAddress<IPersonalAddress[]>({ profileId: params.id });
+  const sectorId = useSectorId(employeeData as IEmployee[]);
+  const { data: sectorData } = useSector<ISector>({ sectorId });
   return (
     <Show>
-      <div className="py-5">
-        <div className="grid grid-cols-4 gap-6 sm:grid-cols-12">
-          <div className="col-span-4 sm:col-span-3">
-            <EmployeeCard dataProfile={dataProfile} />
+      <div className="md:flex flex-row gap-2 mt-5">
+        <ProfileDetail profileData={profileData} />
+        <div className=" space-y-2">
+          <div className="flex w-full gap-2 ">
+            <EmployeeDetail employeeData={employeeData} sectorData={sectorData}/>
+            <DocumentPDF profileId={params?.id}/>
           </div>
-          <div className="col-span-4 sm:col-span-9">
-            <div className="p-6 my-2 border rounded-lg">
-              <SectionPosition employee={dataEmployee} sectorData={sectorData} />
-              <AddressSection personalAddressData={personalAddressData?.data?.[0]} />
-              <EducationSection educationData={educationData} />
-              <JoiningDateSection joiningDate={dataEmployee?.data?.[0]?.joiningDate} />
-            </div>
-            <div className="flex-row gap-x-2 gap-y-2 sm:flex">
-              <div className="w-full p-6 my-1 border rounded-lg sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
-                <UniqueNumber record={dataEmployee} />
-              </div>
-              <DocumentPDF profileId={params?.id}/>
-            </div>
+          <div className="flex w-full gap-2">
+            <EducationDetail educationData={educationData as IEducation[]} />
+            <AddressDetail personalAddressData={personalAddressData as IPersonalAddress[]} />
           </div>
         </div>
       </div>
