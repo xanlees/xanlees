@@ -1,18 +1,14 @@
 "use client";
 
-import { DateOfBirth, FullNameColumn, getCurrentAddress, getLatestPosition, type PersonalAddressData } from "./containers/column";
+import { DateOfBirth, FullNameColumn, getLatestPosition } from "./containers/column";
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
 import { useUserFriendlyName } from "@refinedev/core";
-import type { IPosition } from "../../(career)/employee/interface";
 import { GenderColumn, PhoneNumberColumn, MarriageColumn, getSelectColumn, getActionsColumn } from "@src/common/containers/column";
-import {
-  usePersonalAddressDetail,
-  useCurrentAddressID,
-  useLatestPositionId,
-  useLatestPositionDetail,
-} from "./hooks";
 import { useTableConfig } from "./components/table/useTableConfig";
+import { useCurrentAddressID, useLatestPositionDetail, useLatestPositionId, usePersonalAddressDetail } from "./hooks/table";
+import { getCurrentAddress, type PersonalAddressData } from "./containers/column/current-address";
+import { type IPosition } from "./interface/interface";
 
 export default function ProfileList(): JSX.Element {
   const { table } = useTableConfig();

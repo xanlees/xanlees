@@ -1,15 +1,22 @@
 "use client";
-import { Show } from "@/shadcn/components/crud";
 import React from "react";
-import { useEmployees, usePersonalAddress, useProfile } from "../../hooks";
-import { ProfileDetail } from "../../containers/row/ProfileDetail";
-import { EmployeeDetail } from "../../containers/row/Employee";
-import { useSector, useSectorId } from "../../hooks/useSector";
-import { EducationDetail } from "../../containers/row/Education";
-import { useEducation } from "../../hooks/useEducation";
+import {
+  AddressDetail,
+  DocumentPDF,
+  EducationDetail,
+  EmployeeDetail,
+  ProfileDetail,
+} from "../../containers/row";
+import { Show } from "@/shadcn/components/crud";
+import {
+  useEducation,
+  useEmployees,
+  usePersonalAddress,
+  useProfile,
+  useSector,
+  useSectorId,
+} from "../../hooks/show";
 import type { IEducation, IEmployee, IPersonalAddress, IProfile, ISector } from "@src/common/interface/interface";
-import { DocumentPDF } from "../../containers/row/DocumentPDF";
-import { AddressDetail } from "../../containers/row/Address";
 
 export default function ProfileShow({ params }: { params: { id: number } }): JSX.Element {
   const { data: profileData } = useProfile<IProfile>({ profileId: params.id });
