@@ -1,5 +1,5 @@
 import { useTable } from "@refinedev/react-table";
-import { type IProfile } from "../interface";
+import { type IProfile } from "../../interface";
 
 export const useTableConfig = () => {
   const table = useTable<IProfile>({

@@ -1,6 +1,6 @@
 /* eslint-disable max-params */
 import * as z from "zod";
-import type { ProfileSendData } from "../interface";
+import type { ProfileSendData } from "../../interface";
 
 const typeUniqueNumber = ["MACHINE", "IDENTIFY", "CENSUS_BOOK"] as const;
 const validGenders = ["MALE", "FEMALE", "OTHER"] as const;

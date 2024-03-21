@@ -1,8 +1,8 @@
 import React from "react";
 import { Form } from "@src/shadcn/components/form";
 import { useFormConfig } from "./config";
-import { BasicInformationSection } from "../containers/form/BasicInformationSection";
-import { PersonalInformationSection } from "../containers/form/PersonalInformationSection";
+import { BasicInformationSection } from "../../containers/form/BasicInformationSection";
+import { PersonalInformationSection } from "../../containers/form/PersonalInformationSection";
 
 interface ProfileFormProps {
   setCurrentStep?: (step: number) => void

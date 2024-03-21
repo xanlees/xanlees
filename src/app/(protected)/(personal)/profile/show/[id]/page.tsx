@@ -2,14 +2,14 @@
 import { Show } from "@/shadcn/components/crud";
 import React from "react";
 import { useEmployees, usePersonalAddress, useProfile } from "../../hooks";
-import { ProfileDetail } from "../../containers/show/ProfileDetail";
-import { EmployeeDetail } from "../../containers/show/Employee";
+import { ProfileDetail } from "../../containers/row/ProfileDetail";
+import { EmployeeDetail } from "../../containers/row/Employee";
 import { useSector, useSectorId } from "../../hooks/useSector";
-import { EducationDetail } from "../../containers/show/Education";
+import { EducationDetail } from "../../containers/row/Education";
 import { useEducation } from "../../hooks/useEducation";
 import type { IEducation, IEmployee, IPersonalAddress, IProfile, ISector } from "@src/common/interface/interface";
-import { DocumentPDF } from "../../containers/show/DocumentPDF";
-import { AddressDetail } from "../../containers/show/Address";
+import { DocumentPDF } from "../../containers/row/DocumentPDF";
+import { AddressDetail } from "../../containers/row/Address";
 
 export default function ProfileShow({ params }: { params: { id: number } }): JSX.Element {
   const { data: profileData } = useProfile<IProfile>({ profileId: params.id });

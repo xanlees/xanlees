@@ -11,8 +11,8 @@ import {
   useCurrentAddressID,
   useLatestPositionId,
   useLatestPositionDetail,
-  useTableConfig,
 } from "./hooks";
+import { useTableConfig } from "./components/table/useTableConfig";
 
 export default function ProfileList(): JSX.Element {
   const { table } = useTableConfig();

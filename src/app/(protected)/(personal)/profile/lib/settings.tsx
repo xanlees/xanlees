@@ -1,4 +1,4 @@
-import { ProfileForm } from "@src/app/(protected)/(personal)/profile/components/form";
+import { ProfileForm } from "@src/app/(protected)/(personal)/profile/components/form /form";
 import { EducationForm } from "../../education/components/form";
 import { DocumentForm } from "../../document/components/form/form";
 import { PersonalAddressForm } from "../../address/components/form/form";
