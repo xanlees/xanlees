@@ -4,7 +4,7 @@ import { type IProfile } from "@src/common/interface/interface";
 import { Badge as ShadcnBadge } from "@src/shadcn/elements/badge";
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage, Card, CardContent, CardHeader, CardTitle } from "@src/shadcn/elements";
-import { getGenderDisplayText, getMaritalStatusDisplayText } from "../../lib/genderUtils";
+import { getGenderDisplayText, getMaritalStatusDisplayText } from "../../../../../../common/lib/genderUtils";
 import moment from "moment";
 export function ProfileDetail({ profileData }: { profileData: IProfile[] }): JSX.Element {
   const { fullname, nickname, phoneNumber, gender, birthday, maritalStatus, profilePicture, uniqueNumber, typeOfUniqueNumber } = profileData?.[0] ?? {};

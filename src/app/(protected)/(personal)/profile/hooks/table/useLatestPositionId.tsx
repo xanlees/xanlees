@@ -1,5 +1,6 @@
 "use client";
-import type { IProfile } from "../../../../(career)/employee/interface";
+
+import { type IProfile } from "../../interface/model";
 
 export function useLatestPositionId(profile: IProfile[]) {
   const latestPosition = profile.map((item: IProfile) => findLatestPosition(item));

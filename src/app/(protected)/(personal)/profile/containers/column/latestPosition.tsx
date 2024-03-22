@@ -1,7 +1,8 @@
 "use client";
 import { Table } from "@/shadcn/components/table";
-import type { IPosition, IProfile } from "../../../../(career)/employee/interface";
 import { Badge } from "@src/shadcn/elements";
+import type { IPosition } from "@career";
+import { type IProfile } from "../../interface/model";
 
 export function getLatestPosition(positionId: number[], positionData: { data: IPosition[] }) {
   return <Table.Column

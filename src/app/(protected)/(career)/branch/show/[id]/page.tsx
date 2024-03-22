@@ -11,7 +11,7 @@ import {
 } from "@src/shadcn/elements/card";
 import { Show } from "@/shadcn/components/crud";
 import { useList, useShow } from "@refinedev/core";
-import type { ISector, IPosition, IBranch } from "../../interface/interface";
+import type { ISector, IPosition, IBranch } from "../../interface";
 import { Badge } from "@src/shadcn/elements";
 
 export default function BranchShow({

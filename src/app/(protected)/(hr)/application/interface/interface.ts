@@ -30,7 +30,6 @@ export interface IApplication {
   appliedPosition: string
   expectedSalary: string
   postId: number
-  postDetail: IPost
   emergencyFullname: string
   emergencyRelationship: string
   emergencyPhoneNumber: string

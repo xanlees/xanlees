@@ -1,5 +1,4 @@
 export * from "./table/useCurrentAddressDetail";
-export * from "./table/useCurrentAddressID";
 export * from "./table/useLatestPositionDetails";
 export * from "./table/useLatestPositionId";
 export * from "./show/useProfile";

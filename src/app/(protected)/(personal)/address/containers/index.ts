@@ -1,3 +1,3 @@
-export * from "./BornVillageInput";
-export * from "./CurrentDistrictSelect";
-export * from "./BornDistrictSelect";
+export * from "./form/form-fields/BornVillageInput";
+export * from "./form/form-fields/CurrentDistrictSelect";
+export * from "./form/form-fields/BornDistrictSelect";

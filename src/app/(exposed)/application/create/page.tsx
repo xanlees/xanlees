@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { Card } from "@src/shadcn/elements";
-import { applicationFromStep } from "@src/app/(protected)/(personal)/profile/lib/settings";
 import FormStep from "@src/common/components/stepForm";
 import {
   ApplicationProvider,
@@ -14,6 +13,7 @@ import {
 import { type ApplicationState } from "@src/app/(protected)/(hr)/application/context/interface";
 import { type ProfileState } from "@src/app/(protected)/(personal)/context/interface";
 import { hasValid } from "@src/common/lib/validation/hasValid";
+import { applicationFromStep } from "@src/app/(protected)/(hr)/application/containers/form/setting";
 
 export default function ApplicationCreate(): JSX.Element {
   return (

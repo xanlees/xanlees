@@ -2,13 +2,13 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Create } from "@/shadcn/components/crud";
-import { formStepsData } from "../lib/settings";
 import { useProfileContext, ProfileProvider, PROFILE_STORAGE_KEY } from "../../context";
 import { type ProfileState } from "../../context/interface";
 import { Button } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 import FormStep from "@src/common/components/stepForm";
-import { hasValid } from "../../../../../common/lib/validation/hasValid";
+import { hasValid } from "@src/common/lib/validation/hasValid";
+import { formStepsData } from "../containers/form/settings";
 
 const breadcrumbs = [
   { label: "ພະນັກງານ", href: "/profile" },

@@ -1,5 +1,6 @@
 import { useMany } from "@refinedev/core";
-import { type IPosition, type IProfile } from "../../../../(career)/employee/interface";
+import { type IProfile } from "../../interface/model";
+import type { IPosition } from "@career";
 
 export function useLatestPositionDetail(positionId: number[], employees: IProfile[]): { data: any } {
   const nonZeroPositionId = positionId.filter((id) => id !== 0);

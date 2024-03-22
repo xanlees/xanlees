@@ -3,7 +3,7 @@ import { Show } from "@/shadcn/components/crud";
 import React from "react";
 import { Card, CardHeader, CardTitle } from "@src/shadcn/elements";
 import moment from "moment";
-import { type IEducation } from "@src/common/interface/interface";
+import { type IEducation } from "@personal";
 
 export function EducationDetail({ educationData }: { educationData: IEducation[] }): JSX.Element {
   return (

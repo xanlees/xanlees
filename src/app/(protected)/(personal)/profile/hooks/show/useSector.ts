@@ -1,5 +1,5 @@
 import { useList, type BaseRecord, type GetListResponse } from "@refinedev/core";
-import { type IEmployee } from "@src/common/interface/interface";
+import { type IEmployee } from "@career";
 
 export function useSector<T extends BaseRecord>({ sectorId }: { sectorId: number[] }): GetListResponse<T> | typeof defaultData {
   const { data } = useList<T>({

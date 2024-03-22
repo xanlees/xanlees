@@ -16,13 +16,15 @@ import {
   useSector,
   useSectorId,
 } from "../../hooks/show";
-import type { IEducation, IEmployee, IPersonalAddress, IProfile, ISector } from "@src/common/interface/interface";
+import { type IProfile } from "../../interface/model";
+import type { IEmployee, ISector } from "@career";
+import type { IEducation, IAddress } from "@personal";
 
 export default function ProfileShow({ params }: { params: { id: number } }): JSX.Element {
   const { data: profileData } = useProfile<IProfile>({ profileId: params.id });
   const { data: employeeData } = useEmployees<IEmployee>({ profileId: params.id });
   const { data: educationData } = useEducation<IEducation[]>({ profileId: params.id });
-  const { data: personalAddressData } = usePersonalAddress<IPersonalAddress[]>({ profileId: params.id });
+  const { data: personalAddressData } = usePersonalAddress<IAddress[]>({ profileId: params.id });
   const sectorId = useSectorId(employeeData as IEmployee[]);
   const { data: sectorData } = useSector<ISector>({ sectorId });
   return (
@@ -36,7 +38,7 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
           </div>
           <div className="flex w-full gap-2">
             <EducationDetail educationData={educationData as IEducation[]} />
-            <AddressDetail personalAddressData={personalAddressData as IPersonalAddress[]} />
+            <AddressDetail personalAddressData={personalAddressData as IAddress[]} />
           </div>
         </div>
       </div>
