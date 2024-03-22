@@ -13,7 +13,7 @@ function renderPositionData({
     (positionData as { data?: IPosition[] }).data
       ?.filter((position) => position?.sectorId === sectorId)
       ?.flatMap((position, positionIndex) => (
-        <div style={{ color: `${stringToColorCode(position?.sectorDetail.name)}` }} key={positionIndex}>{`  - ${position?.name}`}</div>
+        <div className="mt-1 rounded-full dark:w-1/2 dark:text-center dark:bg-white" style={{ color: `${stringToColorCode(position?.sectorDetail.name)}` }} key={positionIndex}>{`  - ${position?.name}`}</div>
       )) ?? []
   );
 }

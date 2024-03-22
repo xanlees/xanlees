@@ -9,12 +9,12 @@ function hashCode(str: string) {
   return hash;
 }
 function hashToColor(hash: number) {
-  const black = 0xFFFFFF;
+  const darkColor = 0xAAAAAA;
   const hex = 16;
   const white = "000000";
   // Use the bitwise AND operation with 0xFFFFFF to get the last 6 digits
   // and convert them to a hexadecimal string.
-  const color = (hash & black).toString(hex).toUpperCase();
+  const color = (hash & darkColor).toString(hex).toUpperCase();
   // Ensure the color code has 6 digits by padding with leading zeros if necessary.
   return `#${white.substring(color.length) + color}`;
 }
