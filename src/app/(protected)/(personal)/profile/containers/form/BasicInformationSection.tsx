@@ -1,8 +1,8 @@
 import React from "react";
 import { Input } from "@src/shadcn/elements";
 import { Form } from "@src/shadcn/components/form";
-import { type IFormConfig } from "../../interface/model";
 import { genderOptions } from "@src/app/(protected)/(personal)/profile/containers/form/constant";
+import { type IFormConfig } from "../../interface/props";
 
 export const BasicInformationSection: React.FC<{ formConfig: IFormConfig, isEmployee?: boolean }> = ({ formConfig, isEmployee }) => {
   const typeOfUniqueNumber = uniqueNumber(isEmployee);
