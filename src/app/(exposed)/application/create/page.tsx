@@ -2,18 +2,9 @@
 import React from "react";
 import { Card } from "@src/shadcn/elements";
 import FormStep from "@src/common/components/stepForm";
-import {
-  ApplicationProvider,
-  useApplicationContext,
-} from "@src/app/(protected)/(hr)/application/context";
-import {
-  ProfileProvider,
-  useProfileContext,
-} from "@src/app/(protected)/(personal)/context";
-import { type ApplicationState } from "@src/app/(protected)/(hr)/application/context/interface";
-import { type ProfileState } from "@src/app/(protected)/(personal)/context/interface";
+import { applicationFromStep, ApplicationProvider, useApplicationContext, type ApplicationState } from "@hr";
+import { ProfileProvider, useProfileContext, type ProfileState } from "@personal";
 import { hasValid } from "@src/common/lib/validation/hasValid";
-import { applicationFromStep } from "@src/app/(protected)/(hr)/application/containers/form/setting";
 
 export default function ApplicationCreate(): JSX.Element {
   return (

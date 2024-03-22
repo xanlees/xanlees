@@ -4,7 +4,7 @@ import { Form } from "@src/shadcn/components/form";
 import RenderFile from "./RenderFile";
 import { useFieldArray } from "react-hook-form";
 import { useFormConfig } from "./config";
-import DocumentDynamicForm from "./DynamicForm";
+import DocumentDynamicForm from "./fields/DynamicForm";
 
 interface DocumentFormProps {
   setCurrentStep?: (step: number) => void
