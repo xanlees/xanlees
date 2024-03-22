@@ -6,7 +6,7 @@ import {
   EmergencyInformationSection,
   AppliedFor,
   GeneralInfo,
-} from "./form-fields";
+} from "./fields";
 import { Input, Textarea } from "@src/shadcn/elements";
 import { type IFormConfig } from "@src/common/interface";
 
