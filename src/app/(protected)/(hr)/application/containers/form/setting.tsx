@@ -1,7 +1,7 @@
 import { PersonalAddressForm, ProfileForm, PhysicalProfile, DocumentForm, EducationForm } from "@personal";
 import { ApplicationForm } from ".";
 import { WorkExperienceForm } from "@hr";
-import { Success } from "./form-fields/successSubmit";
+import { Success } from "./fields/successSubmit";
 
 export const applicationFromStep = [
   {
