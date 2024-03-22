@@ -6,7 +6,7 @@ import {
   EducationDetail,
   EmployeeDetail,
   ProfileDetail,
-} from "../../containers/row";
+} from "../../containers/card";
 import { Show } from "@/shadcn/components/crud";
 import {
   useEducation,
