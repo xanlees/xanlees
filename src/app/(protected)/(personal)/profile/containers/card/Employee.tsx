@@ -3,8 +3,7 @@ import { Show } from "@/shadcn/components/crud";
 import React from "react";
 import { Card, CardHeader, CardTitle } from "@src/shadcn/elements";
 import moment from "moment";
-import type { IEmployee, ISector } from "@src/common/interface/interface";
-
+import { type IEmployee, type ISector } from "@career";
 export function EmployeeDetail({ employeeData, sectorData }: { employeeData: IEmployee[], sectorData: ISector[] }): JSX.Element {
   const getSectorAndBranchDetail = getSector(sectorData);
   const sortedEmployeeData = sorted(employeeData);
@@ -45,7 +44,7 @@ function sorted(employeeData: IEmployee[]) {
 function getSector(sectorData: ISector[]) {
   return (sectorId: number, joiningDate: string): string => {
     const sector = sectorData.find((s) => s.id === sectorId);
-    return (sector != null) ? `${sector.name}, ${sector.branchId.name} ${moment(joiningDate).format("MMMM DD, YYYY")}` : "N/A";
+    return (sector != null) ? `${sector.name}, ${sector.branchId?.name} ${moment(joiningDate).format("MMMM DD, YYYY")}` : "N/A";
   };
 }
 
