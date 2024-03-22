@@ -1,5 +1,6 @@
 import { Table } from "@/shadcn/components/table";
 import type { ISector } from "../../interface";
+import { stringToColorCode } from "@src/lib/string2Color";
 
 export function sectorColumn(sectorData: ISector[]) {
   return (
@@ -14,7 +15,7 @@ export function sectorColumn(sectorData: ISector[]) {
         return (
           <div>
             {displaySectors?.map((name, index) => (
-              <div key={index}>{name}</div>
+              <div style={{ color: `${stringToColorCode(name)}` }}key={index}>- {name}</div>
             ))}
           </div>
         );

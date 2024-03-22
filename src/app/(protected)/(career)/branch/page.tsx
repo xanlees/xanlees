@@ -32,13 +32,15 @@ export default function BranchList(): JSX.Element {
   return (
     <div className="mx-auto">
       <List>
-        <Table table={table}>
-          {getSelectColumn(friendly)}
-          {branchColumn()}
-          {sectorColumn(sectorData)}
-          {positionsColumn(sectorData, positionData)}
-          {getActionsColumn(resource)}
-        </Table>
+        <div className="w-2/3 mx-auto">
+          <Table table={table}>
+            {getSelectColumn(friendly)}
+            {branchColumn()}
+            {sectorColumn(sectorData)}
+            {positionsColumn(sectorData, positionData)}
+            {getActionsColumn(resource)}
+          </Table>
+        </div>
       </List>
     </div>
   );
