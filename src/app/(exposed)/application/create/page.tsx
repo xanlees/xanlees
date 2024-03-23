@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 "use client";
 import React from "react";
 import { Card } from "@src/shadcn/elements";
@@ -5,6 +6,7 @@ import FormStep from "@src/common/components/stepForm";
 import { applicationFromStep, ApplicationProvider, useApplicationContext, type ApplicationState } from "@hr";
 import { ProfileProvider, useProfileContext, type ProfileState } from "@personal";
 import { hasValid } from "@src/common/lib/validation/hasValid";
+import { type StepDescriptionProps } from "@src/common/components/stepForm/interface";
 
 export default function ApplicationCreate(): JSX.Element {
   return (
@@ -28,9 +30,9 @@ const STEPS = {
 };
 
 function ApplicationForm(): JSX.Element {
-  const { state: stateApplication } = useApplicationContext();
-  const { state: stateProfile } = useProfileContext();
-  const initialStep = getStepState(stateProfile, stateApplication);
+  const applicationContext = useApplicationContext() as { state: ApplicationState };
+  const profileContext = useProfileContext() as { state: ProfileState };
+  const initialStep = getStepState(profileContext.state, applicationContext.state);
   return (
     <div className="shadow-lg">
       <div className="my-3 text-center bg-blue-300 rounded-sm">
@@ -38,7 +40,7 @@ function ApplicationForm(): JSX.Element {
         <p className="mx-auto text-sm">(ໃຊ້ເວລາປະມານ 10 ນາທີ) </p>
       </div>
       <FormStep
-        formStepsData={applicationFromStep}
+        formStepsData={applicationFromStep as unknown as StepDescriptionProps[]}
         initialStep={initialStep}
       />
       <div className="my-3 text-center bg-blue-300 rounded-sm">
@@ -50,19 +52,19 @@ function ApplicationForm(): JSX.Element {
 }
 function getStepState(stateProfile: ProfileState, stateApplication: ApplicationState) {
   switch (true) {
-    case hasValid(stateApplication.workExperienceId):
+    case hasValid(stateApplication.workExperienceId as number):
       return STEPS.workExperienceStep;
-    case hasValid(stateApplication.applicationId):
+    case hasValid(stateApplication.applicationId as number):
       return STEPS.applicationStep;
     case hasValid(stateProfile.educationId as number):
       return STEPS.educationStep;
-    case hasValid(stateProfile.isUploaded):
+    case hasValid(stateProfile.isUploaded as boolean):
       return STEPS.isUploadedStep;
-    case hasValid(stateApplication.physicalProfileId):
+    case hasValid(stateApplication.physicalProfileId as number):
       return STEPS.physicalProfileStep;
-    case hasValid(stateProfile.profileId):
+    case hasValid(stateProfile.profileId as number):
       return STEPS.profileStep;
-    case hasValid(stateProfile.personalAddressId):
+    case hasValid(stateProfile.personalAddressId as number):
       return STEPS.personalAddressStep;
     default:
       return 0;

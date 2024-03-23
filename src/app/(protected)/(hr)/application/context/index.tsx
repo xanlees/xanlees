@@ -6,9 +6,15 @@ import { createContextProvider } from "@src/common/components/localStorageContex
 
 export const APPLICATION_STORAGE_KEY = "creatingApplication";
 
+const initStateApplication = {
+  applicationId: 0,
+  physicalProfileId: 0,
+  workExperienceId: 0,
+};
+
 const { LocalStorageProvider, useLocalStorageContext } = createContextProvider<ApplicationState, ApplicationAction >({
   reducer: ApplicationReducer,
-  initialState: {},
+  initialState: initStateApplication,
   storageKey: APPLICATION_STORAGE_KEY,
 });
 
