@@ -2,10 +2,10 @@
 import { Document, Page } from "react-pdf";
 import { useMediaQuery } from "react-responsive";
 import type { PdfViewerDocumentProps } from "./interface";
-const maxWidth = 100;
-const bigScale = 0.8;
+const maxWidth = 60;
+const bigScale = 0.3;
 const smallScale = 0.5;
-
+const mediumScale = 0.4;
 export function PdfViewerDocument({
   file,
   options,
@@ -15,32 +15,28 @@ export function PdfViewerDocument({
   pageWidth,
   setLoading,
 }: Readonly<PdfViewerDocumentProps>) {
-  const isXLargeScreen = useMediaQuery({ query: "(min-width: 2400px)" });
-  const isXXLargeScreen = useMediaQuery({ query: "(min-width: 3840px)" });
   const isLargeScreen = useMediaQuery({ query: "(min-width: 1200px)" });
   const isMediumScreen = useMediaQuery({ query: "(min-width: 992px)" });
   const isSmallScreen = useMediaQuery({ query: "(max-width: 768px)" });
 
   let scale = bigScale;
-  if (
-    isXLargeScreen ||
-    isXXLargeScreen ||
-    isLargeScreen ||
-    isMediumScreen ||
-    isSmallScreen
-  ) {
-    if (isSmallScreen) {
-      scale = smallScale;
-    }
+  if (isSmallScreen) {
+    scale = smallScale;
+  }
+  if (isMediumScreen) {
+    scale = mediumScale;
+  }
+  if (isLargeScreen) {
+    scale = bigScale;
   }
   return (
-    <div className="mx-auto overflow-y-scroll">
+    <div className="mx-auto overflow-hidden ">
       <Document
         file={file}
         onLoadSuccess={onDocumentLoadSuccess}
         options={options}
         renderMode="canvas"
-        className="h-[500px]"
+        className="h-[700px]"
       >
         <Page
           key={pageNumber}

@@ -2,7 +2,7 @@ import type { NavProps } from "./interface";
 
 export function Nav({ pageNumber, numPages, title }: Readonly<NavProps>) {
   return (
-    <nav className="mt-10 bg-black">
+    <nav className="m-2 bg-black  z-0">
       <div className="px-2 mx-auto sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">

@@ -16,10 +16,10 @@ interface PDFDialogProps {
 export function PDFDialog({ documentName, documentFile }: PDFDialogProps) {
   return (
     <AlertDialog >
-      <AlertDialogTrigger asChild>
+      <AlertDialogTrigger asChild >
         <Button variant="outline">ເປີດເອກະສານ</Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className=" z-50  w-[45%] h-[95%] translate-x-[-50%] translate-y-[-50%] gap-0 border bg-background p-0 shadow-lg ">
         <PDFViewer
           file={documentFile}
           title={documentName}

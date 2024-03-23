@@ -43,22 +43,26 @@ export default function PDFViewer(props: Readonly<PDFViewerProps>) {
     setPageNumber((prevPageNumber) => prevPageNumber - 1);
   }
   return (
-    <div className="flex flex-col">
-      <Nav pageNumber={pageNumber} numPages={numPages} title={props.title} />
-      {!loading && (<PdfViewerContent
-        loading={loading}
-        goToNextPage={goToNextPage}
-        goToPreviousPage={goToPreviousPage}
-        pageNumber={pageNumber}
-        numPages={numPages}
-        pageWidth={pageWidth}
-        setLoading={setLoading}
-        onDocumentLoadSuccess={onDocumentLoadSuccess}
-        onPageLoadSuccess={onPageLoadSuccess}
-        options={options}
-        file={props.file}
-      />)}
+    <div className="">
+      {/* <Nav pageNumber={pageNumber} numPages={numPages} title={props.title} /> */}
+
+      <div className="flex flex-row f-full">
+        {!loading && (<PdfViewerContent
+          loading={loading}
+          goToNextPage={goToNextPage}
+          goToPreviousPage={goToPreviousPage}
+          pageNumber={pageNumber}
+          numPages={numPages}
+          pageWidth={pageWidth}
+          setLoading={setLoading}
+          onDocumentLoadSuccess={onDocumentLoadSuccess}
+          onPageLoadSuccess={onPageLoadSuccess}
+          options={options}
+          file={props.file}
+        />)}
+      </div>
     </div>
+
   );
 }
 
