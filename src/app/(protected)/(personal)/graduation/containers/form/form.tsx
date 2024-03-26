@@ -16,8 +16,8 @@ interface IFormConfig {
 export const FormGraduation = () => {
   const formConfig = useFormConfig();
   return (
-    <Accordion type="single" collapsible className="w-full">
-      <AccordionItem value="item-1">
+    <Accordion type="single" collapsible className="w-ful">
+      <AccordionItem value="item-1" className="border-none">
         <AccordionTrigger className="italic text-blue-500 underline">*ຊອກສາຂາຮຽນທີ່ຕົນຮຽນບໍ່ເຫັນ, ກົດທີ່ນີ້</AccordionTrigger>
         <AccordionContent>
           <Form {...formConfig.form}>

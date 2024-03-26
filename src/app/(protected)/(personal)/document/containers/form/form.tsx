@@ -17,27 +17,27 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ setCurrentStep }) =>
   const fileInput = formConfig.form.watch("documentFile") as FileList;
 
   return (
-    <div className="relative mx-20 rounded-lg">
-      <Form {...formConfig.form}>
+    <div className="relative w-[108%] mx-20 rounded-lg">
+      <Form {...formConfig.form} cardClassName="w-full flex flex-col">
         <div className="flex flex-row h-10 gap-4">
           <Form.Field {...formConfig.form} name="documentName" label="ຊື່ເອກສານ" >
-            <Input placeholder="ຊື່ເອກສານ" className="flex w-full"/>
+            <Input placeholder="ຊື່ເອກສານ" className="flex w-full" />
           </Form.Field>
-          <Form.Field {...formConfig.form} name="documentFile" label="ອັບໂຫຼດເອກສານ" >
+          <Form.Field {...formConfig.form} name="documentFile" label="ເລືອກເອກະສານທີ່ຈະເພີ່ມ" >
             <Form.FileInput showFileDisplay={false} />
           </Form.Field>
         </div>
         <div className="h-4 border-b"> </div>
-        <Form.Field {...formConfig.form} name="documentList" label="ລາຍການເອກະສານ" ><></></Form.Field>
-        {fields.map((field, index) => (
-          <RenderFile key={field.id} field={field} removeField={() => { remove(index); }} />
-        ))}
+        <Form.Field {...formConfig.form} name="documentList" label="ລາຍການເອກະສານ (ກະລຸນາກົດເພີ່ມເອກະສານກ່ອນບັນທືກ)" ><></></Form.Field>
+        {fields.length > 0
+          ? fields.map((field, index) => (
+            <RenderFile key={field.id} field={field} removeField={() => { remove(index); }} />
+          ))
+          : <p className="mx-2 text-xs italic">ບໍ່ມີເອກະສານເທື່ອ</p>}
         <div className="absolute bottom-7 ">
           <DocumentDynamicForm
-            formConfig={formConfig}
-            fields={fields}
-            append={append}
-            fileName={fileName}
+            formConfig={formConfig} fields={fields}
+            append={append} fileName={fileName}
             file={fileInput}
           />
         </div>

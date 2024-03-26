@@ -2,7 +2,7 @@ import { Form } from "@src/shadcn/components/form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
-import { Card, Input } from "@src/shadcn/elements";
+import { Input } from "@src/shadcn/elements";
 import React, { useEffect, useState } from "react";
 import { useFieldArray } from "react-hook-form";
 import { FormGraduation } from "../../../graduation/containers/form/form";
@@ -27,9 +27,9 @@ export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep }) 
     }
   }, [isMounted]);
   return (
-    <div className="w-full sm:w-[53%] rounded-lg">
-      <Form {...formConfig.form}>
-        <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="education" label="ການສຶກສາວິຊາສະເພາະທີ່ຈົບ" className="flex gap-2" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId } }>
+    <div className="w-full rounded-lg">
+      <Form {...formConfig.form} cardClassName="w-full flex flex-col">
+        <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="education" label="ການສຶກສາອີກ" className="flex gap-2" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId } }>
           <ArrayField {...formConfig.form} name="branch" label="ສາຂາ">
             <Input placeholder="ສາຂາ" className="block w-56" />
           </ArrayField>
@@ -41,9 +41,7 @@ export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep }) 
           </ArrayField>
         </DynamicForm>
       </Form>
-      <Card className="p-2 mt-2 rounded-lg">
-        <FormGraduation />
-      </Card>
+      <FormGraduation />
     </div>
   );
 };
