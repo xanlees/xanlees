@@ -17,7 +17,7 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ setCurrentStep }) =>
   const fileInput = formConfig.form.watch("documentFile") as FileList;
 
   return (
-    <div className="w-[40%] rounded-lg relative">
+    <div className="relative mx-20 rounded-lg">
       <Form {...formConfig.form}>
         <div className="flex flex-row h-10 gap-4">
           <Form.Field {...formConfig.form} name="documentName" label="ຊື່ເອກສານ" >

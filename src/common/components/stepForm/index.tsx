@@ -11,7 +11,7 @@ export default function FormStep({
     setCurrentStep(initialStep);
   }, [initialStep]);
   return (
-    <div>
+    <div className="">
       <Stepper
         steps={formStepsData.map((step) => ({
           ...step,
@@ -19,9 +19,9 @@ export default function FormStep({
             setCurrentStep,
           }),
         }))}
+        showDescriptionsForAllSteps
         orientation="vertical"
         currentStepIndex={currentStep}
-        stepContent={() => <div className="w-[1600px] rounded-lg" />}
       />
     </div>
   );

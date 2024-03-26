@@ -26,7 +26,7 @@ export const SidebarMobile: FC<SidebarMobileProps> = ({ children }) => {
                     </svg>
                 </Button>
             </SheetTrigger>
-            <SheetContent side={"left"} className="p-0">
+            <SheetContent side={"left"} className="p-0 w-[250px]">
                 {children as ReactNode}
             </SheetContent>
         </Sheet>

@@ -17,15 +17,15 @@ export const ThemedLayoutV2: FC<LayoutProps> = ({
   const Container = () => {
     return (
       <>
-        <ThemedSiderV2 className="hidden" Title={Title} />
-        <div className="bg-white md:pl-52 dark:bg-black text-foreground">
+        <div className="hidden xl:block"><ThemedSiderV2 className="hidden" Title={Title} /></div>
+        <div className="bg-white xl:pl-52 dark:bg-black text-foreground">
           <header className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-6 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4">
             <SidebarMobile>
-              <ThemedSiderV2 Title={Title} />
+              <ThemedSiderV2 shownBorder={false} Title={Title} />
             </SidebarMobile>
-            <Navbar darkMode={!!darkModeProvider} />
+            <Navbar darkMode={!!darkModeProvider}/>
           </header>
-          <main className="relative px-4 space-y-1 h-[90%] overflow-y-auto  mb-44">
+          <main className="relative px-4 space-y-1 overflow-y-auto mb-44">
             {children as ReactNode}
           </main>
           {Footer ? (

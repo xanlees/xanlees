@@ -2,7 +2,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { pdfjs } from "react-pdf";
-import { Nav } from "./nav";
 import { PdfViewerContent } from "./content";
 import type { PDFViewerProps, PdfViewerButtonProps, PdfViewerControlsProps } from "./interface";
 
