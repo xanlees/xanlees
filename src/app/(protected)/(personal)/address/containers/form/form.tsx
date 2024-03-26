@@ -21,7 +21,7 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
     filters: [{ field: "pageSize", operator: "eq", value: 140 }],
   });
   return (
-    <div className="rounded-full w-96 sm:w-[38%] ">
+    <div className="mx-20 rounded-full ">
       <Form {...formConfig.form}>
         <div className="flex flex-col w-full capitalize rounded-lg sm:w-1/2 sm:flex-row">
           <div className="flex-1 p-4">

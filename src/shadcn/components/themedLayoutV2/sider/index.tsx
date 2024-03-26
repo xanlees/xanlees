@@ -77,10 +77,11 @@ export const ThemedSiderV2Menu: FC<{
         </ul>
     );
 };
-export const ThemedSiderV2: FC<ThemedSiderV2Props> = ({
+export const ThemedSiderV2: FC<ThemedSiderV2Props & { shownBorder?: boolean}> = ({
     meta,
     className,
     Title = DefaultTitle,
+    shownBorder = true,
 }) => {
     return (
         <div
@@ -89,7 +90,7 @@ export const ThemedSiderV2: FC<ThemedSiderV2Props> = ({
                 className,
             )}
         >
-            <div className="flex grow flex-col overflow-y-auto bg-white dark:bg-black border-r border-border h-[100dvh]">
+            <div className={cn("flex grow flex-col overflow-y-auto bg-white dark:bg-black border-border h-[100dvh]", shownBorder? " border-r": "")}>
                 <div className="flex h-16 shrink-0 items-center px-2.5 text-foreground">
                     {typeof Title === "function" ? (
                         <Title collapsed={false} />
