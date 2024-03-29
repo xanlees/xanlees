@@ -21,6 +21,7 @@ import { Select } from "./select";
 import { DatePickerField } from "./datepicker";
 import { FileInputImage } from "./image-input";
 import { FileInputField } from "./file-input";
+import { cn } from "@src/lib/utils";
 
 type NativeFormProps = Omit<
     DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>,
@@ -59,6 +60,7 @@ export const Form = <
 >({
     formProps,
     saveButtonProps,
+    cardClassName,
     ...props
 }: FormProps<
     TQueryFnData,
@@ -68,7 +70,7 @@ export const Form = <
     TData,
     TResponse,
     TResponseError
->) => {
+> & { cardClassName?: string }) => {
     const { resource: _resource, action } = useResource();
     const routerType = useRouterType();
     const back = useBack();
@@ -88,8 +90,8 @@ export const Form = <
     return (
         <FormUI {...props}>
             <form {...formProps} onSubmit={onSubmit}>
-                <Card className="rounded-lg">
-                    <CardContent className="pt-6 space-y-4">
+                <Card className={cn("rounded-lg", cardClassName)}>
+                    <CardContent className="pt-6 mx-auto space-y-4 ">
                         {props.children}
                     </CardContent>
 

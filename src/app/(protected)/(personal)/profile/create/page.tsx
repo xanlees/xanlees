@@ -39,6 +39,7 @@ const FormCreate = () => {
   };
   return (
     <Create
+      title="ຟອມສ້າງພະນັກງານ"
       resource="profile"
       breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
     >

@@ -21,9 +21,9 @@ export const PersonalAddressForm: React.FC<PersonalAddressFormProps> = ({
     filters: [{ field: "pageSize", operator: "eq", value: 140 }],
   });
   return (
-    <div className="mx-20 rounded-full ">
-      <Form {...formConfig.form}>
-        <div className="flex flex-col w-full capitalize rounded-lg sm:w-1/2 sm:flex-row">
+    <div className="w-11/12 mx-20 ">
+      <Form {...formConfig.form} cardClassName="w-full flex flex-col">
+        <div className="flex flex-col capitalize rounded-lg sm:w-1/2 sm:flex-row">
           <div className="flex-1 p-4">
             <InputBornVillage {...formConfig} name="bornVillage" label="ບ້ານເກີດ" />
             <BornDistrictSelect formConfig={formConfig} district={district} />
