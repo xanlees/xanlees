@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { useForm } from "@refinedev/react-hook-form";
-import { profileSchema } from "./validation";
-import { useProfileContext } from "../../../context";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import { useForm } from "@refinedev/react-hook-form";
 import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
-import { errorMessages } from "./constant";
+
+import { useProfileContext } from "../../../context";
+import { errorMessages } from "../../containers/form/constant";
+import { profileSchema } from "../../containers/form/validation";
 
 const defaultMessage = "ບໍ່ສາມາດສ້າງຂໍ້ມູນສ່ວນບຸຄົນໄດ້";
 export interface ProfileFormValues {

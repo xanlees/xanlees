@@ -8,7 +8,7 @@ import { Button } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 import FormStep from "@src/common/components/stepForm";
 import { hasValid } from "@src/common/lib/validation/hasValid";
-import { formStepsData } from "../containers/form/settings";
+import { DocumentForm, EducationForm, PersonalAddressForm, ProfileForm } from "@personal";
 
 const breadcrumbs = [
   { label: "ພະນັກງານ", href: "/profile" },
@@ -55,7 +55,6 @@ const FormCreate = () => {
     </Create>
   );
 };
-
 function getStepState(state: ProfileState) {
   const personalAddressStep = 0;
   const profileStep = 1;
@@ -73,6 +72,29 @@ function getStepState(state: ProfileState) {
       return personalAddressStep;
   }
 }
-
+const formStepsData = [
+  {
+    stepLabel: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
+    stepDescription: <ProfileForm isEmployee={true}/>,
+    completed: false,
+  },
+  {
+    stepLabel: "ທີຢູ່ອາໄສ",
+    stepDescription: (
+      <PersonalAddressForm showHouseNo={true}/>
+    ),
+    completed: false,
+  },
+  {
+    stepLabel: "ເອກສານຕິດຄັດ",
+    stepDescription: <DocumentForm/>,
+    completed: false,
+  },
+  {
+    stepLabel: "ປະຫວັດການສຶກສາ",
+    stepDescription: <EducationForm />,
+    completed: false,
+  },
+];
 export default ProfileCreate;
 

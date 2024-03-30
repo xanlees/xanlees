@@ -17,11 +17,11 @@ export const ProfileForm: React.FC = () => {
   return (
     <div className="rounded-full w-96 sm:w-[710px] mx-20 ">
       <Form {...form}>
-        <div className="font-bold text-2xl text-center text-gray-800 dark:text-white tracking-wide">
+        <div className="text-2xl font-bold tracking-wide text-center text-gray-800 dark:text-white">
           ຂໍ້ມູນສ່ວນບຸກຄົນ
         </div>
         <InputContainer form={{ form }} />
-        <div className="flex sm:flex-row flex-col gap-2 rounded-lg w-full sm:w-1/2 capitalize" />
+        <div className="flex flex-col w-full gap-2 capitalize rounded-lg sm:flex-row sm:w-1/2" />
       </Form>
     </div>
   );
@@ -73,7 +73,7 @@ const InputNickName: React.FC<CommonProps> = ({ form }) => {
 
 const PhonNumberInput: React.FC<CommonProps> = ({ form }) => {
   return (
-    <div className="w-full  lg:w-80">
+    <div className="w-full lg:w-80">
       <div className="relative w-full mb-3">
         <Form.Field {...form} name="phoneNumber" label="ເບີໂທ">
           <Input placeholder="20xxxxxxxx" />
