@@ -1,4 +1,4 @@
-import type { IFormConfig } from "../../../interface";
+import type { IFormConfig } from "../../interface";
 import {
   DrivingLicenceOptions,
   SectionInput,

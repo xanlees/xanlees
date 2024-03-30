@@ -1,4 +1,4 @@
-import type { IFormConfig } from "../../../interface";
+import type { IFormConfig } from "../../interface";
 import { SectionInput, SkillOptions } from "./SectionInput";
 export const ComputerSkillSection: React.FC<{ formConfig: IFormConfig }> = ({
   formConfig,
