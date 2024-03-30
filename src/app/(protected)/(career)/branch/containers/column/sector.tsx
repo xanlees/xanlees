@@ -15,7 +15,7 @@ export function sectorColumn(sectorData: ISector[]) {
         return (
           <div>
             {displaySectors?.map((name, index) => (
-              <div className="mt-1 rounded-full dark:w-1/2 dark:text-center dark:bg-white" style={{ color: `${stringToColorCode(name)}` }}key={index}>- {name}</div>
+              <div className="text-center text-white rounded-full dark:bg-white mt-0.5" style={{ backgroundColor: `${stringToColorCode(name)}` }}key={index}>- {name}</div>
             ))}
           </div>
         );
