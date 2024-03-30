@@ -3,7 +3,7 @@ import { ProfileForm } from "./form";
 export const formStepsData = [
   {
     stepLabel: "ສ້າງໂປຣໄຟລ໌",
-    stepDescription: <ProfileForm isEmployee={true}/>,
+    stepDescription: <ProfileForm />,
     completed: false,
   },
   {

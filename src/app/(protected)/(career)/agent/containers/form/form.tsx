@@ -7,10 +7,10 @@ import { type IFormConfig } from "../../interface/props";
 import { Input } from "@src/shadcn/elements";
 import { RadioGroupFiled } from "@src/shadcn/components/form/radio-group";
 import { RadioGroupItem } from "@src/shadcn/elements/radio-group";
-import { EditableBadgeField } from "@src/common/components/dynamicForm/renderBadge";
+// import { EditableBadgeField } from "@src/common/components/dynamicForm/renderBadge";
 import { useFieldArray } from "react-hook-form";
 import { DynamicForms } from "@src/common/components/dynamicForm/dynamicForm";
-import { InputField } from "@src/common/components/dynamicForm/InputField";
+// import { InputField } from "@src/common/components/dynamicForm/InputField";
 
 export const ProfileForm: React.FC = () => {
   const { form } = useFormConfig();
@@ -105,8 +105,8 @@ export const ContainerFooter: React.FC<CommonProps> = ({ form }) => {
   });
   return (
     <>
-      <InputField fields={fields} append={append} name="blacklistNumber" label="ອັນເລກ" placeholder="000" maxLength={3} numericOnly require={false} errorMessage="ເລກຊໍ້າ" />
-      <EditableBadgeField remove={remove} name="blacklistNumber" {...form} />
+      {/* <InputField fields={fields} append={append} name="blacklistNumber" label="ອັນເລກ" placeholder="000" maxLength={3} numericOnly require={false} errorMessage="ເລກຊໍ້າ" />
+      <EditableBadgeField remove={remove} name="blacklistNumber" {...form} /> */}
       <DynamicForms {...form} fields={fields} append={append} remove={remove} name="blacklistNumber" className="hidden" />
     </>
   );
