@@ -45,4 +45,15 @@ export const resources = [
       label: "ຜູ້ສະໝັກວຽກ",
     }
   },
+  {
+    name: "agent",
+    list: "/agent",
+    create: "/agent/create",
+    edit: "/agent/edit/:id",
+    show: "/agent/show/:id",
+    icon: <User/>,
+    meta: {
+      label: "agent",
+    }
+  },
 ];

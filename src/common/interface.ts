@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { type Control, type FieldValues, type UseFormSetValue, type UseFormWatch } from "react-hook-form";
 export interface IFormConfig {
   form: {
-    setValue: any
+    setValue?: UseFormSetValue<FieldValues>
+    watch?: UseFormWatch<FieldValues>
+    control?: Control<FieldValues>
   }
 }
 

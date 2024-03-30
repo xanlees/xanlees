@@ -46,4 +46,6 @@ p, admin, sector, (list)|(create)
 p, admin, work_experience/*, (edit)|(show)|(delete)
 p, admin, work_experience, (list)|(create)
 p, anonymous, work_experience, (create)
+p, admin, agent/*, (edit)|(show)|(delete)
+p, admin, agent, (list)|(create)
 `);

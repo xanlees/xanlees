@@ -13,45 +13,47 @@ import {
     FormLabel,
     FormMessage,
 } from "../../elements";
-
+import { Asterisk } from "lucide-react";
 type FormFieldProps<
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = UseControllerProps<TFieldValues, TName> & {
     label?: string;
     description?: string;
+    require?: boolean;
     children: ReactElement<{
         field: ControllerRenderProps<TFieldValues, TName>;
     }>;
 };
-export const FormField = (props: FormFieldProps) => {
+
+export const FormField = ({
+    label,
+    description,
+    children,
+    require = true,
+    ...rest
+  }: FormFieldProps) => {
     return (
-        <Field
-            control={props.control}
-            name={props.name}
-            render={({ field }: { field: any }) => {
-                return (
-                    <FormItem>
-                        <div className="flex flex-col">
-                            <FormLabel>{props.label}</FormLabel>
-                            <FormControl>
-                                {cloneElement(props.children, {
-                                    ...field,
-                                    ...props.children.props,
-                                })}
-
-                            </FormControl>
-                            {props.description && (
-                            <FormDescription>
-                                {props.description}
-                            </FormDescription>
-                            )}
-                            <FormMessage />
-                        </div>
-
-                    </FormItem>
-                );
-            }}
-        />
+      <Field
+        {...rest}
+        render={({ field }) => (
+          <FormItem>
+            <div className="flex flex-col">
+              <FormLabel className="flex items-center">
+                {require && <Asterisk size={15} color="#ff0000" className="mr-1" />}
+                {label}
+              </FormLabel>
+              <FormControl>
+                {cloneElement(children, {
+                  ...field,
+                  ...children.props,
+                })}
+              </FormControl>
+              {description && <FormDescription>{description}</FormDescription>}
+              <FormMessage />
+            </div>
+          </FormItem>
+        )}
+      />
     );
-};
+  };

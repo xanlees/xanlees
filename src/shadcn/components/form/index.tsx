@@ -22,6 +22,8 @@ import { DatePickerField } from "./datepicker";
 import { FileInputImage } from "./image-input";
 import { FileInputField } from "./file-input";
 import { cn } from "@src/lib/utils";
+import { SwitchButton } from "./switch";
+import { RadioGroupFiled } from "./radio-group";
 
 type NativeFormProps = Omit<
     DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>,
@@ -122,3 +124,6 @@ Form.Select = Select;
 Form.DatePicker = DatePickerField;
 Form.FileInputImage = FileInputImage;
 Form.FileInput = FileInputField;
+Form.SwitchButton = SwitchButton;
+Form.RadioGroupFiled = RadioGroupFiled;
+
