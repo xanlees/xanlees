@@ -1,5 +1,5 @@
 import { Form } from "@/shadcn/components/form";
-import type { IFormConfig } from "../../../interface";
+import type { IFormConfig } from "../../interface";
 interface IOptions {
   label: string
   value: string

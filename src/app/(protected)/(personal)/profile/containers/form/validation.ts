@@ -12,7 +12,7 @@ export const acceptedImageTypes = [
 ];
 export const maxFileSize = 10000000;
 
-export const profileSchema = z
+export const profileSchema: any = z
   .object({
     fullname: z.string().min(1, {
       message: "ກະລຸນາໃສ່ຊື່ແທ້ ແລະ ນາມສະກຸນ",

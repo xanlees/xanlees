@@ -1,6 +1,6 @@
 "use client";
 
-import { DateOfBirth, FullNameColumn, getLatestPosition } from "./containers/column";
+import { DateOfBirth, FullNameColumn, getLatestPosition } from "./containers/table-column";
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
 import { useUserFriendlyName } from "@refinedev/core";
