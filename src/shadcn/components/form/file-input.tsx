@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
-import {  Input } from "@src/shadcn/elements"; 
+import { Input } from "@src/shadcn/elements";
 import { cn } from "@src/shadcn/lib/utils";
 import FileDisplay from "@src/common/components/cardFileDisplay/FileDisplay";
 
-export const FileInputField = ({ showFileDisplay = true,  ...props}) => {
+export const FileInputField = ({ showFileDisplay = true, ...props }) => {
   const [file, setFile] = useState<File>();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { className, classNameFile } = props;
@@ -23,9 +23,14 @@ export const FileInputField = ({ showFileDisplay = true,  ...props}) => {
         {...props.rest}
         ref={fileInputRef}
         onChange={(event) => {
-          const selectedFile = event.target.files![0];
-          setFile(selectedFile)
-          props.onChange(selectedFile);
+          if (event.target.files && event.target.files.length > 0) {
+            const selectedFile = event.target.files[0];
+            setFile(selectedFile);
+            props.onChange(selectedFile);
+          } else {
+            setFile(undefined);
+            props.onChange(undefined);
+          }
         }}
       />
       {showFileDisplay && file && (
@@ -38,4 +43,3 @@ export const FileInputField = ({ showFileDisplay = true,  ...props}) => {
     </>
   );
 };
-

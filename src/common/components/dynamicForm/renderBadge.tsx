@@ -36,31 +36,29 @@ const renderFieldValue = (value: FieldValues): string => {
   return String(value);
 };
 
-export const RenderBadge: React.FC<RenderBadgeProps> = ({
-  remove,
-  name,
-  form,
-  className,
-}) => {
+export const RenderBadge: React.FC<RenderBadgeProps> = ({ remove, name, form, className }) => {
   const formArray: Field[] =
     form.watch?.(name)?.map((value: FieldValues) => ({
       [name]: value,
       id: `id-${Math.random()}`,
     })) ?? [];
   return (
-    <div className={cn("flex-wrap gap-2", className)}>
+    <div className={cn("", className)}>
       {formArray?.map((field: Field, index: number) => (
-        <div className="inline-flex items-center gap-2 m-1 p-2 rounded">
-          <Badge className="bg-red-500 rounded-sm">
-            <span className="border-0 mx-1 pr-1 border-r-2 text-base">
-              {renderFieldValue(field[name])}
-            </span>
+        <div className="inline-flex items-center gap-2 m-1 p-2 rounded w-full">
+          <Badge className="rounded-sm w-full flex  justify-between text-white">
+            <div className="flex border-0 mx-1 py-1 text-base gap-x-2 ">
+              <div className="">{index + 1}</div>
+              <div className=" ">
+                {renderFieldValue(field[name])}
+              </div>
+            </div>
             <button
               onClick={() => {
                 remove(index);
               }}
               type="button"
-              className="text-lg"
+              className="text-lg place-self-center "
             >
               <X size={20} />
             </button>

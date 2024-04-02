@@ -8,7 +8,7 @@ import { Button } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 import FormStep from "@src/common/components/stepForm";
 import { hasValid } from "@src/common/lib/validation/hasValid";
-import { DocumentForm, EducationForm, PersonalAddressForm, ProfileForm } from "@personal";
+import { DocumentForm, EducationForm, ProfileForm } from "@personal";
 
 const breadcrumbs = [
   { label: "ພະນັກງານ", href: "/profile" },
@@ -78,13 +78,13 @@ const formStepsData = [
     stepDescription: <ProfileForm isEmployee={true}/>,
     completed: false,
   },
-  {
-    stepLabel: "ທີຢູ່ອາໄສ",
-    stepDescription: (
-      <PersonalAddressForm showHouseNo={true}/>
-    ),
-    completed: false,
-  },
+  // {
+  //   stepLabel: "ທີຢູ່ອາໄສ",
+  //   stepDescription: (
+  //     <PersonalAddressForm showHouseNo={true}/>
+  //   ),
+  //   completed: false,
+  // },
   {
     stepLabel: "ເອກສານຕິດຄັດ",
     stepDescription: <DocumentForm/>,

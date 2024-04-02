@@ -43,7 +43,7 @@ export const InputField: React.FC<InputFieldProps> = ({ fields, append, name, er
             maxLength={maxLength}
           />
           <Button type="button" onClick={handleAppend} className="mt-2">
-            ເພີ່ມ{label}
+            {label}
           </Button>
         </div>
       </div>

@@ -5,38 +5,88 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatCurrencyInput(type: string | undefined, onChange: React.ChangeEventHandler<HTMLInputElement> | undefined) {
-  return (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (type === 'currency') {
-      const { selectionStart, selectionEnd } = event.target;
-      let { value } = event.target;
-      const numericValue = parseFloat(value.replace(/[^\d.]/g, ''));
-      const formattedValue = numericValue.toLocaleString(undefined, {
-        minimumFractionDigits: 0
-      });
-      const validValue = formattedValue !== 'NaN' ? formattedValue : "";
-      const cursorPos = selectionStart as number + (validValue.length - value.length);
-      event.target.value = validValue;
-      event.target.setSelectionRange(cursorPos, cursorPos);
-      return event;
-    }
-    return onChange?.(event); 
-  };
-}
-
-export const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, numericOnly: boolean, type: string | undefined, onChange: ((event: React.ChangeEvent<HTMLInputElement>) => void) | undefined) => {
-  let newValue = event.target.value;
-  
+export const handleInputChange = (
+  event: React.ChangeEvent<HTMLInputElement>,
+  numericOnly: boolean,
+  type: string | undefined,
+  onChange: ((event: React.ChangeEvent<HTMLInputElement>) => void) | undefined,
+  onNumber: ((value: string) => void) | undefined = undefined,
+  onFileSelect: ((file: File | null) => void) | undefined = undefined
+) => {
+  if (event.target.type === 'file') {
+    handleFileInputChange(event, onFileSelect, onChange);
+    return;
+  }
   if (numericOnly) {
-    newValue = newValue.replace(/\D/g, "");
+    handleNumericInputChange(event, onNumber);
   }
-  
-  if (type === 'currency' && onChange) {
-    const formattedOnChange = formatCurrencyInput(type, onChange);
-    const formattedValue = formattedOnChange(event);
-    if (formattedValue && 'target' in formattedValue) {
-      newValue = formattedValue.target.value;
-    }
+  if (type === 'currency') {
+    handleCurrencyInputChange(event, onChange);
+    return; 
   }
-  onChange?.({ ...event, target: { ...event.target, value: newValue } });
+  onChange?.(event);
+};
+
+const handleFileInputChange = (
+  event: React.ChangeEvent<HTMLInputElement>,
+  onFileSelect: ((file: File | null) => void) | undefined,
+  onChange: ((event: React.ChangeEvent<HTMLInputElement>) => void) | undefined
+) => {
+  const files = event.target.files;
+  const file = files && files.length > 0 ? files[0] : null;
+  if (onFileSelect) {
+    onFileSelect(file);
+  }
+  if (onChange) {
+    const syntheticEvent = {
+      ...event,
+      target: {
+        ...event.target,
+        value: file ? file.name : '',
+        files: event.target.files
+      }
+    } as React.ChangeEvent<HTMLInputElement>;
+
+    onChange(syntheticEvent);
+  }
+};
+const handleNumericInputChange = (
+  event: React.ChangeEvent<HTMLInputElement>,
+  onNumber: ((value: string) => void) | undefined
+) => {
+  let { value } = event.target;
+  const originalValue = value;
+  value = value.replace(/\D/g, "");
+  event.target.value = value;
+
+  if (onNumber && value !== originalValue) {
+    onNumber(value);
+  }
+};
+
+const handleCurrencyInputChange = (
+  event: React.ChangeEvent<HTMLInputElement>,
+  onChange: ((event: React.ChangeEvent<HTMLInputElement>) => void) | undefined
+) => {
+  const { selectionStart } = event.target;
+  let { value } = event.target;
+
+  const numericValue = parseFloat(value.replace(/[^\d.]/g, ''));
+  const formattedValue = numericValue.toLocaleString(undefined, { minimumFractionDigits: 0 });
+  const validValue = formattedValue === 'NaN' ? "" : formattedValue;
+  event.target.value = validValue;
+
+  if (selectionStart !== null) {
+    const diff = validValue.length - value.length;
+    const newCursorPos = selectionStart + diff;
+    setTimeout(() => {
+      if (event.target.setSelectionRange) {
+        event.target.setSelectionRange(newCursorPos, newCursorPos);
+      }
+    }, 0);
+  }
+
+  if (onChange) {
+    onChange(event);
+  }
 };

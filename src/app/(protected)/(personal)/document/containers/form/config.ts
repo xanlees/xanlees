@@ -2,7 +2,7 @@ import { documentFormSchema } from "./validation";
 import { useForm } from "@refinedev/react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type z } from "zod";
-import { formHeadersConfig } from "@src/common/interface";
+import { FormMultipart } from "@src/common/interface";
 import { useProfileContext } from "../../../context";
 
 interface FormConfigParams {
@@ -16,7 +16,7 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
     refineCoreProps: {
       resource: "document",
       redirect: false,
-      meta: formHeadersConfig,
+      meta: FormMultipart,
       onMutationSuccess: (data) => {
         dispatch({ type: "setIsUploaded", payload: true });
         (setCurrentStep != null) && setCurrentStep(step);

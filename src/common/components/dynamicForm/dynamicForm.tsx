@@ -34,7 +34,8 @@ export const DynamicForms: React.FC<DynamicFormProps> = ({
       append={append}
       remove={remove}
       name={name}
-      className={cn("rounded-full w-96 sm:w-[560px]", className)}
+      classNameButton="hidden"
+      className={cn("rounded-full w-96 sm:w-[560px] ", className)}
       label={label}
     />
   );

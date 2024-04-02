@@ -1,20 +1,17 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { type Control, type FieldValues, type UseFormSetValue, type UseFormWatch } from "react-hook-form";
 export interface IFormConfig {
-  form: {
-    setValue?: UseFormSetValue<FieldValues>
-    watch?: UseFormWatch<FieldValues>
-    control?: Control<FieldValues>
-  }
+  setValue?: UseFormSetValue<FieldValues>
+  watch?: UseFormWatch<FieldValues>
+  control?: Control<FieldValues>
 }
-
-interface FormHeadersConfig {
+interface FormHeadersConfigMultipart {
   headers: {
     "content-type": string
   }
 }
 
-export const formHeadersConfig: FormHeadersConfig = {
+export const FormMultipart: FormHeadersConfigMultipart = {
   headers: {
     "content-type": "multipart/form-data",
   },
@@ -44,4 +41,10 @@ export type GenderType = "MALE" | "FEMALE" | "OTHER" | null;
 export interface ErrorMapMessage {
   val: string
   message: string
+}
+
+export interface IMessages {
+  response: {
+    data: Record<string, any>
+  }
 }

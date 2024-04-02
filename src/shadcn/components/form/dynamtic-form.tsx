@@ -29,7 +29,7 @@ export const DynamicForm = ({ ...props }) => {
             }
             )}
             <Button
-                className="mt-3"
+                className={cn(" mt-3",className)}
                 type="button"
                 onClick={() => {
                     append(initialState);

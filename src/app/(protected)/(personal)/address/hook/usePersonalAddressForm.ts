@@ -1,0 +1,55 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "@refinedev/react-hook-form";
+import { useProfileContext } from "../..";
+import * as z from "zod";
+import { useEffect, useRef } from "react";
+import { type IFormConfig } from "@src/common/interface";
+
+export const usePersonalAddressForm = ({ status }: { status: string }) => {
+  const { state, dispatch } = useProfileContext();
+  const profile = state.profileId ?? 0;
+  const { ...form } = useForm<{ id?: number }>({
+    resolver: zodResolver(personalAddressSchema),
+    defaultValues: {
+      profile: 0,
+      status,
+      village: "",
+      province: "",
+      district: 0,
+    },
+    refineCoreProps: {
+      resource: "personal_address",
+      redirect: false,
+      onMutationSuccess: (data) => {
+        dispatch({ type: "setPersonalAddressId", payload: data?.data?.id ?? 0 });
+      },
+    },
+    warnWhenUnsavedChanges: true,
+  });
+  useUpdateDefaultValues(form, profile);
+  return { form };
+};
+const useUpdateDefaultValues = (form: IFormConfig, profile: number) => {
+  const profileRef = useRef(profile);
+  useEffect(() => {
+    if (profileRef.current !== profile) {
+      form.setValue?.("profile", profile);
+      profileRef.current = profile;
+    }
+  }, [profile]);
+};
+
+const personalAddressSchema = z.object({
+  profile: z.number(),
+  status: z.string(),
+  district: z.number().min(0, {
+    message: "ກະລຸນາເລືອກເມືອງ",
+  }),
+  village: z.string().min(1, {
+    message: "ກະລຸນາປ້ອນຊື່ບ້ານ",
+  }),
+  province: z.string().min(1, {
+    message: "ກະລຸນາເລືອກແຂວງ",
+  }),
+});
+
