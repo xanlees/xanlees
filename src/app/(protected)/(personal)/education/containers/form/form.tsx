@@ -20,11 +20,12 @@ export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep }) 
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "education" });
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
-    if (!isMounted) {
-      append({ profileId: state.profileId });
-      setIsMounted(true);
-      remove(1);
+    append({ profileId: state.profileId });
+    if (isMounted) {
+      return;
     }
+    setIsMounted(true);
+    remove(0);
   }, [isMounted]);
   return (
     <div className="w-full rounded-lg">

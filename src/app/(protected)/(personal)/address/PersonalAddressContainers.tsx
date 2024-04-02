@@ -7,7 +7,7 @@ import { usePersonalAddressForm } from "./hook/usePersonalAddressForm";
 import { type IFormConfig } from "@src/common/interface";
 
 export const PersonalBornAddressForm: React.FC = () => {
-  const { form } = usePersonalAddressForm({ status: "ທີເກີດ" });
+  const { form } = usePersonalAddressForm({ status: "ທີ່ຢູ່ເກີດ" });
   return (
     <div className="rounded-full w-96 sm:w-[710px] mx-20 ">
       <Form {...form}>
@@ -25,7 +25,7 @@ export const PersonalBornAddressForm: React.FC = () => {
 };
 
 export const PersonalCurrentAddressForm: React.FC = () => {
-  const { form } = usePersonalAddressForm({ status: "ທີຢູ່ປະຈຸບັນ" });
+  const { form } = usePersonalAddressForm({ status: "ທີ່ຢູ່ປະຈຸບັນ" });
   return (
     <div className="rounded-full w-96 sm:w-[710px] mx-20 ">
       <Form {...form}>
