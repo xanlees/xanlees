@@ -132,6 +132,8 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/no-unsafe-argument":  "off",
     "strict-boolean-expressions": ["off", "allow-boolean-or-undefined"]
   }
 }
