@@ -43,7 +43,6 @@ export const profileSchema: any = z
     profilePicture: (z.any() as z.ZodType<FileList>).refine(
       (fileList) => {
         const file = fileList?.[0];
-        console.log(file)
         return (
           file?.size <= maxFileSize && acceptedImageTypes.includes(file?.type)
         );
