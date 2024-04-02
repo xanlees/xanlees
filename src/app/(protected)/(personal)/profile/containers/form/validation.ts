@@ -17,7 +17,7 @@ export const profileSchema: any = z
     fullname: z.string().min(1, {
       message: "ກະລຸນາໃສ່ຊື່ແທ້ ແລະ ນາມສະກຸນ",
     }),
-    type: z.string(),
+    type: z.string().default("EMPLOYEE"),
     nickname: z.string().min(1, {
       message: "ກະລຸນາໃສ່ຫຼີ້ນ",
     }),
