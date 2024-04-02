@@ -11,6 +11,7 @@ import { profileSchema } from "../../containers/form/validation";
 import { BasicInformationSection } from "../form-fields/BasicInformationSection";
 import { PersonalInformationSection } from "../form-fields/PersonalInformationSection";
 import { FormMultipart } from "@src/common/interface";
+import { type MetaQuery } from "@refinedev/core";
 
 interface ProfileFormProps {
   setProfileID?: (id: number) => void
@@ -30,14 +31,17 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
   isEmployee,
 }) => {
   const formConfig = useFormConfig();
+  const profileId = formConfig.state?.profileId ?? 0;
   return (
     <div className="w-[90%] mx-20 rounded-full">
-      <Form {...formConfig.form} cardClassName="w-full flex flex-col">
-        <div className="flex flex-col w-full capitalize rounded-lg sm:w-1/2 sm:flex-row">
-          <BasicInformationSection formConfig={formConfig} isEmployee={isEmployee}/>
-          <PersonalInformationSection formConfig={formConfig} isEmployee={isEmployee}/>
-        </div>
-      </Form>
+      {!profileId
+        ? (<Form {...formConfig.form} cardClassName="w-full flex flex-col">
+          <div className="flex flex-col w-full capitalize rounded-lg sm:w-1/2 sm:flex-row">
+            <BasicInformationSection formConfig={formConfig} isEmployee={isEmployee}/>
+            <PersonalInformationSection formConfig={formConfig} isEmployee={isEmployee}/>
+          </div>
+        </Form>)
+        : ""}
     </div>
   );
 };
@@ -47,12 +51,9 @@ const useFormConfig = () => {
   const { ...form } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
     mode: "onChange",
-    defaultValues: {
-      personalAddressId: state.personalAddressId,
-    },
     refineCoreProps: {
       resource: "profile",
-      meta: FormMultipart,
+      meta: FormMultipart as MetaQuery,
       onMutationSuccess: (data) => {
         dispatch({ type: "setProfileId", payload: data?.data?.id ?? 0 });
       },
@@ -65,5 +66,5 @@ const useFormConfig = () => {
     },
     warnWhenUnsavedChanges: true,
   });
-  return { form };
+  return { form, state };
 };

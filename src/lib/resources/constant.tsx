@@ -14,6 +14,17 @@ export const resources = [
     }
   },
   {
+    name: "agent",
+    list: "/agent",
+    create: "/agent/create",
+    edit: "/agent/edit/:id",
+    show: "/agent/show/:id",
+    icon: <User/>,
+    meta: {
+      label: "ແມ່ຫວຍ",
+    }
+  },
+  {
     name: "branch",
     list: "/branch",
     create: "/branch/create",
@@ -21,17 +32,6 @@ export const resources = [
     show: "/branch/show/:id",
     meta: {
       label: "ສາຂາ",
-    }
-  },
-  {
-    name: "user",
-    list: "/user",
-    create: "/user/create",
-    edit: "/user/edit/:id",
-    show: "/user/show/:id",
-    icon: <User/>,
-    meta: {
-      label: "ຜູ້ໃຊ້ລະບົບ",
     }
   },
   {
@@ -46,14 +46,14 @@ export const resources = [
     }
   },
   {
-    name: "agent",
-    list: "/agent",
-    create: "/agent/create",
-    edit: "/agent/edit/:id",
-    show: "/agent/show/:id",
+    name: "user",
+    list: "/user",
+    create: "/user/create",
+    edit: "/user/edit/:id",
+    show: "/user/show/:id",
     icon: <User/>,
     meta: {
-      label: "agent",
+      label: "ຜູ້ໃຊ້ລະບົບ",
     }
-  },
+  }
 ];
