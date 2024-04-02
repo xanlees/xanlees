@@ -16,6 +16,7 @@ interface EducationFormProps {
 export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep }) => {
   const { state } = useProfileContext();
   const formConfig = useFormConfig({ setCurrentStep });
+  console.log(formConfig.form.watch())
   const graduation = useGraduationSelect();
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "education" });
   const [isMounted, setIsMounted] = useState(false);
@@ -37,7 +38,7 @@ export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep }) 
             <Form.Combobox {...(graduation as any)}/>
           </ArrayField>
           <ArrayField {...formConfig.form} name="year" label="ຈົບສົກປີ">
-            <DatePickerField />
+            <Input placeholder="2018" type="number" className="block w-56"/>
           </ArrayField>
         </DynamicForm>
       </Form>

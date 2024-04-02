@@ -2,7 +2,7 @@ import { ProfileForm, PhysicalProfile, DocumentForm, EducationForm } from "@pers
 import { ApplicationForm } from ".";
 import { WorkExperienceForm } from "@hr";
 import { Success } from "../form-fields/successSubmit";
-import { PersonalBornAddressForm } from "@src/app/(protected)/(personal)/address/PersonalAddressContainers";
+import { PersonalBornAddressForm } from "@src/app/(protected)/(personal)/address/containers/form";
 
 export const applicationFromStep = [
   {

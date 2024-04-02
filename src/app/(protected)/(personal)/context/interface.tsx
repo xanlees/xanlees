@@ -3,7 +3,8 @@ import { type LoadFromStorage } from "@src/common/components/localStorageContext
 export interface ProfileState {
   profileId?: number
   graduationId?: number
-  personalAddressId?: number
+  personalCurrentAddressId?: number
+  personalBornAddressId?: number
   applicationId?: number
   physicalProfileId?: number
   isUploaded?: boolean
@@ -11,7 +12,7 @@ export interface ProfileState {
   educationId?: number
 }
 type ProfileActionType = "setProfileId" | "setGraduationId" | "setEducationId" |
-"setPersonalAddressId" | "setApplicationId" | "setWorkExperienceId" |
+"setPersonalCurrentAddressId" | "setPersonalBornAddressId" | "setApplicationId" | "setWorkExperienceId" |
 "setIsUploaded" | "setPhysicalProfileId" | typeof LoadFromStorage | "clearState";
 export interface ProfileAction {
   type: ProfileActionType

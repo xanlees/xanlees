@@ -8,6 +8,8 @@ import { type IFormConfig } from "@src/common/interface";
 export const usePersonalAddressForm = ({ status }: { status: string }) => {
   const { state, dispatch } = useProfileContext();
   const profile = state.profileId ?? 0;
+  const personalCurrentAddressId = state.personalCurrentAddressId ?? 0;
+  const type = !personalCurrentAddressId ? "setPersonalCurrentAddressId" : "setPersonalBornAddressId";
   const { ...form } = useForm<{ id?: number }>({
     resolver: zodResolver(personalAddressSchema),
     defaultValues: {
@@ -21,13 +23,13 @@ export const usePersonalAddressForm = ({ status }: { status: string }) => {
       resource: "personal_address",
       redirect: false,
       onMutationSuccess: (data) => {
-        dispatch({ type: "setPersonalAddressId", payload: data?.data?.id ?? 0 });
+        dispatch({ type, payload: data?.data?.id ?? 0 });
       },
     },
     warnWhenUnsavedChanges: true,
   });
   useUpdateDefaultValues(form, profile);
-  return { form };
+  return { form, state };
 };
 const useUpdateDefaultValues = (form: IFormConfig, profile: number) => {
   const profileRef = useRef(profile);

@@ -9,10 +9,6 @@ export const genderOptions = [
     label: "ຍິງ",
     value: "FEMALE",
   },
-  {
-    label: "ອື່ນໆ",
-    value: "OTHER",
-  },
 ];
 
 export const maritalStatusOptions = [

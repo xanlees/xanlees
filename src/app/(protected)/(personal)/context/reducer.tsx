@@ -12,8 +12,10 @@ export const ProfileReducer = (
       return { ...state, graduationId: action.payload as number };
     case "setEducationId":
       return { ...state, educationId: action.payload as number };
-    case "setPersonalAddressId":
-      return { ...state, personalAddressId: action.payload as number };
+    case "setPersonalCurrentAddressId":
+      return { ...state, personalCurrentAddressId: action.payload as number };
+    case "setPersonalBornAddressId":
+      return { ...state, personalBornAddressId: action.payload as number };
     case "setPhysicalProfileId":
       return { ...state, physicalProfileId: action.payload as number };
     case "setIsUploaded":
@@ -29,7 +31,8 @@ export const ProfileReducer = (
 const initialProfileState: ProfileState = {
   profileId: 0,
   graduationId: 0,
-  personalAddressId: 0,
+  personalCurrentAddressId: 0,
+  personalBornAddressId: 0,
   applicationId: 0,
   physicalProfileId: 0,
   workExperienceId: 0,

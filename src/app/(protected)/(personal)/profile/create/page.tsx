@@ -8,27 +8,19 @@ import { Button } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 import FormStep from "@src/common/components/stepForm";
 import { hasValid } from "@src/common/lib/validation/hasValid";
-import { DocumentForm, EducationForm, PersonalBornAddressForm, PersonalCurrentAddressForm, ProfileForm } from "@personal";
+import { DocumentForm, EducationForm, ProfileForm, PersonalAddressForm } from "@personal";
 
 const breadcrumbs = [
   { label: "ພະນັກງານ", href: "/profile" },
   { label: "ສ້າງພະນັກງານ" },
 ];
-
 const ProfileCreate = () => {
-  return (
-    <ProfileProvider>
-      <FormCreate />
-    </ProfileProvider>
-  );
+  return <ProfileProvider><FormCreate /></ProfileProvider>;
 };
-
 const FormCreate = () => {
   const router = useRouter();
   const { state, dispatch } = useProfileContext();
-
   const initialStep = getStepState(state);
-
   const handleButtonClick = () => {
     const storedState = localStorage.getItem(PROFILE_STORAGE_KEY);
     const profileState = JSON.parse(storedState as string) as ProfileState;
@@ -56,20 +48,22 @@ const FormCreate = () => {
   );
 };
 function getStepState(state: ProfileState) {
-  const personalAddressStep = 0;
-  const profileStep = 1;
-  const documentStep = 2;
-  const educationStep = 3;
-
+  const profileStep = 0;
+  const personalCurrentAddressStep = 1;
+  const personalBornAddressStep = 2;
+  const documentStep = 3;
+  const educationStep = 4;
   switch (true) {
     case hasValid(state.isUploaded):
       return educationStep;
-    case hasValid(state.profileId):
+    case hasValid(state.personalBornAddressId):
       return documentStep;
-    case hasValid(state.personalAddressId):
-      return profileStep;
+    case hasValid(state.personalCurrentAddressId):
+      return personalBornAddressStep;
+    case hasValid(state.profileId):
+      return personalCurrentAddressStep;
     default:
-      return personalAddressStep;
+      return profileStep;
   }
 }
 const formStepsData = [
@@ -79,9 +73,16 @@ const formStepsData = [
     completed: false,
   },
   {
-    stepLabel: "ທີຢູ່ອາໄສ",
+    stepLabel: "ທີຢູ່ປະຈຸບັນ",
     stepDescription: (
-      <div><PersonalCurrentAddressForm/><PersonalBornAddressForm/></div>
+      <PersonalAddressForm/>
+    ),
+    completed: false,
+  },
+  {
+    stepLabel: "ທີ່ນຖານບ້ານເກີດ",
+    stepDescription: (
+      <PersonalAddressForm isCurrent={false}/>
     ),
     completed: false,
   },
@@ -97,4 +98,3 @@ const formStepsData = [
   },
 ];
 export default ProfileCreate;
-
