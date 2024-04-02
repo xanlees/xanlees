@@ -17,6 +17,7 @@ export const profileSchema: any = z
     fullname: z.string().min(1, {
       message: "ກະລຸນາໃສ່ຊື່ແທ້ ແລະ ນາມສະກຸນ",
     }),
+    type: z.string(),
     nickname: z.string().min(1, {
       message: "ກະລຸນາໃສ່ຫຼີ້ນ",
     }),
@@ -34,9 +35,6 @@ export const profileSchema: any = z
         message: "ກະລຸນາເລືອກປະເພດເລກລະຫັດວ່າ ເລກບັດປະຈໍາຕົວ, ເລກເຄື່ອງຂາຍເລກ ຫຼື ປື້ມສໍາມະໂມຄົວເລກທີ",
       }),
     birthday: z.date().transform((value) => new Date(value).toISOString()),
-    personalAddressId: z.number().min(0, {
-      message: "Personal Address ID must be a non-negative number.",
-    }),
     uniqueNumber: z.array(
       z.object({
         uniqueNumber: z.string(),

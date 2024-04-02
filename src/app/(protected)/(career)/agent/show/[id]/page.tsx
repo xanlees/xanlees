@@ -30,7 +30,7 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
   return (
     <Show>
       <div className="md:flex flex-row gap-2 mt-5">
-        <ProfileDetail profileData={profileData} />
+        <ProfileDetail profileData={profileData} visible="agent" />
         <div className=" space-y-2">
           <div className="flex w-full gap-2 ">
             <EmployeeDetail employeeData={employeeData} sectorData={sectorData}/>

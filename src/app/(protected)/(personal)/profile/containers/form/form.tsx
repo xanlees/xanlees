@@ -10,9 +10,9 @@ import { errorMessages } from "../../containers/form/constant";
 import { profileSchema } from "../../containers/form/validation";
 import { BasicInformationSection } from "../form-fields/BasicInformationSection";
 import { PersonalInformationSection } from "../form-fields/PersonalInformationSection";
+import { FormMultipart } from "@src/common/interface";
 
 interface ProfileFormProps {
-  setCurrentStep?: (step: number) => void
   setProfileID?: (id: number) => void
   isEmployee?: boolean
 }
@@ -27,10 +27,9 @@ interface IMessages {
   }
 }
 export const ProfileForm: React.FC<ProfileFormProps> = ({
-  setCurrentStep,
   isEmployee,
 }) => {
-  const formConfig = useFormConfig({ setCurrentStep });
+  const formConfig = useFormConfig();
   return (
     <div className="w-[90%] mx-20 rounded-full">
       <Form {...formConfig.form} cardClassName="w-full flex flex-col">
@@ -43,7 +42,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
   );
 };
 
-const useFormConfig = ({ setCurrentStep }: { setCurrentStep?: ((step: number) => void) | undefined }) => {
+const useFormConfig = () => {
   const { state, dispatch } = useProfileContext();
   const { ...form } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
@@ -53,18 +52,9 @@ const useFormConfig = ({ setCurrentStep }: { setCurrentStep?: ((step: number) =>
     },
     refineCoreProps: {
       resource: "profile",
-      meta: {
-        headers: {
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          "content-type": "multipart/form-data",
-        },
-      },
-      autoSave: {
-        enabled: true,
-      },
+      meta: FormMultipart,
       onMutationSuccess: (data) => {
         dispatch({ type: "setProfileId", payload: data?.data?.id ?? 0 });
-        (setCurrentStep != null) && setCurrentStep(2);
       },
       errorNotification: (data: any) => {
         const responseData = (data as IMessages).response.data;
