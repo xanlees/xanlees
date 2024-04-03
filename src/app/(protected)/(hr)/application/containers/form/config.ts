@@ -32,7 +32,7 @@ export const useFormConfig = ({ isUpdate = false }: FormConfigParams) => {
       resource: "application",
       redirect: false,
       action: isUpdate ? "edit" : "create",
-      id: 18,
+      id: state.applicationId,
       onMutationSuccess: (data) => {
         if (isUpdate) {
           dispatch({ type: "setUpdateApplicationId", payload: data?.data?.id ?? 0 });

@@ -2,7 +2,6 @@
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
 import { useUserFriendlyName } from "@refinedev/core";
-import type { IPosition, ISector } from "./interface";
 import { useBranchID, useSector } from "./hook/useSector";
 import { getActionsColumn } from "@src/common/containers/column/action";
 import { getSelectColumn } from "@src/common/containers/column/select";
@@ -11,6 +10,8 @@ import { positionsColumn } from "./containers/column/positions";
 import { branchColumn } from "./containers/column/branch";
 import { sectorColumn } from "./containers/column/sector";
 import { useTableBranch } from "./hook/useTableBranch";
+import { type ISector } from "../sector/interface";
+import { type IPosition } from "../position/interface";
 
 const resource = "branch";
 export default function BranchList(): JSX.Element {

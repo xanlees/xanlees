@@ -10,7 +10,7 @@ import { type IFormConfig } from "@src/common/interface";
 
 export const ApplicationForm: React.FC = () => {
   const formConfig = useFormConfig({ isUpdate: true });
-  const isCompleted = formConfig.state.profileId;
+  const isCompleted = formConfig.state.applicationId;
   return (
     <div className="mx-20 rounded-full">
       {!isCompleted
@@ -24,28 +24,33 @@ export const ApplicationForm: React.FC = () => {
 };
 export const Application2Form: React.FC = () => {
   const formConfig = useFormConfig({ isUpdate: true });
+  const isCompleted = formConfig.state.applicationId;
   return (
     <div className="mx-20 rounded-full">
-      <Form {...formConfig.form}>
-        <GeneralInfo formConfig={formConfig} />
-        <Form.Field
-          require={false}
-          {...formConfig.form}
-          name="appliedReason"
-          label="ເປັນຫຍັງທ່ານຈື່ງຢາກເຮັດວຽກກັບ ວິສາຫະກິດສ່ນບຸກຄົນ ເອັສບີເອັສ"
-        >
-          <Textarea className="h-28" />
-        </Form.Field>
-        <Form.Field
-          require={false}
-          {...formConfig.form}
-          name="pledgeReason"
-          label="ຖ້າໄດ້ເປັນພະນັກງານຂອງ ເອັສບີເອັສ ແລ້ວທ່ານຈະປະຕິຍານຕົນແນວໃດ ?"
-        >
-          <Textarea className="h-28" />
-        </Form.Field>
-        <ApplicantSignatureChckbox {...formConfig} />
-      </Form>
+      {!isCompleted
+        ? (
+          <Form {...formConfig.form}>
+            <GeneralInfo formConfig={formConfig} />
+            <Form.Field
+              require={false}
+              {...formConfig.form}
+              name="appliedReason"
+              label="ເປັນຫຍັງທ່ານຈື່ງຢາກເຮັດວຽກກັບ ວິສາຫະກິດສ່ນບຸກຄົນ ເອັສບີເອັສ"
+            >
+              <Textarea className="h-28" />
+            </Form.Field>
+            <Form.Field
+              require={false}
+              {...formConfig.form}
+              name="pledgeReason"
+              label="ຖ້າໄດ້ເປັນພະນັກງານຂອງ ເອັສບີເອັສ ແລ້ວທ່ານຈະປະຕິຍານຕົນແນວໃດ ?"
+            >
+              <Textarea className="h-28" />
+            </Form.Field>
+            <ApplicantSignatureChckbox {...formConfig} />
+          </Form>)
+        : (<p className="italic">ສຳເລັດແລ້ວ !</p>)}
+
     </div>
   );
 };

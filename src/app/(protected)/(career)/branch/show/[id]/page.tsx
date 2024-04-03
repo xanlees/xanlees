@@ -2,17 +2,17 @@
 /* eslint-disable max-nested-callbacks */
 /* eslint-disable max-lines-per-function */
 "use client";
+import { Badge } from "@src/shadcn/elements";
 import { cn } from "@src/lib/utils";
+import { type IBranch, type IPosition, type ISector } from "../../..";
+import { Show } from "@/shadcn/components/crud";
+import { useList, useShow } from "@refinedev/core";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@src/shadcn/elements/card";
-import { Show } from "@/shadcn/components/crud";
-import { useList, useShow } from "@refinedev/core";
-import type { ISector, IPosition, IBranch } from "../../interface";
-import { Badge } from "@src/shadcn/elements";
 
 export default function BranchShow({
   params,
@@ -50,7 +50,7 @@ export default function BranchShow({
   const joinedData = sectorData?.data.map((sector) => {
     const sectorId = sector.id;
     const positionsInSector = positionData?.data
-      .filter((position) => position.sectorId === sectorId)
+      .filter((position) => position?.sectorId === sectorId)
       .map((position) => ({
         ...position,
         sectorDetail: {
@@ -60,8 +60,8 @@ export default function BranchShow({
         },
       }));
     return {
-      name: sector.branchDetail.name,
-      id: sector.branchDetail.id,
+      name: sector.branchId.name,
+      id: sector.branchId.id,
       sector: [
         {
           ...sector,
@@ -70,6 +70,7 @@ export default function BranchShow({
       ],
     };
   });
+
   return (
     <Show>
       <Card className={cn("w-2/3 mx-auto my-5 rounded-lg p-2")}>

@@ -1,5 +1,6 @@
 import { useList } from "@refinedev/core";
-import type { ISector, IBranch } from "../interface";
+import type { IBranch } from "../interface";
+import { type ISector } from "../../sector/interface";
 
 interface UseSectorProps {
   branchId: number[]

@@ -1,5 +1,5 @@
 import { type IEmployee } from "./employee";
-import type { ISector, IPosition, IBranch } from "./branch/interface";
+import type { IBranch } from "./branch/interface";
 import { useProfileContext } from "@src/app/(protected)/(personal)";
 import { AddressDetail, DocumentPDF, EmployeeDetail, ProfileDetail } from "../(personal)/profile/containers/card";
 import { useEmployees, usePersonalAddress, useProfile } from "../(personal)/profile/hooks";
@@ -12,6 +12,8 @@ import { usePosition } from "./position/hook";
 import { useTableBranch } from "./branch/hook/useTableBranch";
 import { FormSector } from "./sector/form/form";
 import { Position } from "./agent/containers/column";
+import { ISector } from "./sector/interface";
+import { IPosition } from "./position/interface";
 
 export {
   useProfileContext, AddressDetail
@@ -33,4 +35,4 @@ export {
   Position,
 
 };
-export type { IEmployee, ISector, IPosition, IBranch };
+export type { IEmployee, IBranch, ISector, IPosition };
