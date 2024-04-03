@@ -29,17 +29,17 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
   const { data: sectorData } = useSector<ISector>({ sectorId });
   return (
     <Show>
-      <div className="md:flex flex-row gap-2 mt-5">
-        <ProfileDetail profileData={profileData} />
-        <div className=" space-y-2">
-          <div className="flex w-full gap-2 ">
-            <EmployeeDetail employeeData={employeeData} sectorData={sectorData}/>
-            <DocumentPDF profileId={params?.id}/>
-          </div>
-          <div className="flex w-full gap-2">
-            <EducationDetail educationData={educationData as IEducation[]} />
-            <AddressDetail personalAddressData={personalAddressData as IAddress[]} />
-          </div>
+      <div className="flex-row gap-2 mt-5 md:flex">
+        <div className="">
+          <ProfileDetail profileData={profileData} />
+          <DocumentPDF profileId={params?.id}/>
+        </div>
+        <div className="space-y-2 ">
+          <EmployeeDetail employeeData={employeeData} sectorData={sectorData}/>
+          <EducationDetail educationData={educationData as IEducation[]} />
+        </div>
+        <div className="">
+          <AddressDetail personalAddressData={personalAddressData as IAddress[]} />
         </div>
       </div>
     </Show>

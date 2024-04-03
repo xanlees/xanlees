@@ -10,14 +10,14 @@ export function ProfileDetail({ profileData }: { profileData: IProfile[] }): JSX
   const { fullname, nickname, phoneNumber, gender, birthday, maritalStatus, profilePicture, uniqueNumber, typeOfUniqueNumber } = profileData?.[0] ?? {};
   const age = calculateAge(birthday);
   return (
-    <Card className="shadow-xl pb-3 rounded-lg w-full md:w-1/3 bg-white dark:bg-gray-800 dark:text-white">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
+    <Card className="pb-3 bg-white rounded-lg shadow-xl w-96 dark:bg-gray-800 dark:text-white">
+      <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800">ຂໍ້ມູນສ່ວນບຸກຄົນ</CardTitle>
       </CardHeader>
       <CardContent>
         <ProfileImage imageUrl={profilePicture ?? ""}/>
       </CardContent>
-      <div className="px-4 py-2">
+      <div className="px-4 py-2 ">
         <Show.Row className="text-md" title="ຊື່​ ແລະ ນາມ​ສະ​ກຸນ" content={`${fullname} ${nickname}`} />
         <Show.Row className="text-md" title="ເພດ" content={getGenderDisplayText(gender)} />
         <Show.Row className="text-md" title="ສະຖານະພາບ" content={getMaritalStatusDisplayText(maritalStatus)} />
@@ -32,7 +32,7 @@ export function ProfileDetail({ profileData }: { profileData: IProfile[] }): JSX
 
 export function ProfileImage({ imageUrl }: { imageUrl: string }) {
   return (
-    <Avatar className="w-32 h-32 md:w-48 md:h-48 xl:w-64 xl:h-64 mx-auto rounded-full overflow-hidden shadow-sm border-4 border-white">
+    <Avatar className="w-32 h-32 mx-auto overflow-hidden border-4 border-white rounded-full shadow-sm md:w-48 md:h-48 xl:w-64 xl:h-64">
       <AvatarImage src={imageUrl} alt="profile image" className="object-cover object-center w-full h-full"/>
       <AvatarFallback className="flex items-center justify-center h-full">Profile Image</AvatarFallback>
     </Avatar>
