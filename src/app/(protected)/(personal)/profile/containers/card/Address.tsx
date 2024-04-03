@@ -6,8 +6,8 @@ import { type IAddress } from "@personal";
 
 export function AddressDetail({ personalAddressData }: { personalAddressData: IAddress[] }): JSX.Element {
   return (
-    <Card className="shadow-xl pb-3 rounded-lg w-full bg-white dark:bg-gray-800 dark:text-white h-fit ">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
+    <Card className="w-full pb-3 bg-white rounded-lg shadow-xl dark:bg-gray-800 dark:text-white h-fit ">
+      <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
           {"ທີ່ຢູ່"}
         </CardTitle>
@@ -17,10 +17,10 @@ export function AddressDetail({ personalAddressData }: { personalAddressData: IA
           return (
             <Show.Row
               key={item.id}
-              className="text-md text-gray-700 dark:text-gray-300"
+              className="text-gray-700 text-md dark:text-gray-300"
               title={item?.status}
               // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-              content={`${item?.village}:${item?.district?.districtName}:${item?.district?.provinceName} - (ເຮຶອນເລກທີ${item?.houseNo})`}
+              content={`${item?.village}:${item?.district?.districtName}:${item?.district?.provinceName}`}
             />
           );
         })}

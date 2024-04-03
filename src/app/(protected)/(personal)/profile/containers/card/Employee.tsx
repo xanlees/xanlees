@@ -8,8 +8,8 @@ export function EmployeeDetail({ employeeData, sectorData }: { employeeData: IEm
   const getSectorAndBranchDetail = getSector(sectorData);
   const sortedEmployeeData = sorted(employeeData);
   return (
-    <Card className="shadow-xl pb-3 rounded-lg w-full md:w-1/2  bg-white dark:bg-gray-800 dark:text-white h-fit">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
+    <Card className="w-full pb-3 bg-white rounded-lg shadow-xl dark:bg-gray-800 dark:text-white h-fit">
+      <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">ຂໍ້ມູນຕໍາແໜ່ງ</CardTitle>
       </CardHeader>
       <div className="px-4 py-2">
@@ -18,8 +18,8 @@ export function EmployeeDetail({ employeeData, sectorData }: { employeeData: IEm
           return (
             <Show.Row
               key={item.id}
-              className="text-md text-gray-700 dark:text-gray-300"
-              title={item?.isLatest ? "ຕໍາແໜ່ງປະຈຸບັນ" : "ຕໍາແໜ່ງໃນອາດິດ"}
+              className="text-gray-700 text-md dark:text-gray-300"
+              title={item?.isLatest ? "ຕໍາແໜ່ງປະຈຸບັນ" : "ຕໍາແໜ່ງຜ່ານມາ"}
               content={`${item?.positionId?.name}, ${sectorAndBranchDetail}`}
             />
           );
@@ -44,7 +44,8 @@ function sorted(employeeData: IEmployee[]) {
 function getSector(sectorData: ISector[]) {
   return (sectorId: number, joiningDate: string): string => {
     const sector = sectorData.find((s) => s.id === sectorId);
-    return (sector != null) ? `${sector.name}, ${sector.branchId?.name} ${moment(joiningDate).format("MMMM DD, YYYY")}` : "N/A";
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    return (sector != null) ? `${sector.name}, ${(sector.branchId as any)?.name} ${moment(joiningDate).format("MMMM DD, YYYY")}` : "N/A";
   };
 }
 
