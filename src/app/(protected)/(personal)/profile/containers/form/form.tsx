@@ -41,7 +41,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
             <PersonalInformationSection formConfig={formConfig} isEmployee={isEmployee}/>
           </div>
         </Form>)
-        : ""}
+        : (<p className="italic">ສຳເລັດແລ້ວ !</p>)}
     </div>
   );
 };

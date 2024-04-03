@@ -11,14 +11,15 @@ interface DocumentFormProps {
 }
 
 export const DocumentForm: React.FC<DocumentFormProps> = ({ setCurrentStep }) => {
-  const { form } = useFormConfig({ setCurrentStep });
+  const { form, state } = useFormConfig({ setCurrentStep });
   const { fields, append, remove } = useFieldArray({ control: form.control, name: "document" });
   const fileName: string = form.watch("documentName") as string;
   const fileInput = form.watch("documentFile") as FileList;
+  const isComplete = state.isUploaded;
 
-  return (
-    <div className="relative w-[108%] mx-20 rounded-lg">
-      <Form {...form} cardClassName="w-full flex flex-col">
+  return <div className="relative w-[108%] mx-20 rounded-lg">
+    {!isComplete
+      ? (<Form {...form} cardClassName="w-full flex flex-col">
         <div className="flex flex-row h-10 gap-4">
           <Form.Field {...form} name="documentName" label="ຊື່ເອກສານ" >
             <Input placeholder="ຊື່ເອກສານ" className="flex w-full" />
@@ -41,7 +42,7 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ setCurrentStep }) =>
             file={fileInput}
           />
         </div>
-      </Form>
-    </div>
-  );
+      </Form>)
+      : (<p className="italic">ສຳເລັດແລ້ວ !</p>)}
+  </div>;
 };

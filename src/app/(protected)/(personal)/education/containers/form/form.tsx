@@ -1,6 +1,5 @@
 import { Form } from "@src/shadcn/components/form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
-import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { Input } from "@src/shadcn/elements";
 import React, { useEffect, useState } from "react";
@@ -38,7 +37,7 @@ export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep }) 
             <Form.Combobox {...(graduation as any)}/>
           </ArrayField>
           <ArrayField {...formConfig.form} name="year" label="ຈົບສົກປີ">
-            <DatePickerField />
+            <Input placeholder="2018" type="number" className="block w-56"/>
           </ArrayField>
         </DynamicForm>
       </Form>
