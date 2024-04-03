@@ -11,8 +11,10 @@ const breadcrumbs = [
 
 export default function EmployeeCreate({ params }: { params: { id: number } }): JSX.Element {
   return (
-    <Create resource="profile" breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}>
-      <EmployeeForm redirect="list" {...params} />
+    <Create title="ຟອມບັນຈຸຕຳແໜ່ງ" resource="profile" breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}>
+      <div className="flex justify-center w-full">
+        <EmployeeForm redirect="list" {...params} />
+      </div>
     </Create>
   );
 }

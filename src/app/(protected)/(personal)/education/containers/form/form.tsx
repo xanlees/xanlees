@@ -18,6 +18,7 @@ export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep }) 
   const graduation = useGraduationSelect();
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "education" });
   const [isMounted, setIsMounted] = useState(false);
+  const isCompleted = state.educationId ?? 0;
   useEffect(() => {
     append({ profileId: state.profileId });
     if (isMounted) {
@@ -26,22 +27,22 @@ export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep }) 
     setIsMounted(true);
     remove(0);
   }, [isMounted]);
-  return (
-    <div className="w-full rounded-lg">
-      <Form {...formConfig.form} cardClassName="w-full flex flex-col">
-        <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="education" label="ການສຶກສາອີກ" className="flex gap-2" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId } }>
+  return (<div className="w-full rounded-lg">
+    {!isCompleted
+      ? (<div><Form {...formConfig.form} cardClassName="w-full flex flex-col">
+        <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="education" label="ການສຶກສາອີກ" className="flex gap-2" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId }}>
           <ArrayField {...formConfig.form} name="branch" label="ສາຂາ">
             <Input placeholder="ສາຂາ" className="block w-56" />
           </ArrayField>
           <ArrayField {...formConfig.form} name="graduationId" label="ຂະແໜງທີ່ຈົບ">
-            <Form.Combobox {...(graduation as any)}/>
+            <Form.Combobox {...(graduation as any)} />
           </ArrayField>
           <ArrayField {...formConfig.form} name="year" label="ຈົບສົກປີ">
-            <Input placeholder="2018" type="number" className="block w-56"/>
+            <Input placeholder="2018" type="number" className="block w-56" />
           </ArrayField>
         </DynamicForm>
       </Form>
-      <FormGraduation />
-    </div>
-  );
+      <FormGraduation /></div>)
+      : (<p className="mx-20 italic">ສຳເລັດແລ້ວ !</p>)}
+  </div>);
 };
