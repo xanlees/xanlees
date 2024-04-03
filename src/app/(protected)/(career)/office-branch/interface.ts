@@ -1,6 +1,5 @@
 export interface IBranch {
   name: string
-  type: string
   id: number
 }
 

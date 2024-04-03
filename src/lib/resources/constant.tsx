@@ -31,7 +31,17 @@ export const resources = [
     edit: "/branch/edit/:id",
     show: "/branch/show/:id",
     meta: {
-      label: "ສາຂາ",
+      label: "ສາຂາຫ້ອງການ",
+    }
+  },
+  {
+    name: "office-branch",
+    list: "/office-branch",
+    create: "/office-branch/create",
+    edit: "/office-branch/edit/:id",
+    show: "/office-branch/show/:id",
+    meta: {
+      label: "ສາຂາແມ່ຫວຍ",
     }
   },
   {

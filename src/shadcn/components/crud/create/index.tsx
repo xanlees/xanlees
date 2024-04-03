@@ -35,7 +35,7 @@ export const Create: React.FC<ListProps> = ({
                     title ??
                     translate(
                         `${identifier}.titles.List`,
-                        `ລາຍການ ${getUserFriendlyName(
+                        `${getUserFriendlyName(
                             resource?.meta?.label ??
                                 resource?.options?.label ??
                                 resource?.label ??

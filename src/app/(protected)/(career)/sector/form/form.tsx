@@ -1,22 +1,12 @@
 import { Form } from "@src/shadcn/components/form";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@src/shadcn/elements/accordion";
-import { useSelect, type RedirectAction } from "@refinedev/core";
-import { Card, Input } from "@src/shadcn/elements";
+import { useSelect } from "@refinedev/core";
+import { Input } from "@src/shadcn/elements";
 import { useFormConfig } from "./config";
 import { type IBranch } from "../interface";
-import { FormBranch } from "../../branch/containers/form/form/form";
 import { type IFormConfig } from "@src/common/interface";
-interface ISectorFormProps {
-  redirect: RedirectAction
-}
 
-export const FormSector: React.FC<ISectorFormProps> = ({ redirect }) => {
-  const formConfig = useFormConfig(redirect);
+export const FormSector: React.FC = () => {
+  const formConfig = useFormConfig();
   const branch = useSelect<IBranch>({
     resource: "branch",
     optionLabel: "name",
@@ -24,26 +14,17 @@ export const FormSector: React.FC<ISectorFormProps> = ({ redirect }) => {
     filters: [{ field: "pageSize", operator: "eq", value: 50 }],
   });
   return (
-    <Accordion type="single" collapsible className="w-full">
-      <AccordionItem value="item-1">
-        <AccordionTrigger className="italic text-blue-500 underline">
-          *ຊອກຂະແໜງບໍ່ເຫັນ, ກົດທີ່ນີ້
-        </AccordionTrigger>
-        <AccordionContent>
-          <Form {...formConfig.form}>
-            <div className="w-full">
-              <Form.Field {...formConfig.form} name="name" label="ຂະແໜງ">
-                <Input placeholder="ຂະແໜງ" className="block w-full" />
-              </Form.Field>
-            </div>
-            <BranchSection formConfig={formConfig} branch={branch} />
-          </Form>
-          <Card className="p-2 mt-2 rounded-lg">
-            <FormBranch redirect="edit" />
-          </Card>
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+    <div className="rounded-full w-96 sm:w-[710px] mx-20 ">
+      <Form {...formConfig.form}>
+        <div className="w-full">
+          <Form.Field {...formConfig.form} name="name" label="ຂະແໜງ">
+            <Input placeholder="ຂະແໜງ" className="block w-full" />
+          </Form.Field>
+        </div>
+        <BranchSection formConfig={formConfig} branch={branch} />
+      </Form>
+    </div>
+
   );
 };
 

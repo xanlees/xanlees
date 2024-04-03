@@ -38,7 +38,7 @@ export const List: FC<ListProps & { showCreate?: boolean }> = ({
                     title ??
                     translate(
                         `${identifier}.titles.List`,
-                        `ລາຍການ ${getUserFriendlyName(
+                        `${getUserFriendlyName(
                             resource?.meta?.label ??
                                 resource?.options?.label ??
                                 resource?.label ??

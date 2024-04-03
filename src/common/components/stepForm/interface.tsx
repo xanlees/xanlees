@@ -1,10 +1,10 @@
 export interface FormStepProp {
-  formStepsData: StepDescriptionProps[]
-  initialStep: number
-}
-
-export interface StepDescriptionProps {
-  stepLabel: string
-  stepDescription: JSX.Element
-  completed: boolean
+  formStepsData: Array<{
+    stepLabel: string
+    stepDescription: JSX.Element
+    completed: boolean
+  }>
+  initialStep?: number
+  disableStepNavigation?: boolean
+  showDescriptionsForAllSteps?: boolean
 }

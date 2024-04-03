@@ -48,4 +48,6 @@ p, admin, work_experience, (list)|(create)
 p, anonymous, work_experience, (create)
 p, admin, agent/*, (edit)|(show)|(delete)
 p, admin, agent, (list)|(create)
+p, admin, office-branch/*, (edit)|(show)|(delete)
+p, admin, office-branch, (list)|(create)
 `);
