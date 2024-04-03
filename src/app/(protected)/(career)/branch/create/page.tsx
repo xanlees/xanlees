@@ -1,6 +1,6 @@
 "use client";
 import { Create } from "@/shadcn/components/crud";
-import { PositionCreate } from "../containers/form/form";
+import { BranchForm } from "../containers/form/form";
 export default function BranchCreate(): JSX.Element {
   return (
     <Create>
@@ -9,7 +9,7 @@ export default function BranchCreate(): JSX.Element {
           <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
             ຟອມສ້າງສາຂາຫ້ອງການ
           </div>
-          <PositionCreate />
+          <BranchForm type={"ຫ້ອງການ"} />
         </div>
       </div>
     </Create>

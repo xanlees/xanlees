@@ -4,24 +4,25 @@ import { FormBranch } from "./form/form";
 import { FormSector } from "../../../sector/form/form";
 import { Input } from "@src/shadcn/elements";
 import { useFormPositionConfig } from "./form/config";
-import {
-  useSelect,
-  type BaseOption,
-} from "@refinedev/core";
+import { useSelect, type BaseOption } from "@refinedev/core";
 import { type ISector } from "../../interface";
 import { SectorSection } from "./positionCreate";
 
-export const PositionCreate: React.FC = () => {
+export const BranchForm: React.FC<{ type: string }> = (type) => {
+  const branchType = type.type;
   const formConfig = useFormPositionConfig();
   const sector = useSelect<ISector>({
     resource: "sector",
     optionLabel: "name",
     optionValue: "id",
-    filters: [{ field: "pageSize", operator: "eq", value: 50 }],
+    filters: [
+      { field: "pageSize", operator: "eq", value: 50 },
+      { field: "branch_type", operator: "eq", value: branchType },
+    ],
   });
   const options = sector.queryResult.data?.data.map((item) => {
     return {
-      label: `${item?.name} - ${item?.branchDetail?.name}`,
+      label: `${item?.name} - ${item?.branchId?.name}`,
       value: item.id,
     };
   });
@@ -35,7 +36,7 @@ export const PositionCreate: React.FC = () => {
         <SectorSection formConfig={formConfig} sector={sector} />
       </Form>
       <FormSector />
-      <FormBranch />
+      <FormBranch type={branchType} />
     </div>
   );
 };

@@ -1,3 +1,5 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { type RedirectAction } from "@refinedev/core";
 import { Form } from "@src/shadcn/components/form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
@@ -9,14 +11,14 @@ import { useFieldArray } from "react-hook-form";
 import { useFormConfig } from "./config";
 import { usePositionSelect } from "./fields/select";
 
-export const EmployeeForm = ({ redirect = "list", id }: { redirect: RedirectAction, id: number }) => {
+export const EmployeeForm = ({ redirect = "list", userId, type }: { redirect: RedirectAction, userId?: string, type?: string }) => {
   const formConfig = useFormConfig(redirect);
-  const position = usePositionSelect();
+  const position = usePositionSelect(type);
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "employee" });
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     if (!isMounted) {
-      append({ profileId: id });
+      append({ profileId: userId });
       setIsMounted(true);
       remove(1);
     }
@@ -25,7 +27,7 @@ export const EmployeeForm = ({ redirect = "list", id }: { redirect: RedirectActi
     <div className="flex flex-col border shadow-2xl rounded-2xl">
       <span className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">ຟອມສ້າງພະນັກງານ</span>
       <Form {...formConfig.form}>
-        <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="employee" label="ຕໍາແໜ່ງ" className="flex flex-row gap-2" classNameButton="mt-5" defaultConfig={{ profileId: id }}>
+        <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="employee" label="ຕໍາແໜ່ງ" className="flex flex-row gap-2" classNameButton="mt-5" defaultConfig={{ profileId: userId }}>
           <ArrayField {...formConfig.form} name="positionId" label="ຕໍາແໜ່ງ">
             <Form.Combobox {...(position as any)}/>
           </ArrayField>

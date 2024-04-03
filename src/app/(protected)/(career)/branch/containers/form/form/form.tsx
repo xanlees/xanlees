@@ -8,8 +8,8 @@ import {
 import { Input } from "@src/shadcn/elements";
 import { useFormBranchConfig } from "./config";
 
-export const FormBranch: React.FC = () => {
-  const formConfig = useFormBranchConfig();
+export const FormBranch: React.FC<{ type: string }> = (type) => {
+  const formConfig = useFormBranchConfig(type.type);
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">

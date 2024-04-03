@@ -3,13 +3,15 @@ import type { ISector, IPosition, IBranch } from "./branch/interface";
 import { useProfileContext } from "@src/app/(protected)/(personal)";
 import { AddressDetail, DocumentPDF, EmployeeDetail, ProfileDetail } from "../(personal)/profile/containers/card";
 import { useEmployees, usePersonalAddress, useProfile } from "../(personal)/profile/hooks";
-import { useSector, useSectorId } from "../(personal)/profile/hooks/show";
-import { useBranchID, usePosition, useTableBranch } from "./branch/hook";
+import { useSectorId } from "../(personal)/profile/hooks/show";
 import { positionsColumn } from "./branch/containers/column/positions";
 import { branchColumn } from "./branch/containers/column/branch";
 import { sectorColumn } from "./branch/containers/column/sector";
+import { useBranchID, useSector } from "./branch/hook/useSector";
+import { usePosition } from "./position/hook";
+import { useTableBranch } from "./branch/hook/useTableBranch";
 import { FormSector } from "./sector/form/form";
-import { Position } from "./position/containers/form";
+import { Position } from "./agent/containers/column";
 
 export {
   useProfileContext, AddressDetail
