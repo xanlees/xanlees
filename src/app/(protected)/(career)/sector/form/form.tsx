@@ -17,9 +17,8 @@ export const FormSector: any = ({ branchType }: { branchType: string }) => {
     resource: "branch",
     optionLabel: "name",
     optionValue: "id",
-    filters: [{ field: "pageSize", operator: "eq", value: 50 }, { field: "type", operator: "eq", value: branchType }],
+    filters: [{ field: "type", operator: "eq", value: branchType }, { field: "pageSize", operator: "eq", value: 50 }],
   });
-  console.log(branch)
   return (
     <Accordion type="single" collapsible className="w-ful">
       <AccordionItem value="item-1" className="border-none">
