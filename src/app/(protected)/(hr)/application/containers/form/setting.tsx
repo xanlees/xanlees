@@ -2,23 +2,30 @@ import { ProfileForm, PhysicalProfile, DocumentForm, EducationForm } from "@pers
 import { ApplicationForm } from ".";
 import { WorkExperienceForm } from "@hr";
 import { Success } from "../form-fields/successSubmit";
-import { PersonalBornAddressForm } from "@src/app/(protected)/(personal)/address/containers/form";
+import { PersonalAddressForm } from "@src/app/(protected)/(personal)/address/containers/form";
 
 export const applicationFromStep = [
   {
-    stepLabel: "ສ້າງທີຢູ່",
-    stepDescription: (
-      <PersonalBornAddressForm />
-    ),
-    completed: false,
-  },
-  {
-    stepLabel: "ສ້າງໂປຣໄຟລ໌",
+    stepLabel: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
     stepDescription: <ProfileForm isEmployee={false}/>,
     completed: false,
   },
   {
-    stepLabel: "ສ້າງໂປຣໄຟລ",
+    stepLabel: "ທີຢູ່ປະຈຸປບັນ",
+    stepDescription: (
+      <PersonalAddressForm />
+    ),
+    completed: false,
+  },
+  {
+    stepLabel: "ທີຢູ່ບ້ານເກີດ",
+    stepDescription: (
+      <PersonalAddressForm isCurrent={false}/>
+    ),
+    completed: false,
+  },
+  {
+    stepLabel: "ຂໍ້ມູນທົ່ວໄປ",
     stepDescription: <PhysicalProfile />,
     completed: false,
   },

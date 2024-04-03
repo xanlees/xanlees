@@ -3,6 +3,8 @@ import { useForm } from "@refinedev/react-hook-form";
 import { PhysicalProfileSchema } from "./validation";
 import { useProfileContext } from "@src/app/(protected)/(personal)/context";
 import { useApplicationContext } from "@src/app/(protected)/(hr)/application/context";
+import { type IFormConfig } from "@src/common/interface";
+import { useEffect, useRef } from "react";
 
 interface PersonalAddressFormValues {
   id?: number
@@ -15,7 +17,8 @@ const step = 3;
 
 export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
   const { state } = useProfileContext();
-  const { dispatch } = useApplicationContext();
+  const { state: stateApplication, dispatch } = useApplicationContext();
+  const profile = state.profileId ?? 0;
   const { ...form } = useForm<PersonalAddressFormValues>({
     resolver: zodResolver(PhysicalProfileSchema),
     defaultValues: {
@@ -31,5 +34,16 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
     },
     warnWhenUnsavedChanges: true,
   });
-  return { form };
+  useUpdateDefaultValues(form, profile);
+  return { form, state: stateApplication };
+};
+
+const useUpdateDefaultValues = (form: IFormConfig, profile: number) => {
+  const profileRef = useRef(profile);
+  useEffect(() => {
+    if (profileRef.current !== profile) {
+      form.setValue?.("profileId", profile);
+      profileRef.current = profile;
+    }
+  }, [profile]);
 };

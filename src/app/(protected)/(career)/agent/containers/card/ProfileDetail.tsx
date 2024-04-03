@@ -7,11 +7,11 @@ import { getGenderDisplayText, getMaritalStatusDisplayText } from "../../../../.
 import moment from "moment";
 import { type IProfile } from "../../interface/model";
 export function ProfileDetail({ profileData, visible }: { profileData: IProfile[], visible: string }): JSX.Element {
-  const { fullname, nickname, phoneNumber, gender, birthday, maritalStatus, profilePicture, uniqueNumber, typeOfUniqueNumber } = profileData?.[0] ?? {};
+  const { fullname, nickname, phoneNumber, gender, birthday, maritalStatus, profilePicture } = profileData?.[0] ?? {};
   const age = calculateAge(birthday);
   return (
-    <Card className="shadow-xl pb-3 rounded-lg w-full md:w-1/3 bg-white dark:bg-gray-800 dark:text-white">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
+    <Card className="w-full pb-3 bg-white rounded-lg shadow-xl md:w-1/3 dark:bg-gray-800 dark:text-white">
+      <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800">ຂໍ້ມູນສ່ວນບຸກຄົນ</CardTitle>
       </CardHeader>
       <CardContent>
@@ -41,7 +41,7 @@ export function ProfileDetail({ profileData, visible }: { profileData: IProfile[
 
 export function ProfileImage({ imageUrl }: { imageUrl: string }) {
   return (
-    <Avatar className="w-32 h-32 md:w-48 md:h-48 xl:w-64 xl:h-64 mx-auto rounded-full overflow-hidden shadow-sm border-4 border-white">
+    <Avatar className="w-32 h-32 mx-auto overflow-hidden border-4 border-white rounded-full shadow-sm md:w-48 md:h-48 xl:w-64 xl:h-64">
       <AvatarImage src={imageUrl} alt="profile image" className="object-cover object-center w-full h-full"/>
       <AvatarFallback className="flex items-center justify-center h-full">Profile Image</AvatarFallback>
     </Avatar>
