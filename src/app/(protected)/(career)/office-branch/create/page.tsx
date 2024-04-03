@@ -11,7 +11,7 @@ const ProfileCreate = () => {
           <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
             ຟອມສ້າງແມ່ຫວຍ
           </div>
-          <BranchForm type={"ແມ່ຫວຍ"} />
+          <BranchForm type={"LOTTERY"} />
         </div>
       </div>
     </Create>

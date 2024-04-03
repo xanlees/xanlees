@@ -14,7 +14,7 @@ import { positionsColumn } from "./containers/column/positions";
 import { type IPosition, type ISector } from "../branch/interface";
 
 export default function BranchList(): JSX.Element {
-  const { table } = useTableBranch("ແມ່ຫວຍ");
+  const { table } = useTableBranch("LOTTERY");
   const branch = table.options.data ?? [];
   const branchId = useBranchID(branch);
   const { data: sectorData } = useSector({ branchId, branch }) as { data: ISector[] };

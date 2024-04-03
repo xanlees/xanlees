@@ -47,7 +47,7 @@ export const usePositionSelect = (type?: string) => {
       {
         field: "type",
         operator: "eq",
-        value: type === "agent" ? "ແມ່ຫວຍ" : "ຫ້ອງການ",
+        value: type,
       },
     ],
   });

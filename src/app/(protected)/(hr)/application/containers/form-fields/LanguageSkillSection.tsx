@@ -7,10 +7,10 @@ import { type IFormConfig } from "@src/common/interface";
 export const LanguageSkillSection: React.FC<{ formConfig: IFormConfig }> = ({ formConfig }) => {
   const { fields, append, remove } = useFieldArray({
     control: formConfig.form.control,
-    name: "computerSkill",
+    name: "languageSkill",
   });
   return (
-    <div className="py-6 border-t border-gray-200 first:pt-0 last:pb-0 first:border-transparent dark:border-gray-700 dark:first:border-transparent">
+    <div className="border-t border-gray-200 first:pt-0 last:pb-0 first:border-transparent dark:border-gray-700 dark:first:border-transparent">
       <label className="inline-block my-2 text-lg font-medium dark:text-white">
      ທັກສະພາສາຕ່າງປະເທດ
       </label>
@@ -20,12 +20,12 @@ export const LanguageSkillSection: React.FC<{ formConfig: IFormConfig }> = ({ fo
           fields={fields}
           append={append}
           remove={remove}
-          name="computerSkill"
+          name="languageSkill"
           label="ຄວາມສາມາດໃນການໃຊ້ຄວາມພິວເຕີ"
           className="flex flex-row gap-2"
           classNameButton=""
         >
-          <ArrayField {...formConfig.form} name="computerSkill" label="">
+          <ArrayField {...formConfig.form} name="languageSkill" label="">
             <Input className="w-64" />
           </ArrayField>
         </DynamicForm>

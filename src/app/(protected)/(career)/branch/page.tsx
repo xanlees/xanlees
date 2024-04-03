@@ -14,7 +14,7 @@ import { useTableBranch } from "./hook/useTableBranch";
 
 const resource = "branch";
 export default function BranchList(): JSX.Element {
-  const { table } = useTableBranch("ຫ້ອງການ");
+  const { table } = useTableBranch("OFFICE");
   const branch = table.options.data ?? [];
   const branchId = useBranchID(branch);
   const { data: sectorData } = useSector({ branchId, branch }) as {

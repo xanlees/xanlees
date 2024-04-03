@@ -12,7 +12,7 @@ export const ComputerSkillSection: React.FC<{ formConfig: IFormConfig }> = ({
     name: "computerSkill",
   });
   return (
-    <div className="py-6 border-t border-gray-200 first:pt-0 last:pb-0 first:border-transparent dark:border-gray-700 dark:first:border-transparent">
+    <div className="border-t border-gray-200 first:pt-0 last:pb-0 first:border-transparent dark:border-gray-700 dark:first:border-transparent">
       <label className="inline-block my-2 text-lg font-medium dark:text-white">
         ຄວາມສາມາດໃນການໃຊ້ຄວາມພິວເຕີ
       </label>
@@ -28,6 +28,9 @@ export const ComputerSkillSection: React.FC<{ formConfig: IFormConfig }> = ({
           classNameButton=""
         >
           <ArrayField {...formConfig.form} name="computerSkill" label="">
+            <Form.Combobox {...(Currency as any)} className="w-full lg:w-32" />
+          </ArrayField>
+          <ArrayField {...formConfig.form} name="computerSkill" label="">
             <Input className="w-64" />
           </ArrayField>
         </DynamicForm>
@@ -35,3 +38,17 @@ export const ComputerSkillSection: React.FC<{ formConfig: IFormConfig }> = ({
     </div>
   );
 };
+
+export const skill = {
+  options: [
+    {
+      label: "ປານກາງ",
+      value: "LAK",
+    },
+    {
+      label: "ບາດ",
+      value: "THB",
+    },
+  ],
+};
+

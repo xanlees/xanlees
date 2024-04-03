@@ -4,7 +4,7 @@ export const branchSchema = z.object({
   name: z.string().min(2, {
     message: "ກະລຸນາປ້ອນຊື່ສາຂາ",
   }),
-  type: z.string().default("ແມ່ຫວຍ"),
+  type: z.string().default("LOTTERY"),
 });
 
 export const positionSchema = z.object({
