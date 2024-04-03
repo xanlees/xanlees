@@ -22,7 +22,8 @@ export const EmployeeForm = ({ redirect = "list", id }: { redirect: RedirectActi
     }
   }, [isMounted]);
   return (
-    <div className="w-full sm:w-[53%] rounded-lg">
+    <div className="flex flex-col border shadow-2xl rounded-2xl">
+      <span className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">ຟອມສ້າງພະນັກງານ</span>
       <Form {...formConfig.form}>
         <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="employee" label="ຕໍາແໜ່ງ" className="flex flex-row gap-2" classNameButton="mt-5" defaultConfig={{ profileId: id }}>
           <ArrayField {...formConfig.form} name="positionId" label="ຕໍາແໜ່ງ">
@@ -34,7 +35,7 @@ export const EmployeeForm = ({ redirect = "list", id }: { redirect: RedirectActi
           <ArrayField {...formConfig.form} name="isLatest" label="">
             <div className="flex gap-2 pt-3">
               <Input placeholder="isLatest" className="block w-5 h-5 rounded-lg" type="checkbox" defaultValue={"false"}/>
-              <Label className="pt-2.5 ">{"ແມ່ນຕໍາແໜ່ງລ່າ​ສຸດບໍ"}</Label>
+              <Label className="pt-2.5 ">{"ຕໍາແໜ່ງລ່າ​ສຸດ"}</Label>
             </div>
           </ArrayField>
         </DynamicForm>
