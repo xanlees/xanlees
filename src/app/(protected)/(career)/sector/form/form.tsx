@@ -11,14 +11,15 @@ import {
   AccordionTrigger,
 } from "@src/shadcn/elements/accordion";
 
-export const FormSector: React.FC = () => {
+export const FormSector: any = ({ branchType }: { branchType: string }) => {
   const formConfig = useFormConfig();
   const branch = useSelect<IBranch>({
     resource: "branch",
     optionLabel: "name",
     optionValue: "id",
-    filters: [{ field: "pageSize", operator: "eq", value: 50 }],
+    filters: [{ field: "pageSize", operator: "eq", value: 50 }, { field: "type", operator: "eq", value: branchType }],
   });
+  console.log(branch)
   return (
     <Accordion type="single" collapsible className="w-ful">
       <AccordionItem value="item-1" className="border-none">

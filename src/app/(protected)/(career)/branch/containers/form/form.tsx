@@ -28,14 +28,14 @@ export const BranchForm: React.FC<{ type: string }> = (type) => {
   });
   sector.options = options as BaseOption[];
   return (
-    <div className=" p-10 rounded-full my-3">
+    <div className="p-10 my-3 rounded-full ">
       <Form {...formConfig.form} cardClassName="w-[600px]">
         <Form.Field {...formConfig.form} name="name" label="ຕໍາແໜ່ງ">
           <Input placeholder="ຕໍາແໜ່ງ" className="block w-full" />
         </Form.Field>
         <SectorSection formConfig={formConfig} sector={sector} />
       </Form>
-      <FormSector />
+      <FormSector type={branchType} />
       <FormBranch type={branchType} />
     </div>
   );

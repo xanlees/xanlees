@@ -35,13 +35,13 @@ export const resources = [
     }
   },
   {
-    name: "office-branch",
-    list: "/office-branch",
-    create: "/office-branch/create",
-    edit: "/office-branch/edit/:id",
-    show: "/office-branch/show/:id",
+    name: "lottery-branch",
+    list: "/lottery-branch",
+    create: "/lottery-branch/create",
+    edit: "/lottery-branch/edit/:id",
+    show: "/lottery-branch/show/:id",
     meta: {
-      label: "ສາຂາແມ່ຫວຍ",
+      label: "ສາຂາຫວຍ",
     }
   },
   {

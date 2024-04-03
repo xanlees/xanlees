@@ -22,6 +22,7 @@ export const branchSchema = z.object({
   name: z.string().min(2, {
     message: "ກະລຸໃສຊື້ສາຂາ",
   }),
+  type: z.string().min(2),
 });
 
 export const useFormPositionConfig = () => {
