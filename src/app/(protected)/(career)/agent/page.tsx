@@ -16,16 +16,18 @@ export default function ProfileList(): JSX.Element {
   const positionData = useLatestPositionDetail(positionId as number[], profile) as { data: { data: IPosition[] } };
   const friendly = useUserFriendlyName();
   return (
-    <List>
-      <Table table={table}>
-        {getSelectColumn(friendly)}
-        {FullNameColumn()}
-        {PhoneNumberColumn("phoneNumber")}
-        {getLatestPosition(positionId as number[], positionData.data)}
-        {GenderColumn("gender")}
-        {MarriageColumn("maritalStatus")}
-        {getActionsColumn("agent")}
-      </Table>
-    </List>
+    <div className="mx-auto">
+      <List>
+        <Table table={table}>
+          {getSelectColumn(friendly)}
+          {FullNameColumn()}
+          {PhoneNumberColumn("phoneNumber")}
+          {getLatestPosition(positionId as number[], positionData.data)}
+          {GenderColumn("gender")}
+          {MarriageColumn("maritalStatus")}
+          {getActionsColumn("agent")}
+        </Table>
+      </List>
+    </div>
   );
 }
