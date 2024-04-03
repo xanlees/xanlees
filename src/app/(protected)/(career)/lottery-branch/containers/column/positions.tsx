@@ -1,6 +1,6 @@
 import { Table } from "@/shadcn/components/table";
-import type { IPosition, ISector } from "../../interface";
 import { stringToColorCode } from "@src/lib/string2Color";
+import { type IPosition, type ISector } from "../../../position/interface";
 
 function renderPositionData({
   positionData,
@@ -11,9 +11,9 @@ function renderPositionData({
 }) {
   return (
     (positionData as { data?: IPosition[] }).data
-      ?.filter((position) => position?.sectorId === sectorId)
+      ?.filter((position) => position?.sectorId.id === sectorId)
       ?.flatMap((position, positionIndex) => (
-        <div className="text-center text-white rounded-full dark:bg-white mt-0.5 w-1/2" style={{ backgroundColor: `${stringToColorCode(position?.sectorDetail.name)}` }} key={positionIndex}>{`- ${position?.name}`}</div>
+        <div className="text-center text-white rounded-full dark:bg-white mt-0.5 w-1/2" style={{ backgroundColor: `${stringToColorCode(position?.sectorId.name)}` }} key={positionIndex}>{`- ${position?.name}`}</div>
       )) ?? []
   );
 }

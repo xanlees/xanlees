@@ -18,6 +18,7 @@ export const BranchForm: React.FC<{ type: string }> = (type) => {
     filters: [
       { field: "pageSize", operator: "eq", value: 50 },
       { field: "branch_type", operator: "eq", value: branchType },
+      { field: "expand", operator: "eq", value: "branch_id" },
     ],
   });
   const options = sector.queryResult.data?.data.map((item) => {
@@ -35,7 +36,7 @@ export const BranchForm: React.FC<{ type: string }> = (type) => {
         </Form.Field>
         <SectorSection formConfig={formConfig} sector={sector} />
       </Form>
-      <FormSector type={branchType} />
+      <FormSector branchType={branchType} />
       <FormBranch type={branchType} />
     </div>
   );

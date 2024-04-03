@@ -7,15 +7,13 @@ export interface IBranch {
 export interface ISector {
   id: number
   name: string
-  branchId: number
-  branchDetail: IBranch
+  branchId: IBranch
 }
 
 export interface IPosition {
   name: string
   id: number
-  sectorId: number
-  sectorDetail: {
+  sectorId: {
     name: string
     id: number
     branchId: number

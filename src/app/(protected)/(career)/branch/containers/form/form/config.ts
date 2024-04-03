@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigation } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import * as z from "zod";
 
@@ -26,6 +27,7 @@ export const branchSchema = z.object({
 });
 
 export const useFormPositionConfig = () => {
+  const { list } = useNavigation();
   const { ...form } = useForm<z.infer<typeof positionSchema>>({
     resolver: zodResolver(positionSchema),
     defaultValues: {
@@ -35,6 +37,9 @@ export const useFormPositionConfig = () => {
     refineCoreProps: {
       resource: "position",
       redirect: false,
+      onMutationSuccess: () => {
+        list("lottery-branch");
+      },
     },
     warnWhenUnsavedChanges: true,
   });
