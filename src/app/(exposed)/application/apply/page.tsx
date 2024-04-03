@@ -10,7 +10,7 @@ import { type StepDescriptionProps } from "@src/common/components/stepForm/inter
 
 export default function ApplicationCreate(): JSX.Element {
   return (
-    <Card className="w-1/2 mx-auto mt-10 mb-20 rounded-md">
+    <Card className="mx-auto mt-10 mb-20 rounded-md w-[870px] ">
       <ApplicationProvider>
         <ProfileProvider>
           <ApplicationForm />

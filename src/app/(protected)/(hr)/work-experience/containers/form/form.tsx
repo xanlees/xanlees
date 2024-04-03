@@ -24,7 +24,7 @@ export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurre
     }
   }, [isMounted]);
   return (
-    <div className="rounded-full w-96 sm:w-[33%] ">
+    <div className="rounded-full">
       <Form {...formConfig.form}>
         <DynamicForm
           form={formConfig.form} fields={fields} append={append} remove={remove} name="work_experience" className="flex flex-wrap" label="ປະສົບການເຮັດວຽກ"
