@@ -10,12 +10,12 @@ export const DynamicForm = ({ ...props }) => {
             {fields.map((_: any, index: React.Key | null | undefined) => {
                 return (
                     <div key={index}>
-                        <div className={cn("flex gap-1 my-2",className)} >
+                        <div className={cn("flex gap-1 ",className)} >
                             {Children.map(props.children, (child) => {
                                 return cloneElement(child, { ...child.props, ...props.form, ...{ array_name: props.name, array_index: index } });
                             })}
                             <Button
-                                className={cn(" bg-red-500",classNameButton)}
+                                className={cn("my-2 bg-red-500",classNameButton)}
                                 type="button"
                                 onClick={() => {
                                     remove(index);
@@ -29,7 +29,7 @@ export const DynamicForm = ({ ...props }) => {
             }
             )}
             <Button
-                className={cn(" mt-3",className)}
+                className={cn(" mt-1.5",className)}
                 type="button"
                 onClick={() => {
                     append(initialState);

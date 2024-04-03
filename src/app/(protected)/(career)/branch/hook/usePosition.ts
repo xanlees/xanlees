@@ -33,4 +33,3 @@ export function useSectorID(sectorData: ISector[]) {
   return (sectorData as { data?: ISector[] })?.data?.map((item) => item?.id !== undefined ? item.id : [0],
   ) ?? [];
 }
-

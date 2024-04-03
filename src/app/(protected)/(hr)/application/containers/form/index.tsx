@@ -19,7 +19,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
 }) => {
   const formConfig = useFormConfig({ setCurrentStep });
   return (
-    <div className="rounded-full w-96 sm:w-[37%] ">
+    <div className="mx-20 rounded-full">
       <Form {...formConfig.form}>
         <AppliedFor formConfig={formConfig} />
         <EmergencyInformationSection formConfig={formConfig} />

@@ -22,7 +22,7 @@ export const PersonalInformationSection: React.FC<{ formConfig: IFormConfig, isE
       <Form.Field {...formConfig.form} name="maritalStatus" label="ສະຖານະພາບ">
         <Form.Select options={maritalStatusOptions} />
       </Form.Field>
-      <DynamicNumberForm formConfig={formConfig} isEmployee={isEmployee}/>
+      <DynamicNumberForm formConfig={formConfig} isEmployee={isEmployee} />
     </div>
   );
 };

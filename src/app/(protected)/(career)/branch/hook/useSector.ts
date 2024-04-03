@@ -32,3 +32,4 @@ export function useSector({ branchId, branch }: UseSectorProps): { data: ISector
 export function useBranchID(branch: IBranch[]) {
   return branch.flatMap((item) => (item?.id !== undefined ? [item.id] : [0]));
 }
+

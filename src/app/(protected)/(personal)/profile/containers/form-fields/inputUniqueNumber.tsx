@@ -24,7 +24,7 @@ export const DynamicNumberForm: React.FC<{ formConfig: IFormConfig, isEmployee?:
   const displayText = getTypeDisplayText(type, isEmployee);
   return (
     <div className={classNames}>
-      {<div className="pt-2">{displayText}</div>}
+      {<div className="-mt-1 text-sm font-bold">{displayText}</div>}
       <DynamicForm
         form={formConfig.form}
         fields={fields}
@@ -32,14 +32,14 @@ export const DynamicNumberForm: React.FC<{ formConfig: IFormConfig, isEmployee?:
         remove={remove}
         name="uniqueNumber"
         label={displayText}
-        classNameButton="mt-2"
+        classNameButton="mt-"
       >
         <ArrayField
           {...formConfig.form}
           name="uniqueNumber"
           className="flex"
         >
-          <Input placeholder={displayText} className="block w-56" />
+          <Input placeholder={"1234567890"} className="block w-56" />
         </ArrayField>
       </DynamicForm>
     </div>

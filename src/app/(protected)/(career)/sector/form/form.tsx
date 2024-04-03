@@ -4,6 +4,12 @@ import { Input } from "@src/shadcn/elements";
 import { useFormConfig } from "./config";
 import { type IBranch } from "../interface";
 import { type IFormConfig } from "@src/common/interface";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@src/shadcn/elements/accordion";
 
 export const FormSector: React.FC = () => {
   const formConfig = useFormConfig();
@@ -14,17 +20,21 @@ export const FormSector: React.FC = () => {
     filters: [{ field: "pageSize", operator: "eq", value: 50 }],
   });
   return (
-    <div className="rounded-full w-96 sm:w-[710px] mx-20 ">
-      <Form {...formConfig.form}>
-        <div className="w-full">
-          <Form.Field {...formConfig.form} name="name" label="ຂະແໜງ">
-            <Input placeholder="ຂະແໜງ" className="block w-full" />
-          </Form.Field>
-        </div>
-        <BranchSection formConfig={formConfig} branch={branch} />
-      </Form>
-    </div>
-
+    <Accordion type="single" collapsible className="w-ful">
+      <AccordionItem value="item-1" className="border-none">
+        <AccordionTrigger className="italic text-blue-500 underline">
+          *ຊອກຂະແໜງບໍ່ເຫັນ, ກົດທີ່ນີ້
+        </AccordionTrigger>
+        <AccordionContent>
+          <Form {...formConfig.form}>
+            <Form.Field {...formConfig.form} name="name" label="ຂະແໜງ">
+              <Input placeholder="ຂະແໜງ" className="block w-full" />
+            </Form.Field>
+            <BranchSection formConfig={formConfig} branch={branch} />
+          </Form>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 };
 

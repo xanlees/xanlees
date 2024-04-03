@@ -11,11 +11,12 @@ interface InputBaseProps extends IFormConfig {
   placeholder?: string
   type?: string
   defaultValue?: string
+  require?: boolean
 }
 
 export const InputBase: React.FC<InputBaseProps> = (props) => {
   return (
-    <Form.Field {...props} name={props.name} label={props.label}>
+    <Form.Field {...props} name={props.name} label={props.label} require={props.require}>
       <Input
         className={cn(props.className)}
         placeholder={props.placeholder}

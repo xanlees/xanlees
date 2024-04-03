@@ -1,16 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type RedirectAction } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import type * as z from "zod";
 import { branchSchema, positionSchema } from "./validation";
 
-export const useFormBranchConfig = (redirect: RedirectAction) => {
+export const useFormBranchConfig = () => {
   const { ...form } = useForm<z.infer<typeof branchSchema>>({
     resolver: zodResolver(branchSchema),
     refineCoreProps: {
-      autoSave: {
-        enabled: true,
-      },
       resource: "branch",
       redirect: false,
     },
@@ -19,7 +15,7 @@ export const useFormBranchConfig = (redirect: RedirectAction) => {
   return { form };
 };
 
-export const useFormPositionConfig = (redirect: RedirectAction) => {
+export const useFormPositionConfig = () => {
   const { ...form } = useForm<z.infer<typeof positionSchema>>({
     resolver: zodResolver(positionSchema),
     refineCoreProps: {

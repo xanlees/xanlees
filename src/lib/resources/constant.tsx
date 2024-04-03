@@ -47,7 +47,7 @@ export const resources = [
   {
     name: "application",
     list: "/application",
-    create: "/application/create",
+    create: "/application/apply",
     edit: "/application/edit/:id",
     show: "/application/show/:id",
     icon: <FileText/>,

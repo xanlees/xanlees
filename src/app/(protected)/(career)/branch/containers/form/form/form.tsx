@@ -5,16 +5,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@src/shadcn/elements/accordion";
-import { type RedirectAction } from "@refinedev/core";
 import { Input } from "@src/shadcn/elements";
 import { useFormBranchConfig } from "./config";
 
-interface IGraduationFormProps {
-  redirect: RedirectAction
-}
-
-export const FormBranch: React.FC<IGraduationFormProps> = ({ redirect }) => {
-  const formConfig = useFormBranchConfig(redirect);
+export const FormBranch: React.FC = () => {
+  const formConfig = useFormBranchConfig();
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">
@@ -27,12 +22,6 @@ export const FormBranch: React.FC<IGraduationFormProps> = ({ redirect }) => {
               <Form.Field {...formConfig.form} name="name" label="ສາຂາ">
                 <Input placeholder="ສາຂາ" className="block w-full" />
               </Form.Field>
-              {/* <Form.Field {...formConfig.form} name="name" label="ຂະແໜງທໍາອິດ">
-                <Input placeholder="ຂະແໜງທໍາອິດ" className="block w-full" />
-              </Form.Field>
-              <Form.Field {...formConfig.form} name="name" label="ຕໍາແໜ່ງທໍາອິດ">
-                <Input placeholder="ຕໍາແໜ່ງທໍາອິດ" className="block w-full" />
-              </Form.Field> */}
             </div>
           </Form>
         </AccordionContent>

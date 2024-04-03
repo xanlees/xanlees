@@ -10,7 +10,7 @@ import { type StepDescriptionProps } from "@src/common/components/stepForm/inter
 
 export default function ApplicationCreate(): JSX.Element {
   return (
-    <Card className="w-1/2 mx-auto mt-10 mb-20 rounded-md">
+    <Card className="mx-auto mt-10 mb-20 rounded-md w-[870px] ">
       <ApplicationProvider>
         <ProfileProvider>
           <ApplicationForm />
@@ -20,8 +20,9 @@ export default function ApplicationCreate(): JSX.Element {
   );
 }
 const STEPS = {
-  personalAddressStep: 1,
-  profileStep: 2,
+  profileStep: 0,
+  personalCurrentAddressStep: 1,
+  personalBornAddressStep: 2,
   physicalProfileStep: 3,
   isUploadedStep: 4,
   educationStep: 5,
@@ -62,11 +63,11 @@ function getStepState(stateProfile: ProfileState, stateApplication: ApplicationS
       return STEPS.isUploadedStep;
     case hasValid(stateApplication.physicalProfileId as number):
       return STEPS.physicalProfileStep;
+    case hasValid(stateProfile.personalCurrentAddressId as number):
+      return STEPS.personalBornAddressStep;
     case hasValid(stateProfile.profileId as number):
-      return STEPS.profileStep;
-    case hasValid(stateProfile.personalAddressId as number):
-      return STEPS.personalAddressStep;
+      return STEPS.personalCurrentAddressStep;
     default:
-      return 0;
+      return STEPS.profileStep;
   }
 }

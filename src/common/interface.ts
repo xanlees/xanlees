@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { type Control, type FieldValues, type UseFormSetValue, type UseFormWatch } from "react-hook-form";
 export interface IFormConfig {
-  form: IntrinsicAttributes & UseControllerProps<FieldValues, string> & { label?: string | undefined; description?: string | undefined; require?: boolean | undefined; children: ReactElement<{ field: ControllerRenderProps<FieldValues, string>; }, string | JSXElementConstructor<any>>; };
-  setValue?: UseFormSetValue<FieldValues>
-  watch?: UseFormWatch<FieldValues>
-  control?: Control<FieldValues>
+  setValue?: any
+  form: {
+    setValue?: UseFormSetValue<FieldValues>
+    watch?: UseFormWatch<FieldValues>
+    control?: Control<FieldValues>
+  }
 }
 interface FormHeadersConfigMultipart {
   headers: {
