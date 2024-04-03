@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable max-lines-per-function */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import { WorkExperienceSchema } from "./validation";
@@ -17,9 +19,21 @@ interface WorkExperienceProps {
 
 const step = 8;
 export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
-  const { dispatch } = useApplicationContext();
+  const { state, dispatch } = useApplicationContext();
   const { ...form } = useForm<WorkExperienceProps>({
     resolver: zodResolver(WorkExperienceSchema),
+    defaultValues: {
+      work_experience: [
+        {
+          id: 3,
+          company: "",
+          position: "",
+          time: "",
+          salary: "",
+          reasonOfResignation: undefined,
+        },
+      ],
+    },
     refineCoreProps: {
       resource: "work_experience",
       autoSave: {
@@ -40,5 +54,5 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
     },
     warnWhenUnsavedChanges: true,
   });
-  return { form };
+  return { form, state };
 };

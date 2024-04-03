@@ -5,19 +5,7 @@ export interface IApplication {
   emergencyFullname: string
   emergencyRelationship: string
   emergencyPhoneNumber: string
-  typeDrivingLicense: "A" | "B" | "C" | "D" | "E" | "NO_LICENSE"
-  typeVaccine: string
-  wordSkill: "Poor" | "Fair" | "Good" | "Excellent"
-  excelSkill: "Poor" | "Fair" | "Good" | "Excellent"
-  powerpointSkill: "Poor" | "Fair" | "Good" | "Excellent"
-  thaiSkill: "Poor" | "Fair" | "Good" | "Excellent"
-  englishSkill: "Poor" | "Fair" | "Good" | "Excellent"
-  chineseSkill: "Poor" | "Fair" | "Good" | "Excellent"
-  vietnameseSkill: "Poor" | "Fair" | "Good" | "Excellent"
-  pledgeReason: string
-  appliedReason: string
   applicationStatus: string
-  applicantSignature: boolean
   appliedPosition: string
   expectedSalary: string
 }
@@ -46,21 +34,5 @@ export const applicationSchema = z.object({
   emergencyPhoneNumber: z.string().min(2, {
     message: "ກະລຸນາປ້ອນເບີໂທ",
   }),
-  typeDrivingLicense: z.enum(["A", "B", "C", "D", "E", "NO_LICENSE"]),
-  typeVaccine: z.enum(["Sinopharm", "AstraZeneca", "Pfizer", "Unvaccinated", "Other"]),
-  wordSkill: z.enum(["Poor", "Fair", "Good", "Excellent"]),
-  excelSkill: z.enum(["Poor", "Fair", "Good", "Excellent"]),
-  powerpointSkill: z.enum(["Poor", "Fair", "Good", "Excellent"]),
-  thaiSkill: z.enum(["Poor", "Fair", "Good", "Excellent"]),
-  englishSkill: z.enum(["Poor", "Fair", "Good", "Excellent"]),
-  chineseSkill: z.enum(["Poor", "Fair", "Good", "Excellent"]),
-  vietnameseSkill: z.enum(["Poor", "Fair", "Good", "Excellent"]),
-  pledgeReason: z.string().min(2, {
-    message: "ກະລຸນາປ້ອນເຫດຜົນທ່ານຈື່ງຢາກເຮັດວຽກກັບພວກເຮົາ",
-  }),
-  appliedReason: z.string().min(2, {
-    message: "ຖ້າໄດ້ເປັນພະນັກງານຂອງ ເອັສບີເອັສ ແລ້ວທ່ານຈະປະຕິຍານຕົນແນວໃດ",
-  }),
   applicationStatus: z.string(),
-  applicantSignature: z.boolean(),
 }).transform((val) => transformApplication(val));

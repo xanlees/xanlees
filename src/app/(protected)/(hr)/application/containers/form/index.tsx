@@ -18,15 +18,30 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
   setCurrentStep,
 }) => {
   const formConfig = useFormConfig({ setCurrentStep });
+  const isCompleted = formConfig.state.profileId;
+  return (
+    <div className="mx-20 rounded-full">
+      {!isCompleted
+        ? (<Form {...formConfig.form}>
+          <AppliedFor formConfig={formConfig} />
+          <EmergencyInformationSection formConfig={formConfig} />
+        </Form>)
+        : (<p className="italic">ສຳເລັດແລ້ວ !</p>)}
+    </div>
+  );
+};
+export const Application2Form: React.FC<ApplicationFormProps> = ({
+  setCurrentStep,
+}) => {
+  const formConfig = useFormConfig({ setCurrentStep });
   return (
     <div className="mx-20 rounded-full">
       <Form {...formConfig.form}>
-        <AppliedFor formConfig={formConfig} />
-        <EmergencyInformationSection formConfig={formConfig} />
         <ComputerSkillSection formConfig={formConfig} />
         <LanguageSkillSection formConfig={formConfig} />
         <GeneralInfo formConfig={formConfig} />
         <Form.Field
+          require={false}
           {...formConfig.form}
           name="appliedReason"
           label="ເປັນຫຍັງທ່ານຈື່ງຢາກເຮັດວຽກກັບ ວິສາຫະກິດສ່ນບຸກຄົນ ເອັສບີເອັສ"
@@ -34,6 +49,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
           <Textarea className="h-28" />
         </Form.Field>
         <Form.Field
+          require={false}
           {...formConfig.form}
           name="pledgeReason"
           label="ຖ້າໄດ້ເປັນພະນັກງານຂອງ ເອັສບີເອັສ ແລ້ວທ່ານຈະປະຕິຍານຕົນແນວໃດ ?"

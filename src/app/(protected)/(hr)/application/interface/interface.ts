@@ -48,11 +48,6 @@ export interface IApplication {
   createdOn: string
   applicationStatus: "New" | "Contacted" | "Interviewed" | "Hired"
 }
-export interface IFormConfig {
-  form: {
-    setValue: any
-  }
-}
 export interface IWorkExperience {
   company: string
   position: string

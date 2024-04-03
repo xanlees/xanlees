@@ -16,7 +16,7 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
   const { ...form } = useForm<IApplication>({
     resolver: zodResolver(applicationSchema),
     defaultValues: {
-      profileId: state.profileId,
+      profileId: 18,
       applicationStatus: "New",
     },
     refineCoreProps: {
@@ -29,5 +29,5 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
     },
     warnWhenUnsavedChanges: true,
   });
-  return { form };
+  return { form, state };
 };

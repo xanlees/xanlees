@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Form } from "@/shadcn/components/form";
-import type { IFormConfig } from "../../interface";
+import { type IFormConfig } from "@src/common/interface";
 interface IOptions {
   label: string
   value: string

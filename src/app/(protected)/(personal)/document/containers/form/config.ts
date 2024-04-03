@@ -19,7 +19,7 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
       redirect: false,
       meta: FormMultipart as MetaQuery,
       onMutationSuccess: (data) => {
-        dispatch({ type: "setIsUploaded", payload: true });
+        dispatch({ type: "setIsUploaded", payload: false });
         (setCurrentStep != null) && setCurrentStep(step);
       },
     },

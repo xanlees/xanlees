@@ -6,7 +6,6 @@ import FormStep from "@src/common/components/stepForm";
 import { applicationFromStep, ApplicationProvider, useApplicationContext, type ApplicationState } from "@hr";
 import { ProfileProvider, useProfileContext, type ProfileState } from "@personal";
 import { hasValid } from "@src/common/lib/validation/hasValid";
-import { type StepDescriptionProps } from "@src/common/components/stepForm/interface";
 
 export default function ApplicationCreate(): JSX.Element {
   return (
@@ -41,7 +40,7 @@ function ApplicationForm(): JSX.Element {
         <p className="mx-auto text-sm">(ໃຊ້ເວລາປະມານ 10 ນາທີ) </p>
       </div>
       <FormStep
-        formStepsData={applicationFromStep as unknown as StepDescriptionProps[]}
+        formStepsData={applicationFromStep}
         initialStep={initialStep}
       />
       <div className="my-3 text-center bg-blue-300 rounded-sm">

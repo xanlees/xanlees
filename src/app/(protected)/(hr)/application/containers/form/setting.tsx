@@ -1,4 +1,4 @@
-import { ProfileForm, PhysicalProfile, DocumentForm, EducationForm } from "@personal";
+import { ProfileForm, PhysicalProfile, DocumentForm, EducationForm, Application2Form } from "@personal";
 import { ApplicationForm } from ".";
 import { WorkExperienceForm } from "@hr";
 import { Success } from "../form-fields/successSubmit";
@@ -52,6 +52,13 @@ export const applicationFromStep = [
     stepLabel: "ປະສົບການເຮັດວຽກ",
     stepDescription: (
       <WorkExperienceForm/>
+    ),
+    completed: false,
+  },
+  {
+    stepLabel: "ຟອມສະໝັກວຽກ",
+    stepDescription: (
+      <Application2Form/>
     ),
     completed: false,
   },

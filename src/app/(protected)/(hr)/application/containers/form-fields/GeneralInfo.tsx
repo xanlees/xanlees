@@ -1,10 +1,9 @@
-import type { IFormConfig } from "../../interface";
+import { type IFormConfig } from "@src/common/interface";
 import {
   DrivingLicenceOptions,
-  SectionInput,
   VaccinesOptions,
 } from "./SectionInput";
-
+import { Form } from "@/shadcn/components/form";
 export const GeneralInfo: React.FC<{
   formConfig: IFormConfig
 }> = ({ formConfig }) => {
@@ -16,20 +15,14 @@ export const GeneralInfo: React.FC<{
         </label>
         <div className="flex flex-col w-full gap-2 capitalize rounded-lg sm:w-1/2 sm:flex-row">
           <div className="space-y-2 mr-0 sm:mr-7 ">
-            <SectionInput
-              formConfig={formConfig}
-              options={DrivingLicenceOptions}
-              name="typeDrivingLicense"
-              label="ໃບຂັບຂີ່"
-            />
+            <Form.Field {...formConfig.form} name="typeDrivingLicense" label={"ໃບຂັບຂີ່"} require={false}>
+              <Form.Select options={DrivingLicenceOptions} defaultValue="Poor" />
+            </Form.Field>
           </div>
           <div className="space-y-2 mr-0 sm:mr-7">
-            <SectionInput
-              formConfig={formConfig}
-              options={VaccinesOptions}
-              name="typeVaccine"
-              label="ທ່ານໄດ້ຮັບຢາວັກຊີນ"
-            />
+            <Form.Field {...formConfig.form} name="typeVaccine" label={"ທ່ານໄດ້ຮັບຢາວັກຊີນ"} require={false}>
+              <Form.Select options={VaccinesOptions} defaultValue="Poor" />
+            </Form.Field>
           </div>
         </div>
       </div>
