@@ -5,7 +5,7 @@ export function usePersonalAddress<T extends BaseRecord>({ profileId }: { profil
     resource: "personal_address",
     filters: [
       {
-        field: "profile_id",
+        field: "profile",
         operator: "eq",
         value: profileId,
       },

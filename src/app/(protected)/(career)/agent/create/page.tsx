@@ -3,7 +3,7 @@ import React from "react";
 import { Create } from "@/shadcn/components/crud";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 import FormStep from "@src/common/components/stepForm";
-import { DocumentForm, PersonalBornAddressForm, PersonalCurrentAddressForm, ProfileProvider, type ProfileState } from "@src/app/(protected)/(personal)";
+import { DocumentForm, PersonalAddressForm, ProfileProvider, type ProfileState } from "@src/app/(protected)/(personal)";
 import { useRouter } from "next/navigation";
 import { Button } from "@src/shadcn/elements";
 import { useProfileContext } from "../../index";
@@ -61,16 +61,16 @@ export const formStepsData = [
     completed: false,
   },
   {
-    stepLabel: "ສ້າງທີຢູ່ປະຈຸບັນ",
+    stepLabel: "ທີຢູ່ປະຈຸບັນ",
     stepDescription: (
-      <PersonalCurrentAddressForm />
+      <PersonalAddressForm />
     ),
     completed: false,
   },
   {
-    stepLabel: "ສ້າງທີຢູ່ເກີດ",
+    stepLabel: "ທີ່ນຖານບ້ານເກີດ",
     stepDescription: (
-      <PersonalBornAddressForm />
+      <PersonalAddressForm isCurrent={false}/>
     ),
     completed: false,
   },

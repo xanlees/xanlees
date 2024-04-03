@@ -1,6 +1,6 @@
 "use client";
 
-import { DateOfBirth, FullNameColumn, getLatestPosition } from "./containers/column";
+import { FullNameColumn, getLatestPosition } from "./containers/column";
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
 import { useUserFriendlyName } from "@refinedev/core";
@@ -24,8 +24,7 @@ export default function ProfileList(): JSX.Element {
         {getLatestPosition(positionId as number[], positionData.data)}
         {GenderColumn("gender")}
         {MarriageColumn("maritalStatus")}
-        {DateOfBirth}
-        {getActionsColumn("profile")}
+        {getActionsColumn("agent")}
       </Table>
     </List>
   );

@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-const validGenders = ["MALE", "FEMALE", "OTHER"] as const;
+const validGenders = ["MALE", "FEMALE"] as const;
 const acceptedImageTypes = [
   "image/jpg",
   "image/jpeg",
@@ -12,7 +12,7 @@ interface ProfileSendData {
   fullname: string
   nickname?: string
   phoneNumber: string
-  gender: "MALE" | "FEMALE" | "OTHER"
+  gender: "MALE" | "FEMALE"
   uniqueNumber: Array<{
     uniqueNumber: string
   }>
@@ -22,7 +22,7 @@ interface ProfileSendData {
 export const profileSchema = z
   .object({
     fullname: z.string().min(1, { message: "ກະລຸນາໃສ່ຊື່ແທ້ ແລະ ນາມສະກຸນ" }),
-    type: z.string(),
+    type: z.string().default("AGENT"),
     nickname: z.string().optional(),
     phoneNumber: z.string().min(1, { message: "ກະລຸນາໃສ່ເບີໂທ" }),
     gender: z

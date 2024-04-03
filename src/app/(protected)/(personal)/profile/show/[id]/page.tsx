@@ -31,7 +31,7 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
     <Show>
       <div className="flex-row gap-2 mt-5 md:flex">
         <div className="">
-          <ProfileDetail profileData={profileData} />
+          <ProfileDetail profileData={profileData} visible={false} />
           <DocumentPDF profileId={params?.id}/>
         </div>
         <div className="space-y-2 ">

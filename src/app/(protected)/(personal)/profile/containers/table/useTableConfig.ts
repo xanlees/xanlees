@@ -9,6 +9,11 @@ export const useTableConfig = () => {
     refineCoreProps: {
       errorNotification: false,
       resource: "profile",
+      filters: {
+        initial: [
+          { field: "type", operator: "eq", value: "EMPLOYEE" },
+        ],
+      },
     },
   });
   return { table };

@@ -12,7 +12,6 @@ export const useFormAgent = () => {
     resolver: zodResolver(profileSchema),
     mode: "onChange",
     defaultValues: {
-      personalAddressId: state.personalAddressId,
       fullname: "",
       nickname: "",
       phoneNumber: "",
@@ -36,7 +35,7 @@ export const useFormAgent = () => {
     },
     warnWhenUnsavedChanges: true,
   });
-  return { form };
+  return { form, state };
 };
 
 export const errorMessages: ErrorMapMessage[] = [

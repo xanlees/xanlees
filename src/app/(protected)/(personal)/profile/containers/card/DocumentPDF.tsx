@@ -15,7 +15,7 @@ export const DocumentPDF: React.FC<{ profileId: number }> = ({ profileId }) => {
     <Card className="w-full pb-3 bg-white rounded-lg shadow-xl dark:bg-gray-800 dark:text-white h-fit ">
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
-          {"ທີ່ຢູ່"}
+          {"ເອກກສານ"}
         </CardTitle>
       </CardHeader>
       {documentData?.data?.data?.map((document, index) => {
