@@ -1,6 +1,6 @@
 /* eslint-disable max-nested-callbacks */
-import type { IPosition, ISector } from "../interface";
 import type { GetListResponse } from "@refinedev/core";
+import { type IPosition, type ISector } from "../..";
 
 function mapPosition(position: IPosition, sector: ISector) {
   return {
@@ -13,7 +13,7 @@ function mapPosition(position: IPosition, sector: ISector) {
   };
 }
 
-export function mapSectorToBranchDetails(
+export function mapSectorToBranchIds(
   sectorData: GetListResponse<ISector> | undefined,
   positionData: GetListResponse<IPosition> | undefined,
 ) {
@@ -22,8 +22,8 @@ export function mapSectorToBranchDetails(
   }
   const positions = positionData?.data ?? [];
   return sectorData?.data.flatMap((sector) => ({
-    name: sector.branchDetail.name,
-    id: sector.branchDetail.id,
+    name: sector.branchId.name,
+    id: sector.branchId.id,
     sector: [
       {
         ...sector,

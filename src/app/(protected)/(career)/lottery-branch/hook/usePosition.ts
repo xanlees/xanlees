@@ -1,5 +1,5 @@
 import { useList } from "@refinedev/core";
-import type { IPosition, IBranch, ISector } from "../interface";
+import { type ISector, type IBranch, type IPosition } from "../..";
 
 interface UseSectorProps {
   sectorId: Array<number | number[]>
