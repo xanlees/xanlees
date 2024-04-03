@@ -1,13 +1,8 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable max-lines-per-function */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
-import { WorkExperienceSchema } from "./validation";
 import { useApplicationContext } from "../../../application/context";
+import * as z from "zod";
 
-interface FormConfigParams {
-  setCurrentStep: ((step: number) => void) | undefined
-}
 interface WorkExperienceData {
   id: number
 }
@@ -17,13 +12,12 @@ interface WorkExperienceProps {
   data: WorkExperienceData[]
 }
 
-const step = 8;
-export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
+export const useFormConfig = () => {
   const { state, dispatch } = useApplicationContext();
   const { ...form } = useForm<WorkExperienceProps>({
     resolver: zodResolver(WorkExperienceSchema),
     defaultValues: {
-      work_experience: [
+      experience: [
         {
           id: 3,
           company: "",
@@ -36,9 +30,6 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
     },
     refineCoreProps: {
       resource: "work_experience",
-      autoSave: {
-        enabled: true,
-      },
       redirect: false,
       onMutationSuccess: (data) => {
         let id: number;
@@ -49,10 +40,34 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
           id = data?.data?.id ?? 0;
         }
         dispatch({ type: "setWorkExperienceId", payload: id });
-        (setCurrentStep != null) && setCurrentStep(step);
       },
     },
     warnWhenUnsavedChanges: true,
   });
   return { form, state };
 };
+
+export const WorkExperienceSchema = z.object({
+  experience: z
+    .array(
+      z.object({
+        company: z.string().min(1, {
+          message: "ກະລຸນາປ້ອນຊື່ບໍລິສັດ",
+        }),
+        position: z.string().min(1, {
+          message: "ກະລຸນາປ້ອນຕໍາແໜ່ງ",
+        }),
+        time: z.string().min(1, {
+          message: "ກະລຸນາລາຍະເວລາທີເຮັດວຽກ",
+        }),
+        salary: z.string().min(1, {
+          message: "ກະລຸນາປ້ອນເງິນເດືອນ",
+        }).transform((val) => Number(val.replace(/,/g, ""))),
+        reasonOfResignation: z.string().nullable(),
+        applicationId: z.number(),
+      }),
+    ),
+}).transform((val) => {
+  const workExperienceList = val.experience;
+  return workExperienceList;
+});

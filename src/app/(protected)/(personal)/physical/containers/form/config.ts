@@ -9,13 +9,7 @@ import { useEffect, useRef } from "react";
 interface PersonalAddressFormValues {
   id?: number
 }
-
-interface FormConfigParams {
-  setCurrentStep: ((step: number) => void) | undefined
-}
-const step = 3;
-
-export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
+export const useFormConfig = () => {
   const { state } = useProfileContext();
   const { state: stateApplication, dispatch } = useApplicationContext();
   const profile = state.profileId ?? 0;
@@ -29,7 +23,6 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
       redirect: false,
       onMutationSuccess: (data) => {
         dispatch({ type: "setPhysicalProfileId", payload: data?.data?.id ?? 0 });
-        (setCurrentStep != null) && setCurrentStep(step);
       },
     },
     warnWhenUnsavedChanges: true,

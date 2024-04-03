@@ -6,12 +6,8 @@ import { useFieldArray } from "react-hook-form";
 import { useFormConfig } from "./config";
 import DocumentDynamicForm from "./fields/DynamicForm";
 
-interface DocumentFormProps {
-  setCurrentStep?: (step: number) => void
-}
-
-export const DocumentForm: React.FC<DocumentFormProps> = ({ setCurrentStep }) => {
-  const { form, state } = useFormConfig({ setCurrentStep });
+export const DocumentForm: React.FC = () => {
+  const { form, state } = useFormConfig();
   const { fields, append, remove } = useFieldArray({ control: form.control, name: "document" });
   const fileName: string = form.watch("documentName") as string;
   const fileInput = form.watch("documentFile") as FileList;

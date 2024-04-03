@@ -7,14 +7,11 @@ import { useFieldArray } from "react-hook-form";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { useApplicationContext } from "../../../application/context";
-interface WorkExperienceFormProps {
-  setCurrentStep?: (step: number) => void
-}
 
-export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurrentStep }) => {
+export const WorkExperienceForm: React.FC = () => {
   const { state } = useApplicationContext();
-  const formConfig = useFormConfig({ setCurrentStep });
-  const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "work_experience" });
+  const formConfig = useFormConfig();
+  const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "experience" });
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     append({ applicationId: state.applicationId });
@@ -24,8 +21,9 @@ export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurre
       remove(0);
     }
   }, [isMounted]);
-  const isCompleted = formConfig.state.workExperienceId;
-
+  const isCompleted = formConfig.state;
+  console.log("isCompleted", isCompleted);
+  console.log("formConfig", formConfig.form.watch());
   return (
     <>  {!isCompleted
       ? (
@@ -33,7 +31,7 @@ export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ setCurre
 
           <div className="w-[600px]">
             <DynamicForm
-              form={formConfig.form} fields={fields} append={append} remove={remove} name="work_experience" className="flex flex-wrap" label="ປະສົບການເຮັດວຽກ"
+              form={formConfig.form} fields={fields} append={append} remove={remove} name="experience" className="flex flex-wrap" label="ປະສົບການເຮັດວຽກ"
               classNameButton="w-full mr-7"
               defaultConfig={{ applicationId: state?.applicationId }}>
               <ArrayField {...formConfig.form} name="company" label="ບໍລິສັດ">

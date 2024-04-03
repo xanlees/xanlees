@@ -1,7 +1,5 @@
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
-import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { useFieldArray } from "react-hook-form";
-import { Input } from "@src/shadcn/elements";
 import { type IFormConfig } from "@src/common/interface";
 
 export const ComputerSkillSection: React.FC<{ formConfig: IFormConfig }> = ({
@@ -27,12 +25,6 @@ export const ComputerSkillSection: React.FC<{ formConfig: IFormConfig }> = ({
           className="flex flex-row gap-2"
           classNameButton=""
         >
-          <ArrayField {...formConfig.form} name="computerSkill" label="">
-            <Form.Combobox {...(Currency as any)} className="w-full lg:w-32" />
-          </ArrayField>
-          <ArrayField {...formConfig.form} name="computerSkill" label="">
-            <Input className="w-64" />
-          </ArrayField>
         </DynamicForm>
       </div>
     </div>

@@ -9,12 +9,9 @@ import { useFormConfig } from "./config";
 import { useProfileContext } from "../../../context";
 import { useGraduationSelect } from "../../hook/form/useGraduationSelect";
 
-interface EducationFormProps {
-  setCurrentStep?: (step: number) => void
-}
-export const EducationForm: React.FC<EducationFormProps> = ({ setCurrentStep }) => {
+export const EducationForm: React.FC<EducationFormProps> = () => {
   const { state } = useProfileContext();
-  const formConfig = useFormConfig({ setCurrentStep });
+  const formConfig = useFormConfig();
   const graduation = useGraduationSelect();
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "education" });
   const [isMounted, setIsMounted] = useState(false);

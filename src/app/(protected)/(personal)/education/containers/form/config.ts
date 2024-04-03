@@ -3,14 +3,10 @@ import { useForm } from "@refinedev/react-hook-form";
 import { graduationSchema } from "./validation";
 import { useProfileContext } from "../../../context";
 
-interface FormConfigParams {
-  setCurrentStep: ((step: number) => void) | undefined
-}
-const step = 5;
 interface IEducationFromValue {
   id: number
 }
-export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
+export const useFormConfig = () => {
   const { dispatch } = useProfileContext();
   const { ...form } = useForm<IEducationFromValue>({
     resolver: zodResolver(graduationSchema),
@@ -29,7 +25,6 @@ export const useFormConfig = ({ setCurrentStep }: FormConfigParams) => {
           id = data?.data?.id ?? 0;
         }
         dispatch({ type: "setEducationId", payload: id });
-        (setCurrentStep != null) && setCurrentStep(step);
       },
     },
     warnWhenUnsavedChanges: true,

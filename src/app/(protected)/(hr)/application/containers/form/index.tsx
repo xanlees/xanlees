@@ -1,8 +1,6 @@
 import { Form } from "@/shadcn/components/form";
 import { useFormConfig } from "./config";
 import {
-  LanguageSkillSection,
-  ComputerSkillSection,
   EmergencyInformationSection,
   AppliedFor,
   GeneralInfo,
@@ -10,14 +8,8 @@ import {
 import { Input, Textarea } from "@src/shadcn/elements";
 import { type IFormConfig } from "@src/common/interface";
 
-interface ApplicationFormProps {
-  setCurrentStep?: (step: number) => void
-}
-
-export const ApplicationForm: React.FC<ApplicationFormProps> = ({
-  setCurrentStep,
-}) => {
-  const formConfig = useFormConfig({ setCurrentStep });
+export const ApplicationForm: React.FC = () => {
+  const formConfig = useFormConfig({ isUpdate: true });
   const isCompleted = formConfig.state.profileId;
   return (
     <div className="mx-20 rounded-full">
@@ -30,15 +22,11 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
     </div>
   );
 };
-export const Application2Form: React.FC<ApplicationFormProps> = ({
-  setCurrentStep,
-}) => {
-  const formConfig = useFormConfig({ setCurrentStep });
+export const Application2Form: React.FC = () => {
+  const formConfig = useFormConfig({ isUpdate: true });
   return (
     <div className="mx-20 rounded-full">
       <Form {...formConfig.form}>
-        <ComputerSkillSection formConfig={formConfig} />
-        <LanguageSkillSection formConfig={formConfig} />
         <GeneralInfo formConfig={formConfig} />
         <Form.Field
           require={false}

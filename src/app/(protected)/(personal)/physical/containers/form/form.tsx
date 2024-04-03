@@ -3,14 +3,8 @@ import { Form } from "@src/shadcn/components/form";
 import { useFormConfig } from "./config";
 import { InputBase } from "@src/common/elements/input/InputBase";
 
-interface PhysicalProfileProps {
-  setCurrentStep?: (step: number) => void
-}
-
-export const PhysicalProfile: React.FC<PhysicalProfileProps> = ({
-  setCurrentStep,
-}) => {
-  const formConfig = useFormConfig({ setCurrentStep });
+export const PhysicalProfile: React.FC<PhysicalProfileProps> = () => {
+  const formConfig = useFormConfig();
   const isCompleted = formConfig.state.physicalProfileId;
   return (
     <div className="mx-20 rounded-full">

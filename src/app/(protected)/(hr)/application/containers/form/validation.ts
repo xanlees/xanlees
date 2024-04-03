@@ -36,3 +36,13 @@ export const applicationSchema = z.object({
   }),
   applicationStatus: z.string(),
 }).transform((val) => transformApplication(val));
+
+export const applicationSelectTwoSchema = z.object({
+  typeVaccine: z.string().optional().nullable(),
+  typeDrivingLicense: z.string().optional().nullable(),
+  pledgeReason: z.string().optional().nullable(),
+  appliedReason: z.string().optional().nullable(),
+  applicantSignature: z.boolean().refine((val) => val, {
+    message: "ກົດຍອມຮັບຂໍ້ຕົກລົງເພື່ອໄປຕໍ່",
+  }),
+});

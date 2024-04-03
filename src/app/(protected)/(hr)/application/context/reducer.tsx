@@ -8,6 +8,8 @@ export const ApplicationReducer = (
   switch (action.type) {
     case "setApplicationId":
       return { ...state, applicationId: action.payload as number };
+    case "setUpdateApplicationId":
+      return { ...state, updateApplicationId: action.payload as number };
     case "setPhysicalProfileId":
       return { ...state, physicalProfileId: action.payload as number };
     case "setWorkExperienceId":
@@ -24,4 +26,5 @@ export const initialApplicationState: ApplicationState = {
   applicationId: 0,
   physicalProfileId: 0,
   workExperienceId: 0,
+  updateApplicationId: 0,
 };
