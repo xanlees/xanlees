@@ -28,7 +28,7 @@ export function mapSectorToBranchIds(
       {
         ...sector,
         position: positions
-          .filter((position) => position?.sectorId === sector.id)
+          .filter((position) => position?.sectorId.id === sector.id)
           .map((position) => mapPosition(position, sector)),
       },
     ],
