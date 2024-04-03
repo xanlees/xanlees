@@ -12,8 +12,8 @@ import { usePosition } from "./position/hook";
 import { useTableBranch } from "./branch/hook/useTableBranch";
 import { FormSector } from "./sector/form/form";
 import { Position } from "./agent/containers/column";
-import { ISector } from "./sector/interface";
-import { IPosition } from "./position/interface";
+import { type ISector } from "./sector/interface";
+import { type IPosition } from "./position/interface";
 
 export {
   useProfileContext, AddressDetail
