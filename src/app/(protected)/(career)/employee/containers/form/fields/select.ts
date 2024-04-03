@@ -45,7 +45,7 @@ export const usePositionSelect = (type?: string) => {
     optionValue: "id",
     filters: [
       {
-        field: "type",
+        field: "branch_type",
         operator: "eq",
         value: type,
       },

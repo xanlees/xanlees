@@ -1,5 +1,3 @@
-/* eslint-disable max-lines-per-function */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { type RedirectAction } from "@refinedev/core";
 import { Form } from "@src/shadcn/components/form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
@@ -11,8 +9,8 @@ import { useFieldArray } from "react-hook-form";
 import { useFormConfig } from "./config";
 import { usePositionSelect } from "./fields/select";
 
-export const EmployeeForm = ({ redirect = "list", userId, type }: { redirect: RedirectAction, userId?: string, type?: string }) => {
-  const formConfig = useFormConfig(redirect);
+export const EmployeeForm = ({ userId, type }: { redirect: RedirectAction, userId?: string, type?: string }) => {
+  const formConfig = useFormConfig(type ?? "");
   const position = usePositionSelect(type);
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "employee" });
   const [isMounted, setIsMounted] = useState(false);

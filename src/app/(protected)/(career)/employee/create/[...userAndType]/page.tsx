@@ -18,7 +18,6 @@ export default function EmployeeCreate({
   const [userId, type] = params
     ? params?.userAndType?.map((id) => id)
     : [null, null];
-
   return (
     <Create
       title="ຟອມບັນຈຸຕຳແໜ່ງ"

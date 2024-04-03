@@ -1,6 +1,6 @@
 import { Table } from "@/shadcn/components/table";
-import type { IPosition, ISector } from "../../interface";
 import { stringToColorCode } from "@src/lib/string2Color";
+import { type IPosition, type ISector } from "../../..";
 
 function renderPositionData({
   positionData,
@@ -11,9 +11,9 @@ function renderPositionData({
 }) {
   return (
     (positionData as { data?: IPosition[] }).data
-      ?.filter((position) => position?.sectorId === sectorId)
+      ?.filter((position) => position?.sectorId === sectorId as any)
       ?.flatMap((position, positionIndex) => (
-        <div className="text-center text-white rounded-full dark:bg-white mt-0.5 w-1/2" style={{ backgroundColor: `${stringToColorCode(position?.sectorDetail.name)}` }} key={positionIndex}>{`- ${position?.name}`}</div>
+        <div className="text-center text-white rounded-full dark:bg-white mt-0.5 w-1/2" style={{ backgroundColor: `${stringToColorCode(position?.sectorId.name)}` }} key={positionIndex}>{`- ${position?.name}`}</div>
       )) ?? []
   );
 }
@@ -30,7 +30,7 @@ export function positionsColumn(
       cell={({ row: { original } }) => {
         const filteredSectorData = (
           sectorData as { data?: ISector[] }
-        )?.data?.filter((item) => item?.branchId === original?.id) as ISector[];
+        )?.data?.filter((item) => item?.branchId === original?.id as any) as ISector[];
         return (
           <div>
             {filteredSectorData?.map((sector, index) => (

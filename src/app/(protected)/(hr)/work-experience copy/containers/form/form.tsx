@@ -21,12 +21,11 @@ export const WorkExperienceForm: React.FC = () => {
       remove(0);
     }
   }, [isMounted]);
-  const isCompleted = formConfig.state;
-  console.log("isCompleted", isCompleted);
-  console.log("formConfig", formConfig.form.watch());
+  const isCompleted = formConfig.state.applicationId;
   return (
-    <>  {!isCompleted
-      ? (
+    <>  {isCompleted
+      ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
+      : (
         <Form {...formConfig.form}>
 
           <div className="w-[600px]">
@@ -51,8 +50,7 @@ export const WorkExperienceForm: React.FC = () => {
               </ArrayField>
             </DynamicForm>
           </div>
-        </Form>)
-      : (<p className="italic">ສຳເລັດແລ້ວ !</p>)}
+        </Form>)}
     </>
   );
 };

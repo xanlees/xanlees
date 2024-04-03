@@ -5,7 +5,7 @@ import type { ISector, IPosition } from "../..";
 function mapPosition(position: IPosition, sector: ISector) {
   return {
     ...position,
-    sectorDetail: {
+    sectorId: {
       name: sector.name,
       id: sector.id,
       branchId: sector.branchId,

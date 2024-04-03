@@ -1,6 +1,6 @@
 import { Table } from "@/shadcn/components/table";
-import type { ISector } from "../../interface";
 import { stringToColorCode } from "@src/lib/string2Color";
+import { type ISector } from "../../..";
 
 export function sectorColumn(sectorData: ISector[]) {
   return (
@@ -10,7 +10,7 @@ export function sectorColumn(sectorData: ISector[]) {
       id="sector"
       cell={({ row: { original } }) => {
         const displaySectors = (sectorData as { data?: ISector[] })?.data
-          ?.filter((item) => item?.branchId === original.id)
+          ?.filter((item) => item?.branchId === original.id as any)
           .map((sector) => sector?.name) as string[];
         return (
           <div>

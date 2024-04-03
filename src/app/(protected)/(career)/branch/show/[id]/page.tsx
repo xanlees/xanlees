@@ -53,7 +53,7 @@ export default function BranchShow({
       .filter((position) => position?.sectorId === sectorId)
       .map((position) => ({
         ...position,
-        sectorDetail: {
+        sectorId: {
           name: sector.name,
           id: sectorId,
           branchId: sector.branchId,

@@ -4,14 +4,8 @@ import { getActionsColumn, getSelectColumn } from "@src/common/containers/column
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
 import { useUserFriendlyName } from "@refinedev/core";
-
-import { usePosition, useSectorID } from "../branch/hook/usePosition";
-import { useTableBranch } from "../branch/hook/useTableBranch";
-import { useBranchID, useSector } from "../branch/hook/useSector";
-import { branchColumn } from "../branch/containers/column/branch";
-import { sectorColumn } from "../branch/containers/column/sector";
-import { positionsColumn } from "./containers/column/positions";
-import { type IPosition, type ISector } from "../branch/interface";
+import { branchColumn, positionsColumn, sectorColumn, useBranchID, usePosition, useSector, useTableBranch, type IPosition, type ISector } from "..";
+import { useSectorID } from "../branch/hook/usePosition";
 
 export default function BranchList(): JSX.Element {
   const branchType = "LOTTERY";
