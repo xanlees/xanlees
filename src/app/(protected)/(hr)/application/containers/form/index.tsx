@@ -7,50 +7,47 @@ import {
 } from "../form-fields";
 import { Input, Textarea } from "@src/shadcn/elements";
 import { type IFormConfig } from "@src/common/interface";
-
+import { useApplicationContext } from "../../..";
 export const ApplicationForm: React.FC = () => {
   const formConfig = useFormConfig({ isUpdate: true });
-  const isCompleted = formConfig.state.applicationId;
+  const { state } = useApplicationContext();
+  const isCompleted = state.applicationId;
+
   return (
     <div className="mx-20 rounded-full">
-      {!isCompleted
-        ? (<Form {...formConfig.form}>
-          <AppliedFor formConfig={formConfig} />
-          <EmergencyInformationSection formConfig={formConfig} />
-        </Form>)
-        : (<p className="italic">ສຳເລັດແລ້ວ !</p>)}
+      {isCompleted
+        ? (
+          <p className="italic">ສຳເລັດແລ້ວ !</p>)
+        : (
+          <Form {...formConfig.form}>
+            <AppliedFor formConfig={formConfig} />
+            <EmergencyInformationSection formConfig={formConfig} />
+          </Form>)}
     </div>
   );
 };
+
 export const Application2Form: React.FC = () => {
-  const formConfig = useFormConfig({ isUpdate: true });
-  const isCompleted = formConfig.state.applicationId;
+  const formConfig = useAppcationForm();
+  const { state } = useApplicationContext();
+  const isCompleted = state.updateApplicationId;
+
   return (
     <div className="mx-20 rounded-full">
       {!isCompleted
         ? (
           <Form {...formConfig.form}>
             <GeneralInfo formConfig={formConfig} />
-            <Form.Field
-              require={false}
-              {...formConfig.form}
-              name="appliedReason"
-              label="ເປັນຫຍັງທ່ານຈື່ງຢາກເຮັດວຽກກັບ ວິສາຫະກິດສ່ນບຸກຄົນ ເອັສບີເອັສ"
-            >
+            <Form.Field require={false} {...formConfig.form} name="appliedReason" label="ເປັນຫຍັງທ່ານຈື່ງຢາກເຮັດວຽກກັບ ວິສາຫະກິດສ່ນບຸກຄົນ ເອັສບີເອັສ" >
               <Textarea className="h-28" />
             </Form.Field>
-            <Form.Field
-              require={false}
-              {...formConfig.form}
-              name="pledgeReason"
-              label="ຖ້າໄດ້ເປັນພະນັກງານຂອງ ເອັສບີເອັສ ແລ້ວທ່ານຈະປະຕິຍານຕົນແນວໃດ ?"
-            >
+            <Form.Field require={false} {...formConfig.form} name="pledgeReason" label="ຖ້າໄດ້ເປັນພະນັກງານຂອງ ເອັສບີເອັສ ແລ້ວທ່ານຈະປະຕິຍານຕົນແນວໃດ ?" >
               <Textarea className="h-28" />
             </Form.Field>
             <ApplicantSignatureChckbox {...formConfig} />
           </Form>)
-        : (<p className="italic">ສຳເລັດແລ້ວ !</p>)}
-
+        : (
+          <p className="italic">ສຳເລັດແລ້ວ !</p>)}
     </div>
   );
 };

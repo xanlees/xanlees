@@ -1,8 +1,10 @@
+/* eslint-disable max-lines */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import { useApplicationContext } from "../../context";
 import { useProfileContext } from "@src/app/(protected)/(personal)";
 import * as z from "zod";
+import React from "react";
 
 export interface IApplication {
   profileId: number
@@ -17,33 +19,55 @@ export interface IApplication {
 interface FormConfigParams {
   isUpdate: boolean
 }
-
 export const useFormConfig = ({ isUpdate = false }: FormConfigParams) => {
   const { dispatch } = useApplicationContext();
   const { state } = useProfileContext();
+
   const { ...form } = useForm<{ id?: number }>({
-    resolver: zodResolver(isUpdate ? applicationSelectTwoSchema : applicationSchema),
+    resolver: zodResolver(applicationSchema),
     defaultValues: {
-      profileId: state.profileId,
+      profileId: state?.profileId,
       applicationStatus: "New",
       applicantSignature: false,
     },
     refineCoreProps: {
       resource: "application",
       redirect: false,
-      action: isUpdate ? "edit" : "create",
-      id: state.applicationId,
       onMutationSuccess: (data) => {
-        if (isUpdate) {
-          dispatch({ type: "setUpdateApplicationId", payload: data?.data?.id ?? 0 });
-        }
-        if (!isUpdate) {
-          dispatch({ type: "setApplicationId", payload: data?.data?.id ?? 0 });
-        }
+        dispatch({ type: "setApplicationId", payload: data?.data?.id ?? 0 });
       },
     },
     warnWhenUnsavedChanges: true,
   });
+
+  React.useEffect(() => {
+    form.setValue("profileId", state?.profileId);
+  }, [state?.profileId]);
+
+  return { form, state };
+};
+
+export const useAppcationForm = () => {
+  const { dispatch } = useApplicationContext();
+  const { state } = useProfileContext();
+  const { ...form } = useForm<{ id?: number }>({
+    resolver: zodResolver(applicationSelectTwoSchema),
+    refineCoreProps: {
+      resource: "application",
+      redirect: false,
+      id: state.applicationId,
+      action: "edit",
+      onMutationSuccess: (data) => {
+        dispatch({ type: "setUpdateApplicationId", payload: data?.data?.id ?? 0 });
+      },
+    },
+    warnWhenUnsavedChanges: true,
+  });
+
+  React.useEffect(() => {
+    form.setValue("profileId", state?.profileId);
+  }, [state?.profileId]);
+
   return { form, state };
 };
 

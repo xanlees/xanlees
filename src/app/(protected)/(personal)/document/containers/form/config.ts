@@ -5,6 +5,7 @@ import { type z } from "zod";
 import { FormMultipart } from "@src/common/interface";
 import { useProfileContext } from "../../../context";
 import { type MetaQuery } from "@refinedev/core";
+import React from "react";
 
 export const useFormConfig = () => {
   const { state, dispatch } = useProfileContext();
@@ -20,5 +21,8 @@ export const useFormConfig = () => {
     },
     warnWhenUnsavedChanges: true,
   });
+  React.useEffect(() => {
+    form.setValue("profileId", state?.profileId);
+  }, [state?.profileId]);
   return { form, state };
 };

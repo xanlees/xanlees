@@ -10,7 +10,7 @@ export const Success = () => {
   };
 
   return (
-    <Card className="w-full sm:w-[39%] rounded-md border-dashed p-2 flex-row">
+    <Card className="w-full  -ml-30 rounded-md border-dashed p-2 flex-row">
       <div className="bg-white md:mx-auto">
         <BadgeCheck className="justify-center mx-auto h-14 w-14 bg-geen-500 " color="#004cff" />
         <div className="overflow-y-auto text-center">

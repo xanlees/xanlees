@@ -1,3 +1,5 @@
+/* eslint-disable complexity */
+/* eslint-disable no-duplicate-case */
 import { LoadFromStorage } from "@src/common/components/localStorageContext/constant";
 import { type ProfileState, type ProfileAction } from "./interface";
 
@@ -18,6 +20,8 @@ export const ProfileReducer = (
       return { ...state, personalBornAddressId: action.payload as number };
     case "setPhysicalProfileId":
       return { ...state, physicalProfileId: action.payload as number };
+    case "setUpdateApplicationId":
+      return { ...state, updateApplicationId: action.payload as number };
     case "setIsUploaded":
       return { ...state, isUploaded: action.payload as boolean };
     case LoadFromStorage:
@@ -28,6 +32,7 @@ export const ProfileReducer = (
       return state;
   }
 };
+
 const initialProfileState: ProfileState = {
   profileId: 0,
   graduationId: 0,
@@ -37,5 +42,6 @@ const initialProfileState: ProfileState = {
   physicalProfileId: 0,
   workExperienceId: 0,
   educationId: 0,
+  updateApplicationId: 0,
   isUploaded: false,
 };

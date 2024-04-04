@@ -1,8 +1,8 @@
 import { ProfileForm, PhysicalProfile, DocumentForm, EducationForm, Application2Form } from "@personal";
 import { ApplicationForm } from ".";
 import { WorkExperienceForm } from "@hr";
-import { Success } from "../form-fields/successSubmit";
 import { PersonalAddressForm } from "@src/app/(protected)/(personal)/address/containers/form";
+import { Skill } from "../../../skill/containers/form/form";
 
 export const applicationFromStep = [
   {
@@ -63,9 +63,9 @@ export const applicationFromStep = [
     completed: false,
   },
   {
-    stepLabel: "ສໍາເລັດ",
+    stepLabel: "ຄວາມສາມາດ",
     stepDescription: (
-      <Success />
+      <Skill/>
     ),
     completed: false,
   },

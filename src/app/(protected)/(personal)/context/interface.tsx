@@ -10,9 +10,10 @@ export interface ProfileState {
   isUploaded?: boolean
   workExperienceId?: number
   educationId?: number
+  updateApplicationId?: number
 }
 type ProfileActionType = "setProfileId" | "setGraduationId" | "setEducationId" |
-"setPersonalCurrentAddressId" | "setPersonalBornAddressId" | "setApplicationId" | "setWorkExperienceId" |
+"setPersonalCurrentAddressId" | "setPersonalBornAddressId" | "setApplicationId" | "setWorkExperienceId" | "setUpdateApplicationId" |
 "setIsUploaded" | "setPhysicalProfileId" | typeof LoadFromStorage | "clearState";
 export interface ProfileAction {
   type: ProfileActionType

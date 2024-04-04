@@ -5,7 +5,7 @@ import { useProfileContext } from "../../../../context";
 import { type UseFieldArrayAppend } from "react-hook-form";
 
 interface DocumentDynamicFormProps {
-  formConfig: IFormConfig
+  form: IFormConfig
   fields: any[]
   append: UseFieldArrayAppend<any, "document">
   fileName: string
@@ -13,7 +13,7 @@ interface DocumentDynamicFormProps {
 }
 
 const DocumentDynamicForm: React.FC<DocumentDynamicFormProps> = ({
-  formConfig,
+  form,
   fields,
   append,
   fileName,
@@ -23,7 +23,7 @@ const DocumentDynamicForm: React.FC<DocumentDynamicFormProps> = ({
 
   return (
     <DynamicForm
-      form={formConfig.form}
+      form={form}
       fields={fields}
       append={append}
       name="document"
