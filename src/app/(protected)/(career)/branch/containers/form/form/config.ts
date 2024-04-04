@@ -26,7 +26,8 @@ export const branchSchema = z.object({
   type: z.string().min(2),
 });
 
-export const useFormPositionConfig = () => {
+export const useFormPositionConfig = (branchType: string) => {
+  const redirect = branchType === "LOTTERY" ? "lottery-branch" : "branch";
   const { list } = useNavigation();
   const { ...form } = useForm<z.infer<typeof positionSchema>>({
     resolver: zodResolver(positionSchema),
@@ -38,7 +39,7 @@ export const useFormPositionConfig = () => {
       resource: "position",
       redirect: false,
       onMutationSuccess: () => {
-        list("lottery-branch");
+        list(redirect);
       },
     },
     warnWhenUnsavedChanges: true,
