@@ -1,24 +1,24 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "@refinedev/react-hook-form";
-import { useApplicationContext } from "../../../application/context";
 import * as z from "zod";
+import { useApplicationContext } from "../../../application/context";
 import { useEffect, useRef } from "react";
+import { useForm } from "@refinedev/react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { type IFormConfig } from "@src/common/interface";
 
 export const useFormConfig = () => {
   const { state, dispatch } = useApplicationContext();
   const applicationId = state.applicationId ?? 0;
   const { ...form } = useForm<{ id?: number }>({
+    resolver: zodResolver(Schema),
     defaultValues: {
       skill: [
         {
           application: state.applicationId,
-          proficiency: "",
           name: "",
+          proficiency: "",
         },
       ],
     },
-    resolver: zodResolver(Schema),
     refineCoreProps: {
       resource: "skill",
       redirect: false,
@@ -30,15 +30,6 @@ export const useFormConfig = () => {
   });
   useUpdateDefaultValues(form as any, applicationId);
   return { form, state };
-};
-const useUpdateDefaultValues = (form: IFormConfig, applicationId: number) => {
-  const applicationIdRef = useRef(applicationId);
-  useEffect(() => {
-    if (applicationIdRef.current !== applicationId) {
-      form.setValue("skill[0].application", applicationId);
-      applicationIdRef.current = applicationId;
-    }
-  }, [applicationId]);
 };
 
 export const Schema = z.object({
@@ -58,3 +49,13 @@ export const Schema = z.object({
   const List = val.skill;
   return List;
 });
+
+const useUpdateDefaultValues = (form: IFormConfig, applicationId: number) => {
+  const applicationIdRef = useRef(applicationId);
+  useEffect(() => {
+    if (applicationIdRef.current !== applicationId) {
+      form.setValue("skill[0].application", applicationId);
+      applicationIdRef.current = applicationId;
+    }
+  }, [applicationId]);
+};
