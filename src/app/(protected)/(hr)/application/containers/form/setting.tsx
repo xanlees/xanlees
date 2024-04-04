@@ -1,4 +1,4 @@
-import { ProfileForm, PhysicalProfile, DocumentForm, EducationForm, Application2Form } from "@personal";
+import { ProfileForm, PhysicalProfile, DocumentForm, EducationForm } from "@personal";
 import { ApplicationForm } from ".";
 import { WorkExperienceForm } from "@hr";
 import { PersonalAddressForm } from "@src/app/(protected)/(personal)/address/containers/form";

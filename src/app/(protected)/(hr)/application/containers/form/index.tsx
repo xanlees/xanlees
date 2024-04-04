@@ -1,5 +1,5 @@
 import { Form } from "@/shadcn/components/form";
-import { useAppcationForm, useFormConfig } from "./config";
+import { useApplicationForm, useFormConfig } from "./config";
 import {
   EmergencyInformationSection,
   AppliedFor,
@@ -7,7 +7,7 @@ import {
 } from "../form-fields";
 import { Input, Textarea } from "@src/shadcn/elements";
 import { type IFormConfig } from "@src/common/interface";
-import { useApplicationContext } from "../../..";
+import { useApplicationContext } from "../../context";
 export const ApplicationForm: React.FC = () => {
   const formConfig = useFormConfig({ isUpdate: true });
   const { state } = useApplicationContext();
@@ -28,7 +28,7 @@ export const ApplicationForm: React.FC = () => {
 };
 
 export const Application2Form: React.FC = () => {
-  const formConfig = useAppcationForm();
+  const formConfig = useApplicationForm();
   const { state } = useApplicationContext();
   const isCompleted = state.updateApplicationId;
 
