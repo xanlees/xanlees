@@ -3,22 +3,14 @@ import { useApplicationContext } from "../../../application/context";
 import { useEffect, useRef } from "react";
 import { useForm } from "@refinedev/react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type IFormConfig } from "@src/common/interface";
 
 export const useFormConfig = () => {
   const { state, dispatch } = useApplicationContext();
   const applicationId = state.applicationId ?? 0;
-  const { ...form } = useForm<{ id?: number }>({
+  const prevApplicationIdRef = useRef<number>(applicationId);
+  const { ...form } = useForm<{ skill: Array<{ name: string, proficiency: string, application: number }> }>({
     resolver: zodResolver(Schema),
-    defaultValues: {
-      skill: [
-        {
-          application: state.applicationId,
-          name: "",
-          proficiency: "",
-        },
-      ],
-    },
+    defaultValues: getDefaultValues(applicationId),
     refineCoreProps: {
       resource: "skill",
       redirect: false,
@@ -28,13 +20,25 @@ export const useFormConfig = () => {
     },
     warnWhenUnsavedChanges: true,
   });
-  useUpdateDefaultValues(form as any, applicationId);
+  useEffect(() => {
+    updateApplicationId({ form, applicationId, prevApplicationIdRef });
+  }, [applicationId, form]);
+
   return { form, state };
 };
+const getDefaultValues = (applicationId: number) => ({
+  skill: [
+    {
+      name: "",
+      proficiency: "",
+      application: applicationId,
+    },
+  ],
+});
 
 export const Schema = z.object({
-  skill:
-    z.array(
+  skill: z
+    .array(
       z.object({
         name: z.string().min(1, {
           message: "ກະລຸນາປ້ອນຊື່ບໍລິສັດ",
@@ -47,15 +51,22 @@ export const Schema = z.object({
     ),
 }).transform((val) => {
   const List = val.skill;
+  console.log("List", List);
   return List;
 });
 
-const useUpdateDefaultValues = (form: IFormConfig, applicationId: number) => {
-  const applicationIdRef = useRef(applicationId);
-  useEffect(() => {
-    if (applicationIdRef.current !== applicationId) {
-      form.setValue("skill[0].application", applicationId);
-      applicationIdRef.current = applicationId;
-    }
-  }, [applicationId]);
+const updateApplicationId = ({
+  form,
+  applicationId,
+  prevApplicationIdRef,
+}: {
+  form: any
+  applicationId: number
+  prevApplicationIdRef: React.MutableRefObject<number>
+}): void => {
+  if (prevApplicationIdRef.current !== applicationId) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    form.setValue("skill[0].application", applicationId);
+    prevApplicationIdRef.current = applicationId;
+  }
 };

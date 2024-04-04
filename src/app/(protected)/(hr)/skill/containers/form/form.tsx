@@ -25,7 +25,7 @@ export const Skill: React.FC = () => {
             <DynamicForm
               form={formConfig.form} fields={fields} append={append} remove={remove} name="skill" className="flex " label=""
               classNameButton="w-full mt-5"
-              defaultConfig={{ applicationId: state.applicationId }}>
+              defaultConfig={{ application: state.applicationId }}>
               <ArrayField {...formConfig.form} name="name" label="ຄວາມສາມາດ">
                 <Input placeholder="" className="block w-72" />
               </ArrayField>
