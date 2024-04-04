@@ -9,7 +9,6 @@ export function createContextProvider<T, A>({ reducer, initialState, storageKey 
   );
   const LocalStorageProvider: FC<{ children: ReactNode }> = ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    console.log("state", state);
     useEffect(() => {
       const storedState = localStorage.getItem(storageKey);
       if (storedState != null && storedState !== "undefined" && storedState !== "{}") {

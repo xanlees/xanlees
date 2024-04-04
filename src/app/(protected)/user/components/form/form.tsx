@@ -16,7 +16,6 @@ export const UserForm = ({
     optionLabel: "name",
     optionValue: "name",
   });
-  console.log("formConfig", formConfig.form.watch());
   return (
     <div className="w-1/2 mx-auto">
       <Form {...formConfig.form}>

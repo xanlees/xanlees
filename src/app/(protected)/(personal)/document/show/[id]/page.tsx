@@ -25,10 +25,6 @@ export default function DocumentShow({ params }: { params: { id: number } }): JS
   });
   const title = documentData?.data?.[0].documentName ?? "";
   const fileLink = "http://127.0.0.1:8000/media/document/sample.pdf";
-
-  const file = "https://pdfobject.com/pdf/sample.pdf";
-  console.log("file", file);
-  console.log("fileLink", fileLink);
   return (
     <Show
       resource="employee"

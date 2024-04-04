@@ -14,7 +14,6 @@ export function FullNameColumn(accessorKey: string) {
         <Table.Filter.Search {...props} title="Search Phone number" />
       )}
       cell={(props) => {
-        console.log("props.row.original.profileId ", props.row.original.profileId);
         const { fullname, nickname } = (props.row.original.profileId as IProfile) ?? {};
         return <p className="font-bold">{`${fullname} (${nickname})`}</p>;
       }}
