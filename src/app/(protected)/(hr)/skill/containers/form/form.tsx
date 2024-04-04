@@ -12,7 +12,6 @@ export const Skill: React.FC = () => {
   const formConfig = useFormConfig();
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "skill" });
   const isCompleted = state.skillId;
-  console.log("formConfig", formConfig.form.watch());
   return (
     <div className="mx-20 rounded-full">  {isCompleted
       ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
