@@ -1,5 +1,5 @@
 import { ProfileForm, PhysicalProfile, DocumentForm, EducationForm } from "@personal";
-import { ApplicationForm } from ".";
+import { Application2Form, ApplicationForm } from "./index";
 import { WorkExperienceForm } from "@hr";
 import { PersonalAddressForm } from "@src/app/(protected)/(personal)/address/containers/form";
 import { Skill } from "../../../skill/containers/form/form";

@@ -17,7 +17,7 @@ export function usePosition({ sectorId, branch }: UseSectorProps): {
       {
         field: "sector_id",
         operator: "eq",
-        value: sectorId,
+        value: sectorId.join(),
       },
     ],
     queryOptions: {
