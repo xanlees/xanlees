@@ -13,7 +13,6 @@ export const DocumentForm: React.FC = () => {
   const fileName: string = form.watch("documentName") as string;
   const fileInput = form.watch("documentFile") as FileList;
   const isComplete = state.isUploaded;
-  console.log("form", form.watch());
   return <div className="relative w-[108%] mx-20 rounded-lg">
     {!isComplete
       ? (<Form {...form} cardClassName="w-full flex flex-col">

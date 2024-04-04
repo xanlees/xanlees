@@ -1,56 +1,54 @@
-/* eslint-disable max-lines-per-function */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Form } from "@src/shadcn/components/form";
 import { useFormConfig } from "./config";
 import { useFieldArray } from "react-hook-form";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { useApplicationContext } from "../../../application/context";
+import { Input } from "@src/shadcn/elements";
 
 export const Skill: React.FC = () => {
   const { state } = useApplicationContext();
   const formConfig = useFormConfig();
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "skill" });
-
-  const isCompleted = state.applicationId;
-  console.log("state", formConfig.form.watch());
-  console.log("state.applicationId", state.applicationId);
+  const isCompleted = state.skillId;
   return (
-    <>  {isCompleted
+    <div className="mx-20 rounded-full">  {isCompleted
       ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
       : (
-        <div className="mx-20 rounded-full">
-          <Form {...formConfig.form}>
-            <div className="w-[620px] 4000">
-              <DynamicForm
-                form={formConfig.form} fields={fields} append={append} remove={remove} name="skill" className="flex " label=""
-                classNameButton="w-full mt-5"
-                defaultConfig={{ applicationId: state.applicationId }}>
-                <ArrayField {...formConfig.form} name="name" label="ຊື່">
-                  <Form.Select options={Options}/>
-                </ArrayField>
-                <ArrayField {...formConfig.form} name="proficiency" label="ທັກສາ">
-                  <Form.Select options={Options}/>
-                </ArrayField>
-              </DynamicForm>
+        <Form {...formConfig.form}>
+          <div className="w-[620px] ">
+            <div className="text-md font-bold tracking-wide text-gray-800 dark:text-white my-2">
+           ທັກສາຄວາມສາມາດໃນການຄອມພິວເຕີ, ພາສາ ແລະ ອື່ນໆ
             </div>
-          </Form>
-        </div>)}
-    </>
+            <DynamicForm
+              form={formConfig.form} fields={fields} append={append} remove={remove} name="skill" className="flex " label=""
+              classNameButton="w-full mt-5"
+              defaultConfig={{ applicationId: state.applicationId }}>
+              <ArrayField {...formConfig.form} name="name" label="ຄວາມສາມາດ">
+                <Input placeholder="" className="block w-72" />
+              </ArrayField>
+              <ArrayField {...formConfig.form} name="proficiency" label="ທັກສາ">
+                <Form.Select options={Options}/>
+              </ArrayField>
+            </DynamicForm>
+          </div>
+        </Form>)}
+    </div>
   );
 };
 
 export const Options = [
   {
-    label: "Good",
+    label: "ດີ",
     value: "Good",
   },
   {
-    label: "Fair",
+    label: "ປານກາງ",
     value: "Fair",
   },
   {
-    label: "Poor",
+    label: "ພໍໃຊ້ໄດ້",
     value: "Poor",
   },
 ];

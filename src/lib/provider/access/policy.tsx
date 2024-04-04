@@ -50,4 +50,7 @@ p, admin, agent/*, (edit)|(show)|(delete)
 p, admin, agent, (list)|(create)
 p, admin, lottery-branch/*, (edit)|(show)|(delete)
 p, admin, lottery-branch, (list)|(create)
+p, admin, skill/*, (edit)|(show)|(delete)
+p, admin, skill, (list)|(create)
+p, anonymous, skill, (create)
 `);

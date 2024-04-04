@@ -24,7 +24,7 @@ export const useFormConfig = () => {
           position: "",
           time: "",
           salary: "",
-          reasonOfResignation: undefined,
+          reasonOfResignation: "",
         },
       ],
     },

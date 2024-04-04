@@ -14,6 +14,8 @@ export const ApplicationReducer = (
       return { ...state, physicalProfileId: action.payload as number };
     case "setWorkExperienceId":
       return { ...state, workExperienceId: action.payload as number };
+    case "setSkillId":
+      return { ...state, skillId: action.payload as number };
     case LoadFromStorage:
       return { ...action.payload as ApplicationState };
     case "clearState":

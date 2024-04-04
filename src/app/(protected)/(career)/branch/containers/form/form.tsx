@@ -5,8 +5,8 @@ import { FormSector } from "../../../sector/form/form";
 import { Input } from "@src/shadcn/elements";
 import { useFormPositionConfig } from "./form/config";
 import { useSelect, type BaseOption } from "@refinedev/core";
-import { type ISector } from "../../interface";
 import { SectorSection } from "./positionCreate";
+import { type ISector } from "../../..";
 
 export const BranchForm: React.FC<{ type: string }> = (type) => {
   const branchType = type.type;

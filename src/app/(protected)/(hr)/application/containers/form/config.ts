@@ -48,8 +48,7 @@ export const useFormConfig = ({ isUpdate = false }: FormConfigParams) => {
 };
 
 export const useAppcationForm = () => {
-  const { dispatch } = useApplicationContext();
-  const { state } = useProfileContext();
+  const { state, dispatch } = useApplicationContext();
   const { ...form } = useForm<{ id?: number }>({
     resolver: zodResolver(applicationSelectTwoSchema),
     refineCoreProps: {
@@ -63,10 +62,6 @@ export const useAppcationForm = () => {
     },
     warnWhenUnsavedChanges: true,
   });
-
-  React.useEffect(() => {
-    form.setValue("profileId", state?.profileId);
-  }, [state?.profileId]);
 
   return { form, state };
 };

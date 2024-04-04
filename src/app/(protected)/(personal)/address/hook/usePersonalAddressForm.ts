@@ -28,7 +28,7 @@ export const usePersonalAddressForm = ({ status }: { status: string }) => {
     },
     warnWhenUnsavedChanges: true,
   });
-  useUpdateDefaultValues(form, profile);
+  useUpdateDefaultValues(form as any, profile);
   return { form, state };
 };
 const useUpdateDefaultValues = (form: IFormConfig, profile: number) => {
