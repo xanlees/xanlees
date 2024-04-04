@@ -28,6 +28,8 @@ export function positionsColumn(
       accessorKey="id"
       id="position"
       cell={({ row: { original } }) => {
+        console.log("sectorData", sectorData);
+        console.log("positionData", positionData);
         const filteredSectorData = (
           sectorData as { data?: ISector[] }
         )?.data?.filter((item) => item?.branchId === original?.id as any) as ISector[];

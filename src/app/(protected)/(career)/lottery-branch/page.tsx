@@ -15,6 +15,7 @@ export default function BranchList(): JSX.Element {
   const { data: sectorData } = useSector({ branchId, branch }) as { data: ISector[] };
   const sectorId = useSectorID(sectorData);
   const { data: positionData } = usePosition({ sectorId, branch }) as { data: IPosition[] };
+  console.log("positionData", positionData);
   const friendly = useUserFriendlyName();
 
   return (
