@@ -2,6 +2,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import { useApplicationContext } from "../../../application/context";
 import * as z from "zod";
+import { useEffect, useRef } from "react";
+import { type IFormConfig } from "@src/common/interface";
 
 interface WorkExperienceData {
   id: number
@@ -14,6 +16,7 @@ interface WorkExperienceProps {
 
 export const useFormConfig = () => {
   const { state, dispatch } = useApplicationContext();
+  const applicationId = state.applicationId ?? 0;
   const { ...form } = useForm<WorkExperienceProps>({
     resolver: zodResolver(WorkExperienceSchema),
     defaultValues: {
@@ -44,6 +47,7 @@ export const useFormConfig = () => {
     },
     warnWhenUnsavedChanges: true,
   });
+  useUpdateDefaultValues(form as any, applicationId);
   return { form, state };
 };
 
@@ -63,7 +67,7 @@ export const WorkExperienceSchema = z.object({
         salary: z.string().min(1, {
           message: "ກະລຸນາປ້ອນເງິນເດືອນ",
         }).transform((val) => Number(val.replace(/,/g, ""))),
-        reasonOfResignation: z.string().nullable(),
+        reasonOfResignation: z.string().nullable().or(z.string().min(0)),
         applicationId: z.number(),
       }),
     ),
@@ -71,3 +75,12 @@ export const WorkExperienceSchema = z.object({
   const workExperienceList = val.experience;
   return workExperienceList;
 });
+const useUpdateDefaultValues = (form: IFormConfig, applicationId: number) => {
+  const applicationIdRef = useRef(applicationId);
+  useEffect(() => {
+    if (applicationIdRef.current !== applicationId) {
+      form.setValue("experience[0].applicationId", applicationId);
+      applicationIdRef.current = applicationId;
+    }
+  }, [applicationId]);
+};

@@ -10,7 +10,7 @@ import { useLatestPositionDetail, useLatestPositionId } from "./hooks/table";
 
 import type { IPosition } from "@career";
 export default function ProfileList(): JSX.Element {
-  const { table } = useTableConfig();
+  const { table } = useTableConfig("EMPLOYEE");
   const profile = table.options.data ?? [];
   const positionId = useLatestPositionId(profile);
 

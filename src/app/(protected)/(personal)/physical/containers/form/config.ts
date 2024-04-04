@@ -27,7 +27,7 @@ export const useFormConfig = () => {
     },
     warnWhenUnsavedChanges: true,
   });
-  useUpdateDefaultValues(form, profile);
+  useUpdateDefaultValues(form as any, profile);
   return { form, state: stateApplication };
 };
 

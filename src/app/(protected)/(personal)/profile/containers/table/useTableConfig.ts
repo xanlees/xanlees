@@ -1,7 +1,7 @@
 import { useTable } from "@refinedev/react-table";
 import { type IProfile } from "../../interface/model";
 
-export const useTableConfig = () => {
+export const useTableConfig = (type: string) => {
   const table = useTable<IProfile>({
     columns: [],
     enableSorting: true,
@@ -11,7 +11,7 @@ export const useTableConfig = () => {
       resource: "profile",
       filters: {
         initial: [
-          { field: "type", operator: "eq", value: "EMPLOYEE" },
+          { field: "type", operator: "eq", value: type },
         ],
       },
     },

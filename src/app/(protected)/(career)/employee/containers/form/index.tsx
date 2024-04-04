@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { type RedirectAction } from "@refinedev/core";
 import { Form } from "@src/shadcn/components/form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
@@ -10,8 +11,10 @@ import { useFormConfig } from "./config";
 import { usePositionSelect } from "./fields/select";
 
 export const EmployeeForm = ({ userId, type }: { redirect: RedirectAction, userId?: string, type?: string }) => {
+  console.log("type", type);
   const formConfig = useFormConfig(type ?? "");
   const position = usePositionSelect(type);
+  console.log("position", position);
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "employee" });
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {

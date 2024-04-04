@@ -25,7 +25,7 @@ const FormCreate = () => {
     const storedState = localStorage.getItem(PROFILE_STORAGE_KEY);
     const profileState = JSON.parse(storedState as string) as ProfileState;
     if (profileState.profileId !== undefined && profileState.profileId !== 0) {
-      router.push(`/employee/create/${profileState.profileId}`);
+      router.push(`/employee/create/${profileState.profileId}/OFFICE`);
       dispatch({ type: "clearState", payload: false });
     }
   };
@@ -69,7 +69,7 @@ function getStepState(state: ProfileState) {
 const formStepsData = [
   {
     stepLabel: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
-    stepDescription: <ProfileForm isEmployee={true}/>,
+    stepDescription: <ProfileForm isEmployee={true} type="EMPLOYEE"/>,
     completed: false,
   },
   {

@@ -1,26 +1,17 @@
-/* eslint-disable max-lines-per-function */
-import React, { useEffect, useState } from "react";
-import { Form } from "@src/shadcn/components/form";
-import { useFormConfig } from "./config";
-import { Input, Textarea } from "@src/shadcn/elements";
-import { useFieldArray } from "react-hook-form";
-import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
+import React from "react";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
+import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
+import { Form } from "@src/shadcn/components/form";
+import { Input, Textarea } from "@src/shadcn/elements";
 import { useApplicationContext } from "../../../application/context";
+import { useFieldArray } from "react-hook-form";
+import { useFormConfig } from "./config";
+/* eslint-disable max-lines-per-function */
 
 export const WorkExperienceForm: React.FC = () => {
   const { state } = useApplicationContext();
   const formConfig = useFormConfig();
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "experience" });
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    append({ applicationId: state.applicationId });
-    if (!isMounted) {
-      setIsMounted(true);
-      remove(1);
-      remove(0);
-    }
-  }, [isMounted]);
   const isCompleted = formConfig.state.workExperienceId;
   return (
     <>

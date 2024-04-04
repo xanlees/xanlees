@@ -1,13 +1,22 @@
-import { type IProfile } from "@src/common/interface";
-
 export interface IEmployee {
-  positionId: {
-    id: number
-    sectorId: number
-    name: string
-  }
   joiningDate: string
   isLatest: boolean
+  positionId: {
+    name: string
+    id: number
+    sectorId: { name: string, id: number, branchId: number }
+  }
+  profileId: {
+    id: number
+    fullname: string
+    nickname: string
+    phoneNumber: string
+    gender: string
+    birthday: string
+    maritalStatus: string
+    profilePicture: string
+    uniqueNumber: string[]
+    typeOfUniqueNumber: string
+  }
   id: number
-  profileId: IProfile
 }

@@ -16,6 +16,7 @@ import { type MetaQuery } from "@refinedev/core";
 interface ProfileFormProps {
   setProfileID?: (id: number) => void
   isEmployee?: boolean
+  type: string
 }
 
 const defaultMessage = "ບໍ່ສາມາດສ້າງຂໍ້ມູນສ່ວນບຸຄົນໄດ້";
@@ -28,9 +29,10 @@ interface IMessages {
   }
 }
 export const ProfileForm: React.FC<ProfileFormProps> = ({
-  isEmployee,
+  isEmployee = true,
+  type,
 }) => {
-  const formConfig = useFormConfig();
+  const formConfig = useFormConfig(type);
   const profileId = formConfig.state?.profileId ?? 0;
   return (
     <div className="w-[90%] mx-20 rounded-full">
@@ -46,10 +48,14 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
   );
 };
 
-const useFormConfig = () => {
+const useFormConfig = (type: string) => {
   const { state, dispatch } = useProfileContext();
   const { ...form } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
+    defaultValues: {
+      fullname: "",
+      type: type,
+    },
     mode: "onChange",
     refineCoreProps: {
       resource: "profile",

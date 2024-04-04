@@ -7,7 +7,7 @@ import { Skill } from "../../../skill/containers/form/form";
 export const applicationFromStep = [
   {
     stepLabel: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
-    stepDescription: <ProfileForm isEmployee={false}/>,
+    stepDescription: <ProfileForm isEmployee={false} type="EMPLOYEE_CANDIDATE"/>,
     completed: false,
   },
   {
