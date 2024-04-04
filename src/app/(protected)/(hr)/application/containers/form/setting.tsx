@@ -1,8 +1,8 @@
-import { ProfileForm, PhysicalProfile, DocumentForm, EducationForm, Application2Form } from "@personal";
-import { ApplicationForm } from ".";
+import { ProfileForm, PhysicalProfile, DocumentForm, EducationForm } from "@personal";
 import { WorkExperienceForm } from "@hr";
 import { PersonalAddressForm } from "@src/app/(protected)/(personal)/address/containers/form";
 import { Skill } from "../../../skill/containers/form/form";
+import { Application2Form, ApplicationForm } from ".";
 
 export const applicationFromStep = [
   {
@@ -42,10 +42,8 @@ export const applicationFromStep = [
     completed: false,
   },
   {
-    stepLabel: "ຟອມສະໝັກວຽກ",
-    stepDescription: (
-      <ApplicationForm/>
-    ),
+    stepLabel: "ສະໝັກຕໍາແຫນງ",
+    stepDescription: <ApplicationForm/>,
     completed: false,
   },
   {
@@ -56,11 +54,11 @@ export const applicationFromStep = [
     completed: false,
   },
   {
-    stepLabel: "ຟອມສະໝັກວຽກ",
+    stepLabel: "ຂໍ້ມູນທົ່ວໄປ",
     stepDescription: (
       <Application2Form/>
     ),
-    completed: false,
+    completed: true,
   },
   {
     stepLabel: "ຄວາມສາມາດ",

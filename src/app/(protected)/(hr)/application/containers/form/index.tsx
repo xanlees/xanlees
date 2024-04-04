@@ -8,11 +8,11 @@ import {
 import { Input, Textarea } from "@src/shadcn/elements";
 import { type IFormConfig } from "@src/common/interface";
 import { useApplicationContext } from "../../..";
+
 export const ApplicationForm: React.FC = () => {
-  const formConfig = useFormConfig({ isUpdate: true });
+  const formConfig = useFormConfig();
   const { state } = useApplicationContext();
   const isCompleted = state.applicationId;
-
   return (
     <div className="mx-20 rounded-full">
       {isCompleted

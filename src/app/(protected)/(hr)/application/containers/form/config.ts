@@ -16,10 +16,7 @@ export interface IApplication {
   expectedSalary: string
 }
 
-interface FormConfigParams {
-  isUpdate: boolean
-}
-export const useFormConfig = ({ isUpdate = false }: FormConfigParams) => {
+export const useFormConfig = () => {
   const { dispatch } = useApplicationContext();
   const { state } = useProfileContext();
 
