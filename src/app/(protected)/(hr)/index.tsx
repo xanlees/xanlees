@@ -1,4 +1,4 @@
-import { WorkExperienceForm } from "./work-experience/containers/form//form";
+import { WorkExperienceForm } from "./work-experience/containers/form/form";
 import { type ApplicationState } from "./application/context/interface";
 import {
   useApplicationContext,

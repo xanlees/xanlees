@@ -44,7 +44,7 @@ export const useFormConfig = () => {
   return { form, state };
 };
 
-export const useAppcationForm = () => {
+export const useApplicationForm = () => {
   const { state, dispatch } = useApplicationContext();
   const { ...form } = useForm<{ id?: number }>({
     resolver: zodResolver(applicationSelectTwoSchema),
