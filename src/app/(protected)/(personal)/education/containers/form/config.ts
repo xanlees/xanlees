@@ -1,10 +1,10 @@
-/* eslint-disable max-lines-per-function */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import { graduationSchema } from "./validation";
 import { useProfileContext } from "../../../context";
 import { type IFormConfig } from "@src/common/interface";
 import { useEffect, useRef } from "react";
+import { type UseFormSetValue } from "react-hook-form";
 
 interface IEducationFromValue {
   id: number
@@ -26,9 +26,6 @@ export const useFormConfig = () => {
     },
     refineCoreProps: {
       resource: "education",
-      autoSave: {
-        enabled: true,
-      },
       redirect: false,
       onMutationSuccess: (data) => {
         let id: number;
@@ -47,12 +44,12 @@ export const useFormConfig = () => {
   return { form };
 };
 
-const useUpdateDefaultValues = (form: IFormConfig, profile: number) => {
+const useUpdateDefaultValues = (form: IFormConfig & { setValue?: UseFormSetValue<any> }, profile: number) => {
   const profileRef = useRef(profile);
   useEffect(() => {
-    if (profileRef.current !== profile) {
+    if (profileRef.current !== profile && form.setValue) {
       form.setValue("education[0].profileId", profile);
       profileRef.current = profile;
     }
-  }, [profile]);
+  }, [profile, form.setValue]);
 };

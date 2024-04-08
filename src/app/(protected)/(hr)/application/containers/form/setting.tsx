@@ -11,16 +11,16 @@ export const applicationFromStep = [
     completed: false,
   },
   {
-    stepLabel: "ທີຢູ່ປະຈຸປບັນ",
+    stepLabel: "ທີຢູ່ບ້ານເກີດ",
     stepDescription: (
-      <PersonalAddressForm />
+      <PersonalAddressForm isCurrent={false}/>
     ),
     completed: false,
   },
   {
-    stepLabel: "ທີຢູ່ບ້ານເກີດ",
+    stepLabel: "ທີຢູ່ປະຈຸປບັນ",
     stepDescription: (
-      <PersonalAddressForm isCurrent={false}/>
+      <PersonalAddressForm />
     ),
     completed: false,
   },
@@ -30,9 +30,9 @@ export const applicationFromStep = [
     completed: false,
   },
   {
-    stepLabel: "ເອກສານ",
+    stepLabel: "ເອກສານຄັດຕິດ",
     stepDescription: (
-      <DocumentForm/>
+      <DocumentForm label="ລາຍການເອກະສານເຊັ່ນ ໃບປະກາດ, ໃບຕະແນນ, ຊີວະປະຫວັດຫຍໍ້  (ກະລຸນາກົດເພີ່ມເອກະສານກ່ອນບັນທືກ)"/>
     ),
     completed: false,
   },
@@ -42,7 +42,7 @@ export const applicationFromStep = [
     completed: false,
   },
   {
-    stepLabel: "ສະໝັກຕໍາແຫນງ",
+    stepLabel: "ສະໝັກຕໍາແຫນ່ງ",
     stepDescription: <ApplicationForm/>,
     completed: false,
   },
@@ -54,18 +54,18 @@ export const applicationFromStep = [
     completed: false,
   },
   {
+    stepLabel: "ຄວາມສາມາດພິເສດ",
+    stepDescription: (
+      <Skill/>
+    ),
+    completed: false,
+  },
+  {
     stepLabel: "ຂໍ້ມູນທົ່ວໄປ",
     stepDescription: (
       <Application2Form/>
     ),
     completed: true,
-  },
-  {
-    stepLabel: "ຄວາມສາມາດ",
-    stepDescription: (
-      <Skill/>
-    ),
-    completed: false,
   },
 ];
 

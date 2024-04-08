@@ -21,7 +21,7 @@ export default function FormStep({
   };
 
   return (
-    <div className="">
+    <div className="px-4 py-6 sm:px-6 lg:px-8 w-96">
       <Stepper
         steps={formStepsData}
         orientation="vertical"

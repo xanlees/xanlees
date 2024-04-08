@@ -9,50 +9,50 @@ import { Input, Textarea } from "@src/shadcn/elements";
 import { type IFormConfig } from "@src/common/interface";
 import { useApplicationContext } from "../../context";
 export const ApplicationForm: React.FC = () => {
-  const formConfig = useFormConfig();
+  const { form } = useFormConfig();
   const { state } = useApplicationContext();
   const isCompleted = state.applicationId;
   return (
-    <div className="mx-20 rounded-full">
+    <div className="rounded-full">
       {isCompleted
         ? (
           <p className="italic">ສຳເລັດແລ້ວ !</p>)
         : (
-          <Form {...formConfig.form}>
-            <AppliedFor formConfig={formConfig} />
-            <EmergencyInformationSection formConfig={formConfig} />
+          <Form {...form}>
+            <AppliedFor form={form} />
+            <EmergencyInformationSection form={form} />
           </Form>)}
     </div>
   );
 };
 
 export const Application2Form: React.FC = () => {
-  const formConfig = useApplicationForm();
+  const { form } = useApplicationForm();
   const { state } = useApplicationContext();
   const isCompleted = state.updateApplicationId;
 
   return (
-    <div className="mx-20 rounded-full">
-      {!isCompleted
+    <div className="rounded-full">
+      {isCompleted
         ? (
-          <Form {...formConfig.form}>
-            <GeneralInfo formConfig={formConfig} />
-            <Form.Field require={false} {...formConfig.form} name="appliedReason" label="ເປັນຫຍັງທ່ານຈື່ງຢາກເຮັດວຽກກັບ ວິສາຫະກິດສ່ນບຸກຄົນ ເອັສບີເອັສ" >
-              <Textarea className="h-28" />
-            </Form.Field>
-            <Form.Field require={false} {...formConfig.form} name="pledgeReason" label="ຖ້າໄດ້ເປັນພະນັກງານຂອງ ເອັສບີເອັສ ແລ້ວທ່ານຈະປະຕິຍານຕົນແນວໃດ ?" >
-              <Textarea className="h-28" />
-            </Form.Field>
-            <ApplicantSignatureChckbox {...formConfig} />
-          </Form>)
+          <p className="italic">ສຳເລັດແລ້ວ !</p>)
         : (
-          <p className="italic">ສຳເລັດແລ້ວ !</p>)}
+          <Form {...form}>
+            <GeneralInfo form={form} />
+            <Form.Field require={false} {...form} name="appliedReason" label="ເປັນຫຍັງທ່ານຈື່ງຢາກເຮັດວຽກກັບ ວິສາຫະກິດສ່ນບຸກຄົນ ເອັສບີເອັສ" >
+              <Textarea className="h-28" />
+            </Form.Field>
+            <Form.Field require={false} {...form} name="pledgeReason" label="ຖ້າໄດ້ເປັນພະນັກງານຂອງ ເອັສບີເອັສ ແລ້ວທ່ານຈະປະຕິຍານຕົນແນວໃດ ?" >
+              <Textarea className="h-28" />
+            </Form.Field>
+            <ApplicantSignatureChckbox {...form} />
+          </Form>)}
     </div>
   );
 };
 
-const ApplicantSignatureChckbox = (formConfig: IFormConfig) => (
-  <Form.Field {...formConfig.form} name="applicantSignature">
+const ApplicantSignatureChckbox = (form: IFormConfig) => (
+  <Form.Field {...form} name="applicantSignature">
     <div className="flex">
       <Input type="checkbox" className="w-5 h-5" />
       <p className="pt-1.5 ml-1">ຂ້ອຍຮັບໃນເງື່ອນໄຂຂອງບໍລິສັດ</p>

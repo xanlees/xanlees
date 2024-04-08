@@ -2,13 +2,22 @@
 import React from "react";
 import { Card } from "@src/shadcn/elements";
 import FormStep from "@src/common/components/stepForm";
-import { applicationFromStep, ApplicationProvider, useApplicationContext, type ApplicationState } from "@hr";
-import { ProfileProvider, useProfileContext, type ProfileState } from "@personal";
+import {
+  applicationFromStep,
+  ApplicationProvider,
+  useApplicationContext,
+  type ApplicationState,
+} from "@hr";
+import {
+  ProfileProvider,
+  useProfileContext,
+  type ProfileState,
+} from "@personal";
 import { hasValid } from "@src/common/lib/validation/hasValid";
 
 export default function ApplicationCreate(): JSX.Element {
   return (
-    <Card className="mx-auto mt-10 mb-20 rounded-md w-[870px] ">
+    <Card className="mx-auto mt-10 mb-20 rounded-md shadow-lg max-w-[900px]">
       <ApplicationProvider>
         <ProfileProvider>
           <ApplicationForm />
@@ -17,6 +26,7 @@ export default function ApplicationCreate(): JSX.Element {
     </Card>
   );
 }
+
 const STEPS = {
   profileStep: 0,
   personalCurrentAddressStep: 1,
@@ -29,27 +39,34 @@ const STEPS = {
 };
 
 function ApplicationForm(): JSX.Element {
-  const applicationContext = useApplicationContext() as { state: ApplicationState };
+  const applicationContext = useApplicationContext() as {
+    state: ApplicationState
+  };
   const profileContext = useProfileContext() as { state: ProfileState };
-  const initialStep = getStepState(profileContext.state, applicationContext.state);
+  const initialStep = getStepState(
+    profileContext.state,
+    applicationContext.state,
+  );
+
   return (
-    <div className="shadow-lg">
-      <div className="my-3 text-center bg-blue-300 rounded-sm">
-        <p className="mx-auto text-xl font-bold">ຟອມສະໝັກພະນັກງານ </p>
-        <p className="mx-auto text-sm">(ໃຊ້ເວລາປະມານ 10 ນາທີ) </p>
+    <div className="shadow-lg p-4 sm:p-6 lg:p-8">
+      <div className="my-3 text-center bg-blue-300 rounded-sm mx-2 p-4">
+        <p className="text-xl font-bold">ຟອມສະໝັກພະນັກງານ </p>
+        <p className="text-sm">(ໃຊ້ເວລາປະມານ 10 ນາທີ) </p>
       </div>
-      <FormStep
-        formStepsData={applicationFromStep}
-        initialStep={initialStep}
-      />
-      <div className="my-3 text-center bg-blue-300 rounded-sm">
-        <p className="mx-auto text-xl font-bold">ຂອບໃຈທ່ານທີ່ໄວ້ໃຈ </p>
-        <p className="mx-auto text-xl font-bold">ນຳບໍລິສັດຂອງພວກເຮົາ </p>
+      <FormStep formStepsData={applicationFromStep} initialStep={initialStep} />
+      <div className="my-3 text-center bg-blue-300 rounded-sm p-4">
+        <p className="text-xl font-bold">ຂອບໃຈທ່ານທີ່ໄວ້ໃຈ </p>
+        <p className="text-xl font-bold">ນຳບໍລິສັດຂອງພວກເຮົາ </p>
       </div>
     </div>
   );
 }
-function getStepState(stateProfile: ProfileState, stateApplication: ApplicationState) {
+
+function getStepState(
+  stateProfile: ProfileState,
+  stateApplication: ApplicationState,
+) {
   switch (true) {
     case hasValid(stateApplication.workExperienceId as number):
       return STEPS.workExperienceStep;

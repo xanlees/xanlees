@@ -2,10 +2,10 @@
 import React from "react";
 import { Show } from "@/shadcn/components/crud";
 import { ProfileDetail, EmployeeDetail, DocumentPDF, AddressDetail, useProfile, useEmployees, usePersonalAddress, useSectorId } from "../../..";
-import { type IProfile } from "../../interface/model";
 import type { IEmployee, ISector } from "@career";
 import type { IAddress } from "@personal";
 import { useSector } from "@src/app/(protected)/(personal)/profile/hooks/show";
+import { type IProfile } from "@src/app/(protected)/(personal)/profile/interface/model";
 
 export default function AgentShow({ params }: { params: { id: number } }): JSX.Element {
   const { data: profileData } = useProfile<IProfile>({ profileId: params.id });

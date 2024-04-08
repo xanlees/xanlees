@@ -4,29 +4,28 @@ import { Input } from "@src/shadcn/elements";
 import { useFieldArray } from "react-hook-form";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
+import { type Control, type FieldValues, type UseFormSetValue, type UseFormWatch } from "react-hook-form";
 
-interface IFormConfig {
-  form: {
-    control: any
-    setValue: any
-    watch: any
-  }
+export interface IFormConfig {
+  setValue?: UseFormSetValue<FieldValues>
+  watch?: UseFormWatch<FieldValues>
+  control?: Control<FieldValues>
 }
-export const DynamicNumberForm: React.FC<{ formConfig: IFormConfig, isEmployee?: boolean }> = ({
-  formConfig, isEmployee,
+export const DynamicNumberForm: React.FC<{ form: IFormConfig, isEmployee?: boolean }> = ({
+  form, isEmployee,
 }) => {
   const { fields, append, remove } = useFieldArray({
-    control: formConfig.form.control,
+    control: form.control,
     name: "uniqueNumber",
   });
-  const type: string | undefined = formConfig.form.watch("typeOfUniqueNumber");
+  const type = form?.watch ? form.watch("typeOfUniqueNumber") as FieldValues : undefined;
   const classNames = type != null ? "cursor-pointer" : "pointer-events-none";
-  const displayText = getTypeDisplayText(type, isEmployee);
+  const displayText = getTypeDisplayText(type as unknown as string, isEmployee);
   return (
     <div className={classNames}>
       {<div className="-mt-1 text-sm font-bold">{displayText}</div>}
       <DynamicForm
-        form={formConfig.form}
+        form={form}
         fields={fields}
         append={append}
         remove={remove}
@@ -35,7 +34,7 @@ export const DynamicNumberForm: React.FC<{ formConfig: IFormConfig, isEmployee?:
         classNameButton="mt-"
       >
         <ArrayField
-          {...formConfig.form}
+          {...form}
           name="uniqueNumber"
           className="flex"
         >

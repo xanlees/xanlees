@@ -21,12 +21,13 @@ type SelectProps = SelectCoreProps & {
     emptyMessage?: string;
     onChange?: (value: string) => void;
     options?: BaseOption[];
+    className?: string
 };
 
 export const Select = forwardRef<
     React.ElementRef<typeof SelectContentType>,
     SelectProps
->(({ ...props }, ref) => {
+>(({ className, ...props }, ref) => {
     return (
         <SelectUI
             disabled={props.options?.length === 0}
@@ -35,11 +36,11 @@ export const Select = forwardRef<
             value={props.value}
         >
             <FormControl>
-                <SelectTrigger className={cn("sm:w-[250px] my-2")}>
+                <SelectTrigger className={cn("w-full lg:w-72 my-2 ", className)}>
                     <SelectValue placeholder={props.value ?? "ເລືອກ"} />
                 </SelectTrigger>
             </FormControl>
-            <SelectContent className={cn("sm:w-[250px]")} ref={ref}>
+            <SelectContent className={cn("w-full lg:w-72 overflow-y-scroll", className)} ref={ref}>
                 {props.options?.map((option, key: number) => (
                     <SelectItem key={key} value={option.value}>
                         {option.label}

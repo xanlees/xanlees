@@ -5,7 +5,7 @@ import { Input } from "@src/shadcn/elements";
 import { RadioGroupFiled } from "@src/shadcn/components/form/radio-group";
 import { RadioGroupItem } from "@src/shadcn/elements/radio-group";
 import { useFieldArray } from "react-hook-form";
-import type { CommonProps, ExtendedFieldArrayProps } from "../../interface/props";
+import { type ExtendedFieldArrayProps, type CommonProps } from "../../interface/props";
 
 export const InputContainer: React.FC<CommonProps> = ({ form }) => {
   const { fields, append, remove } = useFieldArray({ control: form?.control, name: "uniqueNumber" });

@@ -4,6 +4,7 @@ import { useApplicationContext } from "../../../application/context";
 import * as z from "zod";
 import { useEffect, useRef } from "react";
 import { type IFormConfig } from "@src/common/interface";
+import { type UseFormSetValue } from "react-hook-form";
 
 interface WorkExperienceData {
   id: number
@@ -75,12 +76,13 @@ export const WorkExperienceSchema = z.object({
   const workExperienceList = val.experience;
   return workExperienceList;
 });
-const useUpdateDefaultValues = (form: IFormConfig, applicationId: number) => {
+
+const useUpdateDefaultValues = (form: IFormConfig & { setValue?: UseFormSetValue<any> } | undefined, applicationId: number) => {
   const applicationIdRef = useRef(applicationId);
   useEffect(() => {
-    if (applicationIdRef.current !== applicationId) {
+    if (form && applicationIdRef.current !== applicationId && form.setValue) {
       form.setValue("experience[0].applicationId", applicationId);
       applicationIdRef.current = applicationId;
     }
-  }, [applicationId]);
+  }, [form, applicationId]);
 };

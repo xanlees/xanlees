@@ -1,36 +1,80 @@
 import React from "react";
 import { Form } from "@src/shadcn/components/form";
 import { useFormConfig } from "./config";
-import { InputBase } from "@src/common/elements/input/InputBase";
+import { type IFormConfig } from "@src/common/interface";
+import { Input } from "@src/shadcn/elements";
 
-export const PhysicalProfile: React.FC<PhysicalProfileProps> = () => {
-  const formConfig = useFormConfig();
-  const isCompleted = formConfig.state.physicalProfileId;
+export const PhysicalProfile: React.FC = () => {
+  const { form, state } = useFormConfig();
+  const isCompleted = state.physicalProfileId;
   return (
-    <div className="mx-20 rounded-full">
-      {!isCompleted
-        ? (<Form {...formConfig.form}>
-          <div className="flex flex-col w-full capitalize rounded-lg sm:flex-row">
-            <div className="flex-1 p-4">
-              <div className="flex gap-2">
-                <div className="w-full">
-                  <InputBase {...formConfig} name="height" label="ລວງສູງ" placeholder="ປ້ອນຄວາມສູງ" type="number" require={false}/>
-                </div>
-                <div className="w-2 pt-7 ">cm</div>
-              </div>
-              <InputBase {...formConfig} name="nationality" label="ສັນຊາດ" placeholder="ປ້ອນສັນຊາດ" />
-            </div>
-            <div className="flex-1 p-4">
-              <div className="flex gap-2">
-                <div className="w-full">
-                  <InputBase {...formConfig} name="weight" label="ນໍ້າຫນັກ" placeholder="ປ້ອນນໍ້າຫນັກ" type="number" require={false}/>
-                </div>
-                <div className="w-2 pt-7 ">kg</div>
-              </div>
-            </div>
+    <div className="rounded-full w-72 sm:w-[710px] ">
+      {isCompleted
+        ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
+        : (<Form {...form}>
+          <FormFieldContainer form={form}/>
+        </Form>) }
+    </div>
+  );
+};
+
+export const FormFieldContainer: React.FC<{ form: IFormConfig } > = ({ form }) => {
+  return (
+    <div className="flex flex-wrap gap-2 gap-x-5">
+      <HeightInput form={form} />
+      <WeightInput form={form} />
+      <NationalityInput form={form} />
+    </div>
+  );
+};
+
+const HeightInput: React.FC<{ form: IFormConfig }> = ({ form }) => {
+  return (
+    <div className="w-full lg:w-80 ">
+      <div className="relative w-full mb-3">
+        <div className="flex gap-2">
+          <div className="w-full">
+            <Form.Field {...form} name={"height"} label={"ລວງສູງ"} require={false}>
+              <Input className="w-full" placeholder="160" numericOnly/>
+            </Form.Field>
           </div>
-        </Form>)
-        : (<p className="italic">ສຳເລັດແລ້ວ !</p>) }
+          <div className="w-2 pt-7 ">cm</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const NationalityInput: React.FC<{ form: IFormConfig }> = ({ form }) => {
+  return (
+    <div className="w-full lg:w-80 ">
+      <div className="relative w-full mb-3">
+        <div className="flex gap-2">
+          <div className="w-full">
+            <Form.Field {...form} name={"nationality"} label={"ສັນຊາດ"}>
+              <Input className="w-full" placeholder="ລາວ" />
+            </Form.Field>
+          </div>
+          <div className="w-2 pt-7 " />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const WeightInput: React.FC<{ form: IFormConfig }> = ({ form }) => {
+  return (
+    <div className="w-full lg:w-80 ">
+      <div className="relative w-full mb-3">
+        <div className="flex gap-2">
+          <div className="w-full">
+            <Form.Field {...form} name={"weight"} label={"ນໍ້າຫນັກ"} require={false}>
+              <Input className="w-full" placeholder="" numericOnly />
+            </Form.Field>
+          </div>
+          <div className="w-2 pt-7 ">kg</div>
+        </div>
+      </div>
     </div>
   );
 };

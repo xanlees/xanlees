@@ -14,16 +14,16 @@ export function PersonalAddressForm({ isCurrent = true }) {
   const isCompleted = (state.personalCurrentAddressId && isCurrent) || (state.personalCurrentAddressId && state.personalBornAddressId);
 
   return (
-    <div className="rounded-full w-96 sm:w-[710px] mx-20 ">
-      {!isCompleted
-        ? (<Form {...form}>
+    <div className="rounded-full w-72 sm:w-[710px]">
+      {isCompleted
+        ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
+        : (<Form {...form}>
           <div className="flex flex-wrap gap-2">
             <Village form={form} title={village} />
             <Province form={form} />
             <District form={form} />
           </div>
-        </Form>)
-        : (<p className="italic">ສຳເລັດແລ້ວ !</p>)}
+        </Form>)}
     </div>
   );
 }

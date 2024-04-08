@@ -1,76 +1,32 @@
 import React from "react";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "@refinedev/react-hook-form";
-import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 import { Form } from "@src/shadcn/components/form";
-
-import { useProfileContext } from "../../../context";
-import { errorMessages } from "../../containers/form/constant";
-import { profileSchema } from "../../containers/form/validation";
-import { BasicInformationSection } from "../form-fields/BasicInformationSection";
-import { PersonalInformationSection } from "../form-fields/PersonalInformationSection";
-import { FormMultipart } from "@src/common/interface";
-import { type MetaQuery } from "@refinedev/core";
-
+import { useProfileForm } from "../../hooks/form/useProfileForm";
+import { FormFieldContainer } from "./FormFieldContainer";
 interface ProfileFormProps {
   setProfileID?: (id: number) => void
   isEmployee?: boolean
   type: string
 }
 
-const defaultMessage = "ບໍ່ສາມາດສ້າງຂໍ້ມູນສ່ວນບຸຄົນໄດ້";
-export interface ProfileFormValues {
-  id?: number
-}
-interface IMessages {
-  response: {
-    data: Record<string, any>
-  }
-}
 export const ProfileForm: React.FC<ProfileFormProps> = ({
   isEmployee = true,
   type,
 }) => {
-  const formConfig = useFormConfig(type);
-  const profileId = formConfig.state?.profileId ?? 0;
+  const { form, state } = useProfileForm(type);
+  const isComplete = state?.profileId ?? 0;
   return (
-    <div className="w-[90%] mx-20 rounded-full">
-      {!profileId
-        ? (<Form {...formConfig.form} cardClassName="w-full flex flex-col">
-          <div className="flex flex-col w-full capitalize rounded-lg sm:w-1/2 sm:flex-row">
-            <BasicInformationSection formConfig={formConfig} isEmployee={isEmployee}/>
-            <PersonalInformationSection formConfig={formConfig} isEmployee={isEmployee}/>
-          </div>
-        </Form>)
-        : (<p className="italic">ສຳເລັດແລ້ວ !</p>)}
+    <div className="rounded-full w-72 sm:w-[710px] ">
+      {isComplete
+        ? (
+          <p className="italic">ສຳເລັດແລ້ວ !</p>)
+        : (
+          <Form {...form}>
+            <div className="text-2xl font-bold tracking-wide text-center text-gray-800 dark:text-white">
+            ຂໍ້ມູນສ່ວນບຸກຄົນ
+            </div>
+            <FormFieldContainer form={{ form }} isEmployee={isEmployee} />
+            <div className="flex flex-col w-full gap-2 capitalize rounded-lg sm:flex-row sm:w-1/2" />
+          </Form>)}
     </div>
   );
-};
-
-const useFormConfig = (type: string) => {
-  const { state, dispatch } = useProfileContext();
-  const { ...form } = useForm<ProfileFormValues>({
-    resolver: zodResolver(profileSchema),
-    defaultValues: {
-      fullname: "",
-      type: type,
-    },
-    mode: "onChange",
-    refineCoreProps: {
-      resource: "profile",
-      meta: FormMultipart as MetaQuery,
-      onMutationSuccess: (data) => {
-        dispatch({ type: "setProfileId", payload: data?.data?.id ?? 0 });
-      },
-      errorNotification: (data: any) => {
-        const responseData = (data as IMessages).response.data;
-        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage });
-      },
-      successNotification: false,
-      redirect: false,
-    },
-    warnWhenUnsavedChanges: true,
-  });
-  return { form, state };
 };

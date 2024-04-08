@@ -6,7 +6,6 @@ export interface ProfileSendData {
   phoneNumber: string
   gender: "MALE" | "FEMALE" | "OTHER"
   birthday: string
-  personalAddressId: number
   uniqueNumber: Array<{
     uniqueNumber: string
   }>

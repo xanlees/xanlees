@@ -16,9 +16,10 @@ export const EducationForm: React.FC = () => {
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "education" });
   const isCompleted = state.educationId ?? 0;
   return (<div className="w-full rounded-lg">
-    {!isCompleted
-      ? (<div><Form {...formConfig.form} cardClassName="w-full flex flex-col">
-        <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="education" label="ການສຶກສາອີກ" className="flex gap-2" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId }}>
+    {isCompleted
+      ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
+      : (<div><Form {...formConfig.form} cardClassName="">
+        <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="education" label="ການສຶກສາອີກ" className="flex flex-col sm:flex-row sm:flex-wrap" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId }}>
           <ArrayField {...formConfig.form} name="branch" label="ສາຂາ">
             <Input placeholder="ສາຂາ" className="block w-56" />
           </ArrayField>
@@ -26,11 +27,10 @@ export const EducationForm: React.FC = () => {
             <Form.Combobox {...(graduation as any)} />
           </ArrayField>
           <ArrayField {...formConfig.form} name="year" label="ຈົບສົກປີ">
-            <Input placeholder="2018" type="number" className="block w-56" />
+            <Input placeholder="2018" type="number" className="block w-full sm:w-32" />
           </ArrayField>
         </DynamicForm>
       </Form>
-      <FormGraduation /></div>)
-      : (<p className="mx-20 italic">ສຳເລັດແລ້ວ !</p>)}
+      <FormGraduation /></div>)}
   </div>);
 };

@@ -1,40 +1,35 @@
-import { InputBase } from "@src/common/elements/input/InputBase";
 import { type IFormConfig } from "@src/common/interface";
-
+import { Input } from "@src/shadcn/elements";
+import { Form } from "@src/shadcn/components/form";
 export const EmergencyInformationSection: React.FC<{
-  formConfig: IFormConfig
-}> = ({ formConfig }) => {
+  form: IFormConfig
+}> = ({ form }) => {
   return (
-    <>
-      <div className="py-6 border-t border-gray-200 first:pt-0 last:pb-0 first:border-transparent dark:border-gray-700 dark:first:border-transparent">
-        <label className="inline-block my-2 text-lg font-medium dark:text-white">
-          ກໍລະນີສຸກເສີນຕິດຕໍ່ຫາ
-        </label>
-        <div className="mt-2 space-y-3">
-          <InputBase
-            {...formConfig}
-            name="emergencyFullname"
-            label="ຊື່ ແລະ ນາມສະກຸນ"
-            placeholder="ຊື່ ແລະ ນາມສະກຸນ"
-            className="block w-full px-3 py-2 text-sm border-gray-200 shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-          />
-          <div className="grid gap-3 sm:flex">
-            <InputBase
-              {...formConfig}
-              name="emergencyPhoneNumber"
-              label="ເບີໂທ"
-              placeholder="20xxxxxxxx"
-              className="w-64 mr-4"
-            />
-            <InputBase
-              {...formConfig}
-              name="emergencyRelationship"
-              label="ຄວາມສໍາພັນ"
-              className="w-64"
-            />
+    <div className="py-6 border-t border-gray-200 first:pt-0 last:pb-0 first:border-transparent dark:border-gray-700 dark:first:border-transparent">
+      <label className="inline-block my-2 text-lg font-medium dark:text-white">
+        ກໍລະນີສຸກເສີນຕິດຕໍ່ຫາ
+      </label>
+      <div className="mt-2 space-y-3">
+        <Form.Field {...form} name="emergencyFullname" label="ຊື່ ແລະ ນາມສະກຸນ" >
+          <Input placeholder="ຊື່ ແລະ ນາມສະກຸນ" />
+        </Form.Field>
+        <div className="grid gap-3 sm:flex">
+          <div className="w-full lg:w-80 ">
+            <div className="relative w-full mb-3">
+              <Form.Field {...form} name="emergencyPhoneNumber" label="ເບີໂທ" >
+                <Input placeholder="20xxxxxxxx" />
+              </Form.Field>
+            </div>
+          </div>
+          <div className="w-full lg:w-80 ">
+            <div className="relative w-full mb-3">
+              <Form.Field {...form} name="emergencyRelationship" label="ຄວາມສໍາພັນ" >
+                <Input placeholder="20xxxxxxxx" />
+              </Form.Field>
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

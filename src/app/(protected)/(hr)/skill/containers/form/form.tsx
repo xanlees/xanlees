@@ -13,23 +13,23 @@ export const Skill: React.FC = () => {
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "skill" });
   const isCompleted = state.skillId;
   return (
-    <div className="mx-20 rounded-full">  {isCompleted
+    <div className=" rounded-full">  {isCompleted
       ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
       : (
         <Form {...formConfig.form}>
-          <div className="w-[620px] ">
+          <div className="rounded-full w-72 sm:w-[600px] ">
             <div className="text-md font-bold tracking-wide text-gray-800 dark:text-white my-2">
-           ທັກສາຄວາມສາມາດໃນການຄອມພິວເຕີ, ພາສາ ແລະ ອື່ນໆ
+            ຄວາມສາມາດພິເສດເຊັ່ນການນໍາໃຊ້ຄອມພິວເຕີ, ພາສາ ແລະ ອື່ນໆ
             </div>
             <DynamicForm
-              form={formConfig.form} fields={fields} append={append} remove={remove} name="skill" className="flex " label=""
+              form={formConfig.form} fields={fields} append={append} remove={remove} name="skill" className="flex flex-col sm:flex-row sm:flex-wrap" label=""
               classNameButton="w-full mt-5"
               defaultConfig={{ application: state.applicationId }}>
               <ArrayField {...formConfig.form} name="name" label="ຄວາມສາມາດ">
                 <Input placeholder="" className="block w-72" />
               </ArrayField>
               <ArrayField {...formConfig.form} name="proficiency" label="ທັກສາ">
-                <Form.Select options={Options}/>
+                <Form.Select options={Options} className=" w-32"/>
               </ArrayField>
             </DynamicForm>
           </div>

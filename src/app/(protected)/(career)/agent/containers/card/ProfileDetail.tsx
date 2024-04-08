@@ -5,7 +5,7 @@ import React from "react";
 import { Avatar, AvatarFallback, AvatarImage, Card, CardContent, CardHeader, CardTitle } from "@src/shadcn/elements";
 import { getGenderDisplayText, getMaritalStatusDisplayText } from "../../../../../../common/lib/genderUtils";
 import moment from "moment";
-import { type IProfile } from "../../interface/model";
+import { type IProfile } from "@src/app/(protected)/(hr)/application/interface/interface";
 export function ProfileDetail({ profileData, visible }: { profileData: IProfile[], visible: string }): JSX.Element {
   const { fullname, nickname, phoneNumber, gender, birthday, maritalStatus, profilePicture } = profileData?.[0] ?? {};
   const age = calculateAge(birthday);
