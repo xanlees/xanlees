@@ -3,8 +3,6 @@ import { CircleUser } from "lucide-react";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 import { DynamicNumberForm } from "./inputUniqueNumber";
 import { Form } from "@src/shadcn/components/form";
-import { RadioGroupFiled } from "@src/shadcn/components/form/radio-group";
-import { RadioGroupItem } from "@src/shadcn/elements/radio-group";
 import { type CommonProps } from "@src/app/(protected)/(career)/agent/interface/props";
 import {
   InputFullName,
@@ -61,23 +59,13 @@ const UniqueNumberInput: React.FC<CommonProps & { isEmployee?: boolean }> = ({ f
 const GenderAndMaritalStatusSelect: React.FC<CommonProps> = ({ form }) => {
   return (
     <div className="w-full lg:w-80">
-      <div className="w-full flex flex-col lg:flex-row gap-y-3 lg:gap-y-0 lg:gap-x-5">
-        <div className="w-full lg:w-1/2 mb-3 lg:mb-0">
-          <Form.Field {...form} name={"gender"} label={"ເລືອກເພດ"}>
-            <RadioGroupFiled>
-              <RadioGroupItem value="MALE">ຊາຍ</RadioGroupItem>
-              <RadioGroupItem value="FEMALE">ຍິງ</RadioGroupItem>
-            </RadioGroupFiled>
-          </Form.Field>
-        </div>
-        <div className="w-full lg:w-1/2">
-          <Form.Field {...form} name={"maritalStatus"} label={"ສະຖານະພາບ"}>
-            <RadioGroupFiled>
-              <RadioGroupItem value="SINGLE">ໂສດ</RadioGroupItem>
-              <RadioGroupItem value="MARRIED">ແຕ່ງງານແລ້ວ</RadioGroupItem>
-            </RadioGroupFiled>
-          </Form.Field>
-        </div>
+      <div className="w-full flex flex-col lg:flex-row lg:gap-x-5">
+        <Form.Field {...form} name={"gender"} label={"ເລືອກເພດ"}>
+          <Form.RadioGroup className="" options={[{ label: "ຊາຍ", value: "MALE" }, { label: "ຍິງ", value: "FEMALE" }]} isSquare={true} />
+        </Form.Field>
+        <Form.Field {...form} name={"maritalStatus"} label={"ສະຖານະພາບ"}>
+          <Form.RadioGroup className="" options={[{ label: "ໂສດ", value: "SINGLE" }, { label: "ແຕ່ງງານແລ້ວ", value: "MARRIED" }]} isSquare={true} />
+        </Form.Field>
       </div>
     </div>
   );
