@@ -7,7 +7,7 @@ export const ProfileForm: React.FC = () => {
   const { form, state } = useFormAgent();
   const isComplete = state?.profileId ?? 0;
   return (
-    <div className="rounded-full w-96 sm:w-[710px] mx-20 ">
+    <div className="rounded-full w-96 sm:w-[710px]  ">
       {isComplete
         ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
         : (

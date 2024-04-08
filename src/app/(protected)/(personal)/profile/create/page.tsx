@@ -2,13 +2,22 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Create } from "@/shadcn/components/crud";
-import { useProfileContext, ProfileProvider, PROFILE_STORAGE_KEY } from "../../context";
+import {
+  useProfileContext,
+  ProfileProvider,
+  PROFILE_STORAGE_KEY,
+} from "../../context";
 import { type ProfileState } from "../../context/interface";
-import { Button, Card } from "@src/shadcn/elements";
+import { Button, Card, CardHeader } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 import FormStep from "@src/common/components/stepForm";
 import { hasValid } from "@src/common/lib/validation/hasValid";
-import { DocumentForm, EducationForm, ProfileForm, PersonalAddressForm } from "@personal";
+import {
+  DocumentForm,
+  EducationForm,
+  ProfileForm,
+  PersonalAddressForm,
+} from "@personal";
 
 const breadcrumbs = [
   { label: "ພະນັກງານ", href: "/profile" },
@@ -39,15 +48,15 @@ const FormCreate = () => {
       resource="profile"
       breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
     >
-      <div className="flex justify-center ">
-        <div className="flex flex-col border shadow-2xl rounded-2xl ">
-          <span className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl ">ຟອມສ້າງພະນັກງານ</span>
-          <FormStep formStepsData={formStepsData} initialStep={initialStep} />
-          <div className="flex justify-center w-full p-3">
-            <Button className="w-20" onClick={handleButtonClick}>ຕໍ່ໄປ</Button>
-          </div>
+      <Card className="mx-auto mt-10 mb-20 rounded-md shadow-lg max-w-[900px]">
+        <CardHeader>
+          <span className="w-full py-4 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl ">ຟອມສ້າງພະນັກງານ</span>
+        </CardHeader>
+        <FormStep formStepsData={formStepsData} initialStep={initialStep} />
+        <div className="flex justify-center w-full p-3">
+          <Button className="w-20" onClick={handleButtonClick}>ຕໍ່ໄປ</Button>
         </div>
-      </div>
+      </Card>
     </Create>
   );
 };
@@ -70,35 +79,12 @@ function getStepState(state: ProfileState) {
       return profileStep;
   }
 }
+
 const formStepsData = [
-  {
-    stepLabel: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
-    stepDescription: <ProfileForm isEmployee={true} type="EMPLOYEE"/>,
-    completed: false,
-  },
-  {
-    stepLabel: "ທີຢູ່ປະຈຸບັນ",
-    stepDescription: (
-      <PersonalAddressForm/>
-    ),
-    completed: false,
-  },
-  {
-    stepLabel: "ທີ່ນຖານບ້ານເກີດ",
-    stepDescription: (
-      <PersonalAddressForm isCurrent={false}/>
-    ),
-    completed: false,
-  },
-  {
-    stepLabel: "ເອກສານຕິດຄັດ",
-    stepDescription: <DocumentForm/>,
-    completed: false,
-  },
-  {
-    stepLabel: "ປະຫວັດການສຶກສາ",
-    stepDescription: <EducationForm />,
-    completed: false,
-  },
+  { stepLabel: "ຂໍ້ມູນສ່ວນບຸກຄົນ", stepDescription: <ProfileForm isEmployee={true} type="EMPLOYEE" />, completed: false },
+  { stepLabel: "ທີ່ນຖານບ້ານເກີດ", stepDescription: <PersonalAddressForm isCurrent={false} />, completed: false },
+  { stepLabel: "ທີຢູ່ປະຈຸບັນ", stepDescription: <PersonalAddressForm />, completed: false },
+  { stepLabel: "ເອກສານຕິດຄັດ", stepDescription: <DocumentForm />, completed: false },
+  { stepLabel: "ປະຫວັດການສຶກສາ", stepDescription: <EducationForm />, completed: false },
 ];
 export default ProfileCreate;

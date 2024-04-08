@@ -10,7 +10,7 @@ export function ProfileDetail({ profileData, visible = false }: { profileData: I
   const { fullname, nickname, phoneNumber, gender, birthday, maritalStatus, profilePicture, uniqueNumber, typeOfUniqueNumber } = profileData?.[0] ?? {};
   const age = calculateAge(birthday);
   return (
-    <Card className="pb-3 bg-white rounded-lg shadow-xl w-96 dark:bg-gray-800 dark:text-white">
+    <Card className="pb-3 bg-white rounded-lg shadow-xl w-96 dark:bg-gray-800 dark:text-white my-2 sm:my-0">
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800">ຂໍ້ມູນສ່ວນບຸກຄົນ</CardTitle>
       </CardHeader>

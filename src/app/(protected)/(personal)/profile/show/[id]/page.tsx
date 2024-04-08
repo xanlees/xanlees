@@ -30,7 +30,7 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
   return (
     <Show>
       <div className="flex-row gap-2 mt-5 md:flex">
-        <div className="">
+        <div className="space-y-2">
           <ProfileDetail profileData={profileData} visible={false} />
           <DocumentPDF profileId={params?.id}/>
         </div>
@@ -38,7 +38,7 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
           <EmployeeDetail employeeData={employeeData} sectorData={sectorData}/>
           <EducationDetail educationData={educationData as IEducation[]} />
         </div>
-        <div className="">
+        <div className="my-2 sm:my-0">
           <AddressDetail personalAddressData={personalAddressData as IAddress[]} />
         </div>
       </div>
