@@ -1,6 +1,6 @@
 import React from "react";
 import { Form } from "@src/shadcn/components/form";
-import { useFormAgent } from "../../hooks/useFormAgent";
+import { useFormAgent } from "../../hook";
 import { InputContainer } from "./fields";
 
 export const ProfileForm: React.FC = () => {

@@ -1,8 +1,8 @@
 import { useForm } from "@refinedev/react-hook-form";
-import { profileSchema } from "../containers/form/profileSchema";
+import { profileSchema } from "./containers/form/profileSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
-import { useProfileContext } from "../..";
+import { useProfileContext } from "..";
 import { type ErrorMapMessage, FormMultipart, type IMessages } from "@src/common/interface";
 
 const defaultMessage = "";
