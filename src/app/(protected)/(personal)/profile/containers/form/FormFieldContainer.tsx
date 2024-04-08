@@ -61,7 +61,7 @@ const GenderSelect: React.FC<CommonProps> = ({ form }) => {
     <div className="w-full lg:w-80 ">
       <div className="flex w-full mb-3 gap-x-5">
         <Form.Field {...form} name={"gender"} label={"ເລືອກເພດ"}>
-          <Form.RadioGroup className="" options={[{ label: "ຊາຍ", value: "MALE" }, { label: "ຍິງ", value: "FEMALE" }]}>
+          <Form.RadioGroup className="" options={[{ label: "ຊາຍ", value: "MALE" }, { label: "ຍິງ", value: "FEMALE" }]} isSquare={true} >
           </Form.RadioGroup>
         </Form.Field>
       </div>
