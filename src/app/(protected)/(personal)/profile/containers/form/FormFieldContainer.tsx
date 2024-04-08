@@ -3,8 +3,6 @@ import { CircleUser } from "lucide-react";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 import { DynamicNumberForm } from "./inputUniqueNumber";
 import { Form } from "@src/shadcn/components/form";
-import { RadioGroupFiled } from "@src/shadcn/components/form/radio-group";
-import { RadioGroupItem } from "@src/shadcn/elements/radio-group";
 import { type CommonProps } from "@src/app/(protected)/(career)/agent/interface/props";
 import {
   InputFullName,
@@ -16,7 +14,7 @@ export const FormFieldContainer: React.FC< CommonProps & { isEmployee: boolean }
   return (
     <>
       <Form.Field {...form} name="profilePicture">
-        <Form.FileInputImage className="w-64 h-64 rounded-full p-0" label="ເລືອກຮູບພາບ ຫຼື ເຊວຟີກໍໄດ້" iconImage={<CircleUser className="h-20 w-20" />} />
+        <Form.FileInputImage className="w-64 h-64 p-0 rounded-full" label="ເລືອກຮູບພາບ ຫຼື ເຊວຟີກໍໄດ້" iconImage={<CircleUser className="w-20 h-20" />} />
       </Form.Field>
       <div className="flex flex-wrap gap-2">
         <InputFullName form={form} />
@@ -61,22 +59,10 @@ const UniqueNumberInput: React.FC<CommonProps & { isEmployee?: boolean }> = ({ f
 const GenderSelect: React.FC<CommonProps> = ({ form }) => {
   return (
     <div className="w-full lg:w-80 ">
-      <div className="w-full mb-3 flex gap-x-5">
+      <div className="flex w-full mb-3 gap-x-5">
         <Form.Field {...form} name={"gender"} label={"ເລືອກເພດ"}>
-          <RadioGroupFiled className=" ">
-            <RadioGroupItem value="MALE" className="">
-              ຊາຍ
-            </RadioGroupItem>
-            <RadioGroupItem value="FEMALE">ຍິງ</RadioGroupItem>
-          </RadioGroupFiled>
-        </Form.Field>
-        <Form.Field {...form} name={"maritalStatus"} label={"ສະຖານະພາບ"}>
-          <RadioGroupFiled className=" ">
-            <RadioGroupItem value="SINGLE" className="">
-              ໂສດ
-            </RadioGroupItem>
-            <RadioGroupItem value="MARRIED">ແຕ່ງງານແລ້ວ</RadioGroupItem>
-          </RadioGroupFiled>
+          <Form.RadioGroup className="" options={[{ label: "ຊາຍ", value: "MALE" }, { label: "ຍິງ", value: "FEMALE" }]}>
+          </Form.RadioGroup>
         </Form.Field>
       </div>
     </div>

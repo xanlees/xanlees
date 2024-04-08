@@ -2,7 +2,7 @@ import React from "react";
 import { DynamicForms, InputField, RenderBadge } from "@src/common/components/dynamicForm";
 import { Form } from "@src/shadcn/components/form";
 import { Input } from "@src/shadcn/elements";
-import { RadioGroupFiled } from "@src/shadcn/components/form/radio-group";
+import { RadioGroup } from "@src/shadcn/components/form/radio-group";
 import { RadioGroupItem } from "@src/shadcn/elements/radio-group";
 import { useFieldArray } from "react-hook-form";
 import { type ExtendedFieldArrayProps, type CommonProps } from "../../interface/props";
@@ -69,10 +69,10 @@ export const GenderSelect: React.FC<CommonProps> = ({ form }) => {
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
         <Form.Field {...form} name={"gender"} label={"ເລືອກເພດ"}>
-          <RadioGroupFiled className="flex w-full">
+          <RadioGroup className="flex w-full">
             <RadioGroupItem value="MALE">ຊາຍ</RadioGroupItem>
             <RadioGroupItem value="FEMALE">ຍິງ</RadioGroupItem>
-          </RadioGroupFiled>
+          </RadioGroup>
         </Form.Field>
       </div>
     </div>

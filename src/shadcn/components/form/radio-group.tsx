@@ -1,67 +1,34 @@
 import React, { forwardRef } from "react";
 import {
   FormControl,
-  FormItem,
-  FormLabel,
 } from "@src/shadcn/elements";
 import { cn } from "@src/shadcn/lib/utils";
 import { RadioGroup, RadioGroupItem } from "@src/shadcn/elements/radio-group";
+import { BaseOption } from "@refinedev/core";
 
 type RadioGroupFiledProps = {
-  value?: any;
+
   onChange?: (value: string) => void;
   className?: string;
-  label?: string;
-  name?: string;
-  id?: string;
-  children?: React.ReactNode;
+  defaultValue?: string;
+  defaultChecked?: boolean;
+  options: BaseOption[];
 };
 
-export const RadioGroupFiled = forwardRef<
+export const RadioGroupField = forwardRef<
   React.ElementRef<typeof RadioGroup>,
   RadioGroupFiledProps
 >((props, ref) => {
-  const { value, onChange, name, className, children, id, ...rest } = props;
-
-  const handleChange = (childValue: string) => {
-    if (onChange) {
-      onChange(childValue);
-    }
-  };
 
   return (
-    <div className={cn(className, "flex items-center space-x-2  my-2")}>
+    <div className={cn(props.className, "flex items-center space-x-2  my-2")}>
       <FormControl>
-        <RadioGroup value={value} className={cn(className, "flex")}>
-          {React.Children.map(children, (child, index) => {
-            if (React.isValidElement(child) && child.type === RadioGroupItem) {
-              const itemId = id ? `${id}-${index}` : undefined;
-              return (
-                <FormItem key={index}>
-                  <FormControl>
-                    <input
-                      type="radio"
-                      name={name}
-                      id={itemId}
-                      className=" mx-1"
-                      value={child.props.value}
-                      checked={child.props.value === value}
-                      onChange={() => handleChange(child.props.value)}
-                      {...rest}
-                    />
-                  </FormControl>
-                  <FormLabel htmlFor={itemId} className="font-normal">
-                    {child.props.children}
-                  </FormLabel>
-                </FormItem>
-              );
-            }
-            return null;
-          })}
+        <RadioGroup className={cn(props.className, "flex")} onValueChange={props.onChange} defaultValue={props.defaultValue} defaultChecked={props.defaultChecked}>
+          {props.options.map((option, index) => (<RadioGroupItem value={option.value} key={index} className="">{option.label}</RadioGroupItem>))}
         </RadioGroup>
       </FormControl>
     </div>
   );
 });
 
-RadioGroupFiled.displayName = "RadioGroupFiled";
+RadioGroupField.displayName = "RadioGroupField";
