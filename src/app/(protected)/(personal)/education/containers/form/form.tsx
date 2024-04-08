@@ -27,7 +27,7 @@ export const EducationForm: React.FC = () => {
             <Form.Combobox {...(graduation as any)} />
           </ArrayField>
           <ArrayField {...formConfig.form} name="year" label="ຈົບສົກປີ">
-            <Input placeholder="2018" type="number" className="block w-full sm:w-32" />
+            <Input placeholder="2018" type="number" className="block w-full sm:w-28" />
           </ArrayField>
         </DynamicForm>
       </Form>

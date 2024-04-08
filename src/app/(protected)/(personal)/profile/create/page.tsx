@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { Create } from "@/shadcn/components/crud";
 import { useProfileContext, ProfileProvider, PROFILE_STORAGE_KEY } from "../../context";
 import { type ProfileState } from "../../context/interface";
-import { Button } from "@src/shadcn/elements";
+import { Button, Card } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 import FormStep from "@src/common/components/stepForm";
 import { hasValid } from "@src/common/lib/validation/hasValid";
@@ -15,7 +15,11 @@ const breadcrumbs = [
   { label: "ສ້າງພະນັກງານ" },
 ];
 const ProfileCreate = () => {
-  return <ProfileProvider><FormCreate /></ProfileProvider>;
+  return (
+    <ProfileProvider>
+      <FormCreate />
+    </ProfileProvider>
+  );
 };
 const FormCreate = () => {
   const router = useRouter();
@@ -35,9 +39,9 @@ const FormCreate = () => {
       resource="profile"
       breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
     >
-      <div className="flex justify-center">
-        <div className="flex flex-col border shadow-2xl rounded-2xl">
-          <span className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">ຟອມສ້າງພະນັກງານ</span>
+      <div className="flex justify-center ">
+        <div className="flex flex-col border shadow-2xl rounded-2xl ">
+          <span className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl ">ຟອມສ້າງພະນັກງານ</span>
           <FormStep formStepsData={formStepsData} initialStep={initialStep} />
           <div className="flex justify-center w-full p-3">
             <Button className="w-20" onClick={handleButtonClick}>ຕໍ່ໄປ</Button>

@@ -17,7 +17,7 @@ export const Skill: React.FC = () => {
       ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
       : (
         <Form {...formConfig.form}>
-          <div className="rounded-full w-72 sm:w-[600px] ">
+          <div className="rounded-full w-60 sm:w-[600px] ">
             <div className="text-md font-bold tracking-wide text-gray-800 dark:text-white my-2">
             ຄວາມສາມາດພິເສດເຊັ່ນການນໍາໃຊ້ຄອມພິວເຕີ, ພາສາ ແລະ ອື່ນໆ
             </div>
@@ -26,10 +26,10 @@ export const Skill: React.FC = () => {
               classNameButton="w-full mt-5"
               defaultConfig={{ application: state.applicationId }}>
               <ArrayField {...formConfig.form} name="name" label="ຄວາມສາມາດ">
-                <Input placeholder="" className="block w-72" />
+                <Input placeholder="" className="block w-64" />
               </ArrayField>
               <ArrayField {...formConfig.form} name="proficiency" label="ທັກສາ">
-                <Form.Select options={Options} className=" w-32"/>
+                <Form.Select options={Options} className=" w-64"/>
               </ArrayField>
             </DynamicForm>
           </div>
