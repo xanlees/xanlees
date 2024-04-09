@@ -9,7 +9,7 @@ import { useEffect, useRef } from "react";
 interface PersonalAddressFormValues {
   id?: number
 }
-export const useFormConfig = () => {
+export const usePhysicalForm = () => {
   const { state } = useProfileContext();
   const { state: stateApplication, dispatch } = useApplicationContext();
   const profile = state.profileId ?? 0;

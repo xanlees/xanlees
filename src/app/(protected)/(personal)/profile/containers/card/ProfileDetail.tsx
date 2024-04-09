@@ -18,13 +18,13 @@ export function ProfileDetail({ profileData, visible = false }: { profileData: I
       <CardContent className=" justify-center mx-auto">
         <ProfileImage imageUrl={profilePicture ?? ""}/>
       </CardContent>
-      <ProfileImageDialog imageUrl={profilePicture ?? ""}/>
+      <ProfileImageDialog imageUrl={profilePicture ?? ""} fullname={fullname ?? ""} nickname={nickname ?? ""}/>
       <div className="px-4 py-2 ">
         {visible
           ? (
-            <><Show.Row className="text-md" title="ຊື່​ ແລະ ນາມ​ສະ​ກຸນ" content={`${fullname} ${nickname}`} /><Show.Row className="text-md" title="ເພດ" content={getGenderDisplayText(gender)} /><Show.Row className="text-md" title="ເບີໂທ" content={phoneNumber} /></>)
+            <><Show.Row className="text-md" title="ຊື່​ ແລະ ນາມ​ສະ​ກຸນ" content={`${fullname} (${nickname})`} /><Show.Row className="text-md" title="ເພດ" content={getGenderDisplayText(gender)} /><Show.Row className="text-md" title="ເບີໂທ" content={phoneNumber} /></>)
           : (
-            <><Show.Row className="text-md" title="ຊື່​ ແລະ ນາມ​ສະ​ກຸນ" content={`${fullname} ${nickname}`} /><Show.Row className="text-md" title="ເພດ" content={getGenderDisplayText(gender)} /><Show.Row className="text-md" title="ສະຖານະພາບ" content={getMaritalStatusDisplayText(maritalStatus)} /><Show.Row className="text-md" title="ອາຍຸ" content={age} /><Show.Row className="text-md" title="ວັນເດືອນປີເກີດ" content={moment(birthday).format("MMMM DD, YYYY")} /><Show.Row className="text-md" title="ເບີໂທ" content={phoneNumber} /><UniqueNumber uniqueNumber={uniqueNumber} typeOfUniqueNumber={typeOfUniqueNumber} /></>)
+            <><Show.Row className="text-md" title="ຊື່​ ແລະ ນາມ​ສະ​ກຸນ" content={`${fullname} (${nickname})`} /><Show.Row className="text-md" title="ເພດ" content={getGenderDisplayText(gender)} /><Show.Row className="text-md" title="ສະຖານະພາບ" content={getMaritalStatusDisplayText(maritalStatus)} /><Show.Row className="text-md" title="ອາຍຸ" content={age} /><Show.Row className="text-md" title="ວັນເດືອນປີເກີດ" content={moment(birthday).format("MMMM DD, YYYY")} /><Show.Row className="text-md" title="ເບີໂທ" content={phoneNumber} /><UniqueNumber uniqueNumber={uniqueNumber} typeOfUniqueNumber={typeOfUniqueNumber} /></>)
         }
       </div>
     </Card>

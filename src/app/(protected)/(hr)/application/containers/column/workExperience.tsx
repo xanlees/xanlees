@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Table } from "@/shadcn/components/table";
-import type { IWorkExperience } from "../../interface";
+import { type IWorkExperience } from "../../../work-experience/interface";
 export function workExperienceColumn(dataWorkExperience: IWorkExperience[]) {
   return (
     <Table.Column

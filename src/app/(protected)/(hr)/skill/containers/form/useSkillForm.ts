@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { useForm } from "@refinedev/react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-export const useFormConfig = () => {
+export const useSkillForm = () => {
   const { state, dispatch } = useApplicationContext();
   const applicationId = state.applicationId ?? 0;
   const prevApplicationIdRef = useRef<number>(applicationId);

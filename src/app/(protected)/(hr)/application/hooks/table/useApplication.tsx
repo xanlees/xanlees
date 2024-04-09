@@ -1,5 +1,6 @@
 import { useList } from "@refinedev/core";
-import type { IWorkExperience, IApplication } from "../../interface";
+import type { IApplication } from "../../interface";
+import { type IWorkExperience } from "../../../work-experience/interface";
 
 interface UseSectorProps {
   applicationID: Array<number | number[]>

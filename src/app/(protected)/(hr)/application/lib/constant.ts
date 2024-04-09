@@ -28,3 +28,52 @@ export const refineCoreProps = {
     initial: initialFilters,
   },
 };
+
+export const getTypeDrivingLicenseLabel = (typeDrivingLicense: string | null | undefined): string => {
+  switch (typeDrivingLicense) {
+    case "A":
+      return "ປະເພດ A";
+    case "B":
+      return "ປະເພດ B";
+    case "C":
+      return "ປະເພດ C";
+    case "D":
+      return "ປະເພດ D";
+    case "E":
+      return "ປະເພດ E";
+    case "NO_LICENSE":
+      return "ບໍ່ມີໃບຂັບຂີ່";
+    default:
+      return "";
+  }
+};
+
+export const getTypeVaccineLabel = (typeVaccine: string | null | undefined): string => {
+  switch (typeVaccine) {
+    case "Motorcycle":
+      return "ລົດຈັກ";
+    case "Car":
+      return "ລົດຈັດໃຫຍ່";
+    case "Truck":
+      return "ລົດບັນທຸກ";
+    case "Cannot Drive":
+      return "ບໍ່ສາມາດຈັກລົດ";
+    default:
+      return "";
+  }
+};
+
+export const getApplicationStatusLabel = (applicationStatus: string | null | undefined): string => {
+  switch (applicationStatus) {
+    case "New":
+      return "ໃຫມ່";
+    case "Contacted":
+      return "ຕິດຕໍ່ຫາ";
+    case "Interviewed":
+      return "ສຳພາດແລ້ວ";
+    case "Hired":
+      return "ຈ້າງເປັນພະນັກງານແລ້ວ";
+    default:
+      return "";
+  }
+};

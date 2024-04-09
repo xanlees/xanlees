@@ -1,33 +1,23 @@
-import { InputBase } from "@src/common/elements/input/InputBase";
 import { type IFormConfig } from "@src/common/interface";
+import { Input } from "@src/shadcn/elements";
+import { Form } from "@src/shadcn/components/form";
 
 export const AppliedFor: React.FC<{
   form: IFormConfig
 }> = ({ form }) => {
   return (
-    <>
-      <div className="py-6 border-t border-gray-200 first:pt-0 last:pb-0 first:border-transparent dark:border-gray-700 dark:first:border-transparent">
-        <label className="inline-block my-2 text-lg font-medium dark:text-white">
-          ຕໍາແຫນ່ງທີ່ຕ້ອງການສະຫມັກ
-        </label>
-        <div className="mt-2 space-y-3">
-          <InputBase
-            {...form}
-            name="appliedPosition"
-            label="ຕໍາແຫນ່ງທີ່ສະຫມັກ"
-            placeholder="ຕໍາແຫນ່ງທີ່ສະຫມັກ"
-            className="block w-full px-3 py-2 text-sm border-gray-200 shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-          />
-          <InputBase
-            {...form}
-            name="expectedSalary"
-            label="ເງິນເດືອນທີ່ຕ້ອງການ (ກີບ)"
-            placeholder="10,000,000"
-            className="block w-full px-3 py-2 text-sm border-gray-200 shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-            type="currency"
-          />
-        </div>
+    <div className="py-6 border-t border-gray-200 first:pt-0 last:pb-0 first:border-transparent dark:border-gray-700 dark:first:border-transparent">
+      <label className="inline-block my-2 text-lg font-medium dark:text-white">
+        ຕໍາແຫນ່ງທີ່ຕ້ອງການສະຫມັກ
+      </label>
+      <div className="mt-2 space-y-3">
+        <Form.Field {...form} name="appliedPosition" label="ຕໍາແຫນ່ງທີ່ສະຫມັກ" >
+          <Input placeholder="ຕໍາແຫນ່ງທີ່ສະຫມັກ" />
+        </Form.Field>
+        <Form.Field {...form} name="expectedSalary" label="ຕໍາແຫນ່ງທີ່ສະຫມັກ (ກີບ)" >
+          <Input placeholder="3,000,000" numericOnly type="currency"/>
+        </Form.Field>
       </div>
-    </>
+    </div>
   );
 };

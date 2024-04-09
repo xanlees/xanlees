@@ -1,5 +1,7 @@
-export interface IDistrict {
+export interface IPhysical {
   id: number
-  provinceName: string
-  districtName: string
+  profileId: number
+  nationality: string
+  height: number
+  weight: number
 }

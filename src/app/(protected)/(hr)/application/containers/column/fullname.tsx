@@ -1,6 +1,6 @@
 "use client";
-import type { IProfile } from "../../interface";
 import { Table, type TableFilterProps } from "@/shadcn/components/table";
+import { type IProfile } from "@src/app/(protected)/(personal)/profile/interface/model";
 
 export function FullNameColumn(accessorKey: string) {
   return (

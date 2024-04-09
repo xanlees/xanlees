@@ -15,7 +15,7 @@ interface WorkExperienceProps {
   data: WorkExperienceData[]
 }
 
-export const useFormConfig = () => {
+export const useWorkExperienceForm = () => {
   const { state, dispatch } = useApplicationContext();
   const applicationId = state.applicationId ?? 0;
   const { ...form } = useForm<WorkExperienceProps>({

@@ -1,11 +1,11 @@
 import React from "react";
 import { Form } from "@src/shadcn/components/form";
-import { useFormConfig } from "./config";
+import { usePhysicalForm } from "./usePhysicalForm";
 import { type IFormConfig } from "@src/common/interface";
 import { Input } from "@src/shadcn/elements";
 
 export const PhysicalProfile: React.FC = () => {
-  const { form, state } = useFormConfig();
+  const { form, state } = usePhysicalForm();
   const isCompleted = state.physicalProfileId;
   return (
     <div className="rounded-full w-72 sm:w-[710px] ">

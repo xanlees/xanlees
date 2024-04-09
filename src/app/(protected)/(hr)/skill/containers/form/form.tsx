@@ -1,6 +1,6 @@
 import React from "react";
 import { Form } from "@src/shadcn/components/form";
-import { useFormConfig } from "./config";
+import { useSkillForm } from "./useSkillForm";
 import { useFieldArray } from "react-hook-form";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
@@ -9,7 +9,7 @@ import { Input } from "@src/shadcn/elements";
 
 export const Skill: React.FC = () => {
   const { state } = useApplicationContext();
-  const formConfig = useFormConfig();
+  const formConfig = useSkillForm();
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "skill" });
   const isCompleted = state.skillId;
   return (

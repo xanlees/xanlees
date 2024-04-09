@@ -5,11 +5,11 @@ import { Form } from "@src/shadcn/components/form";
 import { Input, Textarea } from "@src/shadcn/elements";
 import { useApplicationContext } from "../../../application/context";
 import { useFieldArray } from "react-hook-form";
-import { useFormConfig } from "./config";
+import { useWorkExperienceForm } from "./useWorkExperienceForm";
 
 export const WorkExperienceForm: React.FC = () => {
   const { state } = useApplicationContext();
-  const { form } = useFormConfig();
+  const { form } = useWorkExperienceForm();
   const { fields, append, remove } = useFieldArray({ control: form.control, name: "experience" });
   const isCompleted = state.workExperienceId;
   return (

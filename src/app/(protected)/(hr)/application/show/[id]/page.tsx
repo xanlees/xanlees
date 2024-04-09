@@ -1,48 +1,56 @@
-/* eslint-disable max-lines-per-function */
 "use client";
-
-import { useShow } from "@refinedev/core";
+import { Application } from "../../containers/show/Application";
 import { Show } from "@/shadcn/components/crud";
+import { useShow } from "@refinedev/core";
 import type { IApplication } from "../../interface";
-import { ProfileDetail, useProfile } from "@src/app/(protected)/(career)";
-import { type IProfile } from "@src/app/(protected)/(career)/agent/interface/model";
+import {
+  type IAddress,
+  type IEducation,
+  type IPhysical,
+  type IProfile,
+  type ISkill,
+  type IWorkExperience,
+  AddressDetail,
+  DocumentPDF,
+  EducationDetail,
+  Physical,
+  ProfileDetail,
+  Skill,
+  useEducation,
+  usePersonalAddress,
+  usePhysical,
+  useProfile,
+  useSkill,
+  useWorkExperience,
+  WorkExperience,
+} from "../../../index";
 
 export default function ApplicationShow({ params }: Readonly<{ params: { id: number } }>): JSX.Element {
   const { queryResult } = useShow<IApplication>();
   const { data } = queryResult;
   const record = data?.data as IApplication;
   const { data: profileData } = useProfile<IProfile>({ profileId: record?.profileId });
-
-  // const application = record?.id ?? 0;
-  // const profileId = record?.profileId as unknown as BaseKey;
-  // const { data: profileData } = useOne<IProfile>({ resource: "profile", id: profileId });
-  // const { fullname = "", profilePicture = "", id, personalAddressId } = profileData?.data as unknown as IProfile ?? {};
-  // const { data: personalAddressData } = useOne<IPersonalAddress>({ resource: "personal_address", id: personalAddressId });
-  // const workExperience = filterWorkExperience({ applicationID: application });
-  // const dataWorkExperience = useWorkExperience<IWorkExperience>({ resource: "work_experience", filters: workExperience });
-  // const { data: documentData } = useDocument({ profileID: id });
-  // const { data: educationData } = useEducation({ profileID: id });
-  // const { data: physicalProfile } = useProfile({ profileID: id });
-
-  // const { data: profileData } = useProfile<IProfile>({ profileId: params.id });
-  // const { data: employeeData } = useEmployees<IEmployee>({ profileId: params.id });
-  // const { data: educationData } = useEducation<IEducation[]>({ profileId: params.id });
-  // const { data: personalAddressData } = usePersonalAddress<IAddress[]>({ profileId: params.id });
-  // const sectorId = useSectorId(employeeData as IEmployee[]);
-  // const { data: sectorData } = useSector<ISector>({ sectorId });
+  const { data: educationData } = useEducation<IEducation[]>({ profileId: record?.profileId });
+  const { data: personalAddressData } = usePersonalAddress<IAddress[]>({ profileId: record?.profileId });
+  const { data: workExperienceData } = useWorkExperience<IWorkExperience[]>({ application: record?.id });
+  const { data: skillData } = useSkill<ISkill[]>({ application: record?.id });
+  const { data: physicalData } = usePhysical<IPhysical[]>({ profileId: record?.profileId });
   return (
     <Show>
       <div className="flex-row gap-2 mt-5 md:flex">
         <div className="space-y-2">
           <ProfileDetail profileData={profileData} visible={false} />
-          {/* <DocumentPDF profileId={params?.id}/> */}
+          <Physical physicalData={physicalData as IPhysical[]} />
+          <DocumentPDF profileId={profileData?.[0]?.id ?? 0}/>
         </div>
         <div className="space-y-2 ">
-          {/* <EmployeeDetail employeeData={employeeData} sectorData={sectorData}/> */}
-          {/* <EducationDetail educationData={educationData as IEducation[]} /> */}
+          <Application applicationData={record}/>
         </div>
-        <div className="my-2 sm:my-0">
-          {/* <AddressDetail personalAddressData={personalAddressData as IAddress[]} /> */}
+        <div className="flex flex-col gap-y-2">
+          <EducationDetail educationData={educationData as IEducation[]} />
+          <AddressDetail personalAddressData={personalAddressData as IAddress[]} />
+          <WorkExperience workExperienceData={workExperienceData as IWorkExperience[]} />
+          <Skill skillData={skillData as ISkill[]} />
         </div>
       </div>
     </Show>
