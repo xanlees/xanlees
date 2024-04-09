@@ -8,8 +8,8 @@ import { type IFormConfig } from "@src/common/interface";
 export const usePersonalAddressForm = ({ status }: { status: string }) => {
   const { state, dispatch } = useProfileContext();
   const profile = state.profileId ?? 0;
-  const personalCurrentAddressId = state.personalCurrentAddressId ?? 0;
-  const type = !personalCurrentAddressId ? "setPersonalCurrentAddressId" : "setPersonalBornAddressId";
+  const personalCurrentAddressId = state.personalBornAddressId ?? 0;
+  const type = !personalCurrentAddressId ? "setPersonalBornAddressId" : "setPersonalCurrentAddressId";
   const { ...form } = useForm<{ id?: number }>({
     resolver: zodResolver(personalAddressSchema),
     defaultValues: {

@@ -26,27 +26,21 @@ export interface IPost {
   typeOfUniqueNumber: "MACHINE" | "OTHER"
 }
 export interface IApplication {
-  profileId: IProfile
-  appliedPosition: string
+  profileId: number
   expectedSalary: string
-  postId: number
+  appliedPosition: string
   emergencyFullname: string
   emergencyRelationship: string
   emergencyPhoneNumber: string
-  typeDrivingLicense: "A" | "B" | "C" | "D" | "OTHER"
-  typeVaccine: string[] | Array<{ typeVaccine: string }>
-  wordSkill: "Poor" | "Fair" | "Good" | "Excellent"
-  excelSkill: "Poor" | "Fair" | "Good" | "Excellent"
-  powerpointSkill: "Poor" | "Fair" | "Good" | "Excellent"
-  thaiSkill: "Poor" | "Fair" | "Good" | "Excellent"
-  englishSkill: "Poor" | "Fair" | "Good" | "Excellent"
-  chineseSkill: "Poor" | "Fair" | "Good" | "Excellent"
-  vietnameseSkill: "Poor" | "Fair" | "Good" | "Excellent"
+  typeDrivingLicense: string
+  typeVaccine: string
   pledgeReason: string
   appliedReason: string
-  id?: number
+  id: number
   createdOn: string
-  applicationStatus: "New" | "Contacted" | "Interviewed" | "Hired"
+  applicationStatus: string
+  applicantSignature: boolean
+  vehicleType: string
 }
 export interface IWorkExperience {
   company: string

@@ -46,7 +46,7 @@ function getSector(sectorData: ISector[]) {
   return (sectorId: { name: string, id: number, branchId: number }, joiningDate: string): string => {
     const sector = sectorData.find((s) => s.id === sectorId.id);
     if (sector != null) {
-      return `${sector.name}, ${sector.branchId.name}, ${moment(joiningDate).format("DD/MMMM/YYYY")}`;
+      return `${sector.name}, ${sector.branchId.name}, ວັນທີຮັບຕໍາແໜ່ງ ${moment(joiningDate).format("DD/MMMM/YYYY")}`;
     }
     return "";
   };

@@ -1,18 +1,21 @@
 /* eslint-disable max-lines-per-function */
 "use client";
 
-import { useShow } from "@refinedev/core";
+import { useShow, useOne, type BaseKey } from "@refinedev/core";
 import { Show } from "@/shadcn/components/crud";
-import type { IApplication } from "../../interface";
+import type { IApplication, IWorkExperience, IProfile, IPersonalAddress } from "../../interface";
+import { Card, CardContent } from "@src/shadcn/elements";
+import { AvatarCard, Applied, PersonalInformation, SkillSection, generateTechnicalSkills, generateLanguageSkills, WorkExperience, DocumentList, EducationList, AppliedReason } from "../../containers/show";
+import { filterWorkExperience, useDocument, useEducation, useWorkExperience } from "../../hooks";
+import { Address } from "../../containers/show/Address";
 import { ProfileDetail, useProfile } from "@src/app/(protected)/(career)";
-import { type IProfile } from "@src/app/(protected)/(career)/agent/interface/model";
 
 export default function ApplicationShow({ params }: Readonly<{ params: { id: number } }>): JSX.Element {
   const { queryResult } = useShow<IApplication>();
   const { data } = queryResult;
-  const record = data?.data as IApplication;
-  const { data: profileData } = useProfile<IProfile>({ profileId: record?.profileId });
-
+  const record: IApplication | undefined = data?.data;
+  console.log("record", record);
+  const { data: profileData } = useProfile<IProfile>({ profileId: 9 });
   // const application = record?.id ?? 0;
   // const profileId = record?.profileId as unknown as BaseKey;
   // const { data: profileData } = useOne<IProfile>({ resource: "profile", id: profileId });

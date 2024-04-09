@@ -6,21 +6,23 @@ import { Avatar, AvatarFallback, AvatarImage, Card, CardContent, CardHeader, Car
 import { getGenderDisplayText, getMaritalStatusDisplayText } from "../../../../../../common/lib/genderUtils";
 import moment from "moment";
 import { type IProfile } from "../../interface/model";
+import { ProfileImageDialog } from "./ProfileImageDialog";
 export function ProfileDetail({ profileData, visible = false }: { profileData: IProfile[], visible?: boolean }): JSX.Element {
   const { fullname, nickname, phoneNumber, gender, birthday, maritalStatus, profilePicture, uniqueNumber, typeOfUniqueNumber } = profileData?.[0] ?? {};
   const age = calculateAge(birthday);
   return (
-    <Card className="pb-3 bg-white rounded-lg shadow-xl w-96 dark:bg-gray-800 dark:text-white my-2 sm:my-0">
+    <Card className="pb-3 bg-white rounded-lg shadow-xl  w-full sm:w-96 dark:bg-gray-800 dark:text-white my-2 sm:my-0">
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800">ຂໍ້ມູນສ່ວນບຸກຄົນ</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className=" justify-center mx-auto">
         <ProfileImage imageUrl={profilePicture ?? ""}/>
       </CardContent>
+      <ProfileImageDialog imageUrl={profilePicture ?? ""}/>
       <div className="px-4 py-2 ">
         {visible
           ? (
-            <><Show.Row className="text-md" title="ຊື່​ ແລະ ນາມ​ສະ​ກຸນ" content={`${fullname} ${nickname}`} /><Show.Row className="text-md" title="ເພດ" content={getGenderDisplayText(gender)} /><Show.Row className="text-md" title="ເບີໂທ" content={phoneNumber} /><UniqueNumber uniqueNumber={uniqueNumber} typeOfUniqueNumber={typeOfUniqueNumber} /></>)
+            <><Show.Row className="text-md" title="ຊື່​ ແລະ ນາມ​ສະ​ກຸນ" content={`${fullname} ${nickname}`} /><Show.Row className="text-md" title="ເພດ" content={getGenderDisplayText(gender)} /><Show.Row className="text-md" title="ເບີໂທ" content={phoneNumber} /></>)
           : (
             <><Show.Row className="text-md" title="ຊື່​ ແລະ ນາມ​ສະ​ກຸນ" content={`${fullname} ${nickname}`} /><Show.Row className="text-md" title="ເພດ" content={getGenderDisplayText(gender)} /><Show.Row className="text-md" title="ສະຖານະພາບ" content={getMaritalStatusDisplayText(maritalStatus)} /><Show.Row className="text-md" title="ອາຍຸ" content={age} /><Show.Row className="text-md" title="ວັນເດືອນປີເກີດ" content={moment(birthday).format("MMMM DD, YYYY")} /><Show.Row className="text-md" title="ເບີໂທ" content={phoneNumber} /><UniqueNumber uniqueNumber={uniqueNumber} typeOfUniqueNumber={typeOfUniqueNumber} /></>)
         }

@@ -13,6 +13,13 @@ export const useProfileForm = (type: string) => {
     resolver: zodResolver(profileSchema),
     defaultValues: {
       fullname: "",
+      nickname: "",
+      phoneNumber: "",
+      gender: "",
+      birthday: "",
+      uniqueNumber: "",
+      maritalStatus: "",
+      typeOfUniqueNumber: "",
       type,
     },
     mode: "onChange",
@@ -38,29 +45,25 @@ const errorMessages: ErrorMapMessage[] = [
   { val: "Profile with this phone number already exists.", message: "ເບີໂທນີ້ມີໃນລະບົບແລ້ວ" },
 ];
 
-const typeUniqueNumber = ["MACHINE", "IDENTIFY", "CENSUS_BOOK"] as const;
-const validGenders = ["MALE", "FEMALE", "OTHER"] as const;
-const validMaritalStatus = ["SINGLE", "MARRIED"] as const;
 const acceptedImageTypes = [
   "image/jpg",
   "image/jpeg",
   "image/png",
 ];
 const maxFileSize = 10000000;
-
+const minPhoneNumberLength = 7;
 export const profileSchema: any = z
   .object({
     fullname: z.string().min(1, { message: "ກະລຸນາໃສ່ຊື່ແທ້ ແລະ ນາມສະກຸນ" }),
     type: z.string(),
     nickname: z.string().min(1, { message: "ກະລຸນາໃສ່ຫຼີ້ນ" }),
-    phoneNumber: z.string().min(1, { message: "ກະລຸນາໃສ່ເບີໂທ" }),
-    gender: z.enum(validGenders).refine((value) => validGenders.includes(value), { message: "ກະລຸນາເລືອກເພດ" }),
-    typeOfUniqueNumber: z
-      .enum(typeUniqueNumber)
-      .refine((value) => typeUniqueNumber.includes(value), {
-        message: "ກະລຸນາເລືອກປະເພດເລກລະຫັດວ່າ ເລກບັດປະຈໍາຕົວ, ເລກເຄື່ອງຂາຍເລກ ຫຼື ປື້ມສໍາມະໂມຄົວເລກທີ",
-      }),
-    birthday: z.date().transform((value) => new Date(value).toISOString()),
+    phoneNumber: z.string()
+      .min(minPhoneNumberLength, { message: "ກະລຸນາໃສ່ເບີໂທ" })
+      .regex(/^(20\d{8})$/, { message: "ກະລຸນາປ້ອນເບີໂທ ໂດຍຮູບແບບທີ່ຖືກຕ້ອງ (20XXXXXXXX)" }),
+    gender: z.string().min(1, { message: "ກະລຸນາເລືອກເພດ" }),
+    maritalStatus: z.string().min(1, { message: "ກະລຸນາເລືອກສະຖານະພາບ" }),
+    typeOfUniqueNumber: z.string().min(1, { message: "ກະລຸນາເລືອກປະເພດເລກລະຫັດວ່າ ເລກບັດປະຈໍາຕົວ, ເລກເຄື່ອງຂາຍເລກ ຫຼື ປື້ມສໍາມະໂມຄົວເລກທີ" }),
+    birthday: z.date().or(z.string()).refine((value) => { return value != null && value !== ""; }, { message: "ກະລຸນາເລືອກວັນ​ເດືອນ​ປີ​ເກີດ" }),
     uniqueNumber: z.array(z.object({ uniqueNumber: z.string() })),
     profilePicture: (z.any() as z.ZodType<FileList>).refine(
       (fileList) => {
@@ -71,11 +74,6 @@ export const profileSchema: any = z
       },
       { message: "ຂະໜາດຮູບບໍ່ເກີນ 10MB. ແລະ ປະເພດຮູບ .jpg, .jpeg, .png" },
     ).nullable(),
-    maritalStatus: z
-      .enum(validMaritalStatus)
-      .refine((value) => validMaritalStatus.includes(value), {
-        message: "Marital status must be one of 'SINGLE', 'MARRIED'.",
-      }),
   })
   .transform((val) => {
     return transformUniqueNumber(val);
@@ -91,7 +89,9 @@ function transformUniqueNumber(val: ProfileSendData): Record<string, any> {
   if (transformed.profilePicture === undefined) {
     delete transformed.profilePicture;
   }
+  if (transformed.birthday instanceof Date) {
+    transformed.birthday = transformed.birthday.toISOString();
+  }
   delete transformed.uniqueNumber;
   return transformed;
 }
-

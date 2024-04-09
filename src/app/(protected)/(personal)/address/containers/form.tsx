@@ -10,9 +10,7 @@ export function PersonalAddressForm({ isCurrent = true }) {
   const status = isCurrent ? "ທີ່ຢູ່ປະຈຸບັນ" : "ທີ່ຢູ່ເກີດ";
   const village = isCurrent ? "ບ້ານຢູ່ປະຈຸບັນ" : "ບ້ານເກີດ";
   const { form, state } = usePersonalAddressForm({ status });
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-  const isCompleted = (state.personalCurrentAddressId && isCurrent) || (state.personalCurrentAddressId && state.personalBornAddressId);
-
+  const isCompleted = isFormCompleted(state, isCurrent);
   return (
     <div className="rounded-full w-72 sm:w-[710px]">
       {isCompleted
@@ -26,6 +24,13 @@ export function PersonalAddressForm({ isCurrent = true }) {
         </Form>)}
     </div>
   );
+}
+
+function isFormCompleted(state: { personalCurrentAddressId?: number, personalBornAddressId?: number }, isCurrent: boolean): boolean {
+  if (isCurrent) {
+    return !!state.personalCurrentAddressId;
+  }
+  return !!state.personalBornAddressId;
 }
 
 const Village: React.FC<{ form: IFormConfig, title: string }> = ({ form, title }) => {

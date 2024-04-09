@@ -4,13 +4,14 @@ export interface ProfileSendData {
   fullname: string
   nickname: string
   phoneNumber: string
-  gender: "MALE" | "FEMALE" | "OTHER"
-  birthday: string
+  gender: string
+  birthday: string | Date
   uniqueNumber: Array<{
     uniqueNumber: string
   }>
+  typeOfUniqueNumber: string
   profilePicture: FileList | null
-  maritalStatus: "SINGLE" | "MARRIED"
+  maritalStatus: string
 }
 
 export interface Profile {

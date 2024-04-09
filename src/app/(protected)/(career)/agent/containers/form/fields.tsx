@@ -2,8 +2,6 @@ import React from "react";
 import { DynamicForms, InputField, RenderBadge } from "@src/common/components/dynamicForm";
 import { Form } from "@src/shadcn/components/form";
 import { Input } from "@src/shadcn/elements";
-import { RadioGroup } from "@src/shadcn/components/form/radio-group";
-import { RadioGroupItem } from "@src/shadcn/elements/radio-group";
 import { useFieldArray } from "react-hook-form";
 import { type ExtendedFieldArrayProps, type CommonProps } from "../../interface/props";
 
@@ -12,7 +10,7 @@ export const InputContainer: React.FC<CommonProps> = ({ form }) => {
   return (
     <>
       <Form.Field {...form} name="profilePicture">
-        <Form.FileInputImage className="w-64 h-64 rounded-full p-0"/>
+        <Form.FileInputImage className="w-64 h-64 rounded-full pt-1"/>
       </Form.Field>
       <div className="flex flex-wrap gap-2">
         <InputFullName form={form} />
@@ -57,7 +55,7 @@ export const PhonNumberInput: React.FC<CommonProps> = ({ form }) => {
     <div className="w-full lg:w-80">
       <div className="relative w-full mb-3">
         <Form.Field {...form} name="phoneNumber" label="ເບີໂທ">
-          <Input placeholder="20xxxxxxxx" />
+          <Input className="w-full" placeholder="20XXXXXXXX" maxLength={10} numericOnly />
         </Form.Field>
       </div>
     </div>
@@ -69,10 +67,7 @@ export const GenderSelect: React.FC<CommonProps> = ({ form }) => {
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
         <Form.Field {...form} name={"gender"} label={"ເລືອກເພດ"}>
-          <RadioGroup className="flex w-full">
-            <RadioGroupItem value="MALE">ຊາຍ</RadioGroupItem>
-            <RadioGroupItem value="FEMALE">ຍິງ</RadioGroupItem>
-          </RadioGroup>
+          <Form.RadioGroup className="" options={[{ label: "ຊາຍ", value: "MALE" }, { label: "ຍິງ", value: "FEMALE" }]} isSquare={true} />
         </Form.Field>
       </div>
     </div>

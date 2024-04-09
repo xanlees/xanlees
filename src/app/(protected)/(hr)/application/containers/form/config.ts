@@ -92,6 +92,7 @@ export const applicationSchema = z.object({
 
 export const applicationSelectTwoSchema = z.object({
   typeVaccine: z.string().optional().nullable(),
+  vehicleType: z.string().optional().nullable(),
   typeDrivingLicense: z.string().optional().nullable(),
   pledgeReason: z.string().optional().nullable(),
   appliedReason: z.string().optional().nullable(),

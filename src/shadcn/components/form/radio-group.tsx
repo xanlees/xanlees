@@ -22,13 +22,13 @@ export const RadioGroupField = forwardRef<
   RadioGroupFiledProps
 >((props, ref) => {
   return (
-    <div className={cn(props.className, "flex items-center space-x-2  my-2")}>
+    <div className={cn(props.className, "mx-2")}>
       <FormControl>
         <RadioGroup className={cn(props.className, "flex")} onValueChange={props.onChange} defaultValue={props.defaultValue} defaultChecked={props.defaultChecked}>
-          {props.options.map((option, index) => (<>
+          {props.options.map((option, index) => (<div className=" space-x-2">
             <RadioGroupItem isSquare={props.isSquare} value={option.value} key={index} className="">{option.label}</RadioGroupItem>
             <FormLabel>{option.label}</FormLabel>
-          </>))}
+          </div>))}
         </RadioGroup>
       </FormControl>
     </div>
