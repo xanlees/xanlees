@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Card } from "@src/shadcn/elements";
+import { Button, Card } from "@src/shadcn/elements";
 import FormStep from "@src/common/components/stepForm";
 import {
   applicationFromStep,
@@ -48,6 +48,12 @@ function ApplicationForm(): JSX.Element {
     applicationContext.state,
   );
 
+  const handleButtonClick = () => {
+    localStorage.removeItem("creatingApplication");
+    localStorage.removeItem("creatingProfileState");
+    window.location.reload();
+  };
+
   return (
     <div className="shadow-lg p-4 sm:p-6 lg:p-8">
       <div className="my-3 text-center bg-blue-300 rounded-sm mx-2 p-4">
@@ -55,6 +61,9 @@ function ApplicationForm(): JSX.Element {
         <p className="text-sm">(ໃຊ້ເວລາປະມານ 10 ນາທີ) </p>
       </div>
       <FormStep formStepsData={applicationFromStep} initialStep={initialStep} />
+      <div className="text-center">
+        <Button onClick={handleButtonClick}>ເລີ້ມຕົ້ນໃຫມ່</Button>
+      </div>
       <div className="my-3 text-center bg-blue-300 rounded-sm p-4">
         <p className="text-xl font-bold">ຂອບໃຈທ່ານທີ່ໄວ້ໃຈ </p>
         <p className="text-xl font-bold">ນຳບໍລິສັດຂອງພວກເຮົາ </p>

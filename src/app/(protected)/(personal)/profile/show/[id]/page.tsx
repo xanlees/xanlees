@@ -32,11 +32,11 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
       <div className="flex-row gap-2 mt-5 md:flex">
         <div className="space-y-2">
           <ProfileDetail profileData={profileData} visible={false} />
-          <DocumentPDF profileId={params?.id}/>
         </div>
         <div className="space-y-2 ">
           <EmployeeDetail employeeData={employeeData} sectorData={sectorData}/>
           <EducationDetail educationData={educationData as IEducation[]} />
+          <DocumentPDF profileId={params?.id}/>
         </div>
         <div className="my-2 sm:my-0">
           <AddressDetail personalAddressData={personalAddressData as IAddress[]} />

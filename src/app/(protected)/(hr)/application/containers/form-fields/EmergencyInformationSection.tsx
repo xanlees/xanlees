@@ -24,7 +24,7 @@ export const EmergencyInformationSection: React.FC<{
           <div className="w-full lg:w-80 ">
             <div className="relative w-full mb-3">
               <Form.Field {...form} name="emergencyRelationship" label="ຄວາມສໍາພັນ" >
-                <Input placeholder="20xxxxxxxx" />
+                <Input placeholder="" />
               </Form.Field>
             </div>
           </div>

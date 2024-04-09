@@ -20,11 +20,11 @@ export default function AgentShow({ params }: { params: { id: number } }): JSX.E
       <div className="flex-row gap-2 mt-5 md:flex">
         <div className="space-y-2">
           <ProfileDetail profileData={profileData} visible={true} />
-          <DocumentPDF profileId={params?.id}/>
         </div>
         <div className="space-y-2 ">
           <EmployeeDetail employeeData={employeeData} sectorData={sectorData}/>
           <UniqueNumberList uniqueNumber={uniqueNumber}/>
+          <DocumentPDF profileId={params?.id}/>
         </div>
         <div className="my-2 sm:my-0">
           <AddressDetail personalAddressData={personalAddressData as IAddress[]} />

@@ -1,11 +1,9 @@
-"use client";
 import { Show } from "@/shadcn/components/crud";
 import React from "react";
 import { Card, CardHeader, CardTitle } from "@src/shadcn/elements";
 import { type IAddress } from "@personal";
 
 export function AddressDetail({ personalAddressData }: { personalAddressData: IAddress[] }): JSX.Element {
-  console.log("personalAddressData", personalAddressData);
   return (
     <Card className="w-full pb-3 bg-white rounded-lg shadow-xl dark:bg-gray-800 dark:text-white h-fit ">
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">
@@ -17,11 +15,10 @@ export function AddressDetail({ personalAddressData }: { personalAddressData: IA
         {personalAddressData?.map((item) => {
           return (
             <Show.Row
-              key={item.id}
+              key={item?.id}
               className="text-gray-700 text-md dark:text-gray-300"
-              title={item?.status}
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-              content={`ບ້ານ${item?.village}, ${item?.district?.districtName}, ${item?.district?.provinceName}`}
+              title={item?.status ?? ""}
+              content={`ບ້ານ${item?.village ?? ""}, ${item?.district?.districtName ?? ""}, ${item?.district?.provinceName ?? ""}`}
             />
           );
         })}

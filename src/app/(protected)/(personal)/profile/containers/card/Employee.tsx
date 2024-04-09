@@ -4,7 +4,10 @@ import { Card, CardHeader, CardTitle } from "@src/shadcn/elements";
 import moment from "moment";
 import { type IEmployee, type ISector } from "@career";
 
-export function EmployeeDetail({ employeeData, sectorData }: { employeeData: IEmployee[], sectorData: ISector[] }): JSX.Element {
+export function EmployeeDetail({ employeeData, sectorData }: { employeeData: IEmployee[] | null | undefined, sectorData: ISector[] | null | undefined }): JSX.Element {
+  if (!employeeData || !sectorData) {
+    return <div>No data available</div>;
+  }
   const getSectorAndBranchDetail = getSector(sectorData);
   const sortedEmployeeData = sorted(employeeData);
 
@@ -30,7 +33,10 @@ export function EmployeeDetail({ employeeData, sectorData }: { employeeData: IEm
   );
 }
 
-function sorted(employeeData: IEmployee[]) {
+function sorted(employeeData: IEmployee[] | null | undefined) {
+  if (!employeeData) {
+    return [];
+  }
   return [...employeeData].sort((a, b) => {
     if (a.isLatest && !b.isLatest) {
       return -1;
@@ -42,8 +48,11 @@ function sorted(employeeData: IEmployee[]) {
   });
 }
 
-function getSector(sectorData: ISector[]) {
-  return (sectorId: { name: string, id: number, branchId: number }, joiningDate: string): string => {
+function getSector(sectorData: ISector[] | null | undefined) {
+  return (sectorId: { name: string, id: number, branchId: number } | null | undefined, joiningDate: string): string => {
+    if (!sectorData || !sectorId) {
+      return "";
+    }
     const sector = sectorData.find((s) => s.id === sectorId.id);
     if (sector != null) {
       return `${sector.name}, ${sector.branchId.name}, ວັນທີຮັບຕໍາແໜ່ງ ${moment(joiningDate).format("DD/MMMM/YYYY")}`;

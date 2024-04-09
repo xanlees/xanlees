@@ -13,7 +13,6 @@ export default function ProfileList(): JSX.Element {
   const { table } = useTableConfig("EMPLOYEE");
   const profile = table.options.data ?? [];
   const positionId = useLatestPositionId(profile);
-
   const positionData = useLatestPositionDetail(positionId as number[], profile) as { data: { data: IPosition[] } };
   const friendly = useUserFriendlyName();
   return (

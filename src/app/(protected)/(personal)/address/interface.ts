@@ -1,5 +1,5 @@
 export interface IAddress {
-  district: any
+  district: IDistrict
   id: number
   village: string
   status: string

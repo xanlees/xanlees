@@ -1,5 +1,3 @@
-import { type IEmployee } from "@career";
-
 export interface ProfileSendData {
   fullname: string
   nickname: string
@@ -40,7 +38,13 @@ export interface IProfile {
   profilePicture: string | null
   uniqueNumber: string[]
   typeOfUniqueNumber: "IDENTIFY" | "CENSUS_BOOK" | "MACHINE"
-  employee: IEmployee[]
+  employee: Array<{
+    id: number
+    positionId: number
+    joiningDate: string
+    isLatest: boolean
+    createdOn: string
+  }>
 }
 export interface IGender {
   gender: "MALE" | "FEMALE" | "OTHER" | null
