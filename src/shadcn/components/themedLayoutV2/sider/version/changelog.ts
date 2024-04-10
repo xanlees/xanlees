@@ -1,16 +1,6 @@
 export const changelogData = [{
-    version: "Version: 0.1.2",
+    version: "Version: 0.4.0",
     features: [
-        {
-            id: 1,
-            title: "ເພີ່ມເອກະສານ",
-            badge: "ໃໝ່"
-        },
-        {
-            id: 2,
-            title: "ຟອມສະໝັກວຽກ",
-            badge: "ໃໝ່"
-        }
     ]
 }
 ];
