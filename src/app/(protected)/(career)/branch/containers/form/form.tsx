@@ -5,12 +5,12 @@ import { FormSector } from "../../../sector/form/form";
 import { Input } from "@src/shadcn/elements";
 import { useFormPositionConfig } from "./form/config";
 import { type HttpError, useSelect, type BaseOption, type UseSelectReturnType } from "@refinedev/core";
-import { type ISector } from "../../..";
+import { type ISector } from "../../../index";
 import { type IFormConfig } from "@src/common/interface";
 
 export const BranchForm: React.FC<{ type: string }> = (type) => {
   const branchType = type.type;
-  const formConfig = useFormPositionConfig(branchType);
+  const { form } = useFormPositionConfig(branchType);
   const sector = getSectorOptions(branchType);
   const options = sector.queryResult.data?.data.map((item) => {
     return {
@@ -21,11 +21,11 @@ export const BranchForm: React.FC<{ type: string }> = (type) => {
   sector.options = options as BaseOption[];
   return (
     <div className="p-10 my-3 rounded-full ">
-      <Form {...formConfig.form} cardClassName="w-[600px]">
-        <Form.Field {...formConfig.form} name="name" label="ຕໍາແໜ່ງ">
+      <Form {...form} cardClassName="w-[600px]">
+        <Form.Field {...form} name="name" label="ຕໍາແໜ່ງ">
           <Input placeholder="ຕໍາແໜ່ງ" className="block w-full" />
         </Form.Field>
-        <SectorSection formConfig={formConfig} sector={sector} />
+        <SectorSection form={form} sector={sector} />
       </Form>
       <FormSector branchType={branchType} />
       <FormBranch type={branchType} />
@@ -33,10 +33,10 @@ export const BranchForm: React.FC<{ type: string }> = (type) => {
   );
 };
 
-export const SectorSection = ({ formConfig, sector }: { formConfig: IFormConfig, sector: any }) => {
+export const SectorSection = ({ form, sector }: { form: IFormConfig, sector: any }) => {
   return (
     <div className="inline-flex flex-row items-center justify-start gap-x-4">
-      <Form.Field {...formConfig.form} name="sectorId" label="ເລືອກຂະແໜງ">
+      <Form.Field {...form} name="sectorId" label="ເລືອກຂະແໜງ">
         <Form.Combobox {...sector} />
       </Form.Field>
     </div>
