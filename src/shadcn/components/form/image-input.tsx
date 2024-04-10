@@ -34,9 +34,8 @@ interface FileInputImageProps {
 
 export const FileInputImage = ({ iconImage, label = "ເລືອກຮູບພາບ", ...props }: FileInputImageProps) => {
   const [preview, setPreview] = useState("");
-  console.log("props", props.className)
   return (
-    <div className="grid grid-cols-1 space-y-4 my-4">
+    <div className="grid grid-cols-1 my-4 space-y-4">
       <div className="flex items-center justify-center w-full">
         <label className={cn("rounded-full border-4 border-dashed w-full h-60 group text-center hover:border-blue-500 focus-within:border-blue-500 transition-all duration-300 ease-in-out cursor-pointer", props.className)}>
           {preview && (
@@ -57,7 +56,7 @@ export const FileInputImage = ({ iconImage, label = "ເລືອກຮູບພ
                 <ImagePlus />
               )}
               <p className="text-sm text-gray-500">
-                <span className="text-blue-600 hover:text-blue-800 focus:text-blue-800 transition-colors duration-200 ease-in-out">
+                <span className="text-blue-600 transition-colors duration-200 ease-in-out hover:text-blue-800 focus:text-blue-800">
                   {label ?? "ເລືອກຮູບພາບ"}
                 </span>
               </p>
