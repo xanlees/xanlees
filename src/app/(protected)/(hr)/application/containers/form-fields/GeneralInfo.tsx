@@ -55,4 +55,3 @@ const TypeDrivingLicenseSelect: React.FC<{ form: IFormConfig }> = ({ form }) => 
     </div>
   );
 };
-

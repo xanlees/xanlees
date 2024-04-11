@@ -38,7 +38,7 @@ export const DynamicNumberForm: React.FC<{ form: IFormConfig, isEmployee?: boole
           name="uniqueNumber"
           className="flex"
         >
-          <Input placeholder={"1234567890"} className="block w-56" />
+          <Input placeholder={"1234567890"} className="block w-52" />
         </ArrayField>
       </DynamicForm>
     </div>

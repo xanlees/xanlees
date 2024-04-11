@@ -1,9 +1,9 @@
 import { useForm } from "@refinedev/react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
-import { useProfileContext } from "../../..";
+import { useProfileContext } from "../..";
 import * as z from "zod";
-import { type ProfileSendData } from "../../interface/model";
+import { type ProfileSendData } from "../interface/model";
 import { FormMultipart, type IMessages, type ErrorMapMessage } from "@src/common/interface";
 const defaultMessage = "ບໍ່ສາມາດສ້າງຂໍ້ມູນສ່ວນບຸຄົນໄດ້";
 
