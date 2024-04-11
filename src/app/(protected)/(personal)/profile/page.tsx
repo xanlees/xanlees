@@ -17,7 +17,7 @@ export default function ProfileList(): JSX.Element {
   const friendly = useUserFriendlyName();
   return (
     <List>
-      <Table table={table}>
+      <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ຊື່ແທ້, ເບີໂທລະສັບ">
         {getSelectColumn(friendly)}
         {FullNameColumn}
         {PhoneNumberColumn("phoneNumber")}

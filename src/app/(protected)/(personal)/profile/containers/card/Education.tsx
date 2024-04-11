@@ -20,7 +20,7 @@ export function EducationDetail({ educationData }: { educationData: IEducation[]
               key={item.id}
               className="text-md text-gray-700 dark:text-gray-300"
               title={"ລະດັບຈົບການສຶກສາວິຊາສະເພາະ"}
-              content={`${item.graduationId.degree}, ${item.graduationId.sector}, ${item?.branch}, ຈົບສົກປີ ${moment(item?.year).format("DD/MMMM/YYYY")}`}
+              content={`${item.graduationId.degree}, ${item.graduationId.sector}, ${item?.branch}, ຈົບສົກປີ ${moment(item?.year).format("YYYY")}`}
             />
           );
         })}

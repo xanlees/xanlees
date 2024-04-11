@@ -24,7 +24,7 @@ export function ProfileDetail({ profileData, visible = false }: { profileData: I
           ? (
             <><Show.Row className="text-md" title="ຊື່​ ແລະ ນາມ​ສະ​ກຸນ" content={`${fullname} (${nickname})`} /><Show.Row className="text-md" title="ເພດ" content={getGenderDisplayText(gender)} /><Show.Row className="text-md" title="ເບີໂທ" content={phoneNumber} /></>)
           : (
-            <><Show.Row className="text-md" title="ຊື່​ ແລະ ນາມ​ສະ​ກຸນ" content={`${fullname} (${nickname})`} /><Show.Row className="text-md" title="ເພດ" content={getGenderDisplayText(gender)} /><Show.Row className="text-md" title="ສະຖານະພາບ" content={getMaritalStatusDisplayText(maritalStatus)} /><Show.Row className="text-md" title="ອາຍຸ" content={age} /><Show.Row className="text-md" title="ວັນເດືອນປີເກີດ" content={moment(birthday).format("MMMM DD, YYYY")} /><Show.Row className="text-md" title="ເບີໂທ" content={phoneNumber} /><UniqueNumber uniqueNumber={uniqueNumber} typeOfUniqueNumber={typeOfUniqueNumber} /></>)
+            <><Show.Row className="text-md" title="ຊື່​ ແລະ ນາມ​ສະ​ກຸນ" content={`${fullname}  (${nickname || "ບໍ່ມີຂໍ້ມູນ"})`} /><Show.Row className="text-md" title="ເພດ" content={getGenderDisplayText(gender)} /><Show.Row className="text-md" title="ສະຖານະພາບ" content={getMaritalStatusDisplayText(maritalStatus)} /><Show.Row className="text-md" title="ອາຍຸ" content={age} /><Show.Row className="text-md" title="ວັນເດືອນປີເກີດ" content={moment(birthday).format("DD/MMMM/YYYY")} /><Show.Row className="text-md" title="ເບີໂທ" content={phoneNumber} /><UniqueNumber uniqueNumber={uniqueNumber} typeOfUniqueNumber={typeOfUniqueNumber} /></>)
         }
       </div>
     </Card>

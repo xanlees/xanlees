@@ -14,7 +14,7 @@ export function PhoneNumberColumn(accessorKey: string) {
       )}
       cell={(props) => {
         return (
-          <p className="-mx-5 italic text-blue-500 underline ">{`+856 ${
+          <p className=" italic text-blue-500 underline ">{`+856 ${
             props.getValue() as unknown as string
           }`}</p>
         );

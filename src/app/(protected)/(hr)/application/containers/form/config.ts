@@ -20,7 +20,7 @@ export const useFormConfig = () => {
   const { dispatch } = useApplicationContext();
   const { state } = useProfileContext();
 
-  const { ...form } = useForm<{ id?: number }>({
+  const { ...form } = useForm<{ id?: number, tagId: number }>({
     resolver: zodResolver(applicationSchema),
     defaultValues: {
       profileId: state?.profileId,
@@ -32,6 +32,7 @@ export const useFormConfig = () => {
       redirect: false,
       onMutationSuccess: (data) => {
         dispatch({ type: "setApplicationId", payload: data?.data?.id ?? 0 });
+        dispatch({ type: "setTagId", payload: data?.data?.tagId ?? 0 });
       },
     },
     warnWhenUnsavedChanges: true,

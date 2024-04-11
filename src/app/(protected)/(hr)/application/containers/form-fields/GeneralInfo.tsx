@@ -23,7 +23,7 @@ const VehicleTypeSelect: React.FC<{ form: IFormConfig }> = ({ form }) => {
     { label: "ລົດຈັກ", value: "Motorcycle" },
     { label: "ລົດໃຫຍ່", value: "Car" },
     { label: "ລົດບັນທຸກ", value: "Truck" },
-    { label: "ລົດບັນທຸກ", value: "Cannot Drive" },
+    { label: "ຂັບບໍ່ເປັນ", value: "Cannot Drive" },
   ];
   return (
     <div className="w-full ">

@@ -25,18 +25,19 @@ export default function BranchList(): JSX.Element {
   const { data: positionData } = usePosition({ sectorId, branch }) as {
     data: IPosition[]
   };
-
   const friendly = useUserFriendlyName();
   return (
     <div className="mx-auto">
       <List>
-        <Table table={table}>
-          {getSelectColumn(friendly)}
-          {branchColumn()}
-          {sectorColumn(sectorData)}
-          {positionsColumn(sectorData, positionData)}
-          {getActionsColumn(resource)}
-        </Table>
+        <div className="w-full sm:w-2/3 mx-auto">
+          <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ຊື່ ສາຂາ">
+            {getSelectColumn(friendly)}
+            {branchColumn()}
+            {sectorColumn(sectorData)}
+            {positionsColumn(sectorData, positionData)}
+            {getActionsColumn(resource)}
+          </Table>
+        </div>
       </List>
     </div>
   );

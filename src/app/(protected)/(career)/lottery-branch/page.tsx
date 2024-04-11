@@ -20,13 +20,15 @@ export default function BranchList(): JSX.Element {
   return (
     <div className="mx-auto">
       <List>
-        <Table table={table}>
-          {getSelectColumn(friendly)}
-          {branchColumn()}
-          {sectorColumn(sectorData)}
-          {positionsColumn(sectorData, positionData)}
-          {getActionsColumn("office-branch")}
-        </Table>
+        <div className="w-2/3 mx-auto">
+          <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ຊື່ ສາຂາ">
+            {getSelectColumn(friendly)}
+            {branchColumn()}
+            {sectorColumn(sectorData)}
+            {positionsColumn(sectorData, positionData)}
+            {getActionsColumn("office-branch")}
+          </Table>
+        </div>
       </List>
     </div>
   );

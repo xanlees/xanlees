@@ -6,10 +6,11 @@ export interface ApplicationState {
   workExperienceId?: number
   updateApplicationId?: number
   skillId?: number
+  tagId?: number
 }
 
 type ApplicationStateActionType = "setApplicationId" | "setWorkExperienceId" |
-"setIsUploaded" | "setPhysicalProfileId" | typeof LoadFromStorage | "clearState" | "setUpdateApplicationId" | "setSkillId";
+"setIsUploaded" | "setPhysicalProfileId" | typeof LoadFromStorage | "clearState" | "setUpdateApplicationId" | "setSkillId" | "setTagId";
 export interface ApplicationAction {
   type: ApplicationStateActionType
   payload: number | boolean | ApplicationState

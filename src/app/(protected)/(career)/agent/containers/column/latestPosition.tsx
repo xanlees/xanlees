@@ -16,7 +16,7 @@ export function getLatestPosition(positionId: number[], positionData: { data: IP
         const positionDetail = positionData?.data.find((item) => item?.id === latestPositionId);
         const displayText = (positionDetail !== undefined) ? `${positionDetail?.name} (${positionDetail?.sectorId?.name})` : "ລໍຖ້າບັນຈູ";
         return (
-          <div className="mx-2">
+          <div className="">
             <Badge className="bg-gray-400">{displayText}</Badge>
           </div>
         );
