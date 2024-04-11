@@ -13,7 +13,7 @@ export const Skill: React.FC<{ skillData: ISkill[] | null | undefined }> = ({ sk
       </CardHeader>
       {skillData?.map((item, index) => (
         <div key={index}>
-          <Label className="pl-5">{`ຄວາມສາມາດໃນ ${item?.name ?? ""}, ລະດັບ${getProficiency(item?.proficiency)}`}</Label>
+          <Label className="pl-5">{`ຄວາມສາມາດ ${item?.name ?? ""}, ລະດັບ${getProficiency(item?.proficiency)}`}</Label>
         </div>
       ))}
     </Card>

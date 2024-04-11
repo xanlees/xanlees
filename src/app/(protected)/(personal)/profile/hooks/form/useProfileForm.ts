@@ -17,9 +17,9 @@ export const useProfileForm = (type: string) => {
       phoneNumber: "",
       gender: "",
       birthday: "",
-      uniqueNumber: "",
       maritalStatus: "",
-      typeOfUniqueNumber: "",
+      typeOfUniqueNumber: "IDENTIFY",
+      uniqueNumber: [{ uniqueNumber: undefined }],
       type,
     },
     mode: "onChange",
@@ -56,7 +56,7 @@ export const profileSchema: any = z
   .object({
     fullname: z.string().min(1, { message: "ກະລຸນາໃສ່ຊື່ແທ້ ແລະ ນາມສະກຸນ" }),
     type: z.string(),
-    nickname: z.string().min(1, { message: "ກະລຸນາໃສ່ຫຼີ້ນ" }),
+    nickname: z.nullable(z.string()),
     phoneNumber: z.string()
       .min(minPhoneNumberLength, { message: "ກະລຸນາໃສ່ເບີໂທ" })
       .regex(/^(20\d{8})$/, { message: "ກະລຸນາປ້ອນເບີໂທ ໂດຍຮູບແບບທີ່ຖືກຕ້ອງ (20XXXXXXXX)" }),

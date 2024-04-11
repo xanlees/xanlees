@@ -1,4 +1,9 @@
-import { ProfileForm, PhysicalProfile, DocumentForm, EducationForm } from "@personal";
+import {
+  ProfileForm,
+  PhysicalProfile,
+  DocumentForm,
+  EducationForm,
+} from "@personal";
 import { Application2Form, ApplicationForm } from "./index";
 import { WorkExperienceForm } from "@hr";
 import { PersonalAddressForm } from "@src/app/(protected)/(personal)/address/containers/form";
@@ -7,21 +12,19 @@ import { Skill } from "../../../skill/containers/form/form";
 export const applicationFromStep = [
   {
     stepLabel: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
-    stepDescription: <ProfileForm isEmployee={false} type="EMPLOYEE_CANDIDATE"/>,
+    stepDescription: (
+      <ProfileForm isEmployee={false} type="EMPLOYEE_CANDIDATE" />
+    ),
     completed: false,
   },
   {
     stepLabel: "ທີຢູ່ບ້ານເກີດ",
-    stepDescription: (
-      <PersonalAddressForm isCurrent={false}/>
-    ),
+    stepDescription: <PersonalAddressForm isCurrent={false} />,
     completed: false,
   },
   {
     stepLabel: "ທີຢູ່ປະຈຸປບັນ",
-    stepDescription: (
-      <PersonalAddressForm />
-    ),
+    stepDescription: <PersonalAddressForm />,
     completed: false,
   },
   {
@@ -31,41 +34,32 @@ export const applicationFromStep = [
   },
   {
     stepLabel: "ເອກສານຄັດຕິດ",
-    stepDescription: (
-      <DocumentForm label="ລາຍການເອກະສານເຊັ່ນ ໃບປະກາດ, ໃບຕະແນນ, ຊີວະປະຫວັດຫຍໍ້  (ກະລຸນາກົດເພີ່ມເອກະສານກ່ອນບັນທືກ)"/>
-    ),
+    stepDescription: <DocumentForm label="ລາຍການເອກະສານເຊັ່ນ ໃບປະກາດ, ໃບຕະແນນ, ຊີວະປະຫວັດຫຍໍ້  (ກະລຸນາກົດເພີ່ມເອກະສານກ່ອນບັນທືກ)" />,
     completed: false,
   },
   {
     stepLabel: "ສ້າງທີ່ຈົບການສຶກສາວິຊາສະເພາະ",
-    stepDescription: <EducationForm/>,
+    stepDescription: <EducationForm />,
     completed: false,
   },
   {
     stepLabel: "ສະໝັກຕໍາແຫນ່ງ",
-    stepDescription: <ApplicationForm/>,
+    stepDescription: <ApplicationForm />,
     completed: false,
   },
   {
     stepLabel: "ປະສົບການເຮັດວຽກ",
-    stepDescription: (
-      <WorkExperienceForm/>
-    ),
+    stepDescription: <WorkExperienceForm />,
     completed: false,
   },
   {
     stepLabel: "ຄວາມສາມາດພິເສດ",
-    stepDescription: (
-      <Skill/>
-    ),
+    stepDescription: <Skill />,
     completed: false,
   },
   {
     stepLabel: "ຂໍ້ມູນທົ່ວໄປ",
-    stepDescription: (
-      <Application2Form/>
-    ),
+    stepDescription: <Application2Form />,
     completed: true,
   },
 ];
-

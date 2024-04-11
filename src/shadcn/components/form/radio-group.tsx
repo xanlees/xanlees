@@ -24,8 +24,8 @@ export const RadioGroupField = forwardRef<
   return (
     <div className={cn(props.className, "mx-2")}>
       <FormControl>
-        <RadioGroup className={cn(props.className, "flex")} onValueChange={props.onChange} defaultValue={props.defaultValue} defaultChecked={props.defaultChecked}>
-          {props.options.map((option, index) => (<div className=" space-x-2">
+        <RadioGroup className={cn(props.className, "flex my-2")} onValueChange={props.onChange} defaultValue={props.defaultValue} defaultChecked={props.defaultChecked}>
+          {props.options.map((option, index) => (<div className="flex space-x-2">
             <RadioGroupItem isSquare={props.isSquare} value={option.value} key={index} className="">{option.label}</RadioGroupItem>
             <FormLabel>{option.label}</FormLabel>
           </div>))}

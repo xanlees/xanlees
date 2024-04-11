@@ -20,7 +20,7 @@ export const EducationForm: React.FC = () => {
       ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
       : (<div><Form {...formConfig.form} cardClassName="">
         <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="education" label="ການສຶກສາອີກ" className="flex flex-col sm:flex-row sm:flex-wrap" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId }}>
-          <ArrayField {...formConfig.form} name="branch" label="ສາຂາ">
+          <ArrayField {...formConfig.form} name="branch" label="ສະຖາບັນ">
             <Input placeholder="ສາຂາ" className="block w-56" />
           </ArrayField>
           <ArrayField {...formConfig.form} name="graduationId" label="ຂະແໜງທີ່ຈົບ">

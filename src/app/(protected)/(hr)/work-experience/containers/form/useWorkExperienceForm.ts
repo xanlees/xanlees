@@ -23,7 +23,7 @@ export const useWorkExperienceForm = () => {
     defaultValues: {
       experience: [
         {
-          id: 3,
+          applicationId: 0,
           company: "",
           position: "",
           time: "",
@@ -68,7 +68,9 @@ export const WorkExperienceSchema = z.object({
         salary: z.string().min(1, {
           message: "ກະລຸນາປ້ອນເງິນເດືອນ",
         }).transform((val) => Number(val.replace(/,/g, ""))),
-        reasonOfResignation: z.string().nullable().or(z.string().min(0)),
+        reasonOfResignation: z.string().min(1, {
+          message: "ກະລຸນາອະທິບາຍໜ້າວຽກທີໄດ້ເຮັດຜ່ານມາ",
+        }),
         applicationId: z.number(),
       }),
     ),

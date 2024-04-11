@@ -56,7 +56,7 @@ export const FormFieldContainer: React.FC<{ form: IFormConfig }> = ({ form }) =>
       </div>
       <div className="w-full lg:w-80 ">
         <div className="relative w-full mb-3">
-          <Form.Field {...form} name="documentFile" label="ເລືອກເອກະສານທີ່ຈະເພີ່ມ" >
+          <Form.Field {...form} name="documentFile" label="ເລືອກເອກະສານທີ່ຈະເພີ່ມ (ເປັນ PDF ໄຟລ໌)" >
             <Form.FileInput showFileDisplay={false} />
           </Form.Field>
         </div>

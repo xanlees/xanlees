@@ -59,7 +59,6 @@ export const useApplicationForm = () => {
     },
     warnWhenUnsavedChanges: true,
   });
-
   return { form, state };
 };
 

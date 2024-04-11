@@ -1,6 +1,6 @@
 export interface ProfileSendData {
   fullname: string
-  nickname: string
+  nickname: string | null
   phoneNumber: string
   gender: string
   birthday: string | Date

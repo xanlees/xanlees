@@ -36,6 +36,8 @@ const STEPS = {
   educationStep: 5,
   applicationStep: 6,
   workExperienceStep: 7,
+  skillStep: 8,
+  updateApplicationStep: 9,
 };
 
 function ApplicationForm(): JSX.Element {
@@ -53,14 +55,13 @@ function ApplicationForm(): JSX.Element {
     localStorage.removeItem("creatingProfileState");
     window.location.reload();
   };
-
   return (
     <div className="shadow-lg p-4 sm:p-6 lg:p-8">
       <div className="my-3 text-center bg-blue-300 rounded-sm mx-2 p-4">
         <p className="text-xl font-bold">ຟອມສະໝັກພະນັກງານ </p>
         <p className="text-sm">(ໃຊ້ເວລາປະມານ 10 ນາທີ) </p>
       </div>
-      <FormStep formStepsData={applicationFromStep} initialStep={initialStep} />
+      <FormStep formStepsData={applicationFromStep} initialStep={initialStep}/>
       <div className="text-center">
         <Button onClick={handleButtonClick}>ເລີ້ມຕົ້ນໃຫມ່</Button>
       </div>
@@ -72,11 +73,12 @@ function ApplicationForm(): JSX.Element {
   );
 }
 
-function getStepState(
-  stateProfile: ProfileState,
-  stateApplication: ApplicationState,
-) {
+function getStepState(stateProfile: ProfileState, stateApplication: ApplicationState) {
   switch (true) {
+    case hasValid(stateApplication.updateApplicationId as number):
+      return STEPS.updateApplicationStep;
+    case hasValid(stateApplication.skillId as number):
+      return STEPS.skillStep;
     case hasValid(stateApplication.workExperienceId as number):
       return STEPS.workExperienceStep;
     case hasValid(stateApplication.applicationId as number):

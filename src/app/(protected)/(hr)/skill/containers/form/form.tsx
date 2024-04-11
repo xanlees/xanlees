@@ -5,31 +5,27 @@ import { useFieldArray } from "react-hook-form";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { useApplicationContext } from "../../../application/context";
-import { Input } from "@src/shadcn/elements";
 
 export const Skill: React.FC = () => {
   const { state } = useApplicationContext();
-  const formConfig = useSkillForm();
-  const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "skill" });
+  const { form } = useSkillForm();
+  const { fields, append, remove } = useFieldArray({ control: form.control, name: "skill" });
   const isCompleted = state.skillId;
   return (
-    <div className=" rounded-full">  {isCompleted
+    <div className="rounded-full w-72 sm:w-[710px] ">  {isCompleted
       ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
       : (
-        <Form {...formConfig.form}>
+        <Form {...form}>
           <div className="rounded-full w-60 sm:w-[600px] ">
-            <div className="text-md font-bold tracking-wide text-gray-800 dark:text-white my-2">
-            ຄວາມສາມາດພິເສດເຊັ່ນການນໍາໃຊ້ຄອມພິວເຕີ, ພາສາ ແລະ ອື່ນໆ
-            </div>
             <DynamicForm
-              form={formConfig.form} fields={fields} append={append} remove={remove} name="skill" className="flex flex-col sm:flex-row sm:flex-wrap" label=""
-              classNameButton="w-full mt-5"
+              form={form} fields={fields} append={append} remove={remove} name="skill" className="flex flex-col sm:flex-row sm:flex-wrap" label=""
+              classNameButton="w-32 mt-5"
               defaultConfig={{ application: state.applicationId }}>
-              <ArrayField {...formConfig.form} name="name" label="ຄວາມສາມາດ">
-                <Input placeholder="" className="block w-64" />
+              <ArrayField {...form} name="name" label="ຄວາມສາມາດ">
+                <Form.Select options={SkillOptions} className=" w-56"/>
               </ArrayField>
-              <ArrayField {...formConfig.form} name="proficiency" label="ທັກສາ">
-                <Form.Select options={Options} className=" w-64"/>
+              <ArrayField {...form} name="proficiency" label="ລະດັບຄວາມສາມາດ">
+                <Form.Select options={Options} className=" w-56"/>
               </ArrayField>
             </DynamicForm>
           </div>
@@ -44,11 +40,38 @@ export const Options = [
     value: "Good",
   },
   {
-    label: "ປານກາງ",
+    label: "ພໍໃຊ້ໄດ້",
     value: "Fair",
   },
   {
-    label: "ພໍໃຊ້ໄດ້",
+    label: "ໜ້ອຍ",
     value: "Poor",
+  },
+];
+
+export const SkillOptions = [
+  {
+    label: "ພາສາໄທ",
+    value: "ພາສາໄທ",
+  },
+  {
+    label: "ພາສາອັງກິດ",
+    value: "ພາສາອັງກິດ",
+  },
+  {
+    label: "ພາສາຈີນ",
+    value: "ພາສາຈີນ",
+  },
+  {
+    label: "Word",
+    value: "Word",
+  },
+  {
+    label: "Excel",
+    value: "Excel",
+  },
+  {
+    label: "Power Point",
+    value: "Power Point",
   },
 ];

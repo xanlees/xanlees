@@ -36,11 +36,11 @@ export const Select = forwardRef<
             value={props.value}
         >
             <FormControl>
-                <SelectTrigger className={cn("w-full lg:w-72 my-2 ", className)}>
+                <SelectTrigger className={cn("w-full my-2 ", className)}>
                     <SelectValue placeholder={props.value ?? "ເລືອກ"} />
                 </SelectTrigger>
             </FormControl>
-            <SelectContent className={cn("w-full lg:w-72 overflow-y-scroll", className)} ref={ref}>
+            <SelectContent className={cn("w-full overflow-y-scroll", className)} ref={ref}>
                 {props.options?.map((option, key: number) => (
                     <SelectItem key={key} value={option.value}>
                         {option.label}

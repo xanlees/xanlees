@@ -8,6 +8,7 @@ import {
 import { Input, Textarea } from "@src/shadcn/elements";
 import { type IFormConfig } from "@src/common/interface";
 import { useApplicationContext } from "../../context";
+import { BadgeCheck } from "lucide-react";
 export const ApplicationForm: React.FC = () => {
   const { form } = useFormConfig();
   const { state } = useApplicationContext();
@@ -32,10 +33,10 @@ export const Application2Form: React.FC = () => {
   const isCompleted = state.updateApplicationId;
 
   return (
-    <div className="rounded-full">
+    <div className="rounded-full w-72 sm:w-[710px]">
       {isCompleted
         ? (
-          <p className="italic">ສຳເລັດແລ້ວ !</p>)
+          <Success/>)
         : (
           <Form {...form}>
             <GeneralInfo form={form} />
@@ -60,13 +61,14 @@ const ApplicantSignatureChckbox = (form: IFormConfig) => (
   </Form.Field>
 );
 
-export const FormHeader = () => (
-  <div className="mb-8 text-center">
-    <h2 className="text-2xl font-bold text-gray-800 md:text-3xl dark:text-gray-200">
-      Payment
-    </h2>
-    <p className="text-sm text-gray-600 dark:text-gray-400">
-      Manage your payment methods.
-    </p>
-  </div>
-);
+export const Success: React.FC = () => {
+  return (
+    <div className="bg-white md:mx-auto">
+      <BadgeCheck className="justify-center mx-auto h-14 w-14 bg-geen-500 " color="#004cff" />
+      <div className="overflow-y-auto text-center">
+        <h3 className="text-base font-semibold text-center text-gray-900 md:text-2xl">ສົ່ງແບບຟອມສະໝັກສໍາເລັດ!</h3>
+        <p className="my-2 text-gray-600">ຂອບໃຈ ທີ່ມາສະໝັກວຽກສະມັກກັບພວກເຮົາ</p>
+      </div>
+    </div>
+  );
+};
