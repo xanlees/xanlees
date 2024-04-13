@@ -4,6 +4,7 @@ import { DefaultTitle } from "../themedLayoutV2/sider/tiltle";
 import { LocalFooter } from "../themedLayoutV2/footer/local";
 import { LayoutProps } from "../themedLayoutV2/type";
 import { FC, useMemo } from "react";
+import { Toaster } from "@src/shadcn/elements/toaster";
 
 export const ThemedLayoutV1: FC<LayoutProps &  {showLogin?: boolean}> = ({
     children,
@@ -24,6 +25,7 @@ export const ThemedLayoutV1: FC<LayoutProps &  {showLogin?: boolean}> = ({
                 </header>
                 {children}
                 <LocalFooter />
+                <Toaster />
             </>
         );
     };

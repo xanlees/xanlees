@@ -43,7 +43,7 @@ and go url: <http://localhost:6006/>
     source .env.prod.sh
     docker build \
         --platform linux/amd64 \
-        -t asia.gcr.io/bamboo-bi-356406/sbs_workhublink_ui:v0.4.0 \
+        -t asia.gcr.io/bamboo-bi-356406/sbs_workhublink_ui:v0.5.0 \
         --build-arg SECRET_KEY_ARG=$SECRET_KEY \
         --build-arg API_ENDPOINT_ARG=$API_ENDPOINT \
         --build-arg NEXTAUTH_URL_ARG=$NEXTAUTH_URL \
@@ -52,7 +52,7 @@ and go url: <http://localhost:6006/>
 
 ### Push Docker image to Cloud image registry
 
-    docker -- push  asia.gcr.io/bamboo-bi-356406/sbs_workhublink_ui:v0.4.0
+    docker -- push  asia.gcr.io/bamboo-bi-356406/sbs_workhublink_ui:v0.5.0
 
 ### Update Cors policy for cloud bucket
 
