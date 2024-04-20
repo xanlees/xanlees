@@ -5,3 +5,4 @@ export interface ISector {
   branchId: IBranch
 }
 
+export type { IBranch };

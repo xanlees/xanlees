@@ -2,7 +2,6 @@ import { Form } from "@src/shadcn/components/form";
 import { useSelect } from "@refinedev/core";
 import { Input } from "@src/shadcn/elements";
 import { useFormConfig } from "./config";
-import { type IBranch } from "../interface";
 import { type IFormConfig } from "@src/common/interface";
 import {
   Accordion,
@@ -10,9 +9,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@src/shadcn/elements/accordion";
+import { type IBranch } from "../interface";
 
 export const FormSector: any = ({ branchType }: { branchType: string }) => {
-  const formConfig = useFormConfig();
+  const { form } = useFormConfig();
   const branch = useSelect<IBranch>({
     resource: "branch",
     optionLabel: "name",
@@ -23,14 +23,14 @@ export const FormSector: any = ({ branchType }: { branchType: string }) => {
     <Accordion type="single" collapsible className="w-ful">
       <AccordionItem value="item-1" className="border-none">
         <AccordionTrigger className="italic text-blue-500 underline">
-          *ຊອກຂະແໜງບໍ່ເຫັນ, ກົດທີ່ນີ້
+          *ຊອກພະແນກບໍ່ເຫັນ, ກົດທີ່ນີ້
         </AccordionTrigger>
         <AccordionContent>
-          <Form {...formConfig.form}>
-            <Form.Field {...formConfig.form} name="name" label="ຂະແໜງ">
+          <Form {...form}>
+            <Form.Field {...form} name="name" label="ພະແນກ">
               <Input placeholder="ຂະແໜງ" className="block w-full" />
             </Form.Field>
-            <BranchSection formConfig={formConfig} branch={branch} />
+            <BranchSection form={form} branch={branch} />
           </Form>
         </AccordionContent>
       </AccordionItem>
@@ -39,14 +39,14 @@ export const FormSector: any = ({ branchType }: { branchType: string }) => {
 };
 
 const BranchSection = ({
-  formConfig,
+  form,
   branch,
 }: {
-  formConfig: IFormConfig
+  form: IFormConfig
   branch: any
 }) => (
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...formConfig.form} name="branchId" label="ເລືອກສາຂາ">
+    <Form.Field {...form} name="branchId" label="ເລືອກສາຂາ">
       <Form.Combobox {...branch} />
     </Form.Field>
   </div>

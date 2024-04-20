@@ -36,7 +36,7 @@ export const BranchForm: React.FC<{ type: string }> = (type) => {
 export const SectorSection = ({ form, sector }: { form: IFormConfig, sector: any }) => {
   return (
     <div className="inline-flex flex-row items-center justify-start gap-x-4">
-      <Form.Field {...form} name="sectorId" label="ເລືອກຂະແໜງ">
+      <Form.Field {...form} name="sectorId" label="ເລືອກພະແນກ">
         <Form.Combobox {...sector} />
       </Form.Field>
     </div>
