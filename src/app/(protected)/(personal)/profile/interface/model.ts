@@ -71,3 +71,10 @@ export interface IPersonalAddress {
   profile: number
 }
 
+export interface UserProfileAccount {
+  user: {
+    id: number
+    username: string
+  }
+  profile: number
+}
