@@ -1,4 +1,3 @@
-/* eslint-disable no-unsafe-optional-chaining */
 "use client";
 
 import { Create } from "@src/shadcn/components/crud";
@@ -13,11 +12,9 @@ const breadcrumbs = [
 export default function EmployeeCreate({
   params,
 }: {
-  params: { userAndType: string[] }
+  params?: { userAndType?: string[] }
 }): JSX.Element {
-  const [userId, type] = params
-    ? params?.userAndType?.map((id) => id)
-    : [null, null];
+  const [profileId, type] = params?.userAndType ?? ["", ""];
   return (
     <Create
       title="ຟອມບັນຈຸຕຳແໜ່ງ"
@@ -25,7 +22,7 @@ export default function EmployeeCreate({
       breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
     >
       <div className="flex justify-center w-full">
-        <EmployeeForm redirect="list" type={type ?? ""} userId={userId ?? ""} />
+        <EmployeeForm redirect="list" type={type} profileId={profileId} />
       </div>
     </Create>
   );

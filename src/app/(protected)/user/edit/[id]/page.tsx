@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Edit } from "@/shadcn/components/crud";
-import { UserForm } from "../../components/form";
+import { UserForm } from "../../containers/form";
 
 export default function UserCreate(): JSX.Element {
   return (
