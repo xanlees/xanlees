@@ -1,5 +1,5 @@
 /* eslint-disable  */
-import { User, BookUser, FileText } from "lucide-react";
+import { User, BookUser, FileText, Timer } from "lucide-react";
 
 export const resources = [
   {
@@ -11,7 +11,7 @@ export const resources = [
     icon: <BookUser />,
     meta: {
       label: "ພະນັກງານ",
-    }
+    },
   },
   {
     name: "agent",
@@ -19,10 +19,10 @@ export const resources = [
     create: "/agent/create",
     edit: "/agent/edit/:id",
     show: "/agent/show/:id",
-    icon: <User/>,
+    icon: <User />,
     meta: {
       label: "ແມ່ຫວຍ",
-    }
+    },
   },
   {
     name: "branch",
@@ -32,7 +32,7 @@ export const resources = [
     show: "/branch/show/:id",
     meta: {
       label: "ສາຂາຫ້ອງການ",
-    }
+    },
   },
   {
     name: "lottery-branch",
@@ -42,7 +42,7 @@ export const resources = [
     show: "/lottery-branch/show/:id",
     meta: {
       label: "ສາຂາຫວຍ",
-    }
+    },
   },
   {
     name: "application",
@@ -50,10 +50,19 @@ export const resources = [
     create: "/application/apply",
     edit: "/application/edit/:id",
     show: "/application/show/:id",
-    icon: <FileText/>,
+    icon: <FileText />,
     meta: {
       label: "ຜູ້ສະໝັກວຽກ",
-    }
+    },
+  },
+  {
+    name: "user-profile",
+    list: "/user-profile",
+    create: "/user-profile/create",
+    edit: "/user-profile/edit/:id",
+    show: "/user-profile/show/:id",
+    icon: <Timer />,
+    meta: { label: "ປໍ້າເຂົ້າວຽກແລະປໍ້າອອກ" },
   },
   {
     name: "user",
@@ -61,9 +70,9 @@ export const resources = [
     create: "/user/create",
     edit: "/user/edit/:id",
     show: "/user/show/:id",
-    icon: <User/>,
+    icon: <User />,
     meta: {
       label: "ຜູ້ໃຊ້ລະບົບ",
-    }
-  }
+    },
+  },
 ];

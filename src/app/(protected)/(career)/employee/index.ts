@@ -19,4 +19,5 @@ export interface IEmployee {
     typeOfUniqueNumber: string
   }
   id: number
+  branchId: number
 }

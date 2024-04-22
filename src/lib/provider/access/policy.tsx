@@ -53,4 +53,9 @@ p, admin, lottery-branch, (list)|(create)
 p, admin, skill/*, (edit)|(show)|(delete)
 p, admin, skill, (list)|(create)
 p, anonymous, skill, (create)
+p, admin, attendance/*, (edit)|(show)|(delete)
+p, admin, attendance, (list)|(create)
+p, admin, user-profile/*, (edit)|(show)|(delete)
+p, admin, user-profile, (list)|(create)
 `);
+

@@ -13,14 +13,34 @@ import {
   PopoverTrigger,
 } from "@src/shadcn/elements/popover"
 
-export function DatePicker(){
-  const [date, setDate] = React.useState<Date>()
+
+interface DatePickerProps {
+  onDateChange?: (date: Date | undefined) => void;
+}
+
+export function DatePicker({ onDateChange }: DatePickerProps) {
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
+  const handleDateChange = (newDate: Date | undefined) => {
+    setDate(newDate);
+    if (onDateChange && typeof onDateChange === 'function') {
+      onDateChange(newDate);
+    }
+  };
+
+  const isInitialMount = React.useRef(true);
+  React.useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      handleDateChange(date);
+    }
+  }, [date]);
 
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          variant={"outline"}
+          variant="outline"
           className={cn(
             "w-[280px] justify-start text-left font-normal",
             !date && "text-muted-foreground"
@@ -39,5 +59,5 @@ export function DatePicker(){
         />
       </PopoverContent>
     </Popover>
-  )
+  );
 }
