@@ -7,6 +7,8 @@ export interface IUpdateProps {
   resource: string;
   field: string;
   isMultipartFormData?: boolean
+  setSelected?: React.Dispatch<React.SetStateAction<number | string>>
+  
 }
 export interface IUpdateDropdownSelectProps extends IUpdateProps {
   readonly defaultValue?: string;
@@ -14,4 +16,5 @@ export interface IUpdateDropdownSelectProps extends IUpdateProps {
   readonly label?: string;
   readonly placeholder?: string;
   readonly className?: string;
+  onChange?: (val: number | string) => void;
 }

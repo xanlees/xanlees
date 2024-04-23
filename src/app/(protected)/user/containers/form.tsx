@@ -1,4 +1,4 @@
-import { useSelect, type RedirectAction } from "@refinedev/core";
+import { useSelect } from "@refinedev/core";
 import { Input } from "@src/shadcn/elements";
 import { Form } from "@/shadcn/components/form";
 import { type IGroup } from "../interface";
@@ -6,11 +6,11 @@ import { type IFormConfig } from "@src/common/interface";
 import { SwitchButton } from "@src/shadcn/components/form/switch";
 import { useUserForm } from "../hook/useUserForm";
 
-export const UserForm = ({ redirect = "edit", profile }: { redirect: RedirectAction, profile?: number }) => {
-  const { form } = useUserForm(profile ?? 0);
+export const UserForm = ({ navigates = "profile", profile }: { navigates: string, profile?: number }) => {
+  const { form } = useUserForm(profile ?? 0, navigates);
   const groups = useSelect<IGroup>({ resource: "group", optionLabel: "name", optionValue: "name" });
   return (
-    <div className="w-1/2 mx-auto">
+    <div className=" mx-auto">
       <Form {...form}>
         <UsernameInput {...form} />
         <div className="flex w-full gap-3 flex-warp">

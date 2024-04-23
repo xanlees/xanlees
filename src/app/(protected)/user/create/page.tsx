@@ -6,7 +6,7 @@ import { UserForm } from "../containers/form";
 export default function UserCreate({ params }: { params: { id: number } }): JSX.Element {
   return (
     <Create>
-      <UserForm redirect="list" />
+      <UserForm navigates={"user"} />
     </Create>
   );
 }

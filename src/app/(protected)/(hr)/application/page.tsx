@@ -39,7 +39,7 @@ export default function ApplicationList(): JSX.Element {
           {ApplicationDate}
           {AppliedPosition}
           {ExpectedSalary}
-          {ApplicationStatusColumn}
+          {ApplicationStatusColumn()}
           {workExperienceColumn(dataWorkExperience)}
           {getActionsColumn("application")}
         </Table>

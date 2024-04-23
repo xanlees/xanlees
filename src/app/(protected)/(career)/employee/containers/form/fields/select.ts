@@ -39,6 +39,7 @@ export const generateGroupedOptions = (positions: IPosition[], branchData: IBran
 };
 
 export const usePositionSelect = (type?: string) => {
+  const types = type === "LOTTERY" ? type : "HEADQUARTERS,OFFICE,BRANCH";
   const position = useSelect<IPosition>({
     resource: "position",
     optionLabel: "name",
@@ -47,7 +48,7 @@ export const usePositionSelect = (type?: string) => {
       {
         field: "branch_type",
         operator: "eq",
-        value: type,
+        value: types,
       },
     ],
   });

@@ -11,10 +11,15 @@ const UpdateOnSelect: React.FC<IUpdateDropdownSelectProps> = ({
   optionsConfig = [],
   className,
   isMultipartFormData,
+  onChange,
   resource, id,  field, }) => {
-  const { onUpdateHandler } = useUpdateOnSelect({resource, id, field, isMultipartFormData });
+  const { onUpdateHandler, } = useUpdateOnSelect({resource, id, field, isMultipartFormData });
+  const handleChange = (val: number | string) => {
+    onUpdateHandler(val);
+    onChange?.(val);
+  };
   return (
-    <Select onValueChange={onUpdateHandler} defaultValue={defaultValue}>
+    <Select onValueChange={handleChange} defaultValue={defaultValue}>
       <SelectTrigger className={cn("w-[180px]", className )}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>

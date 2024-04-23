@@ -6,14 +6,15 @@ import { useDistrictSelect } from "../hook/useDistrictSelect";
 import { usePersonalAddressForm } from "../hook/usePersonalAddressForm";
 import { type IFormConfig } from "@src/common/interface";
 
-export function PersonalAddressForm({ isCurrent = true }) {
+export function PersonalAddressForm({ isCurrent = true, isEdit = false }) {
   const status = isCurrent ? "ທີ່ຢູ່ປະຈຸບັນ" : "ທີ່ຢູ່ເກີດ";
   const village = isCurrent ? "ບ້ານຢູ່ປະຈຸບັນ" : "ບ້ານເກີດ";
   const { form, state } = usePersonalAddressForm({ status });
   const isCompleted = isFormCompleted(state, isCurrent);
+  const shouldDisplayForm = isCompleted || isEdit;
   return (
     <div className="rounded-full w-72 sm:w-[710px]">
-      {isCompleted
+      {shouldDisplayForm
         ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
         : (<Form {...form}>
           <div className="flex flex-wrap gap-2">

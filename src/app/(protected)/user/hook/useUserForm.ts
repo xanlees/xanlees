@@ -1,11 +1,12 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "@refinedev/react-hook-form";
-import { useEffect, useState } from "react";
 import * as z from "zod";
-import { useCustomMutation } from "@refinedev/core";
+import { useCustomMutation, useNavigation } from "@refinedev/core";
+import { useEffect, useState } from "react";
+import { useForm } from "@refinedev/react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { type CreateUserProfileProps, type UserProfile } from "../interface/interface";
 
-export const useUserForm = (profile: number) => {
+export const useUserForm = (profile: number, navigates: string) => {
+  const { list } = useNavigation();
   const [user, setUser] = useState<number>(0);
   const [shouldCreateProfile, setShouldCreateProfile] = useState(false);
   const form = useForm<{ id: number }>({
@@ -21,8 +22,11 @@ export const useUserForm = (profile: number) => {
       resource: "user",
       redirect: false,
       onMutationSuccess: (data) => {
-        setUser(data.data.id ?? 0);
+        if (navigates === "profile") {
+          setUser(data.data.id ?? 0);
+        }
         setShouldCreateProfile(true);
+        list(navigates);
       },
       successNotification: () => {
         return { message: "User account created successfully", type: "success", description: "" };
@@ -30,7 +34,9 @@ export const useUserForm = (profile: number) => {
     },
     warnWhenUnsavedChanges: true,
   });
-  useCreateUserProfile({ user, profile, shouldCreateProfile, setShouldCreateProfile });
+  if (navigates === "profile") {
+    useCreateUserProfile({ user, profile, shouldCreateProfile, setShouldCreateProfile });
+  }
   return { form };
 };
 
