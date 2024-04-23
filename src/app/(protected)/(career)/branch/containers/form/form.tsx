@@ -4,10 +4,10 @@ import { FormBranch } from "./form/form";
 import { FormSector } from "../../../sector/form/form";
 import { Input } from "@src/shadcn/elements";
 import { useFormPositionConfig } from "./form/config";
+import { WorkTimeSettingsForm } from "../../../workTimeSettings/form";
 import { type HttpError, useSelect, type BaseOption, type UseSelectReturnType } from "@refinedev/core";
 import { type ISector } from "../../../index";
 import { type IFormConfig } from "@src/common/interface";
-import { WorkTimeSettingsForm } from "../../../workTimeSettings/form";
 
 export const BranchForm: React.FC<{ type: string }> = (type) => {
   const branchType = type.type;

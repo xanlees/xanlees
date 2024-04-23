@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 "use client";
 import React from "react";
 import {
@@ -17,10 +18,11 @@ import {
   useSectorId,
 } from "../../hooks/show";
 import { type IProfile } from "../../interface/model";
-import type { IEmployee, ISector } from "@career";
+import { type IEmployee, type ISector } from "@career";
 import type { IEducation, IAddress } from "@personal";
 
 export default function ProfileShow({ params }: { params: { id: number } }): JSX.Element {
+  const profileId = Number(params.id ?? 0) ?? 0;
   const { data: profileData } = useProfile<IProfile>({ profileId: params.id });
   const { data: employeeData } = useEmployees<IEmployee>({ profileId: params.id });
   const { data: educationData } = useEducation<IEducation[]>({ profileId: params.id });
@@ -35,11 +37,10 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
         </div>
         <div className="space-y-2 ">
           <EmployeeDetail employeeData={employeeData} sectorData={sectorData}/>
-          <EducationDetail educationData={educationData as IEducation[]} />
+          <EducationDetail profileId={profileId} />
           <DocumentPDF profileId={params?.id}/>
         </div>
         <div className="my-2 sm:my-0">
-          <AddressDetail personalAddressData={personalAddressData as IAddress[]} />
         </div>
       </div>
     </Show>

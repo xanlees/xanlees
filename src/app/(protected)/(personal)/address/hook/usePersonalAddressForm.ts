@@ -9,7 +9,7 @@ export const usePersonalAddressForm = ({ status }: { status: string }) => {
   const { state, dispatch } = useProfileContext();
   const profile = state.profileId ?? 0;
   const personalCurrentAddressId = state.personalBornAddressId ?? 0;
-  const type = !personalCurrentAddressId ? "setPersonalBornAddressId" : "setPersonalCurrentAddressId";
+  const type = personalCurrentAddressId ? "setPersonalCurrentAddressId" : "setPersonalBornAddressId";
   const { ...form } = useForm<{ id?: number }>({
     resolver: zodResolver(personalAddressSchema),
     defaultValues: {

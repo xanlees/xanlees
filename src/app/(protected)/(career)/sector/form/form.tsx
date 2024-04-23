@@ -28,9 +28,12 @@ export const FormSector: any = ({ branchType }: { branchType: string }) => {
         <AccordionContent>
           <Form {...form}>
             <Form.Field {...form} name="name" label="ພະແນກ">
-              <Input placeholder="ຂະແໜງ" className="block w-full" />
+              <Input placeholder="" className="block w-full" />
             </Form.Field>
-            <BranchSection form={form} branch={branch} />
+            <div className=" flex gap-x-5">
+              <BranchSection form={form} branch={branch} />
+              <Type form={form} branch={branch} />
+            </div>
           </Form>
         </AccordionContent>
       </AccordionItem>
@@ -38,15 +41,17 @@ export const FormSector: any = ({ branchType }: { branchType: string }) => {
   );
 };
 
-const BranchSection = ({
-  form,
-  branch,
-}: {
-  form: IFormConfig
-  branch: any
-}) => (
+const BranchSection = ({ form, branch }: { form: IFormConfig, branch: any }) => (
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...form} name="branchId" label="ເລືອກສາຂາ">
+    <Form.Field {...form} name="branchId" label="ເລືອກທີຕັ້ງຫ້ອງການ">
+      <Form.Combobox {...branch} />
+    </Form.Field>
+  </div>
+);
+
+const Type = ({ form, branch }: { form: IFormConfig, branch: any }) => (
+  <div className="inline-flex flex-row items-center justify-start gap-x-4">
+    <Form.Field {...form} name="branchId" label="ເລືອກທີຕັ້ງຫ້ອງການ">
       <Form.Combobox {...branch} />
     </Form.Field>
   </div>

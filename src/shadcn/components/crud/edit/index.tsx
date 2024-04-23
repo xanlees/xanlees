@@ -11,11 +11,12 @@ import { PageHeader } from "../../pageHeader";
 import { Breadcrumb } from "../../breadcrumb";
 import { DeleteButton, ShowButton } from "../../buttons";
 
-export const Edit: React.FC<ListProps> = ({
+export const Edit: React.FC<ListProps & { showButtonShow?: boolean}> = ({
     title,
     resource,
     breadcrumb: breadcrumbFromProps,
     children,
+    showButtonShow = true
 }) => {
     const translate = useTranslate();
     const { options: { breadcrumb: globalBreadcrumb } = {} } =
@@ -56,7 +57,7 @@ export const Edit: React.FC<ListProps> = ({
                 }
                 extra={
                     <div className="inline-flex flex-row items-center gap-x-2">
-                        <ShowButton />
+                        {showButtonShow && <ShowButton />}
                         <DeleteButton />
                     </div>
                 }

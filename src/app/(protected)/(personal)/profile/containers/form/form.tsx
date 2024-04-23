@@ -5,22 +5,17 @@ import { FormFieldContainer } from "./FormFieldContainer";
 interface ProfileFormProps {
   setProfileID?: (id: number) => void
   isEmployee?: boolean
-  isEdit?: boolean
   type: string
 }
-
 export const ProfileForm: React.FC<ProfileFormProps> = ({
   isEmployee = true,
-  isEdit = false,
   type,
 }) => {
   const { form, state } = useProfileForm(type);
   const isComplete = state?.profileId ?? 0;
-  const shouldDisplayForm = !isComplete || isEdit;
-
   return (
     <div className="rounded-full w-72 sm:w-[710px] ">
-      {shouldDisplayForm
+      {isComplete
         ? (
           <p className="italic">ສຳເລັດແລ້ວ !</p>)
         : (

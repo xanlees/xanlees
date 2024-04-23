@@ -33,7 +33,6 @@ export const useProfileForm = (type: string) => {
         const responseData = (data as IMessages).response.data;
         return getErrorMessageNotification({ responseData, errorMessages, defaultMessage });
       },
-      successNotification: false,
       redirect: false,
     },
     warnWhenUnsavedChanges: true,

@@ -1,11 +1,24 @@
 "use client";
-import { Show } from "@/shadcn/components/crud";
 import React from "react";
 import { Card, CardHeader, CardTitle } from "@src/shadcn/elements";
 import moment from "moment";
-import { type IEducation } from "@personal";
+import { useTableEducation } from "../table/useTableConfig";
+import { getActionsButton } from "@src/common/containers/column/actionCard";
+import { CardView } from "@src/shadcn/components/table/card-view";
+import { Show } from "@src/shadcn/components/crud";
 
-export function EducationDetail({ educationData }: { educationData: IEducation[] }): JSX.Element {
+interface IGraduationId {
+  degree?: string
+  sector?: string
+}
+
+interface IEducationRow {
+  graduationId?: IGraduationId
+  year?: string
+  branch?: string
+}
+export function EducationDetail({ profileId }: { profileId: number }): JSX.Element {
+  const { table } = useTableEducation(profileId);
   return (
     <Card className="shadow-xl pb-3 rounded-lg w-full bg-white dark:bg-gray-800 dark:text-white h-fit ">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
@@ -13,18 +26,28 @@ export function EducationDetail({ educationData }: { educationData: IEducation[]
           {"ຂໍ້ມູນການສຶກສາ"}
         </CardTitle>
       </CardHeader>
-      <div className="px-4 py-2">
-        {educationData?.map((item) => {
-          return (
-            <Show.Row
-              key={item.id}
-              className="text-md text-gray-700 dark:text-gray-300"
-              title={"ລະດັບຈົບການສຶກສາວິຊາສະເພາະ"}
-              content={`${item.graduationId.degree}, ${item.graduationId.sector}, ${item?.branch}, ຈົບສົກປີ ${moment(item?.year).format("YYYY")}`}
-            />
-          );
-        })}
-      </div>
+      <CardView table={table} className="w-96" showSearchBar={false} showPagination={false}>
+        <CardView.Row
+          header=""
+          id="id"
+          accessorKey="id"
+          cell={({ row }) => {
+            const rowData = row.original as IEducationRow;
+            const graduation = rowData.graduationId ?? {};
+            const degree = graduation.degree ?? "Unknown Degree";
+            const sector = graduation.sector ?? "Unknown Sector";
+            const year = rowData.year ?? "Unknown Year";
+            const branch = rowData.branch ?? "Unknown Year";
+            return (
+              <Show.Row
+                className="ຂໍ້ມູນການສຶກສາ"
+                content={<div className="-mx-48">{`${degree}, ${sector}, ຈົບທີ${branch} ຈົບສົກປີ ${moment(year).format("YYYY")}`}</div>}
+              />
+            );
+          }}
+        />
+        {getActionsButton("education")}
+      </CardView>
     </Card>
   );
 }
