@@ -14,14 +14,14 @@ export default function UserCreate({ params }: { params: { id: number } }): JSX.
   const profile = Number(params.id);
   return (
     <Create
-      title="ຟອມບັນຈຸຕຳແໜ່ງ"
+      title="ຟອມຜູ້ໃຊ້ລະບົບ"
       resource="profile"
       breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
     >
       <Card className="mx-auto mb-20 rounded-md shadow-lg max-w-[900px]">
         <CardHeader>
           <span className="w-full py-4 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl ">
-            ຟອມຕໍາແໜ່ງ
+            ຟອມຜູ້ໃຊ້ລະບົບ
           </span>
         </CardHeader>
         <div className="p-5">

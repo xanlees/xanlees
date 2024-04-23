@@ -15,7 +15,7 @@ export function useSector({ branchId, branch }: UseSectorProps): { data: ISector
       {
         field: "branch_id",
         operator: "eq",
-        value: branchId,
+        value: branchId.join(),
       },
     ],
     queryOptions: {
