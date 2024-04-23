@@ -4,6 +4,11 @@ export interface IFormConfig {
   setValue?: UseFormSetValue<FieldValues>
   watch?: UseFormWatch<FieldValues>
   control?: Control<FieldValues>
+  form: {
+    setValue?: UseFormSetValue<FieldValues>
+    watch?: UseFormWatch<FieldValues>
+    control?: Control<FieldValues>
+  }
 }
 interface FormHeadersConfigMultipart {
   headers: {
