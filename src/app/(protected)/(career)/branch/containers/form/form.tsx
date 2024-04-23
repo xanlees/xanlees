@@ -7,6 +7,7 @@ import { useFormPositionConfig } from "./form/config";
 import { type HttpError, useSelect, type BaseOption, type UseSelectReturnType } from "@refinedev/core";
 import { type ISector } from "../../../index";
 import { type IFormConfig } from "@src/common/interface";
+import { WorkTimeSettingsForm } from "../../../workTimeSettings/form/form";
 
 export const BranchForm: React.FC<{ type: string }> = (type) => {
   const branchType = type.type;
@@ -29,6 +30,7 @@ export const BranchForm: React.FC<{ type: string }> = (type) => {
       </Form>
       <FormSector branchType={branchType} />
       <FormBranch type={branchType} />
+      <WorkTimeSettingsForm/>
     </div>
   );
 };

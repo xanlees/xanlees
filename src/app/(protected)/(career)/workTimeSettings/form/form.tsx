@@ -11,7 +11,7 @@ import {
 } from "@src/shadcn/elements/accordion";
 import { type IBranch } from "../interface";
 
-export const FormSector: any = ({ branchType }: { branchType: string }) => {
+export const WorkTimeSettingsForm: any = ({ branchType }: { branchType: string }) => {
   const { form } = useFormConfig();
   const branch = useSelect<IBranch>({
     resource: "branch",
