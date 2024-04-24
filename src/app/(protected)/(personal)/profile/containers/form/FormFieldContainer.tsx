@@ -28,7 +28,7 @@ export const FormFieldContainer: React.FC< CommonProps & { isEmployee: boolean }
     </>
   );
 };
-const BirthdayInput: React.FC<CommonProps> = ({ form }) => {
+export const BirthdayInput: React.FC<CommonProps> = ({ form }) => {
   return (
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
@@ -39,7 +39,7 @@ const BirthdayInput: React.FC<CommonProps> = ({ form }) => {
     </div>
   );
 };
-const UniqueNumberInput: React.FC<CommonProps & { isEmployee?: boolean }> = ({ form, isEmployee }) => {
+export const UniqueNumberInput: React.FC<CommonProps & { isEmployee?: boolean }> = ({ form, isEmployee }) => {
   const typeOfUniqueNumber = uniqueNumber(isEmployee);
   return (
     <div className="w-full lg:w-80 ">
@@ -56,7 +56,7 @@ const UniqueNumberInput: React.FC<CommonProps & { isEmployee?: boolean }> = ({ f
   );
 };
 
-const GenderAndMaritalStatusSelect: React.FC<CommonProps> = ({ form }) => {
+export const GenderAndMaritalStatusSelect: React.FC<CommonProps> = ({ form }) => {
   return (
     <div className="w-full lg:w-80">
       <div className="w-full flex flex-col lg:flex-row lg:gap-x-5">

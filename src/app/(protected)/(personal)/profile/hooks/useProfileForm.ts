@@ -92,5 +92,6 @@ function transformUniqueNumber(val: ProfileSendData): Record<string, any> {
     transformed.birthday = transformed.birthday.toISOString();
   }
   delete transformed.uniqueNumber;
+  console.log("transformed", transformed);
   return transformed;
 }

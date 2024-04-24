@@ -7,6 +7,7 @@ import { Card, CardHeader } from "@src/shadcn/elements";
 import FormStep from "@src/common/components/stepForm";
 import { useOne } from "@refinedev/core";
 import { type IProfile } from "../../interface/model";
+import { ProfileEditForm } from "../../containers/form/editForm";
 
 const breadcrumbs = [
   { label: "Employee", href: "/profile" },
@@ -23,28 +24,17 @@ export default function ProfileEdit({
     id: Number(params.id ?? 0),
   });
   const profileId = Number(data?.data?.id) ?? 0;
-  const form = formStepDataList({ profileId });
   return (
     <Edit title="ຟອມສ້າງພະນັກງານ" resource="profile" breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}>
-      <Card className="mx-auto mt-10 mb-20 rounded-md shadow-lg max-w-[900px]">
-        <CardHeader>
-          <span className="w-full py-4 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl ">
-            ຟອມສ້າງພະນັກງານ
-          </span>
-        </CardHeader>
-        <ProfileProvider>
-          <FormStep formStepsData={form} showDescriptionsForAllSteps />
-        </ProfileProvider>
-      </Card>
+      <div className="flex justify-center ">
+        <div className="flex flex-col border rounded-2xl max-w-[700px]">
+          <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
+          ຟອມສ້າງພະນັກງານ
+          </div>
+          <ProfileEditForm type={""}/>
+        </div>
+      </div>
     </Edit>
   );
 }
 
-export const formStepDataList = ({ profileId }: { profileId: number }) => [
-  {
-    stepLabel: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
-    stepDescription: <ProfileForm isEmployee={true} type="EMPLOYEE" />,
-    completed: false,
-    isEdit: true,
-  },
-];
