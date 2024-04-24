@@ -1,7 +1,7 @@
 "use client";
 
 import { Create } from "@src/shadcn/components/crud";
-import { EmployeeForm } from "../../containers/form";
+import { EmployeeForm } from "../../containers/form/createForm";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 import { Card, CardHeader } from "@src/shadcn/elements";
 

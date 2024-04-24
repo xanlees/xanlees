@@ -19,7 +19,7 @@ interface IEducationRow {
 export function EducationDetail({ profileId }: { profileId: number }): JSX.Element {
   const { table } = useTableEducation(profileId);
   return (
-    <Card className="shadow-xl pb-3 rounded-lg w-full bg-white dark:bg-gray-800 dark:text-white h-fit ">
+    <Card className="shadow-xl pb-3 rounded-lg w-fit bg-white dark:bg-gray-800 dark:text-white h-fit ">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
           {"ຂໍ້ມູນການສຶກສາ"}

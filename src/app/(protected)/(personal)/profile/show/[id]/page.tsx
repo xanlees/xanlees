@@ -10,20 +10,17 @@ import {
 import { Show } from "@/shadcn/components/crud";
 import {
   useEmployees,
-  usePersonalAddress,
   useProfile,
   useSector,
   useSectorId,
 } from "../../hooks/show";
 import { type IProfile } from "../../interface/model";
 import { type IEmployee, type ISector } from "@career";
-import { type IAddress } from "../../../address/interface";
 
 export default function ProfileShow({ params }: { params: { id: number } }): JSX.Element {
   const profileId = Number(params.id ?? 0) ?? 0;
   const { data: profileData } = useProfile<IProfile>({ profileId: params.id });
   const { data: employeeData } = useEmployees<IEmployee>({ profileId: params.id });
-  const { data: personalAddressData } = usePersonalAddress<IAddress[]>({ profileId: params.id });
   const sectorId = useSectorId(employeeData as IEmployee[]);
   const { data: sectorData } = useSector<ISector>({ sectorId });
   return (
@@ -38,7 +35,7 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
           <DocumentPDF profileId={params?.id}/>
         </div>
         <div className="my-2 sm:my-0">
-          <AddressDetail personalAddressData={personalAddressData as IAddress[]} />
+          <AddressDetail profileId={profileId}/>
         </div>
       </div>
     </Show>

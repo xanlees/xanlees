@@ -34,7 +34,7 @@ function isFormCompleted(state: { personalCurrentAddressId?: number, personalBor
   return !!state.personalBornAddressId;
 }
 
-const Village: React.FC<{ form: IFormConfig, title: string }> = ({ form, title }) => {
+export const Village: React.FC<{ form: IFormConfig, title: string }> = ({ form, title }) => {
   return (
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
@@ -46,7 +46,7 @@ const Village: React.FC<{ form: IFormConfig, title: string }> = ({ form, title }
   );
 };
 
-const Province: React.FC<{ form: IFormConfig }> = ({ form }) => {
+export const Province: React.FC<{ form: IFormConfig }> = ({ form }) => {
   return (
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
@@ -57,7 +57,7 @@ const Province: React.FC<{ form: IFormConfig }> = ({ form }) => {
     </div>
   );
 };
-const District: React.FC<{ form: IFormConfig }> = ({ form }) => {
+export const District: React.FC<{ form: IFormConfig }> = ({ form }) => {
   const province = (form.watch != null) ? form.watch("province") as string : "";
   const district = useDistrictSelect({ province });
   return (

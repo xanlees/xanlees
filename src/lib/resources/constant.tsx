@@ -88,4 +88,9 @@ export const resources = [
       label: "ຜູ້ໃຊ້ລະບົບ",
     },
   },
+  {
+    name: "address",
+    disabled: true,
+    edit: "/address/edit/:id",
+  },
 ];

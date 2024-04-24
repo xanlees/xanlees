@@ -1,73 +1,27 @@
 import React from "react";
 import { Form } from "@src/shadcn/components/form";
-import { Input } from "@src/shadcn/elements";
-import { provinceList } from "@src/common/lib/provinceList";
-import { useDistrictSelect } from "../hook/useDistrictSelect";
-import { usePersonalAddressForm } from "../hook/usePersonalAddressForm";
-import { type IFormConfig } from "@src/common/interface";
+import { usePersonalAddressEditForm } from "../hook/usePersonalAddressEditForm";
+import { District, Province, Village } from "./form";
 
-export function PersonalAddressForm({ isCurrent = true, isEdit = false }) {
-  const status = isCurrent ? "ທີ່ຢູ່ປະຈຸບັນ" : "ທີ່ຢູ່ເກີດ";
-  const village = isCurrent ? "ບ້ານຢູ່ປະຈຸບັນ" : "ບ້ານເກີດ";
-  const { form, state } = usePersonalAddressForm({ status });
-  const isCompleted = isFormCompleted(state, isCurrent);
-  const shouldDisplayForm = isCompleted || isEdit;
+export function PersonalAddressEditForm({ id }: { id: number }) {
+  const { form } = usePersonalAddressEditForm({ id });
+  const village = (form.watch != null) ? form.watch("status") as string : "";
   return (
-    <div className="rounded-full w-72 sm:w-[710px]">
-      {shouldDisplayForm
-        ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
-        : (<Form {...form}>
-          <div className="flex flex-wrap gap-2">
-            <Village form={form } title={village} />
-            <Province form={ form } />
-            <District form={form } />
-          </div>
-        </Form>)}
+    <div className="flex justify-center">
+      <div className="flex flex-col border rounded-2xl">
+        <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
+          {`ຟອມຂໍ້ມູນ${village}`}
+        </div>
+        <div className="rounded-full w-72 sm:w-[710px]">
+          <Form {...form}>
+            <div className="flex flex-wrap gap-2">
+              <Village form={form } title={village} />
+              <Province form={ form } />
+              <District form={form } />
+            </div>
+          </Form>
+        </div>
+      </div>
     </div>
   );
 }
-
-function isFormCompleted(state: { personalCurrentAddressId?: number, personalBornAddressId?: number }, isCurrent: boolean): boolean {
-  if (isCurrent) {
-    return !!state.personalCurrentAddressId;
-  }
-  return !!state.personalBornAddressId;
-}
-
-const Village: React.FC<{ form: IFormConfig, title: string }> = ({ form, title }) => {
-  return (
-    <div className="w-full lg:w-80 ">
-      <div className="relative w-full mb-3">
-        <Form.Field {...form} name={"village"} label={title} require={false} >
-          <Input className="w-full" placeholder="ໂຊຫໃຫຍ່" />
-        </Form.Field>
-      </div>
-    </div>
-  );
-};
-
-const Province: React.FC<{ form: IFormConfig }> = ({ form }) => {
-  return (
-    <div className="w-full lg:w-80 ">
-      <div className="relative w-full mb-3">
-        <Form.Field {...form} name={"province"} label={"ເລືອກແຂວງ"} require={false} >
-          <Form.Combobox {...(provinceList as any)} className="w-full lg:w-80" />
-        </Form.Field>
-      </div>
-    </div>
-  );
-};
-const District: React.FC<{ form: IFormConfig }> = ({ form }) => {
-  const province = (form.watch != null) ? form.watch("province") as string : "";
-  const district = useDistrictSelect({ province });
-  return (
-    <div className="w-full lg:w-80 ">
-      <div className="relative w-full mb-3">
-        <Form.Field {...form} name={"district"} label={"ເລືອກເມືອງ"} require={false} >
-          <Form.Combobox {...(district as any)} className="w-full lg:w-80" />
-        </Form.Field>
-      </div>
-    </div>
-  );
-};
-
