@@ -29,8 +29,8 @@ export const BranchForm: React.FC<{ type: string }> = (type) => {
         <SectorSection form={form} sector={sector} />
       </Form>
       <FormSector branchType={branchType} />
-      <FormBranch type={branchType} />
       <WorkTimeSettingsForm/>
+      <FormBranch type={branchType} />
     </div>
   );
 };

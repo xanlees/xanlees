@@ -32,7 +32,7 @@ export const FormSector: any = ({ branchType }: { branchType: string }) => {
             </Form.Field>
             <div className=" flex gap-x-5">
               <BranchSection form={form} branch={branch} />
-              <Type form={form} branch={branch} />
+              <Type form={form} />
             </div>
           </Form>
         </AccordionContent>
@@ -49,10 +49,35 @@ const BranchSection = ({ form, branch }: { form: IFormConfig, branch: any }) => 
   </div>
 );
 
-const Type = ({ form, branch }: { form: IFormConfig, branch: any }) => (
+const Type = ({ form }: { form: IFormConfig }) => (
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...form} name="branchId" label="ເລືອກທີຕັ້ງຫ້ອງການ">
-      <Form.Combobox {...branch} />
+    <Form.Field {...form} name="type" label="ປະເພດ">
+      <Form.Combobox {...(typeList as any)} />
     </Form.Field>
   </div>
 );
+
+const typeList = {
+  options: [
+    {
+      label: "ຂະແໜງ",
+      value: "Sector",
+    },
+    {
+      label: "ຫ້ອງ",
+      value: "Department",
+    },
+    {
+      label: "ໜ່ວຍບໍລິການ",
+      value: "Unit",
+    },
+    {
+      label: "ບໍ່ລະບຸ",
+      value: "Not specified",
+    },
+    {
+      label: "ລວມ",
+      value: "ALL",
+    },
+  ],
+};

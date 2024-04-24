@@ -14,15 +14,13 @@ export const resources = [
     },
   },
   {
-    name: "agent",
-    list: "/agent",
-    create: "/agent/create",
-    edit: "/agent/edit/:id",
-    show: "/agent/show/:id",
-    icon: <User />,
-    meta: {
-      label: "ແມ່ຫວຍ",
-    },
+    name: "user-profile",
+    list: "/user-profile",
+    create: "/user-profile/create",
+    edit: "/user-profile/edit/:id",
+    show: "/user-profile/show/:id",
+    icon: <Timer />,
+    meta: { label: "ປໍ້າເຂົ້າວຽກແລະປໍ້າອອກ" },
   },
   {
     name: "branch",
@@ -32,16 +30,6 @@ export const resources = [
     show: "/branch/show/:id",
     meta: {
       label: "ສາຂາຫ້ອງການ",
-    },
-  },
-  {
-    name: "lottery-branch",
-    list: "/lottery-branch",
-    create: "/lottery-branch/create",
-    edit: "/lottery-branch/edit/:id",
-    show: "/lottery-branch/show/:id",
-    meta: {
-      label: "ສາຂາຫວຍ",
     },
   },
   {
@@ -56,13 +44,26 @@ export const resources = [
     },
   },
   {
-    name: "user-profile",
-    list: "/user-profile",
-    create: "/user-profile/create",
-    edit: "/user-profile/edit/:id",
-    show: "/user-profile/show/:id",
-    icon: <Timer />,
-    meta: { label: "ປໍ້າເຂົ້າວຽກແລະປໍ້າອອກ" },
+    name: "agent",
+    list: "/agent",
+    create: "/agent/create",
+    edit: "/agent/edit/:id",
+    show: "/agent/show/:id",
+    icon: <User />,
+    meta: {
+      label: "ແມ່ຫວຍ",
+    },
+  },
+
+  {
+    name: "lottery-branch",
+    list: "/lottery-branch",
+    create: "/lottery-branch/create",
+    edit: "/lottery-branch/edit/:id",
+    show: "/lottery-branch/show/:id",
+    meta: {
+      label: "ສາຂາຫວຍ",
+    },
   },
   {
     name: "user",

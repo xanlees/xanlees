@@ -8,6 +8,7 @@ export const useFormConfig = () => {
     defaultValues: {
       branchId: 0,
       name: "",
+      type: "",
     },
     refineCoreProps: {
       resource: "sector",
@@ -20,9 +21,12 @@ export const useFormConfig = () => {
 
 export const sectorSchema = z.object({
   branchId: z.number().min(1, {
-    message: "branchId  ID must be a valid positive number.",
+    message: "ກະລຸນາເລືອກທີຕັ້ງຫ້ອງການ",
   }),
   name: z.string().min(2, {
-    message: "Sector Detail Name must be at least 2 characters.",
+    message: "ກະລຸນາປ້ອນຊື່ພະແນກ",
+  }),
+  type: z.string().min(2, {
+    message: "ກະລຸນາເລືອກປະເພດ",
   }),
 });

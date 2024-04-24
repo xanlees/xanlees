@@ -22,16 +22,14 @@ export default function UserList(): JSX.Element {
   return (
     <div className="mx-auto">
       <List>
-        <div className="w-2/3 mx-auto">
-          <Table table={table}>
-            {getSelectColumn(friendly)}
-            {usernameColumn()}
-            {statusColumn()}
-            {groupColumn()}
-            {dateJoinedColumn()}
-            {getActionsColumn("user")}
-          </Table>
-        </div>
+        <Table table={table}>
+          {getSelectColumn(friendly)}
+          {usernameColumn()}
+          {statusColumn()}
+          {groupColumn()}
+          {dateJoinedColumn()}
+          {getActionsColumn("user")}
+        </Table>
       </List>
     </div>
 
