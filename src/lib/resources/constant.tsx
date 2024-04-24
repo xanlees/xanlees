@@ -75,4 +75,16 @@ export const resources = [
       label: "ຜູ້ໃຊ້ລະບົບ",
     },
   },
+  {
+    name: "education",
+    disabled: true,
+    list: "/education",
+    create: "/education/create",
+    edit: "/education/edit/:id",
+    show: "/education/show/:id",
+    icon: <User />,
+    meta: {
+      label: "ຜູ້ໃຊ້ລະບົບ",
+    },
+  },
 ];

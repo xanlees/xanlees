@@ -4,8 +4,8 @@ import { Form } from "@/shadcn/components/form";
 import { useEducationFormEdit } from "../../hook/form/useEducationFormEdit";
 import { useGraduationSelect } from "../../hook/form/useGraduationSelect";
 
-export const EducationEditForm: React.FC = () => {
-  const { form } = useEducationFormEdit();
+export const EducationEditForm: React.FC<{ id: number }> = ({ id }) => {
+  const { form } = useEducationFormEdit(id);
   const graduation = useGraduationSelect();
   return (
     <div className="flex justify-center">

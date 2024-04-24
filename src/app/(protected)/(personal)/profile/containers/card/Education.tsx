@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { Card, CardHeader, CardTitle } from "@src/shadcn/elements";
-import moment from "moment";
 import { useTableEducation } from "../table/useTableConfig";
 import { getActionsButton } from "@src/common/containers/column/actionCard";
 import { CardView } from "@src/shadcn/components/table/card-view";
@@ -41,7 +40,7 @@ export function EducationDetail({ profileId }: { profileId: number }): JSX.Eleme
             return (
               <Show.Row
                 className="ຂໍ້ມູນການສຶກສາ"
-                content={<div className="-mx-48">{`${degree}, ${sector}, ຈົບທີ${branch} ຈົບສົກປີ ${moment(year).format("YYYY")}`}</div>}
+                content={<div className="-mx-48">{`${degree}, ${sector}, ຈົບທີ${branch} ຈົບສົກປີ ${year}`}</div>}
               />
             );
           }}

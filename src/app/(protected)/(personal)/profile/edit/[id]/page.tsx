@@ -1,5 +1,5 @@
 "use client";
-
+import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 import React from "react";
 import { Edit } from "@/shadcn/components/crud";
 import { ProfileForm, ProfileProvider } from "@personal";
@@ -7,6 +7,11 @@ import { Card, CardHeader } from "@src/shadcn/elements";
 import FormStep from "@src/common/components/stepForm";
 import { useOne } from "@refinedev/core";
 import { type IProfile } from "../../interface/model";
+
+const breadcrumbs = [
+  { label: "Employee", href: "/profile" },
+  { label: "Create" },
+];
 
 export default function ProfileEdit({
   params,
@@ -20,7 +25,7 @@ export default function ProfileEdit({
   const profileId = Number(data?.data?.id) ?? 0;
   const form = formStepDataList({ profileId });
   return (
-    <Edit title="ຟອມສ້າງພະນັກງານ" resource="profile">
+    <Edit title="ຟອມສ້າງພະນັກງານ" resource="profile" breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}>
       <Card className="mx-auto mt-10 mb-20 rounded-md shadow-lg max-w-[900px]">
         <CardHeader>
           <span className="w-full py-4 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl ">
