@@ -16,7 +16,6 @@ const ThemedSiderV2MenuItem: FC<{
   children?: ReactNode;
   icon?: ReactNode;
 }> = ({ resource, selectedKey, asChild = false, children }) => {
-    console.log("resource", resource)
   const active = useMemo(() => {
     return resource.key === selectedKey;
   }, [resource, selectedKey]);

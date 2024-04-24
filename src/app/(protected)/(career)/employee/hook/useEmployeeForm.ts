@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { type IFormConfig } from "@src/common/interface";
 import { type UseFormSetValue } from "react-hook-form";
+
 export const useFormConfig = ({ type, profile }: { type?: string, profile: number }) => {
   const redirect = type === "LOTTERY" ? "/agent" : `/user/create/${profile}`;
   const router = useRouter();

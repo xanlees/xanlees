@@ -24,6 +24,10 @@ export const handleInputChange = (
     handleCurrencyInputChange(event, onChange);
     return; 
   }
+  if (type === 'checkbox') {
+    handleCurrencyInputChange(event, onChange);
+    return; 
+  }
   onChange?.(event);
 };
 

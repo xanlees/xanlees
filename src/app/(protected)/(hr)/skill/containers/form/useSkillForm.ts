@@ -51,7 +51,6 @@ export const Schema = z.object({
     ),
 }).transform((val) => {
   const List = val.skill;
-  console.log("List", List);
   return List;
 });
 

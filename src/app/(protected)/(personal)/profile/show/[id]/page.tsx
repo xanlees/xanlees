@@ -4,25 +4,18 @@ import {
   AddressDetail,
   DocumentPDF,
   EducationDetail,
-  EmployeeDetail,
   ProfileDetail,
 } from "../../containers/card";
 import { Show } from "@/shadcn/components/crud";
 import {
-  useEmployees,
   useProfile,
-  useSector,
-  useSectorId,
 } from "../../hooks/show";
 import { type IProfile } from "../../interface/model";
-import { type IEmployee, type ISector } from "@career";
+import { EmployeeCard } from "@src/app/(protected)/(career)/employee/containers/card";
 
 export default function ProfileShow({ params }: { params: { id: number } }): JSX.Element {
   const profileId = Number(params.id ?? 0) ?? 0;
   const { data: profileData } = useProfile<IProfile>({ profileId: params.id });
-  const { data: employeeData } = useEmployees<IEmployee>({ profileId: params.id });
-  const sectorId = useSectorId(employeeData as IEmployee[]);
-  const { data: sectorData } = useSector<ISector>({ sectorId });
   return (
     <Show>
       <div className="flex-row gap-2 mt-5 md:flex">
@@ -30,7 +23,7 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
           <ProfileDetail profileData={profileData} visible={false} />
         </div>
         <div className="space-y-2 ">
-          <EmployeeDetail employeeData={employeeData} sectorData={sectorData}/>
+          <EmployeeCard profileId={profileId}/>
           <EducationDetail profileId={profileId} />
           <DocumentPDF profileId={params?.id}/>
         </div>

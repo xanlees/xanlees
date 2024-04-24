@@ -93,4 +93,9 @@ export const resources = [
     disabled: true,
     edit: "/address/edit/:id",
   },
+  {
+    name: "employee",
+    disabled: true,
+    edit: "/employee/edit/:id",
+  },
 ];

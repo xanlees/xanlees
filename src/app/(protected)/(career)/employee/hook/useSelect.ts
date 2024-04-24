@@ -2,11 +2,6 @@ import { type BaseOption, useSelect, useMany } from "@refinedev/core";
 import { type IPosition, type IBranch } from "@career";
 type GroupedOptions = Record<number, BaseOption[]>;
 
-// const getBranchName = (branchData: IBranch[] | undefined, branchId: number): string => {
-//   const branch = branchData?.find((b) => b.id === branchId);
-//   return branch?.name ?? "";
-// };
-
 export const fetchBranchData = (branchIds: number[]) => {
   return useMany<IBranch>({
     resource: "branch",
@@ -23,8 +18,6 @@ export const extractBranchIds = (positions: IPosition[]): number[] => {
 export const generateGroupedOptions = (positions: IPosition[], branchData: IBranch[]): GroupedOptions => {
   return positions.reduce((acc: GroupedOptions, item) => {
     const branchId = item.sectorId?.branchId ?? 0;
-    // const branchName = getBranchName(branchData, branchId);
-
     if (!(branchId in acc)) {
       acc[branchId] = [];
     }

@@ -6,8 +6,8 @@ import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { Input, Label } from "@src/shadcn/elements";
 import React from "react";
 import { useFieldArray } from "react-hook-form";
-import { useFormConfig } from "./config";
-import { usePositionSelect } from "./fields/select";
+import { useFormConfig } from "../../hook/useEmployeeForm";
+import { usePositionSelect } from "../../hook/useSelect";
 
 export const EmployeeForm = ({ profileId, type }: { redirect: RedirectAction, profileId: string, type?: string }) => {
   const profile = Number(profileId);

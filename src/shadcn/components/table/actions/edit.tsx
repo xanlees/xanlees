@@ -16,10 +16,7 @@ export function EditAction({
     ...props
 }: EditActionProps) {
     const edit = useGetEditUrl(resource, row.id);
-    console.log("resource", resource)
-    console.log("disabled", disabled)
-    console.log("row", row.id)
-    console.log("edit", edit)
+
     return (
         <RowAction
             {...props}
