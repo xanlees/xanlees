@@ -5,6 +5,7 @@ import {
   AppliedPosition,
   ExpectedSalary,
   FullNameColumn,
+  TagIDColumn,
   workExperienceColumn,
 } from "./containers/column";
 import { GenderColumn, MarriageColumn, PhoneNumberColumn } from "@src/common/containers/column";
@@ -40,6 +41,7 @@ export default function ApplicationList(): JSX.Element {
           {AppliedPosition}
           {ExpectedSalary}
           {ApplicationStatusColumn()}
+          {TagIDColumn}
           {workExperienceColumn(dataWorkExperience)}
           {getActionsColumn("application")}
         </Table>

@@ -61,5 +61,6 @@ p, admin, user, (list)|(create)
 p, admin, user/*, (edit)|(show)|(delete)
 p, admin, work-time-settings/*, (edit)|(show)|(delete)
 p, admin, work-time-settings, (list)|(create)
+p, admin, changelog/*, (edit)|(show)|(delete)
+p, admin, changelog, (list)|(create)
 `);
-
