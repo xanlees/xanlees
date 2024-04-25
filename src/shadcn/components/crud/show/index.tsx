@@ -18,7 +18,8 @@ export const Show = ({
     resource: resourceFromProps,
     breadcrumb: breadcrumbFromProps,
     children,
-}: ListProps) => {
+    showButtonEdit= true
+}: ListProps & { showButtonEdit?: boolean}) => {
     const translate = useTranslate();
     const { options: { breadcrumb: globalBreadcrumb } = {} } =
         useRefineContext();
@@ -58,7 +59,7 @@ export const Show = ({
                 isBack
                 extra={
                     <div className="inline-flex items-center gap-x-2">
-                        <EditButton />
+                        {showButtonEdit && <EditButton />}
                         <DeleteButton />
                     </div>
                 }

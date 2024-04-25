@@ -24,6 +24,9 @@ export const usePhysicalForm = () => {
       onMutationSuccess: (data) => {
         dispatch({ type: "setPhysicalProfileId", payload: data?.data?.id ?? 0 });
       },
+      successNotification: () => {
+        return { message: "Physical profile successfully created!", type: "success" };
+      },
     },
     warnWhenUnsavedChanges: true,
   });

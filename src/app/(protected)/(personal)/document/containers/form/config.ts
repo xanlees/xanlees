@@ -18,6 +18,9 @@ export const useFormConfig = () => {
       onMutationSuccess: (data) => {
         dispatch({ type: "setIsUploaded", payload: true });
       },
+      successNotification: () => {
+        return { message: "ສ້າງເອກສານຄັດຕິດສໍາເລັດ", type: "success" };
+      },
     },
     warnWhenUnsavedChanges: true,
   });

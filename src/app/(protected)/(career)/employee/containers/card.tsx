@@ -4,7 +4,7 @@ import { getActionsButton } from "@src/common/containers/column/actionCard";
 import { CardView } from "@src/shadcn/components/table/card-view";
 import moment from "moment";
 import { useTableEmployee } from "../hook/useTableEmployee";
-import { type IEmployees } from "../interface";
+import { type IEmployee } from "../interface";
 
 export function EmployeeCard({ profileId }: { profileId: number }): JSX.Element {
   const { table } = useTableEmployee(profileId);
@@ -21,7 +21,7 @@ export function EmployeeCard({ profileId }: { profileId: number }): JSX.Element 
           id="id"
           accessorKey="id"
           cell={({ row }) => {
-            const rowData = row.original as IEmployees;
+            const rowData = row.original as IEmployee;
             const isLatest = rowData.isLatest ? "ຕໍາແໜ່ງປະຈຸບັນ" : "ຕໍາແໜ່ງຜ່ານມາ";
             const positionName = rowData.positionId?.name ?? "Unknown Position";
             const sectorName = rowData.positionId?.sectorId?.name ?? "Unknown Sector";

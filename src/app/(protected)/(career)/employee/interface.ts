@@ -1,5 +1,5 @@
 
-export interface IEmployees {
+export interface IEmployeeExpand {
   id: number
   positionId: {
     name: string
@@ -14,6 +14,15 @@ export interface IEmployees {
     id: number
     type: string
   }
+  isLatest: boolean
+  profileId: number
+  joiningDate: string
+}
+
+export interface IEmployee {
+  id: number
+  positionId: number
+  branchId: number
   isLatest: boolean
   profileId: number
   joiningDate: string

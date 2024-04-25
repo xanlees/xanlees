@@ -16,17 +16,15 @@ export const useFormConfig = () => {
     resolver: zodResolver(graduationSchema),
     defaultValues: {
       education: [
-        {
-          branch: "",
-          graduationId: 0,
-          profileId: state.profileId,
-          year: "",
-        },
+        { branch: "", graduationId: 0, profileId: state.profileId, year: "" },
       ],
     },
     refineCoreProps: {
       resource: "education",
       redirect: false,
+      successNotification: () => {
+        return { message: "ສ້າງຂໍ້ມູນການສຶກສາສໍາເລັດ", type: "success" };
+      },
       onMutationSuccess: (data) => {
         let id: number;
         if (Array.isArray(data?.data) && data?.data.length > 0) {

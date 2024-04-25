@@ -1,8 +1,8 @@
 import { useTable } from "@refinedev/react-table";
-import { type IEmployees } from "../interface";
+import { type IEmployee } from "../interface";
 
 export const useTableEmployee = (profileId: number) => {
-  const table = useTable<IEmployees>({
+  const table = useTable<IEmployee>({
     columns: [],
     enableSorting: true,
     enableColumnFilters: true,

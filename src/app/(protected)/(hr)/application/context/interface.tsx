@@ -6,7 +6,7 @@ export interface ApplicationState {
   workExperienceId?: number
   updateApplicationId?: number
   skillId?: number
-  tagId?: number
+  tagId?: string
 }
 
 type ApplicationStateActionType = "setApplicationId" | "setWorkExperienceId" |

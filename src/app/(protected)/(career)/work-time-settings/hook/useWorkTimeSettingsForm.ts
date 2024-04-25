@@ -2,8 +2,9 @@ import * as z from "zod";
 import { useEffect, useRef } from "react";
 import { useForm } from "@refinedev/react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type IFormConfig } from "@src/common/interface";
+import { type ErrorMapMessage, type IMessages, type IFormConfig } from "@src/common/interface";
 import { type UseFormSetValue } from "react-hook-form";
+import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 
 export const useWorkTimeSettingsForm = () => {
   const branch = 0;
@@ -23,12 +24,21 @@ export const useWorkTimeSettingsForm = () => {
     refineCoreProps: {
       resource: "branch/work-time-settings",
       redirect: false,
+      errorNotification: (data: any) => {
+        const responseData = (data as IMessages).response.data;
+        const defaultMessage = "ບໍ່ສາມາດສວນຕັ້ງເວລາໄດ້";
+        return getErrorMessageNotification({ responseData, errorMessages: errorMessagesProfile, defaultMessage });
+      },
     },
     warnWhenUnsavedChanges: true,
   });
   useUpdateDefaultValues(form as any, branch);
   return { form };
 };
+
+export const errorMessagesProfile: ErrorMapMessage[] = [
+  { val: "The fields day_of_week, branch must make a unique set.", message: "ມື້ຊໍ້າ ຫຼື ມີແລ້ວ" },
+];
 
 const workTimeSettingsSchema = z.object({
   branch: z.number().min(1, {

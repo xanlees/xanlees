@@ -4,8 +4,6 @@ import { Show } from "@/shadcn/components/crud";
 import { useShow } from "@refinedev/core";
 import type { IApplication } from "../../interface";
 import {
-  type IAddress,
-  type IEducation,
   type IPhysical,
   type IProfile,
   type ISkill,
@@ -16,8 +14,6 @@ import {
   Physical,
   ProfileDetail,
   Skill,
-  useEducation,
-  usePersonalAddress,
   usePhysical,
   useProfile,
   useSkill,
@@ -29,14 +25,13 @@ export default function ApplicationShow({ params }: Readonly<{ params: { id: num
   const { queryResult } = useShow<IApplication>();
   const { data } = queryResult;
   const record = data?.data as IApplication;
+  const profileId = Number(record?.profileId ?? 0) ?? 0;
   const { data: profileData } = useProfile<IProfile>({ profileId: record?.profileId });
-  const { data: educationData } = useEducation<IEducation[]>({ profileId: record?.profileId });
-  const { data: personalAddressData } = usePersonalAddress<IAddress[]>({ profileId: record?.profileId });
   const { data: workExperienceData } = useWorkExperience<IWorkExperience[]>({ application: record?.id });
   const { data: skillData } = useSkill<ISkill[]>({ application: record?.id });
   const { data: physicalData } = usePhysical<IPhysical[]>({ profileId: record?.profileId });
   return (
-    <Show>
+    <Show showButtonEdit={false}>
       <div className="flex-row gap-2 mt-5 md:flex">
         <div className="space-y-2">
           <ProfileDetail profileData={profileData} visible={false} />
@@ -49,8 +44,8 @@ export default function ApplicationShow({ params }: Readonly<{ params: { id: num
         </div>
         <div className="flex flex-col gap-y-2">
           <WorkExperience workExperienceData={workExperienceData as IWorkExperience[]} />
-          <EducationDetail educationData={educationData as IEducation[]} />
-          <AddressDetail personalAddressData={personalAddressData as IAddress[]} />
+          <EducationDetail profileId={profileId} />
+          <AddressDetail profileId={profileId} />
         </div>
       </div>
     </Show>

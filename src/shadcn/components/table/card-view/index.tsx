@@ -139,13 +139,13 @@ export function CardView<
         </div>
       ) : null}
 
-      <div className={cn("flex flex-wrap gap-2 ", className)}>
+      <div className={cn("flex flex-wrap gap-2 ")}>
         {table.getRowModel().rows?.length ? (
           table.getRowModel().rows.map((row: any) => {
             return (
               <Card
                 key={row.id}
-                className={cn("relative shadow-md  rounded-md  h-fit", className)}
+                className={cn("relative shadow-md  rounded-md   h-fit", className)}
               >
                 <div>
                   {row.getVisibleCells().map(

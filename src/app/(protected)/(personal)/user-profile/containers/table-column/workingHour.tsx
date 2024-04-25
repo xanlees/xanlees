@@ -1,9 +1,10 @@
 import { Table } from "@/shadcn/components/table";
-import { type IWorkTimeSettings, type IAttendance } from "../../interface";
+import { type IWorkTimeSettings, type IAttendance, type IUserProfile } from "../../interface";
 import moment from "moment";
 import { type IEmployee } from "../../../index";
 import { Badge } from "@src/shadcn/elements";
-import { parseISO, addMinutes, differenceInMinutes } from "date-fns";
+import addMinutes from "date-fns/addMinutes";
+import differenceInMinutes from "date-fns/differenceInMinutes";
 
 export function workingHour({ attendanceData }: { attendanceData: IAttendance[] }) {
   return (
@@ -38,47 +39,47 @@ interface LateTimeProps {
   workTimeSettingsData: IWorkTimeSettings[]
   attendanceData: IAttendance[]
 }
-const minutesPerHour = 60;
-interface TableRow {
-  original: {
-    profile?: {
-      id?: number
-    }
-    user?: number
-  }
-}
-export function lateTime({ employeeIsLatestData, workTimeSettingsData, attendanceData }: LateTimeProps): JSX.Element {
+
+export function EmployeeLateStatus({ employeeIsLatestData, workTimeSettingsData, attendanceData }: LateTimeProps) {
   return (
-    <Table.Column
+    <Table.Column<IUserProfile>
       header="ສະຖານະ" id="lateTime" accessorKey="profile.id"
-      cell={({ row }: { row: TableRow }) => {
-        const profileId = row?.original?.profile?.id as number;
-        const userId = row?.original?.user as number;
-        const employee = employeeIsLatestData.find((emp) => emp.profileId?.id === profileId);
+      cell={({ row }) => {
+        const profileId = row.original.profile?.id;
+        const userId = row.original.user;
+        const employee = employeeIsLatestData.find((emp: { profileId: number }) => emp.profileId === profileId);
         if (!employee) {
-          return <div>Employee data not available</div>;
+          return <div>ບໍ່ມີຂໍ້ມູນ</div>;
         }
-        const workTimeSetting = workTimeSettingsData.find((wt) => wt.branch === employee.branchId);
+        const workTimeSetting = workTimeSettingsData.find((wt: { branch: number }) => wt.branch === employee.branchId);
         if (!workTimeSetting) {
           return <div>ບໍ່ມາການເວລາເຂົ້າວຽກ</div>;
         }
-        const attendance = attendanceData.find((item) => item.user === userId);
+        const attendance = attendanceData.find((item: { user: number }) => item.user === userId);
         if (!attendance) {
           return <Badge className="bg-red-600">ບໍ່ມາການ</Badge>;
         }
-        const scheduledCheckIn = parseISO(workTimeSetting.checkInTime);
+        const actualCheckIn = new Date(attendance.checkIn);
+        const scheduledCheckIn = getScheduledCheckIn(workTimeSetting, actualCheckIn);
         const lateTimeAllowed = parseInt(workTimeSetting.lateTime, 10);
         const allowedCheckInTime = addMinutes(scheduledCheckIn, lateTimeAllowed);
-        const actualCheckIn = parseISO(attendance.checkIn);
         const minutesLate = differenceInMinutes(actualCheckIn, allowedCheckInTime);
-
-        if (minutesLate > 0) {
-          const hours = Math.floor(minutesLate / minutesPerHour);
-          const minutes = minutesLate % minutesPerHour;
-          return <div>{hours > 0 ? `${hours}h ` : ""}{minutes}min late</div>;
-        }
-        return <div>ຕົງເວລາ</div>;
+        return minutesLate > 0 ? <div>{formatLateTime(minutesLate)}</div> : <div>ຕົງເວລາ</div>;
       }}
     />
   );
+}
+
+function getScheduledCheckIn(workTimeSetting: { checkInTime: string }, actualCheckIn: string | number | Date) {
+  const scheduledCheckIn = new Date(actualCheckIn);
+  scheduledCheckIn.setHours(parseInt(workTimeSetting.checkInTime.split(":")[0]));
+  scheduledCheckIn.setMinutes(parseInt(workTimeSetting.checkInTime.split(":")[1]));
+  return scheduledCheckIn;
+}
+
+function formatLateTime(minutesLate: number) {
+  const minutesInHour = 60;
+  const hours = Math.floor(minutesLate / minutesInHour);
+  const minutes = minutesLate % minutesInHour;
+  return `${hours > 0 ? `${hours}h ` : ""}${minutes}min late`;
 }

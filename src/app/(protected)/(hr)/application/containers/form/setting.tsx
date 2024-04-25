@@ -58,7 +58,7 @@ export const applicationFromStep = [
     completed: false,
   },
   {
-    stepLabel: "ຂໍ້ມູນທົ່ວໄປ",
+    stepLabel: "ສໍາເລັດ",
     stepDescription: <Application2Form />,
     completed: true,
   },

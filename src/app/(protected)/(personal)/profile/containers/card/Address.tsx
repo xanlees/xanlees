@@ -9,12 +9,8 @@ import { type IAddress } from "../../../address/interface";
 export function AddressDetail({ profileId }: { profileId: number }): JSX.Element {
   const { table } = useTableAddress(profileId);
   return (
-    <Card className="shadow-xl pb-3 rounded-lg w-full bg-white dark:bg-gray-800 dark:text-white h-fit ">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
-        <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
-          {"ທີ່ຢູ່"}
-        </CardTitle>
-      </CardHeader>
+    <Card className="shadow-xl pb-3 rounded-lg  bg-white dark:bg-gray-800 dark:text-white h-fit ">
+      {Title}
       <CardView table={table} className="w-96" showSearchBar={false} showPagination={false}>
         <CardView.Row<IAddress>
           header=""
@@ -23,8 +19,8 @@ export function AddressDetail({ profileId }: { profileId: number }): JSX.Element
           cell={({ row }) => {
             const rowData = row.original;
             const district = rowData.district ?? {};
-            const village = rowData.village ?? "Unknown Year";
-            const status = rowData.status ?? "Unknown Year";
+            const village = rowData.village ?? "";
+            const status = rowData.status ?? "";
             return (
               <>
                 <label className=" -mx-44 text-md font-bold">{status}</label>
@@ -41,6 +37,12 @@ export function AddressDetail({ profileId }: { profileId: number }): JSX.Element
     </Card>
   );
 }
+
+const Title = <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
+  <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
+    {"ທີ່ຢູ່"}
+  </CardTitle>
+</CardHeader>;
 
 const useTableAddress = (profileId: number) => {
   const table = useTable<IAddress>({

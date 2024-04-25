@@ -25,6 +25,9 @@ export const usePersonalAddressForm = ({ status }: { status: string }) => {
       onMutationSuccess: (data) => {
         dispatch({ type, payload: data?.data?.id ?? 0 });
       },
+      successNotification: () => {
+        return { message: `ສ້າງຂໍ້ມູນ${status}`, type: "success" };
+      },
     },
     warnWhenUnsavedChanges: true,
   });

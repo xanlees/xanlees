@@ -1,18 +1,12 @@
 import { Form } from "@src/shadcn/components/form";
 import { useSelect } from "@refinedev/core";
 import { Input } from "@src/shadcn/elements";
-import { useWorkTimeSettingsForm } from "./hook";
-import { type IFormConfig } from "@src/common/interface";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@src/shadcn/elements/accordion";
+import { useWorkTimeSettingsForm } from "../hook/useWorkTimeSettingsForm";
 import { useFieldArray } from "react-hook-form";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
-import { type IBranch } from "../branch/interface";
+import { type IBranch } from "../../branch/interface";
+import { type IFormConfig } from "@src/common/interface";
 
 export const WorkTimeSettingsForm: any = ({ branchType }: { branchType: string }) => {
   const { form } = useWorkTimeSettingsForm();
@@ -23,21 +17,11 @@ export const WorkTimeSettingsForm: any = ({ branchType }: { branchType: string }
     filters: [{ field: "pageSize", operator: "eq", value: 100 }],
   });
   return (
-    <Accordion type="single" collapsible className="w-ful">
-      <AccordionItem value="item-1" className="border-none">
-        <AccordionTrigger className="italic text-blue-500 underline">
-          *ກົດທີ່ນີ້ ເພື່ອກໍານົດ ເວລາເຂົ້າວຽກອອກ
-        </AccordionTrigger>
-        <AccordionContent>
-          <Form {...form}>
-            <div className="text-2xl font-bold tracking-wide text-center text-gray-800 dark:text-white"> ເວລາເຂົ້າວຽກ ແລະ ເລີກວຽກ </div>
-            <FormFieldContainer form={{ form }} branch={branch} />
-            <div className="flex flex-col w-full gap-2 capitalize rounded-lg sm:flex-row sm:w-1/2" />
-            <DynamicDayOfWeekForm form={{ form }} />
-          </Form>
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+    <Form {...form}>
+      <FormFieldContainer form={form} branch={branch} />
+      <div className="flex flex-col w-full gap-2 capitalize rounded-lg sm:flex-row sm:w-1/2" />
+      <DynamicDayOfWeekForm form={form} />
+    </Form>
   );
 };
 

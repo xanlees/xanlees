@@ -30,6 +30,9 @@ export const useFormConfig = () => {
     refineCoreProps: {
       resource: "application",
       redirect: false,
+      successNotification: () => {
+        return { message: "ສ້າງຂໍ້ມູນສະໝັກຕໍາແຫນ່ງ", type: "success" };
+      },
       onMutationSuccess: (data) => {
         dispatch({ type: "setApplicationId", payload: data?.data?.id ?? 0 });
         dispatch({ type: "setTagId", payload: data?.data?.tagId ?? 0 });

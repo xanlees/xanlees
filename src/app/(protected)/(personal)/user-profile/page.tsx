@@ -21,7 +21,7 @@ import {
 } from "./hooks";
 import { useState } from "react";
 import { useUserFriendlyName } from "@refinedev/core";
-import { lateTime, workingHour } from "./containers/table-column/workingHour";
+import { EmployeeLateStatus, workingHour } from "./containers/table-column/workingHour";
 import type { IWorkTimeSettings, IAttendance } from "./interface";
 import { type IEmployee } from "../index";
 import { useWorkTimeSettings } from "./hooks/useWorkTimeSettings";
@@ -57,7 +57,7 @@ export default function UserProfileList(): JSX.Element {
         {CheckOut({ attendanceData })}
         {CheckOutImage({ attendanceData })}
         {workingHour({ attendanceData })}
-        {lateTime({ workTimeSettingsData, employeeIsLatestData, attendanceData })}
+        {EmployeeLateStatus({ workTimeSettingsData, employeeIsLatestData, attendanceData })}
       </Table>
     </List>
   );

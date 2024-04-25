@@ -44,6 +44,17 @@ export const resources = [
     },
   },
   {
+    name: "work-time-settings",
+    list: "/work-time-settings",
+    create: "/work-time-settings/create",
+    edit: "/work-time-settings/edit/:id",
+    show: "/work-time-settings/show/:id",
+    icon: <FileText />,
+    meta: {
+      label: "ຕັ້ງເວລາເຂົ້າວຽກ",
+    },
+  },
+  {
     name: "agent",
     list: "/agent",
     create: "/agent/create",
@@ -102,5 +113,13 @@ export const resources = [
     name: "document",
     disabled: true,
     edit: "/document/edit/:id",
+  },
+  {
+    name: "branch/work-time-settings",
+    disabled: true,
+    list: "/branch/work-time-settings",
+    create: "/branch/work-time-settings/create",
+    edit: "/branch/work-time-settings/edit/:id",
+    show: "/branch/work-time-settings/show/:id",
   },
 ];

@@ -5,6 +5,7 @@ import { useFieldArray } from "react-hook-form";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { useApplicationContext } from "../../../application/context";
+import { Input } from "@src/shadcn/elements";
 
 export const Skill: React.FC = () => {
   const { state } = useApplicationContext();
@@ -16,16 +17,17 @@ export const Skill: React.FC = () => {
       ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
       : (
         <Form {...form}>
-          <div className="rounded-full w-60 sm:w-[600px] ">
+          <label htmlFor="">ຄວາມສາມາດໃນນໍາໃຊ້ຄອມພິວເຕີເຊັ່ນ word, excel, powerpoint ຫຼື ພາສາຕ່າງປະເທດ ອື່ນໆ"</label>
+          <div className="rounded-full w-60 sm:w-[600px]">
             <DynamicForm
-              form={form} fields={fields} append={append} remove={remove} name="skill" className="flex flex-col sm:flex-row sm:flex-wrap" label=""
+              form={form} fields={fields} append={append} remove={remove} name="skill" className="flex flex-col sm:flex-row sm:flex-wrap" label="ເພີ່ມຄວາມສາມາດ"
               classNameButton="w-32 mt-5"
               defaultConfig={{ application: state.applicationId }}>
               <ArrayField {...form} name="name" label="ຄວາມສາມາດ">
-                <Form.Select options={SkillOptions} className=" w-56"/>
+                <Input className="w-56" placeholder="word" />
               </ArrayField>
               <ArrayField {...form} name="proficiency" label="ລະດັບຄວາມສາມາດ">
-                <Form.Select options={Options} className=" w-56"/>
+                <Form.Select options={Options} className="w-56"/>
               </ArrayField>
             </DynamicForm>
           </div>

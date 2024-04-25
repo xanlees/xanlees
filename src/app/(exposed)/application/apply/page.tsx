@@ -49,7 +49,6 @@ function ApplicationForm(): JSX.Element {
     profileContext.state,
     applicationContext.state,
   );
-
   const handleButtonClick = () => {
     localStorage.removeItem("creatingApplication");
     localStorage.removeItem("creatingProfileState");
@@ -67,7 +66,7 @@ function ApplicationForm(): JSX.Element {
       </div>
       <div className="my-3 text-center bg-blue-300 rounded-sm p-4">
         <p className="text-xl font-bold">ຂອບໃຈທ່ານທີ່ໄວ້ໃຈ </p>
-        <p className="text-xl font-bold">ນຳບໍລິສັດຂອງພວກເຮົາ </p>
+        <p className="text-xl font-bold">ໃນບໍລິສັດຂອງພວກເຮົາ </p>
       </div>
     </div>
   );

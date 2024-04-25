@@ -30,13 +30,15 @@ export const ApplicationForm: React.FC = () => {
 export const Application2Form: React.FC = () => {
   const { form } = useApplicationForm();
   const { state } = useApplicationContext();
+  const tagId = state.tagId ?? "";
+  console.log("tagId", tagId);
   const isCompleted = state.updateApplicationId;
 
   return (
     <div className="rounded-full w-72 sm:w-[710px]">
       {isCompleted
         ? (
-          <Success/>)
+          <Success tagId={tagId} />)
         : (
           <Form {...form}>
             <GeneralInfo form={form} />
@@ -46,7 +48,7 @@ export const Application2Form: React.FC = () => {
             <Form.Field require={false} {...form} name="pledgeReason" label="ຖ້າໄດ້ເປັນພະນັກງານຂອງ ເອັສບີເອັສ ແລ້ວທ່ານຈະປະຕິຍານຕົນແນວໃດ ?" >
               <Textarea className="h-28" />
             </Form.Field>
-            <ApplicantSignatureChckbox {...form} />
+            <ApplicantSignatureChckbox {...form}/>
           </Form>)}
     </div>
   );
@@ -61,13 +63,14 @@ const ApplicantSignatureChckbox = (form: IFormConfig) => (
   </Form.Field>
 );
 
-export const Success: React.FC = () => {
+export const Success: React.FC<{ tagId: string }> = ({ tagId }) => {
   return (
     <div className="bg-white md:mx-auto">
       <BadgeCheck className="justify-center mx-auto h-14 w-14 bg-geen-500 " color="#004cff" />
       <div className="overflow-y-auto text-center">
         <h3 className="text-base font-semibold text-center text-gray-900 md:text-2xl">ສົ່ງແບບຟອມສະໝັກສໍາເລັດ!</h3>
         <p className="my-2 text-gray-600">ຂອບໃຈ ທີ່ມາສະໝັກວຽກສະມັກກັບພວກເຮົາ</p>
+        <p className="my-2 text-gray-600">ເລກລະຫັດຟອມ: <span className="text-gray-900">{tagId}</span></p>
       </div>
     </div>
   );
