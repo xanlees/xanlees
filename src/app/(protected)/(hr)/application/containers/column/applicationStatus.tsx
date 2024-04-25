@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 "use client";
 import { Table } from "@/shadcn/components/table";
 import type { IApplication } from "../../interface";
@@ -18,7 +19,6 @@ export function ApplicationStatusColumn() {
       cell={(props) => {
         const { applicationStatus, id } =
           (props.row.original as IApplication) ?? {};
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         const profile = props.row.original.profileId.id as unknown as number;
         const applicationID = id ?? 0;
         RedirectToCreateEmployee({ selectedDate, profile });
@@ -30,6 +30,7 @@ export function ApplicationStatusColumn() {
             field="applicationStatus"
             resource="application"
             onChange={handleChange}
+            className="w-[120px]"
           />
         );
       }}

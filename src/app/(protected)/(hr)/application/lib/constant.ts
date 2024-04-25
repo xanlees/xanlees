@@ -66,9 +66,9 @@ export const getTypeVaccineLabel = (typeVaccine: string | null | undefined): str
 export const getApplicationStatusLabel = (applicationStatus: string | null | undefined): string => {
   switch (applicationStatus) {
     case "New":
-      return "ໃຫມ່";
+      return "ສົ່ງເຂົ້າມາໃຫມ່";
     case "Contacted":
-      return "ຕິດຕໍ່ຫາ";
+      return "ຕິດຕໍ່ຫາແລ້ວ";
     case "Interviewed":
       return "ສຳພາດແລ້ວ";
     case "Hired":

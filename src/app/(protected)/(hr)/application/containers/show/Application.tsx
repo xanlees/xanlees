@@ -53,15 +53,15 @@ export const EmergencyDetail: React.FC<{ applicationData: IApplication }> = ({ a
 };
 
 export const General: React.FC<{ applicationData: IApplication }> = ({ applicationData }) => {
-  const { typeDrivingLicense, vehicleType, typeVaccine, applicationStatus, createdOn } = applicationData ?? {};
+  const { typeDrivingLicense, vehicleType, applicationStatus, createdOn, tagId } = applicationData ?? {};
   return (
     <div>
       <Label className="text-lg pl-5 font-bold">ຂໍ້ມູນທົ່ວໄປ</Label>
       <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ໃບຂັບຂີ່"} content={getTypeDrivingLicenseLabel(typeDrivingLicense)}/>
       <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ສາມາດໃຊ້ພາຫະນະປະເພດ"} content={getTypeVaccineLabel(vehicleType)} />
-      <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ທ່ານໄດ້ຮັບຢາວັກຊີນ"} content={typeVaccine} />
       <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ສະຖານະແບບຟອມ"} content={getApplicationStatusLabel(applicationStatus)} />
-      <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ສະໝັກວັນທີ"} content={moment(createdOn).format("MMM/DD/YYYY")} />
+      <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ລະຫັດຟອມ"} content={tagId} />
+      <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ສະໝັກວັນທີ"} content={moment(createdOn).format("DD/MMM/YYYY")} />
     </div>
   );
 };

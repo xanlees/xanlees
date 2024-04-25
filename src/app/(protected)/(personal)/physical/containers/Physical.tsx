@@ -13,9 +13,9 @@ export const Physical: React.FC<{ physicalData: IPhysical[] | null | undefined }
           {"ຂໍ້ມູນທົ່ວໄປ"}
         </CardTitle>
       </CardHeader>
-      <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ສັນຊາດ"} content={nationality ?? ""} />
-      <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ລວງສູງ"} content={`${weight ?? ""} Kg`} />
-      <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ນໍ້າຫນັກ"} content={`${height ?? ""} Cm`} />
+      <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ສັນຊາດ"} content={nationality ?? "ບໍມີຂໍ້ມູນ"} />
+      <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ລວງສູງ"} content={`${weight ?? "ບໍມີຂໍ້ມູນ"} Kg`} />
+      <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ນໍ້າຫນັກ"} content={`${height ?? "ບໍມີຂໍ້ມູນ"} Cm`} />
     </Card>
   );
 };

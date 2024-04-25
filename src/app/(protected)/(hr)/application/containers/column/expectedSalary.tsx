@@ -7,8 +7,6 @@ export const ExpectedSalary = (
     header="ເງິນທີຕ້ອງການ"
     accessorKey="expectedSalary"
     id="expectedSalary"
-    enableSorting
-    enableHiding
     cell={(props) => {
       const { expectedSalary } = (props.row.original as IApplication) ?? {};
       const numericSalary = parseFloat(expectedSalary);

@@ -6,7 +6,7 @@ export function FullNameColumn(accessorKey: string) {
   return (
     <Table.Column
       accessorKey={accessorKey}
-      header={"ຊື່ ແລະ ນາມສະກຸນ (ຊຶ່ຫຼີ້ນ)"}
+      header={"ຊື່ແທ້(ຊຶ່ຫຼີ້ນ)"}
       id="fullname"
       enableSorting
       enableHiding
