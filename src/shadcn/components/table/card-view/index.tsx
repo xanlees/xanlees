@@ -127,7 +127,7 @@ export function CardView<
     return [];
   }, [children]);
 
-  if (table.options.columns.length === 0) {
+  if (table?.options.columns.length === 0) {
     table.setOptions({ ...table.options, columns });
   }
   return (
@@ -140,7 +140,7 @@ export function CardView<
       ) : null}
 
       <div className={cn("flex flex-wrap gap-1 ")}>
-        {table.getRowModel().rows?.length ? (
+        {table?.getRowModel().rows?.length ? (
           table.getRowModel().rows.map((row: any) => {
             return (
               <Card

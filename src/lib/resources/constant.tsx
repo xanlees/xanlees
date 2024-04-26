@@ -1,4 +1,4 @@
-/* eslint-disable  */
+/* eslint-disable max-lines */
 import { User, BookUser, FileText, Timer } from "lucide-react";
 
 export const resources = [

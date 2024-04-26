@@ -1,4 +1,3 @@
-import { type RedirectAction } from "@refinedev/core";
 import { Form } from "@src/shadcn/components/form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
@@ -9,9 +8,9 @@ import { useFieldArray } from "react-hook-form";
 import { useFormConfig } from "../../hook/useEmployeeForm";
 import { usePositionSelect } from "../../hook/useSelect";
 
-export const EmployeeForm = ({ profileId, type }: { redirect: RedirectAction, profileId: string, type?: string }) => {
+export const EmployeeForm = ({ profileId, type, redirect }: { redirect?: string, profileId: string, type?: string }) => {
   const profile = Number(profileId);
-  const { form } = useFormConfig({ type, profile });
+  const { form } = useFormConfig({ type, profile, redirect });
   const position = usePositionSelect(type);
   const { fields, append, remove } = useFieldArray({ control: form.control, name: "employee" });
   return (

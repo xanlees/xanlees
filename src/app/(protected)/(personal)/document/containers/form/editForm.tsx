@@ -5,14 +5,15 @@ import { useForm } from "@refinedev/react-hook-form";
 import * as z from "zod";
 import { Form } from "@src/shadcn/components/form";
 import { FormMultipart } from "@src/common/interface";
+import { type FormAction } from "@refinedev/core";
 
-export const DocumentEditForm: React.FC<{ id: number }> = ({ id }) => {
-  const { form } = useDocumentFormEdit(id);
+export const DocumentEditForm: React.FC<{ id: number, action: FormAction }> = ({ id, action }) => {
+  const { form } = useDocumentFormEdit(id, action);
   return (
     <div className="flex justify-center">
       <div className="flex flex-col border rounded-2xl">
         <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
-            ຟອມຂໍ້ມູນການສຶກສາ
+          ເອກສະສານ
         </div>
         <Form {...form}>
           <div className="flex flex-wrap gap-2">
@@ -37,18 +38,18 @@ export const DocumentEditForm: React.FC<{ id: number }> = ({ id }) => {
   );
 };
 
-const useDocumentFormEdit = (id: number) => {
+const useDocumentFormEdit = (id: number, action: FormAction) => {
   const { ...form } = useForm<z.infer<typeof documentSchema>>({
     resolver: zodResolver(documentSchema),
     defaultValues: {
       documentName: "",
       documentFile: undefined,
-      profileId: 0,
+      profileId: id,
     },
     refineCoreProps: {
       resource: "document",
       redirect: false,
-      action: "edit",
+      action,
       id,
       meta: FormMultipart,
     },

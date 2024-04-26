@@ -23,7 +23,7 @@ export default function ProfileList(): JSX.Element {
             {PhoneNumberColumn("phoneNumber")}
             {getLatestPosition(positionId as number[], positionData.data)}
             {GenderColumn("gender")}
-            {getActionsColumn("agent")}
+            {getActionsColumn({ resource: "agent" })}
           </Table>
         </div>
       </List>

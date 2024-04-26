@@ -6,8 +6,15 @@ import { useEffect, useRef } from "react";
 import { type IFormConfig } from "@src/common/interface";
 import { type UseFormSetValue } from "react-hook-form";
 
-export const useFormConfig = ({ type, profile }: { type?: string, profile: number }) => {
-  const redirect = type === "LOTTERY" ? "/agent" : `/user/create/${profile}`;
+export const useFormConfig = ({ type, profile, redirect }: { type?: string, profile: number, redirect?: string }) => {
+  let redirectPatch = "";
+  if (redirect === "agent") {
+    redirectPatch = "/agent";
+  } else if (redirect === "user") {
+    redirectPatch = `/user/create/${profile}`;
+  } else if (redirect === "profile") {
+    redirectPatch = "/profile";
+  }
   const router = useRouter();
   const { ...form } = useForm<z.infer<typeof employeeSchema>>({
     resolver: zodResolver(employeeSchema),
@@ -24,7 +31,7 @@ export const useFormConfig = ({ type, profile }: { type?: string, profile: numbe
     refineCoreProps: {
       resource: "employee",
       onMutationSuccess: () => {
-        router.push(redirect);
+        router.push(redirectPatch);
       },
       redirect: false,
     },

@@ -10,7 +10,7 @@ export const useTableEmployee = (profileId: number) => {
       errorNotification: false,
       resource: "employee",
       filters: {
-        initial: [
+        permanent: [
           { field: "expand", operator: "eq", value: "position_id,branch_id" },
           { field: "profile_id", operator: "eq", value: profileId },
         ],

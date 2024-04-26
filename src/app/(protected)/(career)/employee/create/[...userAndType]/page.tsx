@@ -15,10 +15,10 @@ export default function EmployeeCreate({
 }: {
   params?: { userAndType?: string[] }
 }): JSX.Element {
-  const [profileId, type] = params?.userAndType ?? ["", ""];
+  const [profileId, type, redirect] = params?.userAndType ?? ["", "", ""];
   return (
     <Create
-      title="ຟອມບັນຈຸຕຳແໜ່ງ"
+      title="ຟອມສ້າງຕຳແໜ່ງ"
       resource="profile"
       breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
     >
@@ -29,7 +29,7 @@ export default function EmployeeCreate({
           </span>
         </CardHeader>
         <div className="p-5">
-          <EmployeeForm redirect="list" type={type} profileId={profileId} />
+          <EmployeeForm redirect={redirect} type={type} profileId={profileId} />
         </div>
       </Card>
     </Create>

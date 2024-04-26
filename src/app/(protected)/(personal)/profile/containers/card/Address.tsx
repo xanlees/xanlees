@@ -65,8 +65,6 @@ const useCardAddress = (profileId: number) => {
       filters: {
         permanent: [
           { field: "profile", operator: "eq", value: profileId },
-        ],
-        initial: [
           { field: "expand", operator: "eq", value: "district" },
         ],
       },

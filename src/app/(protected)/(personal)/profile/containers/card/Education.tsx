@@ -77,8 +77,6 @@ const useCardEducation = (profileId: number) => {
       filters: {
         permanent: [
           { field: "profile_id", operator: "eq", value: profileId },
-        ],
-        initial: [
           { field: "expand", operator: "eq", value: "graduation_id" },
         ],
       },
