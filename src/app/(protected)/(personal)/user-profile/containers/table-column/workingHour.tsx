@@ -53,7 +53,7 @@ export function EmployeeLateStatus({ employeeIsLatestData, workTimeSettingsData,
         }
         const workTimeSetting = workTimeSettingsData.find((wt: { branch: number }) => wt.branch === employee.branchId);
         if (!workTimeSetting) {
-          return <div>ບໍ່ມາການເວລາເຂົ້າວຽກ</div>;
+          return <div>ບໍ່ມີຂໍ້ມູນ</div>;
         }
         const attendance = attendanceData.find((item: { user: number }) => item.user === userId);
         if (!attendance) {
