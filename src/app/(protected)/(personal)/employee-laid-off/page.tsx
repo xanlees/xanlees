@@ -1,12 +1,13 @@
 "use client";
 
-import type { IPosition } from "@career";
-import { useTableProfile } from "../profile/containers/table/useTableConfig";
-import { useLatestPositionDetail, useLatestPositionId } from "../profile/hooks";
-import { useProfileIds, UseUserProfile } from "../profile/hooks/table";
-import { useUserFriendlyName } from "@refinedev/core";
 import { List } from "@src/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
+import { useLatestPositionDetail, useLatestPositionId } from "../profile/hooks";
+import { useProfileIds, UseUserProfile } from "../profile/hooks/table";
+import { useTableProfile } from "../profile/containers/table/useTableConfig";
+import { useUserFriendlyName } from "@refinedev/core";
+
+import type { IPosition } from "@career";
 import {
   DateOfBirth,
   FullNameColumn,
@@ -39,8 +40,37 @@ export default function ProfileList(): JSX.Element {
         {getLatestPosition(positionId as number[], positionData.data)}
         {GenderColumn("gender")}
         {MarriageColumn("maritalStatus")}
+        {StatusColumn()}
         {DateOfBirth}
       </Table>
     </List>
+  );
+}
+
+function StatusColumn() {
+  return (
+    <Table.Column
+      accessorKey="type"
+      header={"ອອກເອງ/ບໍລິສັດໃຫ້ອອກ"}
+      id="type"
+      cell={(props) => {
+        const value = props.getValue() as unknown as string;
+        let displayText;
+        switch (value) {
+          case "DISMISS":
+            displayText = "ບໍລິສັດໃຫ້ອອກ";
+            break;
+          case "RESIGN":
+            displayText = "ອອກເອງ";
+            break;
+          default:
+            displayText = value;
+        }
+
+        return (
+          <p className="text-red-500 ">{displayText}</p>
+        );
+      }}
+    />
   );
 }
