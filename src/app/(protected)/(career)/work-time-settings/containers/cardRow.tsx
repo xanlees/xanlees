@@ -30,13 +30,37 @@ export function DayOfWeekRow({ workTimeSettingsData }: { workTimeSettingsData?: 
   );
 }
 
+function translateDay(day: string): string {
+  switch (day) {
+    case "Monday":
+      return "ວັນຈັນ";
+    case "Tuesday":
+      return "ວັນອັງຄານ";
+    case "Wednesday":
+      return "ວັນພຸດ";
+    case "Thursday":
+      return "ວັນພະຫັດ";
+    case "Friday":
+      return "ວັນ​ສຸກ";
+    case "Saturday":
+      return "ວັນເສົາ";
+    case "Sunday":
+      return "ວັນອາທິດ";
+    default:
+      return day;
+  }
+}
 function Tbody({ filteredData }: { filteredData?: IWorkTimeSettings[] }) {
+  const daysOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const sortedWorkTimeSettings = [...(filteredData ?? [])].sort((a, b) => {
+    return daysOrder.indexOf(a.dayOfWeek) - daysOrder.indexOf(b.dayOfWeek);
+  });
   return (
     <tbody>
-      {filteredData?.map((item, index) => (
+      {sortedWorkTimeSettings?.map((item, index) => (
         <tr key={index} className="odd:bg-gray-50 dark:odd:bg-gray-800">
           <td className="px-4 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-            {item.dayOfWeek}
+            {translateDay(item.dayOfWeek)}
           </td>
           <td className="px-4 py-4">
             {item.checkInTime}
