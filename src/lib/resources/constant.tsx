@@ -128,15 +128,7 @@ export const resources = [
     disabled: true,
     list: "/branch/work-time-settings",
     create: "/branch/work-time-settings/create",
-    edit: "/branch/work-time-settings/edit/:id",
-    show: "/branch/work-time-settings/show/:id",
-  },
-  {
-    name: "branch/work-time-settings",
-    disabled: true,
-    list: "/branch/work-time-settings",
-    create: "/branch/work-time-settings/create",
-    edit: "/branch/work-time-settings/edit/:id",
+    edit: "/work-time-settings/edit/:id",
     show: "/branch/work-time-settings/show/:id",
   },
   {

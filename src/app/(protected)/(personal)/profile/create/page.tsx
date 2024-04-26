@@ -60,6 +60,7 @@ const FormCreate = () => {
     </Create>
   );
 };
+
 function getStepState(state: ProfileState) {
   const profileStep = 0;
   const personalCurrentAddressStep = 1;

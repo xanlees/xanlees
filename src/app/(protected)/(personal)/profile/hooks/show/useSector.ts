@@ -1,5 +1,5 @@
 import { useList, type BaseRecord, type GetListResponse } from "@refinedev/core";
-import { type IEmployee } from "@src/app/(protected)/(career)";
+import { type IEmployeeExpand } from "@src/app/(protected)/(career)/employee/interface";
 
 export function useSector<T extends BaseRecord>({ sectorId }: { sectorId: number[] }): GetListResponse<T> | typeof defaultData {
   const { data } = useList<T>({
@@ -25,7 +25,7 @@ export function useSector<T extends BaseRecord>({ sectorId }: { sectorId: number
   return data ?? defaultData;
 }
 
-export function useSectorId(employees: IEmployee[]) {
+export function useSectorId(employees: IEmployeeExpand[]) {
   const positionIds: number[] = employees
     .filter((employee) => employee.positionId?.sectorId)
     .map((employee) => employee.positionId.sectorId.id);

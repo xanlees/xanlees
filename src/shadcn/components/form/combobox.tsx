@@ -34,6 +34,7 @@ type ComboboxProps = Omit<
     emptyMessage?: string;
     onChange?: (value: string | number | string[]) => void;
     value?: string | number | string[] | BaseRecord;
+    disabled?: boolean
   };
 
 export const Combobox = forwardRef<
@@ -61,6 +62,7 @@ export const Combobox = forwardRef<
             variant="outline"
             role="combobox"
             aria-expanded={open}
+            disabled={props.disabled}
             className={cn( "w-full my-2 flex justify-between", props?.className ? props.className : "sm:w-[250px]", !getSelectedValue() && "text-muted-foreground" )}
           >
             {getSelectedValue() ? props.options?.find((option) => option.value === getSelectedValue())?.label : props.placeholder ?? "ເລືອກ"}

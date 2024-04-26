@@ -45,7 +45,7 @@ export const useUserForm = (profile: number, navigates: string) => {
 const userSchema = z
   .object({
     username: z.string().min(2, {
-      message: "ກະລຸນາປ້ອນຢູເຊີ",
+      message: "ກະລຸນາປ້ອນບັນຊີ",
     }),
     password: z.string().refine(
       (value) => {

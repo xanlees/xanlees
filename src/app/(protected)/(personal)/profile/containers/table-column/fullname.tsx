@@ -22,7 +22,7 @@ export const FullNameColumn = (
 export function UserAccountColumn(userProfileData: UserProfileAccount[]) {
   return (
     <Table.Column
-      header="ຢູເຊີ"
+      header="ບັນຊີ"
       id="id"
       accessorKey="id"
       cell={(props) => {
