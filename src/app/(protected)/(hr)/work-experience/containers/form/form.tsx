@@ -18,21 +18,21 @@ export const WorkExperienceForm: React.FC = () => {
         ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
         : (
           <Form {...form}>
-            <DynamicForm form={form} fields={fields} append={append} remove={remove} name="experience" className="flex flex-col sm:flex-row sm:flex-wrap" label="ປະສົບການເຮັດວຽກ"
+            <DynamicForm form={form} fields={fields} append={append} remove={remove} name="experience" className="flex flex-col sm:flex-row sm:flex-wrap" label="ເພີ່ມປະສົບການເຮັດວຽກອີກ"
               classNameButton="w-40  mr-7" defaultConfig={{ applicationId: state?.applicationId }}>
-              <ArrayField {...form} name="company" label="ບໍລິສັດ">
+              <ArrayField {...form} name="company" label="ບໍລິສັດທີເຄີຍເຮັດ">
                 <Input placeholder="Bestech" className="w-full lg:w-80 " />
               </ArrayField>
-              <ArrayField {...form} name="position" label="ຕໍາແໜງ">
+              <ArrayField {...form} name="position" label="ຕໍາແໜ່ງ">
                 <Input placeholder="ການຕະຫຼາດ" className="w-full lg:w-80 " />
               </ArrayField>
-              <ArrayField {...form} name="time" label="ໄລຍະເວລາ">
+              <ArrayField {...form} name="time" label="ໄລຍະເວລາເຮັດວຽກຜ່ານມາ">
                 <Input placeholder="1 ປີ" className="w-full lg:w-80 " />
               </ArrayField>
-              <ArrayField {...form} name="salary" label="ເງິນເດືອນ">
+              <ArrayField {...form} name="salary" label="ເງິນເດືອນຜ່ານມາ">
                 <Input placeholder="2,000,000" className="w-full lg:w-80 " type="currency"/>
               </ArrayField>
-              <ArrayField {...form} name="reasonOfResignation" label="ວຽກທີເຮັດຜ່ານມາ">
+              <ArrayField {...form} name="reasonOfResignation" label="ໜ້າວຽກທີ່ຮັບຜິດຊອບ">
                 <Textarea {...form} className="w-full sm:w-[640px] h-32" placeholder="ອະທິບາຍໜ້າວຽກທີໄດ້ເຮັດຜ່ານມາ"/>
               </ArrayField>
             </DynamicForm>

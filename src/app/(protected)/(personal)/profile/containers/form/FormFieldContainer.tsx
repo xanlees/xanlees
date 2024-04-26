@@ -21,8 +21,8 @@ export const FormFieldContainer: React.FC< CommonProps & { isEmployee: boolean }
         <InputNickName form={form} />
         <PhonNumberInput form={form} />
         <BirthdayInput form={form} />
-        <GenderAndMaritalStatusSelect form={form} />
         <UniqueNumberInput isEmployee={isEmployee} form={form}/>
+        <GenderAndMaritalStatusSelect form={form} />
         <DynamicNumberForm isEmployee={isEmployee} {...form} />
       </div>
     </>
@@ -32,7 +32,7 @@ export const BirthdayInput: React.FC<CommonProps> = ({ form }) => {
   return (
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
-        <Form.Field {...form} name="birthday" label="ເລືອກວັນ​ເດືອນ​ປີ​ເກີດ">
+        <Form.Field {...form} name="birthday" label="ວັນ​ເດືອນ​ປີ​ເກີດ">
           <DatePickerField />
         </Form.Field>
       </div>
@@ -47,7 +47,7 @@ export const UniqueNumberInput: React.FC<CommonProps & { isEmployee?: boolean }>
         <Form.Field
           {...form}
           name="typeOfUniqueNumber"
-          label="ເລືອກປະເພດເອກກະສານຢືນຢັນ"
+          label="ປະເພດເອກກະສານຢືນຢັນ"
         >
           <Form.Select options={typeOfUniqueNumber} className="w-full lg:w-80" />
         </Form.Field>
@@ -60,7 +60,7 @@ export const GenderAndMaritalStatusSelect: React.FC<CommonProps> = ({ form }) =>
   return (
     <div className="w-full lg:w-80">
       <div className="w-full flex flex-col lg:flex-row lg:gap-x-5">
-        <Form.Field {...form} name={"gender"} label={"ເລືອກເພດ"}>
+        <Form.Field {...form} name={"gender"} label={"ເພດ"}>
           <Form.RadioGroup className="" options={[{ label: "ຊາຍ", value: "MALE" }, { label: "ຍິງ", value: "FEMALE" }]} isSquare={true} />
         </Form.Field>
         <Form.Field {...form} name={"maritalStatus"} label={"ສະຖານະພາບ"}>

@@ -49,14 +49,14 @@ export const FormFieldContainer: React.FC<{ form: IFormConfig }> = ({ form }) =>
     <div className="flex flex-wrap gap-2">
       <div className="w-full lg:w-80 ">
         <div className="relative w-full mb-3">
-          <Form.Field {...form} name="documentName" label="ຊື່ເອກສານ" >
-            <Input placeholder="ຊື່ເອກສານ" />
+          <Form.Field {...form} name="documentName" label="ຊື່ເອກະສານ" >
+            <Input placeholder="" />
           </Form.Field>
         </div>
       </div>
       <div className="w-full lg:w-80 ">
         <div className="relative w-full mb-3">
-          <Form.Field {...form} name="documentFile" label="ເລືອກເອກະສານທີ່ຈະເພີ່ມ (ເປັນ PDF ໄຟລ໌)" >
+          <Form.Field {...form} name="documentFile" label="ໄຟລ໌ເອກະສານ (ເປັນ PDF ໄຟລ໌)" >
             <Form.FileInput showFileDisplay={false} />
           </Form.Field>
         </div>

@@ -28,7 +28,7 @@ export default function UserList(): JSX.Element {
           {statusColumn()}
           {groupColumn()}
           {dateJoinedColumn()}
-          {getActionsColumn("user")}
+          {getActionsColumn({ resource: "user" })}
         </Table>
       </List>
     </div>

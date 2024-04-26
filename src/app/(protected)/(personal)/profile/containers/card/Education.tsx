@@ -54,7 +54,7 @@ export function EducationDetail({ profileId }: { profileId: number }): JSX.Eleme
 
 function CardLayout({ children }: { children: ReactNode }): JSX.Element {
   return (
-    <Card className="shadow-xl pb-3 rounded-lg bg-white dark:bg-gray-800 dark:text-white h-fit w-96 ">
+    <Card className="shadow-xl pb-3 rounded-lg w-full sm:w-96 bg-white dark:bg-gray-800 dark:text-white h-fit">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
           {"ຂໍ້ມູນການສຶກສາ"}

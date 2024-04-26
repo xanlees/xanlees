@@ -13,7 +13,7 @@ export function DocumentPDFCard({ profileId }: { profileId: number }): JSX.Eleme
     return <div>Loading...</div>;
   }
   return (
-    <Card className="shadow-xl pb-3 rounded-lg w-full bg-white dark:bg-gray-800 dark:text-white h-fit">
+    <Card className="shadow-xl pb-3 rounded-lg w-full sm:w-96 bg-white dark:bg-gray-800 dark:text-white h-fit">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
           {"ເອກກສານ"}
@@ -21,7 +21,7 @@ export function DocumentPDFCard({ profileId }: { profileId: number }): JSX.Eleme
       </CardHeader>
       <CardView
         table={table}
-        className="w-96"
+        className="w-96 m-2"
         showSearchBar={false}
         showPagination={false}
       >

@@ -1,6 +1,6 @@
 import { useTable } from "@refinedev/react-table";
 import { type IProfile } from "../../interface/model";
-export const useTableConfig = (type: string) => {
+export const useTableProfile = (type: string) => {
   const table = useTable<IProfile>({
     columns: [],
     enableSorting: true,

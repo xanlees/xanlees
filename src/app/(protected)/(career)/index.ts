@@ -15,7 +15,7 @@ import { useSectorId } from "../(personal)/profile/hooks/show";
 import { type ISector } from "./sector/interface";
 import { type IPosition } from "./position/interface";
 import { FullNameColumn } from "../(personal)/profile/containers/table-column";
-import { useTableConfig } from "../(personal)/profile/containers/table/useTableConfig";
+import { useTableProfile } from "../(personal)/profile/containers/table/useTableConfig";
 import { type IEmployee } from "./employee/interface";
 
 export {
@@ -38,7 +38,7 @@ export {
   Position,
   FullNameColumn,
   getLatestPosition,
-  useTableConfig,
+  useTableProfile as useTableConfig,
 
 };
 export type { IEmployee, IBranch, ISector, IPosition };

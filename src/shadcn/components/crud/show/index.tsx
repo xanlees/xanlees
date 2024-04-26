@@ -12,14 +12,16 @@ import { Row } from "./components/row";
 import { PageHeader } from "../../pageHeader";
 import { Breadcrumb } from "../../breadcrumb";
 import { DeleteButton, EditButton } from "../../buttons";
+import { cn } from "@src/lib/utils";
 
 export const Show = ({
     title,
     resource: resourceFromProps,
     breadcrumb: breadcrumbFromProps,
     children,
-    showButtonEdit= true
-}: ListProps & { showButtonEdit?: boolean}) => {
+    showButtonEdit= true,
+    className,
+}: ListProps & { showButtonEdit?: boolean, className?: string }) => {
     const translate = useTranslate();
     const { options: { breadcrumb: globalBreadcrumb } = {} } =
         useRefineContext();
@@ -64,8 +66,8 @@ export const Show = ({
                     </div>
                 }
             />
-            <div className="relative pt-4 !mt-0">
-                <Card className="rounded-sm shadow-md">
+            <div className="relative pt-4 !mt-0 mx-auto flex justify-center ">
+                <Card className={cn("rounded-sm shadow-md", className)}>
                     <CardContent>{children as ReactNode}</CardContent>
                 </Card>
             </div>

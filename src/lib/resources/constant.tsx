@@ -3,34 +3,13 @@ import { User, BookUser, FileText, Timer } from "lucide-react";
 
 export const resources = [
   {
-    name: "profile",
-    list: "/profile",
-    create: "/profile/create",
-    edit: "/profile/edit/:id",
-    show: "/profile/show/:id",
-    icon: <BookUser />,
-    meta: {
-      label: "ພະນັກງານ",
-    },
-  },
-  {
     name: "user-profile",
     list: "/user-profile",
     create: "/user-profile/create",
     edit: "/user-profile/edit/:id",
     show: "/user-profile/show/:id",
     icon: <Timer />,
-    meta: { label: "ປໍ້າເຂົ້າວຽກແລະປໍ້າອອກ" },
-  },
-  {
-    name: "branch",
-    list: "/branch",
-    create: "/branch/create",
-    edit: "/branch/edit/:id",
-    show: "/branch/show/:id",
-    meta: {
-      label: "ສາຂາຫ້ອງການ",
-    },
+    meta: { label: "ລາຍການປໍ້າໂມງ" },
   },
   {
     name: "application",
@@ -44,6 +23,37 @@ export const resources = [
     },
   },
   {
+    name: "profile",
+    list: "/profile",
+    create: "/profile/create",
+    edit: "/profile/edit/:id",
+    show: "/profile/show/:id",
+    icon: <BookUser />,
+    meta: {
+      label: "ພະນັກງານ",
+    },
+  },
+  {
+    name: "employee-laid-off",
+    list: "/employee-laid-off",
+    create: "/employee-laid-off/create",
+    edit: "/employee-laid-off/edit/:id",
+    show: "/employee-laid-off/show/:id",
+    meta: {
+      label: "ອາດີດພະນັກງານ",
+    },
+  },
+  {
+    name: "branch",
+    list: "/branch",
+    create: "/branch/create",
+    edit: "/branch/edit/:id",
+    show: "/branch/show/:id",
+    meta: {
+      label: "ຫ້ອງການ",
+    },
+  },
+  {
     name: "work-time-settings",
     list: "/work-time-settings",
     create: "/work-time-settings/create",
@@ -51,7 +61,7 @@ export const resources = [
     show: "/work-time-settings/show/:id",
     icon: <FileText />,
     meta: {
-      label: "ຕັ້ງເວລາເຂົ້າວຽກ",
+      label: "ໂມງເຂົ້າ-ອອກວຽກ",
     },
   },
   {
@@ -62,10 +72,9 @@ export const resources = [
     show: "/agent/show/:id",
     icon: <User />,
     meta: {
-      label: "ແມ່ຫວຍ",
+      label: "ຄົນຂາຍເລກ",
     },
   },
-
   {
     name: "lottery-branch",
     list: "/lottery-branch",

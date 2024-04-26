@@ -63,4 +63,6 @@ p, admin, work-time-settings/*, (edit)|(show)|(delete)
 p, admin, work-time-settings, (list)|(create)
 p, admin, changelog/*, (edit)|(show)|(delete)
 p, admin, changelog, (list)|(create)
+p, admin, employee-laid-off/*, (edit)|(show)|(delete)
+p, admin, employee-laid-off, (list)|(create)
 `);

@@ -28,7 +28,7 @@ const VehicleTypeSelect: React.FC<{ form: IFormConfig }> = ({ form }) => {
   return (
     <div className="w-full ">
       <div className="w-full flex flex-col lg:flex-row lg:gap-x-5">
-        <Form.Field {...form} name={"vehicleType"} label={"ທ່ານສາມາດໃຊ້ພາຫະນະປະເພດໃດ"}>
+        <Form.Field {...form} name={"vehicleType"} label={"ສາມາດນໍາໃຊ້ພາຫະນະປະເພດໃດ"}>
           <Form.RadioGroup className="flex flex-wrap" options={VehicleTypeOptions} isSquare={true}/>
         </Form.Field>
       </div>
@@ -38,11 +38,11 @@ const VehicleTypeSelect: React.FC<{ form: IFormConfig }> = ({ form }) => {
 
 const TypeDrivingLicenseSelect: React.FC<{ form: IFormConfig }> = ({ form }) => {
   const DrivingLicenceOptions = [
-    { label: "ປະເພດ A", value: "A" },
-    { label: "ປະເພດ B", value: "B" },
-    { label: "ປະເພດ C", value: "C" },
-    { label: "ປະເພດ D", value: "D" },
-    { label: "ປະເພດ E", value: "E" },
+    { label: "A (ລົດຈັກ)", value: "A" },
+    { label: "B (ລົດເບົາ)", value: "B" },
+    { label: "C (ລົດຂົນສົ່ງສິນຄ້າ)", value: "C" },
+    { label: "D (ລົດຂົນສົ່ງໂດຍສານ)", value: "D" },
+    { label: "E (ລົດລາກ)", value: "E" },
     { label: "ບໍ່ມີໃບຂັບຂີ່", value: "NO_LICENSE" },
   ];
   return (

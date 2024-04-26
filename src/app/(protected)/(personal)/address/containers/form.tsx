@@ -50,7 +50,7 @@ export const Province: React.FC<{ form: IFormConfig }> = ({ form }) => {
   return (
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
-        <Form.Field {...form} name={"province"} label={"ເລືອກແຂວງ"} require={false} >
+        <Form.Field {...form} name={"province"} label={"ແຂວງ"} require={false} >
           <Form.Combobox {...(provinceList as any)} className="w-full lg:w-80" />
         </Form.Field>
       </div>
@@ -63,7 +63,7 @@ export const District: React.FC<{ form: IFormConfig }> = ({ form }) => {
   return (
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
-        <Form.Field {...form} name={"district"} label={"ເລືອກເມືອງ"} require={false} >
+        <Form.Field {...form} name={"district"} label={"ເມືອງ"} require={false} >
           <Form.Combobox {...(district as any)} className="w-full lg:w-80" />
         </Form.Field>
       </div>

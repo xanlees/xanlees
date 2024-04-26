@@ -41,13 +41,13 @@ export default function ApplicationShow({ params }: Readonly<{ params: { id: num
           <DocumentPDF profileId={profileData?.[0]?.id ?? 0}/>
           <Skill skillData={skillData as ISkill[]} />
           <Application applicationData={record}/>
+          <AddressDetail profileId={profileId} />
         </div>
         <div className="flex flex-col gap-y-2 w-96">
           <WorkExperience workExperienceData={workExperienceData as IWorkExperience[]} />
         </div>
         <div className="flex flex-col gap-y-2 w-96">
           <EducationDetail profileId={profileId} />
-          <AddressDetail profileId={profileId} />
         </div>
       </div>
     </Show>

@@ -17,16 +17,16 @@ export const Skill: React.FC = () => {
       ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
       : (
         <Form {...form}>
-          <label htmlFor="">ຄວາມສາມາດໃນນໍາໃຊ້ຄອມພິວເຕີເຊັ່ນ word, excel, powerpoint ຫຼື ພາສາຕ່າງປະເທດ ອື່ນໆ"</label>
+          <label htmlFor="">ຄວາມສາມາດໃນນໍາໃຊ້ຄອມພິວເຕີເຊັ່ນ Word, Excel, Powerpoint ຫຼື ພາສາຕ່າງປະເທດ"</label>
           <div className="rounded-full w-60 sm:w-[600px]">
             <DynamicForm
-              form={form} fields={fields} append={append} remove={remove} name="skill" className="flex flex-col sm:flex-row sm:flex-wrap" label="ເພີ່ມຄວາມສາມາດ"
+              form={form} fields={fields} append={append} remove={remove} name="skill" className="flex flex-col sm:flex-row sm:flex-wrap" label="ເພີ່ມທັກສາອີກ"
               classNameButton="w-32 mt-5"
               defaultConfig={{ application: state.applicationId }}>
-              <ArrayField {...form} name="name" label="ຄວາມສາມາດ">
+              <ArrayField {...form} name="name" label="ທັກສາ/ພາສາ">
                 <Input className="w-56" placeholder="word" />
               </ArrayField>
-              <ArrayField {...form} name="proficiency" label="ລະດັບຄວາມສາມາດ">
+              <ArrayField {...form} name="proficiency" label="ລະດັບ">
                 <Form.Select options={Options} className="w-56"/>
               </ArrayField>
             </DynamicForm>

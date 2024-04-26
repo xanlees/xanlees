@@ -18,7 +18,7 @@ export const FormGraduation = () => {
   return (
     <Accordion type="single" collapsible className="w-ful">
       <AccordionItem value="item-1" className="border-none">
-        <AccordionTrigger className="italic text-blue-500 underline">*ຊອກພາກວິຊາຮຽນທີ່ຕົນຮຽນບໍ່ເຫັນ, ກົດທີ່ນີ້</AccordionTrigger>
+        <AccordionTrigger className="italic text-blue-500 underline">*ຊອກສາຂາບໍ່ເຫັນ, ກົດທີ່ນີ້</AccordionTrigger>
         <AccordionContent>
           <Form {...formConfig.form}>
             <div className="w-full sm:flex gap-x-2">

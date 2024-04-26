@@ -19,14 +19,14 @@ export const EducationForm: React.FC = () => {
     {isCompleted
       ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
       : (<div><Form {...formConfig.form} cardClassName="">
-        <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="education" label="ການສຶກສາອີກ" className="flex flex-col sm:flex-row sm:flex-wrap" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId }}>
-          <ArrayField {...formConfig.form} name="branch" label="ສະຖາບັນ">
+        <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="education" label="ເພີ່ມການສຶກສາອີກ" className="flex flex-col sm:flex-row sm:flex-wrap" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId }}>
+          <ArrayField {...formConfig.form} name="branch" label="ສະຖາບັນ/ໂຮງຮຽນ">
             <Input placeholder="" className="block w-56" />
           </ArrayField>
-          <ArrayField {...formConfig.form} name="graduationId" label="ພາກວິຊາທີ່ຈົບ">
+          <ArrayField {...formConfig.form} name="graduationId" label="ສາຂາ/ສາຍສະມັນ">
             <Form.Combobox {...(graduation as any)} />
           </ArrayField>
-          <ArrayField {...formConfig.form} name="year" label="ຈົບສົກປີ">
+          <ArrayField {...formConfig.form} name="year" label="ສົກປີຈົບ">
             <Input placeholder="2018" type="number" className="block w-full sm:w-28" />
           </ArrayField>
         </DynamicForm>

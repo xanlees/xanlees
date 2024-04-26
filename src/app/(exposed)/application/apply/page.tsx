@@ -62,7 +62,7 @@ function ApplicationForm(): JSX.Element {
       </div>
       <FormStep formStepsData={applicationFromStep} initialStep={initialStep}/>
       <div className="text-center">
-        <Button onClick={handleButtonClick}>ເລີ້ມຕົ້ນໃຫມ່</Button>
+        <Button onClick={handleButtonClick}>ປະກອບຟອມສະໝັກວຽກຄັ້ງໃໝ່ອີກ</Button>
       </div>
       <div className="my-3 text-center bg-blue-300 rounded-sm p-4">
         <p className="text-xl font-bold">ຂອບໃຈທ່ານທີ່ໄວ້ໃຈ </p>

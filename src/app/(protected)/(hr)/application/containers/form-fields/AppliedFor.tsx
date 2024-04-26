@@ -8,7 +8,7 @@ export const AppliedFor: React.FC<{
   return (
     <div className="py-6 border-t border-gray-200 first:pt-0 last:pb-0 first:border-transparent dark:border-gray-700 dark:first:border-transparent">
       <label className="inline-block my-2 text-lg font-medium dark:text-white">
-        ຕໍາແຫນ່ງທີ່ຕ້ອງການສະຫມັກ
+        ຕໍາແຫນ່ງທີ່ສະຫມັກ
       </label>
       <div className="mt-2 space-y-3">
         <Form.Field {...form} name="appliedPosition" label="ຕໍາແຫນ່ງທີ່ສະຫມັກ" >

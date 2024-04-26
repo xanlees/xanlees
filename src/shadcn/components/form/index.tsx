@@ -1,16 +1,16 @@
 import {
-    useBack,
-    useNavigation,
-    useResource,
-    useRouterType,
-    type BaseRecord,
-    type HttpError,
+  useBack,
+  useNavigation,
+  useResource,
+  useRouterType,
+  type BaseRecord,
+  type HttpError,
 } from "@refinedev/core";
 import type { UseFormReturnType } from "@refinedev/react-hook-form";
 import type {
-    DetailedHTMLProps,
-    FormHTMLAttributes,
-    PropsWithChildren,
+  DetailedHTMLProps,
+  FormHTMLAttributes,
+  PropsWithChildren,
 } from "react";
 import { type FieldValues } from "react-hook-form";
 import { Button, Card, CardContent, CardFooter, FormUI } from "../../elements";
@@ -25,45 +25,20 @@ import { cn } from "@src/lib/utils";
 import { RadioGroupField } from "./radio-group";
 
 type NativeFormProps = Omit<
-    DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>,
-    "onSubmit"
+  DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>,
+  "onSubmit"
 >;
 
 type FormProps<
-    TQueryFnData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables extends FieldValues = FieldValues,
-    TContext extends object = {},
-    TData extends BaseRecord = TQueryFnData,
-    TResponse extends BaseRecord = TData,
-    TResponseError extends HttpError = TError,
+  TQueryFnData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables extends FieldValues = FieldValues,
+  TContext extends object = {},
+  TData extends BaseRecord = TQueryFnData,
+  TResponse extends BaseRecord = TData,
+  TResponseError extends HttpError = TError
 > = PropsWithChildren &
-    UseFormReturnType<
-        TQueryFnData,
-        TError,
-        TVariables,
-        TContext,
-        TData,
-        TResponse,
-        TResponseError
-    > & {
-        formProps?: NativeFormProps;
-    };
-
-export const Form = <
-    TQueryFnData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables extends FieldValues = FieldValues,
-    TContext extends object = {},
-    TData extends BaseRecord = TQueryFnData,
-    TResponse extends BaseRecord = TData,
-    TResponseError extends HttpError = TError,
->({
-    formProps,
-    saveButtonProps,
-    cardClassName,
-    ...props
-}: FormProps<
+  UseFormReturnType<
     TQueryFnData,
     TError,
     TVariables,
@@ -71,50 +46,75 @@ export const Form = <
     TData,
     TResponse,
     TResponseError
-> & { cardClassName?: string }) => {
-    const { resource: _resource, action } = useResource();
-    const routerType = useRouterType();
-    const back = useBack();
-    const { goBack } = useNavigation();
+  > & {
+    formProps?: NativeFormProps;
+  };
 
-    const onBack =
-        action !== "list" || typeof action !== "undefined"
-            ? routerType === "legacy"
-                ? goBack
-                : back
-            : undefined;
+export const Form = <
+  TQueryFnData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables extends FieldValues = FieldValues,
+  TContext extends object = {},
+  TData extends BaseRecord = TQueryFnData,
+  TResponse extends BaseRecord = TData,
+  TResponseError extends HttpError = TError
+>({
+  formProps,
+  saveButtonProps,
+  cardClassName,
+  showCancelButton = false,
+  ...props
+}: FormProps<
+  TQueryFnData,
+  TError,
+  TVariables,
+  TContext,
+  TData,
+  TResponse,
+  TResponseError
+> & { cardClassName?: string; showCancelButton?: boolean }) => {
+  const { resource: _resource, action } = useResource();
+  const routerType = useRouterType();
+  const back = useBack();
+  const { goBack } = useNavigation();
+
+  const onBack =
+    action !== "list" || typeof action !== "undefined"
+      ? routerType === "legacy"
+        ? goBack
+        : back
+      : undefined;
+  // @ts-ignore
+  const onSubmit = props.handleSubmit((data: TQueryFnData) => {
     // @ts-ignore
-    const onSubmit = props.handleSubmit((data: TQueryFnData) => {
-        // @ts-ignore
-        saveButtonProps?.onClick?.(data);
-    });
-    return (
-        <FormUI {...props}>
-            <form {...formProps} onSubmit={onSubmit}>
-                <Card className={cn("rounded-lg", cardClassName)}>
-                    <CardContent className="pt-6 mx-auto space-y-4 ">
-                        {props.children}
-                    </CardContent>
+    saveButtonProps?.onClick?.(data);
+  });
+  return (
+    <FormUI {...props}>
+      <form {...formProps} onSubmit={onSubmit}>
+        <Card className={cn("rounded-lg", cardClassName)}>
+          <CardContent className="pt-6 mx-auto space-y-4 ">
+            {props.children}
+          </CardContent>
 
-                    <CardFooter className="flex justify-end gap-x-4">
-                        <Button
-                            type="button"
-                            onClick={onBack}
-                            disabled={props.refineCore.formLoading}
-                            variant="outline"
-                        >
-                            ຍົກເລີກ
-                        </Button>
+          <CardFooter className="flex justify-end gap-x-4">
+            {showCancelButton ?? (
+              <Button
+                type="button"
+                onClick={onBack}
+                disabled={props.refineCore.formLoading}
+                variant="outline"
+              >
+                ຍົກເລີກ
+              </Button>
+            )}
 
-                        <SaveButton
-                            type="submit"
-                            loading={props.refineCore.formLoading}
-                        />
-                    </CardFooter>
-                </Card>
-            </form>
-        </FormUI>
-    );
+            <SaveButton type="submit" loading={props.refineCore.formLoading} />
+          </CardFooter>
+        </Card>
+      </form>
+    </FormUI>
+  );
 };
 
 Form.Field = FormField;
@@ -124,4 +124,3 @@ Form.DatePicker = DatePickerField;
 Form.FileInputImage = FileInputImage;
 Form.FileInput = FileInputField;
 Form.RadioGroup = RadioGroupField;
-

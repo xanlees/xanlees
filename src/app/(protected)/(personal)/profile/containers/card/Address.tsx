@@ -14,7 +14,7 @@ export function AddressDetail({ profileId }: { profileId: number }): JSX.Element
   }
   return (
     <CardLayout >
-      <CardView table={table} className="w-96  m-2" showSearchBar={false} showPagination={false}>
+      <CardView table={table} className="w-96 m-2 flex-col" showSearchBar={false} showPagination={false}>
         <CardView.Row<IAddress>
           header=""
           id="id"
