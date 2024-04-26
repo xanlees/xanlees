@@ -10,7 +10,7 @@ export const UserForm = ({ navigates = "profile", profile }: { navigates: string
   const { form } = useUserForm(profile ?? 0, navigates);
   const groups = useSelect<IGroup>({ resource: "group", optionLabel: "name", optionValue: "name" });
   return (
-    <div className=" mx-auto">
+    <div className=" w-full sm:w-[900px]">
       <Form {...form}>
         <UsernameInput {...form} />
         <div className="flex w-full gap-3 flex-warp">

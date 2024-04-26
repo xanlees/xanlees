@@ -31,6 +31,7 @@ export const FormFieldContainer: React.FC< CommonProps & { isEmployee: boolean }
         <GenderAndMaritalStatusSelect form={form} />
         <UniqueNumberInput isEmployee={isEmployee} form={form}/>
         <UniqueNumber form={form}/>
+        <ProfileType isEmployee={isEmployee} form={form}/>
       </div>
     </>
   );
@@ -47,3 +48,29 @@ export const UniqueNumber: React.FC<CommonProps> = ({ form }) => {
     </div>
   );
 };
+
+export const ProfileType: React.FC<CommonProps & { isEmployee?: boolean }> = ({ form, isEmployee }) => {
+  const profileTypeList = getProfileType();
+  return (
+    <div className="w-full lg:w-80 ">
+      <div className="relative w-full mb-3">
+        <Form.Field
+          {...form}
+          name="type"
+          label="ສະຖານະພະນັກງານ"
+        >
+          <Form.Select options={profileTypeList} className="w-full lg:w-80" />
+        </Form.Field>
+      </div>
+    </div>
+  );
+};
+function getProfileType() {
+  return [
+    { label: "ລາອອກເອງ", value: "RESIGN" },
+    { label: "ບໍລິສັດໃຫ້ອອກ", value: "DISMISS" },
+    { label: "ພະນັກງານ", value: "EMPLOYEE" },
+    { label: "ຜູ້ສະໝັກວຽກ", value: "EMPLOYEE_CANDIDATE" },
+  ];
+}
+

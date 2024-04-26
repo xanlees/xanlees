@@ -14,6 +14,7 @@ export const useProfileEditForm = () => {
       phoneNumber: "",
       gender: "",
       birthday: "",
+      type: "",
       maritalStatus: "",
       typeOfUniqueNumber: "IDENTIFY",
       profilePicture: undefined,
@@ -41,6 +42,7 @@ export const profileSchema: any = z
     typeOfUniqueNumber: z.string().min(1, { message: "ກະລຸນາເລືອກປະເພດເລກລະຫັດວ່າ ເລກບັດປະຈໍາຕົວ, ເລກເຄື່ອງຂາຍເລກ ຫຼື ປື້ມສໍາມະໂມຄົວເລກທີ" }),
     birthday: z.date().or(z.string()).refine((value) => { return value != null && value !== ""; }, { message: "ກະລຸນາເລືອກວັນ​ເດືອນ​ປີ​ເກີດ" }),
     uniqueNumber: z.union([z.string(), z.array(z.string())]).optional(),
+    type: z.union([z.string(), z.array(z.string())]).optional(),
     profilePicture: z.union([
       z.string(),
       z.instanceof(File).refine((file) => {
@@ -56,10 +58,7 @@ export const profileSchema: any = z
   });
 
 function transformUniqueNumber(val: ProfileSendData): Record<string, any> {
-  let transformed: Record<string, any> = {
-    ...val,
-    profilePicture: val.profilePicture,
-  };
+  let transformed: Record<string, any> = { ...val, profilePicture: val.profilePicture };
   if (Array.isArray(val.uniqueNumber)) {
     transformed = {
       ...transformed,
@@ -86,7 +85,6 @@ function transformUniqueNumber(val: ProfileSendData): Record<string, any> {
   delete transformed.uniqueNumber;
   return transformed;
 }
-
 interface ProfileSendData {
   fullname: string
   nickname: string | null

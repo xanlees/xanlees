@@ -14,7 +14,7 @@ export function AddressDetail({ profileId }: { profileId: number }): JSX.Element
   }
   return (
     <CardLayout >
-      <CardView table={table} className="w-96 m-2 flex-col" showSearchBar={false} showPagination={false}>
+      <CardView table={table} className="w-80 m-2 flex-col" showSearchBar={false} showPagination={false}>
         <CardView.Row<IAddress>
           header=""
           id="id"
@@ -25,13 +25,13 @@ export function AddressDetail({ profileId }: { profileId: number }): JSX.Element
             const village = rowData.village ?? "";
             const status = rowData.status ?? "";
             return (
-              <>
-                <label className=" -mx-44 text-md font-bold">{status}</label>
+              <div>
+                <label className="-mx-32 text-md font-bold">{status}</label>
                 <Show.Row
                   className=""
-                  content={<div className="-mx-52">{`ບ້ານ${village ?? ""}, ${district?.districtName ?? ""}, ${district?.provinceName ?? ""}`}</div>}
+                  content={<div className="-mx-40">{`ບ້ານ${village ?? ""}, ${district?.districtName ?? ""}, ${district?.provinceName ?? ""}`}</div>}
                 />
-              </>
+              </div>
             );
           }}
         />
@@ -43,7 +43,7 @@ export function AddressDetail({ profileId }: { profileId: number }): JSX.Element
 
 function CardLayout({ children }: { children: ReactNode }): JSX.Element {
   return (
-    <Card className="shadow-xl pb-3 rounded-lg bg-white dark:bg-gray-800 dark:text-white h-fit w-96 ">
+    <Card className="shadow-xl pb-2 rounded-lg bg-white dark:bg-gray-800 dark:text-white h-fit w-80 ">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
           {"ທີ່ຢູ່"}

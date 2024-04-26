@@ -2,11 +2,6 @@
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 import React from "react";
 import { Edit } from "@/shadcn/components/crud";
-import { ProfileForm, ProfileProvider } from "@personal";
-import { Card, CardHeader } from "@src/shadcn/elements";
-import FormStep from "@src/common/components/stepForm";
-import { useOne } from "@refinedev/core";
-import { type IProfile } from "../../interface/model";
 import { ProfileEditForm } from "../../containers/form/editForm";
 
 const breadcrumbs = [
@@ -19,11 +14,6 @@ export default function ProfileEdit({
 }: {
   params: { id: number }
 }): JSX.Element {
-  const { data } = useOne<IProfile>({
-    resource: "profile",
-    id: Number(params.id ?? 0),
-  });
-  const profileId = Number(data?.data?.id) ?? 0;
   return (
     <Edit title="ຟອມສ້າງພະນັກງານ" resource="profile" breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}>
       <div className="flex justify-center ">
@@ -31,7 +21,7 @@ export default function ProfileEdit({
           <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
           ຟອມສ້າງພະນັກງານ
           </div>
-          <ProfileEditForm type={""}/>
+          <ProfileEditForm />
         </div>
       </div>
     </Edit>

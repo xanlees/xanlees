@@ -139,7 +139,7 @@ export function CardView<
         </div>
       ) : null}
 
-      <div className={cn("flex flex-wrap gap-2 ")}>
+      <div className={cn("flex flex-wrap gap-1 ")}>
         {table.getRowModel().rows?.length ? (
           table.getRowModel().rows.map((row: any) => {
             return (

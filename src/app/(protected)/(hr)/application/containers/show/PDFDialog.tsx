@@ -19,7 +19,7 @@ export function PDFDialog({ documentName, documentFile }: PDFDialogProps) {
       <AlertDialogTrigger asChild >
         <Button variant="outline">ເປີດເອກະສານ</Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className=" z-50  w-[45%] h-[95%] translate-x-[-50%] translate-y-[-50%] gap-0 border bg-background p-0 shadow-lg ">
+      <AlertDialogContent className=" z-50  w-[45%] h-[100%] translate-x-[-50%] translate-y-[-50%] gap-0 border bg-background p-0 shadow-lg ">
         <PDFViewer
           file={documentFile}
           title={documentName}

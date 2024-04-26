@@ -25,7 +25,7 @@ export function EducationDetail({ profileId }: { profileId: number }): JSX.Eleme
   }
   return (
     <CardLayout>
-      <CardView table={table} className="w-96 m-2" showSearchBar={false} showPagination={false}>
+      <CardView table={table} className="w-80 m-2 flex-col" showSearchBar={false} showPagination={false}>
         <CardView.Row
           header=""
           id="id"
@@ -40,7 +40,7 @@ export function EducationDetail({ profileId }: { profileId: number }): JSX.Eleme
             return (
               <Show.Row
                 className="ຂໍ້ມູນການສຶກສາ"
-                content={<div className="-mx-48">{`${degree}, ${sector}, ຈົບທີ${branch} ຈົບສົກປີ ${year}`}</div>}
+                content={<div className="-mx-40">{`${degree}, ${sector}, ຈົບທີ${branch} ຈົບສົກປີ ${year}`}</div>}
               />
             );
           }}
@@ -54,7 +54,7 @@ export function EducationDetail({ profileId }: { profileId: number }): JSX.Eleme
 
 function CardLayout({ children }: { children: ReactNode }): JSX.Element {
   return (
-    <Card className="shadow-xl pb-3 rounded-lg w-full sm:w-96 bg-white dark:bg-gray-800 dark:text-white h-fit">
+    <Card className="shadow-xl pb-3 rounded-lg w-full sm:w-80 bg-white dark:bg-gray-800 dark:text-white h-fit">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
           {"ຂໍ້ມູນການສຶກສາ"}

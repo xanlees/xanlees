@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as z from "zod";
 import { useCustomMutation, useNavigation } from "@refinedev/core";
 import { useEffect, useState } from "react";
@@ -6,11 +7,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { type CreateUserProfileProps, type UserProfile } from "../interface/interface";
 
 export const useUserForm = (profile: number, navigates: string) => {
+  const idEdit = profile <= 0;
   const { list } = useNavigation();
   const [user, setUser] = useState<number>(0);
   const [shouldCreateProfile, setShouldCreateProfile] = useState(false);
   const form = useForm<{ id: number }>({
-    resolver: zodResolver(userSchema),
+    resolver: zodResolver(idEdit ? userSchemaEdit : userSchema),
     defaultValues: {
       username: "",
       isActive: true,
@@ -88,3 +90,25 @@ const useCreateUserProfile = ({ user, profile, shouldCreateProfile, setShouldCre
     }
   }, [mutate, user, profile, shouldCreateProfile, setShouldCreateProfile]);
 };
+
+const userSchemaEdit = z.object({
+  isActive: z.boolean().optional(),
+  password: z.string().optional(),
+  confirmPassword: z.string().optional(),
+  groups: z.union([z.array(z.string()), z.string()]),
+}).refine((data) => {
+  return (data.password === "" && data.confirmPassword === "") || (data.password === data.confirmPassword);
+}, {
+  message: "ເລກລະຫັດລະລັດຜ່ານບໍ່ກົງກັນ",
+  path: ["confirmPassword"],
+}).transform((data) => {
+  const transformedVal = { ...data };
+  if (typeof data.groups === "string") {
+    transformedVal.groups = [data.groups];
+  }
+  if (!data.password && !data.confirmPassword) {
+    delete transformedVal.password;
+    delete transformedVal.confirmPassword;
+  }
+  return transformedVal;
+});

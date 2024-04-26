@@ -10,27 +10,27 @@ import { useProfile } from "../../hooks/show";
 import { type IProfile } from "../../interface/model";
 import { EmployeeCard } from "@src/app/(protected)/(career)/employee/containers/card";
 import { DocumentPDFCard } from "../../../document/containers/card";
+import { UserCard } from "../../containers/card/userCard";
 
-export default function ProfileShow({
-  params,
-}: {
-  params: { id: number }
-}): JSX.Element {
+export default function ProfileShow({ params }: { params: { id: number } }): JSX.Element {
   const profileId = Number(params.id ?? 0) ?? 0;
   const { data: profileData } = useProfile<IProfile>({ profileId: params.id });
   return (
     <Show>
-      <div className="mt-5 flex flex-wrap justify-between">
-        <div className="flex-1 min-w-[calc(100%/3 - 1rem)] p-2 space-y-3">
+      <div className="mt-5 flex flex-wrap justify-between gap-2">
+        <div className="">
           <ProfileDetail profileData={profileData} visible={false} />
         </div>
-        <div className="flex-1 min-w-[calc(100%/3 - 1rem)] p-2 space-y-3">
-          <AddressDetail profileId={profileId} />
-          <EducationDetail profileId={profileId} />
-        </div>
-        <div className="flex-1 min-w-[calc(100%/3 - 1rem)] p-2 space-y-3">
+        <div className="space-y-2">
+          <UserCard profileId={profileId}/>
           <EmployeeCard profileId={profileId} />
+        </div>
+        <div className="space-y-2">
           <DocumentPDFCard profileId={profileId} />
+          <EducationDetail profileId={profileId}/>
+        </div>
+        <div className="">
+          <AddressDetail profileId={profileId} />
         </div>
       </div>
     </Show>

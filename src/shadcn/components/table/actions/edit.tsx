@@ -6,6 +6,7 @@ type EditActionProps = RowActionProps & {
     row: any;
     resource: string;
     title: string;
+    actionKey?: string;
 };
 
 export function EditAction({
@@ -13,10 +14,14 @@ export function EditAction({
     resource,
     title,
     disabled,
+    actionKey,
     ...props
 }: EditActionProps) {
-    const edit = useGetEditUrl(resource, row.id);
-
+    const actionKeyValue = actionKey ? row[actionKey] : row.id;
+    const edit = useGetEditUrl(resource, actionKeyValue);
+    console.log("actionKeyValue", actionKeyValue)
+    console.log("actionKey", actionKey)
+    console.log("row", row)
     return (
         <RowAction
             {...props}

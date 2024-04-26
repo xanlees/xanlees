@@ -2,12 +2,18 @@
 import React from "react";
 import { Create } from "@/shadcn/components/crud";
 import { UserForm } from "../containers/form";
-
-export default function UserCreate({ params }: { params: { id: number } }): JSX.Element {
+export default function UserCreate({ params }: { params: { id: number }
+}): JSX.Element {
   return (
     <Create>
-      <UserForm navigates={"user"} />
+      <div className="flex justify-center">
+        <div className="flex flex-col border rounded-2xl">
+          <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
+            ຟອມສ້າງບັນຊີ
+          </div>
+          <UserForm navigates={"user"} />
+        </div>
+      </div>
     </Create>
   );
 }
-

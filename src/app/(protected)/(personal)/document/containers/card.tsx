@@ -13,7 +13,7 @@ export function DocumentPDFCard({ profileId }: { profileId: number }): JSX.Eleme
     return <div>Loading...</div>;
   }
   return (
-    <Card className="shadow-xl pb-3 rounded-lg w-full sm:w-96 bg-white dark:bg-gray-800 dark:text-white h-fit">
+    <Card className="shadow-xl pb-3 rounded-lg w-full sm:w-80 bg-white dark:bg-gray-800 dark:text-white h-fit">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
           {"ເອກກສານ"}
@@ -21,7 +21,7 @@ export function DocumentPDFCard({ profileId }: { profileId: number }): JSX.Eleme
       </CardHeader>
       <CardView
         table={table}
-        className="w-96 m-2"
+        className="w-80 m-2 flex-col"
         showSearchBar={false}
         showPagination={false}
       >
@@ -42,7 +42,7 @@ export function DocumentPDFCard({ profileId }: { profileId: number }): JSX.Eleme
 
 const DocumentRow: React.FC<{ document: IDocument }> = ({ document }) => {
   return (
-    <div className="-mx-44 flex justify-between p-2 m-2 rounded-md">
+    <div className="-mx-40 flex justify-between p-2 px-5 m-2 rounded-md">
       <div className="flex flex-wrap">
         <div className="px-2">
           <FileText className="w-7 h-7 mt-0.5" />
