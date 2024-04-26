@@ -68,7 +68,7 @@ export const DynamicDayOfWeekForm: React.FC<{ form: IFormConfig }> = ({ form }) 
     </div>
   );
 };
-const dayOfWeek = {
+export const dayOfWeek = {
   options: [
     { label: "ວັນຈັນ", value: "Monday" },
     { label: "ວັນອັງຄານ", value: "Tuesday" },
