@@ -7,7 +7,7 @@ import { type IPhysical } from "@src/app/(protected)/(personal)/physical/interfa
 export const Physical: React.FC<{ physicalData: IPhysical[] | null | undefined }> = ({ physicalData }) => {
   const { nationality, height, weight } = physicalData?.[0] ?? {};
   return (
-    <Card className="shadow-xl pb-3 rounded-lg w-full bg-white dark:bg-gray-800 dark:text-white h-fit ">
+    <Card className="shadow-xl pb-3 rounded-lg w-full sm:w-80 bg-white dark:bg-gray-800 dark:text-white h-fit">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
           {"ຂໍ້ມູນທົ່ວໄປ"}

@@ -7,6 +7,7 @@ import { type IFormConfig } from "@src/common/interface";
 import { type UseFormSetValue } from "react-hook-form";
 
 export const useFormConfig = ({ type, profile, redirect }: { type?: string, profile: number, redirect?: string }) => {
+  console.log("profile", type);
   let redirectPatch = "";
   if (redirect === "agent") {
     redirectPatch = "/agent";

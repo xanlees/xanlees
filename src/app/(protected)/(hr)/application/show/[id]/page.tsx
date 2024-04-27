@@ -32,22 +32,22 @@ export default function ApplicationShow({ params }: Readonly<{ params: { id: num
   const { data: physicalData } = usePhysical<IPhysical[]>({ profileId: record?.profileId });
   return (
     <Show showButtonEdit={false}>
-      <div className=" flex flex-wrap  gap-2 mt-5">
-        <div className="space-y-2">
+      <div className="mt-5 flex flex-wrap justify-between gap-2">
+        <div className="space-y-2 w-96">
           <ProfileDetail profileData={profileData} visible={false} />
           <Physical physicalData={physicalData as IPhysical[]} />
         </div>
-        <div className="space-y-2 w-96 ">
+        <div className="space-y-2 w-96">
           <DocumentPDF profileId={profileData?.[0]?.id ?? 0}/>
           <Skill skillData={skillData as ISkill[]} />
           <Application applicationData={record}/>
-          <AddressDetail profileId={profileId} />
         </div>
         <div className="flex flex-col gap-y-2 w-96">
           <WorkExperience workExperienceData={workExperienceData as IWorkExperience[]} />
         </div>
         <div className="flex flex-col gap-y-2 w-96">
           <EducationDetail profileId={profileId} />
+          <AddressDetail profileId={profileId} />
         </div>
       </div>
     </Show>

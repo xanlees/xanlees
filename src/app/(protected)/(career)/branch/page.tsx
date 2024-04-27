@@ -34,7 +34,7 @@ export default function BranchList(): JSX.Element {
           {branchColumn()}
           {sectorColumn(sectorData)}
           {positionsColumn(sectorData, positionData)}
-          {getActionsColumn(resource)}
+          {getActionsColumn({ resource })}
         </Table>
       </List>
     </div>

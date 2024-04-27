@@ -4,7 +4,7 @@ import React from "react";
 import { Edit } from "@/shadcn/components/crud";
 import { UserForm } from "../../containers/form";
 
-export default function UserCreate(): JSX.Element {
+export default function UserEdit(): JSX.Element {
   return (
     <Edit>
       <div className="flex justify-center">

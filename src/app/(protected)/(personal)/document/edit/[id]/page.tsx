@@ -19,7 +19,7 @@ export default function DocumentEdit({ params }: { params: { id: number } }): JS
 
   return (
     <Edit title="ເອກກະສານ" showButtonShow={false} breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}>
-      <DocumentEditForm id={id}/>
+      <DocumentEditForm id={id} action={"create"}/>
     </Edit>
   );
 }

@@ -26,7 +26,7 @@ export default function BranchList(): JSX.Element {
             {branchColumn()}
             {sectorColumn(sectorData)}
             {positionsColumn(sectorData, positionData)}
-            {getActionsColumn("office-branch")}
+            {getActionsColumn({ resource: "office-branch" })}
           </Table>
         </div>
       </List>
