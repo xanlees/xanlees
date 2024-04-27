@@ -9,7 +9,7 @@ import { SwitchButton } from "@src/shadcn/components/form/switch";
 
 export const EmployeeEditForm: React.FC<{ id: number }> = ({ id }) => {
   const { form } = useEmployeeEdit(id);
-  const position = usePositionSelect("EMPLOYEE");
+  const position = usePositionSelect();
   return (
     <Form {...form}>
       <div className="flex flex-wrap gap-2">

@@ -60,7 +60,7 @@ export const UniqueNumber: React.FC<{ uniqueNumber?: string[], typeOfUniqueNumbe
         <React.Fragment>
           {uniqueNumber?.map((item: string) => (
             <ShadcnBadge key={item}>
-              {item}
+              {item?.uniqueNumber}
             </ShadcnBadge>
           ))}
         </React.Fragment>

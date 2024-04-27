@@ -1,33 +1,30 @@
 "use client";
+
 import React from "react";
+import { AddressDetail, ProfileDetail, useProfile } from "../../../index";
+import { EmployeeCard } from "../../../employee/containers/card";
 import { Show } from "@/shadcn/components/crud";
-import { ProfileDetail, DocumentPDF, useProfile, useEmployees, usePersonalAddress, useSectorId } from "../../..";
-import type { IEmployee, ISector } from "@career";
-import type { IAddress } from "@personal";
-import { useSector } from "@src/app/(protected)/(personal)/profile/hooks/show";
 import { type IProfile } from "@src/app/(protected)/(personal)/profile/interface/model";
 import { UniqueNumberList } from "@src/app/(protected)/(personal)/profile/containers/card/UniqueNumber";
+import { DocumentPDFCard } from "@src/app/(protected)/(personal)/document/containers/card";
 
 export default function AgentShow({ params }: { params: { id: number } }): JSX.Element {
+  const profileId = Number(params.id ?? 0) ?? 0;
   const { data: profileData } = useProfile<IProfile>({ profileId: params.id });
-  const { data: employeeData } = useEmployees<IEmployee>({ profileId: params.id });
-  const { data: personalAddressData } = usePersonalAddress<IAddress[]>({ profileId: params.id });
-  const sectorId = useSectorId(employeeData as IEmployee[]);
-  const { data: sectorData } = useSector<ISector>({ sectorId });
   const { uniqueNumber } = profileData?.[0] ?? {};
   return (
     <Show>
-      <div className="flex-row gap-2 mt-5 md:flex">
-        <div className="space-y-2">
+      <div className="mt-5 flex flex-wrap justify-between gap-2">
+        <div className="">
           <ProfileDetail profileData={profileData} visible={true} />
         </div>
-        <div className="space-y-2 ">
-          {/* <EmployeeDetail employeeData={employeeData} sectorData={sectorData}/> */}
+        <div className="space-y-2">
           <UniqueNumberList uniqueNumber={uniqueNumber}/>
-          <DocumentPDF profileId={params?.id}/>
+          <DocumentPDFCard profileId={profileId} />
         </div>
-        <div className="my-2 sm:my-0">
-          {/* <AddressDetail personalAddressData={personalAddressData as IAddress[]} /> */}
+        <div className="space-y-2">
+          <EmployeeCard profileId={profileId} />
+          <AddressDetail profileId={profileId} />
         </div>
       </div>
     </Show>

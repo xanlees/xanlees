@@ -9,6 +9,7 @@ import { type FormAction } from "@refinedev/core";
 
 export const DocumentEditForm: React.FC<{ id: number, action: FormAction }> = ({ id, action }) => {
   const { form } = useDocumentFormEdit(id, action);
+  console.log("form", form.watch());
   return (
     <div className="flex justify-center">
       <div className="flex flex-col border rounded-2xl">
@@ -44,12 +45,12 @@ const useDocumentFormEdit = (id: number, action: FormAction) => {
     defaultValues: {
       documentName: "",
       documentFile: undefined,
-      profileId: id,
+      profileId: 0,
     },
     refineCoreProps: {
       resource: "document",
       redirect: false,
-      action,
+      action: "edit",
       id,
       meta: FormMultipart,
     },
