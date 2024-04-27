@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Show } from "@/shadcn/components/crud";
-import { ProfileDetail, EmployeeDetail, DocumentPDF, AddressDetail, useProfile, useEmployees, usePersonalAddress, useSectorId } from "../../..";
+import { ProfileDetail, DocumentPDF, useProfile, useEmployees, usePersonalAddress, useSectorId } from "../../..";
 import type { IEmployee, ISector } from "@career";
 import type { IAddress } from "@personal";
 import { useSector } from "@src/app/(protected)/(personal)/profile/hooks/show";
@@ -22,12 +22,12 @@ export default function AgentShow({ params }: { params: { id: number } }): JSX.E
           <ProfileDetail profileData={profileData} visible={true} />
         </div>
         <div className="space-y-2 ">
-          <EmployeeDetail employeeData={employeeData} sectorData={sectorData}/>
+          {/* <EmployeeDetail employeeData={employeeData} sectorData={sectorData}/> */}
           <UniqueNumberList uniqueNumber={uniqueNumber}/>
           <DocumentPDF profileId={params?.id}/>
         </div>
         <div className="my-2 sm:my-0">
-          <AddressDetail personalAddressData={personalAddressData as IAddress[]} />
+          {/* <AddressDetail personalAddressData={personalAddressData as IAddress[]} /> */}
         </div>
       </div>
     </Show>

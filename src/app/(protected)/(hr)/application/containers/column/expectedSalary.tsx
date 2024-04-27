@@ -4,7 +4,7 @@ import { type IApplication } from "../../interface";
 
 export const ExpectedSalary = (
   <Table.Column
-    header="ເງິນທີຕ້ອງການ"
+    header="ເງິນເດືອນທີຕ້ອງການ"
     accessorKey="expectedSalary"
     id="expectedSalary"
     cell={(props) => {

@@ -12,7 +12,7 @@ export const WorkExperience: React.FC<{ workExperienceData: IWorkExperience[] | 
   }
 
   return (
-    <Card className="shadow-xl pb-3 rounded-lg  bg-white dark:bg-gray-800 dark:text-white w-96">
+    <Card className="shadow-xl pb-3 rounded-lg  bg-white dark:bg-gray-800 dark:text-white w-80">
       <CardHeader className="flex flex-row items-center justify-between pb-2 border-b">
         <CardTitle className="text-lg font-semibold">
           {"ປະສົບການ"}

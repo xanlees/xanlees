@@ -9,6 +9,7 @@ import { type ISector } from "../../../index";
 import { type IFormConfig } from "@src/common/interface";
 
 export const BranchForm: React.FC<{ type: string }> = (type) => {
+  console.log("type", type);
   const branchType = type.type;
   const { form } = useFormPositionConfig(branchType);
   const sector = getSectorOptions(branchType);
@@ -27,7 +28,7 @@ export const BranchForm: React.FC<{ type: string }> = (type) => {
         </Form.Field>
         <SectorSection form={form} sector={sector} />
       </Form>
-      <FormSector branchType={branchType} />
+      <FormSector branchType={branchType} {...type} />
       <FormBranch type={branchType} />
     </div>
   );
@@ -36,7 +37,7 @@ export const BranchForm: React.FC<{ type: string }> = (type) => {
 export const SectorSection = ({ form, sector }: { form: IFormConfig, sector: any }) => {
   return (
     <div className="inline-flex flex-row items-center justify-start gap-x-4">
-      <Form.Field {...form} name="sectorId" label="ເລືອກພະແນກ">
+      <Form.Field {...form} name="sectorId" label="ພະແນກ/ໜ່ວຍ">
         <Form.Combobox {...sector} />
       </Form.Field>
     </div>

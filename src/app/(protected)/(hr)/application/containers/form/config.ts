@@ -19,7 +19,6 @@ export interface IApplication {
 export const useFormConfig = () => {
   const { dispatch } = useApplicationContext();
   const { state } = useProfileContext();
-
   const { ...form } = useForm<{ id?: number, tagId: number }>({
     resolver: zodResolver(applicationSchema),
     defaultValues: {
@@ -40,7 +39,6 @@ export const useFormConfig = () => {
     },
     warnWhenUnsavedChanges: true,
   });
-
   React.useEffect(() => {
     form.setValue("profileId", state?.profileId);
   }, [state?.profileId]);

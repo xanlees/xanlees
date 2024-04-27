@@ -17,6 +17,7 @@ export const useFormAgent = () => {
       phoneNumber: "",
       gender: "MALE",
       type: "AGENT",
+      typeOfUniqueNumber: "MACHINE",
     },
     refineCoreProps: {
       resource: "profile",

@@ -5,7 +5,7 @@ export function usePhysical<T extends BaseRecord>({ profileId }: { profileId: nu
     resource: "physical_profile",
     filters: [
       {
-        field: "profileId_id",
+        field: "profile_id",
         operator: "eq",
         value: profileId,
       },

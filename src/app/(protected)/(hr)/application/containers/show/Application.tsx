@@ -1,5 +1,3 @@
-/* eslint-disable max-lines */
-
 "use client";
 import { Show } from "@/shadcn/components/crud";
 import React, { type ReactNode } from "react";
@@ -9,23 +7,14 @@ import { type IApplication } from "../../interface";
 import { getApplicationStatusLabel, getTypeDrivingLicenseLabel, getTypeVaccineLabel } from "../../lib/constant";
 
 export const Application: React.FC<{ applicationData: IApplication }> = ({ applicationData }) => {
-  const { pledgeReason, appliedReason } = applicationData ?? {};
   return (
-    <>
-      <CardContainer title={"ຂໍ້ມູນແບບຟອມສະໝັກວຽກ"}>
-        <div className="px-4 py-2">
-          <PositionDetail applicationData={applicationData}/>
-          <EmergencyDetail applicationData={applicationData}/>
-          <General applicationData={applicationData}/>
-        </div>
-      </CardContainer>
-      <CardContainer title={"ເປັນຫຍັງທ່ານຈື່ງຢາກເຮັດວຽກກັບ ວິສາຫະກິດສ່ນບຸກຄົນ ເອັສບີເອັສ"}>
-        <Label className="pl-5">{appliedReason}</Label>
-      </CardContainer>
-      <CardContainer title={"ຖ້າໄດ້ເປັນພະນັກງານຂອງ ເອັສບີເອັສ ແລ້ວທ່ານຈະປະຕິຍານຕົນແນວໃດ ?"}>
-        <Label className="pl-5">{pledgeReason}</Label>
-      </CardContainer>
-    </>
+    <CardContainer title={"ຂໍ້ມູນແບບຟອມສະໝັກວຽກ"}>
+      <div className="px-4 py-2">
+        <PositionDetail applicationData={applicationData}/>
+        <EmergencyDetail applicationData={applicationData}/>
+        <General applicationData={applicationData}/>
+      </div>
+    </CardContainer>
   );
 };
 
@@ -53,7 +42,9 @@ export const EmergencyDetail: React.FC<{ applicationData: IApplication }> = ({ a
 };
 
 export const General: React.FC<{ applicationData: IApplication }> = ({ applicationData }) => {
-  const { typeDrivingLicense, vehicleType, applicationStatus, createdOn, tagId } = applicationData ?? {};
+  const { typeDrivingLicense, vehicleType, applicationStatus, createdOn, tagId, pledgeReason, appliedReason } = applicationData ?? {};
+  const defaultText = "ບໍ່ມີຂໍ້ມູນ";
+
   return (
     <div>
       <Label className="text-lg pl-5 font-bold">ຂໍ້ມູນທົ່ວໄປ</Label>
@@ -62,6 +53,14 @@ export const General: React.FC<{ applicationData: IApplication }> = ({ applicati
       <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ສະຖານະແບບຟອມ"} content={getApplicationStatusLabel(applicationStatus)} />
       <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ລະຫັດຟອມ"} content={tagId} />
       <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ສະໝັກວັນທີ"} content={moment(createdOn).format("DD/MMM/YYYY")} />
+      <div className="px-5 py-3 border-t border-gray-200 dark:border-gray-700">
+        <div className="text-md font-bold">{"ເຫດຜົນທີ່ຢາກເຮັດວຽກນໍາບໍລິລັດເຮົາ"}</div>
+        <div className="text-gray-600 dark:text-gray-300">{pledgeReason || defaultText}</div>
+      </div>
+      <div className="px-5 py-3">
+        <div className="text-md font-bold">{"ຄໍາປະຕິຍານຕົນ"}</div>
+        <div className="text-gray-600 dark:text-gray-300">{appliedReason || defaultText}</div>
+      </div>
     </div>
   );
 };

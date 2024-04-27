@@ -34,7 +34,7 @@ export const applicationFromStep = [
   },
   {
     stepLabel: "ເອກະສານຄັດຕິດ",
-    stepDescription: <DocumentForm label="ລາຍການເອກະສານເຊັ່ນ ໃບປະກາດ, ໃບຕະແນນ, ຊີວະປະຫວັດຫຍໍ້  (ກະລຸນາກົດເພີ່ມເອກະສານກ່ອນບັນທືກ)" />,
+    stepDescription: <DocumentForm label="ລາຍການເອກະສານເຊັ່ນ ໃບປະກາດ, ໃບຄະແນນ, ຊີວະປະຫວັດຫຍໍ້  (ກະລຸນາກົດເພີ່ມເອກະສານກ່ອນບັນທືກ)" />,
     completed: false,
   },
   {

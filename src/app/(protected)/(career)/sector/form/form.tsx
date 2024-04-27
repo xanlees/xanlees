@@ -11,7 +11,8 @@ import {
 } from "@src/shadcn/elements/accordion";
 import { type IBranch } from "../interface";
 
-export const FormSector: any = ({ branchType }: { branchType: string }) => {
+export const FormSector: any = ({ branchType, type }: { branchType: string, type: string }) => {
+  const sectorType = type === "LOTTERY" ? "ໜ່ວຍ" : "ພະແນກ";
   const { form } = useFormConfig();
   const branch = useSelect<IBranch>({
     resource: "branch",
@@ -23,11 +24,11 @@ export const FormSector: any = ({ branchType }: { branchType: string }) => {
     <Accordion type="single" collapsible className="w-ful">
       <AccordionItem value="item-1" className="border-none">
         <AccordionTrigger className="italic text-blue-500 underline">
-          *ຊອກພະແນກບໍ່ເຫັນ, ກົດທີ່ນີ້
+          *ຊອກ{sectorType}ບໍ່ເຫັນ, ກົດທີ່ນີ້
         </AccordionTrigger>
         <AccordionContent>
           <Form {...form}>
-            <Form.Field {...form} name="name" label="ພະແນກ">
+            <Form.Field {...form} name="name" label={sectorType}>
               <Input placeholder="" className="block w-full" />
             </Form.Field>
             <div className=" flex gap-x-5">
@@ -43,7 +44,7 @@ export const FormSector: any = ({ branchType }: { branchType: string }) => {
 
 const BranchSection = ({ form, branch }: { form: IFormConfig, branch: any }) => (
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...form} name="branchId" label="ເລືອກທີຕັ້ງຫ້ອງການ">
+    <Form.Field {...form} name="branchId" label="ທີຕັ້ງຫ້ອງການ">
       <Form.Combobox {...branch} />
     </Form.Field>
   </div>

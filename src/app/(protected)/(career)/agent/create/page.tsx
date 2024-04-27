@@ -30,7 +30,7 @@ const FormCreate = () => {
     const storedState = localStorage.getItem(PROFILE_STORAGE_KEY);
     const profileState = JSON.parse(storedState as string) as ProfileState;
     if (profileState.profileId !== undefined && profileState.profileId !== 0) {
-      router.push(`/employee/create/${profileState?.profileId}/LOTTERY`);
+      router.push(`/employee/create/${profileState?.profileId}/LOTTERY/agent`);
       dispatch({ type: "clearState", payload: true });
       localStorage.removeItem(PROFILE_STORAGE_KEY);
     }
@@ -59,14 +59,7 @@ export const formStepsData = [
   {
     stepLabel: "ທີຢູ່ປະຈຸບັນ",
     stepDescription: (
-      <PersonalAddressForm />
-    ),
-    completed: false,
-  },
-  {
-    stepLabel: "ທີ່ນຖານບ້ານເກີດ",
-    stepDescription: (
-      <PersonalAddressForm isCurrent={false}/>
+      <PersonalAddressForm isCurrent={false} />
     ),
     completed: false,
   },

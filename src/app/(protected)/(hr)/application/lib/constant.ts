@@ -2,9 +2,9 @@ import { type CrudFilter } from "@refinedev/core";
 
 export const optionsConfig = [
   { value: "New", label: "ໃຫມ່" },
-  { value: "Contacted", label: "ຕິດຕໍ່" },
+  { value: "Contacted", label: "ຕິດຕໍ່ຫາແລ້ວ" },
   { value: "Interviewed", label: "ສຳພາດແລ້ວ" },
-  { value: "Hired", label: "ຈ້າງເປັນພະນັກງານແລ້ວ" },
+  { value: "Hired", label: "ເລືອນຂັ້ນເປັນພະນັກງານ" },
 ];
 
 export const applicationResource = "application";
@@ -32,15 +32,15 @@ export const refineCoreProps = {
 export const getTypeDrivingLicenseLabel = (typeDrivingLicense: string | null | undefined): string => {
   switch (typeDrivingLicense) {
     case "A":
-      return "ປະເພດ A";
+      return "A";
     case "B":
-      return "ປະເພດ B";
+      return "B";
     case "C":
-      return "ປະເພດ C";
+      return "C";
     case "D":
-      return "ປະເພດ D";
+      return "D";
     case "E":
-      return "ປະເພດ E";
+      return "E";
     case "NO_LICENSE":
       return "ບໍ່ມີໃບຂັບຂີ່";
     default:
@@ -72,7 +72,7 @@ export const getApplicationStatusLabel = (applicationStatus: string | null | und
     case "Interviewed":
       return "ສຳພາດແລ້ວ";
     case "Hired":
-      return "ຈ້າງເປັນພະນັກງານແລ້ວ";
+      return "ເລືອນຂັ້ນເປັນພະນັກງານ";
     default:
       return "";
   }

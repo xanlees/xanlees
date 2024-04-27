@@ -38,10 +38,12 @@ export function EducationDetail({ profileId }: { profileId: number }): JSX.Eleme
             const year = rowData.year ?? "";
             const branch = rowData.branch ?? "";
             return (
-              <Show.Row
-                className="ຂໍ້ມູນການສຶກສາ"
-                content={<div className="-mx-40">{`${degree}, ${sector}, ຈົບທີ${branch} ຈົບສົກປີ ${year}`}</div>}
-              />
+              <div className="flex -mx-40">
+                <Show.Row
+                  className="ຂໍ້ມູນການສຶກສາ"
+                  content={<div className="w-[250px]">{`${degree}, ${sector}, ຈົບທີ${branch} ຈົບສົກປີ ${year}`}</div>}
+                />
+              </div>
             );
           }}
         />

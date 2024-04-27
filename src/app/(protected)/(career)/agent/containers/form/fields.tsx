@@ -9,7 +9,7 @@ export const InputContainer: React.FC<CommonProps> = ({ form }) => {
   const { fields, append, remove } = useFieldArray({ control: form?.control, name: "uniqueNumber" });
   return (
     <>
-      <Form.Field {...form} name="profilePicture">
+      <Form.Field {...form} name="profilePicture" require={false}>
         <Form.FileInputImage className="w-64 h-64 rounded-full pt-1"/>
       </Form.Field>
       <div className="flex flex-wrap gap-2">
