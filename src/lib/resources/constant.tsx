@@ -1,5 +1,19 @@
 /* eslint-disable max-lines */
-import { User, BookUser, FileText, Timer } from "lucide-react";
+import {
+  BookUser,
+  FileText,
+  Clipboard,
+  Hourglass,
+  Briefcase,
+  Building,
+  Clock,
+  UserCheck,
+  UserCircle,
+  BookOpen,
+  MapPin,
+  Users,
+  CalendarClock,
+} from "lucide-react";
 
 export const resources = [
   {
@@ -8,7 +22,7 @@ export const resources = [
     create: "/user-profile/create",
     edit: "/user-profile/edit/:id",
     show: "/user-profile/show/:id",
-    icon: <Timer />,
+    icon: <Hourglass />,
     meta: { label: "ລາຍການປໍ້າໂມງ" },
   },
   {
@@ -17,7 +31,7 @@ export const resources = [
     create: "/application/apply",
     edit: "/application/edit/:id",
     show: "/application/show/:id",
-    icon: <FileText />,
+    icon: <Clipboard />,
     meta: {
       label: "ຜູ້ສະໝັກວຽກ",
     },
@@ -39,6 +53,7 @@ export const resources = [
     create: "/employee-laid-off/create",
     edit: "/employee-laid-off/edit/:id",
     show: "/employee-laid-off/show/:id",
+    icon: <Briefcase />,
     meta: {
       label: "ອາດີດພະນັກງານ",
     },
@@ -49,6 +64,7 @@ export const resources = [
     create: "/branch/create",
     edit: "/branch/edit/:id",
     show: "/branch/show/:id",
+    icon: <Building />,
     meta: {
       label: "ຫ້ອງການ",
     },
@@ -59,7 +75,7 @@ export const resources = [
     create: "/work-time-settings/create",
     edit: "/work-time-settings/edit/:id",
     show: "/work-time-settings/show/:id",
-    icon: <FileText />,
+    icon: <Clock />,
     meta: {
       label: "ໂມງເຂົ້າ-ອອກວຽກ",
     },
@@ -70,7 +86,7 @@ export const resources = [
     create: "/agent/create",
     edit: "/agent/edit/:id",
     show: "/agent/show/:id",
-    icon: <User />,
+    icon: <UserCheck />,
     meta: {
       label: "ຄົນຂາຍເລກ",
     },
@@ -81,6 +97,7 @@ export const resources = [
     create: "/lottery-branch/create",
     edit: "/lottery-branch/edit/:id",
     show: "/lottery-branch/show/:id",
+    icon: <Building />,
     meta: {
       label: "ສາຂາຫວຍ",
     },
@@ -91,7 +108,7 @@ export const resources = [
     create: "/user/create",
     edit: "/user/edit/:id",
     show: "/user/show/:id",
-    icon: <User />,
+    icon: <UserCircle />,
     meta: {
       label: "ຜູ້ໃຊ້ລະບົບ",
     },
@@ -103,7 +120,7 @@ export const resources = [
     create: "/education/create",
     edit: "/education/edit/:id",
     show: "/education/show/:id",
-    icon: <User />,
+    icon: <BookOpen />,
     meta: {
       label: "ຜູ້ໃຊ້ລະບົບ",
     },
@@ -111,21 +128,25 @@ export const resources = [
   {
     name: "address",
     disabled: true,
+    icon: <MapPin />,
     edit: "/address/edit/:id",
   },
   {
     name: "employee",
     disabled: true,
+    icon: <Users />,
     edit: "/employee/edit/:id",
   },
   {
     name: "document",
     disabled: true,
+    icon: <FileText />,
     edit: "/document/edit/:id",
   },
   {
     name: "branch/work-time-settings",
     disabled: true,
+    icon: <CalendarClock />,
     list: "/branch/work-time-settings",
     create: "/branch/work-time-settings/create",
     edit: "/work-time-settings/edit/:id",
