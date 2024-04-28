@@ -7,6 +7,8 @@ import { type IWorkTimeSettings } from "../interface";
 
 export const WorkTimeSettingsEditForm = ({ branchId }: { branchId: number }) => {
   const { data: workTimeSettingsData } = useWorkTimeSettings<IWorkTimeSettings>({ branchId });
+  console.log("workTimeSettingsData", workTimeSettingsData);
+  console.log("branchId", branchId);
   const daysOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   const sortedWorkTimeSettings = workTimeSettingsData?.sort((a, b) => {
     return daysOrder.indexOf(a.dayOfWeek) - daysOrder.indexOf(b.dayOfWeek);

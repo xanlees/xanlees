@@ -59,7 +59,7 @@ export function getActionsButton({ resource, workTimeSettingsData }: { resource:
             <Table.Actions>
               <Table.EditAction
                 title="ແກ້ໄຂ"
-                row={matchingBranches?.[0]}
+                row={row?.original}
                 resource={resource}
                 icon={<Edit size={16} />}
               />

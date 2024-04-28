@@ -59,9 +59,10 @@ export function EmployeeLateStatus({ employeeIsLatestData, workTimeSettingsData,
         if (!attendance) {
           return <Badge className="bg-red-600">ບໍ່ມາການ</Badge>;
         }
+        const lateTime = workTimeSetting.lateTime ?? "1";
         const actualCheckIn = new Date(attendance.checkIn);
         const scheduledCheckIn = getScheduledCheckIn(workTimeSetting, actualCheckIn);
-        const lateTimeAllowed = parseInt(workTimeSetting.lateTime, 10);
+        const lateTimeAllowed = parseInt(lateTime, 10);
         const allowedCheckInTime = addMinutes(scheduledCheckIn, lateTimeAllowed);
         const minutesLate = differenceInMinutes(actualCheckIn, allowedCheckInTime);
         return minutesLate > 0 ? <div>{formatLateTime(minutesLate)}</div> : <div>ຕົງເວລາ</div>;

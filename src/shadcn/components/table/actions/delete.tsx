@@ -23,7 +23,6 @@ type DeleteActionProps = RowActionProps & {
     row: any;
     resource: string;
     title: string;
-    settingId?: number
     withForceDelete?: boolean;
 };
 
@@ -124,11 +123,8 @@ export function DeleteAction({
     title,
     disabled,
     withForceDelete,
-    settingId,
     ...props
 }: DeleteActionProps) {
-    const effectiveId = settingId || row.id;
-    console.log("effectiveId", effectiveId)
     const { can, reason } = useDeleteHelper(resource, row.id);
     const deleteContext = useContext(DeleteContext);
 
