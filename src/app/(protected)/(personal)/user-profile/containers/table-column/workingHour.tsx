@@ -9,9 +9,7 @@ import differenceInMinutes from "date-fns/differenceInMinutes";
 export function workingHour({ attendanceData }: { attendanceData: IAttendance[] }) {
   return (
     <Table.Column
-      header="ຊົ່ວ​ໂມງ​ເຮັດ​ວຽກ"
-      id="workingHours"
-      accessorKey="workingHours"
+      header="ຊົ່ວ​ໂມງ​ເຮັດ​ວຽກ" id="workingHours" accessorKey="workingHours"
       cell={({ row }) => {
         const userId = row?.original?.user as number;
         const attendanceRecord = attendanceData.find((item) => item.user === userId);
@@ -34,7 +32,7 @@ export function workingHour({ attendanceData }: { attendanceData: IAttendance[] 
   );
 }
 
-interface LateTimeProps {
+export interface LateTimeProps {
   employeeIsLatestData: IEmployee[]
   workTimeSettingsData: IWorkTimeSettings[]
   attendanceData: IAttendance[]
@@ -59,7 +57,7 @@ export function EmployeeLateStatus({ employeeIsLatestData, workTimeSettingsData,
         if (!attendance) {
           return <Badge className="bg-red-600">ບໍ່ມາການ</Badge>;
         }
-        const lateTime = workTimeSetting.lateTime ?? "1";
+        const lateTime = workTimeSetting.lateTime === "" ? "1" : workTimeSetting.lateTime;
         const actualCheckIn = new Date(attendance.checkIn);
         const scheduledCheckIn = getScheduledCheckIn(workTimeSetting, actualCheckIn);
         const lateTimeAllowed = parseInt(lateTime, 10);

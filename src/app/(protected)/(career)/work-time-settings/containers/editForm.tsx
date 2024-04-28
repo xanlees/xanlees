@@ -53,7 +53,7 @@ const FormFieldContainer = ({ settingId, form }: { settingId: number, form: IFor
       <div className="w-full lg:w-80 ">
         <div className="relative w-full mb-3">
           <Form.Field {...form} name="branch" label="ເລືອກຫ້ອງການ">
-            <Form.Combobox {...(branch as any)} className="w-full lg:w-80" />
+            <Form.Combobox {...(branch as any)} className="w-full lg:w-80" disabled/>
           </Form.Field>
         </div>
       </div>

@@ -42,7 +42,7 @@ export const FormFieldContainer: React.FC<{ form: IFormConfig, branch: any }> = 
       <div className="w-full lg:w-80 ">
         <div className="relative w-full mb-3">
           <Form.Field {...form} name="lateTime" label="ມາຊ້າ ຫຼື ກັບກ່ອນເວລາໄດ້ຈັກນາທິ (ນາທີ)" >
-            <Input placeholder="15" className="w-full" numericOnly />
+            <Input placeholder="15 ນາທີ" className="w-full" numericOnly maxLength={4}/>
           </Form.Field>
         </div>
       </div>

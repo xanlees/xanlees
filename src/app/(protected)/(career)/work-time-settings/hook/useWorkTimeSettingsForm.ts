@@ -44,7 +44,9 @@ const workTimeSettingsSchema = z.object({
   branch: z.number().min(1, {
     message: "ກະລຸນາເລືອກຫ້ອງການ",
   }),
-  lateTime: z.nullable(z.string()),
+  lateTime: z.string().min(1, {
+    message: "ກະລຸນາຕັ້ງເວລາຊ້າ ຢ່າງນ້ອຍ 1 ນາທີ",
+  }),
   workTimeSettings: z.array(
     z.object({
       dayOfWeek: z.string().min(1, { message: "ກະລຸນາເລືອກມື້" }),

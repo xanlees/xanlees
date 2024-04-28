@@ -13,6 +13,7 @@ import { useUserFriendlyName } from "@refinedev/core";
 import { useWorkTimeSettings } from "./hooks/useWorkTimeSettings";
 import {
   CheckIn,
+  CheckInCheckOutTime,
   CheckInImage,
   CheckOut,
   CheckOutImage,
@@ -57,6 +58,7 @@ export default function UserProfileList(): JSX.Element {
         {CheckOut({ attendanceData })}
         {CheckOutImage({ attendanceData })}
         {workingHour({ attendanceData })}
+        {CheckInCheckOutTime({ workTimeSettingsData, employeeIsLatestData, attendanceData })}
         {EmployeeLateStatus({ workTimeSettingsData, employeeIsLatestData, attendanceData })}
       </Table>
     </List>
