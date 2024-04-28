@@ -63,6 +63,7 @@ function transformUniqueNumber(val: ProfileSendData): Record<string, any> {
   if (Array.isArray(val.uniqueNumber)) {
     transformed = {
       ...transformed,
+      // eslint-disable-next-line max-params
       uniqueNumber: val.uniqueNumber.reduce<Record<string, string>>((acc, curr, index) => {
         acc[`uniqueNumber[${index}]`] = curr;
         return acc;

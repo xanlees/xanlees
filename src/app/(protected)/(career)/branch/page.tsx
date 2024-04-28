@@ -38,7 +38,7 @@ export default function BranchList(): JSX.Element {
           {getSelectColumn(friendly)}
           {ProvinceColumn()}
           {branchColumn(branchData)}
-          {sectorColumn(sectorData, branchData, title)}
+          {sectorColumn({ sectorData, branchData, title })}
           {positionsColumn(positionData, branchData)}
           {getBrachActionsColumn({ resource: "branch", branchData })}
         </Table>

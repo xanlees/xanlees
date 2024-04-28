@@ -10,10 +10,8 @@ export function positionsColumn(positionData: IPosition[], branches: IBranch[]) 
       id="province"
       cell={({ row }) => {
         const provinceID = row?.original?.id as number;
-        const matchingBranches = branches.filter((branch) => branch.province === provinceID);
-        const relevantPositions = positionData.filter((position) =>
-          matchingBranches.some((branch) => branch.id === position.sectorId.branchId),
-        );
+        const matchingBranches = getMatchingBranches(branches, provinceID);
+        const relevantPositions = filterPositions(positionData, matchingBranches);
         return (
           <div className="mx-2">
             {relevantPositions.map((position, index) => (
@@ -26,5 +24,16 @@ export function positionsColumn(positionData: IPosition[], branches: IBranch[]) 
         );
       }}
     />
+  );
+}
+
+function getMatchingBranches(branches: IBranch[], provinceID: number): IBranch[] {
+  return branches.filter((branch) => branch.province === provinceID);
+}
+
+function filterPositions(positionData: IPosition[], matchingBranches: IBranch[]): IPosition[] {
+  const branchIds = matchingBranches.map((branch) => branch.id);
+  return positionData.filter((position) =>
+    branchIds.includes(position.sectorId.branchId),
   );
 }

@@ -2,8 +2,6 @@
 import React, { type ReactNode } from "react";
 import { Card, CardHeader, CardTitle } from "@src/shadcn/elements";
 import { Show } from "@src/shadcn/components/crud";
-import { useTable } from "@refinedev/react-table";
-import { type IEducation } from "../../../index";
 import { type IUser } from "@src/app/(protected)/user/interface";
 import { statusBadge } from "@src/common/containers/column/statusBadge";
 import moment from "moment";
@@ -11,6 +9,7 @@ import { CardView } from "@src/shadcn/components/table/card-view";
 import { Table } from "@src/shadcn/components/table";
 import { Edit, Trash2 } from "lucide-react";
 import { ButtonCreate } from "@src/common/elements/button";
+import { useUserCard } from "../hook/useUserCard";
 interface Props {
   id: number
   user: IUser
@@ -66,25 +65,6 @@ function CardLayout({ children, profileId, disabled }: { children: ReactNode, pr
     </Card>
   );
 }
-
-const useUserCard = (profileId: number) => {
-  const table = useTable<IEducation>({
-    columns: [],
-    enableSorting: true,
-    enableColumnFilters: true,
-    refineCoreProps: {
-      errorNotification: false,
-      resource: "profile/user-profile",
-      filters: {
-        permanent: [
-          { field: "profile", operator: "eq", value: profileId },
-          { field: "expand", operator: "eq", value: "user" },
-        ],
-      },
-    },
-  });
-  return { table };
-};
 
 function getActionsButton(resource: string) {
   return (

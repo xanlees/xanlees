@@ -10,7 +10,7 @@ import { useProfile } from "../../hooks/show";
 import { type IProfile } from "../../interface/model";
 import { EmployeeCard } from "@src/app/(protected)/(career)/employee/containers/card";
 import { DocumentPDFCard } from "../../../document/containers/card";
-import { UserCard } from "../../containers/card/userCard";
+import { UserCard } from "../../../../user/containers/userCard";
 
 export default function ProfileShow({ params }: { params: { id: number } }): JSX.Element {
   const profileId = Number(params.id ?? 0) ?? 0;

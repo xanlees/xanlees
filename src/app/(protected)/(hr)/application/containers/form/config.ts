@@ -4,16 +4,7 @@ import { useApplicationContext } from "../../context";
 import { useProfileContext } from "@src/app/(protected)/(personal)";
 import * as z from "zod";
 import React from "react";
-
-export interface IApplication {
-  profileId: number
-  emergencyFullname: string
-  emergencyRelationship: string
-  emergencyPhoneNumber: string
-  applicationStatus: string
-  appliedPosition: string
-  expectedSalary: string
-}
+import { type IApplicationSchema } from "../../interface";
 
 export const useFormConfig = () => {
   const { dispatch } = useApplicationContext();
@@ -63,7 +54,7 @@ export const useApplicationForm = () => {
   return { form, state };
 };
 
-function transformApplication(val: IApplication): Record<string, any> {
+function transformApplication(val: IApplicationSchema): Record<string, any> {
   return {
     ...val,
     expectedSalary: Number(val.expectedSalary.replace(/,/g, "")),

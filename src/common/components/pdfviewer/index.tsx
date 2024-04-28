@@ -5,7 +5,6 @@ import { PdfViewerContent } from "./content";
 import type { PDFViewerProps, PdfViewerButtonProps, PdfViewerControlsProps } from "./interface";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-
 export default function PDFViewer(props: Readonly<PDFViewerProps>) {
   const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -28,11 +27,7 @@ export default function PDFViewer(props: Readonly<PDFViewerProps>) {
     setPageWidth(window.innerWidth);
     setLoading(false);
   }
-  const options = {
-    cMapUrl: "cmaps/",
-    cMapPacked: true,
-    standardFontDataUrl: "standard_fonts/",
-  };
+  const options = { cMapUrl: "cmaps/", cMapPacked: true, standardFontDataUrl: "standard_fonts/" };
   function goToNextPage() {
     setPageNumber((prevPageNumber) => prevPageNumber + 1);
   }
@@ -41,21 +36,8 @@ export default function PDFViewer(props: Readonly<PDFViewerProps>) {
   }
   return (
     <div className="">
-
       <div className="flex flex-row f-full">
-        {!loading && (<PdfViewerContent
-          loading={loading}
-          goToNextPage={goToNextPage}
-          goToPreviousPage={goToPreviousPage}
-          pageNumber={pageNumber}
-          numPages={numPages}
-          pageWidth={pageWidth}
-          setLoading={setLoading}
-          onDocumentLoadSuccess={onDocumentLoadSuccess}
-          onPageLoadSuccess={onPageLoadSuccess}
-          options={options}
-          file={props.file}
-        />)}
+        {!loading && (<PdfViewerContent loading={loading} goToNextPage={goToNextPage} goToPreviousPage={goToPreviousPage} pageNumber={pageNumber} numPages={numPages} pageWidth={pageWidth} setLoading={setLoading} onDocumentLoadSuccess={onDocumentLoadSuccess} onPageLoadSuccess={onPageLoadSuccess} options={options} file={props.file} />)}
       </div>
     </div>
 

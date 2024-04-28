@@ -1,6 +1,7 @@
 import { LoadFromStorage } from "@src/common/components/localStorageContext/constant";
 import { type ProfileState, type ProfileAction } from "./interface";
 
+// eslint-disable-next-line complexity
 export const ProfileReducer = (
   state: ProfileState = initialProfileState,
   action: ProfileAction,

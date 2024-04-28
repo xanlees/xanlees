@@ -2,7 +2,8 @@ import { Table } from "@/shadcn/components/table";
 import { type IBranch } from "../../interface";
 import { type ISector } from "../../../sector/interface";
 import { stringToColorCode } from "@src/lib/string2Color";
-export function sectorColumn(sectorData: ISector[], branch: IBranch[], title: string) {
+
+export function sectorColumn({ sectorData, branchData, title }: { sectorData: ISector[], branchData: IBranch[], title: string }) {
   return (
     <Table.Column
       header={title}
@@ -10,10 +11,7 @@ export function sectorColumn(sectorData: ISector[], branch: IBranch[], title: st
       id="sector"
       cell={({ row }) => {
         const currentBranchId = row.original.id as number;
-        const matchingBranches = branch.filter((branch) => branch.province === currentBranchId);
-        const relevantSectors = sectorData.filter((sector) => 
-          matchingBranches.some((branch) => branch.id === sector.branchId),
-        );
+        const relevantSectors = getRelevantSectors({ currentBranchId, sectorData, branchData });
         return (
           <div>
             {relevantSectors?.map((item, index) => (
@@ -30,6 +28,24 @@ export function sectorColumn(sectorData: ISector[], branch: IBranch[], title: st
       }}
     />
   );
+}
+
+function getRelevantSectors({ currentBranchId, sectorData, branchData }: { currentBranchId: number, sectorData: ISector[], branchData: IBranch[] }): ISector[] {
+  const matchingBranches = getMatchingBranches(currentBranchId, branchData);
+  return filterSectors(matchingBranches, sectorData);
+}
+
+function getMatchingBranches(branchId: number, branchData: IBranch[]): IBranch[] {
+  return branchData.filter((branch) => branch.province === branchId);
+}
+
+function filterSectors(matchingBranches: IBranch[], sectorData: ISector[]): ISector[] {
+  const branchIds = matchingBranches.map((branch) => branch.id);
+
+  return sectorData.filter((sector) => {
+    const sectorBranchId = typeof sector.branchId === "number" ? sector.branchId : 0;
+    return branchIds.includes(sectorBranchId);
+  });
 }
 
 function getSectorType(type: string) {
