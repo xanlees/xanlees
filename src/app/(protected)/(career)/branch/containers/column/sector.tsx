@@ -2,8 +2,6 @@ import { Table } from "@/shadcn/components/table";
 import { type IBranch } from "../../interface";
 import { type ISector } from "../../../sector/interface";
 import { stringToColorCode } from "@src/lib/string2Color";
-
-// eslint-disable-next-line max-params
 export function sectorColumn(sectorData: ISector[], branch: IBranch[], title: string) {
   return (
     <Table.Column
@@ -13,8 +11,7 @@ export function sectorColumn(sectorData: ISector[], branch: IBranch[], title: st
       cell={({ row }) => {
         const currentBranchId = row.original.id as number;
         const matchingBranches = branch.filter((branch) => branch.province === currentBranchId);
-        const relevantSectors = sectorData.filter((sector) =>
-          // eslint-disable-next-line max-nested-callbacks
+        const relevantSectors = sectorData.filter((sector) => 
           matchingBranches.some((branch) => branch.id === sector.branchId),
         );
         return (

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable max-lines-per-function */
 /* eslint-disable  @typescript-eslint/require-await */
 "use client";
 

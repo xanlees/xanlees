@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { Table } from "@/shadcn/components/table";
 import { Edit, Eye, Trash2 } from "lucide-react";
 

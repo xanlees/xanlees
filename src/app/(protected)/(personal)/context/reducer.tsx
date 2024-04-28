@@ -1,5 +1,3 @@
-/* eslint-disable complexity */
-/* eslint-disable no-duplicate-case */
 import { LoadFromStorage } from "@src/common/components/localStorageContext/constant";
 import { type ProfileState, type ProfileAction } from "./interface";
 

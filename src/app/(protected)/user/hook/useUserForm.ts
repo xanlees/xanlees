@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import * as z from "zod";
 import { useCustomMutation, useNavigation } from "@refinedev/core";
 import { useEffect, useState } from "react";

@@ -1,6 +1,3 @@
-/* eslint-disable max-lines */
-/* eslint-disable max-nested-callbacks */
-/* eslint-disable max-lines-per-function */
 "use client";
 import { Badge } from "@src/shadcn/elements";
 import { cn } from "@src/lib/utils";

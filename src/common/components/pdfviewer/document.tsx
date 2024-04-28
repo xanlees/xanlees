@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { Document, Page } from "react-pdf";
 import { useMediaQuery } from "react-responsive";
 import type { PdfViewerDocumentProps } from "./interface";
