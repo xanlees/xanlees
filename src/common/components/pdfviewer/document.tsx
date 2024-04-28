@@ -3,7 +3,7 @@ import { Document, Page } from "react-pdf";
 import { useMediaQuery } from "react-responsive";
 import type { PdfViewerDocumentProps } from "./interface";
 const maxWidth = 60;
-const bigScale = 0.3;
+const bigScale = 0.4;
 const smallScale = 0.5;
 const mediumScale = 0.4;
 export function PdfViewerDocument({
@@ -16,7 +16,7 @@ export function PdfViewerDocument({
   setLoading,
 }: Readonly<PdfViewerDocumentProps>) {
   const isLargeScreen = useMediaQuery({ query: "(min-width: 1200px)" });
-  const isMediumScreen = useMediaQuery({ query: "(min-width: 992px)" });
+  const isMediumScreen = useMediaQuery({ query: "(min-width: 1200px)" });
   const isSmallScreen = useMediaQuery({ query: "(max-width: 768px)" });
 
   let scale = bigScale;
@@ -36,7 +36,7 @@ export function PdfViewerDocument({
         onLoadSuccess={onDocumentLoadSuccess}
         options={options}
         renderMode="canvas"
-        className="h-[700px]"
+        className="h-[680px]"
       >
         <Page
           key={pageNumber}

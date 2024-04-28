@@ -3,10 +3,11 @@ import { type IBranch } from "../../interface";
 import { type ISector } from "../../../sector/interface";
 import { stringToColorCode } from "@src/lib/string2Color";
 
-export function sectorColumn(sectorData: ISector[], branch: IBranch[]) {
+// eslint-disable-next-line max-params
+export function sectorColumn(sectorData: ISector[], branch: IBranch[], title: string) {
   return (
     <Table.Column
-      header={"ພະແນກ"}
+      header={title}
       accessorKey="id"
       id="sector"
       cell={({ row }) => {

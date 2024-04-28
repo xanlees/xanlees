@@ -19,6 +19,7 @@ import { useUserFriendlyName } from "@refinedev/core";
 import { type IBranch, type ISector } from "../sector/interface";
 import { type IPosition } from "../position/interface";
 
+const title = "ພະແນກ";
 const type = "HEADQUARTERS,BRANCH,OFFICE";
 export default function BranchList(): JSX.Element {
   const { table } = useTableBranch(type);
@@ -37,7 +38,7 @@ export default function BranchList(): JSX.Element {
           {getSelectColumn(friendly)}
           {ProvinceColumn()}
           {branchColumn(branchData)}
-          {sectorColumn(sectorData, branchData)}
+          {sectorColumn(sectorData, branchData, title)}
           {positionsColumn(positionData, branchData)}
           {getBrachActionsColumn({ resource: "branch", branchData })}
         </Table>

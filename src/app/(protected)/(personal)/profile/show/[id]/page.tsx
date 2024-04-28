@@ -18,6 +18,7 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
   if (profileId === 0) {
     return <div className="px-5 py-2">ບໍ່ມີຂໍ້ມູນ</div>;
   }
+  const redirect = `/employee/create/${profileId}/OFFICE/profile`;
   return (
     <Show>
       <div className="mt-5 flex flex-wrap justify-between gap-2">
@@ -26,7 +27,7 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
         </div>
         <div className="space-y-2">
           <UserCard profileId={profileId}/>
-          <EmployeeCard profileId={profileId} />
+          <EmployeeCard profileId={profileId} redirect={redirect} />
         </div>
         <div className="space-y-2">
           <DocumentPDFCard profileId={profileId} />

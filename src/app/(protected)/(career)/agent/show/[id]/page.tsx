@@ -12,6 +12,7 @@ export default function AgentShow({ params }: { params: { id: number } }): JSX.E
   const profileId = Number(params.id ?? 0) ?? 0;
   const { data: profileData } = useProfile<IProfile>({ profileId: params.id });
   const { uniqueNumber } = profileData?.[0] ?? {};
+  const redirect = `/employee/create/${profileId}/LOTTERY/profile`;
   return (
     <Show>
       <div className="mt-5 flex flex-wrap justify-between gap-2">
@@ -23,7 +24,7 @@ export default function AgentShow({ params }: { params: { id: number } }): JSX.E
           <DocumentPDFCard profileId={profileId} />
         </div>
         <div className="space-y-2">
-          <EmployeeCard profileId={profileId} />
+          <EmployeeCard profileId={profileId} redirect={redirect}/>
           <AddressDetail profileId={profileId} />
         </div>
       </div>

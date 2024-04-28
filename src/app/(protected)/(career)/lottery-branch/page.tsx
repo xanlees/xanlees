@@ -11,6 +11,7 @@ import { sectorColumn } from "../branch/containers/column/sector";
 import { positionsColumn } from "../branch/containers/column/positions";
 
 const type = "LOTTERY";
+const title = "ໜ່ວຍ";
 export default function BranchList(): JSX.Element {
   const { table } = useTableBranch(type);
   const province = table.options.data ?? [];
@@ -28,7 +29,7 @@ export default function BranchList(): JSX.Element {
           {getSelectColumn(friendly)}
           {ProvinceColumn()}
           {branchColumn(branchData)}
-          {sectorColumn(sectorData, branchData)}
+          {sectorColumn(sectorData, branchData, title)}
           {positionsColumn(positionData, branchData)}
           {getBrachActionsColumn({ resource: "branch", branchData })}
         </Table>

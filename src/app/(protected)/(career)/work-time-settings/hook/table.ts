@@ -2,7 +2,7 @@ import { useList, type BaseRecord, type GetListResponse } from "@refinedev/core"
 import { useTable } from "@refinedev/react-table";
 import { type IBranch } from "../../sector/interface";
 
-export const useBranchWorkTimeSettingsTable = () => {
+export const useBranchWorkTimeSettingsTable = (type: string) => {
   const table = useTable<IBranch>({
     columns: [],
     enableSorting: true,
@@ -10,6 +10,12 @@ export const useBranchWorkTimeSettingsTable = () => {
     refineCoreProps: {
       errorNotification: false,
       resource: "branch",
+      filters: {
+        permanent: [
+          { field: "expand", operator: "eq", value: "province" },
+          { field: "type", operator: "eq", value: type },
+        ],
+      },
     },
   });
   return { table };

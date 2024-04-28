@@ -40,7 +40,7 @@ export const branchSchema = z.object({
 });
 
 const errorMessages: ErrorMapMessage[] = [
-  { val: "The fields name, type must make a unique set.", message: "ທີຕັ້ງຫ້ອງການຢູ່ແຂວງ ແລະ ປເພດຫ້ອງມີແລ້ວ" },
+  { val: "The fields name, type, province must make a unique set.", message: "ຂໍ້ມູນຊໍ້າ" },
 ];
 
 export const useProvinceSelect = () => {

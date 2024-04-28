@@ -9,7 +9,7 @@ export default function BranchCreate(): JSX.Element {
           <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
             ຟອມສ້າງສາຂາຫ້ອງການ
           </div>
-          <BranchCreateForm type={""} />
+          <BranchCreateForm type={"OFFICE"} />
         </div>
       </div>
     </Create>

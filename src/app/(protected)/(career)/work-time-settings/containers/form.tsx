@@ -8,13 +8,17 @@ import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { type IBranch } from "../../branch/interface";
 import { type IFormConfig } from "@src/common/interface";
 
+const type = "HEADQUARTERS,BRANCH,OFFICE";
 export const WorkTimeSettingsForm: any = ({ branchType }: { branchType: string }) => {
   const { form } = useWorkTimeSettingsForm();
   const branch = useSelect<IBranch>({
     resource: "branch",
     optionLabel: "name",
     optionValue: "id",
-    filters: [{ field: "pageSize", operator: "eq", value: 100 }],
+    filters: [
+      { field: "pageSize", operator: "eq", value: 100 },
+      { field: "type", operator: "eq", value: type },
+    ],
   });
   return (
     <Form {...form}>

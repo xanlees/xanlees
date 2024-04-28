@@ -8,10 +8,10 @@ import { type IEmployeeExpand } from "../interface";
 import { Show } from "@src/shadcn/components/crud";
 import { ButtonCreate } from "@src/common/elements/button";
 
-export function EmployeeCard({ profileId }: { profileId: number }): JSX.Element {
+export function EmployeeCard({ profileId, redirect }: { profileId: number, redirect: string }): JSX.Element {
   const { table } = useTableEmployee(profileId);
   return (
-    <CardLayout profileId={profileId}>
+    <CardLayout profileId={profileId} redirect={redirect}>
       <CardView table={table} className="w-80 m-2" showSearchBar={false} showPagination={false}>
         <CardView.Row
           header=""
@@ -39,8 +39,7 @@ export function EmployeeCard({ profileId }: { profileId: number }): JSX.Element 
   );
 }
 
-function CardLayout({ children, profileId }: { children: ReactNode, profileId?: number }): JSX.Element {
-  const redirect = `/employee/create/${profileId}/OFFICE/profile`;
+function CardLayout({ children, profileId, redirect }: { children: ReactNode, profileId?: number, redirect: string }): JSX.Element {
   return (
     <Card className="shadow-xl pb-3 rounded-lg w-full sm:w-80 bg-white dark:bg-gray-800 dark:text-white h-fit">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">

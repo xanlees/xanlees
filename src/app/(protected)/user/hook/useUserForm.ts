@@ -47,6 +47,10 @@ export const errorMessages: ErrorMapMessage[] = [
     val: "A user with that username already exists.",
     message: "ຊື່ບັນຊີນີ້ມີໃນລະບົບແລ້ວ",
   },
+  {
+    val: "Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters.",
+    message: "ຊື່ບັນສາມາດ ໃຊ້ໄດ້ແຕ່ຕົວໜັງສື່, ຕົວເລກ ແລະ @/./+/-/ ",
+  },
 ];
 
 const userSchema = z

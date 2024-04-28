@@ -26,7 +26,7 @@ export const useWorkTimeSettingsForm = () => {
       redirect: false,
       errorNotification: (data: any) => {
         const responseData = (data as IMessages).response.data;
-        const defaultMessage = "ບໍ່ສາມາດສວນຕັ້ງເວລາໄດ້";
+        const defaultMessage = "ມື້ຊໍ້າ ຫຼື ມີແລ້ວ";
         return getErrorMessageNotification({ responseData, errorMessages: errorMessagesProfile, defaultMessage });
       },
     },
@@ -38,8 +38,8 @@ export const useWorkTimeSettingsForm = () => {
 
 export const errorMessagesProfile: ErrorMapMessage[] = [
   { val: "The fields day_of_week, branch must make a unique set.", message: "ມື້ຊໍ້າ ຫຼື ມີແລ້ວ" },
+  { val: "The fields day_of_week, branch must make a unique set.", message: "ມື້ຊໍ້າ ຫຼື ມີແລ້ວ" },
 ];
-
 const workTimeSettingsSchema = z.object({
   branch: z.number().min(1, {
     message: "ກະລຸນາເລືອກຫ້ອງການ",

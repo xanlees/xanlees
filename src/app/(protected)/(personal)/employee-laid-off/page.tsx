@@ -6,7 +6,7 @@ import { useLatestPositionDetail, useLatestPositionId } from "../profile/hooks";
 import { useProfileIds, UseUserProfile } from "../profile/hooks/table";
 import { useTableProfile } from "../profile/containers/table/useTableConfig";
 import { useUserFriendlyName } from "@refinedev/core";
-
+import { Badge } from "@src/shadcn/elements";
 import type { IPosition } from "@career";
 import {
   DateOfBirth,
@@ -19,6 +19,7 @@ import {
   PhoneNumberColumn,
   MarriageColumn,
   getSelectColumn,
+  getActionsColumn,
 } from "@src/common/containers/column";
 import { type UserProfileAccount } from "../profile/interface/model";
 
@@ -42,6 +43,7 @@ export default function ProfileList(): JSX.Element {
         {MarriageColumn("maritalStatus")}
         {StatusColumn()}
         {DateOfBirth}
+        {getActionsColumn({ resource: "profile" })}
       </Table>
     </List>
   );
@@ -51,7 +53,7 @@ function StatusColumn() {
   return (
     <Table.Column
       accessorKey="type"
-      header={"ອອກເອງ/ບໍລິສັດໃຫ້ອອກ"}
+      header={"ສາເຫດອອກວຽກ"}
       id="type"
       cell={(props) => {
         const value = props.getValue() as unknown as string;
@@ -66,9 +68,8 @@ function StatusColumn() {
           default:
             displayText = value;
         }
-
         return (
-          <p className="text-red-500 ">{displayText}</p>
+          <Badge className="bg-red-500 ">{displayText}</Badge>
         );
       }}
     />
