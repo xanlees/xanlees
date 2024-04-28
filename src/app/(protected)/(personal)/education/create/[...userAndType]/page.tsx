@@ -13,7 +13,6 @@ const breadcrumbs = [
 export default function EmployeeCreate({ params }: { params?: { userAndType?: string[] } }): JSX.Element {
   const [profileId, actionStr] = params?.userAndType ?? ["", ""];
   const action: FormAction = actionStr as FormAction;
-  console.log("profileId", profileId);
   console.log("action", action);
   return (
     <Create
@@ -21,7 +20,7 @@ export default function EmployeeCreate({ params }: { params?: { userAndType?: st
       resource="profile"
       breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
     >
-      <EducationEditForm id={Number(0)} />
+      <EducationEditForm id={Number(profileId)}/>
     </Create>
   );
 }

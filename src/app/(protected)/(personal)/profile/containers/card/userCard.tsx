@@ -22,10 +22,9 @@ export function UserCard({ profileId }: { profileId: number }): JSX.Element {
   const { table } = useUserCard(profileId);
   const userData = table.options.data ?? [];
   if (userData.length === 0) {
-    return <CardLayout ><div className="px-5 py-2">ບໍ່ມີຂໍ້ມູນ</div></CardLayout>;
+    return <CardLayout profileId={profileId}><div className="px-5 py-2">ບໍ່ມີຂໍ້ມູນ</div></CardLayout>;
   }
   const disabled = userData.length >= 0;
-  console.log("profileId", profileId);
   return (
     <CardLayout profileId={profileId} disabled={disabled} >
       <CardView table={table} className="w-80 m-2 flex-col" showSearchBar={false} showPagination={false}>
@@ -55,7 +54,6 @@ export function UserCard({ profileId }: { profileId: number }): JSX.Element {
 }
 
 function CardLayout({ children, profileId, disabled }: { children: ReactNode, profileId?: number, disabled?: boolean }): JSX.Element {
-  console.log("profileId", profileId);
   const redirect = `/user/create/${profileId}`;
   return (
     <Card className="shadow-xl pb-3 rounded-lg w-full sm:w-80 bg-white dark:bg-gray-800 dark:text-white h-fit">

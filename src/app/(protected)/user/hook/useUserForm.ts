@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "@refinedev/react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type CreateUserProfileProps, type UserProfile } from "../interface/interface";
+import { type IMessages, type ErrorMapMessage } from "@src/common/interface";
+import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 
 export const useUserForm = (profile: number, navigates: string) => {
   const idEdit = profile <= 0;
@@ -13,13 +15,7 @@ export const useUserForm = (profile: number, navigates: string) => {
   const [shouldCreateProfile, setShouldCreateProfile] = useState(false);
   const form = useForm<{ id: number }>({
     resolver: zodResolver(idEdit ? userSchemaEdit : userSchema),
-    defaultValues: {
-      username: "",
-      isActive: true,
-      password: "",
-      confirmPassword: "",
-      groups: "",
-    },
+    defaultValues: { username: "", isActive: true, password: "", confirmPassword: "", groups: "" },
     refineCoreProps: {
       resource: "user",
       redirect: false,
@@ -29,6 +25,10 @@ export const useUserForm = (profile: number, navigates: string) => {
         }
         setShouldCreateProfile(true);
         list(navigates);
+      },
+      errorNotification: (data: any) => {
+        const responseData = (data as IMessages)?.response?.data;
+        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage: "ບໍ່ສາມາດສ້າງບັນຊີໃໝ່ໄດ້" });
       },
       successNotification: () => {
         return { message: "User account created successfully", type: "success", description: "" };
@@ -41,6 +41,13 @@ export const useUserForm = (profile: number, navigates: string) => {
   }
   return { form };
 };
+
+export const errorMessages: ErrorMapMessage[] = [
+  {
+    val: "A user with that username already exists.",
+    message: "ຊື່ບັນຊີນີ້ມີໃນລະບົບແລ້ວ",
+  },
+];
 
 const userSchema = z
   .object({

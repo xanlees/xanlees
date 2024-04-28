@@ -41,7 +41,7 @@ function RedirectToCreateEmployee({ selectedDate, profile }: { selectedDate: str
   const router = useRouter();
   useEffect(() => {
     if (selectedDate === "Hired") {
-      router.push(`/employee/create/${profile}/OFFICE`);
+      router.push(`/employee/create/${profile}/OFFICE/user`);
     }
   }, [selectedDate, router]);
 }

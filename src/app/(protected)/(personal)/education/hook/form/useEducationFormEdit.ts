@@ -3,6 +3,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import * as z from "zod";
 
 export const useEducationFormEdit = (id: number) => {
+  console.log("id", id);
   const { ...form } = useForm<z.infer<typeof graduationSchema>>({
     resolver: zodResolver(graduationSchema),
     defaultValues: {

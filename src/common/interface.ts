@@ -48,3 +48,8 @@ export interface IMessages {
     data: Record<string, any>
   }
 }
+export interface ExtendedCrudFilter {
+  field: string
+  operator: "eq"
+  value: string | number | boolean
+}

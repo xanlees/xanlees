@@ -1,59 +1,87 @@
-import React from "react";
 import { Form } from "@src/shadcn/components/form";
-import { FormBranch } from "./form/form";
 import { FormSector } from "../../../sector/form/form";
 import { Input } from "@src/shadcn/elements";
-import { useFormPositionConfig } from "./form/config";
-import { type HttpError, useSelect, type BaseOption, type UseSelectReturnType } from "@refinedev/core";
-import { type ISector } from "../../../index";
+import { PositionForm } from "../../../position/form";
+import { useFormBranch } from "../../hook/useProvince";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@src/shadcn/elements/accordion";
+import { useProvinceSelect } from "@src/app/(protected)/(personal)/address/hook/useDistrictSelect";
 import { type IFormConfig } from "@src/common/interface";
 
-export const BranchForm: React.FC<{ type: string }> = (type) => {
-  console.log("type", type);
-  const branchType = type.type;
-  const { form } = useFormPositionConfig(branchType);
-  const sector = getSectorOptions(branchType);
-  const options = sector.queryResult.data?.data.map((item) => {
-    return {
-      label: `${item?.name} - ${item?.branchId?.name}`,
-      value: item.id,
-    };
-  });
-  sector.options = options as BaseOption[];
+export const BranchCreateForm: React.FC<{ type: string }> = ({ type }) => {
   return (
     <div className="p-10 my-3 rounded-full ">
-      <Form {...form} cardClassName="w-[600px]">
-        <Form.Field {...form} name="name" label="ຕໍາແໜ່ງ">
-          <Input placeholder="ຕໍາແໜ່ງ" className="block w-full" />
-        </Form.Field>
-        <SectorSection form={form} sector={sector} />
-      </Form>
-      <FormSector branchType={branchType} {...type} />
-      <FormBranch type={branchType} />
+      <PositionForm type={type}/>
+      <FormSector branchType={type} />
+      <BranchForm type={type} />
     </div>
   );
 };
 
-export const SectorSection = ({ form, sector }: { form: IFormConfig, sector: any }) => {
+const BranchForm: React.FC<{ type: string }> = ({ type }) => {
   return (
-    <div className="inline-flex flex-row items-center justify-start gap-x-4">
-      <Form.Field {...form} name="sectorId" label="ພະແນກ/ໜ່ວຍ">
-        <Form.Combobox {...sector} />
-      </Form.Field>
+    <Accordion type="single" collapsible className="w-full">
+      <AccordionItem value="item-1">
+        <AccordionTrigger className="italic text-blue-500 underline" >
+          *ຊອກຫ້ອງການບໍ່ເຫັນ, ກົດທີ່ນີ້
+        </AccordionTrigger>
+        <AccordionContent>
+          <FormContainer type={type}/>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+};
+
+const FormContainer: React.FC<{ type: string }> = ({ type }) => {
+  const { form } = useFormBranch(type);
+  const province = useProvinceSelect();
+  return (
+    <Form {...form}>
+      <div className="flex flex-wrap gap-2">
+        <div className="w-full lg:w-64 ">
+          <div className="relative w-full mb-3">
+            <Form.Field {...form} name="name" label="ຊື້ຫ້ອງການ">
+              <Input placeholder="" className="w-full" />
+            </Form.Field>
+          </div>
+        </div>
+        <div className="w-full lg:w-64 ">
+          <div className="relative w-full mb-3">
+            <Form.Field {...form} name="type" label="ປະເພດຫ້ອງການ">
+              <Form.Combobox {...(typeList as any)} />
+            </Form.Field>
+          </div>
+        </div>
+      </div>
+      <Province form={form} province={province}/>
+    </Form>
+  );
+};
+
+export const Province: React.FC<{ form: IFormConfig, province: any }> = ({ form, province }) => {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <div className="w-full lg:w-64  ">
+        <div className="relative w-full mb-3">
+          <Form.Field {...form} name={"province"} label={"ແຂວງ"} require={false} >
+            <Form.Combobox {...(province)} className="w-full lg:w-64 " />
+          </Form.Field>
+        </div>
+      </div>
     </div>
   );
 };
 
-const getSectorOptions = (branchType: string): UseSelectReturnType<ISector, HttpError, BaseOption> => {
-  const sector = useSelect<ISector>({
-    resource: "sector",
-    optionLabel: "name",
-    optionValue: "id",
-    filters: [
-      { field: "pageSize", operator: "eq", value: 50 },
-      { field: "branch_type", operator: "eq", value: branchType },
-      { field: "expand", operator: "eq", value: "branch_id" },
-    ],
-  });
-  return sector;
+const typeList = {
+  options: [
+    { label: "ສາຂາ", value: "BRANCH" },
+    { label: "ສໍານັກງານໃຫຍ່", value: "HEADQUARTERS" },
+    { label: "ຫ້ອງການ", value: "OFFICE" },
+    { label: "ສາຂາຫວຍ", value: "LOTTERY" },
+  ],
 };

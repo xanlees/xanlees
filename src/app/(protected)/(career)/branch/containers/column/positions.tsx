@@ -1,44 +1,26 @@
 import { Table } from "@/shadcn/components/table";
 import { stringToColorCode } from "@src/lib/string2Color";
-import { type IPosition, type ISector } from "../../..";
+import { type IBranch, type IPosition } from "../../..";
 
-function renderPositionData({
-  positionData,
-  sectorId,
-}: {
-  positionData: IPosition[]
-  sectorId: number | undefined
-}) {
-  return (
-    (positionData as { data?: IPosition[] }).data
-      ?.filter((position) => position?.sectorId.id === sectorId as any)
-      ?.flatMap((position, positionIndex) => (
-        <div className="text-center text-white rounded-full dark:bg-white mt-0.5 w-1/2" style={{ backgroundColor: `${stringToColorCode(position?.sectorId.name)}` }} key={positionIndex}>{`- ${position?.name}`}</div>
-      )) ?? []
-  );
-}
-
-export function positionsColumn(
-  sectorData: ISector[],
-  positionData: IPosition[],
-) {
+export function positionsColumn(positionData: IPosition[], branches: IBranch[]) {
   return (
     <Table.Column
       header="ຕໍາແໜ່ງ"
       accessorKey="id"
-      id="position"
-      cell={({ row: { original } }) => {
-        const filteredSectorData = (
-          sectorData as { data?: ISector[] }
-        )?.data?.filter((item) => item?.branchId === original?.id as any) as ISector[];
+      id="province"
+      cell={({ row }) => {
+        const provinceID = row?.original?.id as number;
+        const matchingBranches = branches.filter((branch) => branch.province === provinceID);
+        const relevantPositions = positionData.filter((position) =>
+          // eslint-disable-next-line max-nested-callbacks
+          matchingBranches.some((branch) => branch.id === position.sectorId.branchId),
+        );
         return (
-          <div>
-            {filteredSectorData?.map((sector, index) => (
-              <div key={index}>
-                {renderPositionData({
-                  positionData,
-                  sectorId: sector?.id,
-                })}
+          <div className="mx-2">
+            {relevantPositions.map((position, index) => (
+              <div key={index} className="text-center text-white rounded-full dark:bg-white mt-0.5"
+                style={{ backgroundColor: stringToColorCode(position.sectorId.name) }}>
+                - {position.sectorId.name} {position.name}
               </div>
             ))}
           </div>

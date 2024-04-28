@@ -4,7 +4,9 @@ interface IDistrict {
   districtName: string
   id: number
 }
+
 export const useDistrictSelect = ({ province }: { province?: string }) => {
+  const provinceName = province ?? "";
   return useSelect<IDistrict>({
     resource: "district",
     optionLabel: "districtName",
@@ -13,7 +15,7 @@ export const useDistrictSelect = ({ province }: { province?: string }) => {
       {
         field: "provinceName",
         operator: "eq",
-        value: String(province),
+        value: String(provinceName),
       },
       {
         field: "page_size",
@@ -23,3 +25,24 @@ export const useDistrictSelect = ({ province }: { province?: string }) => {
     ],
   });
 };
+
+export const useProvinceSelect = () => {
+  return useSelect<IDistrict>({
+    resource: "district",
+    optionLabel: "provinceName",
+    optionValue: "id",
+    filters: [
+      {
+        field: "province",
+        operator: "eq",
+        value: "ນະຄອນຫຼວງວຽງຈັນ,ແຂວງຜົ້ງສາລີ,ແຂວງຫຼວງນໍ້າທາ,ແຂວງອຸດົມໄຊ,ແຂວງບໍ່ແກ້ວ,ແຂວງຫຼວງພະບາງ,ແຂວງຫົວພັນ,ແຂວງໄຊຍະບູລີ,ແຂວງຊຽງຂວາງ,ແຂວງວຽງຈັນ,ແຂວງບໍລິຄຳໄຊ,ແຂວງຄຳມ່ວນ,ແຂວງສະຫວັນນະເຂດ,ແຂວງສາລະວັນ,ແຂວງເຊກອງ,ແຂວງຈຳປາສັກ,ແຂວງອັດຕະປື,ແຂວງໄຊສົມບູນ",
+      },
+      {
+        field: "page_size",
+        operator: "eq",
+        value: 100,
+      },
+    ],
+  });
+};
+

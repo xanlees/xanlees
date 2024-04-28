@@ -1,25 +1,52 @@
 import { Table } from "@/shadcn/components/table";
+import { type IBranch } from "../../interface";
+import { type ISector } from "../../../sector/interface";
 import { stringToColorCode } from "@src/lib/string2Color";
-import { type ISector } from "../../..";
 
-export function sectorColumn(sectorData: ISector[]) {
+export function sectorColumn(sectorData: ISector[], branch: IBranch[]) {
   return (
     <Table.Column
-      header={"ຂະແໜງ"}
+      header={"ພະແນກ"}
       accessorKey="id"
       id="sector"
-      cell={({ row: { original } }) => {
-        const displaySectors = (sectorData as { data?: ISector[] })?.data
-          ?.filter((item) => item?.branchId === original.id as any)
-          .map((sector) => sector?.name) as string[];
+      cell={({ row }) => {
+        const currentBranchId = row.original.id as number;
+        const matchingBranches = branch.filter((branch) => branch.province === currentBranchId);
+        const relevantSectors = sectorData.filter((sector) =>
+          // eslint-disable-next-line max-nested-callbacks
+          matchingBranches.some((branch) => branch.id === sector.branchId),
+        );
         return (
           <div>
-            {displaySectors?.map((name, index) => (
-              <div className="text-center text-white rounded-full dark:bg-white mt-0.5" style={{ backgroundColor: `${stringToColorCode(name)}` }}key={index}>- {name}</div>
+            {relevantSectors?.map((item, index) => (
+              <div
+                className="text-center text-white rounded-full dark:bg-white mt-0.5"
+                style={{ backgroundColor: `${stringToColorCode(item.name)}` }}
+                key={index}
+              >
+                - {getSectorType(item.type)} {item.name}
+              </div>
             ))}
           </div>
         );
       }}
     />
   );
+}
+
+function getSectorType(type: string) {
+  switch (type) {
+    case "Sector":
+      return "ຂະແໜງ";
+    case "Department":
+      return "ຫ້ອງ";
+    case "Unit":
+      return "ໜ່ວຍບໍລິການ";
+    case "Not specified":
+      return "ບໍ່ລະບຸ";
+    case "ALL":
+      return "ລວມ";
+    default:
+      return "";
+  }
 }

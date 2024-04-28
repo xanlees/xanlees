@@ -11,7 +11,7 @@ const breadcrumbs = [
 ];
 
 export default function UserCreate({ params }: { params: { id: number } }): JSX.Element {
-  const profile = Number(params.id);
+  const profile = Number(params.id) ?? 1;
   return (
     <Create
       title="ຟອມຜູ້ໃຊ້ລະບົບ"
@@ -25,7 +25,7 @@ export default function UserCreate({ params }: { params: { id: number } }): JSX.
           </span>
         </CardHeader>
         <div className="p-5">
-          <UserForm navigates={"profile"} profile={profile ?? 0} />
+          <UserForm navigates={"profile"} profile={profile} />
         </div>
       </Card>
     </Create>

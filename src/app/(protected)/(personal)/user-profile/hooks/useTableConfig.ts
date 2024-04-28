@@ -1,12 +1,7 @@
 import { useTable } from "@refinedev/react-table";
 import { useMemo } from "react";
 import { type IUserProfile } from "../interface";
-
-interface ExtendedCrudFilter {
-  field: string
-  operator: "eq"
-  value: string | number | boolean
-}
+import { type ExtendedCrudFilter } from "@src/common/interface";
 
 export const useTableUserProfile = (branch: number) => {
   const permanentFilters: ExtendedCrudFilter[] = useMemo(() => {

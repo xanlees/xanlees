@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Create } from "@/shadcn/components/crud";
-import { BranchForm } from "../../branch/containers/form/form";
+import { BranchCreateForm } from "../../branch/containers/form/form";
 
 const ProfileCreate = () => {
   return (
@@ -11,7 +11,7 @@ const ProfileCreate = () => {
           <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
             ຟອມສ້າງແມ່ຫວຍ
           </div>
-          <BranchForm type={"LOTTERY"} />
+          <BranchCreateForm type={"LOTTERY"} />
         </div>
       </div>
     </Create>

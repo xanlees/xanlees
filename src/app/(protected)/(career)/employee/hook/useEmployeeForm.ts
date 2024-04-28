@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/semi */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import * as z from "zod";
@@ -6,7 +7,11 @@ import { useEffect, useRef } from "react";
 import { type IFormConfig } from "@src/common/interface";
 import { type UseFormSetValue } from "react-hook-form";
 
+// eslint-disable-next-line max-lines-per-function
 export const useFormConfig = ({ type, profile, redirect }: { type?: string, profile: number, redirect?: string }) => {
+  console.log(type)
+  console.log(profile)
+  console.log(redirect)
   let redirectPatch = "";
   if (redirect === "agent") {
     redirectPatch = "/agent";

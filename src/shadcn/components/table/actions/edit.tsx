@@ -19,9 +19,6 @@ export function EditAction({
 }: EditActionProps) {
     const actionKeyValue = actionKey ? row[actionKey] : row.id;
     const edit = useGetEditUrl(resource, actionKeyValue);
-    console.log("actionKeyValue", actionKeyValue)
-    console.log("actionKey", actionKey)
-    console.log("row", row)
     return (
         <RowAction
             {...props}
