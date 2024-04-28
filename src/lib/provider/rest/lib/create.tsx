@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 /* eslint-disable  @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable  @typescript-eslint/no-unsafe-member-access  */
 import { type AxiosInstance } from "axios";

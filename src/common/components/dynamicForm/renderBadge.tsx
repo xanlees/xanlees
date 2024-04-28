@@ -45,11 +45,11 @@ export const RenderBadge: React.FC<RenderBadgeProps> = ({ remove, name, form, cl
   return (
     <div className={cn("", className)}>
       {formArray?.map((field: Field, index: number) => (
-        <div className="inline-flex items-center gap-2 m-1 p-2 rounded w-full">
-          <Badge className="rounded-sm w-full flex  justify-between text-white">
-            <div className="flex border-0 mx-1 py-1 text-base gap-x-2 ">
+        <div className="inline-flex items-center w-full gap-2 p-2 m-1 rounded">
+          <Badge className="flex justify-between w-full text-white rounded-sm">
+            <div className="flex py-1 mx-1 text-base border-0 gap-x-2 ">
               <div className="">{index + 1}</div>
-              <div className=" ">
+              <div className="">
                 {renderFieldValue(field[name])}
               </div>
             </div>

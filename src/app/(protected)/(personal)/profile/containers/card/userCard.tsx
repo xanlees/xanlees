@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 "use client";
 import React, { type ReactNode } from "react";
 import { Card, CardHeader, CardTitle } from "@src/shadcn/elements";
@@ -27,7 +26,7 @@ export function UserCard({ profileId }: { profileId: number }): JSX.Element {
   const disabled = userData.length >= 0;
   return (
     <CardLayout profileId={profileId} disabled={disabled} >
-      <CardView table={table} className="w-80 m-2 flex-col" showSearchBar={false} showPagination={false}>
+      <CardView table={table} className="flex-col m-2 w-80" showSearchBar={false} showPagination={false}>
         <CardView.Row
           header=""
           id="id"
@@ -56,8 +55,8 @@ export function UserCard({ profileId }: { profileId: number }): JSX.Element {
 function CardLayout({ children, profileId, disabled }: { children: ReactNode, profileId?: number, disabled?: boolean }): JSX.Element {
   const redirect = `/user/create/${profileId}`;
   return (
-    <Card className="shadow-xl pb-3 rounded-lg w-full sm:w-80 bg-white dark:bg-gray-800 dark:text-white h-fit">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
+    <Card className="w-full pb-3 bg-white rounded-lg shadow-xl sm:w-80 dark:bg-gray-800 dark:text-white h-fit">
+      <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
           {"ຂໍ້ມູນບັນຊີ"}
         </CardTitle>
@@ -96,7 +95,7 @@ function getActionsButton(resource: string) {
       cell={({ row }) => {
         const original = row.original as Props;
         return (
-          <div className="top-0 right-0 absolute">
+          <div className="absolute top-0 right-0">
             <Table.Actions>
               <Table.EditAction title="ແກ້ໄຂ" row={original.user} resource={resource} icon={<Edit size={16} />} />
               <Table.DeleteAction title="ລົບ" row={original.user} withForceDelete={true} resource={resource} icon={<Trash2 size={16} />} />

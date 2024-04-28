@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { pdfjs } from "react-pdf";
@@ -6,7 +5,6 @@ import { PdfViewerContent } from "./content";
 import type { PDFViewerProps, PdfViewerButtonProps, PdfViewerControlsProps } from "./interface";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-// pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.js";
 
 export default function PDFViewer(props: Readonly<PDFViewerProps>) {
   const [numPages, setNumPages] = useState<number>(0);
@@ -43,7 +41,6 @@ export default function PDFViewer(props: Readonly<PDFViewerProps>) {
   }
   return (
     <div className="">
-      {/* <Nav pageNumber={pageNumber} numPages={numPages} title={props.title} /> */}
 
       <div className="flex flex-row f-full">
         {!loading && (<PdfViewerContent

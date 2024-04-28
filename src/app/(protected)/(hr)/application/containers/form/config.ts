@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import { useApplicationContext } from "../../context";

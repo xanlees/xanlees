@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 "use client";
 
 import { useAuth } from "@src/lib/provider/refine/context/auth";

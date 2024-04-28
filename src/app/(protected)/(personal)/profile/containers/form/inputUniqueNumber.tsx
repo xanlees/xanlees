@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from "react";
 import { Input } from "@src/shadcn/elements";
 import { useFieldArray } from "react-hook-form";

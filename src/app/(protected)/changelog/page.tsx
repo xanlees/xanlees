@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { CheckSquare } from "lucide-react";
 import { Badge } from "@src/shadcn/elements";
@@ -28,12 +30,12 @@ const changelogData = [
 
 const ChangelogPage = () => {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
-      <div className="max-w-4xl mx-auto px-4">
-        <h1 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8">Changelog</h1>
+    <div className="min-h-screen py-8 bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-4xl px-4 mx-auto">
+        <h1 className="mb-8 text-3xl font-bold text-center text-gray-900 dark:text-gray-100">Changelog</h1>
         <div className="space-y-6">
           {changelogData.map((version, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 shadow rounded-md p-4">
+            <div key={index} className="p-4 bg-white rounded-md shadow dark:bg-gray-800">
               <h2 className="text-xl font-semibold text-blue-500 dark:text-blue-300">{version.version} - {version.date}</h2>
               {newFunction(version)}
             </div>
@@ -48,10 +50,10 @@ const ChangelogPage = () => {
 function newFunction(version: { version: string, date: string, features: Array<{ id: number, title: string, badge: string }> }) {
   return <ul className="mt-2">
     {version.features.map((feature) => (
-      <li key={feature.id} className="flex items-center space-x-2 mt-2">
-        <CheckSquare className="text-blue-500 dark:text-blue-300 w-5 h-5" />
+      <li key={feature.id} className="flex items-center mt-2 space-x-2">
+        <CheckSquare className="w-5 h-5 text-blue-500 dark:text-blue-300" />
         <span className="flex-1 text-gray-700 dark:text-gray-300">{feature.title}</span>
-        <Badge className="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs">{feature.badge}</Badge>
+        <Badge className="px-2 py-1 text-xs text-blue-800 bg-blue-100 rounded-full dark:bg-blue-700 dark:text-blue-200">{feature.badge}</Badge>
       </li>
     ))}
   </ul>;

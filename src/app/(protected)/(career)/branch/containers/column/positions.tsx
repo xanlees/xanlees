@@ -12,7 +12,6 @@ export function positionsColumn(positionData: IPosition[], branches: IBranch[]) 
         const provinceID = row?.original?.id as number;
         const matchingBranches = branches.filter((branch) => branch.province === provinceID);
         const relevantPositions = positionData.filter((position) =>
-          // eslint-disable-next-line max-nested-callbacks
           matchingBranches.some((branch) => branch.id === position.sectorId.branchId),
         );
         return (
