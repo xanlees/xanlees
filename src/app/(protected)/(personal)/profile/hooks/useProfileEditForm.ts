@@ -50,9 +50,7 @@ export const profileSchema: any = z
       z.string(),
       z.instanceof(File).refine((file) => {
         return file.size <= maxFileSize && acceptedImageTypes.includes(file.type);
-      }, {
-        message: `The file size must not exceed 10MB and the file type must be one of the following: ${acceptedImageTypes.join(", ")}.`,
-      }),
+      }, { message: `The file size must not exceed 10MB and the file type must be one of the following: ${acceptedImageTypes.join(", ")}.` }),
       z.undefined(),
     ]).nullable(),
   })
@@ -61,11 +59,11 @@ export const profileSchema: any = z
   });
 
 function transformUniqueNumber(val: ProfileSendData): Record<string, any> {
-  console.log("val", val);
   let transformed: Record<string, any> = { ...val, profilePicture: val.profilePicture };
   if (Array.isArray(val.uniqueNumber)) {
     transformed = {
       ...transformed,
+      // eslint-disable-next-line max-params
       uniqueNumber: val.uniqueNumber.reduce<Record<string, string>>((acc, curr, index) => {
         acc[`uniqueNumber[${index}]`] = curr;
         return acc;
