@@ -16,7 +16,7 @@ export const BranchCreateForm: React.FC<{ type: string }> = ({ type }) => {
   return (
     <div className="p-10 my-3 rounded-full ">
       <PositionForm type={type}/>
-      <FormSector branchType={type} />
+      <FormSector branchType={type} type={type}/>
       <BranchForm type={type} />
     </div>
   );
@@ -45,7 +45,7 @@ const FormContainer: React.FC<{ type: string }> = ({ type }) => {
       <div className="flex flex-wrap gap-2">
         <div className="w-full lg:w-64 ">
           <div className="relative w-full mb-3">
-            <Form.Field {...form} name="name" label="ຊື້ຫ້ອງການ">
+            <Form.Field {...form} name="name" label="ຊື່ຫ້ອງການ">
               <Input placeholder="" className="w-full" />
             </Form.Field>
           </div>

@@ -16,7 +16,7 @@ export const useProfileEditForm = () => {
       birthday: "",
       type: "",
       maritalStatus: "",
-      typeOfUniqueNumber: "IDENTIFY",
+      typeOfUniqueNumber: "",
       profilePicture: undefined,
       uniqueNumber: [{
         uniqueNumber: "",
@@ -45,7 +45,7 @@ export const profileSchema: any = z
     typeOfUniqueNumber: z.string().min(1, { message: "ກະລຸນາເລືອກປະເພດເລກລະຫັດວ່າ ເລກບັດປະຈໍາຕົວ, ເລກເຄື່ອງຂາຍເລກ ຫຼື ປື້ມສໍາມະໂມຄົວເລກທີ" }),
     birthday: z.date().or(z.string()).refine((value) => { return value != null && value !== ""; }, { message: "ກະລຸນາເລືອກວັນ​ເດືອນ​ປີ​ເກີດ" }),
     uniqueNumber: z.union([z.string(), z.array(z.string())]).optional(),
-    type: z.union([z.string(), z.array(z.string())]).optional(),
+    type: z.string().min(1, { message: "ກະລຸນາເລືອກ" }),
     profilePicture: z.union([
       z.string(),
       z.instanceof(File).refine((file) => {

@@ -40,16 +40,14 @@ export const BirthdayInput: React.FC<CommonProps> = ({ form }) => {
   );
 };
 export const UniqueNumberInput: React.FC<CommonProps & { isEmployee?: boolean }> = ({ form, isEmployee }) => {
-  const typeOfUniqueNumber = uniqueNumber(isEmployee);
   return (
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
-        <Form.Field
-          {...form}
-          name="typeOfUniqueNumber"
-          label="ປະເພດເອກກະສານຢືນຢັນ"
-        >
-          <Form.Select options={typeOfUniqueNumber} className="w-full lg:w-80" />
+        <Form.Field {...form} name="typeOfUniqueNumber" label="ປະເພດເອກກະສານຢືນຢັນ">
+          <Form.Combobox
+            {...(typeOfUniqueNumber as any)}
+            className="w-full lg:w-80"
+          />
         </Form.Field>
       </div>
     </div>
@@ -71,16 +69,9 @@ export const GenderAndMaritalStatusSelect: React.FC<CommonProps> = ({ form }) =>
   );
 };
 
-function uniqueNumber(typeOfUniqueNumber: any, isEmployee?: boolean) {
-  if (isEmployee ?? false) {
-    return [
-      { label: "ເລກເຄື່ອງຂາຍເລກ", value: "MACHINE" },
-      { label: "ເລກບັດປະຈໍາຕົວ", value: "IDENTIFY" },
-      { label: "ປື້ມສໍາມະໂມຄົວເລກທີ", value: "CENSUS_BOOK" },
-    ];
-  }
-  return [
+export const typeOfUniqueNumber = {
+  options: [
     { label: "ເລກບັດປະຈໍາຕົວ", value: "IDENTIFY" },
     { label: "ປື້ມສໍາມະໂມຄົວເລກທີ", value: "CENSUS_BOOK" },
-  ];
-}
+  ],
+};

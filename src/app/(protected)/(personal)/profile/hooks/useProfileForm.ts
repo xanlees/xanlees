@@ -19,6 +19,7 @@ export const useProfileForm = (type: string) => {
       birthday: "",
       maritalStatus: "",
       typeOfUniqueNumber: "IDENTIFY",
+      profilePicture: undefined,
       uniqueNumber: [{ uniqueNumber: undefined }],
       type,
     },
@@ -66,15 +67,15 @@ export const profileSchema: any = z
     typeOfUniqueNumber: z.string().min(1, { message: "ກະລຸນາເລືອກປະເພດເລກລະຫັດວ່າ ເລກບັດປະຈໍາຕົວ, ເລກເຄື່ອງຂາຍເລກ ຫຼື ປື້ມສໍາມະໂມຄົວເລກທີ" }),
     birthday: z.date().or(z.string()).refine((value) => { return value != null && value !== ""; }, { message: "ກະລຸນາເລືອກວັນ​ເດືອນ​ປີ​ເກີດ" }),
     uniqueNumber: z.array(z.object({ uniqueNumber: z.string() })),
-    profilePicture: z.union([
-      z.string(),
-      z.instanceof(File).refine((file) => {
-        return file.size <= maxFileSize && acceptedImageTypes.includes(file.type);
-      }, {
-        message: `The file size must not exceed 10MB and the file type must be one of the following: ${acceptedImageTypes.join(", ")}.`,
-      }),
-      z.undefined(),
-    ]).nullable(),
+    profilePicture: (z.any() as z.ZodType<FileList>).refine(
+      (fileList) => {
+        const file = fileList?.[0];
+        return (
+          file?.size <= maxFileSize && acceptedImageTypes.includes(file?.type)
+        );
+      },
+      { message: "ຂະໜາດຮູບບໍ່ເກີນ 10MB. ແລະ ປະເພດຮູບ .jpg, .jpeg, .png" },
+    ).nullable(),
   })
   .transform((val) => {
     return transformUniqueNumber(val);

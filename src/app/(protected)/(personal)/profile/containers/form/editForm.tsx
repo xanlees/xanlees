@@ -10,7 +10,6 @@ import { useProfileEditForm } from "../../hooks/useProfileEditForm";
 
 export const ProfileEditForm: React.FC = () => {
   const { form } = useProfileEditForm();
-  // console.log("form", )
   return (
     <Form {...form}>
       <FormFieldContainer form={{ form }} isEmployee={true} />
@@ -51,27 +50,23 @@ export const UniqueNumber: React.FC<CommonProps> = ({ form }) => {
 };
 
 export const ProfileType: React.FC<CommonProps & { isEmployee?: boolean }> = ({ form, isEmployee }) => {
-  const profileTypeList = getProfileType();
   return (
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
-        <Form.Field
-          {...form}
-          name="type"
-          label="ສະຖານະພະນັກງານ"
-        >
-          <Form.Select options={profileTypeList} className="w-full lg:w-80" />
+        <Form.Field {...form} name="type" label="ສະຖານະພະນັກງານ">
+          <Form.Combobox
+            {...(profileTypeList as any)}
+            className="w-full lg:w-80"
+          />
         </Form.Field>
       </div>
     </div>
   );
 };
-function getProfileType() {
-  return [
+export const profileTypeList = {
+  options: [
     { label: "ລາອອກເອງ", value: "RESIGN" },
     { label: "ບໍລິສັດໃຫ້ອອກ", value: "DISMISS" },
     { label: "ພະນັກງານ", value: "EMPLOYEE" },
-    { label: "ຜູ້ສະໝັກວຽກ", value: "EMPLOYEE_CANDIDATE" },
-  ];
-}
-
+  ],
+};

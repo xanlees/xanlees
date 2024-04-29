@@ -195,7 +195,7 @@ export function CardView<
             );
           })
         ) : (
-          <span>ບໍ່ມີຂໍ້ມູນ.</span>
+          <span className="px-5 py-2">ບໍ່ມີຂໍ້ມູນ.</span>
         )}
       </div>
       {showPagination ? <Pagination table={table} /> : null}

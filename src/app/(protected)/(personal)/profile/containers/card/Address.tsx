@@ -23,11 +23,12 @@ export function AddressDetail({ profileId }: { profileId: number }): JSX.Element
             const rowData = row.original;
             const district = rowData.district ?? {};
             const village = rowData.village ?? "";
+            const status = rowData.status ?? "";
             return (
               <div className="flex -mx-40">
                 <Show.Row
-                  className="status"
-                  title=""
+                  className=""
+                  title={status}
                   content={<div className="w-[250px]">{`ບ້ານ${village ?? ""}, ${district?.districtName ?? ""}, ${district?.provinceName ?? ""}`}</div>}
                 />
               </div>

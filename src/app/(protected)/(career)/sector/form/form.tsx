@@ -1,5 +1,4 @@
 import { Form } from "@src/shadcn/components/form";
-import { useSelect } from "@refinedev/core";
 import { Input } from "@src/shadcn/elements";
 import { useFormConfig } from "./config";
 import { type IFormConfig } from "@src/common/interface";
@@ -9,22 +8,17 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@src/shadcn/elements/accordion";
-import { type IBranch } from "../interface";
+import { useBranchSelect } from "../useSelect";
 
 export const FormSector: any = ({ branchType, type }: { branchType: string, type: string }) => {
-  const sectorType = type === "LOTTERY" ? "ໜ່ວຍ" : "ພະແນກ";
+  const sectorType = type === "LOTTERY" ? "ໜ່ວຍ" : "ຊື່";
   const { form } = useFormConfig();
-  const branch = useSelect<IBranch>({
-    resource: "branch",
-    optionLabel: "name",
-    optionValue: "id",
-    filters: [{ field: "type", operator: "eq", value: branchType }, { field: "pageSize", operator: "eq", value: 50 }],
-  });
+  const branch = useBranchSelect(type);
   return (
     <Accordion type="single" collapsible className="w-ful">
       <AccordionItem value="item-1" className="border-none">
         <AccordionTrigger className="italic text-blue-500 underline">
-          *ຊອກ{sectorType}ບໍ່ເຫັນ, ກົດທີ່ນີ້
+          *ຊອກຳພະແນກ/ໜ່ວຍບໍ່ເຫັນ, ກົດທີ່ນີ້
         </AccordionTrigger>
         <AccordionContent>
           <Form {...form}>
@@ -44,7 +38,7 @@ export const FormSector: any = ({ branchType, type }: { branchType: string, type
 
 const BranchSection = ({ form, branch }: { form: IFormConfig, branch: any }) => (
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...form} name="branchId" label="ທີຕັ້ງຫ້ອງການ">
+    <Form.Field {...form} name="branchId" label="ຊື່ຫ້ອງການ">
       <Form.Combobox {...branch} />
     </Form.Field>
   </div>

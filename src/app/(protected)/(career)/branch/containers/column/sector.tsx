@@ -35,15 +35,20 @@ function getRelevantSectors({ currentBranchId, sectorData, branchData }: { curre
   return filterSectors(matchingBranches, sectorData);
 }
 
-function getMatchingBranches(branchId: number, branchData: IBranch[]): IBranch[] {
-  return branchData.filter((branch) => branch.province === branchId);
+function getMatchingBranches(branchId: number, branchData?: IBranch[]): IBranch[] {
+  if (!branchData) {
+    return [];
+  }
+  return branchData.filter((branch) => branch?.province === branchId);
 }
 
-function filterSectors(matchingBranches: IBranch[], sectorData: ISector[]): ISector[] {
+function filterSectors(matchingBranches?: IBranch[], sectorData?: ISector[]): ISector[] {
+  if (!sectorData || !matchingBranches) {
+    return [];
+  }
   const branchIds = matchingBranches.map((branch) => branch.id);
-
   return sectorData.filter((sector) => {
-    const sectorBranchId = typeof sector.branchId === "number" ? sector.branchId : 0;
+    const sectorBranchId = sector?.branchId as unknown as number;
     return branchIds.includes(sectorBranchId);
   });
 }

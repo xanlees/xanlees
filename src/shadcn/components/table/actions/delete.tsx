@@ -125,7 +125,7 @@ export function DeleteAction({
     withForceDelete,
     ...props
 }: DeleteActionProps) {
-    const { can, reason } = useDeleteHelper(resource, row.id);
+    const { can, reason } = useDeleteHelper(resource, row?.id);
     const deleteContext = useContext(DeleteContext);
 
     return (

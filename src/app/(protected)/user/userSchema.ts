@@ -34,6 +34,9 @@ export const userSchema = z
   });
 
 export const userSchemaEdit = z.object({
+  username: z.string().min(2, {
+    message: "ກະລຸນາປ້ອນບັນຊີ",
+  }),
   isActive: z.boolean().optional(),
   password: z.string().optional(),
   confirmPassword: z.string().optional(),

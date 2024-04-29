@@ -15,9 +15,6 @@ import { UserCard } from "../../../../user/containers/userCard";
 export default function ProfileShow({ params }: { params: { id: number } }): JSX.Element {
   const profileId = Number(params.id ?? 0) ?? 0;
   const { data: profileData } = useProfile<IProfile>({ profileId: params.id });
-  if (profileId === 0) {
-    return <div className="px-5 py-2">ບໍ່ມີຂໍ້ມູນ</div>;
-  }
   const redirect = `/employee/create/${profileId}/OFFICE/profile`;
   return (
     <Show>

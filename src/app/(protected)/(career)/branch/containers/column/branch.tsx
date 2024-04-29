@@ -69,7 +69,6 @@ export function getBrachActionsColumn({ resource, branchData }: { resource: stri
       cell={({ row }) => {
         const provinceID = row?.original?.id as number;
         const matchingBranches = branchData?.filter((branch) => branch.province === provinceID);
-        const branchId = matchingBranches?.[0]?.id;
         return (
           <Table.Actions>
             <Table.DeleteAction
@@ -77,7 +76,6 @@ export function getBrachActionsColumn({ resource, branchData }: { resource: stri
               row={matchingBranches?.[0]}
               withForceDelete={true}
               resource={resource}
-              settingId={branchId}
               icon={<Trash2 size={16} />}
             />
           </Table.Actions>

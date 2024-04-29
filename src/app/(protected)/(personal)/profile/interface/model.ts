@@ -8,7 +8,7 @@ export interface ProfileSendData {
     uniqueNumber: string
   }>
   typeOfUniqueNumber: string
-  profilePicture?: string | File | null
+  profilePicture?: string | FileList | null
   maritalStatus: string
 }
 
