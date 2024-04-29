@@ -6,7 +6,7 @@ import { CircleUser } from "lucide-react";
 import { type CommonProps } from "@src/app/(protected)/(career)/agent/interface/props";
 import { BirthdayInput, GenderAndMaritalStatusSelect, UniqueNumberInput } from "./FormFieldContainer";
 import { Input } from "@src/shadcn/elements";
-import { useProfileEditForm } from "../../hooks/useProfileEditForm";
+import { useProfileEditForm } from "../../hooks/form/useProfileEditForm";
 
 export const ProfileEditForm: React.FC = () => {
   const { form } = useProfileEditForm();

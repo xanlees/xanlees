@@ -57,8 +57,8 @@ function ApplicationForm(): JSX.Element {
     window.location.reload();
   };
   return (
-    <div className="shadow-lg p-4 sm:p-6 lg:p-8">
-      <div className="my-3 text-center bg-blue-300 rounded-sm mx-2 p-4">
+    <div className="p-4 shadow-lg sm:p-6 lg:p-8">
+      <div className="p-4 mx-2 my-3 text-center bg-blue-300 rounded-sm">
         <p className="text-xl font-bold">ຟອມສະໝັກພະນັກງານ </p>
         <p className="text-sm">(ໃຊ້ເວລາປະມານ 10 ນາທີ) </p>
       </div>
@@ -66,7 +66,7 @@ function ApplicationForm(): JSX.Element {
       <div className="text-center">
         <Button onClick={handleButtonClick}>ປະກອບຟອມສະໝັກວຽກຄັ້ງໃໝ່ອີກ</Button>
       </div>
-      <div className="my-3 text-center bg-blue-300 rounded-sm p-4">
+      <div className="p-4 my-3 text-center bg-blue-300 rounded-sm">
         <p className="text-xl font-bold">ຂອບໃຈທ່ານທີ່ໄວ້ໃຈ </p>
         <p className="text-xl font-bold">ໃນບໍລິສັດຂອງພວກເຮົາ </p>
       </div>
