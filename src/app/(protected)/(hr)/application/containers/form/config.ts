@@ -5,6 +5,8 @@ import { useProfileContext } from "@src/app/(protected)/(personal)";
 import * as z from "zod";
 import React from "react";
 import { type IApplicationSchema } from "../../interface";
+import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
+import { type ErrorMapMessage, type IMessages } from "@src/common/interface";
 
 export const useFormConfig = () => {
   const { dispatch } = useApplicationContext();
@@ -22,6 +24,10 @@ export const useFormConfig = () => {
       successNotification: () => {
         return { message: "ສ້າງຂໍ້ມູນສະໝັກຕໍາແຫນ່ງ", type: "success" };
       },
+      errorNotification: (data: any) => {
+        const responseData = (data as IMessages)?.response?.data;
+        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage: "ບໍ່ສາມາດສ້າງ" });
+      },
       onMutationSuccess: (data) => {
         dispatch({ type: "setApplicationId", payload: data?.data?.id ?? 0 });
         dispatch({ type: "setTagId", payload: data?.data?.tagId ?? 0 });
@@ -35,6 +41,12 @@ export const useFormConfig = () => {
 
   return { form, state };
 };
+export const errorMessages: ErrorMapMessage[] = [
+  {
+    val: "Ensure that there are no more than 10 digits in total.",
+    message: "ເງິນເດືອນຫຼາຍເກິນ 10 ຕົວ",
+  },
+];
 
 export const useApplicationForm = () => {
   const { state, dispatch } = useApplicationContext();
@@ -47,6 +59,10 @@ export const useApplicationForm = () => {
       action: "edit",
       onMutationSuccess: (data) => {
         dispatch({ type: "setUpdateApplicationId", payload: data?.data?.id ?? 0 });
+      },
+      errorNotification: (data: any) => {
+        const responseData = (data as IMessages).response.data;
+        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage: "ຕ້ອງສ້າງຂໍ້ມຸນການສະໝັກກ່ອນ" });
       },
     },
     warnWhenUnsavedChanges: true,
@@ -63,21 +79,11 @@ function transformApplication(val: IApplicationSchema): Record<string, any> {
 
 export const applicationSchema = z.object({
   profileId: z.number(),
-  emergencyFullname: z.string().min(2, {
-    message: "ກະລຸນາປ້ອນຂອງຊື່ກໍລະນີ້ສຸກເສີນ",
-  }),
-  appliedPosition: z.string().min(2, {
-    message: "ກະລຸນາປ້ອນຕໍາແຫນ່ງທີ່ສະຫມັກ",
-  }),
-  expectedSalary: z.string().min(2, {
-    message: "ກະລຸນາປ້ອນເງິນເດືອນທີ່ຕ້ອງການ",
-  }),
-  emergencyRelationship: z.string().min(2, {
-    message: "ກະລຸນາປ້ອນຄວາມສາພັນ",
-  }),
-  emergencyPhoneNumber: z.string().min(2, {
-    message: "ກະລຸນາປ້ອນເບີໂທ",
-  }),
+  emergencyFullname: z.string().min(2, { message: "ກະລຸນາປ້ອນຂອງຊື່ກໍລະນີ້ສຸກເສີນ" }),
+  appliedPosition: z.string().min(2, { message: "ກະລຸນາປ້ອນຕໍາແຫນ່ງທີ່ສະຫມັກ" }),
+  expectedSalary: z.string().min(2, { message: "ກະລຸນາປ້ອນເງິນເດືອນທີ່ຕ້ອງການ" }),
+  emergencyRelationship: z.string().min(2, { message: "ກະລຸນາປ້ອນຄວາມສາພັນ" }),
+  emergencyPhoneNumber: z.string().min(2, { message: "ກະລຸນາປ້ອນເບີໂທ" }),
   applicationStatus: z.string(),
 }).transform((val) => transformApplication(val));
 

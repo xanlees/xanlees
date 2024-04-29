@@ -29,15 +29,15 @@ export default function ApplicationCreate(): JSX.Element {
 
 const STEPS = {
   profileStep: 0,
-  personalCurrentAddressStep: 1,
   personalBornAddressStep: 2,
-  physicalProfileStep: 3,
-  isUploadedStep: 4,
-  educationStep: 5,
-  applicationStep: 6,
-  workExperienceStep: 7,
-  skillStep: 8,
-  updateApplicationStep: 9,
+  personalCurrentAddressStep: 3,
+  physicalProfileStep: 4,
+  isUploadedStep: 5,
+  educationStep: 6,
+  applicationStep: 7,
+  workExperienceStep: 8,
+  skillStep: 9,
+  updateApplicationStep: 10,
 };
 
 function ApplicationForm(): JSX.Element {
@@ -89,9 +89,9 @@ function getStepState(stateProfile: ProfileState, stateApplication: ApplicationS
     case hasValid(stateApplication.physicalProfileId as number):
       return STEPS.physicalProfileStep;
     case hasValid(stateProfile.personalCurrentAddressId as number):
-      return STEPS.personalBornAddressStep;
-    case hasValid(stateProfile.profileId as number):
       return STEPS.personalCurrentAddressStep;
+    case hasValid(stateProfile.profileId as number):
+      return STEPS.personalBornAddressStep;
     default:
       return STEPS.profileStep;
   }

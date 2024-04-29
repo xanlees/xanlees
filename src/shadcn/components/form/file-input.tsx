@@ -3,7 +3,7 @@ import { Input } from "@src/shadcn/elements";
 import { cn } from "@src/shadcn/lib/utils";
 import FileDisplay from "@src/common/components/cardFileDisplay/FileDisplay";
 
-export const FileInputField = ({ showFileDisplay = true, ...props }) => {
+export const FileInputField = ({ showFileDisplay = true, accept = "", ...props }) => {
   const [file, setFile] = useState<File>();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { className, classNameFile } = props;
@@ -19,6 +19,7 @@ export const FileInputField = ({ showFileDisplay = true, ...props }) => {
     <>
       <Input
         type="file"
+        accept={"application/pdf"}
         className={cn("", className)}
         {...props.rest}
         ref={fileInputRef}

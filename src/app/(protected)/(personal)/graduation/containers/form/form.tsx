@@ -23,7 +23,7 @@ export const FormGraduation = () => {
           <Form {...formConfig.form}>
             <div className="w-full sm:flex gap-x-2">
               <InputBase {...formConfig} name="degree" label="ລະດັບການສຶກສາ" />
-              <InputBase {...formConfig} name="sector" label="ພາກວິຊາ" />
+              <InputBase {...formConfig} name="sector" label="ສາຂາ/ສາຍສາມັນ" />
             </div>
           </Form>
         </AccordionContent>

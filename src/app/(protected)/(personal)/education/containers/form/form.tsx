@@ -23,7 +23,7 @@ export const EducationForm: React.FC = () => {
           <ArrayField {...formConfig.form} name="branch" label="ສະຖາບັນ/ໂຮງຮຽນ">
             <Input placeholder="" className="block w-56" />
           </ArrayField>
-          <ArrayField {...formConfig.form} name="graduationId" label="ສາຂາ/ສາຍສະມັນ">
+          <ArrayField {...formConfig.form} name="graduationId" label="ສາຂາ/ສາຍສາມັນ">
             <Form.Combobox {...(graduation as any)} />
           </ArrayField>
           <ArrayField {...formConfig.form} name="year" label="ສົກປີຈົບ">

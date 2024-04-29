@@ -15,7 +15,7 @@ export const AppliedFor: React.FC<{
           <Input placeholder="ຕໍາແຫນ່ງທີ່ສະຫມັກ" />
         </Form.Field>
         <Form.Field {...form} name="expectedSalary" label="ຕໍາແຫນ່ງທີ່ສະຫມັກ (ກີບ)" >
-          <Input placeholder="3,000,000" numericOnly type="currency"/>
+          <Input placeholder="3,000,000" numericOnly type="currency" maxLength={100} />
         </Form.Field>
       </div>
     </div>

@@ -3,8 +3,9 @@ import { useForm } from "@refinedev/react-hook-form";
 import { useApplicationContext } from "../../../application/context";
 import * as z from "zod";
 import { useEffect, useRef } from "react";
-import { type IFormConfig } from "@src/common/interface";
+import { type ErrorMapMessage, type IMessages, type IFormConfig } from "@src/common/interface";
 import { type UseFormSetValue } from "react-hook-form";
+import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 
 interface WorkExperienceData {
   id: number
@@ -22,14 +23,7 @@ export const useWorkExperienceForm = () => {
     resolver: zodResolver(WorkExperienceSchema),
     defaultValues: {
       experience: [
-        {
-          applicationId: 0,
-          company: "",
-          position: "",
-          time: "",
-          salary: "",
-          reasonOfResignation: "",
-        },
+        { applicationId: 0, company: "", position: "", time: "", salary: "", reasonOfResignation: "" },
       ],
     },
     refineCoreProps: {
@@ -44,6 +38,10 @@ export const useWorkExperienceForm = () => {
           id = data?.data?.id ?? 0;
         }
         dispatch({ type: "setWorkExperienceId", payload: id });
+      },
+      errorNotification: (data: any) => {
+        const responseData = (data as IMessages).response.data;
+        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage: "ຕ້ອງສ້າງຂໍ້ມຸນການສະໝັກກ່ອນ" });
       },
     },
     warnWhenUnsavedChanges: true,
@@ -88,3 +86,7 @@ const useUpdateDefaultValues = (form: IFormConfig & { setValue?: UseFormSetValue
     }
   }, [form, applicationId]);
 };
+
+const errorMessages: ErrorMapMessage[] = [
+  { val: "Invalid pk \"0\" - object does not exist.", message: "ຕ້ອງສ້າງຂໍ້ມຸນຂໍ້ມູນສ່ວນບຸກຄົນກ່ອນ" },
+];

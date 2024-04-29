@@ -91,6 +91,7 @@ export const FileInputImage = ({
             type="file"
             className="hidden"
             {...props.rest}
+            accept="image/png, image/jpeg, image/jpg"
             onChange={handleFileChange}
           />
         </label>

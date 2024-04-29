@@ -3,6 +3,8 @@ import { useApplicationContext } from "../../../application/context";
 import { useEffect, useRef } from "react";
 import { useForm } from "@refinedev/react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { type ErrorMapMessage, type IMessages } from "@src/common/interface";
+import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 
 export const useSkillForm = () => {
   const { state, dispatch } = useApplicationContext();
@@ -16,6 +18,10 @@ export const useSkillForm = () => {
       redirect: false,
       onMutationSuccess: (data) => {
         dispatch({ type: "setSkillId", payload: 10 });
+      },
+      errorNotification: (data: any) => {
+        const responseData = (data as IMessages).response.data;
+        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage: "ຕ້ອງສ້າງຂໍ້ມຸນການສະໝັກກ່ອນ" });
       },
     },
     warnWhenUnsavedChanges: true,
@@ -69,3 +75,7 @@ const updateApplicationId = ({
     prevApplicationIdRef.current = applicationId;
   }
 };
+
+const errorMessages: ErrorMapMessage[] = [
+  { val: "Invalid pk \"0\" - object does not exist.", message: "ຕ້ອງສ້າງຂໍ້ມຸນຂໍ້ມູນສ່ວນບຸກຄົນກ່ອນ" },
+];

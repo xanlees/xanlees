@@ -60,6 +60,6 @@ export const applicationFromStep = [
   {
     stepLabel: "ຂໍ້ມູນການສະໝັກເພີ່ມເຕີມ",
     stepDescription: <Application2Form />,
-    completed: true,
+    completed: false,
   },
 ];

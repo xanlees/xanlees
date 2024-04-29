@@ -3,7 +3,8 @@ import { useForm } from "@refinedev/react-hook-form";
 import { useProfileContext } from "../..";
 import * as z from "zod";
 import { useEffect, useRef } from "react";
-import { type IFormConfig } from "@src/common/interface";
+import { type ErrorMapMessage, type IMessages, type IFormConfig } from "@src/common/interface";
+import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 
 export const usePersonalAddressForm = ({ status }: { status: string }) => {
   const { state, dispatch } = useProfileContext();
@@ -24,6 +25,10 @@ export const usePersonalAddressForm = ({ status }: { status: string }) => {
       redirect: false,
       onMutationSuccess: (data) => {
         dispatch({ type, payload: data?.data?.id ?? 0 });
+      },
+      errorNotification: (data: any) => {
+        const responseData = (data as IMessages).response.data;
+        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage: "" });
       },
       successNotification: () => {
         return { message: `ສ້າງຂໍ້ມູນ${status}`, type: "success" };
@@ -58,3 +63,6 @@ const personalAddressSchema = z.object({
   }),
 });
 
+const errorMessages: ErrorMapMessage[] = [
+  { val: "Invalid pk \"0\" - object does not exist.", message: "ຕ້ອງສ້າງຂໍ້ມຸນຂໍ້ມູນສ່ວນບຸກຄົນກ່ອນ" },
+];
