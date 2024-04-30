@@ -4,18 +4,20 @@ import React from "react";
 import { Edit } from "@/shadcn/components/crud";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 import { EmployeeEditForm } from "../../containers/form/editForm";
-import { useOne } from "@refinedev/core";
+import { useEmployeeEdit } from "../../hook/useEmployeeForm";
+import { type IEmployeeExpand } from "../../interface";
 
-export default function EmployeeEdit({ params }: { params: { id: number } }): JSX.Element {
-  const { data } = useOne<{ profileId: number }>({
-    resource: "education",
-    id: Number(params.id ?? 0),
-  });
-  const profileId = data?.data?.profileId ?? 0;
+export default function useEmployeeForm({ params }: { params: { id: number } }): JSX.Element {
+  const employeeID = Number(params?.id);
+  const employeeData = useEmployeeEdit<IEmployeeExpand>({ id: employeeID }).data;
+  const profileId = employeeData?.[0]?.profileId ?? 0;
+  const type = employeeData?.[0]?.branchId?.type ?? 0;
+  const url = type === "OFFICE" ? "profile" : "agent";
+  const redirectTo = `/${url}/show/${profileId}`;
   const breadcrumbs = [{ label: "ກັບຄືນ", href: `/profile/show/${profileId}` }];
   return (
     <Edit
-      title="ການສຶກສາ"
+      title="ຕໍາແໜ່ງ"
       showButtonShow={false}
       breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
     >
@@ -24,7 +26,7 @@ export default function EmployeeEdit({ params }: { params: { id: number } }): JS
           <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
             ຟອມຂໍ້ມູນຕໍາແໜ່ງ
           </div>
-          <EmployeeEditForm id={Number(params.id ?? 0)} />
+          <EmployeeEditForm id={employeeID} redirectTo={redirectTo} />
         </div>
       </div>
     </Edit>

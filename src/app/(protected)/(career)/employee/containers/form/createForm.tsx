@@ -9,7 +9,6 @@ import { useFormConfig } from "../../hook/useEmployeeForm";
 import { usePositionSelect } from "../../hook/useSelect";
 
 export const EmployeeForm = ({ profileId, type, redirect }: { redirect?: string, profileId: string, type?: string }) => {
-  console.log("type", type);
   const profile = Number(profileId);
   const { form } = useFormConfig({ type, profile, redirect });
   const position = usePositionSelect(type);

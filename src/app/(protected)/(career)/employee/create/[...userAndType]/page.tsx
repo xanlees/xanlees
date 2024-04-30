@@ -10,18 +10,10 @@ const breadcrumbs = [
   { label: "Create" },
 ];
 
-export default function EmployeeCreate({
-  params,
-}: {
-  params?: { userAndType?: string[] }
-}): JSX.Element {
+export default function EmployeeCreate({ params }: { params?: { userAndType?: string[] } }): JSX.Element {
   const [profileId, type, redirect] = params?.userAndType ?? ["", "", ""];
   return (
-    <Create
-      title="ຟອມສ້າງຕຳແໜ່ງ"
-      resource="profile"
-      breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
-    >
+    <Create title="ຕຳແໜ່ງ" resource="employee" breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />} >
       <Card className="mx-auto mt-10 mb-20 rounded-md shadow-lg max-w-[900px]">
         <CardHeader>
           <span className="w-full py-4 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl ">

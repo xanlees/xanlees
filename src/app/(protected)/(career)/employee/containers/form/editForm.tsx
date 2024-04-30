@@ -6,9 +6,10 @@ import * as z from "zod";
 import { usePositionSelect } from "../../hook/useSelect";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 import { SwitchButton } from "@src/shadcn/components/form/switch";
+import { useRouter } from "next/navigation";
 
-export const EmployeeEditForm: React.FC<{ id: number }> = ({ id }) => {
-  const { form } = useEmployeeEdit(id);
+export const EmployeeEditForm: React.FC<{ id: number, redirectTo: string }> = ({ id, redirectTo }) => {
+  const { form } = useEmployeeEdit({ id, redirectTo });
   const position = usePositionSelect();
   return (
     <Form {...form}>
@@ -39,7 +40,8 @@ export const EmployeeEditForm: React.FC<{ id: number }> = ({ id }) => {
   );
 };
 
-const useEmployeeEdit = (id: number) => {
+const useEmployeeEdit = ({ id, redirectTo }: { id: number, redirectTo: string }) => {
+  const router = useRouter();
   const { ...form } = useForm<z.infer<typeof graduationSchema>>({
     resolver: zodResolver(graduationSchema),
     defaultValues: {
@@ -53,6 +55,9 @@ const useEmployeeEdit = (id: number) => {
       redirect: false,
       action: "edit",
       id,
+      onMutationSuccess: (data) => {
+        router.back();
+      },
     },
     warnWhenUnsavedChanges: true,
   });
