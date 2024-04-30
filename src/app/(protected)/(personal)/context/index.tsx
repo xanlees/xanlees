@@ -5,7 +5,7 @@ import { createContextProvider } from "@src/common/components/localStorageContex
 
 export const employeeProfileStorageKey = "creatingEmployeeProfileState";
 export const agentProfileStorageKey = "creatingAgentProfileState";
-export const applicationProfileStorageKey = "creatingAgentProfileState";
+export const applicationProfileStorageKey = "creatingApplicationProfileState";
 
 const { LocalStorageProvider, useLocalStorageContext } = createContextProvider<
 ProfileState,

@@ -5,12 +5,14 @@ import { Card, CardHeader, CardTitle, Label } from "@src/shadcn/elements";
 import moment from "moment";
 import { type IApplication } from "../../interface";
 import { getApplicationStatusLabel, getTypeDrivingLicenseLabel, getTypeVaccineLabel } from "../../lib/constant";
+import { type IBranch } from "@src/app/(protected)/(career)/sector/useSelect";
 
-export const Application: React.FC<{ applicationData: IApplication }> = ({ applicationData }) => {
+export const Application: React.FC<{ applicationData: IApplication, branchData: IBranch[] }> = ({ applicationData, branchData }) => {
+  const branch = `ສາຂາ ${branchData?.[0]?.name} ແຂວງ${branchData?.[0]?.province.provinceName}` ?? "";
   return (
     <CardContainer title={"ຂໍ້ມູນແບບຟອມສະໝັກວຽກ"}>
       <div className="px-4 py-2">
-        <PositionDetail applicationData={applicationData}/>
+        <PositionDetail applicationData={applicationData} branch={branch}/>
         <EmergencyDetail applicationData={applicationData}/>
         <General applicationData={applicationData}/>
       </div>
@@ -18,13 +20,14 @@ export const Application: React.FC<{ applicationData: IApplication }> = ({ appli
   );
 };
 
-export const PositionDetail: React.FC<{ applicationData: IApplication }> = ({ applicationData }) => {
+export const PositionDetail: React.FC<{ applicationData: IApplication, branch: string }> = ({ applicationData, branch }) => {
   const { expectedSalary, appliedPosition } = applicationData ?? {};
   return (
     <div>
       <Label className="text-lg pl-5 font-bold">ຕໍາແຫນ່ງທີ່ຕ້ອງການສະຫມັກ</Label>
       <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ຕໍາແຫນ່ງທີ່ສະຫມັກ"} content={(appliedPosition)} />
       <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ເງິນເດືອນທີ່ຕ້ອງການ"} content={`${Number(expectedSalary)?.toLocaleString()} ກີບ`} />
+      <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ສະໝັກຢູ່ສາຂາ"} content={branch} />
     </div>
   );
 };

@@ -20,13 +20,16 @@ import {
   useWorkExperience,
   WorkExperience,
 } from "../../../index";
+import { useApplicationBranch } from "../../hooks";
+import { type IBranch } from "@src/app/(protected)/(career)/sector/useSelect";
 
 export default function ApplicationShow({ params }: Readonly<{ params: { id: number } }>): JSX.Element {
-  const { queryResult } = useShow<IApplication>();
+  const { queryResult } = useShow<IApplication>({});
   const { data } = queryResult;
   const record = data?.data as IApplication;
   const profileId = Number(record?.profileId ?? 0) ?? 0;
   const { data: profileData } = useProfile<IProfile>({ profileId: record?.profileId });
+  const { data: branchData } = useApplicationBranch<IBranch>({ id: record?.branchId });
   const { data: workExperienceData } = useWorkExperience<IWorkExperience[]>({ application: record?.id });
   const { data: skillData } = useSkill<ISkill[]>({ application: record?.id });
   const { data: physicalData } = usePhysical<IPhysical[]>({ profileId: record?.profileId });
@@ -40,7 +43,7 @@ export default function ApplicationShow({ params }: Readonly<{ params: { id: num
         <div className="space-y-2 w-80">
           <DocumentPDF profileId={profileData?.[0]?.id ?? 0}/>
           <Skill skillData={skillData as ISkill[]} />
-          <Application applicationData={record}/>
+          <Application applicationData={record} branchData={branchData}/>
         </div>
         <div className="flex flex-col gap-y-2 w-80">
           <EducationDetail profileId={profileId} />

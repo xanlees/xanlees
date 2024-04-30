@@ -18,4 +18,3 @@ export function useProfile<T extends BaseRecord>({ profileId }: { profileId: num
   };
   return data ?? defaultData;
 }
-

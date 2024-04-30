@@ -4,7 +4,7 @@ import { type ApplicationAction, type ApplicationState } from "./interface";
 import { ApplicationReducer } from "./reducer";
 import { createContextProvider } from "@src/common/components/localStorageContext/provider";
 
-export const APPLICATION_STORAGE_KEY = "creatingApplication";
+export const applicationStorageKey = "creatingApplication";
 
 const initStateApplication = {
 };
@@ -12,15 +12,13 @@ const initStateApplication = {
 const { LocalStorageProvider, useLocalStorageContext } = createContextProvider<ApplicationState, ApplicationAction >({
   reducer: ApplicationReducer,
   initialState: initStateApplication,
-  storageKey: APPLICATION_STORAGE_KEY,
 });
 
-export const ApplicationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const ApplicationProvider: React.FC<{ children: ReactNode, storageKeys: string }> = ({ children, storageKeys }) => {
   return (
-    <LocalStorageProvider>
+    <LocalStorageProvider storageKey={storageKeys}>
       {children}
     </LocalStorageProvider>
   );
 };
-
 export const useApplicationContext = useLocalStorageContext;

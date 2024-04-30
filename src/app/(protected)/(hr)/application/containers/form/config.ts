@@ -17,6 +17,7 @@ export const useFormConfig = () => {
       profileId: state?.profileId,
       applicationStatus: "New",
       applicantSignature: false,
+      branchId: 0,
     },
     refineCoreProps: {
       resource: "application",
@@ -76,9 +77,9 @@ function transformApplication(val: IApplicationSchema): Record<string, any> {
     expectedSalary: Number(val.expectedSalary.replace(/,/g, "")),
   };
 }
-
 export const applicationSchema = z.object({
   profileId: z.number(),
+  branchId: z.number().min(1, { message: "ກະລຸນາເລືອກສາຂາທີຕ້ອງສະໝັກ" }),
   emergencyFullname: z.string().min(2, { message: "ກະລຸນາປ້ອນຂອງຊື່ກໍລະນີ້ສຸກເສີນ" }),
   appliedPosition: z.string().min(2, { message: "ກະລຸນາປ້ອນຕໍາແຫນ່ງທີ່ສະຫມັກ" }),
   expectedSalary: z.string().min(2, { message: "ກະລຸນາປ້ອນເງິນເດືອນທີ່ຕ້ອງການ" }),

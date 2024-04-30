@@ -15,11 +15,12 @@ import {
 } from "@personal";
 import { hasValid } from "@src/common/lib/validation/hasValid";
 import { applicationProfileStorageKey } from "@src/app/(protected)/(personal)/context";
+import { applicationStorageKey } from "@src/app/(protected)/(hr)/application/context";
 
 export default function ApplicationCreate(): JSX.Element {
   return (
     <Card className="mx-auto mt-10 mb-20 rounded-md shadow-lg max-w-[900px]">
-      <ApplicationProvider>
+      <ApplicationProvider storageKeys={applicationStorageKey}>
         <ProfileProvider storageKeys={applicationProfileStorageKey}>
           <ApplicationForm />
         </ProfileProvider>
@@ -51,8 +52,8 @@ function ApplicationForm(): JSX.Element {
     applicationContext.state,
   );
   const handleButtonClick = () => {
-    localStorage.removeItem("creatingApplicationProfile");
-    localStorage.removeItem("creatingProfileState");
+    localStorage.removeItem(applicationStorageKey);
+    localStorage.removeItem(applicationProfileStorageKey);
     window.location.reload();
   };
   return (

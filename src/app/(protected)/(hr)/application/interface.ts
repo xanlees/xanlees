@@ -1,5 +1,6 @@
 export interface IApplication {
   profileId: number
+  branchId: number
   expectedSalary: string
   tagId: string
   appliedPosition: string
