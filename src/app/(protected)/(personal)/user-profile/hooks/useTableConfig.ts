@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { type IUserProfile } from "../interface";
 import { type ExtendedCrudFilter } from "@src/common/interface";
 
-export const useTableUserProfile = (branch: number) => {
+export const useTableUserProfile = ({ branchId }: { branchId: number }) => {
   const permanentFilters: ExtendedCrudFilter[] = useMemo(() => {
     const filters: ExtendedCrudFilter[] = [
       { field: "expand", operator: "eq", value: "profile" },
@@ -11,11 +11,11 @@ export const useTableUserProfile = (branch: number) => {
       { field: "profile_type", operator: "eq", value: "EMPLOYEE" },
       { field: "user_is_active", operator: "eq", value: true },
     ];
-    if (branch !== 0) {
-      filters.unshift({ field: "branch", operator: "eq", value: branch });
+    if (branchId !== 0) {
+      filters.unshift({ field: "branch", operator: "eq", value: branchId });
     }
     return filters;
-  }, [branch]);
+  }, [branchId]);
   const table = useTable<IUserProfile>({
     columns: [],
     enableSorting: true,

@@ -4,7 +4,7 @@ import moment from "moment";
 import React, { useState } from "react";
 import { ComboboxSelect } from "@src/shadcn/elements/combobox-select";
 import { DatePicker } from "@src/shadcn/elements";
-import { EmployeeLateStatus, workingHour } from "./containers/table-column/workingHour";
+import { EmployeeLateStatus } from "./containers/table-column/EmployeeLateStatus";
 import { format } from "date-fns";
 import { getSelectColumn } from "@src/common/containers/column";
 import { List } from "@/shadcn/components/crud";
@@ -30,6 +30,7 @@ import {
 import type { IWorkTimeSettings, IAttendance } from "./interface";
 import { type IEmployee } from "../index";
 import { useBranchFormSelect } from "../../(career)/work-time-settings/hook/useWorkTimeSettings";
+import { workingHour } from "./containers/table-column/workingHour";
 
 moment.locale("en");
 
@@ -38,7 +39,7 @@ export default function UserProfileList(): JSX.Element {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const checkInDate = selectedDate ? format(selectedDate, "yyyy-MM-dd") : "No date selected";
   const day = selectedDate ? format(selectedDate, "eeee") : "Monday";
-  const { table } = useTableUserProfile(selected);
+  const { table } = useTableUserProfile({ branchId: selected });
   const userProfile = table.options.data ?? [];
   const friendly = useUserFriendlyName();
   const userIds = useUserIDs(userProfile);
@@ -90,7 +91,6 @@ function DateAndBranchSelector({ setSelectedDate, setSelected }: DateAndBranchPi
     </div>
   );
 }
-
 function handleDateChange(date: Date | undefined, setDate: React.Dispatch<React.SetStateAction<Date | undefined>>) {
   if (date) {
     setDate(date);

@@ -2,7 +2,7 @@ import { Table } from "@/shadcn/components/table";
 import { type IUserProfile, type IAttendance } from "../../interface";
 import moment from "moment";
 import { ProfileImageDialog } from "./checkOut";
-import { type LateTimeProps } from "./workingHour";
+import { type LateTimeProps } from "./EmployeeLateStatus";
 
 export function CheckIn({ attendanceData }: { attendanceData: IAttendance[] }) {
   return (
