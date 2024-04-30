@@ -21,9 +21,10 @@ interface InputFieldProps {
   placeholder?: string
   label?: string
   require?: boolean
+  title?: string
 }
 
-export const InputField: React.FC<InputFieldProps> = ({ fields, append, name, errorMessage, type, maxLength, numericOnly, className, label, placeholder, require = true }) => {
+export const InputField: React.FC<InputFieldProps> = ({ fields, append, name, errorMessage, type, maxLength, numericOnly, className, label, placeholder, title = "", require = true }) => {
   const { initialValue, showTooltip, handleValueChange, handleAppend } = useFieldAppend({ fields, append, name });
   return (
     <div className="flex flex-col">
@@ -43,7 +44,7 @@ export const InputField: React.FC<InputFieldProps> = ({ fields, append, name, er
             maxLength={maxLength}
           />
           <Button type="button" onClick={handleAppend} className="mt-2">
-            {label}
+          ເພີ່ມ{title}
           </Button>
         </div>
       </div>

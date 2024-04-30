@@ -7,7 +7,7 @@ import { DocumentForm, PersonalAddressForm, ProfileProvider, type ProfileState }
 import { useRouter } from "next/navigation";
 import { Button, Card, CardHeader } from "@src/shadcn/elements";
 import { useProfileContext } from "../../index";
-import { PROFILE_STORAGE_KEY } from "@src/app/(protected)/(personal)/context";
+import { agentProfileStorageKey } from "@src/app/(protected)/(personal)/context";
 import { ProfileForm } from "../containers/form/form";
 
 const breadcrumbs = [
@@ -17,7 +17,7 @@ const breadcrumbs = [
 
 const ProfileCreate = () => {
   return (
-    <ProfileProvider>
+    <ProfileProvider storageKeys={agentProfileStorageKey}>
       <FormCreate />
     </ProfileProvider>
   );
@@ -27,12 +27,12 @@ const FormCreate = () => {
   const router = useRouter();
   const { dispatch } = useProfileContext();
   const handleButtonClick = () => {
-    const storedState = localStorage.getItem(PROFILE_STORAGE_KEY);
+    const storedState = localStorage.getItem(agentProfileStorageKey);
     const profileState = JSON.parse(storedState as string) as ProfileState;
     if (profileState.profileId !== undefined && profileState.profileId !== 0) {
       router.push(`/employee/create/${profileState?.profileId}/LOTTERY/agent`);
       dispatch({ type: "clearState", payload: true });
-      localStorage.removeItem(PROFILE_STORAGE_KEY);
+      localStorage.removeItem(agentProfileStorageKey);
     }
   };
   return (

@@ -41,7 +41,7 @@ export function EducationDetail({ profileId }: { profileId: number }): JSX.Eleme
               <div className="flex -mx-40">
                 <Show.Row
                   className="ຂໍ້ມູນການສຶກສາ"
-                  content={<div className="w-[250px]">{`${degree}, ${sector}, ຈົບທີ${branch} ຈົບສົກປີ ${year}`}</div>}
+                  content={<div className="w-[250px]">{`ຈົບ${degree}, ${sector}, ຈົບທີ${branch} ຈົບສົກປີ ${year}`}</div>}
                 />
               </div>
             );

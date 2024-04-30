@@ -78,7 +78,7 @@ export const InputUniqueNumber: React.FC<ExtendedFieldArrayProps> = ({ append, f
   return (
     <div className="w-full lg:w-80">
       <div className="relative w-full mb-3">
-        <InputField fields={fields} append={append} name="uniqueNumber" label="ລະຫັດເຄຶ່ອງ" placeholder="000" maxLength={15} numericOnly require={false} errorMessage="ເລກຊໍ້າ" />
+        <InputField fields={fields} append={append} name="uniqueNumber" label="ລະຫັດເຄຶ່ອງ" title="" placeholder="000" maxLength={15} numericOnly require={false} errorMessage="ເລກຊໍ້າ" />
       </div>
     </div>
   );

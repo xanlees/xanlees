@@ -1,6 +1,5 @@
 import { type BaseOption, useSelect, useMany } from "@refinedev/core";
 import { type IPosition, type IBranch } from "@career";
-type GroupedOptions = Record<number, BaseOption[]>;
 
 export const fetchBranchData = (branchIds: number[]) => {
   return useMany<IBranch>({
@@ -15,20 +14,20 @@ export const extractBranchIds = (positions: IPosition[]): number[] => {
   );
 };
 
-export const generateGroupedOptions = (positions: IPosition[], branchData: IBranch[]): GroupedOptions => {
-  return positions.reduce((acc: GroupedOptions, item) => {
-    const branchId = item.sectorId?.branchId ?? 0;
-    if (!(branchId in acc)) {
-      acc[branchId] = [];
-    }
-
-    acc[branchId].push({
-      label: `${item.name}`,
-      value: item.id,
-    });
-
+export const generateGroupedOptions = (positions: IPosition[], branchData: IBranch[]): BaseOption[] => {
+  const branchIdToName = branchData.reduce<Record<number, string>>((acc, branch) => {
+    acc[branch.id] = branch.name;
     return acc;
   }, {});
+  return positions.map((item) => {
+    const branchName = branchIdToName[item?.sectorId?.branchId] ?? "";
+    const sectorName = item?.sectorId?.name ?? "";
+    const label = `${item.name}, ${sectorName}, ${branchName}`;
+    return {
+      label,
+      value: item.id,
+    };
+  });
 };
 
 export const usePositionSelect = (type?: string) => {
@@ -38,11 +37,8 @@ export const usePositionSelect = (type?: string) => {
     optionLabel: "name",
     optionValue: "id",
     filters: [
-      {
-        field: "branch_type",
-        operator: "eq",
-        value: types,
-      },
+      { field: "branch_type", operator: "eq", value: types },
+      { field: "page_size", operator: "eq", value: 1500 },
     ],
   });
   const branchIds = extractBranchIds(position.queryResult.data?.data ?? []);

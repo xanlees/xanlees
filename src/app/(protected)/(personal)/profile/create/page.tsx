@@ -5,7 +5,7 @@ import { Create } from "@/shadcn/components/crud";
 import {
   useProfileContext,
   ProfileProvider,
-  PROFILE_STORAGE_KEY,
+  employeeProfileStorageKey,
 } from "../../context";
 import { type ProfileState } from "../../context/interface";
 import { Button, Card, CardHeader } from "@src/shadcn/elements";
@@ -23,9 +23,10 @@ const breadcrumbs = [
   { label: "ພະນັກງານ", href: "/profile" },
   { label: "ສ້າງພະນັກງານ" },
 ];
+
 const ProfileCreate = () => {
   return (
-    <ProfileProvider>
+    <ProfileProvider storageKeys={employeeProfileStorageKey} >
       <FormCreate />
     </ProfileProvider>
   );
@@ -35,7 +36,7 @@ const FormCreate = () => {
   const { state, dispatch } = useProfileContext();
   const initialStep = getStepState(state);
   const handleButtonClick = () => {
-    const storedState = localStorage.getItem(PROFILE_STORAGE_KEY);
+    const storedState = localStorage.getItem(employeeProfileStorageKey);
     const profileState = JSON.parse(storedState as string) as ProfileState;
     if (profileState.profileId !== undefined && profileState.profileId !== 0) {
       router.push(`/employee/create/${profileState.profileId}/OFFICE/user`);
@@ -63,19 +64,19 @@ const FormCreate = () => {
 
 function getStepState(state: ProfileState) {
   const profileStep = 0;
-  const personalCurrentAddressStep = 1;
-  const personalBornAddressStep = 2;
+  const personalBornAddressStep = 1;
+  const personalCurrentAddressStep = 2;
   const documentStep = 3;
   const educationStep = 4;
   switch (true) {
     case hasValid(state.isUploaded):
       return educationStep;
-    case hasValid(state.personalBornAddressId):
-      return documentStep;
     case hasValid(state.personalCurrentAddressId):
-      return personalBornAddressStep;
-    case hasValid(state.profileId):
+      return documentStep;
+    case hasValid(state.personalBornAddressId):
       return personalCurrentAddressStep;
+    case hasValid(state.profileId):
+      return personalBornAddressStep;
     default:
       return profileStep;
   }

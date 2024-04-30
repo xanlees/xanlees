@@ -4,8 +4,10 @@ import * as z from "zod";
 import {
   FormMultipart,
 } from "@src/common/interface";
+import { useRouter } from "next/navigation";
 
 export const useProfileEditForm = ({ id }: { id: number }) => {
+  const router = useRouter();
   const { ...form } = useForm<{ id?: number }>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
@@ -23,6 +25,7 @@ export const useProfileEditForm = ({ id }: { id: number }) => {
       resource: "profile",
       meta: FormMultipart,
       redirect: false,
+      onMutationSuccess: () => { router.back(); },
       action: "edit",
       id,
     },
@@ -84,3 +87,4 @@ interface ProfileSendData {
   uniqueNumber?: Array<string | { uniqueNumber: string }>
   profilePicture?: string | File | null
 }
+

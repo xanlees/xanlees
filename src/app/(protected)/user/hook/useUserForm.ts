@@ -6,8 +6,10 @@ import { type CreateUserProfileProps, type UserProfile } from "../interface/inte
 import { type IMessages } from "@src/common/interface";
 import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 import { errorMessages, userSchema, userSchemaEdit } from "../userSchema";
+import { useRouter } from "next/navigation";
 
 export const useUserForm = (profile: number, navigates: string) => {
+  const router = useRouter();
   const idEdit = profile <= 0;
   const { list } = useNavigation();
   const [user, setUser] = useState<number>(0);
@@ -21,6 +23,7 @@ export const useUserForm = (profile: number, navigates: string) => {
       onMutationSuccess: (data) => {
         if (navigates === "profile") {
           setUser(data.data.id ?? 0);
+          router.back();
         }
         setShouldCreateProfile(true);
         list(navigates);

@@ -6,9 +6,7 @@ interface ProvinceOption {
 interface ProvinceList {
   options: ProvinceOption[]
 }
-
 export const provinceList: ProvinceList = {
-
   options: [
     {
       label: "ນະຄອນຫຼວງວຽງຈັນ",

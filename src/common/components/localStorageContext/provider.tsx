@@ -3,11 +3,11 @@ import { type ProviderProps } from "./interface";
 import { LoadFromStorage } from "./constant";
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function createContextProvider<T, A>({ reducer, initialState, storageKey }: ProviderProps<T, A>) {
+export function createContextProvider<T, A>({ reducer, initialState }: ProviderProps<T, A>) {
   const Context = createContext<{ state: T, dispatch: Dispatch<A> } | undefined>(
     undefined,
   );
-  const LocalStorageProvider: FC<{ children: ReactNode }> = ({ children }: { children: ReactNode }) => {
+  const LocalStorageProvider: FC<{ children: ReactNode, storageKey: string }> = ({ children, storageKey }: { storageKey: string, children: ReactNode }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     useEffect(() => {
       const storedState = localStorage.getItem(storageKey);
@@ -20,7 +20,7 @@ export function createContextProvider<T, A>({ reducer, initialState, storageKey 
       if (Object.keys(state as Record<string, unknown>).length > 0) {
         localStorage.setItem(storageKey, JSON?.stringify(state));
       }
-    }, [state]);
+    }, [state, storageKey]);
     return (
       <Context.Provider value={{ state, dispatch }}>
         {children}
@@ -34,5 +34,5 @@ export function createContextProvider<T, A>({ reducer, initialState, storageKey 
     }
     return context;
   };
-  return { LocalStorageProvider, useLocalStorageContext };
+  return { LocalStorageProvider, useLocalStorageContext, Context };
 }

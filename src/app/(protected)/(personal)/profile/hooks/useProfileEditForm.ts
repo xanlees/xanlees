@@ -26,7 +26,7 @@ export const useProfileEditForm = () => {
     refineCoreProps: {
       resource: "profile",
       meta: FormMultipart,
-      redirect: false,
+      redirect: "show",
     },
     warnWhenUnsavedChanges: true,
   });
