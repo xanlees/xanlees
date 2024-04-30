@@ -24,7 +24,7 @@ export const WorkExperience: React.FC<{ workExperienceData: IWorkExperience[] | 
           <Show.Row icon={<Sofa />} className="text-md text-gray-700 dark:text-gray-300" title="ຕໍາແໜງ" content={item.position ?? ""} />
           <Show.Row icon={<Clock />} className="text-md text-gray-700 dark:text-gray-300" title="ໄລຍະເວລາ" content={item.time ?? ""} />
           <Show.Row icon={<DollarSign />} className="text-md text-gray-700 dark:text-gray-300" title="ເງິນເດືອນ" content={`${item.salary?.toLocaleString() ?? ""} ກີບ`} />
-          <Show.Row icon={<Briefcase />} className="text-md text-gray-700 dark:text-gray-300" title="ວຽກທີເຮັດຜ່ານມາ" content={item.reasonOfResignation ?? ""}/>
+          <Show.Row icon={<Briefcase />} className="text-md text-gray-700 dark:text-gray-300" title="ໜ້າວຽກ" content={item.reasonOfResignation ?? ""}/>
         </div>
       ))}
     </Card>
