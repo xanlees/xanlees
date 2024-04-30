@@ -6,10 +6,10 @@ import * as z from "zod";
 import { Form } from "@src/shadcn/components/form";
 import { FormMultipart } from "@src/common/interface";
 import { type FormAction } from "@refinedev/core";
+import { useRouter } from "next/navigation";
 
 export const DocumentEditForm: React.FC<{ id: number, action: FormAction }> = ({ id, action }) => {
   const { form } = useDocumentFormEdit(id, action);
-  console.log("form", form.watch());
   return (
     <div className="flex justify-center">
       <div className="flex flex-col border rounded-2xl">
@@ -40,6 +40,7 @@ export const DocumentEditForm: React.FC<{ id: number, action: FormAction }> = ({
 };
 
 const useDocumentFormEdit = (id: number, action: FormAction) => {
+  const router = useRouter();
   const { ...form } = useForm<z.infer<typeof documentSchema>>({
     resolver: zodResolver(documentSchema),
     defaultValues: {
@@ -53,6 +54,9 @@ const useDocumentFormEdit = (id: number, action: FormAction) => {
       action: "edit",
       id,
       meta: FormMultipart,
+      onMutationSuccess: () => {
+        router.back();
+      },
     },
     warnWhenUnsavedChanges: true,
   });

@@ -1,8 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import * as z from "zod";
+import { useRouter } from "next/navigation";
 
 export const usePersonalAddressEditForm = ({ id }: { id: number }) => {
+  const router = useRouter();
   const { ...form } = useForm<{ id?: number }>({
     resolver: zodResolver(personalAddressSchema),
     defaultValues: {
@@ -17,6 +19,9 @@ export const usePersonalAddressEditForm = ({ id }: { id: number }) => {
       redirect: false,
       action: "edit",
       id,
+      onMutationSuccess: () => {
+        router.back();
+      },
     },
     warnWhenUnsavedChanges: true,
   });

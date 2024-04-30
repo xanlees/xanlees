@@ -1,9 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import * as z from "zod";
+import { useRouter } from "next/navigation";
 
 export const useEducationFormEdit = (id: number) => {
-  console.log("id", id);
+  const router = useRouter();
   const { ...form } = useForm<z.infer<typeof graduationSchema>>({
     resolver: zodResolver(graduationSchema),
     defaultValues: {
@@ -17,6 +18,9 @@ export const useEducationFormEdit = (id: number) => {
       redirect: false,
       action: "edit",
       id,
+      onMutationSuccess: () => {
+        router.back();
+      },
     },
     warnWhenUnsavedChanges: true,
   });

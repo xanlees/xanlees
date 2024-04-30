@@ -1,13 +1,12 @@
 import { useSelect, type BaseOption, type HttpError, type UseSelectReturnType } from "@refinedev/core";
 import { type ISector } from "../sector/interface";
-import { useNavigation } from "@refinedev/core";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Input } from "@src/shadcn/elements";
 import { Form } from "@src/shadcn/components/form";
 import { useForm } from "@refinedev/react-hook-form";
 import { type IFormConfig } from "@src/common/interface";
-
+import { useRouter } from "next/navigation";
 export const PositionForm: React.FC<{ type: string }> = (type) => {
   const branchType = type.type;
   const { form } = useFormPositionConfig(branchType);
@@ -54,8 +53,7 @@ const getSectorOptions = (branchType: string): UseSelectReturnType<ISector, Http
 };
 
 export const useFormPositionConfig = (branchType: string) => {
-  const redirect = branchType === "LOTTERY" ? "lottery-branch" : "branch";
-  const { list } = useNavigation();
+  const router = useRouter();
   const { ...form } = useForm<z.infer<typeof positionSchema>>({
     resolver: zodResolver(positionSchema),
     defaultValues: {
@@ -66,7 +64,7 @@ export const useFormPositionConfig = (branchType: string) => {
       resource: "position",
       redirect: false,
       onMutationSuccess: () => {
-        list(redirect);
+        router.back();
       },
     },
     warnWhenUnsavedChanges: true,

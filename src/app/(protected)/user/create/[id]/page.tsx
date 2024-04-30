@@ -2,12 +2,10 @@
 import React from "react";
 import { Create } from "@/shadcn/components/crud";
 import { UserForm } from "../../containers/form";
-import { Card, CardHeader } from "@src/shadcn/elements";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 
 const breadcrumbs = [
   { label: "ຜູ້ໃຊ້ລະບົບ", href: "/user" },
-  { label: "Create" },
 ];
 
 export default function UserCreate({ params }: { params: { id: number } }): JSX.Element {
@@ -18,16 +16,14 @@ export default function UserCreate({ params }: { params: { id: number } }): JSX.
       resource="profile"
       breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
     >
-      <Card className="mx-auto mb-20 rounded-md shadow-lg max-w-[900px]">
-        <CardHeader>
-          <span className="w-full py-4 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl ">
-            ຟອມຜູ້ໃຊ້ລະບົບ
-          </span>
-        </CardHeader>
-        <div className="p-5">
+      <div className="flex justify-center">
+        <div className="flex flex-col border shadow-2xl rounded-2xl">
+          <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
+          ຟອມຜູ້ໃຊ້ລະບົບ
+          </div>
           <UserForm navigates={"profile"} profile={profile} />
         </div>
-      </Card>
+      </div>
     </Create>
   );
 }
