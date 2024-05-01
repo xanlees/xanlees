@@ -23,9 +23,9 @@ export default function WorkTimeSettingsList(): JSX.Element {
   }).data;
   return (
     <List>
-      <CardView table={table} className=" w-80 ">
+      <CardView table={table} className="w-80 h-[400px] overflow-auto">
         <CardView.Row
-          header="ຊື້ຫ້ອງຫານ"
+          header="ຫ້ອງການ"
           id="name"
           accessorKey="name"
           isHeader={true}
@@ -55,7 +55,7 @@ export function getActionsButton({ resource, workTimeSettingsData }: { resource:
         const id = row?.original?.id as number;
         const matchingBranches = workTimeSettingsData?.filter((branch) => branch.branch === id);
         return (
-          <div className="top-0 right-0 absolute">
+          <div className="absolute top-0 right-0">
             <Table.Actions>
               <Table.EditAction
                 title="ແກ້ໄຂ"

@@ -9,12 +9,13 @@ import {
   InputNickName,
   PhonNumberInput,
 } from "@src/app/(protected)/(career)/agent/containers/form/fields";
+import Captcha from "@src/shadcn/components/form/captcha-input";
 
 export const FormFieldContainer: React.FC< CommonProps & { isEmployee: boolean } > = ({ form, isEmployee }) => {
   return (
     <>
       <Form.Field {...form} name="profilePicture" require={false}>
-        <Form.FileInputImage className="w-64 h-64 pt-1" label="ເລືອກຮູບພາບ ຫຼື ເຊວຟີກໍໄດ້" iconImage={<CircleUser className="h-20 w-20" />} />
+        <Form.FileInputImage className="w-64 h-64 pt-1" label="ເລືອກຮູບພາບ ຫຼື ເຊວຟີກໍໄດ້" iconImage={<CircleUser className="w-20 h-20" />} />
       </Form.Field>
       <div className="flex flex-wrap gap-2">
         <InputFullName form={form} />
@@ -25,6 +26,9 @@ export const FormFieldContainer: React.FC< CommonProps & { isEmployee: boolean }
         <GenderAndMaritalStatusSelect form={form} />
         <DynamicNumberForm isEmployee={isEmployee} {...form} />
       </div>
+      <Form.Field {...form} name={"captcha"} label={"ຂ້ອນບໍ່ແມ່ນຄອມພິວເຕີ"}>
+        <Captcha/>
+      </Form.Field>
     </>
   );
 };
@@ -57,7 +61,7 @@ export const UniqueNumberInput: React.FC<CommonProps & { isEmployee?: boolean }>
 export const GenderAndMaritalStatusSelect: React.FC<CommonProps> = ({ form }) => {
   return (
     <div className="w-full lg:w-80">
-      <div className="w-full flex flex-col lg:flex-row lg:gap-x-5">
+      <div className="flex flex-col w-full lg:flex-row lg:gap-x-5">
         <Form.Field {...form} name={"gender"} label={"ເພດ"}>
           <Form.RadioGroup className="" options={[{ label: "ຊາຍ", value: "MALE" }, { label: "ຍິງ", value: "FEMALE" }]} isSquare={true} />
         </Form.Field>

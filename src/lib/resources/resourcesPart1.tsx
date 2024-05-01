@@ -41,11 +41,11 @@ export const resourcesPart1 = [
     },
   },
   {
-    name: "employee-laid-off",
-    list: "/employee-laid-off",
-    create: "/employee-laid-off/create",
-    edit: "/employee-laid-off/edit/:id",
-    show: "/employee-laid-off/show/:id",
+    name: "past-employee",
+    list: "/past-employee",
+    create: "/past-employee/create",
+    edit: "/past-employee/edit/:id",
+    show: "/past-employee/show/:id",
     icon: <Briefcase />,
     meta: {
       label: "ອາດີດພະນັກງານ",

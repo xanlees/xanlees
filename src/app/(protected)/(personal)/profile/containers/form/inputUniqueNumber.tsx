@@ -29,7 +29,7 @@ export const DynamicNumberForm: React.FC<{ form: IFormConfig, isEmployee?: boole
         append={append}
         remove={remove}
         name="uniqueNumber"
-        label={displayText}
+        label={`ເພິ່ມ${displayText}`}
         classNameButton="mt-"
       >
         <ArrayField

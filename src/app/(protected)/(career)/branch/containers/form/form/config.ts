@@ -27,7 +27,7 @@ export const useFormBranchConfig = (type: string) => {
 
 export const branchSchema = z.object({
   name: z.string().min(2, {
-    message: "ກະລຸໃສຊື້ສາຂາ",
+    message: "ກະລຸໃສຊື່ສາຂາ",
   }),
   type: z.string().min(1, {
     message: "ກະລຸເລືອກປະເພດຫ້ອງການ",
@@ -57,7 +57,7 @@ export const useFormPositionConfig = (branchType: string) => {
 
 export const positionSchema = z.object({
   name: z.string().min(2, {
-    message: "ກະລຸໃສຊື້ສາຂາຕໍາແໜງ",
+    message: "ກະລຸໃສ່ຊື້ສາຂາຕໍາແໜງ",
   }),
   sectorId: z.number().min(1, {
     message: "ກະລຸເລືອກ",

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Create } from "@/shadcn/components/crud";
 import {
@@ -26,6 +26,7 @@ const breadcrumbs = [
 
 const ProfileCreate = () => {
   return (
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     <ProfileProvider storageKeys={employeeProfileStorageKey} >
       <FormCreate />
     </ProfileProvider>
@@ -34,8 +35,10 @@ const ProfileCreate = () => {
 const FormCreate = () => {
   const router = useRouter();
   const { state, dispatch } = useProfileContext();
+  const [isWaiting, setIsWaiting] = useState(false);
   const initialStep = getStepState(state);
   const handleButtonClick = () => {
+    setIsWaiting(true);
     const storedState = localStorage.getItem(employeeProfileStorageKey);
     const profileState = JSON.parse(storedState as string) as ProfileState;
     if (profileState.profileId !== undefined && profileState.profileId !== 0) {
@@ -55,7 +58,7 @@ const FormCreate = () => {
         </CardHeader>
         <FormStep formStepsData={formStepsData} initialStep={initialStep} />
         <div className="flex justify-center w-full p-3">
-          <Button className="w-20" onClick={handleButtonClick}>ຕໍ່ໄປ</Button>
+          <Button className="w-20" onClick={handleButtonClick}>{isWaiting ? "ລໍຖ້າ" : "ຕໍ່ໄປ"}</Button>
         </div>
       </Card>
     </Create>
