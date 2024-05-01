@@ -40,6 +40,7 @@ const BranchForm: React.FC<{ type: string }> = ({ type }) => {
 const FormContainer: React.FC<{ type: string }> = ({ type }) => {
   const { form } = useFormBranch(type);
   const province = useProvinceSelect();
+  const filteredTypeList = getTypeOptions(type);
   return (
     <Form {...form}>
       <div className="flex flex-wrap gap-2">
@@ -53,7 +54,7 @@ const FormContainer: React.FC<{ type: string }> = ({ type }) => {
         <div className="w-full lg:w-64 ">
           <div className="relative w-full mb-3">
             <Form.Field {...form} name="type" label="ປະເພດຫ້ອງການ">
-              <Form.Combobox {...(typeList as any)} />
+              <Form.Combobox {...(filteredTypeList as any)} />
             </Form.Field>
           </div>
         </div>
@@ -75,6 +76,17 @@ export const Province: React.FC<{ form: IFormConfig, province: any }> = ({ form,
       </div>
     </div>
   );
+};
+
+const getTypeOptions = (type: string) => {
+  switch (type) {
+    case "LOTTERY":
+      return { options: [{ label: "ສາຂາຫວຍ", value: "LOTTERY" }] };
+    case "OFFICE":
+      return { options: typeList.options.filter((option) => option.value !== "LOTTERY") };
+    default:
+      return typeList;
+  }
 };
 
 const typeList = {

@@ -1,5 +1,5 @@
 import { useSelect, type BaseOption, type HttpError, type UseSelectReturnType } from "@refinedev/core";
-import { type ISector } from "../sector/interface";
+import { type ISectorExpand } from "../sector/interface";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Input } from "@src/shadcn/elements";
@@ -38,14 +38,15 @@ const SectorSection = ({ form, sector }: { form: IFormConfig, sector: any }) => 
   );
 };
 
-const getSectorOptions = (branchType: string): UseSelectReturnType<ISector, HttpError, BaseOption> => {
-  const sector = useSelect<ISector>({
+const getSectorOptions = (branchType: string): UseSelectReturnType<ISectorExpand, HttpError, BaseOption> => {
+  const branch = branchType === "LOTTERY" ? branchType : "HEADQUARTERS,OFFICE,BRANCH";
+  const sector = useSelect<ISectorExpand>({
     resource: "sector",
     optionLabel: "name",
     optionValue: "id",
     filters: [
       { field: "pageSize", operator: "eq", value: 50 },
-      { field: "branch_type", operator: "eq", value: branchType },
+      { field: "branch_type", operator: "eq", value: branch },
       { field: "expand", operator: "eq", value: "branch_id" },
     ],
   });

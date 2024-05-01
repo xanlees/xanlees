@@ -6,4 +6,10 @@ export interface ISector {
   type: string
 }
 
+export interface ISectorExpand {
+  id: number
+  name: string
+  branchId: IBranch
+  type: string
+}
 export type { IBranch };
