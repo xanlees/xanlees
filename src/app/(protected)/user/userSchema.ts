@@ -65,7 +65,7 @@ export const errorMessages: ErrorMapMessage[] = [
   },
   {
     val: "Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters.",
-    message: "ຊື່ບັນສາມາດ ໃຊ້ໄດ້ແຕ່ຕົວໜັງສື່, ຕົວເລກ ແລະ @/./+/-/ ",
+    message: "ຊື່ບັນຊືສາມາດ ໃຊ້ໄດ້ແຕ່ຕົວໜັງສື່, ຕົວເລກ ແລະ @/./+/-/ ",
   },
 ];
 

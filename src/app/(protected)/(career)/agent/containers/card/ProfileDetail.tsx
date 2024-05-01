@@ -3,7 +3,7 @@ import { Show } from "@/shadcn/components/crud";
 import { Badge as ShadcnBadge } from "@src/shadcn/elements/badge";
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage, Card, CardContent, CardHeader, CardTitle } from "@src/shadcn/elements";
-import { getGenderDisplayText, getMaritalStatusDisplayText } from "../../../../../../common/lib/genderUtils";
+import { getGenderDisplayText, getMaritalStatusDisplayText } from "@src/common/lib/genderUtils";
 import moment from "moment";
 import { type IProfile } from "@src/app/(protected)/(personal)/profile/interface/model";
 export function ProfileDetail({ profileData, visible }: { profileData: IProfile[], visible: string }): JSX.Element {

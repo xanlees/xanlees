@@ -29,7 +29,7 @@ export const useFormBranch = (type: string) => {
 
 export const branchSchema = z.object({
   name: z.string().min(2, {
-    message: "ກະລຸໃສຊື້ສາຂາ",
+    message: "ກະລຸໃສຊື່ສາຂາ",
   }),
   type: z.string().min(1, {
     message: "ກະລຸເລືອກປະເພດຫ້ອງການ",

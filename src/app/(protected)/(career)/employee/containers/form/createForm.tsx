@@ -15,7 +15,7 @@ export const EmployeeForm = ({ profileId, type, redirect }: { redirect?: string,
   const { fields, append, remove } = useFieldArray({ control: form.control, name: "employee" });
   return (
     <Form {...form}>
-      <DynamicForm form={form} fields={fields} append={append} remove={remove} name="employee" label="ຕໍາແໜ່ງ" className="flex flex-row gap-2" classNameButton="mt-5" defaultConfig={{ profileId: profile }}>
+      <DynamicForm form={form} fields={fields} append={append} remove={remove} name="employee" label="ເພີ່ມຕຳແໜ່ງ" className="flex flex-row gap-2" classNameButton="mt-5" defaultConfig={{ profileId: profile }}>
         <ArrayField {...form} name="positionId" label="ຕໍາແໜ່ງ">
           <Form.Combobox {...(position as any)} className="w-72" />
         </ArrayField>

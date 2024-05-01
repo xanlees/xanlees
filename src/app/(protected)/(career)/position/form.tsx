@@ -74,7 +74,7 @@ export const useFormPositionConfig = (branchType: string) => {
 
 export const positionSchema = z.object({
   name: z.string().min(2, {
-    message: "ກະລຸໃສຊື້ສາຂາຕໍາແໜງ",
+    message: "ກະລຸໃສຊື່ສາຂາຕໍາແໜງ",
   }),
   sectorId: z.number().min(1, {
     message: "ກະລຸເລືອກ",

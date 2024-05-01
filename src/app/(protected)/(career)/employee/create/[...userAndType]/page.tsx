@@ -24,7 +24,7 @@ export default function EmployeeCreate({ params }: { params?: { userAndType?: st
           </div>
           <EmployeeForm redirect={redirect} type={type} profileId={profileId} />
           <div className="flex w-full p-3">
-            <button className="italic text-blue-500 underline" onClick={handleButtonClick}> *ຊອກຕໍາແໜ່ງ, ກົດທີ່ນີ້</button>
+            <button className="italic text-blue-500 underline" onClick={handleButtonClick}> *ຊອກຕໍາແໜ່ງບໍ່ເຫັນ, ກົດທີ່ນີ້</button>
           </div>
         </div>
       </div>
