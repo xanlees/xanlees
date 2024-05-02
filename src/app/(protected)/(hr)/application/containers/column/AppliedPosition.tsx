@@ -1,7 +1,7 @@
 "use client";
 import { Table } from "@/shadcn/components/table";
 import { type IApplication } from "../../interface";
-import { CardImageDialog } from "@src/common/elements/CardImageDialog";
+import { CardImageDialog } from "@src/common/elements/cardImageDialog";
 
 export const AppliedPosition = (
   <Table.Column

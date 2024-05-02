@@ -1,6 +1,6 @@
 "use client";
 import { useList, type BaseRecord, type GetListResponse } from "@refinedev/core";
-import { type IEmployee } from "../../index";
+import { type IEmployee } from "@src/app/(protected)/(career)/employee/interface";
 
 export function useEmployeeIsLatest<T extends BaseRecord>({ profileId }: { profileId: number[] }): GetListResponse<T> | typeof defaultData {
   const { data } = useList<T>({

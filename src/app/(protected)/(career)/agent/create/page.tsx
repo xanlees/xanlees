@@ -6,8 +6,7 @@ import FormStep from "@src/common/components/stepForm";
 import { DocumentForm, PersonalAddressForm, ProfileProvider, type ProfileState } from "@src/app/(protected)/(personal)";
 import { useRouter } from "next/navigation";
 import { Button, Card, CardHeader } from "@src/shadcn/elements";
-import { useProfileContext } from "../../index";
-import { agentProfileStorageKey } from "@src/app/(protected)/(personal)/context";
+import { agentProfileStorageKey, useProfileContext } from "@src/app/(protected)/(personal)/context";
 import { ProfileForm } from "../containers/form/form";
 
 const breadcrumbs = [
