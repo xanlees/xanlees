@@ -59,11 +59,13 @@ export function CheckInCheckOutTime({ employeeIsLatestData, workTimeSettingsData
       accessorKey="profile.id"
       cell={({ row }) => {
         const profileId = row.original.profile?.id;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const employee = employeeIsLatestData.find((emp: { profileId: number }) => emp.profileId === profileId);
         if (!employee) {
           return <div>ບໍ່ມີຂໍ້ມູນ</div>;
         }
         const workTimeSetting = workTimeSettingsData.find(
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           (wt: { branch: number }) => wt.branch === employee.branchId,
         );
         if (!workTimeSetting) {

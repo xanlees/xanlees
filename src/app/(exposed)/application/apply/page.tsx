@@ -31,15 +31,15 @@ export default function ApplicationCreate(): JSX.Element {
 
 const STEPS = {
   profileStep: 0,
-  personalBornAddressStep: 2,
-  personalCurrentAddressStep: 3,
-  physicalProfileStep: 4,
-  isUploadedStep: 5,
-  educationStep: 6,
-  applicationStep: 7,
-  workExperienceStep: 8,
-  skillStep: 9,
-  updateApplicationStep: 10,
+  personalBornAddressStep: 1,
+  personalCurrentAddressStep: 2,
+  physicalProfileStep: 3,
+  isUploadedStep: 4,
+  educationStep: 5,
+  applicationStep: 6,
+  workExperienceStep: 7,
+  skillStep: 8,
+  updateApplicationStep: 9,
 };
 
 function ApplicationForm(): JSX.Element {
@@ -76,21 +76,21 @@ function ApplicationForm(): JSX.Element {
 
 function getStepState(stateProfile: ProfileState, stateApplication: ApplicationState) {
   switch (true) {
-    case hasValid(stateApplication.updateApplicationId as number):
-      return STEPS.updateApplicationStep;
     case hasValid(stateApplication.skillId as number):
-      return STEPS.skillStep;
+      return STEPS.updateApplicationStep;
     case hasValid(stateApplication.workExperienceId as number):
-      return STEPS.workExperienceStep;
+      return STEPS.skillStep;
     case hasValid(stateApplication.applicationId as number):
-      return STEPS.applicationStep;
+      return STEPS.workExperienceStep;
     case hasValid(stateProfile.educationId as number):
-      return STEPS.educationStep;
+      return STEPS.applicationStep;
     case hasValid(stateProfile.isUploaded as boolean):
-      return STEPS.isUploadedStep;
+      return STEPS.educationStep;
     case hasValid(stateApplication.physicalProfileId as number):
-      return STEPS.physicalProfileStep;
+      return STEPS.isUploadedStep;
     case hasValid(stateProfile.personalCurrentAddressId as number):
+      return STEPS.physicalProfileStep;
+    case hasValid(stateProfile.personalBornAddressId as number):
       return STEPS.personalCurrentAddressStep;
     case hasValid(stateProfile.profileId as number):
       return STEPS.personalBornAddressStep;

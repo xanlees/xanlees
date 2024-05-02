@@ -4,24 +4,21 @@ import { Show } from "@/shadcn/components/crud";
 import { useShow } from "@refinedev/core";
 import type { IApplication } from "../../interface";
 import {
-  type IPhysical,
-  type IProfile,
   type ISkill,
   type IWorkExperience,
-  AddressDetail,
-  DocumentPDF,
-  EducationDetail,
-  Physical,
-  ProfileDetail,
   Skill,
-  usePhysical,
-  useProfile,
   useSkill,
   useWorkExperience,
   WorkExperience,
 } from "../../../index";
-import { useApplicationBranch } from "../../hooks";
+import { useApplicationBranch, usePhysical } from "../../hooks";
 import { type IBranch } from "@src/app/(protected)/(career)/sector/useSelect";
+import { useProfile } from "@src/app/(protected)/(personal)/profile/hooks";
+import { type IProfile } from "@src/app/(protected)/(personal)/profile/interface/model";
+import { type IPhysical } from "@src/app/(protected)/(personal)/physical/interface";
+import { ProfileDetail } from "@src/app/(protected)/(personal)/profile/containers/card/ProfileDetail";
+import { Physical } from "@src/app/(protected)/(personal)/physical/containers/Physical";
+import { AddressDetail, DocumentPDF, EducationDetail } from "@src/app/(protected)/(personal)/profile/containers/card";
 
 export default function ApplicationShow({ params }: Readonly<{ params: { id: number } }>): JSX.Element {
   const { queryResult } = useShow<IApplication>({});
@@ -35,7 +32,7 @@ export default function ApplicationShow({ params }: Readonly<{ params: { id: num
   const { data: physicalData } = usePhysical<IPhysical[]>({ profileId: record?.profileId });
   return (
     <Show showButtonEdit={false}>
-      <div className="mt-5 flex flex-wrap justify-between gap-2">
+      <div className="flex flex-wrap justify-between gap-2 mt-5">
         <div className="space-y-2 w-80">
           <ProfileDetail profileData={profileData} visible={false} />
           <Physical physicalData={physicalData as IPhysical[]} />

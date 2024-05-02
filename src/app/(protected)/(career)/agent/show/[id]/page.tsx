@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 
 import React from "react";
-import { AddressDetail, ProfileDetail, useProfile } from "../../../index";
 import { EmployeeCard } from "../../../employee/containers/card";
 import { Show } from "@/shadcn/components/crud";
 import { type IProfile } from "@src/app/(protected)/(personal)/profile/interface/model";
 import { UniqueNumberList } from "@src/app/(protected)/(personal)/profile/containers/card/UniqueNumber";
 import { DocumentPDFCard } from "@src/app/(protected)/(personal)/document/containers/card";
+import { useProfile } from "@src/app/(protected)/(personal)/profile/hooks";
+import { AddressDetail, ProfileDetail } from "@src/app/(protected)/(personal)/profile/containers/card";
 
 export default function AgentShow({ params }: { params: { id: number } }): JSX.Element {
   const profileId = Number(params.id ?? 0) ?? 0;
@@ -15,7 +17,7 @@ export default function AgentShow({ params }: { params: { id: number } }): JSX.E
   const redirect = `/employee/create/${profileId}/LOTTERY/profile`;
   return (
     <Show>
-      <div className="mt-5 flex flex-wrap justify-between gap-2">
+      <div className="flex flex-wrap justify-between gap-2 mt-5">
         <div className="">
           <ProfileDetail profileData={profileData} visible={true} />
         </div>

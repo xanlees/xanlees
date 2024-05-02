@@ -28,9 +28,9 @@ import {
   useUserIDs,
 } from "./hooks";
 import type { IWorkTimeSettings, IAttendance } from "./interface";
-import { type IEmployee } from "../index";
 import { useBranchFormSelect } from "../../(career)/work-time-settings/hook/useWorkTimeSettings";
 import { workingHour } from "./containers/table-column/workingHour";
+import { type IEmployee } from "../../(career)/employee/interface";
 
 moment.locale("en");
 
@@ -77,15 +77,15 @@ function DateAndBranchSelector({ setSelectedDate, setSelected }: DateAndBranchPi
   };
   const branch = useBranchFormSelect();
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 w-fit flex gap-x-5 ">
+    <div className="flex p-4 bg-white rounded-lg shadow-md w-fit gap-x-5 ">
       <div>
-        <div className="text-lg font-semibold text-gray-700 mb-2">ວັນທີ</div>
+        <div className="mb-2 text-lg font-semibold text-gray-700">ວັນທີ</div>
         <DatePicker
           onDateChange={(date) => { handleDateChange(date, setSelectedDate); }}
         />
       </div>
       <div>
-        <div className="text-lg font-semibold text-gray-700 mb-2">ຂາສາ</div>
+        <div className="mb-2 text-lg font-semibold text-gray-700">ຂາສາ</div>
         <ComboboxSelect options={branch.options} onChange={handlePeriodChange} label="" className="w-[300px]" defaultValue={""}/>
       </div>
     </div>

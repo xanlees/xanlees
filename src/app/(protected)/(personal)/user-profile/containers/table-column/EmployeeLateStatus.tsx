@@ -1,8 +1,8 @@
 import { parseISO, differenceInMinutes } from "date-fns";
 import { Table } from "@/shadcn/components/table";
 import { type IWorkTimeSettings, type IAttendance, type IUserProfile } from "../../interface";
-import { type IEmployee } from "../../../index";
 import { Badge } from "@src/shadcn/elements";
+import { type IEmployee } from "@src/app/(protected)/(career)/employee/interface";
 
 export interface LateTimeProps {
   employeeIsLatestData: IEmployee[]

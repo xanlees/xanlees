@@ -1,3 +1,4 @@
+import { useTableProfile } from "./profile/containers/table/useTableConfig";
 import { DocumentForm } from "./document/containers/form/form";
 import { EducationForm } from "./education/containers/form/form";
 import { PersonalAddressForm } from "./address/containers/form";
@@ -10,8 +11,10 @@ import type { IGraduation } from "./graduation/interface";
 import type { IEducation } from "./education/interface";
 import type { IAddress } from "./address/interface";
 import type { ProfileState } from "./context/interface";
-import { type IEmployee } from "../(career)";
 
-export type { IDocument, IGraduation, IEducation, IAddress, ProfileState, IEmployee };
-export { DocumentForm, EducationForm, ProfileForm, PhysicalProfile, useProfileContext, ProfileProvider, PersonalAddressForm };
+export type { IDocument, IGraduation, IEducation, IAddress, ProfileState };
+export {
+  DocumentForm, EducationForm, ProfileForm, useTableProfile as useTableConfig,
+  PhysicalProfile, useProfileContext, ProfileProvider, PersonalAddressForm,
+};
 
