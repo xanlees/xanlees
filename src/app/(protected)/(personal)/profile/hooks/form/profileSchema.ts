@@ -32,7 +32,7 @@ export const profileSchema: any = z
       }),
       z.undefined(),
     ]).nullable(),
-    captcha: z.string().min(1).refine((value) => { return validateCaptcha(value); }, { message: "ລະຫັດ Captcha ບໍ່ຖືກ" }),
+    captcha: z.string().min(1).refine((value) => { return validateCaptcha(value, false); }, { message: "ລະຫັດ Captcha ບໍ່ຖືກ" }),
   })
   .transform((val) => {
     return transformUniqueNumber(val);

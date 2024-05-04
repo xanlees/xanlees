@@ -18,7 +18,7 @@ export default function EmployeeCreate({ params }: { params?: { userAndType?: st
   return (
     <Create title="ຕຳແໜ່ງ" resource="profile" breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />} >
       <div className="flex justify-center">
-        <div className="flex flex-col border shadow-2xl rounded-2xl w-[850px]">
+        <div className="flex flex-col border shadow-2xl rounded-2xl w-[700px]">
           <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
             ຟອມສ້າງຕໍາແໜ່ງໃຫ້ພະນັກງານ
           </div>

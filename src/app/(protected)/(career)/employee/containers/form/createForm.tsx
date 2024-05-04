@@ -15,15 +15,22 @@ export const EmployeeForm = ({ profileId, type, redirect }: { redirect?: string,
   const { fields, append, remove } = useFieldArray({ control: form.control, name: "employee" });
   return (
     <Form {...form}>
-      <DynamicForm form={form} fields={fields} append={append} remove={remove} name="employee" label="ເພີ່ມຕຳແໜ່ງ" className="flex flex-row gap-2" classNameButton="mt-5" defaultConfig={{ profileId: profile }}>
+      <DynamicForm form={form} fields={fields} append={append} remove={remove} name="employee" label="ເພີ່ມຕຳແໜ່ງ" className="flex flex-wrap gap-2" classNameButton="mt-7 w-20" defaultConfig={{ profileId: profile }}>
         <ArrayField {...form} name="positionId" label="ຕໍາແໜ່ງ">
           <Form.Combobox {...(position as any)} className="w-72" />
         </ArrayField>
         <ArrayField {...form} name="joiningDate" label="ວັນທີ ເດືອນປີ ເຂົ້າວຽກ">
           <DatePickerField className="w-72" />
         </ArrayField>
+        <ArrayField {...form} name="salary" label="ເງິນເດືອນ">
+          <div className="w-full lg:w-72 ">
+            <div className="relative w-full mb-3">
+              <Input placeholder="3,000,000" className="80" type="currency" numericOnly/>
+            </div>
+          </div>
+        </ArrayField>
         <ArrayField {...form} name="isLatest" label="">
-          <div className="flex gap-2 pt-3">
+          <div className="flex gap-2 pt-5">
             <Input placeholder="isLatest" className="block w-5 h-5 rounded-lg" type="checkbox" defaultValue={"false"}/>
             <Label className="pt-2.5 ">{"ຕໍາແໜ່ງລ່າ​ສຸດ"}</Label>
           </div>

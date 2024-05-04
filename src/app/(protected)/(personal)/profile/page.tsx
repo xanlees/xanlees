@@ -8,7 +8,7 @@ import {
 } from "@src/common/containers/column";
 
 import {
-  DateOfBirth, FullNameColumn, getLatestPosition, getSector, getWorkingAge, UserAccountColumn,
+  DateOfBirth, FullNameColumn, getLatestPosition, getSector, getWorkingAge, UserAccountColumn, Salary,
 } from "./containers/table-column";
 import { useTableProfile } from "./containers/table/useTableConfig";
 import {
@@ -34,7 +34,8 @@ export default function ProfileList(): JSX.Element {
         {PhoneNumberColumn("phoneNumber")}
         {getLatestPosition(positionId as number[], positionData.data)}
         {getSector(positionId as number[], positionData.data)}
-        {getWorkingAge(positionId as number[], positionData.data)}
+        {getWorkingAge()}
+        {Salary(positionId as number[], positionData.data)}
         {GenderColumn("gender")}
         {MarriageColumn("maritalStatus")}
         {DateOfBirth}

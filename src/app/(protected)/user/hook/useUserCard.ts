@@ -1,7 +1,7 @@
 import { useTable } from "@refinedev/react-table";
 import { type IEducation } from "../../(personal)/index";
 
-export const useUserCard = (profileId: number) => {
+export const useUserCard = (profileId: number, filterField: string) => {
   const table = useTable<IEducation>({
     columns: [],
     enableSorting: true,
@@ -11,7 +11,7 @@ export const useUserCard = (profileId: number) => {
       resource: "profile/user-profile",
       filters: {
         permanent: [
-          { field: "profile", operator: "eq", value: profileId },
+          { field: filterField, operator: "eq", value: profileId },
           { field: "expand", operator: "eq", value: "user" },
         ],
       },

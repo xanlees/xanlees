@@ -21,9 +21,10 @@ export interface IEmployeeExpand {
 
 export interface IEmployee {
   id: number
-  positionId: number
-  branchId: number
-  isLatest: boolean
-  profileId: number
   joiningDate: string
+  isLatest: boolean
+  createdOn: string
+  branchId?: number
+  profileId?: number
+  salary?: number
 }

@@ -42,7 +42,7 @@ export const Show = ({
                     title ??
                     translate(
                         `${identifier}.titles.List`,
-                        `Show ${getUserFriendlyName(
+                        `${getUserFriendlyName(
                             resource?.meta?.label ??
                                 resource?.options?.label ??
                                 resource?.label ??

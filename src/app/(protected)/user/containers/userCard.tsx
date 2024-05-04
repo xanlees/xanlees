@@ -16,8 +16,8 @@ interface Props {
   profile: number
 }
 
-export function UserCard({ profileId }: { profileId: number }): JSX.Element {
-  const { table } = useUserCard(profileId);
+export function UserCard({ profileId, filterField, userId }: { profileId: number, filterField: string, userId: number }): JSX.Element {
+  const { table } = useUserCard(profileId, filterField);
   const userData = table.options.data ?? [];
   if (userData.length === 0) {
     return <CardLayout profileId={profileId}><div className="px-5 py-2">ບໍ່ມີຂໍ້ມູນ</div></CardLayout>;

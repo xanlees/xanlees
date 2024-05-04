@@ -12,4 +12,15 @@ export const resourcesPart2 = [
       label: "ຜູ້ໃຊ້ລະບົບ",
     },
   },
+  {
+    name: "my-profile",
+    list: "/my-profile",
+    create: "/my-profile/create",
+    edit: "/my-profile/edit/:id",
+    show: "/my-profile/show/:id",
+    icon: <UserCircle />,
+    meta: {
+      label: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
+    },
+  },
 ];

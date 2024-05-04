@@ -6,7 +6,7 @@ import { Button } from "../../../../elements";
 export const LogOutButton: FC = () => {
     const { mutate: logout } = useLogout();
     return (
-        <CanAccess resource="user" action="show">
+        <CanAccess resource="log-out" action="create">
             <div className="my-3">
                 <Button
                     variant="ghost"

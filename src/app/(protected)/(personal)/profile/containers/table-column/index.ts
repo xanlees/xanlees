@@ -1,2 +1,3 @@
 export * from "./fullname";
-export * from "./latestPosition";
+export * from "./position";
+export * from "./Salary";

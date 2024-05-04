@@ -26,6 +26,7 @@ export const useFormConfig = ({ type, profile, redirect }: { type?: string, prof
           joiningDate: "",
           isLatest: false,
           profileId: profile,
+          salary: 0,
         },
       ],
     },
@@ -48,6 +49,12 @@ const employeeSchema = z.object({
       z.object({
         positionId: z.number().min(1, {
           message: "ກະລຸນາເລືອກຕໍາແໜ່ງ",
+        }),
+        salary: z.union([z.number(), z.string()]).transform((value): number | string => {
+          if (typeof value === "string") {
+            return value.replace(/,/g, "");
+          }
+          return value;
         }),
         profileId: z.number(),
         isLatest: z.boolean().default(false),
