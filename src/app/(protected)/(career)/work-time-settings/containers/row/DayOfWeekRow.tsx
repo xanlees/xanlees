@@ -1,25 +1,25 @@
 "use client";
 import { CardView } from "@/shadcn/components/table/card-view";
-import { type IWorkTimeSettings } from "../interface";
+import { type IWorkTimeSettings } from "../../interface";
 
-export function DayOfWeekRow({ workTimeSettingsData }: { workTimeSettingsData?: IWorkTimeSettings[] }) {
+export function DayOfWeekRow() {
   return (
     <CardView.Row
       header=""
       id="id"
       accessorKey="id"
       cell={({ row: { original } }) => {
-        const filteredData = workTimeSettingsData?.filter((item) => item.branch === original.id);
+        const workTimeSettings = original.workTimeSettings as IWorkTimeSettings[];
         return (
-          <div className="-mx-[165px]">
+          <div className="-mx-[160px]">
             <div className="p-1.5 min-w-full inline-block align-middle ">
-              <div className="px-6 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white  font-semibold">
-              ມາຊ້າ ຫຼື ກັບກ່ອນເວລາໄດ້ {filteredData?.[0]?.lateTime ?? ""} ນາທີ
+              <div className="">
+              ມາຊ້າ ຫຼື ກັບກ່ອນເວລາໄດ້ {workTimeSettings?.[0]?.lateTime ?? ""} ນາທີ
               </div>
               <div className="overflow-hidden">
                 <table className="h-5 mb-2 text-center border-collapse rounded-md">
                   <Thead/>
-                  <Tbody filteredData={filteredData}/>
+                  <Tbody filteredData={workTimeSettings}/>
                 </table>
               </div>
             </div>

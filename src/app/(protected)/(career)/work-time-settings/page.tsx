@@ -1,77 +1,26 @@
 "use client";
 
-import { Edit, Trash2 } from "lucide-react";
-
 import { List } from "@/shadcn/components/crud";
 import { CardView } from "@/shadcn/components/table/card-view";
-import { Table } from "@src/shadcn/components/table";
-import { type IBranch } from "../branch/interface";
-import { DayOfWeekRow } from "./containers/cardRow";
-import { useBranchWorkTimeSettingsTable, useWorkTimeSettings } from "./hook/table";
-import { type IWorkTimeSettings } from "./interface";
+import { useBranchWorkTimeSettingsTable } from "./hook/table";
+import { DayOfWeekRow, getActionsButton } from "./containers/row";
 
 const type = "HEADQUARTERS,BRANCH,OFFICE";
 export default function WorkTimeSettingsList(): JSX.Element {
-  const { table } = useBranchWorkTimeSettingsTable(type);
-  const branchData = table.options.data ?? [];
-  const branchId = useBranchId(branchData);
-  const workTimeSettingsData = useWorkTimeSettings<IWorkTimeSettings>({
-    branchId,
-  }).data;
+  const { table } = useBranchWorkTimeSettingsTable({ type });
   return (
     <List>
-      <CardView table={table} className="w-80 h-[400px] overflow-auto">
+      <CardView table={table} className="w-[340px] h-[500px]">
         <CardView.Row
           header="ຫ້ອງການ"
           id="name"
           accessorKey="name"
           isHeader={true}
         />
-        {DayOfWeekRow({ workTimeSettingsData })}
-        {getActionsButton({ resource: "branch/work-time-settings", workTimeSettingsData })}
+        {DayOfWeekRow()}
+        {getActionsButton({ resource: "branch/work-time-settings" })}
       </CardView>
     </List>
-  );
-}
-
-function useBranchId(branch: IBranch[]) {
-  const branchId = branch.map((item) => item.id);
-  if (branchId) {
-    return branchId;
-  }
-  return [];
-}
-
-export function getActionsButton({ resource, workTimeSettingsData }: { resource: string, workTimeSettingsData: IWorkTimeSettings[] }) {
-  return (
-    <CardView.Row
-      accessorKey={"id"}
-      id={"actions"}
-      isAction={true}
-      cell={({ row }) => {
-        const id = row?.original?.id as number;
-        const matchingBranches = workTimeSettingsData?.filter((branch) => branch.branch === id);
-        return (
-          <div className="absolute top-0 right-0">
-            <Table.Actions>
-              <Table.EditAction
-                title="ແກ້ໄຂ"
-                row={row?.original}
-                resource={resource}
-                icon={<Edit size={16} />}
-              />
-              <Table.DeleteAction
-                title="ລົບ"
-                row={matchingBranches?.[0]}
-                withForceDelete={true}
-                resource={resource}
-                icon={<Trash2 size={16} />}
-              />
-            </Table.Actions>
-          </div>
-        );
-      }}
-    />
   );
 }
 

@@ -1,12 +1,14 @@
-import { Form } from "@src/shadcn/components/form";
-import { useSelect } from "@refinedev/core";
-import { Input } from "@src/shadcn/elements";
-import { useWorkTimeSettingsForm } from "../hook/useWorkTimeSettingsForm";
 import { useFieldArray } from "react-hook-form";
-import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
-import { ArrayField } from "@src/shadcn/components/form/array-field";
-import { type IBranch } from "../../branch/interface";
+
+import { useSelect } from "@refinedev/core";
 import { type IFormConfig } from "@src/common/interface";
+import { Form } from "@src/shadcn/components/form";
+import { ArrayField } from "@src/shadcn/components/form/array-field";
+import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
+import { Input } from "@src/shadcn/elements";
+
+import { type IBranch } from "../../branch/interface";
+import { useWorkTimeSettingsForm } from "../hook/useWorkTimeSettingsForm";
 
 const type = "HEADQUARTERS,BRANCH,OFFICE";
 export const WorkTimeSettingsForm: any = ({ branchType }: { branchType: string }) => {

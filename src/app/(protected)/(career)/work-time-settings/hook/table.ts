@@ -1,8 +1,7 @@
-import { useList, type BaseRecord, type GetListResponse } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { type IBranch } from "../../sector/interface";
 
-export const useBranchWorkTimeSettingsTable = (type: string) => {
+export const useBranchWorkTimeSettingsTable = ({ type }: { type: string }) => {
   const table = useTable<IBranch>({
     columns: [],
     enableSorting: true,
@@ -12,7 +11,7 @@ export const useBranchWorkTimeSettingsTable = (type: string) => {
       resource: "branch",
       filters: {
         permanent: [
-          { field: "expand", operator: "eq", value: "province" },
+          { field: "expand", operator: "eq", value: "province,work_time_settings" },
           { field: "type", operator: "eq", value: type },
         ],
       },
@@ -20,23 +19,4 @@ export const useBranchWorkTimeSettingsTable = (type: string) => {
   });
   return { table };
 };
-
-export function useWorkTimeSettings<T extends BaseRecord>({ branchId }: { branchId: number[] }): GetListResponse<T> | typeof defaultData {
-  const { data } = useList<T>({
-    resource: "branch/work-time-settings",
-    filters: [
-      {
-        field: "branch",
-        operator: "eq",
-        value: branchId.join(),
-      },
-    ],
-    errorNotification: false,
-  });
-  const defaultData = {
-    data: [],
-    total: 0,
-  };
-  return data ?? defaultData;
-}
 

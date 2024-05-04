@@ -1,14 +1,15 @@
-import { dayOfWeek } from "./form";
+import { type IFormConfig } from "@src/common/interface";
 import { Form } from "@src/shadcn/components/form";
 import { Input } from "@src/shadcn/elements";
-import { useBranchFormSelect, useWorkTimeSettings, useWorkTimeSettingsEditForm } from "../hook/useWorkTimeSettings";
-import { type IFormConfig } from "@src/common/interface";
+
+import {
+  useBranchFormSelect, useWorkTimeSettings, useWorkTimeSettingsEditForm,
+} from "../hook/useWorkTimeSettings";
 import { type IWorkTimeSettings } from "../interface";
+import { dayOfWeek } from "./form";
 
 export const WorkTimeSettingsEditForm = ({ branchId }: { branchId: number }) => {
   const { data: workTimeSettingsData } = useWorkTimeSettings<IWorkTimeSettings>({ branchId });
-  console.log("workTimeSettingsData", workTimeSettingsData);
-  console.log("branchId", branchId);
   const daysOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   const sortedWorkTimeSettings = workTimeSettingsData?.sort((a, b) => {
     return daysOrder.indexOf(a.dayOfWeek) - daysOrder.indexOf(b.dayOfWeek);
