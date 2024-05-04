@@ -1,11 +1,11 @@
 import { useList, type BaseRecord, type GetListResponse } from "@refinedev/core";
 
-export function useProfile<T extends BaseRecord>({ profileId, userId }: { profileId?: number, userId: number | null | undefined }): GetListResponse<T> | typeof defaultData {
+export function useProfile<T extends BaseRecord>({ profileId }: { profileId: number }): GetListResponse<T> | typeof defaultData {
   const { data } = useList<T>({
     resource: "profile",
     filters: [
       { field: "id", operator: "eq", value: profileId },
-      { field: "user", operator: "eq", value: userId },
+      { field: "user", operator: "eq", value: "user" },
     ],
     errorNotification: false,
   });

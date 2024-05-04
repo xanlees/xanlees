@@ -14,7 +14,7 @@ import { UserCard } from "../../../../user/containers/userCard";
 
 export default function ProfileShow({ params }: { params: { id: number } }): JSX.Element {
   const profileId = Number(params.id ?? 0) ?? 0;
-  const { data: profileData } = useProfile<IProfile>(profileId);
+  const { data: profileData } = useProfile<IProfile>({ profileId });
   const redirect = `/employee/create/${profileId}/OFFICE/profile`;
   return (
     <Show>
@@ -23,7 +23,7 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
           <ProfileDetail profileData={profileData} visible={false} />
         </div>
         <div className="space-y-2">
-          <UserCard profileId={profileId}/>
+          <UserCard profileId={profileId} filterField={"profile"} userId={0} />
           <EmployeeCard profileId={profileId} redirect={redirect} />
         </div>
         <div className="space-y-2">
