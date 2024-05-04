@@ -1,21 +1,18 @@
 "use client";
 
-import { getActionsColumn } from "@src/common/containers/column/action";
-import { InputToClipboard } from "@/shadcn/components/InputToClipboard";
 import { List } from "@/shadcn/components/crud";
-import { MarriageColumn, PhoneNumberColumn } from "@src/common/containers/column";
-import { refineCoreProps } from "./lib/constant";
+import { InputToClipboard } from "@/shadcn/components/InputToClipboard";
 import { Table } from "@/shadcn/components/table";
 import { useTable } from "@refinedev/react-table";
+import { MarriageColumn, PhoneNumberColumn } from "@src/common/containers/column";
+import { getActionsColumn } from "@src/common/containers/column/action";
+
 import {
-  ApplicationDate,
-  ApplicationStatusColumn,
-  AppliedPosition,
-  ExpectedSalary,
-  FullNameColumn,
-  ProfileImageColumn,
-  TagIDColumn,
+  ApplicationDate, ApplicationStatusColumn, AppliedPosition, ExpectedSalary, FullNameColumn,
+  ProfileImageColumn, TagIDColumn,
 } from "./containers/column";
+import { refineCoreProps } from "./lib/constant";
+
 import type { IApplication } from "./interface";
 
 export default function ApplicationList(): JSX.Element {

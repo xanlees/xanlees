@@ -1,12 +1,15 @@
-import * as z from "zod";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { useForm } from "@refinedev/react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { type ErrorMapMessage, type IMessages, type IFormConfig } from "@src/common/interface";
 import { type UseFormSetValue } from "react-hook-form";
+import * as z from "zod";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "@refinedev/react-hook-form";
+import { type ErrorMapMessage, type IFormConfig, type IMessages } from "@src/common/interface";
 import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 
 export const useWorkTimeSettingsForm = () => {
+  const router = useRouter();
   const branch = 0;
   const { ...form } = useForm<z.infer<typeof workTimeSettingsSchema>>({
     resolver: zodResolver(workTimeSettingsSchema),
@@ -24,6 +27,9 @@ export const useWorkTimeSettingsForm = () => {
     refineCoreProps: {
       resource: "branch/work-time-settings",
       redirect: false,
+      onMutationSuccess: () => {
+        router.back();
+      },
       errorNotification: (data: any) => {
         const responseData = (data as IMessages).response.data;
         const defaultMessage = "ມື້ຊໍ້າ ຫຼື ມີແລ້ວ";

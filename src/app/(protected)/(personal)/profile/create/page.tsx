@@ -26,7 +26,6 @@ const breadcrumbs = [
 
 const ProfileCreate = () => {
   return (
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     <ProfileProvider storageKeys={employeeProfileStorageKey} >
       <FormCreate />
     </ProfileProvider>

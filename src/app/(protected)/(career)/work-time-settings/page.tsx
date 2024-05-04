@@ -1,17 +1,14 @@
 "use client";
 
+import { Edit, Trash2 } from "lucide-react";
+
 import { List } from "@/shadcn/components/crud";
 import { CardView } from "@/shadcn/components/table/card-view";
-
-import {
-  useBranchWorkTimeSettingsTable,
-  useWorkTimeSettings,
-} from "./hook/table";
-import { type IWorkTimeSettings } from "./interface";
-import { DayOfWeekRow } from "./containers/cardRow";
-import { type IBranch } from "../branch/interface";
 import { Table } from "@src/shadcn/components/table";
-import { Edit, Trash2 } from "lucide-react";
+import { type IBranch } from "../branch/interface";
+import { DayOfWeekRow } from "./containers/cardRow";
+import { useBranchWorkTimeSettingsTable, useWorkTimeSettings } from "./hook/table";
+import { type IWorkTimeSettings } from "./interface";
 
 const type = "HEADQUARTERS,BRANCH,OFFICE";
 export default function WorkTimeSettingsList(): JSX.Element {
@@ -72,9 +69,9 @@ export function getActionsButton({ resource, workTimeSettingsData }: { resource:
               />
             </Table.Actions>
           </div>
-
         );
       }}
     />
   );
 }
+
