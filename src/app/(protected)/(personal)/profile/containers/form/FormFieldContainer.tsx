@@ -27,7 +27,7 @@ export const FormFieldContainer: React.FC< CommonProps & { isEmployee: boolean }
         <DynamicNumberForm isEmployee={isEmployee} {...form} />
       </div>
       <Form.Field {...form} name={"captcha"} label={"ຂ້ອນບໍ່ແມ່ນຄອມພິວເຕີ"}>
-        <Captcha/>
+        <Captcha formState={form}/>
       </Form.Field>
     </>
   );

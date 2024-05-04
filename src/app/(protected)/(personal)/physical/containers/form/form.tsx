@@ -32,14 +32,9 @@ const HeightInput: React.FC<{ form: IFormConfig }> = ({ form }) => {
   return (
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
-        <div className="flex gap-2">
-          <div className="w-full">
-            <Form.Field {...form} name={"height"} label={"ລວງສູງ"} require={false}>
-              <Input className="w-full" placeholder="160" numericOnly/>
-            </Form.Field>
-          </div>
-          <div className="w-2 pt-7 ">cm</div>
-        </div>
+        <Form.Field {...form} name={"height"} label={"ລວງສູງ (Cm)"} require={false}>
+          <Input className="w-full" placeholder="160" numericOnly/>
+        </Form.Field>
       </div>
     </div>
   );
@@ -49,14 +44,9 @@ const NationalityInput: React.FC<{ form: IFormConfig }> = ({ form }) => {
   return (
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
-        <div className="flex gap-2">
-          <div className="w-full">
-            <Form.Field {...form} name={"nationality"} label={"ສັນຊາດ"}>
-              <Input className="w-full" placeholder="ລາວ" />
-            </Form.Field>
-          </div>
-          <div className="w-2 pt-7 " />
-        </div>
+        <Form.Field {...form} name={"nationality"} label={"ສັນຊາດ"}>
+          <Input className="w-full" placeholder="ລາວ" />
+        </Form.Field>
       </div>
     </div>
   );
@@ -66,14 +56,9 @@ const WeightInput: React.FC<{ form: IFormConfig }> = ({ form }) => {
   return (
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
-        <div className="flex gap-2">
-          <div className="w-full">
-            <Form.Field {...form} name={"weight"} label={"ນໍ້າຫນັກ"} require={false}>
-              <Input className="w-full" placeholder="" numericOnly />
-            </Form.Field>
-          </div>
-          <div className="w-2 pt-7 ">kg</div>
-        </div>
+        <Form.Field {...form} name={"weight"} label={"ນໍ້າຫນັກ (Kg)"} require={false}>
+          <Input className="w-full" placeholder="" numericOnly />
+        </Form.Field>
       </div>
     </div>
   );
