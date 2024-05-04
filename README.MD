@@ -36,6 +36,14 @@ and go url: <http://localhost:6006/>
 
     npm run lint -- --fix
 
+### Duplicaiton
+
+    jscpd --pattern "src/**/*.ts*"
+
+### line of code
+
+    sloc --details --format cli-table --keys total,source,comment src/app  >> app_loc.txt
+
 ## Deploy to Google Cloud Run
 
 ### Build docker image locally
