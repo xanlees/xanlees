@@ -1,39 +1,27 @@
 "use client";
 
-import {
-  DateOfBirth,
-  FullNameColumn,
-  getLatestPosition,
-  UserAccountColumn,
-} from "./containers/table-column";
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
 import { useUserFriendlyName } from "@refinedev/core";
 import {
-  GenderColumn,
-  PhoneNumberColumn,
-  MarriageColumn,
-  getSelectColumn,
-  getActionsColumn,
+  GenderColumn, getActionsColumn, getSelectColumn, MarriageColumn, PhoneNumberColumn,
 } from "@src/common/containers/column";
+
+import {
+  DateOfBirth, FullNameColumn, getLatestPosition, getSector, getWorkingAge, UserAccountColumn,
+} from "./containers/table-column";
 import { useTableProfile } from "./containers/table/useTableConfig";
 import {
-  useLatestPositionDetail,
-  useLatestPositionId,
-  useProfileIds,
-  UseUserProfile,
+  useLatestPositionDetail, useLatestPositionId, useProfileIds, UseUserProfile,
 } from "./hooks/table";
+import { type UserProfileAccount } from "./interface/model";
 
 import type { IPosition } from "@career";
-import { type UserProfileAccount } from "./interface/model";
 export default function ProfileList(): JSX.Element {
   const { table } = useTableProfile("EMPLOYEE");
   const profile = table.options.data ?? [];
   const positionId = useLatestPositionId(profile);
-  const positionData = useLatestPositionDetail(
-    positionId as number[],
-    profile,
-  ) as { data: { data: IPosition[] } };
+  const positionData = useLatestPositionDetail(positionId as number[], profile) as { data: { data: IPosition[] } };
   const profileIds = useProfileIds(profile);
   const userProfileData = UseUserProfile({ profileIds })?.data;
   const friendly = useUserFriendlyName();
@@ -45,6 +33,8 @@ export default function ProfileList(): JSX.Element {
         {UserAccountColumn(userProfileData as unknown as UserProfileAccount[])}
         {PhoneNumberColumn("phoneNumber")}
         {getLatestPosition(positionId as number[], positionData.data)}
+        {getSector(positionId as number[], positionData.data)}
+        {getWorkingAge(positionId as number[], positionData.data)}
         {GenderColumn("gender")}
         {MarriageColumn("maritalStatus")}
         {DateOfBirth}
