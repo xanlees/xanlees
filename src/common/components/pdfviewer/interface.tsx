@@ -30,7 +30,9 @@ export interface PdfViewerContentProps {
 }
 
 export interface PdfViewerDocumentProps {
+  downloadUrl?: string
   file?: File | string
+  numPages?: number
   options: object
   pageNumber: number
   onDocumentLoadSuccess: ({ numPages }: { numPages: number }) => void
@@ -40,7 +42,9 @@ export interface PdfViewerDocumentProps {
 }
 
 export interface NavProps {
+  fileName?: string
   pageNumber: number
-  numPages: number
+  numPages?: number
   title: string
+  downloadUrl?: string
 }

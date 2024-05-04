@@ -10,12 +10,10 @@ export default function PDFViewer(props: Readonly<PDFViewerProps>) {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [loading, setLoading] = useState(true);
   const [pageWidth, setPageWidth] = useState(0);
-
   useEffect(() => {
     setPageWidth(window.innerWidth);
     setLoading(false);
   }, []);
-
   function onDocumentLoadSuccess({
     numPages: nextNumPages,
   }: {

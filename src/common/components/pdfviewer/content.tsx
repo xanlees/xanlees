@@ -18,11 +18,10 @@ export function PdfViewerContent({
   return (
     <div
       hidden={loading}
-      className="flex flex-col mx-auto"
     >
       <PdfViewerDocument file={file} options={options}
         pageNumber={pageNumber} onDocumentLoadSuccess={onDocumentLoadSuccess}
-        onPageLoadSuccess={onPageLoadSuccess} pageWidth={pageWidth}
+        onPageLoadSuccess={onPageLoadSuccess} pageWidth={pageWidth} numPages={numPages}
         setLoading={setLoading} />
       <PdfViewerControls goToPreviousPage={goToPreviousPage} goToNextPage={goToNextPage} pageNumber={pageNumber} numPages={numPages} />
     </div>
