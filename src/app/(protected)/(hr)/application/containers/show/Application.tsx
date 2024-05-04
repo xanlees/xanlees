@@ -1,18 +1,20 @@
 "use client";
-import { Show } from "@/shadcn/components/crud";
-import React, { type ReactNode } from "react";
-import { Card, CardHeader, CardTitle, Label } from "@src/shadcn/elements";
 import moment from "moment";
-import { type IApplication } from "../../interface";
-import { getApplicationStatusLabel, getTypeDrivingLicenseLabel, getTypeVaccineLabel } from "../../lib/constant";
-import { type IBranch } from "@src/app/(protected)/(career)/sector/useSelect";
+import React, { type ReactNode } from "react";
 
-export const Application: React.FC<{ applicationData: IApplication, branchData: IBranch[] }> = ({ applicationData, branchData }) => {
-  const branch = `ສາຂາ ${branchData?.[0]?.name} ແຂວງ${branchData?.[0]?.province.provinceName}` ?? "";
+import { Show } from "@/shadcn/components/crud";
+import { Card, CardHeader, CardTitle, Label } from "@src/shadcn/elements";
+
+import { type IApplication } from "../../interface";
+import {
+  getApplicationStatusLabel, getTypeDrivingLicenseLabel, getTypeVaccineLabel,
+} from "../../lib/constant";
+
+export const Application: React.FC<{ applicationData: IApplication }> = ({ applicationData }) => {
   return (
     <CardContainer title={"ຂໍ້ມູນແບບຟອມສະໝັກວຽກ"}>
       <div className="px-4 py-2">
-        <PositionDetail applicationData={applicationData} branch={branch}/>
+        <PositionDetail applicationData={applicationData}/>
         <EmergencyDetail applicationData={applicationData}/>
         <General applicationData={applicationData}/>
       </div>
@@ -20,14 +22,14 @@ export const Application: React.FC<{ applicationData: IApplication, branchData: 
   );
 };
 
-export const PositionDetail: React.FC<{ applicationData: IApplication, branch: string }> = ({ applicationData, branch }) => {
-  const { expectedSalary, appliedPosition } = applicationData ?? {};
+export const PositionDetail: React.FC<{ applicationData: IApplication }> = ({ applicationData }) => {
+  const { province, appliedPosition, expectedSalary } = applicationData ?? {};
   return (
     <div>
       <Label className="text-lg pl-5 font-bold">ຕໍາແຫນ່ງທີ່ຕ້ອງການສະຫມັກ</Label>
       <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ຕໍາແຫນ່ງທີ່ສະຫມັກ"} content={(appliedPosition)} />
       <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ເງິນເດືອນທີ່ຕ້ອງການ"} content={`${Number(expectedSalary)?.toLocaleString()} ກີບ`} />
-      <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ສະໝັກຢູ່ສາຂາ"} content={branch} />
+      <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ສະໝັກຢູ່ແຂວງ"} content={province?.provinceName} />
     </div>
   );
 };

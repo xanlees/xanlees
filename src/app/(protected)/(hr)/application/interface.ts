@@ -1,6 +1,11 @@
 export interface IApplication {
-  profileId: number
-  branchId: number
+  profileId: {
+    id: number
+  }
+  province: {
+    id: number
+    provinceName: string
+  }
   expectedSalary: string
   tagId: string
   appliedPosition: string
