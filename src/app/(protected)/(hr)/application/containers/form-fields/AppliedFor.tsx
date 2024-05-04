@@ -1,12 +1,12 @@
+import { useProvinceSelect } from "@src/app/(protected)/(career)/branch/hook/useProvince";
 import { type IFormConfig } from "@src/common/interface";
-import { Input } from "@src/shadcn/elements";
 import { Form } from "@src/shadcn/components/form";
-import { useBranchSelect } from "@src/app/(protected)/(career)/sector/useSelect";
+import { Input } from "@src/shadcn/elements";
 
 export const AppliedFor: React.FC<{
   form: IFormConfig
 }> = ({ form }) => {
-  const branch = useBranchSelect("OFFICE");
+  const province = useProvinceSelect();
   return (
     <div className="py-6 border-t border-gray-200 first:pt-0 last:pb-0 first:border-transparent dark:border-gray-700 dark:first:border-transparent">
       <label className="inline-block my-2 text-lg font-medium dark:text-white">
@@ -22,17 +22,17 @@ export const AppliedFor: React.FC<{
               <Input placeholder="3,000,000" numericOnly type="currency" maxLength={100} />
             </Form.Field>
           </div>
-          <BranchSection form={form} branch={branch} />
+          <ProvinceSection form={form} province={province} />
         </div>
       </div>
     </div>
   );
 };
 
-const BranchSection = ({ form, branch }: { form: IFormConfig, branch: any }) => (
+const ProvinceSection = ({ form, province }: { form: IFormConfig, province: any }) => (
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...form} name="branchId" label="ສະໝັກຢູ່ສາຂາ">
-      <Form.Combobox {...branch} className=" w-80"/>
+    <Form.Field {...form} name="province" label="ສະໝັກຢູ່ແຂວງ">
+      <Form.Combobox {...province} className=" w-80"/>
     </Form.Field>
   </div>
 );
