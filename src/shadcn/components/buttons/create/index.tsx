@@ -65,7 +65,6 @@ export const CreateButton: FC<CreateButtonProps> = ({
     };
 
     const createUrl = resource ? generateCreateUrl(resource, meta) : "";
-    console.log("createUrl", createUrl)
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
     }

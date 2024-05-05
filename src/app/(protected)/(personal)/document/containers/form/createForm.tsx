@@ -10,7 +10,7 @@ import { documentFormSchema } from "./validation";
 
 export const DocumentCreateForm: React.FC<{ id: number, action: FormAction }> = ({ id, action }) => {
   const { form } = useDocumentFormEdit(id);
-  console.log(form.watch());
+
   return (
     <div className="flex justify-center">
       <div className="flex flex-col border rounded-2xl">

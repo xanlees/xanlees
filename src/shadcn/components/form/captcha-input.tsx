@@ -5,7 +5,6 @@ import { Input } from "@src/shadcn/elements";
 const CaptchaLength = 4;
 const Captcha = ({ ...props }) => {
   useEffect(() => {
-    console.log("123")
     loadCaptchaEnginge(CaptchaLength, "blue", "white");
   }, []);
   return (
