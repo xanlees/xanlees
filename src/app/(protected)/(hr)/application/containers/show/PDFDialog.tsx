@@ -1,33 +1,26 @@
 import PDFViewer from "@src/common/components/pdfviewer";
 import {
-  AlertDialog,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogTrigger,
   Button,
+  Dialog,
+  DialogContent,
+  DialogTrigger,
 } from "@src/shadcn/elements";
-
 interface PDFDialogProps {
   documentName: string
   documentFile?: File | string
 }
-
 export function PDFDialog({ documentName, documentFile }: PDFDialogProps) {
   return (
-    <AlertDialog >
-      <AlertDialogTrigger asChild >
-        <Button variant="outline">ເປີດເອກະສານ</Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent className=" z-50  w-[45%] h-[100%] translate-x-[-50%] translate-y-[-50%] gap-0 border bg-background p-0 shadow-lg ">
-        <PDFViewer
-          file={documentFile}
-          title={documentName}
-        />
-        <AlertDialogFooter>
-          <AlertDialogCancel className="mr-20 bg-red-500 w-20 text-white">ປິດ</AlertDialogCancel>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+    <Dialog>
+      <DialogTrigger><Button>ເບີ່ງ</Button></DialogTrigger>
+      <DialogContent className="overflow-x-scroll overflow-y-hidden min-h-[65%]">
+        <div className="scale-[85%] -mx-[13%] -my-[15%] relative">
+          <PDFViewer
+            file={documentFile}
+            title={documentName}
+          />
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }

@@ -34,7 +34,7 @@ export default function PDFViewer(props: Readonly<PDFViewerProps>) {
   }
   return (
     <div className="">
-      <div className="flex flex-row f-full">
+      <div className="flex flex-row">
         {!loading && (<PdfViewerContent loading={loading} goToNextPage={goToNextPage} goToPreviousPage={goToPreviousPage} pageNumber={pageNumber} numPages={numPages} pageWidth={pageWidth} setLoading={setLoading} onDocumentLoadSuccess={onDocumentLoadSuccess} onPageLoadSuccess={onPageLoadSuccess} options={options} file={props.file} />)}
       </div>
     </div>
