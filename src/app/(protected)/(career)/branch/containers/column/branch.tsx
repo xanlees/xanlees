@@ -1,6 +1,7 @@
 import { Table } from "@/shadcn/components/table";
 import type { IBranchExpand, IBranch } from "../../interface";
 import { Trash2 } from "lucide-react";
+import { getDisplayBranchName } from "../../lib";
 
 export function branchColumn() {
   return (
@@ -14,26 +15,11 @@ export function branchColumn() {
         const branchName = original.name as unknown as string;
         const branchType = original.type as unknown as string;
         return (
-          <div>{getDisplayText(branchType)} {branchName} </div>
+          <div>{getDisplayBranchName(branchType)} {branchName} </div>
         );
       }}
     />
   );
-}
-
-function getDisplayText(type: string) {
-  switch (type) {
-    case "HEADQUARTERS":
-      return "ສໍານັກງານໃຫຍ່";
-    case "OFFICE":
-      return "ຫ້ອງການ";
-    case "BRANCH":
-      return "ສາຂາ";
-    case "LOTTERY":
-      return "ຫວຍ";
-    default:
-      return "";
-  }
 }
 
 export function ProvinceColumn() {

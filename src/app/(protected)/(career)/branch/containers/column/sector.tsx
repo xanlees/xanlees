@@ -2,6 +2,7 @@ import { Table } from "@/shadcn/components/table";
 import { stringToColorCode } from "@src/lib/string2Color";
 import { type IPosition } from "../../../position/interface";
 import { type ISector } from "../../../sector/interface";
+import { getSectorTypeName } from "../../lib";
 
 export function sectorColumn({ sectorData, title }: { sectorData: ISector[], title: string }) {
   return (
@@ -20,7 +21,7 @@ export function sectorColumn({ sectorData, title }: { sectorData: ISector[], tit
                 style={{ backgroundColor: `${stringToColorCode(item?.name)}` }}
                 key={index}
               >
-                - {getSectorType(item?.name)} {item?.name}
+                - {getSectorTypeName(item?.name)} {item?.name}
               </div>
             ))}
           </div>
@@ -29,23 +30,6 @@ export function sectorColumn({ sectorData, title }: { sectorData: ISector[], tit
     />
   );
 }
-function getSectorType(type: string) {
-  switch (type) {
-    case "Sector":
-      return "ຂະແໜງ";
-    case "Department":
-      return "ຫ້ອງ";
-    case "Unit":
-      return "ໜ່ວຍບໍລິການ";
-    case "Not specified":
-      return "ບໍ່ລະບຸ";
-    case "ALL":
-      return "ລວມ";
-    default:
-      return "";
-  }
-}
-
 export function positionsColumn({ positionData }: { positionData: IPosition[] }) {
   return (
     <Table.Column

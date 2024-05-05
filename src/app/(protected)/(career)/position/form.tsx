@@ -1,19 +1,24 @@
-import { useSelect, type BaseOption, type HttpError, type UseSelectReturnType } from "@refinedev/core";
-import { type ISectorExpand } from "../sector/interface";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import * as z from "zod";
-import { Input } from "@src/shadcn/elements";
-import { Form } from "@src/shadcn/components/form";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type BaseOption, type HttpError, useSelect, type UseSelectReturnType } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { type IFormConfig } from "@src/common/interface";
-import { useRouter } from "next/navigation";
+import { Form } from "@src/shadcn/components/form";
+import { Input } from "@src/shadcn/elements";
+
+import { getDisplayBranchName, getSectorTypeName } from "../branch/lib";
+import { type ISectorExpand } from "../sector/interface";
+
 export const PositionForm: React.FC<{ type: string }> = (type) => {
   const branchType = type.type;
   const { form } = useFormPositionConfig(branchType);
   const sector = getSectorOptions(branchType);
+
   const options = sector.queryResult.data?.data.map((item) => {
     return {
-      label: `${item?.name} - ${item?.branchId?.name}`,
+      label: `${getSectorTypeName(item?.type ?? "")} - ${item?.name} - ${item?.branchId?.name} (${getDisplayBranchName(item?.branchId?.type ?? "")}) `,
       value: item.id,
     };
   });
@@ -34,8 +39,8 @@ export const PositionForm: React.FC<{ type: string }> = (type) => {
 const SectorSection = ({ form, sector }: { form: IFormConfig, sector: any }) => {
   return (
     <div className="inline-flex flex-row items-center justify-start gap-x-4">
-      <Form.Field {...form} name="sectorId" label="ພະແນກ/ໜ່ວຍ">
-        <Form.Combobox {...sector} />
+      <Form.Field {...form} name="sectorId" label="ພະແນກ/ໜ່ວຍ/ຂະແໜງ">
+        <Form.Combobox {...sector} className="w-[550px]" />
       </Form.Field>
     </div>
   );
