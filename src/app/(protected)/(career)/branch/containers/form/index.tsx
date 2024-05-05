@@ -15,7 +15,7 @@ export const BranchCreateForm: React.FC<{ type: string }> = ({ type }) => {
   return (
     <div className="p-10 my-3 rounded-full ">
       {type !== "LOTTERY" && <PositionForm type={type}/>}
-      <SectorForm type={type}/>
+      <SectorForm type={type} />
       <BranchForm type={type} />
     </div>
   );
@@ -23,18 +23,19 @@ export const BranchCreateForm: React.FC<{ type: string }> = ({ type }) => {
 
 const BranchForm: React.FC<{ type: string }> = ({ type }) => {
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
       <AccordionItem value="item-1">
         <AccordionTrigger className="italic text-blue-500 underline" >
           *ຊອກຫ້ອງການບໍ່ເຫັນ, ກົດທີ່ນີ້
         </AccordionTrigger>
         <AccordionContent>
-          <FormContainer type={type}/>
+          <FormContainer type={type} />
         </AccordionContent>
       </AccordionItem>
     </Accordion>
   );
 };
+
 const FormContainer: React.FC<{ type: string }> = ({ type }) => {
   const branchName = type === "LOTTERY" ? "ເມືອງ" : "ຊື່";
   const title = type === "LOTTERY" ? "ຟອມສ້າງສາຂາຫວຍ" : "ຟອມສ້າງຫ້ອງການ";
