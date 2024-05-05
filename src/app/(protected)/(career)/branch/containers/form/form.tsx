@@ -38,6 +38,7 @@ const BranchForm: React.FC<{ type: string }> = ({ type }) => {
 };
 
 const FormContainer: React.FC<{ type: string }> = ({ type }) => {
+  const branchName = type === "LOTTERY" ? "ເມືອງ" : "ຊື່ຫ້ອງການ";
   const { form } = useFormBranch(type);
   const province = useProvinceSelect();
   const filteredTypeList = getTypeOptions(type);
@@ -46,7 +47,7 @@ const FormContainer: React.FC<{ type: string }> = ({ type }) => {
       <div className="flex flex-wrap gap-2">
         <div className="w-full lg:w-64 ">
           <div className="relative w-full mb-3">
-            <Form.Field {...form} name="name" label="ຊື່ຫ້ອງການ">
+            <Form.Field {...form} name="name" label={branchName}>
               <Input placeholder="" className="w-full" />
             </Form.Field>
           </div>

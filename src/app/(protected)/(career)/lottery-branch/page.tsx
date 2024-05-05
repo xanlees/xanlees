@@ -2,7 +2,7 @@
 import { useUserFriendlyName } from "@refinedev/core";
 import { type IBranch, type ISector } from "../sector/interface";
 import { type IPosition } from "../position/interface";
-import { useBranch, useBranchID, usePosition, useProvinceIds, useSector, useSectorID, useTableBranch } from "../branch/hook/useTableBranch";
+import { useBranch, useBranchID, usePosition, useProvinceIds, useSector, useSectorID, useBranchTable } from "../branch/hook/table";
 import { List } from "@src/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
 import { getSelectColumn } from "@src/common/containers/column";
@@ -13,7 +13,7 @@ import { positionsColumn } from "../branch/containers/column/positions";
 const type = "LOTTERY";
 const title = "ໜ່ວຍ";
 export default function BranchList(): JSX.Element {
-  const { table } = useTableBranch(type);
+  const { table } = useBranchTable(type);
   const province = table.options.data ?? [];
   const provinceIDs = useProvinceIds(province);
   const branchData = useBranch<IBranch>({ province: provinceIDs, branch: province, type })?.data;

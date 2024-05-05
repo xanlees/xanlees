@@ -12,6 +12,7 @@ import { useBranchSelect } from "../useSelect";
 
 export const FormSector: any = ({ branchType, type }: { branchType: string, type: string }) => {
   const sectorType = type === "LOTTERY" ? "ໜ່ວຍ" : "ຊື່";
+  const sectorName = type === "LOTTERY" ? "ເມືອງ" : "ຫ້ອງການ";
   const { form } = useFormConfig();
   const branch = useBranchSelect(type);
   return (
@@ -26,8 +27,8 @@ export const FormSector: any = ({ branchType, type }: { branchType: string, type
               <Input placeholder="" className="block w-full" />
             </Form.Field>
             <div className=" flex gap-x-5">
-              <BranchSection form={form} branch={branch} />
-              <Type form={form} />
+              <BranchSection form={form} branch={branch} sectorName={sectorName}/>
+              <Type form={form} type={type}/>
             </div>
           </Form>
         </AccordionContent>
@@ -36,43 +37,43 @@ export const FormSector: any = ({ branchType, type }: { branchType: string, type
   );
 };
 
-const BranchSection = ({ form, branch }: { form: IFormConfig, branch: any }) => (
+const BranchSection = ({ form, branch, sectorName }: { form: IFormConfig, branch: any, sectorName: string }) => (
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...form} name="branchId" label="ຊື່ຫ້ອງການ">
+    <Form.Field {...form} name="branchId" label={sectorName}>
       <Form.Combobox {...branch} />
     </Form.Field>
   </div>
 );
 
-const Type = ({ form }: { form: IFormConfig }) => (
-  <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...form} name="type" label="ປະເພດ">
-      <Form.Combobox {...(typeList as any)} />
-    </Form.Field>
-  </div>
-);
+const Type = ({ form, type }: { form: IFormConfig, type: string }) => {
+  const filteredTypeList = getTypeOptions(type);
+  return (
+    <div className="inline-flex flex-row items-center justify-start gap-x-4">
+      <Form.Field {...form} name="type" label="ປະເພດ">
+        <Form.Combobox {...(filteredTypeList as any)} />
+      </Form.Field>
+    </div>
+  );
+};
+
+const getTypeOptions = (type: string) => {
+  switch (type) {
+    case "LOTTERY":
+      return { options: [{ label: "ໜ່ວຍບໍລິການ", value: "Unit" }] };
+    case "OFFICE":
+      return { options: typeList.options.filter((option) => option.value !== "LOTTERY") };
+    default:
+      return typeList;
+  }
+};
 
 const typeList = {
   options: [
-    {
-      label: "ຂະແໜງ",
-      value: "Sector",
-    },
-    {
-      label: "ຫ້ອງ",
-      value: "Department",
-    },
-    {
-      label: "ໜ່ວຍບໍລິການ",
-      value: "Unit",
-    },
-    {
-      label: "ບໍ່ລະບຸ",
-      value: "Not specified",
-    },
-    {
-      label: "ລວມ",
-      value: "ALL",
-    },
+    { label: "ຂະແໜງ", value: "Sector" },
+    { label: "ຫ້ອງ", value: "Department" },
+    { label: "ໜ່ວຍບໍລິການ", value: "Unit" },
+    { label: "ບໍ່ລະບຸ", value: "Not specified" },
+    { label: "ລວມ", value: "ALL" },
   ],
 };
+

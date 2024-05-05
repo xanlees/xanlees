@@ -1,23 +1,18 @@
 "use client";
-import { Application } from "../../containers/show/Application";
+
 import { Show } from "@/shadcn/components/crud";
-import type { IApplication } from "../../interface";
 import {
-  type ISkill,
-  type IWorkExperience,
-  Skill,
-  useSkill,
-  useWorkExperience,
-  WorkExperience,
-} from "../../../index";
-import { usePhysical } from "../../hooks";
-import { useProfile } from "@src/app/(protected)/(personal)/profile/hooks";
-import { type IProfile } from "@src/app/(protected)/(personal)/profile/interface/model";
-import { type IPhysical } from "@src/app/(protected)/(personal)/physical/interface";
-import { ProfileDetail } from "@src/app/(protected)/(personal)/profile/containers/card/ProfileDetail";
-import { Physical } from "@src/app/(protected)/(personal)/physical/containers/Physical";
-import { AddressDetail, DocumentPDF, EducationDetail } from "@src/app/(protected)/(personal)/profile/containers/card";
+  ProfileDetail, useProfile, Physical, AddressDetail, DocumentPDF, EducationDetail,
+} from "@personal";
+import type { IProfile, IPhysical } from "@personal";
+import type { IApplication } from "../../interface";
+import { Application } from "../../containers/show/Application";
+import { usePhysical, useWorkExperience } from "../../hooks";
 import { useShowApplication } from "../../hooks/useTableApplication";
+import { Skill, WorkExperience } from "../../containers/show";
+import { type IWorkExperience } from "../../../work-experience/interface";
+import { type ISkill } from "../../../skill/interface";
+import { useSkill } from "../../../skill/hook";
 
 export default function ApplicationShow({ params }: Readonly<{ params: { id: number } }>): JSX.Element {
   const data = useShowApplication<IApplication>({ id: Number(params.id) })?.data?.[0];

@@ -1,3 +1,5 @@
+import { type IProfile } from "@src/common/interface";
+import { type IPosition } from "../position/interface";
 
 export interface IEmployeeExpand {
   id: number
@@ -27,4 +29,15 @@ export interface IEmployee {
   branchId?: number
   profileId?: number
   salary?: number
+}
+
+export interface IEmployeeExpandProfile {
+  id: number
+  joiningDate: string
+  isLatest: boolean
+  createdOn: string
+  branchId: number
+  profileId: IProfile
+  positionId: IPosition
+  salary: number
 }

@@ -1,8 +1,8 @@
 import { Table } from "@/shadcn/components/table";
-import { type IBranch } from "../../interface";
+import type { IBranchExpand, IBranch } from "../../interface";
 import { Trash2 } from "lucide-react";
 
-export function branchColumn(provinces: IBranch[]) {
+export function branchColumn() {
   return (
     <Table.Column
       header={"ຫ້ອງການ"}
@@ -10,18 +10,11 @@ export function branchColumn(provinces: IBranch[]) {
       id="branchId"
       enableSorting
       enableHiding
-      cell={({ row }) => {
-        const currentId = row?.original?.id as unknown as number;
-        const matchingProvinces = provinces.filter((province) => province.province === currentId);
+      cell={({ row: { original } }) => {
+        const branchName = original.name as unknown as string;
+        const branchType = original.type as unknown as string;
         return (
-          <div className="mx-2">
-            {matchingProvinces.map((item) => {
-              const displayText = getDisplayText(item.type);
-              return (
-                <div key={item.id}>{displayText} {item.name}</div>
-              );
-            })}
-          </div>
+          <div>{getDisplayText(branchType)} {branchName} </div>
         );
       }}
     />
@@ -31,7 +24,7 @@ export function branchColumn(provinces: IBranch[]) {
 function getDisplayText(type: string) {
   switch (type) {
     case "HEADQUARTERS":
-      return "ຫ້ອງໃຫຍ່";
+      return "ສໍານັກງານໃຫຍ່";
     case "OFFICE":
       return "ຫ້ອງການ";
     case "BRANCH":
@@ -45,15 +38,15 @@ function getDisplayText(type: string) {
 
 export function ProvinceColumn() {
   return (
-    <Table.Column
+    <Table.Column<IBranchExpand>
       header="ແຂວງ"
       id="provinceName"
-      accessorKey="provinceName"
-      cell={({ row }) => {
-        const displayText = row.original.provinceName as unknown as string;
+      accessorKey="province.provinceName"
+      cell={({ row: { original } }) => {
+        const provinceName = original?.province?.provinceName;
         return (
           <div className="mx-2">
-            {displayText}
+            {provinceName ?? ""}
           </div>
         );
       }}

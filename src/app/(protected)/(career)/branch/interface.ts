@@ -6,3 +6,10 @@ export interface IBranch {
   province: number | IDistrict
   type: string
 }
+
+export interface IBranchExpand {
+  name: string
+  id: number
+  province: IDistrict
+  type: string
+}

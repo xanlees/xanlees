@@ -4,6 +4,7 @@ export interface IPosition {
   sectorId: {
     name: string
     id: number
+    type: string
     branchId: number
   }
 }
