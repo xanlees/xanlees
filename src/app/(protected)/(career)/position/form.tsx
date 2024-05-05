@@ -20,6 +20,9 @@ export const PositionForm: React.FC<{ type: string }> = (type) => {
   sector.options = options as BaseOption[];
   return (
     <Form {...form} cardClassName="w-[600px]">
+      <div className="text-2xl font-bold tracking-wide text-center text-gray-800 dark:text-white">
+        {"ຟອມສ້າງຕໍາແໜ່ງ"}
+      </div>
       <Form.Field {...form} name="name" label="ຕໍາແໜ່ງ">
         <Input placeholder="ຕໍາແໜ່ງ" className="block w-full" />
       </Form.Field>

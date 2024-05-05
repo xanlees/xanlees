@@ -13,6 +13,7 @@ import { useBranchSelect } from "../useSelect";
 export const FormSector: any = ({ branchType, type }: { branchType: string, type: string }) => {
   const sectorType = type === "LOTTERY" ? "ໜ່ວຍ" : "ຊື່";
   const sectorName = type === "LOTTERY" ? "ເມືອງ" : "ຫ້ອງການ";
+  const title = type === "LOTTERY" ? "ຟອມສ້າງໜ່ວຍ" : "ຟອມສ້າງພະແນກ";
   const { form } = useFormConfig();
   const branch = useBranchSelect(type);
   return (
@@ -23,6 +24,9 @@ export const FormSector: any = ({ branchType, type }: { branchType: string, type
         </AccordionTrigger>
         <AccordionContent>
           <Form {...form}>
+            <div className="text-2xl font-bold tracking-wide text-center text-gray-800 dark:text-white">
+              {title}
+            </div>
             <Form.Field {...form} name="name" label={sectorType}>
               <Input placeholder="" className="block w-full" />
             </Form.Field>
