@@ -1,3 +1,5 @@
+import React, { type ReactNode } from "react";
+
 import { type IFormConfig } from "@src/common/interface";
 import { Form } from "@src/shadcn/components/form";
 import { Input } from "@src/shadcn/elements";
@@ -5,15 +7,45 @@ import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@src/shadcn/elements/accordion";
 
-import { useBranchSelect } from "./useSelect";
 import { useSectorForm } from "./hook";
+import { useBranchSelect } from "./useSelect";
 
-export const SectorForm: any = ({ type }: { type: string }) => {
+export const SectorForm: React.FC<{ type: string }> = ({ type }) => {
+  return (
+    <>
+      {type === "LOTTERY" && <FormContainer type={type}/>}
+      {type !== "LOTTERY" && (
+        <AccordionSectorForm>
+          <FormContainer type={type}/>
+        </AccordionSectorForm>
+      )}
+    </>
+  );
+};
+
+export const FormContainer: React.FC<{ type: string }> = ({ type }) => {
   const sectorType = type === "LOTTERY" ? "ໜ່ວຍ" : "ຊື່";
   const sectorName = type === "LOTTERY" ? "ເມືອງ" : "ສັງກັດຫ້ອງການ";
   const title = type === "LOTTERY" ? "ຟອມສ້າງໜ່ວຍ" : "ຟອມສ້າງພະແນກ/ຂະແໜງ";
   const { form } = useSectorForm({ type });
   const branch = useBranchSelect(type);
+  return (
+    <Form {...form}>
+      <div className="text-2xl font-bold tracking-wide text-center text-gray-800 dark:text-white">
+        {title}
+      </div>
+      <Form.Field {...form} name="name" label={sectorType}>
+        <Input placeholder="" className="block w-full" />
+      </Form.Field>
+      <div className=" flex gap-x-5">
+        <BranchSelect form={form} branch={branch} sectorName={sectorName}/>
+        <Type form={form} type={type}/>
+      </div>
+    </Form>
+  );
+};
+
+export const AccordionSectorForm: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <Accordion type="single" collapsible className="w-ful">
       <AccordionItem value="item-1" className="border-none">
@@ -21,18 +53,7 @@ export const SectorForm: any = ({ type }: { type: string }) => {
           *ຊອກຳພະແນກ/ໜ່ວຍບໍ່ເຫັນ, ກົດທີ່ນີ້
         </AccordionTrigger>
         <AccordionContent>
-          <Form {...form}>
-            <div className="text-2xl font-bold tracking-wide text-center text-gray-800 dark:text-white">
-              {title}
-            </div>
-            <Form.Field {...form} name="name" label={sectorType}>
-              <Input placeholder="" className="block w-full" />
-            </Form.Field>
-            <div className=" flex gap-x-5">
-              <BranchSelect form={form} branch={branch} sectorName={sectorName}/>
-              <Type form={form} type={type}/>
-            </div>
-          </Form>
+          {children}
         </AccordionContent>
       </AccordionItem>
     </Accordion>
@@ -76,4 +97,3 @@ const typeList = {
     { label: "ໜ່ວຍບໍລິການ", value: "Unit" },
   ],
 };
-

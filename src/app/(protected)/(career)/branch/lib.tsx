@@ -44,3 +44,22 @@ export function getPositionIds(positionData: IPosition[]) {
   }
   return [];
 }
+
+export const getTypeOptions = (type: string) => {
+  switch (type) {
+    case "LOTTERY":
+      return { options: [{ label: "ສາຂາຫວຍ", value: "LOTTERY" }] };
+    case "OFFICE":
+      return { options: typeList.options.filter((option) => option.value !== "LOTTERY") };
+    default:
+      return typeList;
+  }
+};
+const typeList = {
+  options: [
+    { label: "ສາຂາ", value: "BRANCH" },
+    { label: "ສໍານັກງານໃຫຍ່", value: "HEADQUARTERS" },
+    { label: "ຫ້ອງການ", value: "OFFICE" },
+    { label: "ສາຂາຫວຍ", value: "LOTTERY" },
+  ],
+};

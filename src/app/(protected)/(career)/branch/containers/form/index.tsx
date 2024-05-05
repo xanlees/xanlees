@@ -9,16 +9,18 @@ import {
 import { PositionForm } from "../../../position/form";
 import { SectorForm } from "../../../sector/component";
 import { useFormBranch } from "../../hook/useProvince";
+import { getTypeOptions } from "../../lib";
 
 export const BranchCreateForm: React.FC<{ type: string }> = ({ type }) => {
   return (
     <div className="p-10 my-3 rounded-full ">
-      <PositionForm type={type}/>
-      <SectorForm branchType={type} type={type}/>
+      {type !== "LOTTERY" && <PositionForm type={type}/>}
+      <SectorForm type={type}/>
       <BranchForm type={type} />
     </div>
   );
 };
+
 const BranchForm: React.FC<{ type: string }> = ({ type }) => {
   return (
     <Accordion type="single" collapsible className="w-full">
@@ -78,21 +80,3 @@ export const Province: React.FC<{ form: IFormConfig, province: any }> = ({ form,
   );
 };
 
-const getTypeOptions = (type: string) => {
-  switch (type) {
-    case "LOTTERY":
-      return { options: [{ label: "ສາຂາຫວຍ", value: "LOTTERY" }] };
-    case "OFFICE":
-      return { options: typeList.options.filter((option) => option.value !== "LOTTERY") };
-    default:
-      return typeList;
-  }
-};
-const typeList = {
-  options: [
-    { label: "ສາຂາ", value: "BRANCH" },
-    { label: "ສໍານັກງານໃຫຍ່", value: "HEADQUARTERS" },
-    { label: "ຫ້ອງການ", value: "OFFICE" },
-    { label: "ສາຂາຫວຍ", value: "LOTTERY" },
-  ],
-};
