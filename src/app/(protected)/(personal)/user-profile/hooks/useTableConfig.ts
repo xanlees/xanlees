@@ -1,9 +1,17 @@
 import { useTable } from "@refinedev/react-table";
-import { useMemo } from "react";
 import { type IUserProfile } from "../interface";
 import { type ExtendedCrudFilter } from "@src/common/interface";
+import { useState, useEffect, useMemo } from "react";
 
 export const useTableUserProfile = ({ branchId }: { branchId: number }) => {
+  const [selectedPeriod, setSelectedPeriod] = useState<number>(branchId);
+  const [initialPeriod, setInitialPeriod] = useState<number>(branchId);
+  useEffect(() => {
+    if (branchId !== initialPeriod) {
+      setSelectedPeriod(branchId);
+      setInitialPeriod(branchId);
+    }
+  }, [branchId, initialPeriod]);
   const permanentFilters: ExtendedCrudFilter[] = useMemo(() => {
     const filters: ExtendedCrudFilter[] = [
       { field: "expand", operator: "eq", value: "profile" },
@@ -28,5 +36,5 @@ export const useTableUserProfile = ({ branchId }: { branchId: number }) => {
       },
     },
   });
-  return { table };
+  return { table, selectedPeriod, setSelectedPeriod };
 };

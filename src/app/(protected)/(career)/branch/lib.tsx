@@ -18,12 +18,12 @@ export function getDisplayBranchName(type: string) {
 
 export function getSectorTypeName(type: string) {
   switch (type) {
-    case "Sector":
-      return "ຂະແໜງ";
     case "Department":
       return "ພະແນກ";
     case "Unit":
       return "ໜ່ວຍບໍລິການ";
+    case "Sector":
+      return "ຂະແໜງ";
     default:
       return "";
   }

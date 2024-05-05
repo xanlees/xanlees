@@ -22,11 +22,12 @@ export const BranchCreateForm: React.FC<{ type: string }> = ({ type }) => {
 };
 
 const BranchForm: React.FC<{ type: string }> = ({ type }) => {
+  const title = type === "LOTTERY" ? "ຊອກສາຂາບໍ່ເຫັນ" : "ຊອກຫ້ອງການບໍ່ເຫັນ";
   return (
     <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
       <AccordionItem value="item-1">
         <AccordionTrigger className="italic text-blue-500 underline" >
-          *ຊອກຫ້ອງການບໍ່ເຫັນ, ກົດທີ່ນີ້
+          *{title}, ກົດທີ່ນີ້
         </AccordionTrigger>
         <AccordionContent>
           <FormContainer type={type} />
@@ -38,7 +39,7 @@ const BranchForm: React.FC<{ type: string }> = ({ type }) => {
 
 const FormContainer: React.FC<{ type: string }> = ({ type }) => {
   const branchName = type === "LOTTERY" ? "ເມືອງ" : "ຊື່";
-  const title = type === "LOTTERY" ? "ຟອມສ້າງສາຂາຫວຍ" : "ຟອມສ້າງຫ້ອງການ";
+  const title = type === "LOTTERY" ? "ຟອມສ້າງສາຂາ" : "ຟອມສ້າງຫ້ອງການ";
   const { form } = useFormBranch(type);
   const province = useProvinceSelect();
   const filteredTypeList = getTypeOptions(type);
