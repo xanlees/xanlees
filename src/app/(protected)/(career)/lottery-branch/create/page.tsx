@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Create } from "@/shadcn/components/crud";
-import { BranchCreateForm } from "../../branch/containers/form/form";
+import { BranchCreateForm } from "../../branch/containers/form";
 
 const ProfileCreate = () => {
   return (

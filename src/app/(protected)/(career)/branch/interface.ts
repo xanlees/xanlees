@@ -1,4 +1,4 @@
-import { type IDistrict } from "../../(personal)/address/interface";
+import { type IDistrict } from "@personal";
 
 export interface IBranch {
   name: string

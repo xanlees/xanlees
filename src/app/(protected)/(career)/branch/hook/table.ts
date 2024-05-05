@@ -1,6 +1,7 @@
 
+import { type BaseRecord, type CrudFilter, type GetListResponse, useList } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
-import { type CrudFilter, useList, type BaseRecord, type GetListResponse } from "@refinedev/core";
+
 import type { IBranchExpand } from "../interface";
 
 const defaultData = {

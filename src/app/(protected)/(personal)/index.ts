@@ -10,7 +10,7 @@ import { useProfile } from "./profile/hooks";
 import type { IDocument } from "./document/interface";
 import type { IGraduation } from "./graduation/interface";
 import type { IEducation } from "./education/interface";
-import type { IAddress } from "./address/interface";
+import type { IAddress, IDistrict } from "./address/interface";
 import type { ProfileState } from "./context/interface";
 import { type IProfile } from "./profile/interface/model";
 import { type IPhysical } from "./physical/interface";
@@ -26,6 +26,7 @@ export type {
   ProfileState,
   IProfile,
   IPhysical,
+  IDistrict,
 };
 export {
   DocumentForm,

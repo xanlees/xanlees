@@ -1,6 +1,8 @@
 "use client";
 import { Create } from "@/shadcn/components/crud";
-import { BranchCreateForm } from "../containers/form/form";
+
+import { BranchCreateForm } from "../containers/form";
+
 export default function BranchCreate(): JSX.Element {
   return (
     <Create>
