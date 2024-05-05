@@ -13,6 +13,7 @@ export const useTableApplication = () => {
       filters: {
         initial: [
           { field: "expand", operator: "eq", value: "province,profile_id" },
+          { field: "application_status", operator: "eq", value: "New,Contacted,Interviewed" },
         ],
       },
     },
@@ -35,4 +36,3 @@ export function useShowApplication<T extends BaseRecord>({ id }: { id: number })
   };
   return data ?? defaultData;
 }
-

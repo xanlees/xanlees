@@ -1,8 +1,8 @@
 import { Table } from "@/shadcn/components/table";
-import type { IEmployee } from "@career";
+import type { IEmployee, IPosition } from "@career";
 import { type IProfile } from "../../interface/model";
 
-export function Salary(positionId: number[]) {
+export function Salary(positionId: number[], data: { data: IPosition[] }) {
   return (
     <Table.Column
       header="ເງິນເດືອນ"
