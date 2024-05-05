@@ -1,20 +1,18 @@
+import { type IFormConfig } from "@src/common/interface";
 import { Form } from "@src/shadcn/components/form";
 import { Input } from "@src/shadcn/elements";
-import { useFormConfig } from "./config";
-import { type IFormConfig } from "@src/common/interface";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
+  Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@src/shadcn/elements/accordion";
-import { useBranchSelect } from "../useSelect";
 
-export const FormSector: any = ({ branchType, type }: { branchType: string, type: string }) => {
+import { useBranchSelect } from "./useSelect";
+import { useSectorForm } from "./hook";
+
+export const SectorForm: any = ({ type }: { type: string }) => {
   const sectorType = type === "LOTTERY" ? "ໜ່ວຍ" : "ຊື່";
   const sectorName = type === "LOTTERY" ? "ເມືອງ" : "ສັງກັດຫ້ອງການ";
   const title = type === "LOTTERY" ? "ຟອມສ້າງໜ່ວຍ" : "ຟອມສ້າງພະແນກ/ຂະແໜງ";
-  const { form } = useFormConfig();
+  const { form } = useSectorForm({ type });
   const branch = useBranchSelect(type);
   return (
     <Accordion type="single" collapsible className="w-ful">
@@ -31,7 +29,7 @@ export const FormSector: any = ({ branchType, type }: { branchType: string, type
               <Input placeholder="" className="block w-full" />
             </Form.Field>
             <div className=" flex gap-x-5">
-              <BranchSection form={form} branch={branch} sectorName={sectorName}/>
+              <BranchSelect form={form} branch={branch} sectorName={sectorName}/>
               <Type form={form} type={type}/>
             </div>
           </Form>
@@ -41,7 +39,7 @@ export const FormSector: any = ({ branchType, type }: { branchType: string, type
   );
 };
 
-const BranchSection = ({ form, branch, sectorName }: { form: IFormConfig, branch: any, sectorName: string }) => (
+const BranchSelect = ({ form, branch, sectorName }: { form: IFormConfig, branch: any, sectorName: string }) => (
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
     <Form.Field {...form} name="branchId" label={sectorName}>
       <Form.Combobox {...branch} />

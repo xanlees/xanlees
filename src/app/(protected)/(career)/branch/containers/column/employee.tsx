@@ -1,12 +1,11 @@
 import { Table } from "@/shadcn/components/table";
 import { stringToColorCode } from "@src/lib/string2Color";
 import { type IEmployeeExpandProfile } from "../../../employee/interface";
-import { type IPosition } from "../../..";
 
-export function employeeColumn({ employeeData, positionData }: { employeeData: IEmployeeExpandProfile[], positionData: IPosition[] }) {
+export function employeeColumn({ employeeData, title }: { employeeData: IEmployeeExpandProfile[], title: string }) {
   return (
     <Table.Column
-      header={"ພະນັກງານ (ສັງກັດຕາມສີ ພນ/ຂໜ)"}
+      header={title}
       accessorKey="employee"
       id="employee"
       cell={({ row: { original } }) => {

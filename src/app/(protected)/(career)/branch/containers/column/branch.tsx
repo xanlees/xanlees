@@ -1,12 +1,15 @@
-import { Table } from "@/shadcn/components/table";
-import type { IBranchExpand, IBranch } from "../../interface";
 import { Trash2 } from "lucide-react";
+
+import { Table } from "@/shadcn/components/table";
+
 import { getDisplayBranchName } from "../../lib";
 
-export function branchColumn() {
+import type { IBranchExpand, IBranch } from "../../interface";
+
+export function branchColumn({ title }: { title: string }) {
   return (
     <Table.Column
-      header={"ຫ້ອງການ"}
+      header={title}
       accessorKey="id"
       id="branchId"
       enableSorting

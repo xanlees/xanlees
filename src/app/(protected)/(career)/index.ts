@@ -5,7 +5,7 @@ import { useBranchTable } from "./branch/hook/table";
 import { type IEmployee } from "./employee/interface";
 import { usePosition } from "./position/hook";
 import { type IPosition } from "./position/interface";
-import { FormSector } from "./sector/form/form";
+import { SectorForm } from "./sector/component";
 import { type ISector } from "./sector/interface";
 
 import type { IBranch } from "./branch/interface";
@@ -14,7 +14,7 @@ export {
   branchColumn,
   sectorColumn,
   useBranchTable as useTableBranch,
-  FormSector,
+  SectorForm as FormSector,
   Position,
   getLatestPosition,
 

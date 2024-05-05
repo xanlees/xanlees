@@ -1,3 +1,6 @@
+import { type IPosition } from "../position/interface";
+import { type IBranch } from "./interface";
+
 export function getDisplayBranchName(type: string) {
   switch (type) {
     case "HEADQUARTERS":
@@ -24,4 +27,20 @@ export function getSectorTypeName(type: string) {
     default:
       return "";
   }
+}
+
+export function getBranchIds(branch: IBranch[]) {
+  const branchIDs = branch.map((item) => item.id);
+  if (branchIDs) {
+    return branchIDs;
+  }
+  return [];
+}
+
+export function getPositionIds(positionData: IPosition[]) {
+  const positionI = positionData.map((item) => item.id);
+  if (positionI) {
+    return positionI;
+  }
+  return [];
 }

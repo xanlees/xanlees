@@ -1,37 +1,44 @@
 "use client";
-import { useUserFriendlyName } from "@refinedev/core";
-import { type IBranch, type ISector } from "../sector/interface";
-import { type IPosition } from "../position/interface";
-import { useBranch, useBranchID, usePosition, useProvinceIds, useSector, useSectorID, useBranchTable } from "../branch/hook/table";
-import { List } from "@src/shadcn/components/crud";
+
+import { useState } from "react";
+
+import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
-import { getSelectColumn } from "@src/common/containers/column";
-import { branchColumn, getBrachActionsColumn, ProvinceColumn } from "../branch/containers/column/branch";
-import { sectorColumn } from "../branch/containers/column/sector";
-import { positionsColumn } from "../branch/containers/column/positions";
+import { getActionsColumn } from "@src/common/containers/column";
+
+import {
+  branchColumn, employeeColumn, ProvinceColumn, sectorColumn,
+} from "../branch/containers/column";
+import { SelectProvince } from "../branch/containers/selectProvince";
+import { useBranchTable, useEmployee, usePosition, useSector } from "../branch/hook/table";
+import { getBranchIds, getPositionIds } from "../branch/lib";
+import { type IEmployeeExpandProfile } from "../employee/interface";
+import { type IPosition } from "../position/interface";
+import { type ISector } from "../sector/interface";
 
 const type = "LOTTERY";
 const title = "ໜ່ວຍ";
+
 export default function BranchList(): JSX.Element {
-  const { table } = useBranchTable(type);
-  const province = table.options.data ?? [];
-  const provinceIDs = useProvinceIds(province);
-  const branchData = useBranch<IBranch>({ province: provinceIDs, branch: province, type })?.data;
-  const branchId = useBranchID(branchData);
-  const sectorData = useSector<ISector>({ branchId })?.data;
-  const sectorId = useSectorID(sectorData);
-  const positionData = usePosition<IPosition>({ sectorId })?.data;
-  const friendly = useUserFriendlyName();
+  const [selected, setSelected] = useState<number | undefined>();
+  const { table } = useBranchTable({ type, province: selected });
+  const branch = table.options.data ?? [];
+  const branchIds = getBranchIds(branch);
+  const pageSize = usePosition<IPosition>({ branchIds, pageSize: true })?.total;
+  const positionData = usePosition<IPosition>({ branchIds, pageSize: false, page: pageSize })?.data;
+  const positionIds = getPositionIds(positionData);
+  const employeeData = useEmployee<IEmployeeExpandProfile>({ positionId: positionIds, pageSize })?.data;
+  const sectorData = useSector<ISector>({ branchId: branchIds, pageSize })?.data;
   return (
     <div className="mx-auto">
       <List>
-        <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ຊື່ ສາຂາ">
-          {getSelectColumn(friendly)}
+        <SelectProvince setSelected={setSelected} />
+        <Table table={table} SearchBarTitle="ຄົ້ນຫາ">
           {ProvinceColumn()}
-          {branchColumn(branchData)}
-          {sectorColumn({ sectorData, branchData, title })}
-          {positionsColumn(positionData, branchData)}
-          {getBrachActionsColumn({ resource: "branch", branchData })}
+          {branchColumn({ title: "ເມືອງ" })}
+          {sectorColumn({ title, sectorData })}
+          {employeeColumn({ employeeData, title: "ສະມາຊິກ (ສັງກັດຈາມສີ)" })}
+          {getActionsColumn({ resource: "branch", hideEdit: true, hideShow: true })}
         </Table>
       </List>
     </div>

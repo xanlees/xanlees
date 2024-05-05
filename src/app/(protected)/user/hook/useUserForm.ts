@@ -1,4 +1,4 @@
-import { useCustomMutation, useNavigation } from "@refinedev/core";
+import { useCustomMutation } from "@refinedev/core";
 import { useEffect, useState } from "react";
 import { useForm } from "@refinedev/react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -6,10 +6,11 @@ import { type CreateUserProfileProps, type UserProfile } from "../interface/inte
 import { type IMessages } from "@src/common/interface";
 import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 import { errorMessages, userSchema, userSchemaEdit } from "../userSchema";
+import { useRouter } from "next/navigation";
 
 export const useUserForm = (profile: number, navigates: string) => {
   const idEdit = profile <= 0;
-  const { list } = useNavigation();
+  const router = useRouter();
   const [user, setUser] = useState<number>(0);
   const [shouldCreateProfile, setShouldCreateProfile] = useState(false);
   const form = useForm<{ id: number }>({
@@ -23,7 +24,7 @@ export const useUserForm = (profile: number, navigates: string) => {
           setUser(data.data.id ?? 0);
         }
         setShouldCreateProfile(true);
-        list(navigates);
+        router.back();
       },
       errorNotification: (data: any) => {
         const responseData = (data as IMessages)?.response?.data;

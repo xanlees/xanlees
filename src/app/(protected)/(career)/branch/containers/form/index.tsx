@@ -7,14 +7,14 @@ import {
 } from "@src/shadcn/elements/accordion";
 
 import { PositionForm } from "../../../position/form";
-import { FormSector } from "../../../sector/form/form";
+import { SectorForm } from "../../../sector/component";
 import { useFormBranch } from "../../hook/useProvince";
 
 export const BranchCreateForm: React.FC<{ type: string }> = ({ type }) => {
   return (
     <div className="p-10 my-3 rounded-full ">
       <PositionForm type={type}/>
-      <FormSector branchType={type} type={type}/>
+      <SectorForm branchType={type} type={type}/>
       <BranchForm type={type} />
     </div>
   );
