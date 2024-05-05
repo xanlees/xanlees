@@ -12,8 +12,8 @@ import { useBranchSelect } from "../useSelect";
 
 export const FormSector: any = ({ branchType, type }: { branchType: string, type: string }) => {
   const sectorType = type === "LOTTERY" ? "ໜ່ວຍ" : "ຊື່";
-  const sectorName = type === "LOTTERY" ? "ເມືອງ" : "ຫ້ອງການ";
-  const title = type === "LOTTERY" ? "ຟອມສ້າງໜ່ວຍ" : "ຟອມສ້າງພະແນກ";
+  const sectorName = type === "LOTTERY" ? "ເມືອງ" : "ສັງກັດຫ້ອງການ";
+  const title = type === "LOTTERY" ? "ຟອມສ້າງໜ່ວຍ" : "ຟອມສ້າງພະແນກ/ຂະແໜງ";
   const { form } = useFormConfig();
   const branch = useBranchSelect(type);
   return (
@@ -74,10 +74,8 @@ const getTypeOptions = (type: string) => {
 const typeList = {
   options: [
     { label: "ຂະແໜງ", value: "Sector" },
-    { label: "ຫ້ອງ", value: "Department" },
+    { label: "ພະແນກ", value: "Department" },
     { label: "ໜ່ວຍບໍລິການ", value: "Unit" },
-    { label: "ບໍ່ລະບຸ", value: "Not specified" },
-    { label: "ລວມ", value: "ALL" },
   ],
 };
 

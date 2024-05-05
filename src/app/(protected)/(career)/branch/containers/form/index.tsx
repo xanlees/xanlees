@@ -34,7 +34,7 @@ const BranchForm: React.FC<{ type: string }> = ({ type }) => {
   );
 };
 const FormContainer: React.FC<{ type: string }> = ({ type }) => {
-  const branchName = type === "LOTTERY" ? "ເມືອງ" : "ຊື່ຫ້ອງການ";
+  const branchName = type === "LOTTERY" ? "ເມືອງ" : "ຊື່";
   const title = type === "LOTTERY" ? "ຟອມສ້າງສາຂາຫວຍ" : "ຟອມສ້າງຫ້ອງການ";
   const { form } = useFormBranch(type);
   const province = useProvinceSelect();
