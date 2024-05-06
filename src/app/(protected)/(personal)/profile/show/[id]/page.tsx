@@ -20,12 +20,12 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
   const profileId = Number(params.id ?? 0) ?? 0;
   const { data: profileData } = useProfileUser<IProfile>({ profileId: profileId ?? 0, filterField: "profile" });
   const redirect = `/employee/create/${profileId}/OFFICE/profile`;
-  const { table } = useUserCard({ profileId: 35, filterField: "profile" });
+  const { table } = useUserCard({ profileId, filterField: "profile" });
   return (
     <Show>
       <div className="mt-5 flex flex-wrap justify-between gap-2">
         <div className="">
-          <ProfileDetail profileData={profileData} visible={false} user={0} disabled={false}/>
+          <ProfileDetail profileData={profileData} visible={false} user={0} disabled={true}/>
         </div>
         <div className="space-y-2">
           <UserCard profileId={35} filterField={"profile"} table={table as unknown as UseTableReturnType<IUser, HttpError>}/>

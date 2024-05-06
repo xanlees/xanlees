@@ -16,11 +16,9 @@ export function useProfile<T extends BaseRecord>({ profileId }: { profileId: num
 }
 
 export function useProfileUser<T extends BaseRecord>({ userId, filterField, profileId }: { userId?: number, filterField: string, profileId?: number }): GetListResponse<T> | typeof defaultData {
-  const permanent: CrudFilter[] = [
-    { field: "expand", operator: "eq", value: "user" },
-  ];
+  const permanent: CrudFilter[] = [];
   if (filterField === "profile" && profileId !== undefined && profileId > 0) {
-    permanent.push({ field: "profile", operator: "eq", value: profileId });
+    permanent.push({ field: "id", operator: "eq", value: profileId });
   }
   if (filterField === "userId" && userId !== undefined && userId > 0) {
     permanent.push({ field: "user", operator: "eq", value: userId });
