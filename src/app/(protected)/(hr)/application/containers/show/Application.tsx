@@ -59,12 +59,12 @@ export const General: React.FC<{ applicationData: IApplication }> = ({ applicati
       <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ລະຫັດຟອມ"} content={tagId} />
       <Show.Row className="text-md text-gray-700 dark:text-gray-300" title={"ສະໝັກວັນທີ"} content={moment(createdOn).format("DD/MMM/YYYY")} />
       <div className="px-5 py-3 border-t border-gray-200 dark:border-gray-700">
-        <div className="text-md font-bold">{"ເຫດຜົນທີ່ຢາກເຮັດວຽກນໍາບໍລິລັດເຮົາ"}</div>
-        <div className="text-gray-600 dark:text-gray-300">{appliedReason || defaultText}</div>
+        <div className="text-md font-bold break-words">{"ເຫດຜົນທີ່ຢາກເຮັດວຽກນໍາບໍລິລັດເຮົາ"}</div>
+        <div className="text-gray-600 dark:text-gray-300 break-words">{appliedReason || defaultText}</div>
       </div>
       <div className="px-5 py-3">
-        <div className="text-md font-bold">{"ຄໍາປະຕິຍານຕົນ"}</div>
-        <div className="text-gray-600 dark:text-gray-300">{pledgeReason || defaultText}</div>
+        <div className="text-md font-bold break-words">{"ຄໍາປະຕິຍານຕົນ"}</div>
+        <div className="text-gray-600 dark:text-gray-300 break-words">{pledgeReason || defaultText}</div>
       </div>
     </div>
   );
