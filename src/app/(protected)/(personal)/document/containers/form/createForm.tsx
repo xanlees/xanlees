@@ -9,8 +9,7 @@ import { type MetaQuery, type FormAction } from "@refinedev/core";
 import { documentFormSchema } from "./validation";
 
 export const DocumentCreateForm: React.FC<{ id: number, action: FormAction }> = ({ id, action }) => {
-  const { form } = useDocumentFormEdit(id);
-
+  const { form } = useDocumentForm(id);
   return (
     <div className="flex justify-center">
       <div className="flex flex-col border rounded-2xl">
@@ -40,7 +39,7 @@ export const DocumentCreateForm: React.FC<{ id: number, action: FormAction }> = 
   );
 };
 
-export const useDocumentFormEdit = (id: number) => {
+export const useDocumentForm = (id: number) => {
   const { ...form } = useForm<z.infer<typeof documentFormSchema>>({
     resolver: zodResolver(documentFormSchema),
     refineCoreProps: {

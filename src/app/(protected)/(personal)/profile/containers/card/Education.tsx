@@ -6,6 +6,7 @@ import { CardView } from "@src/shadcn/components/table/card-view";
 import { Show } from "@src/shadcn/components/crud";
 import { useTable } from "@refinedev/react-table";
 import { type IEducation } from "../../../index";
+import { ButtonCreate } from "@src/common/elements/button";
 
 interface IGraduationId {
   degree?: string
@@ -21,10 +22,10 @@ export function EducationDetail({ profileId }: { profileId: number }): JSX.Eleme
   const { table } = useCardEducation(profileId);
   const educationData = table.options.data ?? [];
   if (educationData.length === 0) {
-    return <CardLayout ><div>ບໍ່ມີຂໍ້ມູນ</div></CardLayout>;
+    return <CardLayout profileId={profileId}><div className="px-5 py-2">ບໍ່ມີຂໍ້ມູນ</div></CardLayout>;
   }
   return (
-    <CardLayout>
+    <CardLayout profileId={profileId}>
       <CardView table={table} className="w-80 m-2 flex-col" showSearchBar={false} showPagination={false}>
         <CardView.Row
           header=""
@@ -54,13 +55,15 @@ export function EducationDetail({ profileId }: { profileId: number }): JSX.Eleme
   );
 }
 
-function CardLayout({ children }: { children: ReactNode }): JSX.Element {
+function CardLayout({ children, profileId }: { children: ReactNode, profileId: number }): JSX.Element {
+  const redirect = `/education/create/${profileId}`;
   return (
     <Card className="shadow-xl pb-3 rounded-lg w-full sm:w-80 bg-white dark:bg-gray-800 dark:text-white h-fit">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
           {"ຂໍ້ມູນການສຶກສາ"}
         </CardTitle>
+        <ButtonCreate redirect={redirect}/>
       </CardHeader>
       {children}
     </Card>
