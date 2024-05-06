@@ -4,9 +4,9 @@ import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 import { useProfileContext } from "../../..";
 import { FormMultipart, type IMessages, type ErrorMapMessage } from "@src/common/interface";
 import { profileSchema } from "./profileSchema";
-import { useEffect, useState } from "react";
+import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
 import { useCustomMutation } from "@refinedev/core";
-import { type CreateUserProfileProps, type UserProfile } from "@src/app/(protected)/user/interface";
+import { type UserProfile } from "@src/app/(protected)/user/interface";
 
 const defaultMessage = "ບໍ່ສາມາດສ້າງຂໍ້ມູນສ່ວນບຸຄົນໄດ້";
 
@@ -47,6 +47,13 @@ const errorMessages: ErrorMapMessage[] = [
   { val: "Profile with this fullname already exists.", message: "ຊື່ຂອງທ່ານມີໃນລະບົບແລ້ວ" },
   { val: "Profile with this phone number already exists.", message: "ເບີໂທນີ້ມີໃນລະບົບແລ້ວ" },
 ];
+
+export interface CreateUserProfileProps {
+  user: number
+  profile: number
+  shouldCreateProfile: boolean
+  setShouldCreateProfile: Dispatch<SetStateAction<boolean>>
+}
 
 const useCreateUserProfile = ({ user, profile, shouldCreateProfile, setShouldCreateProfile }: CreateUserProfileProps) => {
   const { mutate } = useCustomMutation<UserProfile>();

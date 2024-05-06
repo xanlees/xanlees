@@ -7,6 +7,8 @@ import { type IMessages } from "@src/common/interface";
 import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 import { errorMessages, userSchema, userSchemaEdit } from "../userSchema";
 import { useRouter } from "next/navigation";
+
+// eslint-disable-next-line max-lines-per-function
 export const useUserForm = ({ redirect, id, navigates }: { redirect: string, id: number, navigates: string }) => {
   const idEdit = id <= 0 && redirect === "user";
   const router = useRouter();
@@ -22,6 +24,10 @@ export const useUserForm = ({ redirect, id, navigates }: { redirect: string, id:
         if (redirect === "profile") {
           setUser(data.data.id ?? 0);
           router.push(`/profile/create/${data.data.id}`);
+        }
+        if (redirect === "profile" && id > 0) {
+          setUser(data.data.id ?? 0);
+          router.push("profile");
         }
         setShouldCreateProfile(true);
       },

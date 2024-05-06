@@ -33,10 +33,9 @@ import { workingHour } from "./containers/table-column/workingHour";
 import { type IEmployee } from "../../(career)/employee/interface";
 
 moment.locale("en");
-
 export default function UserProfileList(): JSX.Element {
   const [selected, setSelected] = useState<number>(0);
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   const checkInDate = selectedDate ? format(selectedDate, "yyyy-MM-dd") : "No date selected";
   const day = selectedDate ? format(selectedDate, "eeee") : "Monday";
   const { table } = useTableUserProfile({ branchId: selected });

@@ -19,19 +19,7 @@ export function EmployeeCard({ profileId, redirect }: { profileId: number, redir
           accessorKey="id"
           cell={({ row }) => {
             const rowData = row.original as IEmployeeExpand;
-            const isLatest = rowData.isLatest ? "ຕໍາແໜ່ງປະຈຸບັນ" : "ຕໍາແໜ່ງຜ່ານມາ";
-            const positionName = rowData.positionId?.name ?? "";
-            const sectorName = rowData.positionId?.sectorId?.name ?? "";
-            const branchName = rowData.branchId?.name ?? "";
-            const salary = rowData?.salary ?? "";
-            const joiningDate = rowData.joiningDate ? moment(rowData.joiningDate).format("DD/MMMM/YYYY") : "";
-            return (
-              <div className="w-80 -mx-40 ">
-                <Show.Row
-                  title={isLatest}
-                  content={<div className="text-md">{`${positionName}, ${sectorName}, ${branchName}, ເງິນເດືອນ${salary}, ວັນທີຮັບຕໍາແໜ່ງ ${joiningDate}`}</div>}/>
-              </div>
-            );
+            return <PositionDetails rowData={rowData} />;
           }}
         />
         {getActionsButton("employee")}
@@ -53,3 +41,30 @@ function CardLayout({ children, profileId, redirect }: { children: ReactNode, pr
     </Card>
   );
 }
+
+const PositionDetails = ({ rowData }: { rowData: IEmployeeExpand }) => {
+  const isLatest = rowData.isLatest ? "ຕໍາແໜ່ງປະຈຸບັນ" : "ຕໍາແໜ່ງຜ່ານມາ";
+  const positionName = rowData.positionId?.name ?? "";
+  const sectorName = rowData.positionId?.sectorId?.name ?? "";
+  const branchName = rowData.branchId?.name ?? "";
+  const salary = rowData?.salary?.toLocaleString() ?? "";
+  const joiningDate = rowData.joiningDate ? moment(rowData.joiningDate).format("DD/MMMM/YYYY") : "";
+  return (
+    <div className="w-80 -mx-40">
+      <Show.Row
+        title={isLatest}
+        content={<div className="text-md">
+          <div>
+            ຕໍາແໜ່ງ: {`${positionName}, ${sectorName}, ${branchName}`}
+          </div>
+          <div>
+            ເງິນເດືອນ: {`${salary}`}
+          </div>
+          <div>
+            ວັນທີຮັບຕໍາແໜ່ງ: {joiningDate}
+          </div>
+        </div>}
+      />
+    </div>
+  );
+};
