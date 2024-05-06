@@ -20,11 +20,12 @@ function findUniqueProfiles(ids: number[]): number[] {
   return Array.from(uniqueIDs);
 }
 
-export function useAttendance<T extends BaseRecord>({ userIds, checkInDate }: { userIds: number[], checkInDate: string }): GetListResponse<T> | typeof defaultData {
+export function useAttendance<T extends BaseRecord>({ userIds, checkInDate, pageSize }: { userIds: number[], checkInDate: string, pageSize: number }): GetListResponse<T> | typeof defaultData {
   const { data } = useList<T>({
     resource: "attendance",
     filters: [
       { field: "user", operator: "eq", value: userIds?.join() },
+      { field: "page_size", operator: "eq", value: pageSize },
       { field: "check_in_date", operator: "eq", value: checkInDate },
     ],
     errorNotification: false,

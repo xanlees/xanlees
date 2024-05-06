@@ -40,13 +40,14 @@ export default function UserProfileList(): JSX.Element {
   const day = selectedDate ? format(selectedDate, "eeee") : "Monday";
   const { table } = useTableUserProfile({ branchId: selected });
   const userProfile = table.options.data ?? [];
+  const pageSize = userProfile.length;
   const friendly = useUserFriendlyName();
   const userIds = useUserIDs(userProfile);
   const profileId = useProfileIDs(userProfile);
   const employeeIsLatestData = useEmployeeIsLatest({ profileId })?.data as unknown as IEmployee[];
   const branchId = useBranchId(employeeIsLatestData);
-  const attendanceData = useAttendance({ userIds, checkInDate })?.data as unknown as IAttendance[];
-  const workTimeSettingsData = useWorkTimeSettings({ branchId, day })?.data as unknown as IWorkTimeSettings[];
+  const attendanceData = useAttendance({ userIds, checkInDate, pageSize })?.data as unknown as IAttendance[];
+  const workTimeSettingsData = useWorkTimeSettings({ branchId, day, pageSize })?.data as unknown as IWorkTimeSettings[];
   return (
     <List showCreate={false}>
       <DateAndBranchSelector setSelectedDate={setSelectedDate} setSelected={setSelected}/>
