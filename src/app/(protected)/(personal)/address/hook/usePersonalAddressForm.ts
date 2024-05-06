@@ -17,7 +17,7 @@ export const usePersonalAddressForm = ({ status }: { status: string }) => {
       profile: 0,
       status,
       village: "",
-      province: "",
+      province: "ນະຄອນຫຼວງວຽງຈັນ",
       district: 0,
     },
     refineCoreProps: {

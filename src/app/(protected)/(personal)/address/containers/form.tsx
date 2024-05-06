@@ -58,7 +58,7 @@ export const Province: React.FC<{ form: IFormConfig }> = ({ form }) => {
   );
 };
 export const District: React.FC<{ form: IFormConfig }> = ({ form }) => {
-  const province = (form.watch != null) ? form.watch("province") as string : "";
+  const province = (form.watch != null) ? form.watch("province") as string : "ນະຄອນຫຼວງວຽງຈັນ";
   const district = useDistrictSelect({ province });
   return (
     <div className="w-full lg:w-80 ">
