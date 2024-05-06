@@ -22,7 +22,7 @@ export function EmployeeLateStatus({ employeeIsLatestData, workTimeSettingsData,
         const employee = employeeIsLatestData.find((emp) => emp.profileId === profileId);
         const workTimeSetting = workTimeSettingsData.find((wt) => wt.branch === employee?.branchId);
         if (!employee || !workTimeSetting) {
-          return <div>ມື້ນີ້ພັກວຽກ</div>;
+          return <Badge className="bg-gray-600">{"ມື້ນີ້ພັກວຽກ"}</Badge>;
         }
         const attendance = attendanceData.find((item) => item.user === userId);
         if (!attendance) {
@@ -33,26 +33,26 @@ export function EmployeeLateStatus({ employeeIsLatestData, workTimeSettingsData,
         const checkInStatus = getCheckInStatus(actualCheckIn, workTimeSetting);
         const checkOutStatus = getCheckOutStatus({ actualCheckOut, workTimeSetting, checkInTime: attendance.checkIn });
         return (
-          <>
-            <div>-{checkInStatus}</div>
+          <div className=" space-y-0.5">
+            <div>{checkInStatus}</div>
             <div>{checkOutStatus}</div>
-          </>
+          </div>
         );
       }}
     />
   );
 }
 
-function getCheckInStatus(actualCheckIn: Date, workTimeSetting: IWorkTimeSettings): string {
+function getCheckInStatus(actualCheckIn: Date, workTimeSetting: IWorkTimeSettings) {
   const scheduledCheckIn = new Date(`${actualCheckIn.toDateString()} ${workTimeSetting.checkInTime}`);
   const minutesLate = differenceInMinutes(actualCheckIn, scheduledCheckIn);
-  if (minutesLate <= 0) {
-    return "ເຂົ້າວຽກ: ຕົງເວລາ";
+  if (minutesLate <= Number(workTimeSetting.lateTime)) {
+    return <Badge className="bg-green-600">ເຂົ້າວຽກທັນເວລາ</Badge>;
   }
-  return `ເຂົ້າວຽກຊ້າ: ${formatTime(minutesLate)}`;
+  return <Badge className="bg-red-600">{"ເຂົ້າວຽກຊ້າ"}</Badge>;
 }
 
-function getCheckOutStatus({ actualCheckOut, workTimeSetting, checkInTime }: { actualCheckOut: Date | null, workTimeSetting: IWorkTimeSettings, checkInTime: string }): string {
+function getCheckOutStatus({ actualCheckOut, workTimeSetting, checkInTime }: { actualCheckOut: Date | null, workTimeSetting: IWorkTimeSettings, checkInTime: string }) {
   if (!actualCheckOut) {
     return "";
   }
@@ -61,14 +61,14 @@ function getCheckOutStatus({ actualCheckOut, workTimeSetting, checkInTime }: { a
   scheduledCheckOut.setMinutes(parseInt(workTimeSetting.checkOutTime.split(":")[1], 10));
   if (actualCheckOut > scheduledCheckOut) {
     const extraTime = differenceInMinutes(actualCheckOut, scheduledCheckOut);
-    return `OT: ${formatTime(extraTime)}`;
+    return <Badge className="bg-green-600">OT {formatTime(extraTime)}</Badge>;
   }
-  return "08:00:00";
+  return <Badge className="bg-red-600">ອອກກອນເວລາ</Badge>;
 }
 
 function formatTime(minutes: number): string {
   const minutesInAnHour = 60;
   const hours = Math.floor(minutes / minutesInAnHour);
   const minutesLeft = minutes % minutesInAnHour;
-  return `${hours.toString().padStart(2, "0")}:${minutesLeft.toString().padStart(2, "0")}:00`;
+  return `${hours > 0 ? `${hours} ຊົ່ວໂມງ ` : ""}${minutesLeft} ນາທີ`;
 }
