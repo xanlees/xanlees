@@ -20,7 +20,7 @@ export function PersonalAddressCreateForm({ isCurrent, profileId }: { isCurrent:
   );
 }
 
-export const usePersonalAddressCreateForm = ({ profileId, status }: { profileId: number, status: string }) => {
+const usePersonalAddressCreateForm = ({ profileId, status }: { profileId: number, status: string }) => {
   const router = useRouter();
   const { ...form } = useForm<{ id?: number }>({
     resolver: zodResolver(personalAddressSchema),

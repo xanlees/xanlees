@@ -7,8 +7,8 @@ import { type IMessages } from "@src/common/interface";
 import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 import { errorMessages, userSchema, userSchemaEdit } from "../userSchema";
 import { useRouter } from "next/navigation";
-export const useUserForm = (profile: number, navigates: string) => {
-  const idEdit = profile <= 0;
+export const useUserForm = ({ redirect, id, navigates }: { redirect: string, id: number, navigates: string }) => {
+  const idEdit = id <= 0 && redirect === "user";
   const router = useRouter();
   const [user, setUser] = useState<number>(0);
   const [shouldCreateProfile, setShouldCreateProfile] = useState(false);
@@ -19,11 +19,11 @@ export const useUserForm = (profile: number, navigates: string) => {
       resource: "user",
       redirect: false,
       onMutationSuccess: (data) => {
-        if (navigates === "profile") {
+        if (redirect === "profile") {
           setUser(data.data.id ?? 0);
+          router.push(`/profile/create/${data.data.id}`);
         }
         setShouldCreateProfile(true);
-        router.back();
       },
       errorNotification: (data: any) => {
         const responseData = (data as IMessages)?.response?.data;
@@ -35,13 +35,13 @@ export const useUserForm = (profile: number, navigates: string) => {
     },
     warnWhenUnsavedChanges: true,
   });
-  if (navigates === "profile") {
-    useCreateUserProfile({ user, profile, shouldCreateProfile, setShouldCreateProfile });
+  if (navigates === "profile" && id > 0) {
+    useCreateUserProfile({ user, id, shouldCreateProfile, setShouldCreateProfile });
   }
   return { form };
 };
 
-const useCreateUserProfile = ({ user, profile, shouldCreateProfile, setShouldCreateProfile }: CreateUserProfileProps) => {
+const useCreateUserProfile = ({ user, id, shouldCreateProfile, setShouldCreateProfile }: CreateUserProfileProps) => {
   const { mutate } = useCustomMutation<UserProfile>();
   useEffect(() => {
     if (user && shouldCreateProfile) {
@@ -50,10 +50,10 @@ const useCreateUserProfile = ({ user, profile, shouldCreateProfile, setShouldCre
         method: "post",
         values: {
           user,
-          profile,
+          profile: id,
         },
       });
       setShouldCreateProfile(false);
     }
-  }, [mutate, user, profile, shouldCreateProfile, setShouldCreateProfile]);
+  }, [mutate, user, id, shouldCreateProfile, setShouldCreateProfile]);
 };

@@ -20,7 +20,7 @@ export interface UserProfile {
 
 export interface CreateUserProfileProps {
   user: number
-  profile: number
+  id: number
   shouldCreateProfile: boolean
   setShouldCreateProfile: Dispatch<SetStateAction<boolean>>
 }

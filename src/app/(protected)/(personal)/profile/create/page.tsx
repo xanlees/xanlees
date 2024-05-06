@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 const ProfileCreate = () => {
   useEffect(() => {
-    redirect("/user/create");
+    redirect("/user/create/0/profile");
   }, []);
   return null;
 };

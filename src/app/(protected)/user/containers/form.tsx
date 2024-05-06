@@ -6,8 +6,8 @@ import { type IFormConfig } from "@src/common/interface";
 import { SwitchButton } from "@src/shadcn/components/form/switch";
 import { useUserForm } from "../hook/useUserForm";
 
-export const UserForm = ({ navigates = "profile", profile }: { navigates: string, profile?: number }) => {
-  const { form } = useUserForm(profile ?? 0, navigates);
+export const UserForm = ({ navigates = "profile", id, redirect }: { navigates: string, id: number, redirect: string }) => {
+  const { form } = useUserForm({ id, navigates, redirect });
   const groups = useSelect<IGroup>({ resource: "group", optionLabel: "name", optionValue: "name" });
   return (
     <div className=" w-full sm:w-[850px]">

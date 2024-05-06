@@ -53,7 +53,7 @@ function StatusColumn() {
   return (
     <Table.Column
       accessorKey="type"
-      header={"ສາເຫດອອກວຽກ"}
+      header={"' ,h'"}
       id="type"
       cell={(props) => {
         const value = props.getValue() as unknown as string;
