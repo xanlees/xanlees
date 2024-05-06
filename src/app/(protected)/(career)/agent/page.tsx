@@ -13,8 +13,8 @@ import { FullNameColumn, ProfileStatus } from "../../(personal)/profile/containe
 export default function ProfileList(): JSX.Element {
   const { table } = useTableConfig("AGENT,BLOCK");
   const profile = table.options.data ?? [];
-  const positionId = useLatestPositionId(profile);
-  const positionData = useLatestPositionDetail(positionId as number[], profile) as { data: { data: IPosition[] } };
+  const positionId = useLatestPositionId(profile) as number[];
+  const positionData = useLatestPositionDetail(positionId, profile) as { data: { data: IPosition[] } };
   const friendly = useUserFriendlyName();
   return (
     <List>
@@ -22,7 +22,7 @@ export default function ProfileList(): JSX.Element {
         {getSelectColumn(friendly)}
         {FullNameColumn}
         {PhoneNumberColumn("phoneNumber")}
-        {getLatestPosition(positionId as number[], positionData.data)}
+        {getLatestPosition({ positionId, positionData: positionData.data, title: " ໜ້າວຽກ" })}
         {GenderColumn("gender")}
         {ProfileStatus()}
         {getActionsColumnAgent()}

@@ -12,6 +12,9 @@ export default function Home(): JSX.Element {
     if (userGroup === "admin") {
       userProfileResource = "user-profile";
     }
+    if (userGroup === "staff") {
+      userProfileResource = "user-profile";
+    }
   }
 
   return (

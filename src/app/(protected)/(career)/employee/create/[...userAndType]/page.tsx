@@ -20,14 +20,27 @@ export default function EmployeeCreate({ params }: { params?: { userAndType?: st
       <div className="flex justify-center">
         <div className="flex flex-col border shadow-2xl rounded-2xl w-[700px]">
           <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
-            ຟອມສ້າງຕໍາແໜ່ງໃຫ້ພະນັກງານ
+            {getTypeDisplay(type)}
           </div>
           <EmployeeForm redirect={redirect} type={type} profileId={profileId} />
-          <div className="flex w-full p-3">
-            <button className="italic text-blue-500 underline" onClick={handleButtonClick}> *ຊອກຕໍາແໜ່ງບໍ່ເຫັນ, ກົດທີ່ນີ້</button>
-          </div>
+          {type === "LOTTERY"
+            ? ""
+            : (
+              <div className="flex w-full p-3">
+                <button className="italic text-blue-500 underline" onClick={handleButtonClick}> *ຊອກຕໍາແໜ່ງບໍ່ເຫັນ, ກົດທີ່ນີ້</button>
+              </div>)}
         </div>
       </div>
     </Create>
   );
 }
+const getTypeDisplay = (type: string): string => {
+  switch (type) {
+    case "LOTTERY":
+      return "ຟອມສ້າງຕໍາແໜ່ງໃຫ້ແມ່ຫວຍ/ຄົນຂາຍ";
+    case "OFFICE":
+      return "ຟອມສ້າງຕໍາແໜ່ງໃຫ້ພະນັກງານ";
+    default:
+      return "";
+  }
+};

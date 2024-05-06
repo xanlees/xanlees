@@ -4,9 +4,9 @@ import { Badge } from "@src/shadcn/elements";
 import type { IPosition } from "@career";
 import { type IProfile } from "../../interface/model";
 
-export function getLatestPosition(positionId: number[], positionData: { data: IPosition[] }) {
+export function getLatestPosition({ positionId, positionData, title }: { positionId: number[], positionData: { data: IPosition[] }, title: string }) {
   return <Table.Column
-    header="ຕຳແໜ່ງ"
+    header={title}
     id="employee"
     accessorKey="employee"
     cell={({ row }) => {

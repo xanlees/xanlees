@@ -37,17 +37,17 @@ export const PositionForm = ({ form, fields, append, remove, position, profile }
   return (
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     <DynamicForm form={form} fields={fields} append={append} remove={remove}
-      name="employee" label="ເພີ່ມຕຳແໜ່ງ" className="flex flex-wrap gap-2" classNameButton="mt-7 w-20" defaultConfig={{ profileId: profile }}>
-      <ArrayField {...form} name="positionId" label="ຕໍາແໜ່ງ">
+      name="employee" label="ໜ້າວຽກ" className="flex flex-wrap gap-2" classNameButton="mt-7 w-20" defaultConfig={{ profileId: profile }}>
+      <ArrayField {...form} name="positionId" label="ໜ້າວຽກ">
         <Form.Combobox {...(position)} className="w-72" />
       </ArrayField>
-      <ArrayField {...form} name="joiningDate" label="ວັນທີ ເດືອນປີ ເຂົ້າວຽກ">
+      <ArrayField {...form} name="joiningDate" label="ວັນທີເດືອນປີຮັບໜ້າວຽກ ">
         <DatePickerField className="w-72" />
       </ArrayField>
       <ArrayField {...form} name="isLatest" label="">
         <div className="flex gap-2 pt-5">
           <Input placeholder="isLatest" className="block w-5 h-5 rounded-lg" type="checkbox" defaultValue={"false"}/>
-          <Label className="pt-2.5 ">{"ຕໍາແໜ່ງລ່າ​ສຸດ"}</Label>
+          <Label className="pt-2.5 ">{"ໜ້າວຽກລ່າ​ສຸດ"}</Label>
         </div>
       </ArrayField>
     </DynamicForm>
