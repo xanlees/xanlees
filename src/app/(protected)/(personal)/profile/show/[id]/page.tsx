@@ -21,7 +21,6 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
   const { data: profileData } = useProfileUser<IProfile>({ profileId: profileId ?? 0, filterField: "profile" });
   const redirect = `/employee/create/${profileId}/OFFICE/profile`;
   const { table } = useUserCard({ profileId: 35, filterField: "profile" });
-
   return (
     <Show>
       <div className="mt-5 flex flex-wrap justify-between gap-2">
