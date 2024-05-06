@@ -45,8 +45,8 @@ export function UserCard({ profileId, table }: UserCardProps): JSX.Element {
               <Show.Row
                 className=""
                 content={<div>
-                  <div className="-mx-40">{`ບັນຊີ: ${username}`}</div>
-                  <div className="-mx-40">{"ລະງັບບັນຊີ:"} {statusBadge(isActive)}</div>
+                  <div className="-mx-40">{`ບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບ: ${username}`}</div>
+                  <div className="-mx-40">{"ລະງັບບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບ:"} {statusBadge(isActive)}</div>
                   <div className="-mx-40">{`ສ້າງວັນທີ: ${moment(dateJoined).format("DD/MMM/YYYY")}`}</div>
                 </div>}
               />
@@ -65,7 +65,7 @@ function CardLayout({ children, profileId, disabled }: { children: ReactNode, pr
     <Card className="w-full pb-3 bg-white rounded-lg shadow-xl sm:w-80 dark:bg-gray-800 dark:text-white h-fit">
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
-          {"ຂໍ້ມູນບັນຊີ"}
+          {"ຂໍ້ມູນບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບ"}
         </CardTitle>
         <ButtonCreate redirect={redirect} disabled={disabled}/>
       </CardHeader>

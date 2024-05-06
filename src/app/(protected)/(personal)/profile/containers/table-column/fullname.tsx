@@ -1,6 +1,7 @@
 import { Table, type TableFilterProps } from "@/shadcn/components/table";
 import { type UserProfileAccount } from "../../interface/model";
 import moment from "moment";
+import { Badge } from "@src/shadcn/elements";
 
 export const FullNameColumn = (
   <Table.Column
@@ -23,7 +24,7 @@ export const FullNameColumn = (
 export function UserAccountColumn(userProfileData: UserProfileAccount[]) {
   return (
     <Table.Column
-      header="ບັນຊີ"
+      header="ບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບ"
       id="id"
       accessorKey="id"
       cell={(props) => {
@@ -46,3 +47,28 @@ export const DateOfBirth = <Table.Column
     }
     return "";
   }} />;
+
+export function ProfileStatus() {
+  return <Table.Column
+    header="ລະງັບບັນຊີ"
+    id="type"
+    accessorKey="type"
+    cell={({ row }) => {
+      const type = row.original.type as unknown as string;
+      return (<div className="-mx-2">
+        <Badge className="bg-gray-400">{getTypeDisplayText(type)}</Badge>
+      </div>
+      );
+    }} />;
+}
+
+const getTypeDisplayText = (type: string): string => {
+  switch (type) {
+    case "AGENT":
+      return "ປົກກະຕິ";
+    case "BLOCK":
+      return "ບລັອກ";
+    default:
+      return "";
+  }
+};

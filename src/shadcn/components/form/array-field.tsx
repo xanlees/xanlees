@@ -5,16 +5,16 @@ export const ArrayField = ({ ...props }) => {
     const fieldName = `${props.array_name}.${props.array_index}.${props.name}`
     return (
         <FormField
-            key={props.array_index}
-            control={props.control}
+            key={props?.array_index}
+            control={props?.control}
             name={fieldName}
             render={({ field }) => (
                 <FormItem className="flex flex-col ">
-                    <FormLabel>{props.label}</FormLabel>
+                    <FormLabel>{props?.label}</FormLabel>
                     <FormControl> 
-                        {cloneElement(props.children, {
+                        {cloneElement(props?.children, {
                             ...field,
-                            ...props.children.props
+                            ...props?.children?.props
                         })}
                     </FormControl>
                     <FormMessage className="text-red-500 capitalize" />

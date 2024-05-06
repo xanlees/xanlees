@@ -3,7 +3,7 @@ import { type IFormConfig } from "../../interface";
 import { Input } from "@src/shadcn/elements";
 
 export const UsernameInput = (formConfig: IFormConfig) => (
-  <Form.Field {...formConfig.form} name="username" label="ບັນຊີ" require={false}>
+  <Form.Field {...formConfig.form} name="username" label="ບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບ" require={false}>
     <Input placeholder="Username" />
   </Form.Field>
 );

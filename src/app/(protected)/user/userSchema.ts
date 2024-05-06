@@ -4,7 +4,7 @@ import * as z from "zod";
 export const userSchema = z
   .object({
     username: z.string().min(2, {
-      message: "ກະລຸນາປ້ອນບັນຊີ",
+      message: "ກະລຸນາປ້ອນບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບ",
     }),
     password: z.string().refine(
       (value) => {
@@ -20,7 +20,7 @@ export const userSchema = z
     ),
     confirmPassword: z.string().min(2, { message: "ກະລຸນາປ້ອນຢືນ​ຢັນລະຫັດຜ່ານ" }),
     isActive: z.boolean().optional(),
-    groups: z.string().min(1, { message: "ກະລຸນາເລືອກສິດຂອງບັນຊີໃຊ້ງານລະບົບ" }),
+    groups: z.string().min(1, { message: "ກະລຸນາເລືອກສິດຂອງບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບໃຊ້ງານລະບົບ" }),
   })
   .refine((value) => value.password === value.confirmPassword, {
     message: "ລະຫັດຜ່ານ ແລະ ຢືນ​ຢັນລະຫັດຜ່ານບໍ່ກົງກັນ",
@@ -35,7 +35,7 @@ export const userSchema = z
 
 export const userSchemaEdit = z.object({
   username: z.string().min(2, {
-    message: "ກະລຸນາປ້ອນບັນຊີ",
+    message: "ກະລຸນາປ້ອນບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບ",
   }),
   isActive: z.boolean().optional(),
   password: z.string().optional(),
@@ -61,7 +61,7 @@ export const userSchemaEdit = z.object({
 export const errorMessages: ErrorMapMessage[] = [
   {
     val: "A user with that username already exists.",
-    message: "ຊື່ບັນຊີນີ້ມີໃນລະບົບແລ້ວ",
+    message: "ຊື່ບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບນີ້ມີໃນລະບົບແລ້ວ",
   },
   {
     val: "Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters.",

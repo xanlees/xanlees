@@ -25,8 +25,8 @@ export const UserForm = ({ navigates = "profile", id, redirect }: { navigates: s
 };
 
 const UsernameInput = (form: IFormConfig) => (
-  <Form.Field {...form} name="username" label="ຊື່ບັນຊີເຂົ້າໃຊ້ງານລະບົບ">
-    <Input placeholder="ຊື່ບັນຊີເຂົ້າໃຊ້ງານລະບົບ" />
+  <Form.Field {...form} name="username" label="ຊື່ບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບເຂົ້າໃຊ້ງານລະບົບ">
+    <Input placeholder="ຊື່ບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບເຂົ້າໃຊ້ງານລະບົບ" />
   </Form.Field>
 );
 
@@ -44,7 +44,7 @@ const Password2ndInput = (form: IFormConfig) => (
 
 const GroupSection = ({ form, groups }: { form: IFormConfig, groups: any }) => (
   <div className="inline-flex flex-row items-center justify-start gap-x-4">
-    <Form.Field {...form} name="groups" label="ສິດຂອງບັນຊີໃຊ້ງານລະບົບ">
+    <Form.Field {...form} name="groups" label="ສິດຂອງບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບໃຊ້ງານລະບົບ">
       <Form.Combobox
         {...(groups)}
       />

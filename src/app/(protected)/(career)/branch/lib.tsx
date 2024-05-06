@@ -21,7 +21,7 @@ export function getSectorTypeName(type: string) {
     case "Department":
       return "ພະແນກ";
     case "Unit":
-      return "ໜ່ວຍບໍລິການ";
+      return "ໜ່ວຍ";
     case "Sector":
       return "ຂະແໜງ";
     default:

@@ -13,7 +13,7 @@ export const useSectorForm = ({ type }: { type: string }) => {
     defaultValues: {
       branchId: 0,
       name: "",
-      type: "",
+      type: "Unit",
     },
     refineCoreProps: {
       resource: "sector",
@@ -28,7 +28,7 @@ export const useSectorForm = ({ type }: { type: string }) => {
     warnWhenUnsavedChanges: true,
   });
   if (type === "LOTTERY") {
-    useCreateUserProfile({ sectorID, name: "ຫົວໜ່ວຍ", createPosition, setCreatePosition });
+    useCreateUserProfile({ sectorID, name: "ຫົວໜ້າໜ່ວຍ", createPosition, setCreatePosition });
     useCreateUserProfile({ sectorID, name: "ຄົນຂາຍເລກ", createPosition, setCreatePosition });
   }
   return { form };

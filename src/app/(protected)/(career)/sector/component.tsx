@@ -82,7 +82,7 @@ const Type = ({ form, type }: { form: IFormConfig, type: string }) => {
 const getTypeOptions = (type: string) => {
   switch (type) {
     case "LOTTERY":
-      return { options: [{ label: "ໜ່ວຍບໍລິການ", value: "Unit" }] };
+      return { options: [{ label: "ໜ່ວຍ", value: "Unit" }] };
     case "OFFICE":
       return { options: typeList.options.filter((option) => option.value !== "LOTTERY") };
     default:
@@ -94,6 +94,6 @@ const typeList = {
   options: [
     { label: "ຂະແໜງ", value: "Sector" },
     { label: "ພະແນກ", value: "Department" },
-    { label: "ໜ່ວຍບໍລິການ", value: "Unit" },
+    { label: "ໜ່ວຍ", value: "Unit" },
   ],
 };

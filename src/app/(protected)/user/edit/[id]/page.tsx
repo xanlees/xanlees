@@ -10,7 +10,7 @@ export default function UserEdit(): JSX.Element {
       <div className="flex justify-center">
         <div className="flex flex-col border rounded-2xl">
           <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
-            ຟອມແກ້ໄຂຂໍ້ມູນບັນຊີ
+            ຟອມແກ້ໄຂຂໍ້ມູນບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບ
           </div>
           <UserForm navigates={"profile"} />
         </div>

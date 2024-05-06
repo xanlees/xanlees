@@ -8,10 +8,10 @@ import { getLatestPosition, type IPosition } from "@career";
 import { useLatestPositionDetail, useLatestPositionId } from "../../(personal)/profile/hooks";
 import { getActionsColumnAgent } from "./containers/column/getActionsColumnAgent";
 import { useTableConfig } from "@personal";
-import { FullNameColumn } from "../../(personal)/profile/containers/table-column";
+import { FullNameColumn, ProfileStatus } from "../../(personal)/profile/containers/table-column";
 
 export default function ProfileList(): JSX.Element {
-  const { table } = useTableConfig("AGENT");
+  const { table } = useTableConfig("AGENT,BLOCK");
   const profile = table.options.data ?? [];
   const positionId = useLatestPositionId(profile);
   const positionData = useLatestPositionDetail(positionId as number[], profile) as { data: { data: IPosition[] } };
@@ -24,6 +24,7 @@ export default function ProfileList(): JSX.Element {
         {PhoneNumberColumn("phoneNumber")}
         {getLatestPosition(positionId as number[], positionData.data)}
         {GenderColumn("gender")}
+        {ProfileStatus()}
         {getActionsColumnAgent()}
       </Table>
     </List>

@@ -33,7 +33,7 @@ export const useUserForm = ({ redirect, id, navigates }: { redirect: string, id:
       },
       errorNotification: (data: any) => {
         const responseData = (data as IMessages)?.response?.data;
-        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage: "ບໍ່ສາມາດສ້າງບັນຊີໃໝ່ໄດ້" });
+        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage: "ບໍ່ສາມາດສ້າງບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບໃໝ່ໄດ້" });
       },
       successNotification: () => {
         return { message: "User account created successfully", type: "success", description: "" };

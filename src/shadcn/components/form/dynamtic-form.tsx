@@ -11,8 +11,8 @@ export const DynamicForm = ({ ...props }) => {
                 return (
                     <div key={index}>
                         <div className={cn("flex gap-1 ",className)} >
-                            {Children.map(props.children, (child) => {
-                                return cloneElement(child, { ...child.props, ...props.form, ...{ array_name: props.name, array_index: index } });
+                            {Children.map(props?.children, (child) => {
+                                return cloneElement(child, { ...child?.props, ...props?.form, ...{ array_name: props.name, array_index: index } });
                             })}
                             <Button
                                 className={cn("my-2 bg-red-500",classNameButton)}

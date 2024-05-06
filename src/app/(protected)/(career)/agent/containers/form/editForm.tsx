@@ -18,6 +18,7 @@ export const AgentProfileEditForm: React.FC<{ id: number }> = ({ id }) => {
       <FormFieldContainer form={{ form }} isEmployee={true} />
       <InputUniqueNumber fields={fields} append={append} remove={remove} form={{ form }}/>
       <ContainerFooter form={{ form }} fields={fields} append={append} remove={remove} />
+      <ProfileType form={{ form }}/>
     </Form>
   );
 };
@@ -76,4 +77,24 @@ export const InputUniqueNumber: React.FC<ExtendedFieldArrayProps> = ({ append, f
       </div>
     </div>
   );
+};
+export const ProfileType: React.FC<CommonProps & { isEmployee?: boolean }> = ({ form, isEmployee }) => {
+  return (
+    <div className="w-full lg:w-80 ">
+      <div className="relative w-full mb-3">
+        <Form.Field {...form} name="type" label="ສະຖານະພະນັກງານ">
+          <Form.Combobox
+            {...(profileTypeList as any)}
+            className="w-full lg:w-80"
+          />
+        </Form.Field>
+      </div>
+    </div>
+  );
+};
+export const profileTypeList = {
+  options: [
+    { label: "ປົກກະຕິ", value: "AGENT" },
+    { label: "ບລັອກ", value: "BLOCK" },
+  ],
 };
