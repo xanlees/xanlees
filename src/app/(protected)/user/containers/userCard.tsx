@@ -60,7 +60,7 @@ export function UserCard({ profileId, table }: UserCardProps): JSX.Element {
 }
 
 function CardLayout({ children, profileId, disabled }: { children: ReactNode, profileId?: number, disabled?: boolean }): JSX.Element {
-  const redirect = `/user/create/${profileId}`;
+  const redirect = `/user/create/${profileId}/profile`;
   return (
     <Card className="w-full pb-3 bg-white rounded-lg shadow-xl sm:w-80 dark:bg-gray-800 dark:text-white h-fit">
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">

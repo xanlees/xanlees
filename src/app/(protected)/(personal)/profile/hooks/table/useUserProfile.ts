@@ -10,12 +10,13 @@ export function useProfileIds(profile: IProfile[]) {
   return [];
 }
 
-export function UseUserProfile<T extends BaseRecord>({ profileIds }: { profileIds: number[] }): GetListResponse<T> | typeof defaultData {
+export function UseUserProfile<T extends BaseRecord>({ profileIds, pageSize }: { profileIds: number[], pageSize: number }): GetListResponse<T> | typeof defaultData {
   const { data } = useList<T>({
     resource: "profile/user-profile",
     filters: [
       { field: "profile", operator: "eq", value: profileIds?.join() },
       { field: "expand", operator: "eq", value: "user" },
+      { field: "page_size", operator: "eq", value: pageSize },
     ],
     errorNotification: false,
   });

@@ -21,7 +21,7 @@ export function workingHour({ attendanceData }: { attendanceData: IAttendance[] 
         const minutes = duration.minutes();
         const seconds = duration.seconds();
         const formattedDuration = `${hours}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-        return <div>{formattedDuration} {"ຊົ່ວ​ໂມງ​"}</div>;
+        return <div>{formattedDuration}</div>;
       }}
     />
   );

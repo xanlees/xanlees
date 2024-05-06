@@ -34,8 +34,8 @@ export function EmployeeLateStatus({ employeeIsLatestData, workTimeSettingsData,
         const checkOutStatus = getCheckOutStatus({ actualCheckOut, workTimeSetting, checkInTime: attendance.checkIn });
         return (
           <>
-            <div>ເຂົ້າວຽກ: {checkInStatus}</div>
-            <div>ເລີກວຽກ: {checkOutStatus}</div>
+            <div>-{checkInStatus}</div>
+            <div>{checkOutStatus}</div>
           </>
         );
       }}
@@ -47,9 +47,9 @@ function getCheckInStatus(actualCheckIn: Date, workTimeSetting: IWorkTimeSetting
   const scheduledCheckIn = new Date(`${actualCheckIn.toDateString()} ${workTimeSetting.checkInTime}`);
   const minutesLate = differenceInMinutes(actualCheckIn, scheduledCheckIn);
   if (minutesLate <= 0) {
-    return "ຕົງເວລາ";
+    return "ເຂົ້າວຽກ: ຕົງເວລາ";
   }
-  return `${formatTime(minutesLate)} ຊ້າ`;
+  return `ເຂົ້າວຽກຊ້າ: ${formatTime(minutesLate)}`;
 }
 
 function getCheckOutStatus({ actualCheckOut, workTimeSetting, checkInTime }: { actualCheckOut: Date | null, workTimeSetting: IWorkTimeSettings, checkInTime: string }): string {
@@ -63,13 +63,12 @@ function getCheckOutStatus({ actualCheckOut, workTimeSetting, checkInTime }: { a
     const extraTime = differenceInMinutes(actualCheckOut, scheduledCheckOut);
     return `OT: ${formatTime(extraTime)}`;
   }
-  const earlyLeave = differenceInMinutes(scheduledCheckOut, actualCheckOut);
-  return `ອອກກອນເວລາ: ${formatTime(earlyLeave)}`;
+  return "08:00:00";
 }
 
 function formatTime(minutes: number): string {
-  const minutesInHour = 60;
-  const hours = Math.floor(minutes / minutesInHour);
-  const minutesLeft = minutes % minutesInHour;
-  return `${hours > 0 ? `${hours} ຊົ່ວໂມງ ` : ""}${minutesLeft} ນາທີ`;
+  const minutesInAnHour = 60;
+  const hours = Math.floor(minutes / minutesInAnHour);
+  const minutesLeft = minutes % minutesInAnHour;
+  return `${hours.toString().padStart(2, "0")}:${minutesLeft.toString().padStart(2, "0")}:00`;
 }

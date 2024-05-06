@@ -17,7 +17,7 @@ import React, { useState } from "react";
 export function CheckOut({ attendanceData }: { attendanceData: IAttendance[] }) {
   return (
     <Table.Column
-      header="ເວລາປໍ້າເຂົ້າ"
+      header="ເວລາປໍ້າອອກ"
       id="user"
       accessorKey="user"
       cell={({ row }) => {

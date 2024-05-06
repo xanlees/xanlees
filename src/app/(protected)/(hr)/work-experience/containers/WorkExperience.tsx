@@ -22,7 +22,7 @@ export const WorkExperience: React.FC<{ workExperienceData: IWorkExperience[] | 
           <Show.Row icon={<Building />} className="text-md text-gray-700 dark:text-gray-300 break-words" title="ບໍລິສັດ" content={item.company ?? ""} />
           <Show.Row icon={<Sofa />} className="text-md text-gray-700 dark:text-gray-300 break-words" title="ຕໍາແໜງ" content={item.position ?? ""} />
           <Show.Row icon={<Clock />} className="text-md text-gray-700 dark:text-gray-300 break-words" title="ໄລຍະເວລາ" content={item.time ?? ""} />
-          <Show.Row icon={<DollarSign />} className="text-md text-gray-700 dark:text-gray-300 break-words" title="ເງິນເດືອນ" content={`${item.salary?.toLocaleString() ?? ""} ກີບ`} />
+          <Show.Row icon={<DollarSign />} className="text-md text-gray-700 dark:text-gray-300 break-words" title="ເງິນເດືອນ" content={`${Number(item.salary)?.toLocaleString() ?? ""} ກີບ`} />
           <Label className="block p-2 px-5 leading-relaxed hover:text-blue-500">
             <div className=" flex flex-wrap">
               <div className="ml-1 flex ">
