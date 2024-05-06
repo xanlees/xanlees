@@ -24,13 +24,14 @@ export default function ProfileShow(): JSX.Element {
   const user = getUserSession()?.user?.id ?? 0;
   const { data: profileData } = useProfileUser<IProfile>({ userId: user ?? 0, filterField: "user" });
   const profileId = Number(profileData?.[0]?.id ?? 0) ?? 0;
+  const disabled = profileId > 0;
   const redirect = `/employee/create/${profileId}/OFFICE/profile`;
   const { table } = useUserCard({ userId: user, filterField: "user" });
   return (
     <Show breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />} showButtonEdit={false} showButtonDelete={false} >
       <div className="mt-5 flex flex-wrap justify-between gap-2">
         <div className="">
-          <ProfileDetail profileData={profileData} visible={false} user={user}/>
+          <ProfileDetail profileData={profileData} visible={false} user={user} disabled={disabled}/>
         </div>
         <div className="space-y-2">
           <UserCard profileId={user ?? 0} filterField={"user"} table={table as unknown as UseTableReturnType<IUser, HttpError>}/>

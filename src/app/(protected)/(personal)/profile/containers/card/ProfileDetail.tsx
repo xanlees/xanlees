@@ -8,7 +8,7 @@ import moment from "moment";
 import { type IProfile } from "../../interface/model";
 import { ProfileImageDialog } from "./ProfileImageDialog";
 import { ButtonCreate } from "@src/common/elements/button";
-export function ProfileDetail({ profileData, visible = false, user }: { profileData: IProfile[], visible?: boolean, user?: number }): JSX.Element {
+export function ProfileDetail({ profileData, visible = false, user, disabled }: { profileData: IProfile[], visible?: boolean, user?: number, disabled: boolean }): JSX.Element {
   const { fullname, nickname, phoneNumber, gender, birthday, maritalStatus, profilePicture, uniqueNumber, typeOfUniqueNumber } = profileData?.[0] ?? {};
   const age = calculateAge(birthday);
   const redirect = `/profile/create/${user}`;
@@ -16,7 +16,7 @@ export function ProfileDetail({ profileData, visible = false, user }: { profileD
     <Card className="pb-3 bg-white rounded-lg shadow-xl  w-full sm:w-80 dark:bg-gray-800 dark:text-white my-2 sm:my-0">
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800">ຂໍ້ມູນສ່ວນບຸກຄົນ</CardTitle>
-        <ButtonCreate redirect={redirect} />
+        <ButtonCreate redirect={redirect} disabled={disabled} />
       </CardHeader>
       <CardContent className=" justify-center mx-auto">
         <ProfileImage imageUrl={profilePicture ?? ""}/>
