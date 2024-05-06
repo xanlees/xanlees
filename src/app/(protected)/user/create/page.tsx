@@ -9,9 +9,9 @@ export default function UserCreate({ params }: { params: { id: number } }): JSX.
       <div className="flex justify-center">
         <div className="flex flex-col border rounded-2xl">
           <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
-            ຟອມສ້າງບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບ
+            ຟອມສ້າງບັນຊີເຂົ້າລະບົບ
           </div>
-          <UserForm navigates={"user"} />
+          <UserForm navigates={"user"} id={0} redirect={""} />
         </div>
       </div>
     </Create>

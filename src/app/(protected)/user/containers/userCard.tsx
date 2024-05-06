@@ -45,7 +45,7 @@ export function UserCard({ profileId, table }: UserCardProps): JSX.Element {
               <Show.Row
                 className=""
                 content={<div>
-                  <div className="-mx-40">{`ບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບ: ${username}`}</div>
+                  <div className="-mx-40">{`ບັນຊີເຂົ້າລະບົບ: ${username}`}</div>
                   <div className="-mx-40">{"ລະງັບບັນຊີເຂົ້າ​ສູ່​ລະ​ບົບ:"} {statusBadge(isActive)}</div>
                   <div className="-mx-40">{`ສ້າງວັນທີ: ${moment(dateJoined).format("DD/MMM/YYYY")}`}</div>
                 </div>}

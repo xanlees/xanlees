@@ -12,7 +12,7 @@ export const useFormConfig = ({ type, profile, redirect }: { type?: string, prof
   if (redirect === "agent") {
     redirectPatch = "/agent";
   } else if (redirect === "user") {
-    redirectPatch = `/user/create/${profile}`;
+    redirectPatch = `/user/create/${profile}/profile`;
   } else if (redirect === "profile") {
     redirectPatch = "/profile";
   }
