@@ -25,7 +25,7 @@ export default function ApplicationShow({ params }: Readonly<{ params: { id: num
     <Show showButtonEdit={false}>
       <div className="flex flex-wrap justify-between gap-2 mt-5">
         <div className="space-y-2 w-80">
-          <ProfileDetail profileData={profileData} visible={false} />
+          <ProfileDetail profileData={profileData} visible={false} user={0} disabled={false}/>
           <Physical physicalData={physicalData as IPhysical[]} />
         </div>
         <div className="space-y-2 w-80">

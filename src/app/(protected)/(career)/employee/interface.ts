@@ -16,6 +16,7 @@ export interface IEmployeeExpand {
     id: number
     type: string
   }
+  salary: number
   isLatest: boolean
   profileId: number
   joiningDate: string

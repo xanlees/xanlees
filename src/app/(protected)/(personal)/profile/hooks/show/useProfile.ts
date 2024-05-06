@@ -5,7 +5,6 @@ export function useProfile<T extends BaseRecord>({ profileId }: { profileId: num
     resource: "profile",
     filters: [
       { field: "id", operator: "eq", value: profileId },
-      { field: "user", operator: "eq", value: "user" },
     ],
     errorNotification: false,
   });
