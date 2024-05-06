@@ -5,15 +5,10 @@ import { Edit } from "@/shadcn/components/crud";
 import { ProfileEditForm } from "../../containers/form/editForm";
 
 const breadcrumbs = [
-  { label: "Employee", href: "/profile" },
-  { label: "Create" },
+  { label: "ຂໍ້ມູນສ່ວນບຸກຄົນ", href: "/my-profile" },
 ];
 
-export default function ProfileEdit({
-  params,
-}: {
-  params: { id: number }
-}): JSX.Element {
+export default function ProfileEdit({ params }: { params: { id: number } }): JSX.Element {
   return (
     <Edit title="ຟອມສ້າງພະນັກງານ" resource="profile" breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}>
       <div className="flex justify-center ">

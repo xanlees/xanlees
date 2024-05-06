@@ -13,7 +13,7 @@ export const applicationFromStep = [
   {
     stepLabel: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
     stepDescription: (
-      <ProfileForm isEmployee={false} type="EMPLOYEE_CANDIDATE" />
+      <ProfileForm isEmployee={false} type="EMPLOYEE_CANDIDATE" user={0} />
     ),
     completed: false,
   },

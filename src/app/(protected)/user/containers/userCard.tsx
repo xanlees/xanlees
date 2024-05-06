@@ -1,23 +1,31 @@
 "use client";
+import { Edit, Trash2 } from "lucide-react";
+import moment from "moment";
 import React, { type ReactNode } from "react";
-import { Card, CardHeader, CardTitle } from "@src/shadcn/elements";
-import { Show } from "@src/shadcn/components/crud";
+import { type HttpError } from "@refinedev/core";
+import { type UseTableReturnType } from "@refinedev/react-table";
 import { type IUser } from "@src/app/(protected)/user/interface";
 import { statusBadge } from "@src/common/containers/column/statusBadge";
-import moment from "moment";
-import { CardView } from "@src/shadcn/components/table/card-view";
-import { Table } from "@src/shadcn/components/table";
-import { Edit, Trash2 } from "lucide-react";
 import { ButtonCreate } from "@src/common/elements/button";
-import { useUserCard } from "../hook/useUserCard";
+import { Show } from "@src/shadcn/components/crud";
+import { Table } from "@src/shadcn/components/table";
+import { CardView } from "@src/shadcn/components/table/card-view";
+import { Card, CardHeader, CardTitle } from "@src/shadcn/elements";
+
 interface Props {
   id: number
   user: IUser
   profile: number
 }
 
-export function UserCard({ profileId, filterField, userId }: { profileId: number, filterField: string, userId: number }): JSX.Element {
-  const { table } = useUserCard(profileId, filterField);
+interface UserCardProps {
+  profileId?: number
+  filterField: string
+  userId?: number
+  table: UseTableReturnType<IUser, HttpError>
+}
+
+export function UserCard({ profileId, table }: UserCardProps): JSX.Element {
   const userData = table.options.data ?? [];
   if (userData.length === 0) {
     return <CardLayout profileId={profileId}><div className="px-5 py-2">ບໍ່ມີຂໍ້ມູນ</div></CardLayout>;

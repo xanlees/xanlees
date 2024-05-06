@@ -5,6 +5,12 @@ export interface IFormConfig {
   watch?: UseFormWatch<FieldValues>
   control?: Control<FieldValues>
 }
+
+export interface ITable {
+  options: {
+    data: any
+  }
+}
 interface FormHeadersConfigMultipart {
   headers: {
     "content-type": string

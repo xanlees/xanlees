@@ -1,8 +1,18 @@
 import { useTable } from "@refinedev/react-table";
-import { type IEducation } from "../../(personal)/index";
+import { type CrudFilter } from "@refinedev/core";
+import { type IUserProfile } from "../../(personal)/user-profile/interface";
 
-export const useUserCard = (profileId: number, filterField: string) => {
-  const table = useTable<IEducation>({
+export const useUserCard = ({ profileId, userId, filterField }: { profileId?: number, userId?: number, filterField: string }) => {
+  const permanent: CrudFilter[] = [
+    { field: "expand", operator: "eq", value: "user" },
+  ];
+  if (filterField === "profile" && profileId !== undefined && profileId > 0) {
+    permanent.push({ field: "profile", operator: "eq", value: profileId });
+  }
+  if (filterField === "user" && userId !== undefined && userId > 0) {
+    permanent.push({ field: "user", operator: "eq", value: userId });
+  }
+  const table = useTable<IUserProfile>({
     columns: [],
     enableSorting: true,
     enableColumnFilters: true,
@@ -10,13 +20,9 @@ export const useUserCard = (profileId: number, filterField: string) => {
       errorNotification: false,
       resource: "profile/user-profile",
       filters: {
-        permanent: [
-          { field: filterField, operator: "eq", value: profileId },
-          { field: "expand", operator: "eq", value: "user" },
-        ],
+        permanent,
       },
     },
   });
   return { table };
 };
-

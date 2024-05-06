@@ -1,4 +1,4 @@
-import { useList, type BaseRecord, type GetListResponse } from "@refinedev/core";
+import { type CrudFilter, useList, type BaseRecord, type GetListResponse } from "@refinedev/core";
 
 export function useProfile<T extends BaseRecord>({ profileId }: { profileId: number }): GetListResponse<T> | typeof defaultData {
   const { data } = useList<T>({
@@ -16,14 +16,19 @@ export function useProfile<T extends BaseRecord>({ profileId }: { profileId: num
   return data ?? defaultData;
 }
 
-export function useProfileUser<T extends BaseRecord>({ userId }: { userId: number }): GetListResponse<T> | typeof defaultData {
-  console.log("userId", userId);
+export function useProfileUser<T extends BaseRecord>({ userId, filterField, profileId }: { userId?: number, filterField: string, profileId?: number }): GetListResponse<T> | typeof defaultData {
+  const permanent: CrudFilter[] = [
+    { field: "expand", operator: "eq", value: "user" },
+  ];
+  if (filterField === "profile" && profileId !== undefined && profileId > 0) {
+    permanent.push({ field: "profile", operator: "eq", value: profileId });
+  }
+  if (filterField === "userId" && userId !== undefined && userId > 0) {
+    permanent.push({ field: "user", operator: "eq", value: userId });
+  }
   const { data } = useList<T>({
     resource: "profile",
-    filters: [
-      { field: "user", operator: "eq", value: userId },
-      { field: "user", operator: "eq", value: "user" },
-    ],
+    filters: permanent,
     errorNotification: false,
   });
   const defaultData = {
