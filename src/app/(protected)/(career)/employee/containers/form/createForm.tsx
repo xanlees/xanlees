@@ -37,7 +37,7 @@ export const PositionForm = ({ form, fields, append, remove, position, profile }
   return (
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     <DynamicForm form={form} fields={fields} append={append} remove={remove}
-      name="employee" label="ໜ້າວຽກ" className="flex flex-wrap gap-2" classNameButton="mt-7 w-20" defaultConfig={{ profileId: profile }}>
+      name="employee" label="ໜ້າວຽກ" className="flex flex-wrap gap-2" classNameButton="mt-7 w-20" defaultConfig={{ profileId: Number(profile) }}>
       <ArrayField {...form} name="positionId" label="ໜ້າວຽກ">
         <Form.Combobox {...(position)} className="w-72" />
       </ArrayField>
@@ -57,7 +57,7 @@ export const PositionForm = ({ form, fields, append, remove, position, profile }
 export const Containers = ({ form, fields, append, remove, position, profile }: PositionFormProps) => {
   return (
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    <DynamicForm form={form} fields={fields} append={append} remove={remove} name="employee" label="ເພີ່ມຕຳແໜ່ງ" className="flex flex-wrap gap-2" classNameButton="mt-7 w-20" defaultConfig={{ profileId: profile }}>
+    <DynamicForm form={form} fields={fields} append={append} remove={remove} name="employee" label="ເພີ່ມຕຳແໜ່ງ" className="flex flex-wrap gap-2" classNameButton="mt-7 w-20" defaultConfig={{ profileId: Number(profile) }}>
       <ArrayField {...form} name="positionId" label="ຕໍາແໜ່ງ">
         <Form.Combobox {...(position)} className="w-72" />
       </ArrayField>
