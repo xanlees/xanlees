@@ -8,11 +8,12 @@ import { type IEmployeeExpand } from "../interface";
 import { Show } from "@src/shadcn/components/crud";
 import { ButtonCreate } from "@src/common/elements/button";
 
-export function EmployeeCard({ profileId, redirect, title }: { profileId: number, redirect: string, title: string }): JSX.Element {
+export function EmployeeCard({ profileId, redirect, title, disabled }: { profileId: number, redirect: string, title: string, disabled?: boolean }): JSX.Element {
+  const enableEdit = disabled ? "" : "employee";
   const { table } = useTableEmployee(profileId);
   return (
-    <CardLayout profileId={profileId} redirect={redirect} title={title}>
-      <CardView table={table} className="w-80 m-2" showSearchBar={false} showPagination={false}>
+    <CardLayout profileId={profileId} redirect={redirect} title={title} disabled={disabled}>
+      <CardView table={table} className="w-80 m-2" showSearchBar={false} showPagination={false} >
         <CardView.Row
           header=""
           id="id"
@@ -22,20 +23,21 @@ export function EmployeeCard({ profileId, redirect, title }: { profileId: number
             return <PositionDetails rowData={rowData} title={title}/>;
           }}
         />
-        {getActionsButton("employee")}
+        {getActionsButton(enableEdit)}
       </CardView>
     </CardLayout>
   );
 }
 
-function CardLayout({ children, profileId, redirect, title }: { children: ReactNode, profileId?: number, redirect: string, title: string }): JSX.Element {
+function CardLayout({ children, profileId, redirect, title, disabled }: { children: ReactNode, profileId?: number, redirect: string, title: string, disabled?: boolean }): JSX.Element {
   return (
     <Card className="shadow-xl pb-3 rounded-lg w-full sm:w-80 bg-white dark:bg-gray-800 dark:text-white h-fit">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
           ຂໍ້ມູນ{title}
         </CardTitle>
-        <ButtonCreate redirect={redirect} />
+        {disabled ? "" : (<ButtonCreate redirect={redirect} />)}
+
       </CardHeader>
       {children}
     </Card>

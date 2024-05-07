@@ -8,10 +8,10 @@ import moment from "moment";
 import { type IProfile } from "../../interface/model";
 import { ProfileImageDialog } from "./ProfileImageDialog";
 import { ButtonCreate } from "@src/common/elements/button";
-export function ProfileDetail({ profileData, visible = false, user, disabled }: { profileData: IProfile[], visible?: boolean, user?: number, disabled: boolean }): JSX.Element {
+export function ProfileDetail({ profileData, visible = false, user, disabled, userProfile }: { userProfile: number, profileData: IProfile[], visible?: boolean, user?: number, disabled: boolean }): JSX.Element {
   const { fullname, nickname, phoneNumber, gender, birthday, maritalStatus, profilePicture, uniqueNumber, typeOfUniqueNumber } = profileData?.[0] ?? {};
   const age = calculateAge(birthday);
-  const redirect = `/profile/create/${user}`;
+  const redirect = `/profile/create/${user}/${userProfile}`;
   return (
     <Card className="pb-3 bg-white rounded-lg shadow-xl  w-full sm:w-80 dark:bg-gray-800 dark:text-white my-2 sm:my-0">
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">

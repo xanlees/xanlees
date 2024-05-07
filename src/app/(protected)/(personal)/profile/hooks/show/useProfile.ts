@@ -20,7 +20,7 @@ export function useProfileUser<T extends BaseRecord>({ userId, filterField, prof
   if (filterField === "profile" && profileId !== undefined && profileId > 0) {
     permanent.push({ field: "id", operator: "eq", value: profileId });
   }
-  if (filterField === "userId" && userId !== undefined && userId > 0) {
+  if (filterField === "user" && userId !== undefined && userId > 0) {
     permanent.push({ field: "user", operator: "eq", value: userId });
   }
   const { data } = useList<T>({

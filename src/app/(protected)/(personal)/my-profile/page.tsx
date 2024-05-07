@@ -27,19 +27,20 @@ export default function ProfileShow(): JSX.Element {
   const disabled = profileId > 0;
   const redirect = `/employee/create/${profileId}/OFFICE/profile`;
   const { table } = useUserCard({ userId: user, filterField: "user" });
+  const userProfile = table?.options?.data?.[0]?.id;
   return (
     <Show breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />} showButtonEdit={false} showButtonDelete={false} >
       <div className="mt-5 flex flex-wrap justify-between gap-2">
         <div className="">
-          <ProfileDetail profileData={profileData} visible={false} user={user} disabled={disabled}/>
+          <ProfileDetail profileData={profileData} visible={false} user={user} disabled={disabled} userProfile={userProfile} />
         </div>
         <div className="space-y-2">
-          <UserCard profileId={user ?? 0} filterField={"user"} table={table as unknown as UseTableReturnType<IUser, HttpError>}/>
-          <EmployeeCard profileId={profileId} redirect={redirect} />
+          <UserCard profileId={user ?? 0} filterField={"user"} table={table as unknown as UseTableReturnType<IUser, HttpError>} />
+          <EmployeeCard profileId={profileId} redirect={redirect} title={"ຕໍາແໜ່ງ"} disabled={disabled}/>
         </div>
         <div className="space-y-2">
           <DocumentPDFCard profileId={profileId} />
-          <EducationDetail profileId={profileId}/>
+          <EducationDetail profileId={profileId} />
           <AddressDetail profileId={profileId} />
         </div>
       </div>
