@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
-
 import React from "react";
 import { EmployeeCard } from "../../../employee/containers/card";
 import { Show } from "@/shadcn/components/crud";
@@ -19,14 +17,14 @@ export default function AgentShow({ params }: { params: { id: number } }): JSX.E
     <Show>
       <div className="flex flex-wrap justify-between gap-2 mt-5">
         <div className="">
-          <ProfileDetail profileData={profileData} visible={true} />
+          <ProfileDetail profileData={profileData} visible={true} disabled={false} />
         </div>
         <div className="space-y-2">
           <UniqueNumberList uniqueNumber={uniqueNumber}/>
           <DocumentPDFCard profileId={profileId} />
         </div>
         <div className="space-y-2">
-          <EmployeeCard profileId={profileId} redirect={redirect}/>
+          <EmployeeCard profileId={profileId} redirect={redirect} title="ໜ້າວຽກ"/>
           <AddressDetail profileId={profileId} />
         </div>
       </div>

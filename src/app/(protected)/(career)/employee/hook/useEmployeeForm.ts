@@ -32,7 +32,7 @@ export const useFormConfig = ({ type, profile, redirect }: { type?: string, prof
       },
       errorNotification: (data: any) => {
         const responseData = (data as IMessages).response.data;
-        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage: "ຕໍາແໜ່ງລ່າສຸດສາມາດມີໄດ້ຕໍາແໜ່ງດຽວ" });
+        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage: "ຕໍາແໜ່ງລ່າສຸດສາມາດມີໄດ້ຕໍາແໜ່ງດຽວ ຫຼື ເງິນຫຼາຍເກີນ 10 ໂຕ" });
       },
       redirect: false,
     },
@@ -62,7 +62,7 @@ const employeeSchema = z.object({
   return val.employee;
 });
 const errorMessages: ErrorMapMessage[] = [
-  { val: "There can only be one 'latest' employee record per profile.", message: "ຕໍາແໜ່ງລ່າສຸດສາມາດມີໄດ້ຕໍາແໜ່ງດຽວ" },
+  { val: "There can only be one 'latest' employee record per profile.", message: "ຕໍາແໜ່ງລ່າສຸດສາມາດມີໄດ້ຕໍາແໜ່ງດຽວ ຫຼື ເງິນຫຼາຍເກີນ 10 ໂຕ" },
 ];
 
 const useUpdateDefaultValues = (form: IFormConfig & { setValue?: UseFormSetValue<any> }, profile: number) => {

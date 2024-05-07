@@ -8,10 +8,10 @@ import { type IEmployeeExpand } from "../interface";
 import { Show } from "@src/shadcn/components/crud";
 import { ButtonCreate } from "@src/common/elements/button";
 
-export function EmployeeCard({ profileId, redirect }: { profileId: number, redirect: string }): JSX.Element {
+export function EmployeeCard({ profileId, redirect, title }: { profileId: number, redirect: string, title: string }): JSX.Element {
   const { table } = useTableEmployee(profileId);
   return (
-    <CardLayout profileId={profileId} redirect={redirect}>
+    <CardLayout profileId={profileId} redirect={redirect} title={title}>
       <CardView table={table} className="w-80 m-2" showSearchBar={false} showPagination={false}>
         <CardView.Row
           header=""
@@ -19,7 +19,7 @@ export function EmployeeCard({ profileId, redirect }: { profileId: number, redir
           accessorKey="id"
           cell={({ row }) => {
             const rowData = row.original as IEmployeeExpand;
-            return <PositionDetails rowData={rowData} />;
+            return <PositionDetails rowData={rowData} title={title}/>;
           }}
         />
         {getActionsButton("employee")}
@@ -28,12 +28,12 @@ export function EmployeeCard({ profileId, redirect }: { profileId: number, redir
   );
 }
 
-function CardLayout({ children, profileId, redirect }: { children: ReactNode, profileId?: number, redirect: string }): JSX.Element {
+function CardLayout({ children, profileId, redirect, title }: { children: ReactNode, profileId?: number, redirect: string, title: string }): JSX.Element {
   return (
     <Card className="shadow-xl pb-3 rounded-lg w-full sm:w-80 bg-white dark:bg-gray-800 dark:text-white h-fit">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
-          {"ຂໍ້ມູນຕໍາແໜ່ງ"}
+          ຂໍ້ມູນ{title}
         </CardTitle>
         <ButtonCreate redirect={redirect} />
       </CardHeader>
@@ -42,8 +42,8 @@ function CardLayout({ children, profileId, redirect }: { children: ReactNode, pr
   );
 }
 
-const PositionDetails = ({ rowData }: { rowData: IEmployeeExpand }) => {
-  const isLatest = rowData.isLatest ? "ຕໍາແໜ່ງປະຈຸບັນ" : "ຕໍາແໜ່ງຜ່ານມາ";
+const PositionDetails = ({ rowData, title }: { rowData: IEmployeeExpand, title: string }) => {
+  const isLatest = rowData.isLatest ? `${title}ປະຈຸບັນ` : `${title}ຜ່ານມາ`;
   const positionName = rowData.positionId?.name ?? "";
   const sectorName = rowData.positionId?.sectorId?.name ?? "";
   const branchName = rowData.branchId?.name ?? "";
@@ -55,13 +55,13 @@ const PositionDetails = ({ rowData }: { rowData: IEmployeeExpand }) => {
         title={isLatest}
         content={<div className="text-md">
           <div>
-            ຕໍາແໜ່ງ: {`${positionName}, ${sectorName}, ${branchName}`}
+            {title}: {`${positionName}, ${sectorName}, ${branchName}`}
           </div>
           <div>
             ເງິນເດືອນ: {`${salary}`}
           </div>
           <div>
-            ວັນທີຮັບຕໍາແໜ່ງ: {joiningDate}
+            ວັນທີຮັບ{title}: {joiningDate}
           </div>
         </div>}
       />

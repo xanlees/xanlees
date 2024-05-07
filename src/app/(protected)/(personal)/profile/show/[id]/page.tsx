@@ -29,7 +29,7 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
         </div>
         <div className="space-y-2">
           <UserCard profileId={35} filterField={"profile"} table={table as unknown as UseTableReturnType<IUser, HttpError>}/>
-          <EmployeeCard profileId={profileId} redirect={redirect} />
+          <EmployeeCard profileId={profileId} redirect={redirect} title="ຕໍາແໜ່ງ"/>
         </div>
         <div className="space-y-2">
           <DocumentPDFCard profileId={profileId} />
