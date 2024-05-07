@@ -41,7 +41,7 @@ const FormCreate = ({ userID }: { userID: number }) => {
     const storedState = localStorage.getItem(employeeProfileStorageKey);
     const profileState = JSON.parse(storedState as string) as ProfileState;
     if (profileState.profileId !== undefined && profileState.profileId !== 0) {
-      router.push(`/employee/create/${profileState.profileId}/OFFICE/profile`);
+      router.push(`/employee/create/${profileState.profileId}/OFFICE/user`);
       dispatch({ type: "clearState", payload: false });
     }
   };

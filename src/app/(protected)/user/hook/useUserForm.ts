@@ -8,8 +8,7 @@ import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 import { errorMessages, userSchema, userSchemaEdit } from "../userSchema";
 import { useRouter } from "next/navigation";
 
-// eslint-disable-next-line max-lines-per-function
-export const useUserForm = ({ redirect, id, navigates }: { redirect: string, id: number, navigates: string }) => {
+export const useUserForm = ({ redirect, id }: { redirect: string, id: number, navigates: string }) => {
   const idEdit = id <= 0 && redirect === "user";
   const router = useRouter();
   const [user, setUser] = useState<number>(0);
@@ -21,13 +20,9 @@ export const useUserForm = ({ redirect, id, navigates }: { redirect: string, id:
       resource: "user",
       redirect: false,
       onMutationSuccess: (data) => {
-        if (redirect === "profile") {
-          setUser(data.data.id ?? 0);
-          router.push(`/profile/create/${data.data.id}`);
-        }
         if (redirect === "profile" && id > 0) {
           setUser(data.data.id ?? 0);
-          router.push("profile");
+          router.push("/profile");
         }
         setShouldCreateProfile(true);
       },
@@ -41,7 +36,7 @@ export const useUserForm = ({ redirect, id, navigates }: { redirect: string, id:
     },
     warnWhenUnsavedChanges: true,
   });
-  if (navigates === "profile" && id > 0) {
+  if (redirect === "profile" && id > 0) {
     useCreateUserProfile({ user, id, shouldCreateProfile, setShouldCreateProfile });
   }
   return { form };
