@@ -21,9 +21,9 @@ export const useUserForm = ({ redirect, id }: { redirect: string, id: number, na
       redirect: false,
       onMutationSuccess: (data) => {
         if (redirect === "profile" && id > 0) {
-          setUser(data.data.id ?? 0);
           router.push("/profile");
         }
+        setUser(data.data.id ?? 0);
         setShouldCreateProfile(true);
       },
       errorNotification: (data: any) => {
@@ -36,7 +36,7 @@ export const useUserForm = ({ redirect, id }: { redirect: string, id: number, na
     },
     warnWhenUnsavedChanges: true,
   });
-  if (redirect === "profile" && id > 0) {
+  if (!idEdit) {
     useCreateUserProfile({ user, id, shouldCreateProfile, setShouldCreateProfile });
   }
   return { form };
@@ -45,16 +45,16 @@ export const useUserForm = ({ redirect, id }: { redirect: string, id: number, na
 const useCreateUserProfile = ({ user, id, shouldCreateProfile, setShouldCreateProfile }: CreateUserProfileProps) => {
   const { mutate } = useCustomMutation<UserProfile>();
   useEffect(() => {
-    if (user && shouldCreateProfile) {
-      mutate({
-        url: "profile/user-profile",
-        method: "post",
-        values: {
-          user,
-          profile: id,
-        },
-      });
-      setShouldCreateProfile(false);
+    if (!(user && shouldCreateProfile)) {
+      return;
     }
+    const shouldIncludeProfile = id === 0 || id === null || id === undefined;
+    const values = shouldIncludeProfile ? { user } : { user, profile: id };
+    mutate({
+      url: "profile/user-profile",
+      method: "post",
+      values,
+    });
+    setShouldCreateProfile(false);
   }, [mutate, user, id, shouldCreateProfile, setShouldCreateProfile]);
 };

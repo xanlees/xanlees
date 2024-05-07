@@ -6,17 +6,19 @@ import { getUserSession } from "@src/common/lib/getSession";
 
 export default function Home(): JSX.Element {
   const user = getUserSession()?.user;
+  const userGroup = user?.groups?.[0];
   let userProfileResource = "my-profile";
   if (user?.groups && user.groups.length > 0) {
-    const userGroup = user.groups[0];
     if (userGroup === "admin") {
       userProfileResource = "user-profile";
     }
     if (userGroup === "staff") {
-      userProfileResource = "user-profile";
+      userProfileResource = "my-profile";
+    }
+    if (userGroup === "user") {
+      userProfileResource = "my-profile";
     }
   }
-
   return (
     <Authenticated
       key="dashboard"
