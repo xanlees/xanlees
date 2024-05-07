@@ -3,9 +3,10 @@ import { useForm } from "@refinedev/react-hook-form";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { type IFormConfig } from "@src/common/interface";
+import { type IMessages, type IFormConfig, type ErrorMapMessage } from "@src/common/interface";
 import { type UseFormSetValue } from "react-hook-form";
 import { useList, type BaseRecord, type GetListResponse } from "@refinedev/core";
+import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 
 export const useFormConfig = ({ type, profile, redirect }: { type?: string, profile: number, redirect?: string }) => {
   let redirectPatch = "";
@@ -21,19 +22,17 @@ export const useFormConfig = ({ type, profile, redirect }: { type?: string, prof
     resolver: zodResolver(employeeSchema),
     defaultValues: {
       employee: [
-        {
-          positionId: 0,
-          joiningDate: "",
-          isLatest: false,
-          profileId: profile,
-          salary: 0,
-        },
+        { positionId: 0, joiningDate: "", isLatest: false, profileId: profile, salary: 0 },
       ],
     },
     refineCoreProps: {
       resource: "employee",
       onMutationSuccess: () => {
         router.push(redirectPatch);
+      },
+      errorNotification: (data: any) => {
+        const responseData = (data as IMessages).response.data;
+        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage: "ຕໍາແໜ່ງລ່າສຸດສາມາດມີໄດ້ຕໍາແໜ່ງດຽວ" });
       },
       redirect: false,
     },
@@ -47,9 +46,7 @@ const employeeSchema = z.object({
   employee: z
     .array(
       z.object({
-        positionId: z.number().min(1, {
-          message: "ກະລຸນາເລືອກຕໍາແໜ່ງ",
-        }),
+        positionId: z.number().min(1, { message: "ກະລຸນາເລືອກຕໍາແໜ່ງ" }),
         salary: z.union([z.number(), z.string()]).transform((value): number | string => {
           if (typeof value === "string") {
             return value.replace(/,/g, "");
@@ -64,6 +61,9 @@ const employeeSchema = z.object({
 }).transform((val) => {
   return val.employee;
 });
+const errorMessages: ErrorMapMessage[] = [
+  { val: "There can only be one 'latest' employee record per profile.", message: "ຕໍາແໜ່ງລ່າສຸດສາມາດມີໄດ້ຕໍາແໜ່ງດຽວ" },
+];
 
 const useUpdateDefaultValues = (form: IFormConfig & { setValue?: UseFormSetValue<any> }, profile: number) => {
   const profileRef = useRef(profile);

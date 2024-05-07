@@ -8,10 +8,9 @@ import { useForm } from "@refinedev/react-hook-form";
 import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 import { SwitchButton } from "@src/shadcn/components/form/switch";
 import { Input } from "@src/shadcn/elements";
-
+import { type IMessages, type IFormConfig, type ErrorMapMessage } from "@src/common/interface";
 import { usePositionSelect } from "../../hook/useSelect";
-
-import type { IFormConfig } from "@src/common/interface";
+import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
 
 export const EmployeeEditForm: React.FC<{ id: number, redirectTo: string }> = ({ id, redirectTo }) => {
   const { form } = useEmployeeEdit({ id, redirectTo });
@@ -75,12 +74,18 @@ const useEmployeeEdit = ({ id, redirectTo }: { id: number, redirectTo: string })
       onMutationSuccess: (data) => {
         router.back();
       },
+      errorNotification: (data: any) => {
+        const responseData = (data as IMessages).response.data;
+        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage: "ຕໍາແໜ່ງລ່າສຸດສາມາດມີໄດ້ຕໍາແໜ່ງດຽວ" });
+      },
     },
     warnWhenUnsavedChanges: true,
   });
   return { form };
 };
-
+const errorMessages: ErrorMapMessage[] = [
+  { val: "There can only be one 'latest' employee record per profile.", message: "ຕໍາແໜ່ງລ່າສຸດສາມາດມີໄດ້ຕໍາແໜ່ງດຽວ" },
+];
 const graduationSchema = z
   .object({
     joiningDate: z.union([z.nullable(z.string()), z.date()]),
@@ -93,4 +98,3 @@ const graduationSchema = z
       return value;
     }),
   });
-
