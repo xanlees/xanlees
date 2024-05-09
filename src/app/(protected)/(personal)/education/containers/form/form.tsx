@@ -1,13 +1,15 @@
+import React from "react";
+import { useFieldArray } from "react-hook-form";
+
 import { Form } from "@src/shadcn/components/form";
 import { ArrayField } from "@src/shadcn/components/form/array-field";
 import { DynamicForm } from "@src/shadcn/components/form/dynamtic-form";
 import { Input } from "@src/shadcn/elements";
-import React from "react";
-import { useFieldArray } from "react-hook-form";
-import { FormGraduation } from "../../../graduation/containers/form/form";
-import { useFormConfig } from "./config";
+
 import { useProfileContext } from "../../../context";
+import { FormGraduation } from "../../../graduation/containers/form/form";
 import { useGraduationSelect } from "../../hook/form/useGraduationSelect";
+import { useFormConfig } from "./config";
 
 export const EducationForm: React.FC = () => {
   const { state } = useProfileContext();

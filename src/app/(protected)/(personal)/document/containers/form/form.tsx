@@ -40,7 +40,6 @@ export const DocumentForm: React.FC<{ label?: string }> = ({ label }) => {
             )}
           </Form>)}
     </div>
-
   );
 };
 

@@ -10,6 +10,7 @@ import { Input } from "@src/shadcn/elements";
 export const Skill: React.FC = () => {
   const { state } = useApplicationContext();
   const { form } = useSkillForm();
+  console.log("form", form.watch());
   const { fields, append, remove } = useFieldArray({ control: form.control, name: "skill" });
   const isCompleted = state.skillId;
   return (
