@@ -1,13 +1,14 @@
-"use client";
-import { Table } from "@/shadcn/components/table";
 import moment from "moment";
-import type { IApplication } from "../../interface";
-import UpdateApplicationStatus from "@src/shadcn/components/updateOnSelect";
-import { optionsConfig } from "../../lib/constant";
-import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { type IWorkExperience } from "../../../work-experience/interface";
+import React, { useEffect, useState } from "react";
 
+import { Table } from "@/shadcn/components/table";
+import UpdateApplicationStatus from "@src/shadcn/components/updateOnSelect";
+
+import { type IWorkExperience } from "../../../work-experience/interface";
+import { optionsConfig } from "../../lib/constant";
+
+import type { IApplication } from "../../interface";
 export const ApplicationDate = (
   <Table.Column
     header="ສະໝັກວັນທີ"
@@ -22,47 +23,6 @@ export const ApplicationDate = (
     }}
   />
 );
-
-export function ApplicationStatusColumn() {
-  const [selectedDate, setSelectedDate] = useState<string | number>("New");
-  const handleChange = (val: string | number) => {
-    setSelectedDate(val);
-  };
-  return (
-    <Table.Column
-      header="ສະຖານະຂອງຟອມ"
-      id="application_status"
-      accessorKey="applicationStatus"
-      cell={(props) => {
-        const { applicationStatus, id } =
-          (props.row.original as IApplication) ?? {};
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        const profile = props.row.original.profileId.id as unknown as number;
-        const applicationID = id ?? 0;
-        RedirectToCreateEmployee({ selectedDate, profile });
-        return (
-          <UpdateApplicationStatus
-            defaultValue={applicationStatus}
-            id={applicationID}
-            optionsConfig={optionsConfig}
-            field="applicationStatus"
-            resource="application"
-            onChange={handleChange}
-            className="w-[120px]"
-          />
-        );
-      }}
-    />
-  );
-}
-function RedirectToCreateEmployee({ selectedDate, profile }: { selectedDate: string | number, profile?: number }) {
-  const router = useRouter();
-  useEffect(() => {
-    if (selectedDate === "Hired") {
-      router.push(`/employee/create/${profile}/OFFICE/user`);
-    }
-  }, [selectedDate, router]);
-}
 
 export function workExperienceColumn(dataWorkExperience: IWorkExperience[]) {
   return (
@@ -94,4 +54,47 @@ export function workExperienceColumn(dataWorkExperience: IWorkExperience[]) {
       }}
     />
   );
+}
+
+export function ApplicationStatusColumn() {
+  const { handleChange, setProfile } = getApplicationStatusRedirect();
+  return (
+    <Table.Column<IApplication>
+      header="ສະຖານະຂອງຟອມ"
+      id="application_status"
+      accessorKey="applicationStatus"
+      cell={({ row: { original } }) => {
+        const { applicationStatus, id, profileId } = original;
+        const applicationID = id ?? 0;
+        useEffect(() => {
+          setProfile(profileId?.id);
+        }, [profileId]);
+        return (
+          <UpdateApplicationStatus
+            defaultValue={applicationStatus}
+            id={applicationID}
+            optionsConfig={optionsConfig}
+            field="applicationStatus"
+            resource="application"
+            onChange={handleChange}
+            className="w-[120px]"
+          />
+        );
+      }}
+    />
+  );
+}
+export function getApplicationStatusRedirect() {
+  const [selectedDate, setSelectedDate] = useState<string | number>("New");
+  const [profile, setProfile] = useState<number | undefined>();
+  const router = useRouter();
+  useEffect(() => {
+    if (selectedDate === "Hired" && profile) {
+      router.push(`/employee/create/${profile}/OFFICE/user`);
+    }
+  }, [selectedDate, profile, router]);
+  const handleChange = (val: string | number) => {
+    setSelectedDate(val);
+  };
+  return { setSelectedDate, setProfile, handleChange };
 }
