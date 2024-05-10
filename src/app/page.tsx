@@ -19,8 +19,6 @@ export default function Home(): JSX.Element {
       userProfileResource = "my-profile";
     }
   }
-  console.log("userGroup", userGroup);
-  console.log("userProfileResource", userProfileResource);
   return (
     <Authenticated
       key="dashboard"
