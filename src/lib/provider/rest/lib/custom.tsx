@@ -21,7 +21,6 @@ async function getResponse<TPayload>(options: Option, payload: TPayload): Promis
   const { method, httpClient, apiUrl, url, requestUrl } = options;
   const headers = options.headers as AxiosRequestHeaders;
   let axiosResponse;
-  console.log("calling");
   switch (method) {
     case "put":
     case "post":
