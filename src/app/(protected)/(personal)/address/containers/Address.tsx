@@ -6,7 +6,7 @@ import { getActionsButton } from "@src/common/containers/column/actionCard";
 import { ButtonCreate } from "@src/common/elements/button";
 import { CardView } from "@src/shadcn/components/table/card-view";
 import { Card, CardHeader, CardTitle } from "@src/shadcn/elements";
-import { type IAddress } from "../../../address/interface";
+import { type IAddress } from "../interface";
 
 export function AddressDetail({ profileId }: { profileId: number }): JSX.Element {
   const { table } = useCardAddress(profileId);
