@@ -1,20 +1,46 @@
-import { type BaseOption, useSelect, useMany } from "@refinedev/core";
+import { type BaseOption, useSelect, useList, type BaseRecord, type GetListResponse } from "@refinedev/core";
 import { type IPosition, type IBranch } from "@career";
 
-export const fetchBranchData = (branchIds: number[]) => {
-  return useMany<IBranch>({
-    resource: "branch",
-    ids: branchIds,
+export const usePositionSelect = (type?: string) => {
+  const types = type === "LOTTERY" ? type : "HEADQUARTERS,OFFICE,BRANCH";
+  const position = useSelect<IPosition>({
+    resource: "position",
+    optionLabel: "name",
+    optionValue: "id",
+    filters: [
+      { field: "branch_type", operator: "eq", value: types },
+      { field: "page_size", operator: "eq", value: false },
+    ],
   });
+  const branchIds = extractBranchIds(position.queryResult.data?.data ?? []);
+  const { data: branchData } = fetchBranchData<IBranch>({ branchIds });
+  const groupedOptions = generateGroupedOptions(position.queryResult.data?.data ?? [], branchData ?? []);
+  const options = Object.values(groupedOptions).flat();
+  position.options = options;
+  return position;
 };
 
-export const extractBranchIds = (positions: IPosition[]): number[] => {
-  return positions.flatMap((item) =>
+const extractBranchIds = (positions: IPosition[]): number[] => {
+  const allBranchIds = positions.flatMap((item) =>
     item?.sectorId?.branchId !== undefined ? [item.sectorId.branchId] : [0],
   );
+  return [...new Set(allBranchIds)];
 };
 
-export const generateGroupedOptions = (positions: IPosition[], branchData: IBranch[]): BaseOption[] => {
+function fetchBranchData<T extends BaseRecord>({ branchIds }: { branchIds: number[] }): GetListResponse<T> | typeof defaultData {
+  const { data } = useList<T>({
+    resource: "branch",
+    filters: [
+      { field: "page_size", operator: "eq", value: false },
+      { field: "id", operator: "eq", value: branchIds },
+    ],
+    errorNotification: false,
+  });
+  const defaultData = { data: [], total: 0 };
+  return data ?? defaultData;
+}
+
+const generateGroupedOptions = (positions: IPosition[], branchData: IBranch[]): BaseOption[] => {
   const branchIdToName = branchData.reduce<Record<number, string>>((acc, branch) => {
     acc[branch.id] = branch.name;
     return acc;
@@ -28,23 +54,4 @@ export const generateGroupedOptions = (positions: IPosition[], branchData: IBran
       value: item.id,
     };
   });
-};
-
-export const usePositionSelect = (type?: string) => {
-  const types = type === "LOTTERY" ? type : "HEADQUARTERS,OFFICE,BRANCH";
-  const position = useSelect<IPosition>({
-    resource: "position",
-    optionLabel: "name",
-    optionValue: "id",
-    filters: [
-      { field: "branch_type", operator: "eq", value: types },
-      { field: "page_size", operator: "eq", value: 1500 },
-    ],
-  });
-  const branchIds = extractBranchIds(position.queryResult.data?.data ?? []);
-  const { data: branchData } = fetchBranchData(branchIds);
-  const groupedOptions = generateGroupedOptions(position.queryResult.data?.data ?? [], branchData?.data ?? []);
-  const options = Object.values(groupedOptions).flat();
-  position.options = options;
-  return position;
 };
