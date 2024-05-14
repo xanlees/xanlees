@@ -25,10 +25,10 @@ export default function ProfileShow({ params }: { params: { id: number } }): JSX
     <Show>
       <div className="mt-5 flex flex-wrap justify-between gap-2">
         <div className="">
-          <ProfileDetail profileData={profileData} visible={false} user={0} disabled={true}/>
+          <ProfileDetail profileData={profileData} visible={false} user={0} disabled={true} userProfile={0}/>
         </div>
         <div className="space-y-2">
-          <UserCard profileId={35} filterField={"profile"} table={table as unknown as UseTableReturnType<IUser, HttpError>}/>
+          <UserCard profileId={profileId} filterField={"profile"} table={table as unknown as UseTableReturnType<IUser, HttpError>}/>
           <EmployeeCard profileId={profileId} redirect={redirect} title="ຕໍາແໜ່ງ"/>
         </div>
         <div className="space-y-2">
