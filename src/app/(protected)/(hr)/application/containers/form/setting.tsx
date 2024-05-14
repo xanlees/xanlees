@@ -6,7 +6,7 @@ import {
 } from "@personal";
 import { Application2Form, ApplicationForm } from "./index";
 import { WorkExperienceForm } from "@hr";
-import { PersonalAddressForm } from "@src/app/(protected)/(personal)/address/containers/form";
+import { PersonalAddressForm } from "@src/app/(protected)/(personal)/personal_address/containers/form";
 import { Skill } from "../../../skill/containers/form/form";
 
 export const applicationFromStep = [

@@ -11,6 +11,7 @@ import { type IAddress } from "../interface";
 export function AddressDetail({ profileId }: { profileId: number }): JSX.Element {
   const { table } = useCardAddress(profileId);
   const addressData = table.options.data ?? [];
+  console.log("addressData", addressData);
   if (addressData.length === 0) {
     return <CardLayout profileId={profileId}><div className="px-5 py-2">ບໍ່ມີຂໍ້ມູນ</div></CardLayout>;
   }
@@ -37,14 +38,14 @@ export function AddressDetail({ profileId }: { profileId: number }): JSX.Element
             );
           }}
         />
-        {getActionsButton("address")}
+        {getActionsButton("personal_address")}
       </CardView>
     </CardLayout>
   );
 }
 
 function CardLayout({ children, profileId }: { children: ReactNode, profileId: number }): JSX.Element {
-  const redirect = `/address/create/${profileId}`;
+  const redirect = `/personal_address/create/${profileId}`;
   return (
     <Card className="shadow-xl pb-2 rounded-lg bg-white dark:bg-gray-800 dark:text-white h-fit w-80 ">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
