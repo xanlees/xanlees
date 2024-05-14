@@ -6,12 +6,13 @@ import { getActionsButton } from "@src/common/containers/column/actionCard";
 import { ButtonCreate } from "@src/common/elements/button";
 import { CardView } from "@src/shadcn/components/table/card-view";
 import { Card, CardHeader, CardTitle } from "@src/shadcn/elements";
+
 import { type IAddress } from "../interface";
 
+const resource = "personal_address";
 export function AddressDetail({ profileId }: { profileId: number }): JSX.Element {
   const { table } = useCardAddress(profileId);
   const addressData = table.options.data ?? [];
-  console.log("addressData", addressData);
   if (addressData.length === 0) {
     return <CardLayout profileId={profileId}><div className="px-5 py-2">ບໍ່ມີຂໍ້ມູນ</div></CardLayout>;
   }
@@ -38,7 +39,7 @@ export function AddressDetail({ profileId }: { profileId: number }): JSX.Element
             );
           }}
         />
-        {getActionsButton("personal_address")}
+        {getActionsButton(resource)}
       </CardView>
     </CardLayout>
   );

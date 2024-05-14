@@ -21,10 +21,10 @@ export const disabledResources = [
     },
   },
   {
-    name: "address",
+    name: "personal_address",
     disabled: true,
     icon: <MapPin />,
-    edit: "/address/edit/:id",
+    edit: "/personal_address/edit/:id",
   },
   {
     name: "employee",
