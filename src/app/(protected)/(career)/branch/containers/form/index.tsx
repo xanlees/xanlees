@@ -30,17 +30,17 @@ const BranchForm: React.FC<{ type: string }> = ({ type }) => {
           *{title}, ກົດທີ່ນີ້
         </AccordionTrigger>
         <AccordionContent>
-          <FormContainer type={type} />
+          <FormBranchContainer type={type} />
         </AccordionContent>
       </AccordionItem>
     </Accordion>
   );
 };
 
-const FormContainer: React.FC<{ type: string }> = ({ type }) => {
+export const FormBranchContainer: React.FC<{ type: string, id?: number }> = ({ type, id }) => {
   const branchName = type === "LOTTERY" ? "ເມືອງ" : "ຊື່";
   const title = type === "LOTTERY" ? "ຟອມສ້າງສາຂາ" : "ຟອມສ້າງຫ້ອງການ";
-  const { form } = useFormBranch(type);
+  const { form } = useFormBranch({ type, id });
   const province = useProvinceSelect();
   const filteredTypeList = getTypeOptions(type);
   return (

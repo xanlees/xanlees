@@ -6,8 +6,11 @@ import { useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { type ErrorMapMessage, type IMessages } from "@src/common/interface";
 import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
+import { useRouter } from "next/navigation";
 
-export const useFormBranch = (type: string) => {
+export const useFormBranch = ({ type, id }: { type: string, id?: number }) => {
+  const action = id ? "edit" : "create";
+  const router = useRouter();
   const { ...form } = useForm<z.infer<typeof branchSchema>>({
     resolver: zodResolver(branchSchema),
     defaultValues: {
@@ -18,6 +21,13 @@ export const useFormBranch = (type: string) => {
     refineCoreProps: {
       resource: "branch",
       redirect: false,
+      action,
+      id,
+      onMutationSuccess: (data) => {
+        if (action === "edit") {
+          router.back();
+        }
+      },
       errorNotification: (data: any) => {
         const responseData = (data as IMessages).response.data;
         return getErrorMessageNotification({ responseData, errorMessages, defaultMessage: "" });
