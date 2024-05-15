@@ -6,7 +6,7 @@ export function employeeColumn({ employeeData, title }: { employeeData: IEmploye
   return (
     <Table.Column
       header={title}
-      accessorKey="employee"
+      accessorKey="id"
       id="employee"
       cell={({ row: { original } }) => {
         const branchId = original?.id;

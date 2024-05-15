@@ -32,14 +32,11 @@ export const useBranchTable = ({ type, province }: { type: string, province?: nu
   return { table };
 };
 
-export function usePosition<T extends BaseRecord>({ branchIds, pageSize, page = 10 }: { branchIds: number[], pageSize: boolean, page?: number }): GetListResponse<T> | typeof defaultData {
+export function usePosition<T extends BaseRecord>({ branchIds }: { branchIds: number[] }): GetListResponse<T> | typeof defaultData {
   const filters: CrudFilter[] = [
     { field: "branch_id", operator: "eq", value: branchIds.join() },
-    { field: "page_size", operator: "eq", value: page },
+    { field: "page_size", operator: "eq", value: false },
   ];
-  if (pageSize) {
-    filters.push({ field: "fields", operator: "eq", value: "id" });
-  }
   const { data } = useList<T>({
     resource: "position",
     filters,
@@ -48,10 +45,10 @@ export function usePosition<T extends BaseRecord>({ branchIds, pageSize, page = 
   return data ?? defaultData;
 }
 
-export function useEmployee<T extends BaseRecord>({ positionId, pageSize = 10 }: { positionId: number[], pageSize: number }): GetListResponse<T> | typeof defaultData {
+export function useEmployee<T extends BaseRecord>({ positionId }: { positionId: number[] }): GetListResponse<T> | typeof defaultData {
   const filters: CrudFilter[] = [
     { field: "position_id", operator: "eq", value: positionId.join() },
-    { field: "page_size", operator: "eq", value: pageSize },
+    { field: "page_size", operator: "eq", value: false },
     { field: "expand", operator: "eq", value: "profile_id,position_id" },
     { field: "is_latest", operator: "eq", value: true },
   ];
@@ -63,10 +60,11 @@ export function useEmployee<T extends BaseRecord>({ positionId, pageSize = 10 }:
   return data ?? defaultData;
 }
 
-export function useSector<T extends BaseRecord>({ branchId, pageSize = 10 }: { branchId: number[], pageSize?: number }): GetListResponse<T> | typeof defaultData {
+export function useSector<T extends BaseRecord>({ branchId }: { branchId: number[] }): GetListResponse<T> | typeof defaultData {
   const filters: CrudFilter[] = [
     { field: "branch_id", operator: "eq", value: branchId.join() },
-    { field: "page_size", operator: "eq", value: 200 },
+    { field: "page_size", operator: "eq", value: false },
+
   ];
   const { data } = useList<T>({
     resource: "sector",
