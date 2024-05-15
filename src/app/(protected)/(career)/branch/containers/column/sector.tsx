@@ -1,13 +1,10 @@
-/* eslint-disable max-lines-per-function */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable max-lines */
 import { Table } from "@/shadcn/components/table";
 import { stringToColorCode } from "@src/lib/string2Color";
 
 import { type IPosition } from "../../../position/interface";
 import { type ISector } from "../../../sector/interface";
 import { getSectorTypeName } from "../../lib";
-import { Edit, Eye, Trash2 } from "lucide-react";
+import { Edit, Trash2 } from "lucide-react";
 
 export function positionsColumn({ positionData }: { positionData: IPosition[] }) {
   return (
@@ -36,80 +33,6 @@ export function positionsColumn({ positionData }: { positionData: IPosition[] })
   );
 }
 
-interface IActionsProps {
-  original?: unknown
-  resource: string
-  hide?: boolean
-}
-function renderShowAction({ original, resource, hide }: IActionsProps) {
-  if (!hide) {
-    return (
-      <Table.ShowAction
-        title="Detail"
-        row={original}
-        resource={resource}
-        icon={<Eye size={16} />}
-      />
-    );
-  }
-  return null;
-}
-
-function renderEditAction({ original, resource, hide }: IActionsProps) {
-  if (!hide) {
-    return (
-      <Table.EditAction
-        title="Edit"
-        row={original}
-        resource={resource}
-        icon={<Edit size={16} />}
-      />
-    );
-  }
-  return null;
-}
-
-function renderDeleteAction({ original, resource, hide }: IActionsProps) {
-  if (!hide) {
-    return (
-      <Table.DeleteAction
-        title="Delete"
-        row={original}
-        withForceDelete={true}
-        resource={resource}
-        icon={<Trash2 size={16} />}
-      />
-    );
-  }
-  return null;
-}
-
-export function getActionsColumn({
-  resource,
-  hideShow = false,
-  hideEdit = false,
-  hideDelete = false,
-}: {
-  resource: string
-  hideShow?: boolean
-  hideEdit?: boolean
-  hideDelete?: boolean
-}): JSX.Element {
-  return (
-    <Table.Column
-      accessorKey={"id"}
-      id={"actions"}
-      cell={({ row: { original } }) => (
-        <Table.Actions>
-          {renderShowAction({ original, resource, hide: hideShow })}
-          {renderEditAction({ original, resource, hide: hideEdit })}
-          {renderDeleteAction({ original, resource, hide: hideDelete })}
-        </Table.Actions>
-      )}
-    />
-  );
-}
-
 export function sectorColumn({ sectorData, title }: { sectorData: ISector[], title: string }) {
   return (
     <Table.Column
@@ -128,23 +51,11 @@ export function sectorColumn({ sectorData, title }: { sectorData: ISector[], tit
                 </div>
                 <div className=" justify-end">
                   <Table.Actions>
-                    <Table.DeleteAction
-                      title="Delete"
-                      row={item}
-                      withForceDelete={true}
-                      resource={"sector"}
-                      icon={<Trash2 size={16} />}
-                    />
-                    <Table.EditAction
-                      title="Edit"
-                      row={item}
-                      resource={"sector"}
-                      icon={<Edit size={16} />}
-                    />
+                    <DeleteActionContainer row={item} resource={"sector"} />
+                    <EditActionContainer row={item} resource={"sector"} />
                   </Table.Actions>
                 </div>
               </div>
-
             ))}
           </div>
         );
@@ -152,3 +63,31 @@ export function sectorColumn({ sectorData, title }: { sectorData: ISector[], tit
     />
   );
 }
+
+interface DeleteActionProps {
+  row: unknown
+  resource: string
+}
+
+export const DeleteActionContainer = ({ row, resource }: DeleteActionProps): JSX.Element => {
+  return (
+    <Table.DeleteAction
+      title="Delete"
+      row={row}
+      withForceDelete={true}
+      resource={resource}
+      icon={<Trash2 size={16} />}
+    />
+  );
+};
+
+export const EditActionContainer = ({ row, resource }: DeleteActionProps): JSX.Element => {
+  return (
+    <Table.EditAction
+      title="Edit"
+      row={row}
+      resource={resource}
+      icon={<Edit size={16} />}
+    />
+  );
+};
