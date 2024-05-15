@@ -1,11 +1,14 @@
 import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
 import * as z from "zod";
+import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCustomMutation } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
-export const useSectorForm = ({ type }: { type: string }) => {
+export const useSectorForm = ({ type, id }: { type: string, id?: number }) => {
+  const action = id ? "edit" : "create";
+  const router = useRouter();
   const [sectorID, setSectorID] = useState<number>(0);
   const [createPosition, setCreatePosition] = useState(false);
   const { ...form } = useForm<{ id: number }>({
@@ -18,9 +21,14 @@ export const useSectorForm = ({ type }: { type: string }) => {
     refineCoreProps: {
       resource: "sector",
       redirect: false,
+      action,
+      id,
       onMutationSuccess: (data) => {
         if (type === "LOTTERY") {
           setSectorID(data.data.id ?? 0);
+        }
+        if (action === "edit") {
+          router.back();
         }
         setCreatePosition(true);
       },

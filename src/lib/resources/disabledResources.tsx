@@ -52,5 +52,13 @@ export const disabledResources = [
     disabled: true,
     list: "/changelog",
   },
+  {
+    name: "sector",
+    disabled: true,
+    list: "/sector",
+    create: "/sector/create",
+    edit: "/sector/edit/:id",
+    show: "/sector/show/:id",
+  },
 ];
 
