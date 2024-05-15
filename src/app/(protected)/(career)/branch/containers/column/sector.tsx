@@ -11,22 +11,28 @@ export function positionsColumn({ positionData }: { positionData: IPosition[] })
     <Table.Column
       header={"ຕໍາແໜ່ງ (ສັງກັດຕາມສີ ພນ/ຂໜ)"}
       accessorKey="id"
-      id="sector"
+      id="positions"
       cell={({ row: { original } }) => {
         const branchId = original?.id;
         const filteredSectors = positionData?.filter((branch) => branch?.sectorId?.branchId === branchId);
         return (
           <div>
             {filteredSectors?.map((item, index) => (
-              <div
-                className="text-center text-white  dark:bg-white mt-0.5"
-                style={{ backgroundColor: `${stringToColorCode(item?.sectorId?.name)}` }}
-                key={index}
-              >
-                {item?.name}
+              <div className="flex w-full">
+                <div className="justify-center text-center text-white  dark:bg-white mt-0.5 w-full" style={{ backgroundColor: `${stringToColorCode(item?.sectorId?.name)}` }} key={index} >
+                  {item?.name}  {item.id}
+                </div>
+                <div className=" justify-end">
+                  <Table.Actions>
+                    <DeleteActionContainer row={item} resource={"position"} />
+                    <EditActionContainer row={item} resource={"position"} />
+                  </Table.Actions>
+                </div>
               </div>
             ))}
+
           </div>
+
         );
       }}
     />

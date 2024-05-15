@@ -60,5 +60,12 @@ export const disabledResources = [
     edit: "/sector/edit/:id",
     show: "/sector/show/:id",
   },
+  {
+    name: "position",
+    disabled: true,
+    list: "/position",
+    create: "/position/create",
+    edit: "/position/edit/:id",
+    show: "/position/show/:id",
+  },
 ];
-
