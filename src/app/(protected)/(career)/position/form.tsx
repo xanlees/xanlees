@@ -53,7 +53,7 @@ const getSectorOptions = (branchType: string): UseSelectReturnType<ISectorExpand
     optionLabel: "name",
     optionValue: "id",
     filters: [
-      { field: "pageSize", operator: "eq", value: 50 },
+      { field: "pageSize", operator: "eq", value: false },
       { field: "branch_type", operator: "eq", value: branch },
       { field: "expand", operator: "eq", value: "branch_id" },
     ],

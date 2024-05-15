@@ -17,7 +17,7 @@ export default function AgentShow({ params }: { params: { id: number } }): JSX.E
     <Show>
       <div className="flex flex-wrap justify-between gap-2 mt-5">
         <div className="">
-          <ProfileDetail profileData={profileData} visible={true} disabled={false} />
+          <ProfileDetail profileData={profileData} visible={true} disabled={false} userProfile={0} />
         </div>
         <div className="space-y-2">
           <UniqueNumberList uniqueNumber={uniqueNumber}/>

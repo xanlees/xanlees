@@ -26,7 +26,7 @@ export const SectorForm: React.FC<{ type: string }> = ({ type }) => {
 export const FormContainer: React.FC<{ type: string, id?: number }> = ({ type, id }) => {
   const sectorType = type === "LOTTERY" ? "ໜ່ວຍ" : "ຊື່";
   const sectorName = type === "LOTTERY" ? "ເມືອງ" : "ສັງກັດຫ້ອງການ";
-  const title = type === "LOTTERY" ? "ຟອມສ້າງໜ່ວຍ" : "ຟອມສ້າງພະແນກ/ຂະແໜງ";
+  const title = type === "LOTTERY" ? "ຟອມສ້າງໜ່ວຍ" : "ຟອມພະແນກ/ຂະແໜງ";
   const { form } = useSectorForm({ type, id });
   const branch = useBranchSelect(type);
   return (
