@@ -24,7 +24,7 @@ export const useBranchFormSelect = () => {
     resource: "branch",
     optionLabel: "name",
     optionValue: "id",
-    filters: [{ field: "pageSize", operator: "eq", value: 100 }],
+    filters: [{ field: "pageSize", operator: "eq", value: false }],
   });
 };
 
