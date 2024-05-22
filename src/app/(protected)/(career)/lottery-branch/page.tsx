@@ -24,11 +24,10 @@ export default function BranchList(): JSX.Element {
   const { table } = useBranchTable({ type, province: selected });
   const branch = table.options.data ?? [];
   const branchIds = getBranchIds(branch);
-  const pageSize = usePosition<IPosition>({ branchIds, pageSize: true })?.total;
-  const positionData = usePosition<IPosition>({ branchIds, pageSize: false, page: pageSize })?.data;
+  const positionData = usePosition<IPosition>({ branchIds })?.data;
   const positionIds = getPositionIds(positionData);
-  const employeeData = useEmployee<IEmployeeExpandProfile>({ positionId: positionIds, pageSize })?.data;
-  const sectorData = useSector<ISector>({ branchId: branchIds, pageSize })?.data;
+  const employeeData = useEmployee<IEmployeeExpandProfile>({ positionId: positionIds })?.data;
+  const sectorData = useSector<ISector>({ branchId: branchIds })?.data;
   return (
     <div className="mx-auto">
       <List>
