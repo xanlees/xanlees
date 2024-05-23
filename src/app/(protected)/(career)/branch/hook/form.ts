@@ -1,10 +1,11 @@
 import * as z from "zod";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigation } from "@refinedev/core";
+import { useList, useNavigation } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { type ErrorMapMessage, type IMessages } from "@src/common/interface";
 import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
+import { type IBranch } from "../interface";
 
 export const useFormBranchConfig = (type: string) => {
   const { ...form } = useForm<z.infer<typeof branchSchema>>({
@@ -68,3 +69,14 @@ export const positionSchema = z.object({
 const errorMessages: ErrorMapMessage[] = [
   { val: "The fields name, type must make a unique set.", message: "ທີຕັ້ງຫ້ອງການຢູ່ແຂວງ ແລະ ປເພດຫ້ອງມີແລ້ວ" },
 ];
+
+export function useBranchType({ id }: { id: number }) {
+  return useList<IBranch>({
+    resource: "branch",
+    filters: [
+      { field: "id", operator: "eq", value: id },
+      { field: "fields", operator: "eq", value: "type,id" },
+    ],
+    errorNotification: false,
+  });
+}
