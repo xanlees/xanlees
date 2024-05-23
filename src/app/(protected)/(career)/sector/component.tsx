@@ -11,6 +11,7 @@ import { useSectorForm } from "./hook";
 import { useBranchSelect } from "./useSelect";
 
 export const SectorForm: React.FC<{ type: string }> = ({ type }) => {
+  console.log("type", type);
   return (
     <>
       {type === "LOTTERY" && <FormContainer type={type}/>}
@@ -23,12 +24,12 @@ export const SectorForm: React.FC<{ type: string }> = ({ type }) => {
   );
 };
 
-export const FormContainer: React.FC<{ type: string, id?: number }> = ({ type, id }) => {
+export const FormContainer: React.FC<{ type: string, id?: number }> = ({ type = "OFFICE", id }) => {
   const sectorType = type === "LOTTERY" ? "ໜ່ວຍ" : "ຊື່";
   const sectorName = type === "LOTTERY" ? "ເມືອງ" : "ສັງກັດຫ້ອງການ";
-  const title = type === "LOTTERY" ? "ຟອມສ້າງໜ່ວຍ" : "ຟອມພະແນກ/ຂະແໜງ";
+  const title = type === "LOTTERY" ? "ຟອມໜ່ວຍ" : "ຟອມພະແນກ/ຂະແໜງ";
   const { form } = useSectorForm({ type, id });
-  const branch = useBranchSelect(type);
+  const branch = useBranchSelect({ type });
   return (
     <Form {...form}>
       <div className="text-2xl font-bold tracking-wide text-center text-gray-800 dark:text-white">
@@ -89,7 +90,6 @@ const getTypeOptions = (type: string) => {
       return typeList;
   }
 };
-
 const typeList = {
   options: [
     { label: "ຂະແໜງ", value: "Sector" },

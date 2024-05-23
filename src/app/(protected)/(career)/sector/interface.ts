@@ -13,3 +13,9 @@ export interface ISectorExpand {
   type: string
 }
 export type { IBranch };
+export interface ISectorExpandBranch {
+  id: number
+  branchId: {
+    type: string
+  }
+}

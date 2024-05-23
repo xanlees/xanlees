@@ -1,13 +1,14 @@
 import { type BaseOption, useSelect } from "@refinedev/core";
 
-export interface IBranch {
+interface IBranch {
   name: string
   id: number
   province: {
     provinceName: string
   }
 }
-export const useBranchSelect = (type?: string) => {
+
+export const useBranchSelect = ({ type }: { type?: string }) => {
   const types = type === "LOTTERY" ? type : "HEADQUARTERS,OFFICE,BRANCH";
   const branch = useSelect<IBranch>({
     resource: "branch",
@@ -28,3 +29,4 @@ export const useBranchSelect = (type?: string) => {
   branch.options = options as BaseOption[];
   return branch;
 };
+

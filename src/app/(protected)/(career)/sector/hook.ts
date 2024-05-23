@@ -3,7 +3,7 @@ import * as z from "zod";
 import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCustomMutation } from "@refinedev/core";
+import { useCustomMutation, useList } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
 export const useSectorForm = ({ type, id }: { type: string, id?: number }) => {
@@ -78,3 +78,20 @@ const useCreateUserProfile = ({ sectorID, name, createPosition, setCreatePositio
   }, [mutate, sectorID, createPosition, setCreatePosition]);
 };
 
+interface ISectorExpandBranch {
+  id: number
+  branchId: {
+    type: string
+  }
+}
+
+export function useSectorType({ id }: { id: number }) {
+  return useList<ISectorExpandBranch>({
+    resource: "sector",
+    filters: [
+      { field: "id", operator: "eq", value: id },
+      { field: "expand", operator: "eq", value: "branch_id" },
+    ],
+    errorNotification: false,
+  });
+}
