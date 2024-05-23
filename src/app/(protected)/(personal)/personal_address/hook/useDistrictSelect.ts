@@ -18,9 +18,9 @@ export const useDistrictSelect = ({ province }: { province?: string }) => {
         value: String(provinceName),
       },
       {
-        field: "page_size",
+        field: "paginate",
         operator: "eq",
-        value: 150,
+        value: false,
       },
     ],
   });
@@ -38,9 +38,9 @@ export const useProvinceSelect = () => {
         value: "ນະຄອນຫຼວງວຽງຈັນ,ແຂວງຜົ້ງສາລີ,ແຂວງຫຼວງນໍ້າທາ,ແຂວງອຸດົມໄຊ,ແຂວງບໍ່ແກ້ວ,ແຂວງຫຼວງພະບາງ,ແຂວງຫົວພັນ,ແຂວງໄຊຍະບູລີ,ແຂວງຊຽງຂວາງ,ແຂວງວຽງຈັນ,ແຂວງບໍລິຄຳໄຊ,ແຂວງຄຳມ່ວນ,ແຂວງສະຫວັນນະເຂດ,ແຂວງສາລະວັນ,ແຂວງເຊກອງ,ແຂວງຈຳປາສັກ,ແຂວງອັດຕະປື,ແຂວງໄຊສົມບູນ",
       },
       {
-        field: "page_size",
+        field: "paginate",
         operator: "eq",
-        value: 100,
+        value: false,
       },
     ],
   });

@@ -35,7 +35,7 @@ export const useBranchTable = ({ type, province }: { type: string, province?: nu
 export function usePosition<T extends BaseRecord>({ branchIds }: { branchIds: number[] }): GetListResponse<T> | typeof defaultData {
   const filters: CrudFilter[] = [
     { field: "branch_id", operator: "eq", value: branchIds.join() },
-    { field: "page_size", operator: "eq", value: false },
+    { field: "paginate", operator: "eq", value: false },
   ];
   const { data } = useList<T>({
     resource: "position",
@@ -48,7 +48,7 @@ export function usePosition<T extends BaseRecord>({ branchIds }: { branchIds: nu
 export function useEmployee<T extends BaseRecord>({ positionId }: { positionId: number[] }): GetListResponse<T> | typeof defaultData {
   const filters: CrudFilter[] = [
     { field: "position_id", operator: "eq", value: positionId.join() },
-    { field: "page_size", operator: "eq", value: false },
+    { field: "paginate", operator: "eq", value: false },
     { field: "expand", operator: "eq", value: "profile_id,position_id" },
     { field: "is_latest", operator: "eq", value: true },
   ];
@@ -63,7 +63,7 @@ export function useEmployee<T extends BaseRecord>({ positionId }: { positionId: 
 export function useSector<T extends BaseRecord>({ branchId }: { branchId: number[] }): GetListResponse<T> | typeof defaultData {
   const filters: CrudFilter[] = [
     { field: "branch_id", operator: "eq", value: branchId.join() },
-    { field: "page_size", operator: "eq", value: false },
+    { field: "paginate", operator: "eq", value: false },
 
   ];
   const { data } = useList<T>({

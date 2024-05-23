@@ -9,7 +9,7 @@ export const usePositionSelect = (type?: string) => {
     optionValue: "id",
     filters: [
       { field: "branch_type", operator: "eq", value: types },
-      { field: "page_size", operator: "eq", value: false },
+      { field: "paginate", operator: "eq", value: false },
     ],
   });
   const branchIds = extractBranchIds(position.queryResult.data?.data ?? []);
@@ -31,7 +31,7 @@ function fetchBranchData<T extends BaseRecord>({ branchIds }: { branchIds: numbe
   const { data } = useList<T>({
     resource: "branch",
     filters: [
-      { field: "page_size", operator: "eq", value: false },
+      { field: "paginate", operator: "eq", value: false },
       { field: "id", operator: "eq", value: branchIds },
     ],
     errorNotification: false,

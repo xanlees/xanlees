@@ -6,7 +6,7 @@ export function useWorkTimeSettings<T extends BaseRecord>({ branchId, day }: { b
     filters: [
       { field: "branch", operator: "eq", value: branchId?.join() },
       { field: "day_of_week", operator: "eq", value: day },
-      { field: "page_size", operator: "eq", value: false },
+      { field: "paginate", operator: "eq", value: false },
     ],
     errorNotification: false,
   });

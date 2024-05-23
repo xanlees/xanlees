@@ -25,7 +25,7 @@ export function useAttendance<T extends BaseRecord>({ userIds, checkInDate }: { 
     resource: "attendance",
     filters: [
       { field: "user", operator: "eq", value: userIds?.join() },
-      { field: "page_size", operator: "eq", value: false },
+      { field: "paginate", operator: "eq", value: false },
       { field: "check_in_date", operator: "eq", value: checkInDate },
     ],
     errorNotification: false,

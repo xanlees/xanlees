@@ -62,7 +62,7 @@ export const useProvinceSelect = () => {
     errorNotification: false,
     filters: [
       { field: "province", operator: "eq", value: provinceName },
-      { field: "page_size", operator: "eq", value: 100 },
+      { field: "paginate", operator: "eq", value: false },
     ],
   });
 };
