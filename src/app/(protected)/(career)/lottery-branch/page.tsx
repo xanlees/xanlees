@@ -37,7 +37,7 @@ export default function BranchList(): JSX.Element {
           {branchColumn({ title: "ເມືອງ" })}
           {sectorColumn({ title, sectorData })}
           {employeeColumn({ employeeData, title: "ສະມາຊິກ (ສັງກັດຈາມສີ)" })}
-          {getActionsColumn({ resource: "branch", hideEdit: true, hideShow: true })}
+          {getActionsColumn({ resource: "branch", hideShow: true })}
         </Table>
       </List>
     </div>

@@ -39,7 +39,7 @@ const BranchForm: React.FC<{ type: string }> = ({ type }) => {
 
 export const FormBranchContainer: React.FC<{ type: string, id?: number }> = ({ type, id }) => {
   const branchName = type === "LOTTERY" ? "ເມືອງ" : "ຊື່";
-  const title = type === "LOTTERY" ? "ຟອມສ້າງສາຂາ" : "ຟອມຫ້ອງການ";
+  const title = type === "LOTTERY" ? "ຟອມສາຂາ" : "ຟອມຫ້ອງການ";
   const { form } = useFormBranch({ type, id });
   const province = useProvinceSelect();
   const filteredTypeList = getTypeOptions(type);
