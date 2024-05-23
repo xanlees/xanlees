@@ -20,7 +20,7 @@ export function positionsColumn({ positionData }: { positionData: IPosition[] })
             {filteredSectors?.map((item, index) => (
               <div className="flex w-full">
                 <div className="justify-center text-center text-white  dark:bg-white mt-0.5 w-full" style={{ backgroundColor: `${stringToColorCode(item?.sectorId?.name)}` }} key={index} >
-                  {item?.name}  {item.id}
+                  {item?.name}
                 </div>
                 <div className=" justify-end">
                   <Table.Actions>
@@ -53,7 +53,7 @@ export function sectorColumn({ sectorData, title }: { sectorData: ISector[], tit
             {filteredSectors?.map((item, index) => (
               <div className="flex w-full">
                 <div className=" justify-center text-center text-white  dark:bg-white mt-0.5 w-full" style={{ backgroundColor: `${stringToColorCode(item?.name)}` }} key={index} >
-                  {getSectorTypeName(item?.type)} {item?.name} {item.id}
+                  {getSectorTypeName(item?.type)} {item?.name}
                 </div>
                 <div className=" justify-end">
                   <Table.Actions>
