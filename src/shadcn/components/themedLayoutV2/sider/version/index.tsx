@@ -11,7 +11,7 @@ export const WebVersion: FC = () => {
       onClick={handleButtonClick}
       className="mx-5 -my-2 italic text-blue-500 underline"
     >
-      Version: 0.6.0
+      Version: 0.8.0
     </button>
   );
 };

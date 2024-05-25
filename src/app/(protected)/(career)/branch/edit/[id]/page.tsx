@@ -5,7 +5,7 @@ import React from "react";
 import { Create } from "@/shadcn/components/crud";
 
 import { FormBranchContainer } from "../../containers/form";
-import { useBranchType } from "../../hook/form";
+import { useBranchType } from "../../hook/useBranchForm";
 
 export default function BranchEdit({ params }: { params?: { id?: string } }): JSX.Element {
   const id = params?.id ? parseInt(params.id, 10) : 0;

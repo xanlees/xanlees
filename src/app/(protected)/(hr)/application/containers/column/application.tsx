@@ -49,13 +49,16 @@ export function ApplicationStatusColumn() {
   );
 }
 
-export function getApplicationStatusRedirect() {
+const Type = "OFFICE";
+const Redirect = "user";
+
+function getApplicationStatusRedirect() {
   const [selectedStatus, setSelectedStatus] = useState<string | number>("New");
   const router = useRouter();
   const handleChange = (newValue: string | number, profileId: number) => {
     setSelectedStatus(newValue);
     if (newValue === "Hired") {
-      router.push(`/employee/create/${profileId}/OFFICE/user`);
+      router.push(`/employee/create/${profileId}/${Type}/${Redirect}`);
     }
   };
   return { setSelectedStatus, handleChange, selectedStatus };
