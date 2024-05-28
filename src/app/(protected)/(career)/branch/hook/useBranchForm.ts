@@ -1,14 +1,16 @@
 import * as z from "zod";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type IDistrict } from "@personal";
-import { useSelect } from "@refinedev/core";
+import { useRouter } from "next/navigation";
+import { useList, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
+
 import { type ErrorMapMessage, type IMessages } from "@src/common/interface";
 import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
-import { useRouter } from "next/navigation";
+import { type IDistrict } from "@personal";
+import { type IBranch } from "../interface";
 
-export const useFormBranch = ({ type, id }: { type: string, id?: number }) => {
+export const useBranchForm = ({ type, id }: { type: string, id?: number }) => {
   const action = id ? "edit" : "create";
   const router = useRouter();
   const { ...form } = useForm<z.infer<typeof branchSchema>>({
@@ -66,5 +68,16 @@ export const useProvinceSelect = () => {
     ],
   });
 };
+
+export function useBranchType({ id }: { id: number }) {
+  return useList<IBranch>({
+    resource: "branch",
+    filters: [
+      { field: "id", operator: "eq", value: id },
+      { field: "fields", operator: "eq", value: "type,id" },
+    ],
+    errorNotification: false,
+  });
+}
 
 export const provinceName = "ນະຄອນຫຼວງວຽງຈັນ,ແຂວງຜົ້ງສາລີ,ແຂວງຫຼວງນໍ້າທາ,ແຂວງອຸດົມໄຊ,ແຂວງບໍ່ແກ້ວ,ແຂວງຫຼວງພະບາງ,ແຂວງຫົວພັນ,ແຂວງໄຊຍະບູລີ,ແຂວງຊຽງຂວາງ,ແຂວງວຽງຈັນ,ແຂວງບໍລິຄຳໄຊ,ແຂວງຄຳມ່ວນ,ແຂວງສະຫວັນນະເຂດ,ແຂວງສາລະວັນ,ແຂວງເຊກອງ,ແຂວງຈຳປາສັກ,ແຂວງອັດຕະປື,ແຂວງໄຊສົມບູນ";

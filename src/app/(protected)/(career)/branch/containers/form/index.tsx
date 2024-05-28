@@ -8,7 +8,7 @@ import {
 
 import { PositionForm } from "../../../position/form";
 import { SectorForm } from "../../../sector/component";
-import { useFormBranch } from "../../hook/useProvince";
+import { useBranchForm } from "../../hook/useBranchForm";
 import { getTypeOptions } from "../../lib";
 
 export const BranchCreateForm: React.FC<{ type: string }> = ({ type }) => {
@@ -40,7 +40,7 @@ const BranchForm: React.FC<{ type: string }> = ({ type }) => {
 export const FormBranchContainer: React.FC<{ type: string, id?: number }> = ({ type, id }) => {
   const branchName = type === "LOTTERY" ? "ເມືອງ" : "ຊື່";
   const title = type === "LOTTERY" ? "ຟອມສາຂາ" : "ຟອມຫ້ອງການ";
-  const { form } = useFormBranch({ type, id });
+  const { form } = useBranchForm({ type, id });
   const province = useProvinceSelect();
   const filteredTypeList = getTypeOptions(type);
   return (
@@ -64,14 +64,14 @@ export const FormBranchContainer: React.FC<{ type: string, id?: number }> = ({ t
           </div>
         </div>
       </div>
-      <Province form={form} province={province}/>
+      <ProvinceField form={form} province={province}/>
     </Form>
   );
 };
-export const Province: React.FC<{ form: IFormConfig, province: any }> = ({ form, province }) => {
+const ProvinceField: React.FC<{ form: IFormConfig, province: any }> = ({ form, province }) => {
   return (
     <div className="flex flex-wrap gap-2">
-      <div className="w-full lg:w-64  ">
+      <div className="w-full lg:w-64 ">
         <div className="relative w-full mb-3">
           <Form.Field {...form} name={"province"} label={"ແຂວງ"} require={false} >
             <Form.Combobox {...(province)} className="w-full lg:w-64 " />

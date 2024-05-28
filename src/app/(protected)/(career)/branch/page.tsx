@@ -10,7 +10,7 @@ import { type IEmployeeExpandProfile } from "../employee/interface";
 import { type IPosition } from "../position/interface";
 import { branchColumn, employeeColumn, positionsColumn, ProvinceColumn } from "./containers/column";
 import { sectorColumn } from "./containers/column/sector";
-import { useBranchTable, useEmployee, usePosition, useSector } from "./hook/table";
+import { useBranchTable, useEmployee, usePosition, useSector } from "./hook/useTable";
 import { getBranchIds, getPositionIds } from "./lib";
 import { SelectProvince } from "./containers/selectProvince";
 import { type ISector } from "../sector/interface";
