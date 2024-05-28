@@ -83,4 +83,6 @@ p, user, log-out, (create)
 p, staff, log-out, (create)
 p, issuer, log-out, (create)
 p, admin, log-out, (create)
+p, admin, holiday, (list)|(create)
+p, admin, holiday/*, (edit)|(show)|(delete)
 `);
