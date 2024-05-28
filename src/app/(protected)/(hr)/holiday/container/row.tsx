@@ -1,7 +1,7 @@
-"use client";
+import moment from "moment";
+
 import { CardView } from "@/shadcn/components/table/card-view";
 import { type IHoliday } from "../interface";
-import moment from "moment";
 
 interface HolidayRowProps {
   row: {
@@ -50,9 +50,9 @@ export function EndDateRow() {
       id="endDate"
       accessorKey="endDate"
       cell={({ row }: HolidayRowProps) => {
-        const startDate = row.original?.startDate ?? "";
-        if (startDate) {
-          return moment(startDate).format("DD MMM YYYY");
+        const endDate = row.original?.endDate ?? "";
+        if (endDate) {
+          return moment(endDate).format("DD MMM YYYY");
         }
         return "";
       }}
