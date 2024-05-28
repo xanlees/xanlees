@@ -1,4 +1,4 @@
-import { UserCircle } from "lucide-react";
+import { UserCircle, Calendar } from "lucide-react";
 
 export const resourcesPart2 = [
   {
@@ -23,4 +23,16 @@ export const resourcesPart2 = [
       label: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
     },
   },
+  {
+    name: "holiday",
+    list: "/holiday",
+    create: "/holiday/create",
+    edit: "/holiday/edit/:id",
+    show: "/holiday/show/:id",
+    icon: <Calendar />,
+    meta: {
+      label: "holiday",
+    },
+  },
 ];
+
