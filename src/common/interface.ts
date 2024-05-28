@@ -59,3 +59,14 @@ export interface ExtendedCrudFilter {
   operator: "eq"
   value: string | number | boolean
 }
+
+interface IUseSession {
+  id: string
+  name?: string | null
+  email?: string | null
+  image?: string | null
+}
+
+export interface CustomSession {
+  user?: IUseSession
+}

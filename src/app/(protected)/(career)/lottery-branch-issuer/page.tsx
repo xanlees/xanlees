@@ -1,7 +1,4 @@
 "use client";
-
-import { useState } from "react";
-
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
 import { getActionsColumn } from "@src/common/containers/column";
@@ -9,7 +6,6 @@ import { getActionsColumn } from "@src/common/containers/column";
 import {
   branchColumn, employeeColumn, ProvinceColumn, sectorColumn,
 } from "../branch/containers/column";
-import { SelectProvince } from "../branch/containers/selectProvince";
 import { useBranchTable, useEmployee, usePosition, useSector } from "../branch/hook/table";
 import { getBranchIds, getPositionIds } from "../branch/lib";
 import { type IEmployeeExpand, type IEmployeeExpandProfile } from "../employee/interface";
@@ -24,9 +20,8 @@ const title = "ໜ່ວຍ";
 
 export default function BranchList(): JSX.Element {
   const data = useEmployeeProvince();
-
-  const [selected, setSelected] = useState<number | undefined>();
-  const { table } = useBranchTable({ type, province: selected });
+  const provinceID = data.data?.data?.[0]?.branchId.province;
+  const { table } = useBranchTable({ type, province: provinceID });
   const branch = table.options.data ?? [];
   const branchIds = getBranchIds(branch);
   const positionData = usePosition<IPosition>({ branchIds })?.data;
@@ -36,7 +31,6 @@ export default function BranchList(): JSX.Element {
   return (
     <div className="mx-auto">
       <List>
-        <SelectProvince setSelected={setSelected} />
         <Table table={table} SearchBarTitle="ຄົ້ນຫາ">
           {ProvinceColumn()}
           {branchColumn({ title: "ເມືອງ" })}
@@ -52,6 +46,7 @@ export default function BranchList(): JSX.Element {
 export function useEmployeeProvince() {
   const { data } = useSession() as { data: CustomSession | null };
   const useId = data?.user?.id ?? 0;
+  console.log("useId", useId);
   return useList<IEmployeeExpand>({
     resource: "employee",
     filters: [

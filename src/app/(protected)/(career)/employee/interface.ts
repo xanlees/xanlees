@@ -15,6 +15,7 @@ export interface IEmployeeExpand {
     name: string
     id: number
     type: string
+    province: number
   }
   salary: number
   isLatest: boolean
