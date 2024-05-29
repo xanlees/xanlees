@@ -1,13 +1,11 @@
 import { useRouter } from "next/navigation";
+import type * as z from "zod";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import { useTable } from "@refinedev/react-table";
 
-import { holidaySchema } from "./schema";
-
-import type { IHoliday } from "./interface";
-import type * as z from "zod";
+import { holidaySchema, type IHoliday } from "./lib";
 
 export const useTableHoliday = () => {
   const table = useTable<IHoliday>({
@@ -29,7 +27,7 @@ export const useHolidayForm = ({ id }: { id?: number }) => {
     resolver: zodResolver(holidaySchema),
     defaultValues: {
       holidayName: "",
-      leaveDate: ["2024-05-28", "2024-05-29"],
+      leaveDate: ["", ""],
       endDate: "",
     },
     refineCoreProps: {
