@@ -9,9 +9,9 @@ const breadcrumbs = [
   { label: "ພະນັກງານ", href: "/profile" },
 ];
 
-export default function EmployeeCreate({ params }: { params?: { userAndType?: string[] } }): JSX.Element {
+export default function EmployeeCreate({ params }: { params?: { ProfileTypeRedirect?: string[] } }): JSX.Element {
   const router = useRouter();
-  const [profileId, type, redirect] = params?.userAndType ?? ["", "", ""];
+  const [profileId, type, redirect] = params?.ProfileTypeRedirect ?? ["", "", ""];
   const handleButtonClick = () => {
     router.push("/branch/create");
   };

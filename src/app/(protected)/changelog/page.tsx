@@ -6,6 +6,12 @@ import { Badge } from "@src/shadcn/elements";
 
 const changelogData = [
   {
+    version: "Version 0.8.0",
+    date: "2024-05-24",
+    features: [
+    ],
+  },
+  {
     version: "Version 0.7.0",
     date: "2024-05-09",
     features: [

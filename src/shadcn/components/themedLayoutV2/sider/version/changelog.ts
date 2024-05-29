@@ -1,6 +1,6 @@
 export const changelogData = [
     {
-        version: "Version: 0.7.0",
+        version: "Version: 0.8.0",
         features: [
         ]
     }

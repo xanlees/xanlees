@@ -23,6 +23,7 @@ import { FileInputImage } from "./image-input";
 import { FileInputField } from "./file-input";
 import { cn } from "@src/lib/utils";
 import { RadioGroupField } from "./radio-group";
+import { DatePickerWithRange } from "./date-range-picker";
 
 type NativeFormProps = Omit<
   DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>,
@@ -121,6 +122,8 @@ Form.Field = FormField;
 Form.Combobox = Combobox;
 Form.Select = Select;
 Form.DatePicker = DatePickerField;
+Form.DatePickerWithRange = DatePickerWithRange;
 Form.FileInputImage = FileInputImage;
 Form.FileInput = FileInputField;
 Form.RadioGroup = RadioGroupField;
+

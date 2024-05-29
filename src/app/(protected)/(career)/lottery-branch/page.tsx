@@ -10,7 +10,7 @@ import {
   branchColumn, employeeColumn, ProvinceColumn, sectorColumn,
 } from "../branch/containers/column";
 import { SelectProvince } from "../branch/containers/selectProvince";
-import { useBranchTable, useEmployee, usePosition, useSector } from "../branch/hook/table";
+import { useBranchTable, useEmployee, usePosition, useSector } from "../branch/hook/useTable";
 import { getBranchIds, getPositionIds } from "../branch/lib";
 import { type IEmployeeExpand, type IEmployeeExpandProfile } from "../employee/interface";
 import { type IPosition } from "../position/interface";

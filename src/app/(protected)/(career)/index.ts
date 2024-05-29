@@ -1,7 +1,7 @@
 import { getLatestPosition, Position } from "./agent/containers/column";
 import { branchColumn } from "./branch/containers/column/branch";
 import { sectorColumn } from "./branch/containers/column/sector";
-import { useBranchTable } from "./branch/hook/table";
+import { useBranchTable } from "./branch/hook/useTable";
 import { type IEmployee } from "./employee/interface";
 import { usePosition } from "./position/hook";
 import { type IPosition } from "./position/interface";

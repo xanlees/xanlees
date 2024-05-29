@@ -29,7 +29,7 @@ export const useHolidayForm = ({ id }: { id?: number }) => {
     resolver: zodResolver(holidaySchema),
     defaultValues: {
       holidayName: "",
-      startDate: "",
+      leaveDate: ["2024-05-28", "2024-05-29"],
       endDate: "",
     },
     refineCoreProps: {
