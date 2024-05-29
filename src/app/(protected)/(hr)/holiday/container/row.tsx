@@ -1,7 +1,7 @@
 import moment from "moment";
 
 import { CardView } from "@/shadcn/components/table/card-view";
-import { type IHoliday } from "../interface";
+import { type IHoliday } from "../lib";
 
 interface HolidayRowProps {
   row: {
@@ -30,12 +30,12 @@ export function StartDateRow() {
   return (
     <CardView.Row
       header="ມື້ເລີ່ມ"
-      id="startDate"
-      accessorKey="startDate"
+      id="holidayDate"
+      accessorKey="holidayDate"
       cell={({ row }: HolidayRowProps) => {
-        const startDate = row.original?.startDate ?? "";
-        if (startDate) {
-          return moment(startDate).format("DD MMM YYYY");
+        const holidayDate = row.original?.holidayDate?.[0] ?? "";
+        if (holidayDate?.[0]) {
+          return moment(holidayDate?.[0]).format("DD MMM YYYY");
         }
         return "";
       }}
@@ -50,7 +50,7 @@ export function EndDateRow() {
       id="endDate"
       accessorKey="endDate"
       cell={({ row }: HolidayRowProps) => {
-        const endDate = row.original?.endDate ?? "";
+        const endDate = row.original?.holidayDate?.[1] ?? "";
         if (endDate) {
           return moment(endDate).format("DD MMM YYYY");
         }
