@@ -6,6 +6,7 @@ import { DatePickerField } from "@src/shadcn/components/form/datepicker";
 import { Input } from "@src/shadcn/elements";
 
 import { useHolidayForm } from "../hooks";
+import { DatePickerWithRange } from "@src/shadcn/components/form/date-range-picker";
 
 interface ProfileFormProps {
   id?: number
@@ -13,9 +14,13 @@ interface ProfileFormProps {
 
 export const HolidayForm: React.FC<ProfileFormProps> = ({ id }) => {
   const { form } = useHolidayForm({ id });
+  console.log("form", form.watch());
   return (
     <div className="rounded-full w-72 sm:w-[700px]">
       <Form {...form}>
+        <Form.Field {...form} name="leaveDate" label="ມື້ເລີ່ມ">
+          <DatePickerWithRange />
+        </Form.Field>
         <div className="text-2xl font-bold tracking-wide text-center text-gray-800 dark:text-white">
             ຂໍ້ມູນສ່ວນບຸກຄົນ
         </div>
