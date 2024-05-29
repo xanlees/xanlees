@@ -85,4 +85,6 @@ p, issuer, log-out, (create)
 p, admin, log-out, (create)
 p, admin, holiday, (list)|(create)
 p, admin, holiday/*, (edit)|(show)|(delete)
+p, admin, leave, (list)|(create)
+p, admin, leave/*, (edit)|(show)|(delete)
 `);
