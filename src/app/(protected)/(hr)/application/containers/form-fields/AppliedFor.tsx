@@ -1,4 +1,4 @@
-import { useProvinceSelect } from "@src/app/(protected)/(career)/branch/hook/useProvince";
+import { useProvinceSelect } from "@src/app/(protected)/(career)/branch/hook/useBranchForm";
 import { type IFormConfig } from "@src/common/interface";
 import { Form } from "@src/shadcn/components/form";
 import { Input } from "@src/shadcn/elements";

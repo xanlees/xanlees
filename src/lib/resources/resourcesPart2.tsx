@@ -1,4 +1,4 @@
-import { UserCircle, Calendar } from "lucide-react";
+import { UserCircle, Calendar, Briefcase } from "lucide-react";
 
 export const resourcesPart2 = [
   {
@@ -34,5 +34,15 @@ export const resourcesPart2 = [
       label: "holiday",
     },
   },
+  {
+    name: "leave",
+    list: "/leave",
+    create: "/leave/create",
+    edit: "/leave/edit/:id",
+    show: "/leave/show/:id",
+    icon: <Briefcase />,
+    meta: {
+      label: "leave",
+    },
+  },
 ];
-
