@@ -23,7 +23,7 @@ export default function ProfileList(): JSX.Element {
   const positionId = useLatestPositionId(profile);
   const positionData = useLatestPositionDetail(positionId as number[], profile) as { data: { data: IPosition[] } };
   const profileIds = useProfileIds(profile);
-  const userProfileData = UseUserProfile({ profileIds, pageSize: 50 })?.data;
+  const userProfileData = UseUserProfile({ profileIds })?.data;
   const friendly = useUserFriendlyName();
   return (
     <List>
