@@ -58,7 +58,7 @@ export const DatePickerWithRange: React.FC<DatePickerWithRangeProps> = ({
             id="date"
             variant="outline"
             className={cn(
-              "w-[300px] justify-start text-left font-normal",
+              "pl-3 my-2 justify-start text-left font-normal",
               !date && "text-muted-foreground"
             )}
           >

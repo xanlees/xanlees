@@ -11,7 +11,6 @@ import { useSectorForm } from "./hook";
 import { useBranchSelect } from "./useSelect";
 
 export const SectorForm: React.FC<{ type: string }> = ({ type }) => {
-  console.log("type", type);
   return (
     <>
       {type === "LOTTERY" && <FormContainer type={type}/>}

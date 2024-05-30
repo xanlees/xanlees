@@ -5,18 +5,23 @@ import { useList } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { useTable } from "@refinedev/react-table";
 
-import { holidaySchema, type IHoliday } from "./lib";
+import { holidaySchema, type IHolidayExpand } from "./lib";
 
 import type * as z from "zod";
 
 export const useTableHoliday = () => {
-  const table = useTable<IHoliday>({
+  const table = useTable<IHolidayExpand>({
     columns: [],
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {
       errorNotification: false,
       resource: "holiday",
+      filters: {
+        permanent: [
+          { field: "expand", operator: "eq", value: "branch" },
+        ],
+      },
     },
   });
   return { table };

@@ -1,4 +1,5 @@
 import * as z from "zod";
+import { type IBranch } from "@career";
 
 export const holidaySchema = z.object({
   holidayName: z.string().min(2, {
@@ -16,3 +17,6 @@ export interface IHoliday {
   holidayDate: string[]
 }
 
+export interface IHolidayExpand extends Omit<IHoliday, "branch"> {
+  branch: IBranch
+}
