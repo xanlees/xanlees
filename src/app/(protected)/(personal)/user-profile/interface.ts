@@ -1,4 +1,6 @@
 import { type IProfile } from "../../(career)/agent/interface/model";
+import { type IEmployee } from "@career";
+import { type IHoliday } from "@hr";
 
 export interface IUserProfile {
   id: number
@@ -24,4 +26,21 @@ export interface IWorkTimeSettings {
   checkOutTime: string
   lateTime: string
   dayOfWeek: string
+}
+
+export interface CheckInProp {
+  employeeIsLatestData: IEmployee[]
+  workTimeSettingsData: IWorkTimeSettings[]
+}
+
+export interface CheckInStatusProps extends Omit<CheckInProp, "holidayData"> {
+  attendanceData: IAttendance[]
+  holidayData: IHoliday[]
+  date: string
+}
+
+export interface HolidayCheckProps {
+  date: string
+  holidayData: IHoliday[]
+  branchId: number | undefined
 }

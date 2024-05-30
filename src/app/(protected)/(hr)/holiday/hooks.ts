@@ -1,11 +1,13 @@
 import { useRouter } from "next/navigation";
-import type * as z from "zod";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useList } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { useTable } from "@refinedev/react-table";
 
 import { holidaySchema, type IHoliday } from "./lib";
+
+import type * as z from "zod";
 
 export const useTableHoliday = () => {
   const table = useTable<IHoliday>({
@@ -43,3 +45,18 @@ export const useHolidayForm = ({ id }: { id?: number }) => {
   });
   return { form };
 };
+
+export function useHolidayList({ holidayDate }: { holidayDate: string }) {
+  const { data } = useList({
+    resource: "holiday",
+    filters: [
+      {
+        field: "holiday_date",
+        operator: "eq",
+        value: holidayDate,
+      },
+    ],
+    errorNotification: false,
+  });
+  return data;
+}

@@ -11,6 +11,7 @@ export const holidaySchema = z.object({
 
 export interface IHoliday {
   id: number
+  branch: number
   holidayName: string
   holidayDate: string[]
 }

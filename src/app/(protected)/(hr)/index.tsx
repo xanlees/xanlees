@@ -12,12 +12,17 @@ import { Skill } from "./skill/containers/Skill";
 import { WorkExperience } from "./work-experience/containers/WorkExperience";
 import { useSkill } from "./skill/hook";
 import { type ISkill } from "./skill/interface";
+import { type IHoliday } from "./holiday/lib";
+import { useHolidayList } from "./holiday/hooks";
+
 export type {
   ApplicationState,
   IApplication,
   IWorkExperience,
   ISkill,
+  IHoliday,
 };
+
 export {
   WorkExperienceForm,
   useApplicationContext,
@@ -27,4 +32,5 @@ export {
   Skill,
   WorkExperience,
   useSkill,
+  useHolidayList,
 };
