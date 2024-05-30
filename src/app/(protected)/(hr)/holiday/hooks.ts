@@ -6,7 +6,6 @@ import { useForm } from "@refinedev/react-hook-form";
 import { useTable } from "@refinedev/react-table";
 
 import { holidaySchema, type IHolidayExpand } from "./lib";
-
 import type * as z from "zod";
 
 export const useTableHoliday = () => {
@@ -55,11 +54,8 @@ export function useHolidayList({ holidayDate }: { holidayDate: string }) {
   const { data } = useList({
     resource: "holiday",
     filters: [
-      {
-        field: "holiday_date",
-        operator: "eq",
-        value: holidayDate,
-      },
+      { field: "holiday_date", operator: "eq", value: holidayDate },
+      { field: "paginate", operator: "eq", value: false },
     ],
     errorNotification: false,
   });
