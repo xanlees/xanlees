@@ -61,7 +61,7 @@ const BranchForm: React.FC<IFormProp> = ({ form }) => {
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
         <Form.Field {...form} name="branch" label="ຫ້ອງການ (ຖ້າຕ້ອງສ້າງມື້ພັກສະເພາະຫ້ອງການ)">
-          <Form.Combobox {...branchData as any} className="lg:w-80 " />
+          <Form.Combobox {...branchData} className="lg:w-80 " />
         </Form.Field>
       </div>
     </div>
