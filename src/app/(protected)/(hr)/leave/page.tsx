@@ -3,8 +3,8 @@
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
 import { useTableLeave } from "./hooks";
-import { getActionsColumn, PhoneNumberColumn } from "@src/common/containers/column";
-import { FullNameColumn, LeaveStatus, ProfileImageColumn, TitleColumn } from "./container/column";
+import { PhoneNumberColumn } from "@src/common/containers/column";
+import { FullNameColumn, LeaveColumn, LeaveStatus, NoOfDaysColumn, ProfileImageColumn, ReasonColumn } from "./container/column";
 
 export default function LeaveList(): JSX.Element {
   const { table } = useTableLeave();
@@ -15,8 +15,10 @@ export default function LeaveList(): JSX.Element {
         {FullNameColumn()}
         {PhoneNumberColumn("profile.phoneNumber")}
         {LeaveStatus()}
-        {TitleColumn()}
-        {getActionsColumn({ resource: "leave" })}
+        {LeaveColumn({ leaveDate: 0, header: "ມື້ເລີ່ມ" })}
+        {LeaveColumn({ leaveDate: 1, header: "ມື້ຈົບ" })}
+        {NoOfDaysColumn()}
+        {ReasonColumn()}
       </Table>
     </List>
   );

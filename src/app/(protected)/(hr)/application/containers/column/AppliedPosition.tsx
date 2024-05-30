@@ -82,16 +82,16 @@ export const UpdateProfileStatusColumn = (
           className=""
           defaultValue={""}
           id={id}
-          optionsConfig={optionsConfig}
+          optionsItem={optionsItem}
           field="type"
           resource="profile"
-          isMultipartFormData
+          isMultipart
         />
       );
     }}
   />
 );
 
-export const optionsConfig = [
+export const optionsItem = [
   { value: "EMPLOYEE", label: "ເລືອນຂັ້ນເປັນພະນັກງານ" },
 ];

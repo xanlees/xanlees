@@ -1,6 +1,6 @@
 import { type CrudFilter } from "@refinedev/core";
 
-export const optionsConfig = [
+export const optionsItem = [
   { value: "New", label: "ສົ່ງມາໃຫມ່" },
   { value: "Contacted", label: "ຕິດຕໍ່ຫາແລ້ວ" },
   { value: "Interviewed", label: "ສຳພາດແລ້ວ" },
