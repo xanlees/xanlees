@@ -1,11 +1,12 @@
 import React from "react";
 
+import { useBranchSelect } from "@career";
 import { type IFormProp } from "@src/common/interface";
 import { Form } from "@src/shadcn/components/form";
+import { DatePickerWithRange } from "@src/shadcn/components/form/date-range-picker";
 import { Input } from "@src/shadcn/elements";
 
 import { useHolidayForm } from "../hooks";
-import { DatePickerWithRange } from "@src/shadcn/components/form/date-range-picker";
 
 export const HolidayForm: React.FC<{ id?: number }> = ({ id }) => {
   const { form } = useHolidayForm({ id });
@@ -24,9 +25,11 @@ const FormFieldContainer: React.FC<IFormProp> = ({ form }) => {
     <div className="flex flex-wrap gap-2">
       <HolidayNameField form={form} />
       <StartDateField form={form} />
+      <BranchForm form={form} />
     </div>
   );
 };
+
 const HolidayNameField: React.FC<IFormProp> = ({ form }) => {
   return (
     <div className="w-full">
@@ -45,6 +48,20 @@ const StartDateField: React.FC<IFormProp> = ({ form }) => {
       <div className="relative w-full mb-3">
         <Form.Field {...form} name="holidayDate" label="ວັນທີ">
           <DatePickerWithRange />
+        </Form.Field>
+      </div>
+    </div>
+  );
+};
+
+const BranchForm: React.FC<IFormProp> = ({ form }) => {
+  const type = "HEADQUARTERS,OFFICE,BRANCH";
+  const branchData = useBranchSelect({ type });
+  return (
+    <div className="w-full lg:w-80 ">
+      <div className="relative w-full mb-3">
+        <Form.Field {...form} name="branch" label="ຫ້ອງການ (ຖ້າຕ້ອງສ້າງມື້ພັກສະເພາະຫ້ອງການ)">
+          <Form.Combobox {...branchData as any} className="lg:w-80 " />
         </Form.Field>
       </div>
     </div>

@@ -1,12 +1,31 @@
 import moment from "moment";
 
 import { CardView } from "@/shadcn/components/table/card-view";
-import { type IHoliday } from "../lib";
+import { type IHolidayExpand } from "../lib";
+import { getDisplayBranchName } from "@career";
 
 interface HolidayRowProps {
   row: {
-    original: IHoliday
+    original: IHolidayExpand
   }
+}
+
+export function BranchRow() {
+  return (
+    <CardView.Row
+      header="ຫ້ອງການ"
+      id="branch"
+      accessorKey="branch"
+      cell={({ row }: HolidayRowProps) => {
+        const name = row.original?.branch?.name ?? "";
+        const type = row.original?.branch?.type ?? "";
+        if (name) {
+          return <div>{`${name} (${getDisplayBranchName(type)})`}</div>;
+        }
+        return <div>{"ພັກທຸກຫ້ອງການ"}</div>;
+      }}
+    />
+  );
 }
 
 export function HolidayNameRow() {

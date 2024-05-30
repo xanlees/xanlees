@@ -5,25 +5,24 @@ import React, { useState } from "react";
 
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
+import { type IEmployee, useBranchFormSelect } from "@career";
+import { type IHoliday, useHolidayList } from "@hr";
 import { useUserFriendlyName } from "@refinedev/core";
 import { getSelectColumn } from "@src/common/containers/column";
 import { DatePicker } from "@src/shadcn/elements";
 import { ComboboxSelect } from "@src/shadcn/elements/combobox-select";
 
-import { type IEmployee } from "../../(career)/employee/interface";
-import { useBranchFormSelect } from "../../(career)/work-time-settings/hook/useWorkTimeSettings";
 import {
   CheckIn, CheckInCheckOutTime, CheckInImage, CheckOut, CheckOutImage, FullNameColumn,
-} from "./containers/table-column";
-import { EmployeeLateStatus } from "./containers/table-column/EmployeeLateStatus";
-import { workingHour } from "./containers/table-column/workingHour";
+} from "./containers/column";
+import { CheckInStatus } from "./containers/column/EmployeeLateStatus";
+import { workingHour } from "./containers/column/workingHour";
 import {
   useAttendance, useBranchId, useEmployeeIsLatest, useProfileIDs, useTableUserProfile, useUserIDs,
 } from "./hooks";
 import { useWorkTimeSettings } from "./hooks/useWorkTimeSettings";
 
 import type { IWorkTimeSettings, IAttendance } from "./interface";
-
 export default function UserProfileList(): JSX.Element {
   const [selected, setSelected] = useState<number>(0);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
@@ -34,6 +33,7 @@ export default function UserProfileList(): JSX.Element {
   const friendly = useUserFriendlyName();
   const userIds = useUserIDs(userProfile);
   const profileId = useProfileIDs(userProfile);
+  const holidayData = useHolidayList({ holidayDate: checkInDate })?.data as unknown as IHoliday[];
   const employeeIsLatestData = useEmployeeIsLatest({ profileId })?.data as unknown as IEmployee[];
   const branchId = useBranchId(employeeIsLatestData);
   const attendanceData = useAttendance({ userIds, checkInDate })?.data as unknown as IAttendance[];
@@ -49,8 +49,8 @@ export default function UserProfileList(): JSX.Element {
         {CheckOut({ attendanceData })}
         {CheckOutImage({ attendanceData })}
         {workingHour({ attendanceData })}
-        {CheckInCheckOutTime({ workTimeSettingsData, employeeIsLatestData, attendanceData })}
-        {EmployeeLateStatus({ workTimeSettingsData, employeeIsLatestData, attendanceData })}
+        {CheckInCheckOutTime({ workTimeSettingsData, employeeIsLatestData })}
+        {CheckInStatus({ workTimeSettingsData, employeeIsLatestData, attendanceData, holidayData, date: checkInDate })}
       </Table>
     </List>
   );

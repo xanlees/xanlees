@@ -1,8 +1,7 @@
 import { Table } from "@/shadcn/components/table";
-import { type IUserProfile, type IAttendance } from "../../interface";
+import { type IUserProfile, type IAttendance, type CheckInProp } from "../../interface";
 import moment from "moment";
 import { ProfileImageDialog } from "./checkOut";
-import { type LateTimeProps } from "./EmployeeLateStatus";
 
 export function CheckIn({ attendanceData }: { attendanceData: IAttendance[] }) {
   return (
@@ -51,7 +50,7 @@ export function CheckInImage({
   );
 }
 
-export function CheckInCheckOutTime({ employeeIsLatestData, workTimeSettingsData }: LateTimeProps) {
+export function CheckInCheckOutTime({ employeeIsLatestData, workTimeSettingsData }: CheckInProp) {
   return (
     <Table.Column<IUserProfile>
       header="ໂມງເຂົ້າ-ອອກວຽກ"
@@ -59,14 +58,12 @@ export function CheckInCheckOutTime({ employeeIsLatestData, workTimeSettingsData
       accessorKey="profile.id"
       cell={({ row }) => {
         const profileId = row.original.profile?.id;
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const employee = employeeIsLatestData.find((emp: { profileId: number }) => emp.profileId === profileId);
+        const employee = employeeIsLatestData.find((emp) => emp?.profileId === profileId);
         if (!employee) {
           return <div>ບໍ່ມີຂໍ້ມູນ</div>;
         }
         const workTimeSetting = workTimeSettingsData.find(
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          (wt: { branch: number }) => wt.branch === employee.branchId,
+          (wt: { branch: number }) => wt.branch === employee?.branchId,
         );
         if (!workTimeSetting) {
           return <div>ບໍ່ມີຂໍ້ມູນ</div>;

@@ -1,6 +1,6 @@
 import { Table, type TableFilterProps } from "@/shadcn/components/table";
 import { type ILeaveExpand } from "../../lib";
-import { ProfileImageDialog } from "@src/app/(protected)/(personal)/user-profile/containers/table-column";
+import { ProfileImageDialog } from "@src/app/(protected)/(personal)/user-profile/containers/column";
 
 export function FullNameColumn() {
   return (
