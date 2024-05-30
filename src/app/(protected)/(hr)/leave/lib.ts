@@ -15,8 +15,7 @@ export interface ILeave {
   profile: number
   leaveDate: string[]
   status: string
-  detail: string
-  title: string
+  reason: string
 }
 
 export interface ILeaveExpand extends Omit<ILeave, "profile"> {

@@ -6,7 +6,7 @@ import { Table } from "@/shadcn/components/table";
 import UpdateApplicationStatus from "@src/shadcn/components/updateOnSelect";
 
 import { type IApplication } from "../../interface";
-import { optionsConfig } from "../../lib/constant";
+import { optionsItem } from "../../lib/constant";
 
 export const ApplicationDate = (
   <Table.Column
@@ -37,7 +37,7 @@ export function ApplicationStatusColumn() {
           <UpdateApplicationStatus
             defaultValue={applicationStatus}
             id={applicationID}
-            optionsConfig={optionsConfig}
+            optionsItem={optionsItem}
             field="applicationStatus"
             resource="application"
             onChange={(value) => { handleChange(value, profileId.id); }}

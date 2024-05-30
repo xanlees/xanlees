@@ -3,31 +3,33 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { IUpdateDropdownSelectProps } from "./interface";
 import { useUpdateOnSelect } from "./hooks/useUpdate";
 import { cn } from "@src/shadcn/lib/utils";
-// Incomplete UpdateOnSelect missing Redirect
+
 const UpdateOnSelect: React.FC<IUpdateDropdownSelectProps> = ({ 
   defaultValue = "",
   label = "Select", 
   placeholder="Select a status",
-  optionsConfig = [],
+  optionsItem = [],
   className,
-  isMultipartFormData,
+  isMultipart,
   onChange,
+  redirect,
   resource, id,  field, }) => {
-  const { onUpdateHandler, } = useUpdateOnSelect({resource, id, field, isMultipartFormData });
+  const { onUpdateHandler, } = useUpdateOnSelect({resource, id, field, isMultipart, redirect });
   const handleChange = (val: number | string) => {
     onUpdateHandler(val);
     onChange?.(val);
   };
+  const selectedOption = optionsItem.find(option => option.value === defaultValue);
   return (
     <Select onValueChange={handleChange} defaultValue={defaultValue}>
-      <SelectTrigger className={cn("w-[180px]", className )}>
+      <SelectTrigger className={cn("w-[180px]", selectedOption?.className, className)}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
           <SelectLabel>{label}</SelectLabel>
-          {optionsConfig.map(option => (
-            <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+          {optionsItem.map(option => (
+            <SelectItem className={cn("w-[180px]", option?.className )} key={option.value} value={option.value}>{option.label}</SelectItem>
           ))}
         </SelectGroup>
       </SelectContent>

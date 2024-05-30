@@ -31,7 +31,7 @@ export const resourcesPart2 = [
     show: "/holiday/show/:id",
     icon: <Calendar />,
     meta: {
-      label: "holiday",
+      label: "ວັນພັກ",
     },
   },
   {
@@ -42,7 +42,7 @@ export const resourcesPart2 = [
     show: "/leave/show/:id",
     icon: <Briefcase />,
     meta: {
-      label: "leave",
+      label: "ຂໍລາພັກ",
     },
   },
 ];
