@@ -29,7 +29,7 @@ type ComboboxProps = Omit<
   ComponentPropsWithoutRef<typeof CommandPrimitive>,
   "onChange|onValueChange|value"
 > &
-  UseSelectReturnType<any, BaseOption> & {
+  UseSelectReturnType<any> & {
     placeholder?: string;
     emptyMessage?: string;
     onChange?: (value: string | number | string[]) => void;

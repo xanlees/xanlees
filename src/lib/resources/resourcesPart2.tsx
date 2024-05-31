@@ -45,4 +45,13 @@ export const resourcesPart2 = [
       label: "ຂໍລາພັກ",
     },
   },
+  {
+    name: "attendance-report",
+    list: "/attendance-report",
+    icon: <Briefcase />,
+    meta: {
+      label: "attendance-report",
+    },
+  },
 ];
+
