@@ -2,25 +2,11 @@ import { UserCircle, Calendar, Briefcase } from "lucide-react";
 
 export const resourcesPart2 = [
   {
-    name: "user",
-    list: "/user",
-    create: "/user/create",
-    edit: "/user/edit/:id",
-    show: "/user/show/:id",
-    icon: <UserCircle />,
+    name: "attendance-report",
+    list: "/attendance-report",
+    icon: <Briefcase />,
     meta: {
-      label: "ຜູ້ໃຊ້ລະບົບ",
-    },
-  },
-  {
-    name: "my-profile",
-    list: "/my-profile",
-    create: "/my-profile/create",
-    edit: "/my-profile/edit/:id",
-    show: "/my-profile/show/:id",
-    icon: <UserCircle />,
-    meta: {
-      label: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
+      label: "ລາຍງານປໍ້າໂມງ",
     },
   },
   {
@@ -46,11 +32,25 @@ export const resourcesPart2 = [
     },
   },
   {
-    name: "attendance-report",
-    list: "/attendance-report",
-    icon: <Briefcase />,
+    name: "user",
+    list: "/user",
+    create: "/user/create",
+    edit: "/user/edit/:id",
+    show: "/user/show/:id",
+    icon: <UserCircle />,
     meta: {
-      label: "attendance-report",
+      label: "ຜູ້ໃຊ້ລະບົບ",
+    },
+  },
+  {
+    name: "my-profile",
+    list: "/my-profile",
+    create: "/my-profile/create",
+    edit: "/my-profile/edit/:id",
+    show: "/my-profile/show/:id",
+    icon: <UserCircle />,
+    meta: {
+      label: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
     },
   },
 ];
