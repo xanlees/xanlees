@@ -6,7 +6,6 @@ import { getActionsColumn } from "@src/common/containers/column";
 import {
   branchColumn, employeeColumn, ProvinceColumn, sectorColumn,
 } from "../branch/containers/column";
-import { useBranchTable, useEmployee, usePosition, useSector } from "../branch/hook/table";
 import { getBranchIds, getPositionIds } from "../branch/lib";
 import { type IEmployeeExpand, type IEmployeeExpandProfile } from "../employee/interface";
 import { type IPosition } from "../position/interface";
@@ -14,6 +13,7 @@ import { type ISector } from "../sector/interface";
 import { useSession } from "next-auth/react";
 import { type CustomSession } from "@src/common/interface";
 import { useList } from "@refinedev/core";
+import { useBranchTable, useEmployee, usePosition, useSector } from "../branch/hook/useTable";
 
 const type = "LOTTERY";
 const title = "ໜ່ວຍ";
