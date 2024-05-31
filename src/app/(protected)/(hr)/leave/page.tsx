@@ -3,7 +3,7 @@
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
 import { useTableLeave } from "./hooks";
-import { PhoneNumberColumn } from "@src/common/containers/column";
+import { PhoneNumberColumn, SequenceColumn } from "@src/common/containers/column";
 import { FullNameColumn, LeaveColumn, LeaveStatus, NoOfDaysColumn, ProfileImageColumn, ReasonColumn } from "./container/column";
 
 export default function LeaveList(): JSX.Element {
@@ -11,6 +11,7 @@ export default function LeaveList(): JSX.Element {
   return (
     <List>
       <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ຊື່ແທ້, ເບີໂທລະສັບ">
+        {SequenceColumn()}
         {ProfileImageColumn()}
         {FullNameColumn()}
         {PhoneNumberColumn("profile.phoneNumber")}

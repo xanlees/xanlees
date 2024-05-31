@@ -2,9 +2,9 @@
 
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
-import { useUserFriendlyName } from "@refinedev/core";
 import {
-  GenderColumn, getActionsColumn, getSelectColumn, MarriageColumn, PhoneNumberColumn,
+  GenderColumn, getActionsColumn, MarriageColumn, PhoneNumberColumn,
+  SequenceColumn,
 } from "@src/common/containers/column";
 
 import {
@@ -24,11 +24,10 @@ export default function ProfileList(): JSX.Element {
   const positionData = useLatestPositionDetail(positionId as number[], profile) as { data: { data: IPosition[] } };
   const profileIds = useProfileIds(profile);
   const userProfileData = UseUserProfile({ profileIds })?.data;
-  const friendly = useUserFriendlyName();
   return (
     <List>
       <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ຊື່ແທ້, ເບີໂທລະສັບ">
-        {getSelectColumn(friendly)}
+        {SequenceColumn()}
         {FullNameColumn}
         {UserAccountColumn(userProfileData as unknown as UserProfileAccount[])}
         {PhoneNumberColumn("phoneNumber")}

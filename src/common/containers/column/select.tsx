@@ -32,3 +32,20 @@ export function getSelectColumn(friendly: (name: string | undefined, type: "sing
         key={`checkbox-${row.original.id}`} />
     )} />;
 }
+
+export function SequenceColumn() {
+  return (
+    <Table.Column
+      header="ລໍາດັບ"
+      id="sequence"
+      accessorKey="sequence"
+      cell={(props) => {
+        const { row } = props;
+        const pageIndex = props?.table?.options?.state?.pagination?.pageIndex ?? 0;
+        const pageSize = props?.table?.options?.state?.pagination?.pageSize ?? 0;
+        const sequenceNumber = pageIndex * pageSize + row.index + 1;
+        return <div className="ml-3">{sequenceNumber}</div>;
+      }}
+    />
+  );
+}

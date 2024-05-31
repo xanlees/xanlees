@@ -3,7 +3,7 @@
 import { List } from "@/shadcn/components/crud";
 import { InputToClipboard } from "@/shadcn/components/InputToClipboard";
 import { Table } from "@/shadcn/components/table";
-import { MarriageColumn, PhoneNumberColumn } from "@src/common/containers/column";
+import { MarriageColumn, PhoneNumberColumn, SequenceColumn } from "@src/common/containers/column";
 import { getActionsColumn } from "@src/common/containers/column/action";
 
 import {
@@ -20,6 +20,7 @@ export default function ApplicationList(): JSX.Element {
       <InputToClipboard value={`${process.env.NEXTAUTH_URL}/application/apply`} />
       <div className="-mt-[3.25rem]">
         <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ຊື່ແທ້ ເບີໂທລະສັບ">
+          {SequenceColumn()}
           {ProfileImageColumn()}
           {TagIDColumn}
           {FullNameColumn("profileId.fullname")}

@@ -7,8 +7,7 @@ import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
 import { type IEmployee, useBranchFormSelect } from "@career";
 import { type IHoliday, useHolidayList } from "@hr";
-import { useUserFriendlyName } from "@refinedev/core";
-import { getSelectColumn } from "@src/common/containers/column";
+import { SequenceColumn } from "@src/common/containers/column";
 import { DatePicker } from "@src/shadcn/elements";
 import { ComboboxSelect } from "@src/shadcn/elements/combobox-select";
 
@@ -30,7 +29,6 @@ export default function UserProfileList(): JSX.Element {
   const day = selectedDate ? format(selectedDate, "eeee") : "Monday";
   const { table } = useTableUserProfile({ branchId: selected });
   const userProfile = table.options.data ?? [];
-  const friendly = useUserFriendlyName();
   const userIds = useUserIDs(userProfile);
   const profileId = useProfileIDs(userProfile);
   const holidayData = useHolidayList({ holidayDate: checkInDate })?.data as unknown as IHoliday[];
@@ -42,7 +40,7 @@ export default function UserProfileList(): JSX.Element {
     <List showCreate={false}>
       <DateAndBranchSelector setSelectedDate={setSelectedDate} setSelected={setSelected}/>
       <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ຊື່ແທ້">
-        {getSelectColumn(friendly)}
+        {SequenceColumn()}
         {FullNameColumn}
         {CheckIn({ attendanceData })}
         {CheckInImage({ attendanceData })}
