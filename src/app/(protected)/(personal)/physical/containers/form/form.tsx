@@ -12,7 +12,7 @@ export const PhysicalProfile: React.FC = () => {
       {isCompleted
         ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
         : (<Form {...form}>
-          <FormFieldContainer form={form}/>
+          <FormFieldContainer form={{ form }}/>
         </Form>) }
     </div>
   );

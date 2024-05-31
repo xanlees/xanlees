@@ -64,7 +64,7 @@ export const FormBranchContainer: React.FC<{ type: string, id?: number }> = ({ t
           </div>
         </div>
       </div>
-      <ProvinceField form={form} province={province}/>
+      <ProvinceField form={{ form }} province={province}/>
     </Form>
   );
 };

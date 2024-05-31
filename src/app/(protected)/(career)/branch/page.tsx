@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
-import { getActionsColumn } from "@src/common/containers/column";
+import { getActionsColumn, SequenceColumn } from "@src/common/containers/column";
 
 import { type IEmployeeExpandProfile } from "../employee/interface";
 import { type IPosition } from "../position/interface";
@@ -32,6 +32,7 @@ export default function BranchList(): JSX.Element {
       <List>
         <SelectProvince setSelected={setSelected} />
         <Table table={table} SearchBarTitle="ຄົ້ນຫາ">
+          {SequenceColumn()}
           {ProvinceColumn()}
           {branchColumn({ title: "ສັງກັດຫ້ອງການ" })}
           {sectorColumn({ title, sectorData })}

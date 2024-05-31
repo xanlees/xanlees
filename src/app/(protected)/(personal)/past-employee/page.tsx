@@ -20,6 +20,7 @@ import {
   MarriageColumn,
   getSelectColumn,
   getActionsColumn,
+  SequenceColumn,
 } from "@src/common/containers/column";
 import { type UserProfileAccount } from "../profile/interface/model";
 
@@ -34,6 +35,7 @@ export default function ProfileList(): JSX.Element {
   return (
     <List>
       <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ຊື່ແທ້, ເບີໂທລະສັບ">
+        {SequenceColumn()}
         {getSelectColumn(friendly)}
         {FullNameColumn}
         {UserAccountColumn(userProfileData as unknown as UserProfileAccount[])}

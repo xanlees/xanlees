@@ -18,9 +18,9 @@ export const EmployeeForm = ({ profileId, type, redirect }: { redirect?: string,
     <Form {...form}>
       {type === "LOTTERY"
         ? (
-          <PositionForm form={form} fields={fields} append={append} remove={remove} position={position} profile={profileId}/>)
+          <PositionForm form={{ form }} fields={fields} append={append} remove={remove} position={position} profile={profileId}/>)
         : (
-          <Containers form={form} fields={fields} append={append} remove={remove} position={position} profile={profileId}/>)
+          <Containers form={{ form }} fields={fields} append={append} remove={remove} position={position} profile={profileId}/>)
       }
     </Form>
   );
