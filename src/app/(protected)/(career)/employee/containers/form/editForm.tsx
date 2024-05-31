@@ -32,7 +32,7 @@ export const EmployeeEditForm: React.FC<{ id: number, redirectTo: string }> = ({
             </Form.Field>
           </div>
         </div>
-        <InputFiled form={form}/>
+        <InputFiled form={{ form }}/>
       </div>
     </Form>
   );

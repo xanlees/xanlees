@@ -31,7 +31,7 @@ export const PositionForm: React.FC<{ type: string }> = (type) => {
       <Form.Field {...form} name="name" label="ຕໍາແໜ່ງ">
         <Input placeholder="ຕໍາແໜ່ງ" className="block w-full" />
       </Form.Field>
-      <SectorSection form={form} sector={sector} />
+      <SectorSection form={{ form }} sector={sector} />
     </Form>
   );
 };

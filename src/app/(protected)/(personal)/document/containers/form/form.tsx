@@ -25,7 +25,7 @@ export const DocumentForm: React.FC<{ label?: string }> = ({ label }) => {
           <p className="italic">ສຳເລັດແລ້ວ !</p>)
         : (
           <Form {...form} cardClassName="w-full flex flex-col">
-            <FormFieldContainer form={form}/>
+            <FormFieldContainer form={{ form }}/>
             <div className="h-4 border-b"> </div>
             <Form.Field {...form} name="documentList" label={ label ?? "ລາຍການເອກະສານ (ກະລຸນາກົດເພີ່ມເອກະສານກ່ອນບັນທືກ)" } ><></></Form.Field>
             {fields.length > 0
@@ -35,7 +35,7 @@ export const DocumentForm: React.FC<{ label?: string }> = ({ label }) => {
               : <p className="mx-2 text-xs italic">ບໍ່ມີເອກະສານເທື່ອ</p>}
             {shouldShowDynamicForm && (
               <div className="bottom-7">
-                <DocumentDynamicForm form={form} fields={fields} append={append} fileName={fileName} file={fileInput} />
+                <DocumentDynamicForm form={{ form }} fields={fields} append={append} fileName={fileName} file={fileInput} />
               </div>
             )}
           </Form>)}

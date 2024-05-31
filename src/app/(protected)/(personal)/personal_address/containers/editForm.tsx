@@ -15,9 +15,9 @@ export function PersonalAddressEditForm({ id }: { id: number }) {
         <div className="rounded-full w-72 sm:w-[710px]">
           <Form {...form}>
             <div className="flex flex-wrap gap-2">
-              <Village form={form } title={village} />
-              <Province form={ form } />
-              <District form={form } />
+              <Village form={{ form }} title={village} />
+              <Province form={{ form }} />
+              <District form={{ form }} />
             </div>
           </Form>
         </div>

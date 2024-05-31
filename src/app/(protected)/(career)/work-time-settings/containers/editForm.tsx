@@ -29,7 +29,7 @@ const ContainerForm = ({ settingId }: { settingId: number }) => {
   return (
     <div className="m-2">
       <Form {...form}>
-        <FormFieldInputContainer form={form} />
+        <FormFieldInputContainer form={{ form }} />
       </Form>
     </div>
   );
@@ -40,7 +40,7 @@ const ContainerFormLastTime = ({ settingId }: { settingId: number }) => {
   return (
     <div className="m-2">
       <Form {...form}>
-        <FormFieldContainer form={form} settingId={settingId} />
+        <FormFieldContainer form={{ form }} settingId={settingId} />
       </Form>
     </div>
 

@@ -6,7 +6,6 @@ import {
   GeneralInfo,
 } from "../form-fields";
 import { Input, Textarea } from "@src/shadcn/elements";
-import { type IFormConfig } from "@src/common/interface";
 import { useApplicationContext } from "../../context";
 import { BadgeCheck } from "lucide-react";
 export const ApplicationForm: React.FC = () => {
@@ -20,8 +19,8 @@ export const ApplicationForm: React.FC = () => {
           <p className="italic">ສຳເລັດແລ້ວ !</p>)
         : (
           <Form {...form}>
-            <AppliedFor form={form} />
-            <EmergencyInformationSection form={form} />
+            <AppliedFor form={{ form }} />
+            <EmergencyInformationSection form={{ form }} />
           </Form>)}
     </div>
   );
@@ -40,7 +39,7 @@ export const Application2Form: React.FC = () => {
           <Success tagId={tagId} />)
         : (
           <Form {...form}>
-            <GeneralInfo form={form} />
+            <GeneralInfo form={{ form }} />
             <Form.Field require={false} {...form} name="appliedReason" label="ເປັນຫຍັງທ່ານຈື່ງເຮັດວຽກນໍາບໍລິສັດພວກເຮົາ ?" >
               <Textarea className="h-28" />
             </Form.Field>
@@ -53,7 +52,7 @@ export const Application2Form: React.FC = () => {
   );
 };
 
-const ApplicantSignatureChckbox = (form: IFormConfig) => (
+const ApplicantSignatureChckbox = (form: any) => (
   <Form.Field {...form} name="applicantSignature" label="ການຍອມຮັບ">
     <div className="flex">
       <Input type="checkbox" className="w-5 h-5" />

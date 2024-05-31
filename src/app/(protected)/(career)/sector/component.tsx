@@ -38,8 +38,8 @@ export const FormContainer: React.FC<{ type: string, id?: number }> = ({ type = 
         <Input placeholder="" className="block w-full" />
       </Form.Field>
       <div className=" flex gap-x-5">
-        <BranchSelect form={form} branch={branch} sectorName={sectorName}/>
-        <Type form={form} type={type}/>
+        <BranchSelect form={{ form }} branch={branch} sectorName={sectorName}/>
+        <Type form={{ form }} type={type}/>
       </div>
     </Form>
   );

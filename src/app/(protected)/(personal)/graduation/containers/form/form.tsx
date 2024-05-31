@@ -20,7 +20,6 @@ export const FormGraduation = () => {
       <AccordionItem value="item-1" className="border-none">
         <AccordionTrigger className="italic text-blue-500 underline">*ຊອກສາຂາ/ສາຍສາມັນບໍ່ເຫັນ, ກົດທີ່ນີ້</AccordionTrigger>
         <AccordionContent>
-
           <Form {...formConfig.form}>
             <div className="w-full sm:flex gap-x-2">
               <InputBase {...formConfig} name="degree" label="ລະດັບການສຶກສາ" />

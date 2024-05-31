@@ -12,19 +12,14 @@ import {
 import { SelectProvince } from "../branch/containers/selectProvince";
 import { useBranchTable, useEmployee, usePosition, useSector } from "../branch/hook/useTable";
 import { getBranchIds, getPositionIds } from "../branch/lib";
-import { type IEmployeeExpand, type IEmployeeExpandProfile } from "../employee/interface";
+import { type IEmployeeExpandProfile } from "../employee/interface";
 import { type IPosition } from "../position/interface";
 import { type ISector } from "../sector/interface";
-import { useSession } from "next-auth/react";
-import { type CustomSession } from "@src/common/interface";
-import { useList } from "@refinedev/core";
 
 const type = "LOTTERY";
 const title = "ໜ່ວຍ";
 
 export default function BranchList(): JSX.Element {
-  const data = useEmployeeProvince();
-
   const [selected, setSelected] = useState<number | undefined>();
   const { table } = useBranchTable({ type, province: selected });
   const branch = table.options.data ?? [];
@@ -41,24 +36,10 @@ export default function BranchList(): JSX.Element {
           {ProvinceColumn()}
           {branchColumn({ title: "ເມືອງ" })}
           {sectorColumn({ title, sectorData })}
-          {employeeColumn({ employeeData, title: "ສະມາຊິກ (ສັງກັດຈາມສີ)" })}
+          {employeeColumn({ employeeData, title: "ສະມາຊິກ (ສັງກັດຕາມສີ)" })}
           {getActionsColumn({ resource: "branch", hideShow: true })}
         </Table>
       </List>
     </div>
   );
-}
-
-export function useEmployeeProvince() {
-  const { data } = useSession() as { data: CustomSession | null };
-  const useId = data?.user?.id ?? 0;
-  return useList<IEmployeeExpand>({
-    resource: "employee",
-    filters: [
-      { field: "user", operator: "eq", value: 109 },
-      { field: "fields", operator: "eq", value: "branch_id,id" },
-      { field: "expand", operator: "eq", value: "branch_id" },
-    ],
-    errorNotification: false,
-  });
 }
