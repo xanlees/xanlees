@@ -62,10 +62,10 @@ function Thead(): JSX.Element {
   return (
     <thead className="bg-gray-50 dark:bg-gray-800">
       <tr>
-        <th scope="col" className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+        <th scope="col" className="px-4 py-2 text-left text-xs font-medium uppercase tracking-wider">
           {"ລຳ​ດັບ"}
         </th>
-        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider" >
+        <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" >
           ເລກລະຫັດ
         </th>
       </tr>
@@ -78,8 +78,8 @@ function Tbody({ uniqueNumber }: { uniqueNumber: string[] }): JSX.Element {
     <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-600">
       {uniqueNumber?.map((number, index) => (
         <tr key={index}>
-          <td className="px-4 py-2 whitespace-nowrap">{index + 1}</td>
-          <td className="px-6 py-4 whitespace-nowrap">{number}</td>
+          <td className="px-4 py-2 whitespace-nowrap text-gray-900 dark:text-gray-100">{index + 1}</td>
+          <td className="px-6 py-4 whitespace-nowrap text-gray-900 dark:text-gray-100">{number}</td>
         </tr>
       ))}
     </tbody>
