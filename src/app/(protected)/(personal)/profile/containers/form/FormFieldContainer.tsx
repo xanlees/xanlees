@@ -37,7 +37,7 @@ export const BirthdayInput: React.FC<CommonProps> = ({ form }) => {
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
         <Form.Field {...form} name="birthday" label="ວັນ​ເດືອນ​ປີ​ເກີດ">
-          <DatePickerField />
+          <DatePickerField/>
         </Form.Field>
       </div>
     </div>

@@ -45,7 +45,6 @@ export const UserNav: FC<UserNavProps> = ({ name, title, avatar, menus }) => {
             mutateLogout();
         }
     };
-
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>

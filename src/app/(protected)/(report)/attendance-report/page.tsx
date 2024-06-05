@@ -1,64 +1,34 @@
 "use client";
-import React, { useState } from "react";
 
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
-import { type IEmployee, useBranchFormSelect } from "@career";
-import { useUserFriendlyName } from "@refinedev/core";
-import { getSelectColumn, PhoneNumberColumn } from "@src/common/containers/column";
-import { ComboboxSelect } from "@src/shadcn/elements/combobox-select";
+import { SequenceColumn } from "@src/common/containers/column";
 
-import { FullNameColumn } from "../../(personal)/user-profile/containers/column";
-import { TotalDays, TotalLateHours, TotalWorkHours } from "./containers/column";
-import {
-  useBranchId, useEmployeeIsLatest, useProfileIDs, useTableUserProfile, useUserIDs,
-} from "../../(personal)/user-profile/hooks";
-import type { IWorkTimeSettings, IAttendance } from "./../../(personal)/user-profile/interface";
-import { useAttendance, useWorkTimeSettings } from "./hook";
-import { format } from "date-fns";
+import { type AttendanceDataItem, useAttendanceAggregationList, useAttendanceAggregationTable, useUserProfile } from "./hook";
+import { AttendanceColumn, FullnameColumn, PhoneNumberColumn } from "./column";
 
 export default function AttendanceReportList(): JSX.Element {
-  const [selected, setSelected] = useState<number>(0);
-  const { table } = useTableUserProfile({ branchId: selected });
-  const userProfile = table.options.data ?? [];
-  const friendly = useUserFriendlyName();
-  const userIds = useUserIDs(userProfile);
-  const profileId = useProfileIDs(userProfile);
-  const employeeIsLatestData = useEmployeeIsLatest({ profileId })?.data as unknown as IEmployee[];
-  const branchId = useBranchId(employeeIsLatestData);
-  const currentMonth = format(new Date(), "yyyy-MM");
-  const attendanceData = useAttendance({ userIds, checkInDate: currentMonth })?.data as unknown as IAttendance[];
-  const workTimeSettingsData = useWorkTimeSettings({ branchId })?.data as unknown as IWorkTimeSettings[];
+  const { table } = useAttendanceAggregationTable();
+  const attendanceData = table.options.data ?? [];
+  const userIds = getUserIds(attendanceData);
+  const userProfileData = useUserProfile({ userIds })?.data?.data ?? [];
+  const attendanceDataTypeOnTime = useAttendanceAggregationList({ type: "on_time,ot", aggregation: "count", aggregationField: "user", checkInMonth: "2024-06" })?.data?.data ?? [];
+  const attendanceDataTypeLate = useAttendanceAggregationList({ type: "late,late_early", aggregation: "count", aggregationField: "user", checkInMonth: "2024-06" })?.data?.data ?? [];
+  const attendanceDataTypeOt = useAttendanceAggregationList({ type: "ot", aggregation: "sum", aggregationField: "ot", checkInMonth: "2024-06" })?.data?.data ?? [];
   return (
     <List showCreate={false}>
-      <DateAndBranchSelector setSelected={setSelected}/>
       <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ຊື່ແທ້">
-        {getSelectColumn(friendly)}
-        {FullNameColumn}
-        {PhoneNumberColumn("profile.phoneNumber")}
-        {TotalDays({ workTimeSettingsData, employeeIsLatestData, attendanceData })}
-        {TotalLateHours({ workTimeSettingsData, employeeIsLatestData, attendanceData })}
-        {TotalWorkHours({ workTimeSettingsData, employeeIsLatestData, attendanceData })}
+        {SequenceColumn()}
+        {FullnameColumn({ userProfileData })}
+        {PhoneNumberColumn({ userProfileData })}
+        {AttendanceColumn({ data: attendanceDataTypeOnTime, header: "ເຂົ້າວຽກທັນເວລາ (ມື້)", className: "bg-green-500" })}
+        {AttendanceColumn({ data: attendanceDataTypeLate, header: "ເຂົ້າວຽກຊ້າ (ມື້)", className: "bg-red-500" })}
+        {AttendanceColumn({ data: attendanceDataTypeOt, header: "ຊົ່ວໂມງ OT", className: "bg-red-500" })}
       </Table>
     </List>
   );
 }
 
-interface DateAndBranchPickerProps {
-  setSelected: React.Dispatch<React.SetStateAction<number>>
-}
-
-function DateAndBranchSelector({ setSelected }: DateAndBranchPickerProps): JSX.Element {
-  const handlePeriodChange = (id: number) => {
-    setSelected(id);
-  };
-  const branch = useBranchFormSelect();
-  return (
-    <div className="flex p-4 bg-white rounded-lg shadow-md w-fit gap-x-5 ">
-      <div>
-        <div className="mb-2 text-lg font-semibold text-gray-700">ຂາສາ</div>
-        <ComboboxSelect options={branch.options} onChange={handlePeriodChange} label="" className="w-[300px]" defaultValue={""}/>
-      </div>
-    </div>
-  );
+function getUserIds(data: AttendanceDataItem[]): string {
+  return data.length > 0 ? data.map((item) => item.user).join(",") : "0";
 }
