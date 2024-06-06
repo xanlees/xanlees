@@ -1,14 +1,12 @@
 import { Table } from "@/shadcn/components/table";
 import { type IProfile } from "@personal";
-import { cn } from "@src/lib/utils";
-import { Badge } from "@src/shadcn/elements";
+import { type IEmployee } from "@career";
 
 interface IUserProfileExpand {
   id: number
   user: number
   profile: IProfile
 }
-
 interface FullnameColumnProps {
   userProfileData: IUserProfileExpand[]
 }
@@ -17,8 +15,7 @@ export function FullnameColumn({ userProfileData }: FullnameColumnProps) {
   return (
     <Table.Column
       header="ຊື່ ແລະ ນາມສະກຸນ (ຊຶ່ຫຼີ້ນ)"
-      id="user"
-      accessorKey="user"
+      id="user" accessorKey="user"
       cell={(props) => {
         const user = props.getValue() as unknown as number;
         const userProfile = userProfileData.find((profile) => profile.user === user);
@@ -33,13 +30,11 @@ export function FullnameColumn({ userProfileData }: FullnameColumnProps) {
     />
   );
 }
-
 export function PhoneNumberColumn({ userProfileData }: FullnameColumnProps) {
   return (
     <Table.Column
       header="ເບີໂທ"
-      id="user"
-      accessorKey="user"
+      id="user" accessorKey="user"
       cell={(props) => {
         const user = props.getValue() as unknown as number;
         const userProfile = userProfileData.find((profile) => profile.user === user);
@@ -54,25 +49,35 @@ export function PhoneNumberColumn({ userProfileData }: FullnameColumnProps) {
   );
 }
 
-export function AttendanceColumn({ data, header, className }: { data: Array<{ user: number, value: number }>, header: string, className?: string }) {
+export function TotalEarningColumn({ data }: { data: Array<{ user: number, value: number }> }) {
   return (
     <Table.Column
-      header={header}
-      id="user"
-      accessorKey="user"
+      header="ເງິນເດືອນໄດ້ຮັບ"
+      id="user" accessorKey="user"
       cell={(props) => {
         const user = props.getValue() as unknown as number;
-        const value = data.find((item) => item.user === user);
+        const value = data?.find((item) => item?.user === user)?.value;
+        const roundedValue = Math.floor(Number(value));
         return (
-          <>
-            {value
-              ? (<Badge className={cn(className)}>{value.value}</Badge>)
-              : null
-            }
-          </>
+          <>{`${roundedValue.toLocaleString()} ກີບ`}</>
         );
       }}
     />
   );
 }
-
+export function SalaryColumn({ userProfileData, employeeData }: FullnameColumnProps & { employeeData: IEmployee[] }) {
+  return (
+    <Table.Column
+      header="ເງິນເດືອນ"
+      id="user" accessorKey="user"
+      cell={(props) => {
+        const user = props.getValue() as unknown as number;
+        const profile = userProfileData.find((profile) => profile.user === user)?.profile?.id;
+        const employee = employeeData.find((eml) => eml.profileId === profile)?.salary;
+        return (
+          <>{`${Number(employee)?.toLocaleString()} ກີບ`}</>
+        );
+      }}
+    />
+  );
+}

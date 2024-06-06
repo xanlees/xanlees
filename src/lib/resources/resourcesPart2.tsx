@@ -1,4 +1,4 @@
-import { UserCircle, Calendar, Briefcase } from "lucide-react";
+import { UserCircle, Calendar, Briefcase, DollarSign } from "lucide-react";
 
 export const resourcesPart2 = [
   {
@@ -53,5 +53,12 @@ export const resourcesPart2 = [
       label: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
     },
   },
+  {
+    name: "employee-salary",
+    list: "/employee-salary",
+    icon: <DollarSign />,
+    meta: {
+      label: "employee-salary",
+    },
+  },
 ];
-

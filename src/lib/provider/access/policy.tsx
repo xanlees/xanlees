@@ -88,4 +88,5 @@ p, admin, holiday/*, (edit)|(show)|(delete)
 p, admin, leave, (list)|(create)
 p, admin, leave/*, (edit)|(show)|(delete)
 p, admin, attendance-report, (list)
+p, admin, employee-salary, (list)
 `);
