@@ -4,7 +4,7 @@ import { EducationForm } from "./education/containers/form/form";
 import { PersonalAddressForm } from "./personal_address/containers/form";
 import { PhysicalProfile } from "./physical/containers/form/form";
 import { ProfileForm } from "./profile/containers/form/form";
-import { ProfileProvider, useProfileContext } from "./context";
+import { agentProfileStorageKey, employeeProfileStorageKey, ProfileProvider, useProfileContext, applicationProfileStorageKey } from "./context";
 import { ProfileDetail } from "./profile/containers/card/ProfileDetail";
 import { useProfile } from "./profile/hooks";
 import type { IDocument } from "./document/interface";
@@ -36,6 +36,9 @@ export {
   ProfileProvider,
   Physical,
   DocumentPDF,
+  employeeProfileStorageKey,
+  agentProfileStorageKey,
+  applicationProfileStorageKey,
 };
 export {
   useProfile,

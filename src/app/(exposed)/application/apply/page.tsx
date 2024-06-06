@@ -1,21 +1,17 @@
 "use client";
 import React from "react";
-import { Button, Card } from "@src/shadcn/elements";
-import FormStep from "@src/common/components/stepForm";
+
 import {
-  applicationFromStep,
-  ApplicationProvider,
+  applicationFromStep, ApplicationProvider, type ApplicationState, applicationStorageKey,
   useApplicationContext,
-  type ApplicationState,
 } from "@hr";
 import {
-  ProfileProvider,
-  useProfileContext,
-  type ProfileState,
+  applicationProfileStorageKey, ProfileProvider, type ProfileState, useProfileContext,
 } from "@personal";
+
+import FormStep from "@src/common/components/stepForm";
 import { hasValid } from "@src/common/lib/validation/hasValid";
-import { applicationProfileStorageKey } from "@src/app/(protected)/(personal)/context";
-import { applicationStorageKey } from "@src/app/(protected)/(hr)/application/context";
+import { Button, Card } from "@src/shadcn/elements";
 
 export default function ApplicationCreate(): JSX.Element {
   return (
