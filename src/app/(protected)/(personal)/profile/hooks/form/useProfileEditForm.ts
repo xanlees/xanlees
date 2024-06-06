@@ -4,6 +4,7 @@ import * as z from "zod";
 import {
   FormMultipart,
 } from "@src/common/interface";
+import { validateImageSchema } from "@src/common/lib/validation/validationFormUtils";
 
 export const useProfileEditForm = () => {
   const { ...form } = useForm<{ id?: number }>({
@@ -32,8 +33,7 @@ export const useProfileEditForm = () => {
   });
   return { form };
 };
-const acceptedImageTypes = ["image/jpg", "image/jpeg", "image/png"];
-const maxFileSize = 10000000;
+
 const minPhoneNumberLength = 7;
 export const profileSchema: any = z
   .object({
@@ -46,13 +46,7 @@ export const profileSchema: any = z
     birthday: z.date().or(z.string()).refine((value) => { return value != null && value !== ""; }, { message: "ກະລຸນາເລືອກວັນ​ເດືອນ​ປີ​ເກີດ" }),
     uniqueNumber: z.union([z.string(), z.array(z.string())]).optional(),
     type: z.string().min(1, { message: "ກະລຸນາເລືອກ" }),
-    profilePicture: z.union([
-      z.string(),
-      z.instanceof(File).refine((file) => {
-        return file.size <= maxFileSize && acceptedImageTypes.includes(file.type);
-      }, { message: `The file size must not exceed 10MB and the file type must be one of the following: ${acceptedImageTypes.join(", ")}.` }),
-      z.undefined(),
-    ]).nullable(),
+    profilePicture: validateImageSchema({ required: false }),
   })
   .transform((val) => {
     return transformUniqueNumber(val);
@@ -74,7 +68,7 @@ function transformUniqueNumber(val: ProfileSendData): Record<string, any> {
   } else {
     transformed.uniqueNumber = [];
   }
-  if (transformed.profilePicture === undefined) {
+  if (transformed.profilePicture === null) {
     delete transformed.profilePicture;
   }
   if (transformed.birthday instanceof Date) {

@@ -18,9 +18,9 @@ export function PersonalAddressForm({ isCurrent = true, isEdit = false }) {
         ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
         : (<Form {...form}>
           <div className="flex flex-wrap gap-2">
-            <Village form={form } title={village} />
-            <Province form={ form } />
-            <District form={form } />
+            <Village form={{ form }} title={village} />
+            <Province form={{ form }} />
+            <District form={{ form }} />
           </div>
         </Form>)}
     </div>

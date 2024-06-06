@@ -3,17 +3,17 @@ import {
   PhysicalProfile,
   DocumentForm,
   EducationForm,
+  PersonalAddressForm,
 } from "@personal";
 import { Application2Form, ApplicationForm } from "./index";
 import { WorkExperienceForm } from "@hr";
-import { PersonalAddressForm } from "@src/app/(protected)/(personal)/personal_address/containers/form";
 import { Skill } from "../../../skill/containers/form/form";
 
 export const applicationFromStep = [
   {
     stepLabel: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
     stepDescription: (
-      <ProfileForm isEmployee={false} type="EMPLOYEE_CANDIDATE" user={0} />
+      <ProfileForm isEmployee={false} type="EMPLOYEE_CANDIDATE" user={0} isRequireImage={true} />
     ),
     completed: false,
   },

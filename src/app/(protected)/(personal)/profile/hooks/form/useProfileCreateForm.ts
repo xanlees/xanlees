@@ -11,7 +11,7 @@ export const useProfileCreateForm = ({ user, userProfile }: { user: number, user
   const [profile, setProfile] = useState<number>(0);
   const [shouldCreateProfile, setShouldCreateProfile] = useState(false);
   const { ...form } = useForm<{ id?: number }>({
-    resolver: zodResolver(profileSchema),
+    resolver: zodResolver(profileSchema({ isRequireImage: false })),
     defaultValues: { fullname: "", nickname: "", phoneNumber: "", gender: "", birthday: "", maritalStatus: "", typeOfUniqueNumber: "IDENTIFY", uniqueNumber: [{ uniqueNumber: undefined }], type: "EMPLOYEE", captcha: "" },
     refineCoreProps: {
       resource: "profile",
