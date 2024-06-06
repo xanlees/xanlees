@@ -1,22 +1,24 @@
-import { useForm } from "@refinedev/react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
-import { useProfileContext } from "../../..";
-import { FormMultipart, type IMessages, type ErrorMapMessage } from "@src/common/interface";
-import { profileSchema } from "./profileSchema";
 import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type IUserProfile } from "@personal";
 import { useCustomMutation } from "@refinedev/core";
-import { type UserProfile } from "@src/app/(protected)/user/interface";
+import { useForm } from "@refinedev/react-hook-form";
+import { type ErrorMapMessage, FormMultipart, type IMessages } from "@src/common/interface";
+import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
+
+import { useProfileContext } from "../../..";
+import { profileSchema } from "./profileSchema";
 
 const defaultMessage = "ບໍ່ສາມາດສ້າງຂໍ້ມູນສ່ວນບຸຄົນໄດ້";
 
-export const useProfileForm = ({ createUserProfile, type, user }: { createUserProfile?: boolean, type: string, user: number }) => {
+export const useProfileForm = ({ createUserProfile, type, user, isRequireImage = false }: { createUserProfile?: boolean, type: string, user: number, isRequireImage?: boolean }) => {
   const { state, dispatch } = useProfileContext();
   const [profile, setProfile] = useState<number>(0);
   const [shouldCreateProfile, setShouldCreateProfile] = useState(false);
   const { ...form } = useForm<{ id?: number }>({
-    resolver: zodResolver(profileSchema),
-    defaultValues: { fullname: "", nickname: "", phoneNumber: "", gender: "", birthday: "", maritalStatus: "", typeOfUniqueNumber: "IDENTIFY", uniqueNumber: [{ uniqueNumber: undefined }], type, captcha: "" },
+    resolver: zodResolver(profileSchema({ isRequireImage })),
+    defaultValues: { fullname: "", nickname: "", phoneNumber: "", gender: "", birthday: "", maritalStatus: "", typeOfUniqueNumber: "", uniqueNumber: [{ uniqueNumber: undefined }], type, captcha: "" },
     refineCoreProps: {
       resource: "profile",
       meta: FormMultipart,
@@ -43,6 +45,7 @@ export const useProfileForm = ({ createUserProfile, type, user }: { createUserPr
   }
   return { form, state };
 };
+
 const errorMessages: ErrorMapMessage[] = [
   { val: "Profile with this fullname already exists.", message: "ຊື່ຂອງທ່ານມີໃນລະບົບແລ້ວ" },
   { val: "Profile with this phone number already exists.", message: "ເບີໂທນີ້ມີໃນລະບົບແລ້ວ" },
@@ -56,7 +59,7 @@ export interface CreateUserProfileProps {
 }
 
 const useCreateUserProfile = ({ user, profile, shouldCreateProfile, setShouldCreateProfile }: CreateUserProfileProps) => {
-  const { mutate } = useCustomMutation<UserProfile>();
+  const { mutate } = useCustomMutation<IUserProfile>();
   useEffect(() => {
     if (user && shouldCreateProfile) {
       mutate({

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { type ReactNode } from "react";
 import { type ApplicationAction, type ApplicationState } from "./interface";
 import { ApplicationReducer } from "./reducer";

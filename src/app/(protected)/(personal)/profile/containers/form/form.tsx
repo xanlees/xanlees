@@ -4,19 +4,15 @@ import { useProfileForm } from "../../hooks/form/useProfileForm";
 import { FormFieldContainer } from "./FormFieldContainer";
 
 interface ProfileFormProps {
-  setProfileID?: (id: number) => void
   isEmployee?: boolean
   type: string
   user: number
   createUserProfile?: boolean
+  isRequireImage?: boolean
 }
-export const ProfileForm: React.FC<ProfileFormProps> = ({
-  isEmployee = true,
-  type,
-  user,
-  createUserProfile,
-}) => {
-  const { form, state } = useProfileForm({ type, createUserProfile, user });
+
+export const ProfileForm: React.FC<ProfileFormProps> = ({ isEmployee = true, type, user, createUserProfile, isRequireImage }) => {
+  const { form, state } = useProfileForm({ type, createUserProfile, user, isRequireImage });
   const isComplete = state?.profileId ?? 0;
   return (
     <div className="rounded-full w-72 sm:w-[710px]">
