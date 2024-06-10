@@ -1,36 +1,40 @@
-
 import {
   FileText,
   BookOpen,
   MapPin,
   Users,
   CalendarClock,
+  Folder,
 } from "lucide-react";
 
 export const disabledResources = [
   {
-    name: "education",
+    name: "user_management",
     disabled: true,
-    list: "/education",
-    create: "/education/create",
-    edit: "/education/edit/:id",
-    show: "/education/show/:id",
-    icon: <BookOpen />,
-    meta: {
-      label: "ຜູ້ໃຊ້ລະບົບ",
-    },
-  },
-  {
-    name: "personal_address",
-    disabled: true,
-    icon: <MapPin />,
-    edit: "/personal_address/edit/:id",
-  },
-  {
-    name: "employee",
-    disabled: true,
-    icon: <Users />,
-    edit: "/employee/edit/:id",
+    icon: <Folder />,
+    children: [
+      {
+        name: "education",
+        list: "/education",
+        create: "/education/create",
+        edit: "/education/edit/:id",
+        show: "/education/show/:id",
+        icon: <BookOpen />,
+        meta: {
+          label: "ຜູ້ໃຊ້ລະບົບ",
+        },
+      },
+      {
+        name: "personal_address",
+        icon: <MapPin />,
+        edit: "/personal_address/edit/:id",
+      },
+      {
+        name: "employee",
+        icon: <Users />,
+        edit: "/employee/edit/:id",
+      },
+    ],
   },
   {
     name: "document",

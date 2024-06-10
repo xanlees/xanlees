@@ -1,13 +1,14 @@
 import { CanAccess, ITreeMenu, useMenu } from "@refinedev/core";
 import { List } from "lucide-react";
 import { FC, ReactNode, useMemo } from "react";
-
 import { cn } from "../../../lib/utils";
 import { Button, Link } from "../../../elements";
 import { ThemedSiderV2Props } from "./type";
 import { WebVersion } from "./version";
 import { DefaultTitle } from "./tiltle";
 import { LogOutButton } from "./logout";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@src/shadcn/elements/collapsible";
+
 
 const ThemedSiderV2MenuItem: FC<{
   selectedKey?: string;
@@ -25,6 +26,9 @@ const ThemedSiderV2MenuItem: FC<{
   const href = useMemo(() => {
     return String(resource.route);
   }, [resource]);
+  const hasSubLinks = resource.children && resource.children.length > 0;
+  const isChildActive = !!resource.children?.find((s) => s.key === selectedKey);
+
   return (
     <CanAccess
       resource={resource.name.toString()}
@@ -34,24 +38,43 @@ const ThemedSiderV2MenuItem: FC<{
       }}
     >
       <li>
-        <Button
-          variant="ghost"
-          size="lg"
-          asChild
-          className={cn(
-            active ? "bg-primary text-accent" : "",
-            "gap-x-3 w-full justify-start p-0 pl-2.5"
+        <Collapsible defaultOpen={isChildActive}>
+          <CollapsibleTrigger asChild>
+            <Button
+              variant="ghost"
+              size="lg"
+              asChild
+              className={cn(
+                active ? "bg-primary text-accent" : "",
+                "gap-x-3 w-full justify-start p-0 pl-2.5"
+              )}
+            >
+              <Link
+                to={href}
+                title={label as string}
+                className="inline-flex flex-row gap-x-2"
+              >
+                {resource.icon ?? <List size={20} />}
+                {asChild ? children : label}
+              </Link>
+            </Button>
+          </CollapsibleTrigger>
+          {hasSubLinks && (
+            <CollapsibleContent className="collapsibleDropdown" asChild>
+              <ul>
+                {resource.children!.map((sublink) => (
+                  <li key={sublink.key} className="my-1 ml-8">
+                    <ThemedSiderV2MenuItem
+                      resource={sublink}
+                      selectedKey={selectedKey}
+                      asChild
+                    />
+                  </li>
+                ))}
+              </ul>
+            </CollapsibleContent>
           )}
-        >
-          <Link
-            to={href}
-            title={label as string}
-            className="inline-flex flex-row gap-x-2"
-          >
-            {resource.icon ?? <List size={20} />}
-            {asChild ? children : label}
-          </Link>
-        </Button>
+        </Collapsible>
       </li>
     </CanAccess>
   );
@@ -63,7 +86,7 @@ export const ThemedSiderV2Menu: FC<{
   const { menuItems, selectedKey } = useMenu({ meta });
   const MenuItems = useMemo(
     () => menuItems
-    .filter((item: ITreeMenu & { disabled?: boolean }) => !item.disabled) 
+      .filter((item: ITreeMenu & { disabled?: boolean }) => !item.disabled)
       .map((item: ITreeMenu) => (
         <ThemedSiderV2MenuItem
           key={item.key}
@@ -79,6 +102,7 @@ export const ThemedSiderV2Menu: FC<{
     </ul>
   );
 };
+
 export const ThemedSiderV2: FC<
   ThemedSiderV2Props & { shownBorder?: boolean }
 > = ({ meta, className, Title = DefaultTitle, shownBorder = true }) => {
@@ -103,7 +127,6 @@ export const ThemedSiderV2: FC<
           <WebVersion />
           <LogOutButton />
         </nav>
-        ˛
       </div>
     </div>
   );
