@@ -21,7 +21,7 @@ export function FullnameColumn({ userProfileData }: FullnameColumnProps) {
       accessorKey="user"
       cell={(props) => {
         const user = props.getValue() as unknown as number;
-        const userProfile = userProfileData.find((profile) => profile.user === user);
+        const userProfile = userProfileData.find((profile) => profile?.user === user);
         const fullname = userProfile?.profile?.fullname;
         const nickname = userProfile?.profile?.nickname;
         return (
@@ -42,7 +42,7 @@ export function PhoneNumberColumn({ userProfileData }: FullnameColumnProps) {
       accessorKey="user"
       cell={(props) => {
         const user = props.getValue() as unknown as number;
-        const userProfile = userProfileData.find((profile) => profile.user === user);
+        const userProfile = userProfileData.find((profile) => profile?.user === user);
         const phoneNumber = userProfile?.profile?.phoneNumber;
         return (
           <>
@@ -61,8 +61,8 @@ export function AttendanceColumn({ data, header, className }: { data: Array<{ us
       id="user"
       accessorKey="user"
       cell={(props) => {
-        const user = props.getValue() as unknown as number;
-        const value = data.find((item) => item.user === user);
+        const user = props?.getValue() as unknown as number;
+        const value = data?.find((item) => item?.user === user);
         return (
           <>
             {value

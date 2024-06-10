@@ -68,3 +68,10 @@ export function useAttendanceAggregationList({ type, aggregation, aggregationFie
     errorNotification: false,
   });
 }
+
+export function fetchAttendanceData(state: { selectedMonth: string, branch: number }) {
+  const attendanceDataTypeOnTime = useAttendanceAggregationList({ type: "on_time,ot", aggregation: "count", aggregationField: "user", checkInMonth: state.selectedMonth })?.data?.data ?? [];
+  const attendanceDataTypeLate = useAttendanceAggregationList({ type: "late,late_early", aggregation: "count", aggregationField: "user", checkInMonth: state.selectedMonth })?.data?.data ?? [];
+  const attendanceDataTypeOt = useAttendanceAggregationList({ type: "ot", aggregation: "sum", aggregationField: "ot", checkInMonth: state.selectedMonth })?.data?.data ?? [];
+  return { attendanceDataTypeOnTime, attendanceDataTypeLate, attendanceDataTypeOt };
+}

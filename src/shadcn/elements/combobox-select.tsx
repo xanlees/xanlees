@@ -12,7 +12,7 @@ interface IOption {
 interface SelectProps {
   options: IOption[]
   onChange: (id: number) => void
-  defaultValue: BaseKey
+  defaultValue: any
   label?: string
   className?: string
 }

@@ -1,36 +1,28 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "./button"
+import { cn } from "@/lib/utils";
+import { Button } from "@src/shadcn/elements/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@src/shadcn/elements/popover";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
+import { useState } from "react";
+import { buttonVariants } from "./button";
+import { ScrollArea } from "./scroll-area";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "./select";
 
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "./select"
-
-export type CalendarProps = {
-  selected?: Date
-  defaultValue?: Date
-  onSelect?: (date: Date) => void
-}
-
+type MonthYearSelectorProps = {
+  currentYear: number;
+  selected: Date | undefined;
+  handleSelect: (date: Date) => void;
+};
 
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-function MonthAndYear({ defaultValue, onSelect }: CalendarProps) {
-  const [selected, setSelected] = React.useState<Date | undefined>(defaultValue || new Date());
-  const currentYear = selected ? selected.getFullYear() : new Date().getFullYear();
-
-  const handleSelect = (date: Date) => {
-    setSelected(date);
-    if (onSelect) {
-      onSelect(date);
-    }
-  };
-
+const MonthYearSelector: React.FC<MonthYearSelectorProps> = ({ currentYear, selected, handleSelect }) => {
   const months = monthNames.map((month, index) => ({
     label: month,
     date: new Date(currentYear, index),
   }));
-
   return (
     <div className="p-4">
       <div className="flex justify-center mb-4">
@@ -43,10 +35,12 @@ function MonthAndYear({ defaultValue, onSelect }: CalendarProps) {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>Select Year</SelectLabel>
-              {Array.from({ length: 10 }, (_, i) => currentYear - 5 + i).map(year => (
-                <SelectItem key={year} value={year.toString()}>{year}</SelectItem>
-              ))}
+              <SelectLabel>ເລືອກປີ</SelectLabel>
+              <ScrollArea className="h-48">
+                {Array.from({ length: 20 }, (_, i) => currentYear - 3 + i).map(year => (
+                  <SelectItem key={year} value={year.toString()}>{year}</SelectItem>
+                ))}
+              </ScrollArea>
             </SelectGroup>
           </SelectContent>
         </Select>
@@ -67,8 +61,37 @@ function MonthAndYear({ defaultValue, onSelect }: CalendarProps) {
       </div>
     </div>
   );
-}
+};
 
-MonthAndYear.displayName = "MonthAndYear"
+type MonthYearPickerProps = {
+  value?: Date;
+  onChange?: (date: Date) => void;
+  className?: string;
+};
 
-export { MonthAndYear }
+const MonthYearPicker: React.FC<MonthYearPickerProps> = ({ value, onChange, className }) => {
+  const [selected, setSelected] = useState<Date | undefined>(value);
+  const currentYear = selected ? selected.getFullYear() : new Date().getFullYear();
+  const handleSelect = (date: Date) => {
+    setSelected(date);
+    if (onChange) {
+      onChange(date);
+    }
+  };
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline" className={cn("w-[280px] justify-start text-left font-normal", className)}>
+          <CalendarIcon className="w-4 h-4 mr-2" />
+          {selected ? format(selected, "yyyy-MM") : "Select Date"}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0">
+        <MonthYearSelector currentYear={currentYear} selected={selected} handleSelect={handleSelect} />
+      </PopoverContent>
+    </Popover>
+  );
+};
+
+export { MonthYearPicker, MonthYearSelector };
+

@@ -1,22 +1,32 @@
 "use client";
 
+import * as React from "react";
+import { useState } from "react";
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
 import { SequenceColumn } from "@src/common/containers/column";
-
-import { type AttendanceDataItem, useAttendanceAggregationList, useAttendanceAggregationTable, useUserProfile } from "./hook";
+import { MonthAndYearPickerToolbar } from "@src/shadcn/components/table/toolbar/month-year-picker";
+import { type Table as TanstackTable } from "@tanstack/react-table";
 import { AttendanceColumn, FullnameColumn, PhoneNumberColumn } from "./column";
+import {
+  type AttendanceDataItem, fetchAttendanceData, useAttendanceAggregationTable,
+  useUserProfile,
+} from "./hook";
+import { useBranchFormSelect } from "@career";
+import { format } from "date-fns";
+import { ComboboxSelectToolbar } from "@src/shadcn/components/table/toolbar/combobox-toolbar";
 
 export default function AttendanceReportList(): JSX.Element {
   const { table } = useAttendanceAggregationTable();
+  const [state, setState] = useState({ selectedMonth: format(new Date(), "yyyy-MM"), branch: 0 });
   const attendanceData = table.options.data ?? [];
   const userIds = getUserIds(attendanceData);
   const userProfileData = useUserProfile({ userIds })?.data?.data ?? [];
-  const attendanceDataTypeOnTime = useAttendanceAggregationList({ type: "on_time,ot", aggregation: "count", aggregationField: "user", checkInMonth: "2024-06" })?.data?.data ?? [];
-  const attendanceDataTypeLate = useAttendanceAggregationList({ type: "late,late_early", aggregation: "count", aggregationField: "user", checkInMonth: "2024-06" })?.data?.data ?? [];
-  const attendanceDataTypeOt = useAttendanceAggregationList({ type: "ot", aggregation: "sum", aggregationField: "ot", checkInMonth: "2024-06" })?.data?.data ?? [];
+  const { attendanceDataTypeOnTime, attendanceDataTypeLate, attendanceDataTypeOt } = fetchAttendanceData(state);
+
   return (
     <List showCreate={false}>
+      <FiltersCard setState={setState} table={table} state={state} />
       <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ຊື່ແທ້">
         {SequenceColumn()}
         {FullnameColumn({ userProfileData })}
@@ -31,4 +41,32 @@ export default function AttendanceReportList(): JSX.Element {
 
 function getUserIds(data: AttendanceDataItem[]): string {
   return data.length > 0 ? data.map((item) => item.user).join(",") : "0";
+}
+
+interface FiltersCardProps {
+  state: { selectedMonth: string, branch: number }
+  setState: React.Dispatch<React.SetStateAction<{ selectedMonth: string, branch: number }>>
+  table: TanstackTable<AttendanceDataItem>
+}
+
+function FiltersCard({ setState, table, state }: FiltersCardProps): JSX.Element {
+  const handleMonthSelect = (selectedMonth: string) => {
+    setState((prevState) => ({ ...prevState, selectedMonth }));
+  };
+  const tableState = table.getState();
+  const columnFilters = tableState.columnFilters;
+  const filterDate = columnFilters.find((filter) => filter?.id === "monthAndYear")?.value;
+  const currentDate: string = (filterDate as string) ?? state.selectedMonth;
+  const branch = useBranchFormSelect();
+  return (
+    <div className="flex p-4 bg-white rounded-lg shadow-md w-fit gap-x-5 ">
+      <div>
+        <div className="mb-2 text-lg text-gray-700">ວັນທີ</div>
+        <MonthAndYearPickerToolbar table={table} onSelect={handleMonthSelect} defaultValue={currentDate} />
+      </div>
+      <div>
+        <ComboboxSelectToolbar table={table} options={branch.options} defaultValue={""} className="w-[280px]" label="ຂາສາ"/>
+      </div>
+    </div>
+  );
 }
