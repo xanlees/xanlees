@@ -5,7 +5,7 @@ import { cn } from "../../../lib/utils";
 import { Button, Link } from "../../../elements";
 import { ThemedSiderV2Props } from "./type";
 import { WebVersion } from "./version";
-import { DefaultTitle } from "./tiltle";
+import { DefaultTitle } from "./tittle";
 import { LogOutButton } from "./logout";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@src/shadcn/elements/collapsible";
 
