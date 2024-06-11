@@ -6,6 +6,7 @@ import { useBranchWorkTimeSettingsTable } from "./hook/table";
 import { DayOfWeekRow, getActionsButton } from "./containers/row";
 
 const type = "HEADQUARTERS,BRANCH,OFFICE";
+
 export default function WorkTimeSettingsList(): JSX.Element {
   const { table } = useBranchWorkTimeSettingsTable({ type });
   return (
