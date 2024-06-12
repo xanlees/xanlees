@@ -23,7 +23,6 @@ export function MonthAndYearPickerToolbar<TData>({
   const columnFilters = state.columnFilters;
   const initialDate = defaultValue ? new Date(defaultValue) : undefined;
   const [selectedDate, setSelectedDate] = React.useState<Date | undefined>(initialDate);
-
   const handleSelect = (date: Date) => {
     const formattedDate = format(date, "yyyy-MM");
     setSelectedDate(date);

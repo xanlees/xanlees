@@ -1,20 +1,20 @@
 "use client";
 
-import * as React from "react";
-import { useState } from "react";
+import { format } from "date-fns";
+import React, { useState } from "react";
+
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
+import { useBranchFormSelect } from "@career";
 import { SequenceColumn } from "@src/common/containers/column";
+import { ComboboxSelectToolbar } from "@src/shadcn/components/table/toolbar/combobox-toolbar";
 import { MonthAndYearPickerToolbar } from "@src/shadcn/components/table/toolbar/month-year-picker";
 import { type Table as TanstackTable } from "@tanstack/react-table";
+
 import { AttendanceColumn, FullnameColumn, PhoneNumberColumn } from "./column";
 import {
-  type AttendanceDataItem, fetchAttendanceData, useAttendanceAggregationTable,
-  useUserProfile,
+  type AttendanceDataItem, fetchAttendanceData, useAttendanceAggregationTable, useUserProfile,
 } from "./hook";
-import { useBranchFormSelect } from "@career";
-import { format } from "date-fns";
-import { ComboboxSelectToolbar } from "@src/shadcn/components/table/toolbar/combobox-toolbar";
 
 export default function AttendanceReportList(): JSX.Element {
   const { table } = useAttendanceAggregationTable();
@@ -23,7 +23,6 @@ export default function AttendanceReportList(): JSX.Element {
   const userIds = getUserIds(attendanceData);
   const userProfileData = useUserProfile({ userIds })?.data?.data ?? [];
   const { attendanceDataTypeOnTime, attendanceDataTypeLate, attendanceDataTypeOt } = fetchAttendanceData(state);
-
   return (
     <List showCreate={false}>
       <FiltersCard setState={setState} table={table} state={state} />
@@ -55,6 +54,7 @@ function FiltersCard({ setState, table, state }: FiltersCardProps): JSX.Element 
   };
   const tableState = table.getState();
   const columnFilters = tableState.columnFilters;
+  console.log("columnFilters", columnFilters);
   const filterDate = columnFilters.find((filter) => filter?.id === "monthAndYear")?.value;
   const currentDate: string = (filterDate as string) ?? state.selectedMonth;
   const branch = useBranchFormSelect();
@@ -65,7 +65,7 @@ function FiltersCard({ setState, table, state }: FiltersCardProps): JSX.Element 
         <MonthAndYearPickerToolbar table={table} onSelect={handleMonthSelect} defaultValue={currentDate} />
       </div>
       <div>
-        <ComboboxSelectToolbar table={table} options={branch.options} defaultValue={""} className="w-[280px]" label="ຂາສາ"/>
+        <ComboboxSelectToolbar table={table} options={branch.options} defaultValue={""} className="w-[280px]" label="ຂາສາ" filterKey="branch"/>
       </div>
     </div>
   );

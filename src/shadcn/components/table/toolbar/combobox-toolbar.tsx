@@ -22,7 +22,7 @@ export function ComboboxSelectToolbar<TData>({
   options,
   defaultValue,
   onSelect,
-  filterKey = "selectFilter",
+  filterKey = "filterKey",
   label,
   className,
 }: ComboboxSelectToolbarProps<TData>) {

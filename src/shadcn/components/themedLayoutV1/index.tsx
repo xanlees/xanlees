@@ -44,6 +44,5 @@ export const ThemedLayoutV1: FC<LayoutProps &  {showLogin?: boolean}> = ({
             </DarkModeProvider>
         );
     }
-
     return <Container />;
 };
