@@ -24,6 +24,7 @@ export const ComboboxSelect: React.FC<SelectProps> = ({ options, onChange, defau
     onChange(Number(defaultValue));
     setValueId(Number(defaultValue));
   }, [defaultValue]);
+  console.log("valueId", valueId);
   return (
     <div>
       <div className="my-1">{label ?? "ເລືອກ" }</div>

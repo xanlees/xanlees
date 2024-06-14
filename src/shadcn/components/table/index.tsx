@@ -32,6 +32,8 @@ import { Pagination } from "./fields/pagination";
 import { SortAction } from "./fields/sort";
 import { DataTableToolbar } from "./toolbar";
 import { DataTableSearchBar } from "./toolbar/table-search";
+import { ImageDialog, ImageDialogProps } from "@src/shadcn/elements/image-dialog";
+import { ImageAction } from "./fields/image-dialog";
 
 export type TableListFilterOption = BaseOption & {
   icon?: React.ComponentType<{ className?: string }>;
@@ -232,6 +234,9 @@ Table.Action = RowAction;
 Table.EditAction = EditAction;
 Table.ShowAction = ShowAction;
 Table.DeleteAction = DeleteAction;
+Table.ImageDialog = ImageDialog;
+Table.ImageAction = ImageAction;
+Table.Image = (props: ImageDialogProps) => <ImageDialog {...props} />; 
 Table.Filter = {
   DateRangePicker: TableFilterDateRangePickerFilter,
   Dropdown: TableFilterDropdown,
