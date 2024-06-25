@@ -1,5 +1,6 @@
 import { type IProfile } from "@src/common/interface";
 import { type IPosition } from "../position/interface";
+import { type IBranch } from "../branch/interface";
 
 export interface IEmployeeExpand {
   id: number
@@ -38,8 +39,8 @@ export interface IEmployeeExpandProfile {
   joiningDate: string
   isLatest: boolean
   createdOn: string
-  branchId: number
+  branchId: number | IBranch
   profileId: IProfile
-  positionId: IPosition
+  positionId: number | IPosition
   salary: number
 }

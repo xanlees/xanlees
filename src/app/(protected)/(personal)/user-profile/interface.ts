@@ -17,6 +17,9 @@ export interface IAttendance {
   imageCheckOut?: string
   identification: string
   identificationCheckOut?: string
+  ot?: string
+  earn?: string
+  type?: string
 }
 
 export interface IWorkTimeSettings {

@@ -33,6 +33,14 @@ module.exports = {
       }
     ]
   },
+  images: {
+    domains: ['storage.googleapis.com', '127.0.0.1:8000', 'images.pexels.com'],
+    remotePatterns: [
+      { protocol: 'http', hostname: 'localhost', port: '8000' },
+      { protocol: 'http', hostname: '127.0.0.1', port: '8000' },
+    ],
+    minimumCacheTTL: 1500000,
+  },
   transpilePackages:['@refinedev/cli'],
   output: "standalone",
   typescript: {

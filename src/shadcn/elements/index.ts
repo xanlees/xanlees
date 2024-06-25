@@ -21,4 +21,4 @@ export * from "./select";
 export * from "./datepicker";
 export * from "./alert-dialog";
 export * from "./radio-group";
-
+export * from "./image-dialog";

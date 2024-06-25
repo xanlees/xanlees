@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 "use client";
 import { Table } from "@/shadcn/components/table";
 import { type IApplication } from "../../interface";
-import { CardImageDialog } from "@src/common/elements/cardImageDialog";
 import UpdateApplicationStatus from "@src/shadcn/components/updateOnSelect";
 
 export const AppliedPosition = (
@@ -35,9 +36,9 @@ export function ProfileImageColumn() {
       id="user"
       accessorKey="user"
       cell={({ row }: { row: { original: { profileId: { profilePicture: string } } } }) => {
-        const image = row?.original?.profileId?.profilePicture ?? "";
+        const rows = row?.original?.profileId;
         return <div className="">
-          <CardImageDialog imageUrl={image}/>
+          <Table.ImageTable row={rows} accessorKey={"profilePicture"} />
         </div>;
       }}
     />
