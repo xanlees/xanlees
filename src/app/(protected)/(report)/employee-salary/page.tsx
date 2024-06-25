@@ -1,7 +1,7 @@
 "use client";
 
 import { List } from "@/shadcn/components/crud";
-import { Table } from "@/shadcn/components/table";
+import { gTable } from "@/shadcn/components/table";
 import { SequenceColumn } from "@src/common/containers/column";
 
 import { type AttendanceDataItem, useAttendanceAggregationList, useAttendanceAggregationTable, useEmployee, useUserProfile } from "./hook";

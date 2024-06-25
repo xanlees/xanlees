@@ -9,7 +9,7 @@ interface ImageActionProps extends Omit<ImageDialogProps, 'src'> {
 
 }
 
-export function ImageAction({
+export function Image({
   row,
   accessorKey = "image",
   icon,
@@ -25,4 +25,4 @@ export function ImageAction({
   );
 }
 
-ImageAction.displayName = "ImageAction";
+Image.displayName = "Image";

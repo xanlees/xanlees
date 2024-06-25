@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
 import { type IAttendance } from "../../interface";
 import { Table, type TableFilterProps } from "@/shadcn/components/table";
@@ -35,7 +36,7 @@ export function AttendanceImage({ attendanceData, columnKey, header }: { attenda
         const userId = row.original.user as number;
         const profileRow = attendanceData.find((item) => item.user === userId);
         return (
-          <Table.ImageAction row={profileRow} accessorKey={columnKey} />
+          <Table.Image row={profileRow} accessorKey={columnKey} />
         );
       }}
     />

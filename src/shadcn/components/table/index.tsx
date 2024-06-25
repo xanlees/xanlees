@@ -33,7 +33,7 @@ import { SortAction } from "./fields/sort";
 import { DataTableToolbar } from "./toolbar";
 import { DataTableSearchBar } from "./toolbar/table-search";
 import { ImageDialog, ImageDialogProps } from "@src/shadcn/elements/image-dialog";
-import { ImageAction } from "./fields/image-dialog";
+import { Image } from "./fields/image-dialog";
 
 export type TableListFilterOption = BaseOption & {
   icon?: React.ComponentType<{ className?: string }>;
@@ -219,13 +219,14 @@ export function Table<
 }
 
 const TableColumn = <
-  TData extends BaseRecord = BaseRecord,
-  TError extends HttpError = HttpError
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
 >(
-  props: ColumnProps<TData, TError>
+    props: ColumnProps<TData, TError>,
 ) => {
-  return props.children;
+    return props.children;
 };
+
 
 Table.Column = TableColumn;
 Table.CheckAll = CheckAll;
@@ -235,7 +236,7 @@ Table.EditAction = EditAction;
 Table.ShowAction = ShowAction;
 Table.DeleteAction = DeleteAction;
 Table.ImageDialog = ImageDialog;
-Table.ImageAction = ImageAction;
+Table.ImageTable = Image;
 Table.Image = (props: ImageDialogProps) => <ImageDialog {...props} />; 
 Table.Filter = {
   DateRangePicker: TableFilterDateRangePickerFilter,
