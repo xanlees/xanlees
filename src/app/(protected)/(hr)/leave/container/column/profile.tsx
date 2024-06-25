@@ -1,6 +1,5 @@
 import { Table, type TableFilterProps } from "@/shadcn/components/table";
 import { type ILeaveExpand } from "../../lib";
-import { ProfileImageDialog } from "@src/app/(protected)/(personal)/user-profile/containers/column";
 
 export function FullNameColumn() {
   return (
@@ -29,9 +28,9 @@ export function ProfileImageColumn() {
       id="image"
       accessorKey="user"
       cell={({ row }) => {
-        const profilePicture = row?.original?.profile?.profilePicture as unknown as string;
+        const profilePicture = row?.original?.profile;
         return <div className="">
-          <ProfileImageDialog imageUrl={profilePicture}/>
+          <Table.ImageTable row={profilePicture} accessorKey={"profilePicture"} />
         </div>;
       }}
     />

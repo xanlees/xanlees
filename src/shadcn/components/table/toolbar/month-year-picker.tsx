@@ -7,7 +7,7 @@ import { format } from "date-fns";
 
 interface MonthAndYearPickerProps<TData> extends Omit<any, 'onSelect'> {
   table: Table<TData>;
-  onSelect: (date: string) => void;
+  onSelect?: (date: string) => void;
   defaultValue?: string;
   filterKey?: string;
 }
@@ -34,7 +34,9 @@ export function MonthAndYearPickerToolbar<TData>({
       newColumnFilters[filterIndex] = { id: filterKey, value: formattedDate };
     }
     setColumnFilters(newColumnFilters);
-    onSelect(formattedDate);
+    if (onSelect) {
+      onSelect(formattedDate);
+    }
   };
   return (
     <MonthYearPicker

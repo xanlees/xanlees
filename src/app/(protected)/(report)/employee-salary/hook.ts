@@ -14,7 +14,7 @@ interface IUserProfileExpand {
   profile: IProfile
 }
 
-export const useAttendanceAggregationTable = () => {
+export const useAttendanceAggregationTable = ({ checkInMonth }: { checkInMonth: string }) => {
   const table = useTable<AttendanceDataItem>({
     columns: [],
     enableSorting: true,
@@ -26,7 +26,6 @@ export const useAttendanceAggregationTable = () => {
         permanent: [
           { field: "aggregation", operator: "eq", value: "count" },
           { field: "aggregationField", operator: "eq", value: "user" },
-          { field: "check_in_month", operator: "eq", value: "2024-06" },
           { field: "check_in_out_same_day", operator: "eq", value: true },
           { field: "type", operator: "eq", value: "ot,on_time,quit" },
           { field: "has_check_out", operator: "eq", value: true },
