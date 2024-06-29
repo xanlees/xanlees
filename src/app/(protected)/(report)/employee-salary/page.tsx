@@ -50,8 +50,6 @@ function FiltersCard({ setState, table, state }: FiltersCardProps): JSX.Element 
   };
   const tableState = table.getState();
   const columnFilters = tableState.columnFilters;
-  console.log("columnFilters", columnFilters);
-  console.log("state.selectedMonth", state.selectedMonth);
   const filterDate = columnFilters.find((filter) => filter?.id === "check_in_month")?.value;
   const currentDate: string = (filterDate as string) ?? state.selectedMonth;
   return (

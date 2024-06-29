@@ -22,7 +22,10 @@ export const useAttendanceAggregationTable = ({ checkInMonth }: { checkInMonth: 
     refineCoreProps: {
       errorNotification: false,
       resource: "attendance/aggregation",
+      syncWithLocation: true,
       filters: {
+        defaultBehavior: "replace",
+        mode: "off",
         permanent: [
           { field: "aggregation", operator: "eq", value: "count" },
           { field: "aggregationField", operator: "eq", value: "user" },
