@@ -24,7 +24,6 @@ export const useAttendanceAggregationTable = ({ checkInMonth }: { checkInMonth: 
       resource: "attendance/aggregation",
       syncWithLocation: true,
       filters: {
-        defaultBehavior: "replace",
         mode: "off",
         permanent: [
           { field: "aggregation", operator: "eq", value: "count" },
