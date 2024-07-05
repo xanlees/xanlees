@@ -2,10 +2,12 @@ import { useTable } from "@refinedev/react-table";
 import { type IAttendance, type IUserProfile } from "./interface";
 import { type BaseRecord, type GetListResponse, useList } from "@refinedev/core";
 import { type IEmployee } from "@career";
+import { useMemo } from "react";
 
 export const useTableUserProfile = () => {
+  const columns = useMemo(() => [], []);
   const table = useTable<IUserProfile>({
-    columns: [],
+    columns,
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {

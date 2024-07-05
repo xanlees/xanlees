@@ -34,13 +34,13 @@ export default function UserProfileList(): JSX.Element {
       <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ຊື່ແທ້">
         {SequenceColumn()}
         {FullNameColumn}
-        {BranchColumn({ employeeIsLatestData })}
+        {/* {BranchColumn({ employeeIsLatestData })} */}
         {AttendanceTimeColumn({ attendanceData, columnKey: "checkIn", header: "ເວລາປໍ້າເຂົ້າ" })}
         {AttendanceImage({ attendanceData, columnKey: "image", header: "ຮູບພາບປໍ້າເຂົ້າ" })}
         {AttendanceTimeColumn({ attendanceData, columnKey: "checkOut", header: "ເວລາປໍ້າອອກ" })}
         {AttendanceImage({ attendanceData, columnKey: "imageCheckOut", header: "ຮູບພາບປໍ້າອອກ" })}
         {WorkingHourColumn({ attendanceData })}
-        {AttendanceTypeColumn({ workTimeSettingsData, employeeIsLatestData, attendanceData, holidayData, date: checkInDate })}
+        {/* {AttendanceTypeColumn({ workTimeSettingsData, employeeIsLatestData, attendanceData, holidayData, date: checkInDate })} */}
       </Table>
     </List>
   );
