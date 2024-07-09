@@ -15,7 +15,7 @@ interface IUserProfileExpand {
   profile: IProfile
 }
 
-export const useAttendanceAggregationTable = ({ checkInMonth }: { checkInMonth: string }) => {
+export const useAttendanceAggregationTable = () => {
   const columns = useMemo(() => [], []);
   const table = useTable<AttendanceDataItem>({
     columns,
@@ -24,14 +24,12 @@ export const useAttendanceAggregationTable = ({ checkInMonth }: { checkInMonth: 
     refineCoreProps: {
       errorNotification: false,
       resource: "attendance/aggregation",
-      syncWithLocation: true,
       filters: {
-        mode: "off",
         permanent: [
           { field: "aggregation", operator: "eq", value: "count" },
           { field: "aggregationField", operator: "eq", value: "user" },
           { field: "check_in_out_same_day", operator: "eq", value: true },
-          { field: "type", operator: "eq", value: "ot,on_time,quit" },
+          { field: "type", operator: "eq", value: "ot,on_time" },
           { field: "has_check_out", operator: "eq", value: true },
           { field: "latest_for_date", operator: "eq", value: true },
           { field: "groupBy", operator: "eq", value: "user" },
@@ -68,6 +66,7 @@ export function useAttendanceAggregationList({ type, aggregation, aggregationFie
       { field: "latest_for_date", operator: "eq", value: true },
       { field: "check_in_out_same_day", operator: "eq", value: true },
       { field: "groupBy", operator: "eq", value: "user" },
+      { field: "paginate", operator: "eq", value: false },
     ],
     errorNotification: false,
   });

@@ -30,6 +30,7 @@ export function FullnameColumn({ userProfileData }: FullnameColumnProps) {
     />
   );
 }
+
 export function PhoneNumberColumn({ userProfileData }: FullnameColumnProps) {
   return (
     <Table.Column
