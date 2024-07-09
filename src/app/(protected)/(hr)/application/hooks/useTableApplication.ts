@@ -1,10 +1,12 @@
 import { useTable } from "@refinedev/react-table";
 import { type IApplication } from "../interface";
 import { useList, type BaseRecord, type GetListResponse } from "@refinedev/core";
+import { useMemo } from "react";
 
 export const useTableApplication = () => {
+  const columns = useMemo(() => [], []);
   const table = useTable<IApplication>({
-    columns: [],
+    columns,
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {

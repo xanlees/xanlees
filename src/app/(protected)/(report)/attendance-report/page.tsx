@@ -54,7 +54,6 @@ function FiltersCard({ setState, table, state }: FiltersCardProps): JSX.Element 
   };
   const tableState = table.getState();
   const columnFilters = tableState.columnFilters;
-  console.log("columnFilters", columnFilters);
   const filterDate = columnFilters.find((filter) => filter?.id === "monthAndYear")?.value;
   const currentDate: string = (filterDate as string) ?? state.selectedMonth;
   const branch = useBranchFormSelect();

@@ -1,9 +1,11 @@
 import { useTable } from "@refinedev/react-table";
 import { type IBranch } from "../../sector/interface";
+import { useMemo } from "react";
 
 export const useBranchWorkTimeSettingsTable = ({ type }: { type: string }) => {
+  const columns = useMemo(() => [], []);
   const table = useTable<IBranch>({
-    columns: [],
+    columns,
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {

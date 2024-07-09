@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Popover, PopoverContent, PopoverTrigger, Button } from "@src/shadcn/elements";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { cn } from "@src/shadcn/lib/utils";
-import { type BaseKey } from "@refinedev/core";
 
 interface IOption {
   label: string
@@ -24,7 +23,6 @@ export const ComboboxSelect: React.FC<SelectProps> = ({ options, onChange, defau
     onChange(Number(defaultValue));
     setValueId(Number(defaultValue));
   }, [defaultValue]);
-  console.log("valueId", valueId);
   return (
     <div>
       <div className="my-1">{label ?? "ເລືອກ" }</div>

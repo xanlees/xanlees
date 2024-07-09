@@ -16,7 +16,7 @@ export default function EmployeeCreate({ params }: { params?: { userAndType?: st
       title="ຟອມສ້າງຕຳແໜ່ງ"
       breadcrumb={<BreadcrumbItems breadcrumbs={breadcrumbs} />}
     >
-      <EducationCreateForm profileId={Number(profileId)}/>
+      <EducationCreateForm profileId={Number(profileId)} />
     </Create>
   );
 }

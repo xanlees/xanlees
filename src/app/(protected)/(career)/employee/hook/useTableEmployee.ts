@@ -1,9 +1,11 @@
 import { useTable } from "@refinedev/react-table";
 import { type IEmployee } from "../interface";
+import { useMemo } from "react";
 
 export const useTableEmployee = (profileId: number) => {
+  const columns = useMemo(() => [], []);
   const table = useTable<IEmployee>({
-    columns: [],
+    columns,
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {

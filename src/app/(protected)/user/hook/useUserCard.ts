@@ -1,6 +1,7 @@
 import { useTable } from "@refinedev/react-table";
 import { type CrudFilter } from "@refinedev/core";
 import { type IUserProfile } from "../../(personal)/user-profile/interface";
+import { useMemo } from "react";
 
 export const useUserCard = ({ profileId, userId, filterField }: { profileId?: number, userId?: number, filterField: string }) => {
   const permanent: CrudFilter[] = [
@@ -12,8 +13,9 @@ export const useUserCard = ({ profileId, userId, filterField }: { profileId?: nu
   if (filterField === "user" && userId !== undefined && userId > 0) {
     permanent.push({ field: "user", operator: "eq", value: userId });
   }
+  const columns = useMemo(() => [], []);
   const table = useTable<IUserProfile>({
-    columns: [],
+    columns,
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {

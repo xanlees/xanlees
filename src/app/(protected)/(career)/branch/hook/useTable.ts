@@ -3,6 +3,7 @@ import { type BaseRecord, type CrudFilter, type GetListResponse, useList } from 
 import { useTable } from "@refinedev/react-table";
 
 import type { IBranchExpand } from "../interface";
+import { useMemo } from "react";
 
 const defaultData = {
   data: [],
@@ -10,6 +11,8 @@ const defaultData = {
 };
 
 export const useBranchTable = ({ type, province }: { type: string, province?: number }) => {
+  const columns = useMemo(() => [], []);
+
   const permanent: CrudFilter[] = [
     { field: "ordering", operator: "eq", value: "province" },
     { field: "expand", operator: "eq", value: "province" },
@@ -19,7 +22,7 @@ export const useBranchTable = ({ type, province }: { type: string, province?: nu
     permanent.push({ field: "province", operator: "eq", value: province });
   }
   const table = useTable<IBranchExpand>({
-    columns: [],
+    columns,
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {

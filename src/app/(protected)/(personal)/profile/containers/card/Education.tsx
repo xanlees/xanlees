@@ -1,5 +1,5 @@
 "use client";
-import React, { type ReactNode } from "react";
+import React, { useMemo, type ReactNode } from "react";
 import { Card, CardHeader, CardTitle } from "@src/shadcn/elements";
 import { getActionsButton } from "@src/common/containers/column/actionCard";
 import { CardView } from "@src/shadcn/components/table/card-view";
@@ -72,8 +72,9 @@ function CardLayout({ children, profileId }: { children: ReactNode, profileId: n
 }
 
 const useCardEducation = (profileId: number) => {
+  const columns = useMemo(() => [], []);
   const table = useTable<IEducation>({
-    columns: [],
+    columns,
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {

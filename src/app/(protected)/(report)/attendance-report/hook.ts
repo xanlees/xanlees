@@ -1,6 +1,7 @@
 import { useList } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { type IProfile } from "@personal";
+import { useMemo } from "react";
 
 export interface AttendanceDataItem {
   user: number
@@ -14,8 +15,9 @@ interface IUserProfileExpand {
 }
 
 export const useAttendanceAggregationTable = () => {
+  const columns = useMemo(() => [], []);
   const table = useTable<AttendanceDataItem>({
-    columns: [],
+    columns,
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {

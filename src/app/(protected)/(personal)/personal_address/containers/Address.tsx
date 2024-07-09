@@ -1,4 +1,4 @@
-import React, { type ReactNode } from "react";
+import React, { useMemo, type ReactNode } from "react";
 
 import { Show } from "@/shadcn/components/crud";
 import { useTable } from "@refinedev/react-table";
@@ -61,8 +61,9 @@ function CardLayout({ children, profileId }: { children: ReactNode, profileId: n
   );
 }
 const useCardAddress = (profileId: number) => {
+  const columns = useMemo(() => [], []);
   const table = useTable<IAddress>({
-    columns: [],
+    columns,
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {

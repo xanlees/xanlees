@@ -46,7 +46,6 @@ export default function BranchList(): JSX.Element {
 export function useEmployeeProvince() {
   const { data } = useSession() as { data: CustomSession | null };
   const useId = data?.user?.id ?? 0;
-  console.log("useId", useId);
   return useList<IEmployeeExpand>({
     resource: "employee",
     filters: [

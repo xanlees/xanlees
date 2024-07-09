@@ -4,7 +4,7 @@ import { CardView } from "@src/shadcn/components/table/card-view";
 import { FileText } from "lucide-react";
 import { getActionsButton } from "@src/common/containers/column/actionCard";
 import { useTable } from "@refinedev/react-table";
-import React, { type ReactNode } from "react";
+import React, { useMemo, type ReactNode } from "react";
 import type { IDocument } from "@src/app/(protected)/(personal)/document/interface";
 import { PDFDialog } from "@src/app/(protected)/(hr)/application/containers/show/PDFDialog";
 
@@ -69,8 +69,9 @@ const DocumentRow: React.FC<{ document: IDocument }> = ({ document }) => {
 };
 
 const useCardViewPDF = (profileId: number) => {
+  const columns = useMemo(() => [], []);
   const table = useTable<IDocument>({
-    columns: [],
+    columns,
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {

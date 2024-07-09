@@ -90,7 +90,6 @@ export const Form = <
     // @ts-ignore
     saveButtonProps?.onClick?.(data);
   });
-  console.log("props", props);
   return (
     <FormUI {...props}>
       <form {...formProps} onSubmit={onSubmit}>

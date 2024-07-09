@@ -1,3 +1,5 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, { useEffect } from "react";
 import { Input } from "@src/shadcn/elements";
 import { Form } from "@src/shadcn/components/form";

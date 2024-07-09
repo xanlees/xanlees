@@ -10,6 +10,7 @@ import { useProfileContext } from "../../../context";
 import { FormGraduation } from "../../../graduation/containers/form/form";
 import { useGraduationSelect } from "../../hook/form/useGraduationSelect";
 import { useFormConfig } from "./config";
+import { FileInputField } from "@src/shadcn/components/form/file-input";
 
 export const EducationForm: React.FC = () => {
   const { state } = useProfileContext();
@@ -17,13 +18,14 @@ export const EducationForm: React.FC = () => {
   const graduation = useGraduationSelect();
   const { fields, append, remove } = useFieldArray({ control: formConfig.form.control, name: "education" });
   const isCompleted = state.educationId ?? 0;
+  console.log(formConfig.form.watch());
   return (<div className="w-full rounded-lg">
     {isCompleted
       ? (<p className="italic">ສຳເລັດແລ້ວ !</p>)
       : (<div><Form {...formConfig.form} cardClassName="">
         <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="education" label="ເພີ່ມການສຶກສາອີກ" className="flex flex-col sm:flex-row sm:flex-wrap" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId }}>
           <ArrayField {...formConfig.form} name="branch" label="ສະຖາບັນ/ໂຮງຮຽນ">
-            <Input placeholder="" className="block w-56" />
+            <FileInputField showFileDisplay={false} />
           </ArrayField>
           <ArrayField {...formConfig.form} name="graduationId" label="ສາຂາ/ສາຍສາມັນ">
             <Form.Combobox {...(graduation as any)} />
