@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { type UseFormSetValue } from "react-hook-form";

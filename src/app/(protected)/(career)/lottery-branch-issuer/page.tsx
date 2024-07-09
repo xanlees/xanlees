@@ -10,8 +10,6 @@ import { getBranchIds, getPositionIds } from "../branch/lib";
 import { type IEmployeeExpand, type IEmployeeExpandProfile } from "../employee/interface";
 import { type IPosition } from "../position/interface";
 import { type ISector } from "../sector/interface";
-import { useSession } from "next-auth/react";
-import { type CustomSession } from "@src/common/interface";
 import { useList } from "@refinedev/core";
 import { useBranchTable, useEmployee, usePosition, useSector } from "../branch/hook/useTable";
 
@@ -44,8 +42,6 @@ export default function BranchList(): JSX.Element {
 }
 
 export function useEmployeeProvince() {
-  const { data } = useSession() as { data: CustomSession | null };
-  const useId = data?.user?.id ?? 0;
   return useList<IEmployeeExpand>({
     resource: "employee",
     filters: [

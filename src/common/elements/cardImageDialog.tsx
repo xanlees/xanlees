@@ -51,11 +51,11 @@ export function ImageDialog({ imageUrl }: { imageUrl: string | null | undefined 
   };
   return (
     <div className="">
-      {imageUrl ? (
-        <AvatarWithButton imageUrl={imageUrl} onClick={toggleDialog} />
-      ) : (
-        <ShieldX color="#ff0000" />
-      )}
+      {imageUrl
+        ? (
+          <AvatarWithButton imageUrl={imageUrl} onClick={toggleDialog} />)
+        : (
+          <ShieldX color="#ff0000" />)}
       <AlertDialog open={open} onOpenChange={setOpen}>
         <DialogContent imageUrl={imageUrl ?? ""} />
       </AlertDialog>

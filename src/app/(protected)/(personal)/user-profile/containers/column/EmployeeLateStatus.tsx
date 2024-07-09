@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Table } from "@/shadcn/components/table";
 import { Badge } from "@src/shadcn/elements";
 import { type IEmployee } from "@career";

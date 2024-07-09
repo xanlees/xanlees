@@ -25,7 +25,6 @@ export const useTableUserProfile = () => {
   });
   return { table };
 };
-
 export function useAttendanceList({ userIds, checkInDate }: { userIds: number[], checkInDate: string }) {
   return useList<IAttendance>({
     resource: "attendance",
@@ -72,7 +71,6 @@ export function useWorkTimeSettings<T extends BaseRecord>({ branchId, day }: { b
   };
   return data ?? defaultData;
 }
-
 export function useUserIDs(user: IUserProfile[]) {
   const userId = user.map((item) => item.user);
   if (userId) {
