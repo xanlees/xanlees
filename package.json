@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_OPTIONS='--max_old_space_size=4096 --inspect' next dev -p 4000",
+    "dev": "cross-env NODE_OPTIONS='--max_old_space_size=4096 --inspect' next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
@@ -19,7 +19,6 @@
     "-": "^0.0.1",
     "@hookform/resolvers": "^3.3.3",
     "@keyvaluesystems/react-stepper": "^1.0.2",
-    "@preline/toggle-password": "^2.0.1",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",

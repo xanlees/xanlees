@@ -1,4 +1,4 @@
-import { UserCircle, Calendar, Briefcase, DollarSign } from "lucide-react";
+import { UserCircle, Calendar, Briefcase, DollarSign, Library } from "lucide-react";
 
 export const resourcesPart2 = [
   {
@@ -7,6 +7,7 @@ export const resourcesPart2 = [
     icon: <Briefcase />,
     meta: {
       label: "ລາຍງານປໍ້າໂມງ",
+      hide: true,
     },
   },
   {
@@ -18,6 +19,7 @@ export const resourcesPart2 = [
     icon: <Calendar />,
     meta: {
       label: "ວັນພັກ",
+      hide: true,
     },
   },
   {
@@ -29,6 +31,7 @@ export const resourcesPart2 = [
     icon: <Briefcase />,
     meta: {
       label: "ຂໍລາພັກ",
+      hide: true,
     },
   },
   {
@@ -40,6 +43,7 @@ export const resourcesPart2 = [
     icon: <UserCircle />,
     meta: {
       label: "ຜູ້ໃຊ້ລະບົບ",
+      hide: true,
     },
   },
   {
@@ -51,6 +55,14 @@ export const resourcesPart2 = [
     icon: <UserCircle />,
     meta: {
       label: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
+      hide: true,
+    },
+  },
+  {
+    name: "report",
+    icon: <Library />,
+    meta: {
+      label: "ລາຍງານ",
     },
   },
   {
@@ -58,7 +70,8 @@ export const resourcesPart2 = [
     list: "/employee-salary",
     icon: <DollarSign />,
     meta: {
-      label: "employee-salary",
+      label: "ເງິນພະນັກງານ",
+      parent: "report",
     },
   },
 ];

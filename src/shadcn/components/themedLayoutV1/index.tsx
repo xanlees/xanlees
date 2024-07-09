@@ -1,6 +1,6 @@
 import { Button, Link } from "@src/shadcn/elements";
 import Navbar from "../themedLayoutV2/navbar";
-import { DefaultTitle } from "../themedLayoutV2/sider/tittle";
+import { DefaultTitle } from "../themedLayoutV2/sider/title";
 import { LocalFooter } from "../themedLayoutV2/footer/local";
 import { LayoutProps } from "../themedLayoutV2/type";
 import { FC, useMemo } from "react";

@@ -3,6 +3,7 @@ import { StringAdapter } from "casbin";
 export const adapter = new StringAdapter(`
 p, admin, user, (list)|(create)
 p, admin, user/*, (edit)|(show)|(delete)
+p, admin, report, (list)
 p, user, user, (create)
 p, user, user/*, (edit)|(show)|(delete)
 p, staff, user, (create)

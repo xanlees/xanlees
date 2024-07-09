@@ -38,6 +38,7 @@ export const resourcesPart1 = [
     icon: <BookUser />,
     meta: {
       label: "ພະນັກງານ",
+      canCreate: false,
     },
   },
   {
