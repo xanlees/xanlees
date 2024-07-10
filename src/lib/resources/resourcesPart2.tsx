@@ -1,52 +1,30 @@
-import { UserCircle, Calendar, Briefcase, DollarSign, Library } from "lucide-react";
+import { Briefcase, DollarSign, Library, Building, Clock, UserCheck } from "lucide-react";
 
 export const resourcesPart2 = [
   {
-    name: "holiday",
-    list: "/holiday",
-    create: "/holiday/create",
-    edit: "/holiday/edit/:id",
-    show: "/holiday/show/:id",
-    icon: <Calendar />,
+    name: "branch",
+    list: "/branch",
+    create: "/branch/create",
+    edit: "/branch/edit/:id",
+    show: "/branch/show/:id",
+    icon: <Building />,
     meta: {
-      label: "ວັນພັກ",
-      hide: true,
+      label: "ຫ້ອງການ",
+      parent: "branch-group",
+      order: 1,
     },
   },
   {
-    name: "leave",
-    list: "/leave",
-    create: "/leave/create",
-    edit: "/leave/edit/:id",
-    show: "/leave/show/:id",
-    icon: <Briefcase />,
+    name: "work-time-settings",
+    list: "/work-time-settings",
+    create: "/work-time-settings/create",
+    edit: "/work-time-settings/edit/:id",
+    show: "/work-time-settings/show/:id",
+    icon: <Clock />,
     meta: {
-      label: "ຂໍລາພັກ",
-      hide: true,
-    },
-  },
-  {
-    name: "user",
-    list: "/user",
-    create: "/user/create",
-    edit: "/user/edit/:id",
-    show: "/user/show/:id",
-    icon: <UserCircle />,
-    meta: {
-      label: "ຜູ້ໃຊ້ລະບົບ",
-      hide: true,
-    },
-  },
-  {
-    name: "my-profile",
-    list: "/my-profile",
-    create: "/my-profile/create",
-    edit: "/my-profile/edit/:id",
-    show: "/my-profile/show/:id",
-    icon: <UserCircle />,
-    meta: {
-      label: "ຂໍ້ມູນສ່ວນບຸກຄົນ",
-      hide: true,
+      label: "ໂມງເຂົ້າ-ອອກວຽກ",
+      parent: "branch-group",
+      order: 2,
     },
   },
   {
@@ -54,6 +32,7 @@ export const resourcesPart2 = [
     icon: <Library />,
     meta: {
       label: "ລາຍງານ",
+      order: 4,
     },
   },
   {
@@ -63,6 +42,7 @@ export const resourcesPart2 = [
     meta: {
       label: "ເງິນພະນັກງານ",
       parent: "report",
+      order: 1,
     },
   },
   {
@@ -70,8 +50,43 @@ export const resourcesPart2 = [
     list: "/attendance-report",
     icon: <Briefcase />,
     meta: {
-      label: "attendance-report",
+      label: "ສະຫລຸບມາການ",
       parent: "report",
+      order: 2,
+    },
+  },
+  {
+    name: "lottery-group",
+    icon: <Library />,
+    meta: {
+      label: "ຫວຍ",
+      order: 4,
+    },
+  },
+  {
+    name: "agent",
+    list: "/agent",
+    create: "/agent/create",
+    edit: "/agent/edit/:id",
+    show: "/agent/show/:id",
+    icon: <UserCheck />,
+    meta: {
+      label: "ຄົນຂາຍເລກ",
+      parent: "lottery-group",
+      order: 1,
+    },
+  },
+  {
+    name: "lottery-branch",
+    list: "/lottery-branch",
+    create: "/lottery-branch/create",
+    edit: "/lottery-branch/edit/:id",
+    show: "/lottery-branch/show/:id",
+    icon: <Building />,
+    meta: {
+      label: "ສາຂາຫວຍ",
+      parent: "lottery-group",
+      order: 1,
     },
   },
 ];

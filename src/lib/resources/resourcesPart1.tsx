@@ -3,9 +3,8 @@ import {
   Clipboard,
   Hourglass,
   Briefcase,
-  Building,
-  Clock,
-  UserCheck,
+  UserCircle,
+  Settings,
 } from "lucide-react";
 
 export const resourcesPart1 = [
@@ -16,7 +15,10 @@ export const resourcesPart1 = [
     edit: "/user-profile/edit/:id",
     show: "/user-profile/show/:id",
     icon: <Hourglass />,
-    meta: { label: "ລາຍການປໍ້າໂມງ" },
+    meta: {
+      label: "ລາຍການປໍ້າໂມງ",
+      order: 1,
+    },
   },
   {
     name: "application",
@@ -27,6 +29,15 @@ export const resourcesPart1 = [
     icon: <Clipboard />,
     meta: {
       label: "ຜູ້ສະໝັກວຽກ",
+      order: 2,
+    },
+  },
+  {
+    name: "employee-group",
+    icon: <BookUser />,
+    meta: {
+      label: "ຂໍ້ມູນພະນັກງານ",
+      order: 3,
     },
   },
   {
@@ -38,7 +49,8 @@ export const resourcesPart1 = [
     icon: <BookUser />,
     meta: {
       label: "ພະນັກງານ",
-      canCreate: false,
+      parent: "employee-group",
+      order: 1,
     },
   },
   {
@@ -50,51 +62,29 @@ export const resourcesPart1 = [
     icon: <Briefcase />,
     meta: {
       label: "ອາດີດພະນັກງານ",
+      parent: "employee-group",
+      order: 2,
     },
   },
   {
-    name: "branch",
-    list: "/branch",
-    create: "/branch/create",
-    edit: "/branch/edit/:id",
-    show: "/branch/show/:id",
-    icon: <Building />,
+    name: "user",
+    list: "/user",
+    create: "/user/create",
+    edit: "/user/edit/:id",
+    show: "/user/show/:id",
+    icon: <UserCircle />,
     meta: {
-      label: "ຫ້ອງການ",
+      label: "ຜູ້ໃຊ້ລະບົບ",
+      parent: "employee-group",
+      order: 3,
     },
   },
   {
-    name: "work-time-settings",
-    list: "/work-time-settings",
-    create: "/work-time-settings/create",
-    edit: "/work-time-settings/edit/:id",
-    show: "/work-time-settings/show/:id",
-    icon: <Clock />,
+    name: "branch-group",
+    icon: <Settings />,
     meta: {
-      label: "ໂມງເຂົ້າ-ອອກວຽກ",
-    },
-  },
-  {
-    name: "agent",
-    list: "/agent",
-    create: "/agent/create",
-    edit: "/agent/edit/:id",
-    show: "/agent/show/:id",
-    icon: <UserCheck />,
-    meta: {
-      label: "ຄົນຂາຍເລກ",
-    },
-  },
-  {
-    name: "lottery-branch",
-    list: "/lottery-branch",
-    create: "/lottery-branch/create",
-    edit: "/lottery-branch/edit/:id",
-    show: "/lottery-branch/show/:id",
-    icon: <Building />,
-    meta: {
-      label: "ສາຂາຫວຍ",
+      label: "ຕັ້ງຄ່າ",
+      order: 3,
     },
   },
 ];
-
