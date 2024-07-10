@@ -2,15 +2,6 @@ import { UserCircle, Calendar, Briefcase, DollarSign, Library } from "lucide-rea
 
 export const resourcesPart2 = [
   {
-    name: "attendance-report",
-    list: "/attendance-report",
-    icon: <Briefcase />,
-    meta: {
-      label: "ລາຍງານປໍ້າໂມງ",
-      hide: true,
-    },
-  },
-  {
     name: "holiday",
     list: "/holiday",
     create: "/holiday/create",
@@ -71,6 +62,15 @@ export const resourcesPart2 = [
     icon: <DollarSign />,
     meta: {
       label: "ເງິນພະນັກງານ",
+      parent: "report",
+    },
+  },
+  {
+    name: "attendance-report",
+    list: "/attendance-report",
+    icon: <Briefcase />,
+    meta: {
+      label: "attendance-report",
       parent: "report",
     },
   },

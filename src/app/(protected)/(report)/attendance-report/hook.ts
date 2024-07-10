@@ -1,7 +1,5 @@
 import { useList } from "@refinedev/core";
-import { useTable } from "@refinedev/react-table";
 import { type IProfile } from "@personal";
-import { useMemo } from "react";
 
 export interface AttendanceDataItem {
   user: number
@@ -13,32 +11,6 @@ interface IUserProfileExpand {
   user: number
   profile: IProfile
 }
-
-export const useAttendanceAggregationTable = () => {
-  const columns = useMemo(() => [], []);
-  const table = useTable<AttendanceDataItem>({
-    columns,
-    enableSorting: true,
-    enableColumnFilters: true,
-    refineCoreProps: {
-      errorNotification: false,
-      resource: "attendance/aggregation",
-      filters: {
-        permanent: [
-          { field: "aggregation", operator: "eq", value: "count" },
-          { field: "aggregationField", operator: "eq", value: "user" },
-          { field: "check_in_month", operator: "eq", value: "2024-06" },
-          { field: "check_in_out_same_day", operator: "eq", value: true },
-          { field: "type", operator: "eq", value: "ot,on_time,quit" },
-          { field: "has_check_out", operator: "eq", value: true },
-          { field: "latest_for_date", operator: "eq", value: true },
-          { field: "groupBy", operator: "eq", value: "user" },
-        ],
-      },
-    },
-  });
-  return { table };
-};
 
 export function useUserProfile({ userIds }: { userIds?: string }) {
   const fields = "profile.id,profile.fullname,profile.nickname,profile.phone_number,id,user";

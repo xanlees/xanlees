@@ -2,7 +2,6 @@
 
 import { format } from "date-fns";
 import React, { useState } from "react";
-
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
 import { useBranchFormSelect } from "@career";
@@ -10,11 +9,12 @@ import { SequenceColumn } from "@src/common/containers/column";
 import { ComboboxSelectToolbar } from "@src/shadcn/components/table/toolbar/combobox-toolbar";
 import { MonthAndYearPickerToolbar } from "@src/shadcn/components/table/toolbar/month-year-picker";
 import { type Table as TanstackTable } from "@tanstack/react-table";
-
-import { AttendanceColumn, FullnameColumn, PhoneNumberColumn } from "./column";
+import { AttendanceColumn } from "./column";
 import {
-  type AttendanceDataItem, fetchAttendanceData, useAttendanceAggregationTable, useUserProfile,
+  type AttendanceDataItem, fetchAttendanceData, useUserProfile,
 } from "./hook";
+import { FullnameColumn, PhoneNumberColumn } from "../employee-salary/column";
+import { useAttendanceAggregationTable } from "../employee-salary/hook";
 
 export default function AttendanceReportList(): JSX.Element {
   const { table } = useAttendanceAggregationTable();
