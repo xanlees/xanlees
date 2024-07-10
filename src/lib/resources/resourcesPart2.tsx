@@ -1,4 +1,4 @@
-import { Briefcase, DollarSign, Library, Building, Clock, UserCheck } from "lucide-react";
+import { Briefcase, DollarSign, Library, Building, Clock, UserCheck, Building2 } from "lucide-react";
 
 export const resourcesPart2 = [
   {
@@ -57,7 +57,7 @@ export const resourcesPart2 = [
   },
   {
     name: "lottery-group",
-    icon: <Library />,
+    icon: <Building2 />,
     meta: {
       label: "ຫວຍ",
       order: 4,

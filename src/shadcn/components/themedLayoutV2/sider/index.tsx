@@ -1,7 +1,7 @@
 
 import { CanAccess, ITreeMenu, useMenu } from "@refinedev/core";
 import { List, ChevronDown, ChevronUp } from "lucide-react";
-import { FC, ReactNode, useMemo, useState } from "react";
+import { FC, ReactNode, useMemo, useState, useEffect } from "react";
 
 import { cn } from "../../../lib/utils";
 import { Button, Link } from "../../../elements";
@@ -37,6 +37,15 @@ const ThemedSiderV2MenuItem: FC<{
     return resource.children && resource.children.length > 0 ? undefined : String(resource.route);
   }, [resource]);
 
+  useEffect(() => {
+    if (resource.children && resource.children.length > 0) {
+      const isActiveChild = resource.children.some((child) => child.key === selectedKey);
+      if (isActiveChild) {
+        setIsOpen(true);
+      }
+    }
+  }, [resource.children, selectedKey]);
+
   return (
     <CanAccess
       resource={resource.name.toString()}
@@ -66,7 +75,12 @@ const ThemedSiderV2MenuItem: FC<{
                 {icon ?? <List size={20} />}
                 {asChild ? children : label}
               </span>
-              {resource.children && (isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />)}
+              {resource.children && (
+                <ChevronDown
+                  size={20}
+                  className={cn("transition-transform duration-300", isOpen && "rotate-180")}
+                />
+              )}
             </div>
           )}
         </Button>
@@ -91,6 +105,7 @@ export const ThemedSiderV2Menu: FC<{
   meta?: Record<string, unknown>;
 }> = ({ meta }) => {
   const { menuItems, selectedKey } = useMenu({ meta });
+
   const sortedMenuItems = useMemo(() => {
     const sortItems = (items: ITreeMenu[]): ITreeMenu[] => {
       const itemsWithOrder = items.filter((item) => item.meta?.order !== undefined);
@@ -112,6 +127,7 @@ export const ThemedSiderV2Menu: FC<{
 
     return sortItems(menuItems);
   }, [menuItems]);
+
   const MenuItems = useMemo(
     () =>
       sortedMenuItems
