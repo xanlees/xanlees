@@ -61,7 +61,10 @@ const ThemedSiderV2MenuItem: FC<{
           variant="ghost"
           size="icon"
           asChild
-          className={cn(active ? "bg-primary text-accent" : "", "gap-x-3 w-full justify-start p-0 pl-2.5")}
+          className={cn(
+            active ? "bg-primary text-white" : "",
+            "gap-x-3 w-full justify-start p-0 pl-2.5 hover:bg-primary dark:hover:bg-primary hover:text-white dark:text-white"
+          )}
           onClick={handleClick}
         >
           {href ? (
@@ -100,7 +103,6 @@ const ThemedSiderV2MenuItem: FC<{
     </CanAccess>
   );
 };
-
 export const ThemedSiderV2Menu: FC<{
   meta?: Record<string, unknown>;
 }> = ({ meta }) => {
