@@ -19,6 +19,9 @@ export const useBranchForm = ({ type, id }: { type: string, id?: number }) => {
       type,
       name: "",
       province: 0,
+      latitude: "",
+      longitude: "",
+      radius: "",
     },
     refineCoreProps: {
       resource: "branch",
@@ -45,6 +48,15 @@ export const branchSchema = z.object({
     message: "ກະລຸໃສຊື່ສາຂາ",
   }),
   type: z.string().min(1, {
+    message: "ກະລຸເລືອກປະເພດຫ້ອງການ",
+  }),
+  latitude: z.string().min(1, {
+    message: "ກະລຸເລືອກປະເພດຫ້ອງການ",
+  }),
+  longitude: z.string().min(1, {
+    message: "ກະລຸເລືອກປະເພດຫ້ອງການ",
+  }),
+  radius: z.string().min(1, {
     message: "ກະລຸເລືອກປະເພດຫ້ອງການ",
   }),
   province: z.number().min(1, {

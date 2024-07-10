@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { useProvinceSelect } from "@personal";
 import { type IFormConfig } from "@src/common/interface";
 import { Form } from "@src/shadcn/components/form";
@@ -10,11 +11,12 @@ import { PositionForm } from "../../../position/form";
 import { SectorForm } from "../../../sector/component";
 import { useBranchForm } from "../../hook/useBranchForm";
 import { getTypeOptions } from "../../lib";
+import { type ReactNode } from "react";
 
 export const BranchCreateForm: React.FC<{ type: string }> = ({ type }) => {
   return (
     <div className="p-10 my-3 rounded-full ">
-      {type !== "LOTTERY" && <PositionForm type={type}/>}
+      {type !== "LOTTERY" && <PositionForm type={type} />}
       <SectorForm type={type} />
       <BranchForm type={type} />
     </div>
@@ -30,14 +32,17 @@ const BranchForm: React.FC<{ type: string }> = ({ type }) => {
           *{title}, ກົດທີ່ນີ້
         </AccordionTrigger>
         <AccordionContent>
-          <FormBranchContainer type={type} />
+          <FormBranchContainer
+            type={type}
+            address={type !== "LOTTERY" ? <MapInput /> : null}
+          />
         </AccordionContent>
       </AccordionItem>
     </Accordion>
   );
 };
 
-export const FormBranchContainer: React.FC<{ type: string, id?: number }> = ({ type, id }) => {
+export const FormBranchContainer: React.FC<{ type: string, id?: number, address?: ReactNode }> = ({ type, id, address }) => {
   const branchName = type === "LOTTERY" ? "ເມືອງ" : "ຊື່";
   const title = type === "LOTTERY" ? "ຟອມສາຂາ" : "ຟອມຫ້ອງການ";
   const { form } = useBranchForm({ type, id });
@@ -64,7 +69,8 @@ export const FormBranchContainer: React.FC<{ type: string, id?: number }> = ({ t
           </div>
         </div>
       </div>
-      <ProvinceField form={{ form }} province={province}/>
+      <ProvinceField form={{ form }} province={province} />
+      {address}
     </Form>
   );
 };
@@ -81,4 +87,30 @@ const ProvinceField: React.FC<{ form: IFormConfig, province: any }> = ({ form, p
     </div>
   );
 };
-
+const MapInput: React.FC<any> = ({ form }) => {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <div className="w-full lg:w-64 ">
+        <div className="relative w-full mb-3">
+          <Form.Field {...form} name="longitude" label={"ເສັ້ນແວງ (Longitude)"}>
+            <Input placeholder="" className="w-full" numericOnly />
+          </Form.Field>
+        </div>
+      </div>
+      <div className="w-full lg:w-64 ">
+        <div className="relative w-full mb-3">
+          <Form.Field {...form} name="latitude" label={"ເສັ້ນຂະໜານ (Latitude)"}>
+            <Input placeholder="" className="w-full" numericOnly />
+          </Form.Field>
+        </div>
+      </div>
+      <div className="w-full lg:w-64 ">
+        <div className="relative w-full mb-3">
+          <Form.Field {...form} name="radius" label={"ລັດສະໝີ (Radius)"}>
+            <Input placeholder="" className="w-full" numericOnly maxLength={3} />
+          </Form.Field>
+        </div>
+      </div>
+    </div>
+  );
+};
