@@ -1,9 +1,11 @@
 import { useTable } from "@refinedev/react-table";
 import { type ILeaveExpand } from "./lib";
+import { useMemo } from "react";
 
 export const useTableLeave = () => {
+  const columns = useMemo(() => [], []);
   const table = useTable<ILeaveExpand>({
-    columns: [],
+    columns,
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {

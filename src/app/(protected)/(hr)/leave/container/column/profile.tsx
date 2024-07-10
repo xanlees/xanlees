@@ -28,9 +28,8 @@ export function ProfileImageColumn() {
       id="image"
       accessorKey="user"
       cell={({ row }) => {
-        const profilePicture = row?.original?.profile;
         return <div className="">
-          <Table.ImageTable row={profilePicture} accessorKey={"profilePicture"} />
+          <Table.TableImage row={row} accessorKey={"profilePicture"} />
         </div>;
       }}
     />
