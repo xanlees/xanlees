@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { Create } from "@/shadcn/components/crud";
+import { Edit } from "@/shadcn/components/crud";
 
 import { FormBranchContainer } from "../../containers/form";
 import { useBranchType } from "../../hook/useBranchForm";
@@ -12,13 +12,13 @@ export default function BranchEdit({ params }: { params?: { id?: string } }): JS
   const data = useBranchType({ id })?.data?.data?.[0];
   const type = data?.type ?? "";
   return (
-    <Create>
-      <div className="flex justify-center max-w-[720px] mx-auto ">
-        <div className="flex flex-col border rounded-2xl">
+    <Edit>
+      <div className="flex justify-center">
+        <div className="flex flex-col border shadow-2xl rounded-2xl w-[600px]">
           <FormBranchContainer id={id} type={type}/>
         </div>
       </div>
-    </Create>
+    </Edit>
   );
 }
 

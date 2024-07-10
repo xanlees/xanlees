@@ -70,7 +70,7 @@ export const FormBranchContainer: React.FC<{ type: string, id?: number, address?
         </div>
       </div>
       <ProvinceField form={{ form }} province={province} />
-      {address}
+      {type !== "LOTTERY" ? <MapInput /> : null}
     </Form>
   );
 };

@@ -50,15 +50,9 @@ export const branchSchema = z.object({
   type: z.string().min(1, {
     message: "ກະລຸເລືອກປະເພດຫ້ອງການ",
   }),
-  latitude: z.string().min(1, {
-    message: "ກະລຸເລືອກປະເພດຫ້ອງການ",
-  }),
-  longitude: z.string().min(1, {
-    message: "ກະລຸເລືອກປະເພດຫ້ອງການ",
-  }),
-  radius: z.string().min(1, {
-    message: "ກະລຸເລືອກປະເພດຫ້ອງການ",
-  }),
+  longitude: z.number().or(z.string().min(1, { message: "ກະລຸນາປ້ອນເສັ້ນແວງ" })),
+  latitude: z.number().or(z.string().min(1, { message: "ກະລຸນາປ້ອນເສັ້ນຂະໜານ" })),
+  radius: z.number().or(z.string().min(1, { message: "ກະລຸນາປ້ອນລັດສະໝີ" })),
   province: z.number().min(1, {
     message: "ກະລຸເລືອກແຂວງ",
   }),
