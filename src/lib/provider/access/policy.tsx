@@ -93,4 +93,5 @@ p, admin, employee-salary, (list)
 p, admin, employee-group, (list)
 p, admin, branch-group, (list)
 p, admin, lottery-group, (list)
+p, admin, day-off-group, (list)
 `);

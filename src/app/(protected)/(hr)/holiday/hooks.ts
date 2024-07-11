@@ -7,10 +7,12 @@ import { useTable } from "@refinedev/react-table";
 
 import { holidaySchema, type IHolidayExpand } from "./lib";
 import type * as z from "zod";
+import { useMemo } from "react";
 
 export const useTableHoliday = () => {
+  const columns = useMemo(() => [], []);
   const table = useTable<IHolidayExpand>({
-    columns: [],
+    columns,
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {
