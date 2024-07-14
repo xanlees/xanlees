@@ -10,34 +10,26 @@ import { ComboboxSelectToolbar } from "@src/shadcn/components/table/toolbar/comb
 import { MonthAndYearPickerToolbar } from "@src/shadcn/components/table/toolbar/month-year-picker";
 import { type Table as TanstackTable } from "@tanstack/react-table";
 import { AttendanceColumn } from "./column";
-import { fetchAttendanceData, useUserProfile } from "./hook";
-import { FullnameColumn, PhoneNumberColumn } from "../employee-salary/column";
-import { useTableUserProfile } from "../../(personal)/user-profile/hook";
+import { fetchAttendanceData } from "./hook";
+import { useTableUserProfile, FullNameColumn } from "@personal";
 
 export default function AttendanceReportList(): JSX.Element {
   const { table } = useTableUserProfile();
   const [state, setState] = useState({ selectedMonth: format(new Date(), "yyyy-MM"), branch: 0 });
-  const attendanceData = table.options.data ?? [];
-  const userIds = getUserIds(attendanceData);
-  const userProfileData = useUserProfile({ userIds })?.data?.data ?? [];
   const { attendanceDataTypeOnTime, attendanceDataTypeLate, attendanceDataTypeOt } = fetchAttendanceData(state);
   return (
     <List showCreate={false}>
       <FiltersCard setState={setState} table={table} state={state} />
       <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ຊື່ແທ້">
         {SequenceColumn()}
-        {FullnameColumn({ userProfileData })}
-        {PhoneNumberColumn({ userProfileData })}
+        {FullNameColumn}
+        <Table.Column header="ເບີໂທ" id="phoneNumber" accessorKey="profile.phoneNumber" />
         {AttendanceColumn({ data: attendanceDataTypeOnTime, header: "ເຂົ້າວຽກທັນເວລາ (ມື້)", className: "bg-green-500" })}
         {AttendanceColumn({ data: attendanceDataTypeLate, header: "ເຂົ້າວຽກຊ້າ (ມື້)", className: "bg-red-500" })}
         {AttendanceColumn({ data: attendanceDataTypeOt, header: "ຊົ່ວໂມງ OT", className: "bg-red-500" })}
       </Table>
     </List>
   );
-}
-
-function getUserIds(data: any[]): string {
-  return data.length > 0 ? data.map((item: { user: number }) => item.user).join(",") : "0";
 }
 
 interface FiltersCardProps {

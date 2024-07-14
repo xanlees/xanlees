@@ -2,14 +2,14 @@
 
 import { List } from "@/shadcn/components/crud";
 import { Table } from "@/shadcn/components/table";
-import { format } from "date-fns";
-import { useState } from "react";
+import { FullNameColumn, useTableUserProfile } from "@personal";
 import { SequenceColumn } from "@src/common/containers/column";
 import { MonthAndYearPickerToolbar } from "@src/shadcn/components/table/toolbar/month-year-picker";
 import { type Table as TanstackTable } from "@tanstack/react-table";
-import { FullnameColumn, PhoneNumberColumn, SalaryColumn, TotalEarningColumn } from "./column";
-import { useAttendanceAggregationList, useEmployee, useUserProfile } from "./hook";
-import { useTableUserProfile } from "../../(personal)/user-profile/hook";
+import { format } from "date-fns";
+import { useState } from "react";
+import { SalaryColumn, TotalEarningColumn } from "./column";
+import { useAttendanceAggregationList, useEmployee } from "./hook";
 
 const currentMonth = format(new Date(), "yyyy-MM");
 
@@ -18,7 +18,6 @@ export default function EmployeeSalaryList(): JSX.Element {
   const [state, setState] = useState({ selectedMonth: currentMonth, branch: 0 });
   const attendanceData = table.options.data ?? [];
   const userIds = getUserIds(attendanceData);
-  const userProfileData = useUserProfile({ userIds })?.data?.data ?? [];
   const attendanceDataTotalEarning = useAttendanceAggregationList({ type: "ot,on_time", aggregation: "sum", aggregationField: "earn", checkInMonth: state.selectedMonth })?.data?.data ?? [];
   const employeeData = useEmployee({ userIds })?.data?.data ?? [];
   return (
@@ -26,9 +25,9 @@ export default function EmployeeSalaryList(): JSX.Element {
       <FiltersCard setState={setState} table={table} state={state} />
       <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ຊື່ແທ້">
         {SequenceColumn()}
-        {FullnameColumn({ userProfileData })}
-        {PhoneNumberColumn({ userProfileData })}
-        {SalaryColumn({ employeeData, userProfileData })}
+        {FullNameColumn}
+        <Table.Column header="ເບີໂທ" id="phoneNumber" accessorKey="profile.phoneNumber" />
+        {SalaryColumn({ employeeData })}
         {TotalEarningColumn({ data: attendanceDataTotalEarning })}
       </Table>
     </List>

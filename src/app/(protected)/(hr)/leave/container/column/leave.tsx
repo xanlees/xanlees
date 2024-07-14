@@ -2,8 +2,6 @@ import moment from "moment";
 
 import { Table } from "@/shadcn/components/table";
 import UpdateOnSelect from "@src/shadcn/components/updateOnSelect";
-import { Badge } from "@src/shadcn/elements";
-
 import { type ILeaveExpand } from "../../lib";
 
 export function ReasonColumn() {
@@ -16,7 +14,7 @@ export function ReasonColumn() {
       enableHiding
       cell={(props) => {
         const reason = props?.row?.original?.reason as unknown as string;
-        return <pre>{reason ?? ""}</pre>;
+        return <div className="w-64">{reason ?? ""}</div>;
       }}
     />
   );
@@ -51,41 +49,16 @@ export function LeaveStatus() {
   );
 }
 
-export function LeaveColumn({ leaveDate, header }: { leaveDate: number, header: string }) {
+export function LeaveColumn({ date, header }: { date: string, header: string }) {
   return (
     <Table.Column<ILeaveExpand>
       header={header}
-      id="leaveDate"
-      accessorKey="leaveDate"
-      cell={({ row: { original } }) => {
-        const date = original.leaveDate?.[leaveDate];
+      id={date}
+      accessorKey={date}
+      cell={(props) => {
+        const date = props.getValue() as unknown as number;
         if (date) {
           return moment(date).format("DD MMM YYYY");
-        }
-        return "";
-      }}
-    />
-  );
-}
-const millisecondsInASecond = 1000;
-const secondsInAnHour = 3600;
-const hoursInADay = 24;
-const millisecondsInADay = millisecondsInASecond * secondsInAnHour * hoursInADay;
-
-export function NoOfDaysColumn() {
-  return (
-    <Table.Column<ILeaveExpand>
-      header={"ຈໍານວນມື້ພັກ"}
-      id="no_of_days"
-      accessorKey="leaveDate"
-      cell={({ row: { original } }) => {
-        const date = original?.leaveDate;
-        if (date && date?.length === 2) {
-          const startDate = new Date(date[0]);
-          const endDate = new Date(date[1]);
-          const timeDiff = endDate?.getTime() - startDate?.getTime();
-          const daysDiff = timeDiff / millisecondsInADay + 1;
-          return <Badge>{`${daysDiff} ມື້`}</Badge>;
         }
         return "";
       }}

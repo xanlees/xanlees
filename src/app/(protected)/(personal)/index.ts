@@ -22,6 +22,8 @@ import type { IGraduation } from "./graduation/interface";
 import type { IEducation } from "./education/interface";
 import type { IAddress, IDistrict } from "./personal_address/interface";
 import type { ProfileState } from "./context/interface";
+import { useTableUserProfile } from "./user-profile/hook";
+import { FullNameColumn } from "./user-profile/containers/column";
 
 export type {
   IDocument,
@@ -45,6 +47,7 @@ export {
   employeeProfileStorageKey,
   agentProfileStorageKey,
   applicationProfileStorageKey,
+  FullNameColumn,
 };
 export {
   useProfile,
@@ -56,4 +59,5 @@ export {
   AddressDetail,
   useDistrictSelect,
   useProvinceSelect,
+  useTableUserProfile,
 };

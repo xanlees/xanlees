@@ -33,6 +33,7 @@ export const resourcesPart3 = [
       label: "holiday",
       parent: "day-off-group",
       order: 2,
+      hide: true,
     },
   },
 ];

@@ -20,19 +20,3 @@ export function FullNameColumn() {
     />
   );
 }
-
-export function ProfileImageColumn() {
-  return (
-    <Table.Column<ILeaveExpand>
-      header="ຮູບພາບ"
-      id="image"
-      accessorKey="user"
-      cell={({ row }) => {
-        return <div className="">
-          <Table.TableImage row={row} accessorKey={"profilePicture"} />
-        </div>;
-      }}
-    />
-  );
-}
-
