@@ -8,12 +8,13 @@ import { SequenceColumn } from "@src/common/containers/column";
 import { MonthAndYearPickerToolbar } from "@src/shadcn/components/table/toolbar/month-year-picker";
 import { type Table as TanstackTable } from "@tanstack/react-table";
 import { FullnameColumn, PhoneNumberColumn, SalaryColumn, TotalEarningColumn } from "./column";
-import { useAttendanceAggregationList, useAttendanceAggregationTable, useEmployee, useUserProfile, type AttendanceDataItem } from "./hook";
+import { useAttendanceAggregationList, useEmployee, useUserProfile } from "./hook";
+import { useTableUserProfile } from "../../(personal)/user-profile/hook";
 
 const currentMonth = format(new Date(), "yyyy-MM");
 
 export default function EmployeeSalaryList(): JSX.Element {
-  const { table } = useAttendanceAggregationTable();
+  const { table } = useTableUserProfile();
   const [state, setState] = useState({ selectedMonth: currentMonth, branch: 0 });
   const attendanceData = table.options.data ?? [];
   const userIds = getUserIds(attendanceData);
@@ -34,14 +35,14 @@ export default function EmployeeSalaryList(): JSX.Element {
   );
 }
 
-function getUserIds(data: AttendanceDataItem[]): string {
-  return data.length > 0 ? data.map((item) => item.user).join(",") : "0";
+function getUserIds(data: any[]): string {
+  return data.length > 0 ? data.map((item: { user: number }) => item.user).join(",") : "0";
 }
 
 interface FiltersCardProps {
   state: { selectedMonth: string, branch: number }
   setState: React.Dispatch<React.SetStateAction<{ selectedMonth: string, branch: number }>>
-  table: TanstackTable<AttendanceDataItem>
+  table: TanstackTable<any>
 }
 function FiltersCard({ setState, table, state }: FiltersCardProps): JSX.Element {
   const handleMonthSelect = (selectedMonth: string) => {

@@ -10,14 +10,12 @@ import { ComboboxSelectToolbar } from "@src/shadcn/components/table/toolbar/comb
 import { MonthAndYearPickerToolbar } from "@src/shadcn/components/table/toolbar/month-year-picker";
 import { type Table as TanstackTable } from "@tanstack/react-table";
 import { AttendanceColumn } from "./column";
-import {
-  type AttendanceDataItem, fetchAttendanceData, useUserProfile,
-} from "./hook";
+import { fetchAttendanceData, useUserProfile } from "./hook";
 import { FullnameColumn, PhoneNumberColumn } from "../employee-salary/column";
-import { useAttendanceAggregationTable } from "../employee-salary/hook";
+import { useTableUserProfile } from "../../(personal)/user-profile/hook";
 
 export default function AttendanceReportList(): JSX.Element {
-  const { table } = useAttendanceAggregationTable();
+  const { table } = useTableUserProfile();
   const [state, setState] = useState({ selectedMonth: format(new Date(), "yyyy-MM"), branch: 0 });
   const attendanceData = table.options.data ?? [];
   const userIds = getUserIds(attendanceData);
@@ -38,14 +36,14 @@ export default function AttendanceReportList(): JSX.Element {
   );
 }
 
-function getUserIds(data: AttendanceDataItem[]): string {
-  return data.length > 0 ? data.map((item) => item.user).join(",") : "0";
+function getUserIds(data: any[]): string {
+  return data.length > 0 ? data.map((item: { user: number }) => item.user).join(",") : "0";
 }
 
 interface FiltersCardProps {
   state: { selectedMonth: string, branch: number }
   setState: React.Dispatch<React.SetStateAction<{ selectedMonth: string, branch: number }>>
-  table: TanstackTable<AttendanceDataItem>
+  table: TanstackTable<any>
 }
 
 function FiltersCard({ setState, table, state }: FiltersCardProps): JSX.Element {
