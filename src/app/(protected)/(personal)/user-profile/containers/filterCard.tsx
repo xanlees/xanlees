@@ -13,6 +13,7 @@ interface FiltersCardProps {
 }
 
 export function FiltersCard({ table, branch, currentDate }: FiltersCardProps): JSX.Element {
+  console.log("🚀 ~ FiltersCard ~ currentDate:", currentDate);
   const branchData = useBranchFormSelect();
   return (
     <div className="flex p-4 bg-white dark:bg-black rounded-lg shadow-md w-fit gap-x-5 border  bg-transparent">

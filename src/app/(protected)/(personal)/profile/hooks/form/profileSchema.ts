@@ -1,6 +1,5 @@
 import * as z from "zod";
 import { type ProfileSendData } from "../../interface/model";
-import { validateCaptcha } from "react-simple-captcha";
 import { validateImageSchema } from "@src/common/lib/validation/validationFormUtils";
 
 const minPhoneNumberLength = 7;
@@ -30,17 +29,12 @@ const profilePictureSchema = (isRequireImage: boolean) => validateImageSchema({
   message: "ກະລຸນາເລືອກຮູບພາບ",
 });
 
-const captchaSchema = z.string().min(1).refine((value) => validateCaptcha(value, false), {
-  message: "ລະຫັດ Captcha ບໍ່ຖືກ",
-});
-
 export const profileSchema = ({ isRequireImage = true }) => {
   return z
     .object({
       ...userInfoSchema.shape,
       uniqueNumber: uniqueNumberSchema,
       profilePicture: profilePictureSchema(isRequireImage),
-      captcha: captchaSchema,
     })
     .transform((val) => transformUniqueNumber(val));
 };

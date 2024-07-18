@@ -18,7 +18,7 @@ export const useProfileForm = ({ createUserProfile, type, user, isRequireImage =
   const [shouldCreateProfile, setShouldCreateProfile] = useState(false);
   const { ...form } = useForm<{ id?: number }>({
     resolver: zodResolver(profileSchema({ isRequireImage })),
-    defaultValues: { fullname: "", nickname: "", phoneNumber: "", gender: "", birthday: "", maritalStatus: "", typeOfUniqueNumber: "", uniqueNumber: [{ uniqueNumber: undefined }], type, captcha: "" },
+    defaultValues: { fullname: "", nickname: "", phoneNumber: "", gender: "", birthday: "", maritalStatus: "", typeOfUniqueNumber: "", uniqueNumber: [{ uniqueNumber: undefined }], type },
     refineCoreProps: {
       resource: "profile",
       meta: FormMultipart,

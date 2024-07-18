@@ -9,7 +9,6 @@ import {
   InputNickName,
   PhonNumberInput,
 } from "@src/app/(protected)/(career)/agent/containers/form/fields";
-import Captcha from "@src/shadcn/components/form/captcha-input";
 
 export const FormFieldContainer: React.FC< CommonProps & { isEmployee: boolean } > = ({ form, isEmployee }) => {
   return (
@@ -26,9 +25,6 @@ export const FormFieldContainer: React.FC< CommonProps & { isEmployee: boolean }
         <GenderAndMaritalStatusSelect form={form} />
         <DynamicNumberForm isEmployee={isEmployee} {...form} />
       </div>
-      <Form.Field {...form} name={"captcha"} label={"ຂ້ອນບໍ່ແມ່ນຄອມພິວເຕີ"}>
-        <Captcha formState={form}/>
-      </Form.Field>
     </>
   );
 };
