@@ -28,8 +28,8 @@ export const DatePickerWithRange: React.FC<DatePickerWithRangeProps> = ({
   };
   const formatDateRange = (range: DateRange): [string, string] | undefined => {
     if (!range?.from) return undefined;
-    const from = format(range.from, "yyyy-MM-dd");
-    const to = range.to ? format(range.to, "yyyy-MM-dd") : from;
+    const from = format(range?.from, "yyyy-MM-dd");
+    const to = range?.to ? format(range.to, "yyyy-MM-dd") : from;
     return [from, to];
   };
 
@@ -64,12 +64,12 @@ export const DatePickerWithRange: React.FC<DatePickerWithRangeProps> = ({
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {date?.from ? (
-              date.to ? (
+              date?.to ? (
                 <>
-                  {format(date.from, "LLL dd, y")} - {format(date.to, "LLL dd, y")}
+                  {format(date?.from, "LLL dd, y")} - {format(date?.to, "LLL dd, y")}
                 </>
               ) : (
-                format(date.from, "LLL dd, y")
+                format(date?.from, "LLL dd, y")
               )
             ) : (
               <span>ເລືອກວັນທີ</span>

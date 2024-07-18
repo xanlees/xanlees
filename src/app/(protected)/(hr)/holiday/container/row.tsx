@@ -1,8 +1,8 @@
 import moment from "moment";
 
-import { CardView } from "@/shadcn/components/table/card-view";
 import { type IHolidayExpand } from "../lib";
-import { getDisplayBranchName } from "@career";
+
+import { Table } from "@src/shadcn/components/table";
 
 interface HolidayRowProps {
   row: {
@@ -10,31 +10,12 @@ interface HolidayRowProps {
   }
 }
 
-export function BranchRow() {
-  return (
-    <CardView.Row
-      header="ຫ້ອງການ"
-      id="branch"
-      accessorKey="branch"
-      cell={({ row }: HolidayRowProps) => {
-        const name = row.original?.branch?.name ?? "";
-        const type = row.original?.branch?.type ?? "";
-        if (name) {
-          return <div>{`${name} (${getDisplayBranchName(type)})`}</div>;
-        }
-        return <div>{"ພັກທຸກຫ້ອງການ"}</div>;
-      }}
-    />
-  );
-}
-
 export function HolidayNameRow() {
   return (
-    <CardView.Row
+    <Table.Column
       header="ຊື່"
       id="holidayName"
       accessorKey="holidayName"
-      isHeader={true}
       cell={({ row }: HolidayRowProps) => {
         const holidayName = row.original?.holidayName ?? "";
         return (
@@ -45,9 +26,25 @@ export function HolidayNameRow() {
   );
 }
 
+export function DescriptionRow() {
+  return (
+    <Table.Column
+      header="ລາຍລະອຽດ"
+      id="description"
+      accessorKey="description"
+      cell={({ row }: HolidayRowProps) => {
+        const description = row.original?.description ?? "";
+        return (
+          <div>{description}</div>
+        );
+      }}
+    />
+  );
+}
+
 export function StartDateRow() {
   return (
-    <CardView.Row
+    <Table.Column
       header="ມື້ເລີ່ມ"
       id="holidayDate"
       accessorKey="holidayDate"
@@ -64,7 +61,7 @@ export function StartDateRow() {
 
 export function EndDateRow() {
   return (
-    <CardView.Row
+    <Table.Column
       header="ມື້ຈົບ"
       id="endDate"
       accessorKey="endDate"
@@ -74,6 +71,35 @@ export function EndDateRow() {
           return moment(endDate).format("DD MMM YYYY");
         }
         return "";
+      }}
+    />
+  );
+}
+
+const options = [
+  { value: "annual", label: "ພັກທຸກສາຂາ" },
+  { value: "year_specefic", label: "ສະເພາະປີ" },
+  { value: "one_time", label: "ໃຊ້ຄັ້ງດຽວ" },
+];
+
+function getLabelByValue(value: string) {
+  const option = options.find((opt) => opt.value === value);
+  return option ? option.label : value;
+}
+
+export function Type() {
+  return (
+    <Table.Column
+      header="ປະເພດ"
+      id="type"
+      accessorKey="type"
+      cell={({ row }: HolidayRowProps) => {
+        const type = row.original?.type ?? "";
+        const label = getLabelByValue(type);
+        console.log("🚀 ~ Type ~ type:", type);
+        return (
+          <div>{label}</div>
+        );
       }}
     />
   );

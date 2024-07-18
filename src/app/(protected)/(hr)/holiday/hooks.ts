@@ -35,17 +35,18 @@ export const useHolidayForm = ({ id }: { id?: number }) => {
     resolver: zodResolver(holidaySchema),
     defaultValues: {
       holidayName: "",
-      leaveDate: ["", ""],
-      endDate: "",
+      holidayDate: [""],
+      description: "",
+      type: "",
     },
     refineCoreProps: {
       resource: "holiday",
       redirect: false,
       action,
       id,
-      onMutationSuccess: () => {
-        router.back();
-      },
+      // onMutationSuccess: () => {
+      //   router.back();
+      // },
     },
     warnWhenUnsavedChanges: true,
   });
