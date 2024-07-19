@@ -9,7 +9,7 @@ import { useHolidayForm } from "../../hooks";
 export const HolidayForm: React.FC<{ id?: number }> = ({ id }) => {
   const { form } = useHolidayForm({ id });
   return (
-    <div className="rounded-full w-72 sm:w-[700px]">
+    <div className="rounded-full w-72 sm:w-[600px] mx-20 p-10 my-3">
       <Form {...form}>
         <FormFieldContainer form={{ form }}/>
         <div className="flex flex-col w-full gap-2 capitalize rounded-lg sm:flex-row sm:w-1/2" />
@@ -55,7 +55,7 @@ const DecriptionField: React.FC<IFormProp> = ({ form }) => {
 
 const DateField: React.FC<IFormProp> = ({ form }) => {
   return (
-    <div className="w-full lg:w-80 ">
+    <div className="w-full lg:w-60 ">
       <div className="relative w-full mb-3">
         <Form.Field {...form} name="date" label="ວັນທີ">
           <DatePickerWithRange />
@@ -75,7 +75,7 @@ const TypeForm: React.FC<IFormProp> = ({ form }) => {
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
         <Form.Field {...form} name="type" label="ປະເພດວັນພັກ">
-          <Form.Select options={options} className="lg:w-80 "/>
+          <Form.Select options={options} className="lg:w-40 "/>
         </Form.Field>
       </div>
     </div>

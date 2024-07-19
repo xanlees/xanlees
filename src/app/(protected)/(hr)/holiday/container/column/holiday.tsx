@@ -15,7 +15,6 @@ export function HolidayNameRow() {
       header="ວັນພັກ"
       id="name"
       accessorKey="name"
-      // isHeader={true}
       cell={({ row }: HolidayRowProps) => {
         const holidayName = row.original?.name ?? "";
         return (
@@ -60,14 +59,14 @@ export function Decription() {
 }
 
 const options = [
-  { value: "Annual", label: "ພັກທຸກສາຂາ" },
-  { value: "Year-Specific", label: "ສະເພາະປີ" },
-  { value: "One-Time", label: "ໃຊ້ຄັ້ງດຽວ" },
+  { value: "Annual", label: "ພັກທຸກສາຂາ", color: "green" },
+  { value: "Year-Specific", label: "ສະເພາະປີ", color: "blue" },
+  { value: "One-Time", label: "ໃຊ້ຄັ້ງດຽວ", color: "red" },
 ];
 
-function getLabelByValue(value: string) {
+export function getLabelByValue(value: string) {
   const option = options.find((opt) => opt.value === value);
-  return option ? option.label : value;
+  return option ? { label: option.label, color: option.color } : { label: value, color: "black" };
 }
 
 export function Type() {
@@ -78,11 +77,12 @@ export function Type() {
       accessorKey="type"
       cell={({ row }: HolidayRowProps) => {
         const type = row.original?.type ?? "";
-        const label = getLabelByValue(type);
+        const { label, color } = getLabelByValue(type);
         return (
-          <div>{label}</div>
+          <div style={{ color }}>{label}</div>
         );
       }}
     />
   );
 }
+

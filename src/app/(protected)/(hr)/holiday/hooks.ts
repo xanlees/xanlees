@@ -5,12 +5,13 @@ import { useForm } from "@refinedev/react-hook-form";
 import { useTable } from "@refinedev/react-table";
 import { useMemo } from "react";
 
-import { holidaySchema, type IHolidayExpand } from "./lib";
+import { holidaySchema } from "./lib";
 import type * as z from "zod";
+import { useList } from "@refinedev/core";
 
 export const useTableHoliday = () => {
   const columns = useMemo(() => [], []);
-  const table = useTable<IHolidayExpand>({
+  const table = useTable({
     columns,
     enableSorting: true,
     enableColumnFilters: true,
@@ -45,3 +46,16 @@ export const useHolidayForm = ({ id }: { id?: number }) => {
   });
   return { form };
 };
+
+export function useHolidayList({ date }: { date: string }) {
+  const { data } = useList({
+    resource: "holiday",
+    filters: [
+      { field: "date", operator: "eq", value: date },
+      { field: "paginate", operator: "eq", value: false },
+    ],
+    queryOptions: { retry: 0 },
+    errorNotification: false,
+  });
+  return data;
+}

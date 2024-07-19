@@ -1,8 +1,6 @@
 import {
   FileText,
   CalendarClock,
-  Calendar,
-  Briefcase,
 } from "lucide-react";
 
 export const disabledResources = [
@@ -52,28 +50,28 @@ export const disabledResources = [
       hide: true,
     },
   },
-  {
-    name: "holiday",
-    list: "/holiday",
-    create: "/holiday/create",
-    edit: "/holiday/edit/:id",
-    show: "/holiday/show/:id",
-    icon: <Calendar />,
-    meta: {
-      label: "ວັນພັກ",
-      hide: true,
-    },
-  },
-  {
-    name: "leave",
-    list: "/leave",
-    create: "/leave/create",
-    edit: "/leave/edit/:id",
-    show: "/leave/show/:id",
-    icon: <Briefcase />,
-    meta: {
-      label: "ຂໍລາພັກ",
-      hide: true,
-    },
-  },
+  // {
+  //   name: "holiday",
+  //   list: "/holiday",
+  //   create: "/holiday/create",
+  //   edit: "/holiday/edit/:id",
+  //   show: "/holiday/show/:id",
+  //   icon: <Calendar />,
+  //   meta: {
+  //     label: "ວັນພັກ",
+  //     hide: true,
+  //   },
+  // },
+  // {
+  //   name: "leave",
+  //   list: "/leave",
+  //   create: "/leave/create",
+  //   edit: "/leave/edit/:id",
+  //   show: "/leave/show/:id",
+  //   icon: <Briefcase />,
+  //   meta: {
+  //     label: "ຂໍລາພັກ",
+  //     hide: true,
+  //   },
+  // },
 ];

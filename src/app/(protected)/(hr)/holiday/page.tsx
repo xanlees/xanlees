@@ -14,9 +14,9 @@ export default function HolidayList(): JSX.Element {
       <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ວັນພັກ, ປະເພດ">
         {SequenceColumn()}
         {HolidayNameRow()}
+        {Decription()}
         {DateRow({ date: 0, header: "ມື້ເລີ່ມ" })}
         {DateRow({ date: 1, header: "ມື້ຈົບ" })}
-        {Decription()}
         {Type()}
         {getActionsColumn({ resource: "holiday" })}
       </Table>
