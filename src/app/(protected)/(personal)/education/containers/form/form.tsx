@@ -25,7 +25,7 @@ export const EducationForm: React.FC = () => {
       : (<div><Form {...formConfig.form} cardClassName="">
         <DynamicForm form={formConfig.form} fields={fields} append={append} remove={remove} name="education" label="ເພີ່ມການສຶກສາອີກ" className="flex flex-col sm:flex-row sm:flex-wrap" classNameButton="mt-5" defaultConfig={{ profileId: state.profileId }}>
           <ArrayField {...formConfig.form} name="branch" label="ສະຖາບັນ/ໂຮງຮຽນ">
-            <FileInputField showFileDisplay={false} />
+            <Input placeholder="ຍວນໄຂ" type="text" className="block w-full sm:w-28" />
           </ArrayField>
           <ArrayField {...formConfig.form} name="graduationId" label="ສາຂາ/ສາຍສາມັນ">
             <Form.Combobox {...(graduation as any)} />

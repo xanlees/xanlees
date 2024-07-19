@@ -1,4 +1,4 @@
-import { Briefcase } from "lucide-react";
+import { Briefcase, Calendar } from "lucide-react";
 
 export const resourcesPart3 = [
   {
@@ -10,6 +10,17 @@ export const resourcesPart3 = [
     icon: <Briefcase />,
     meta: {
       label: "ຂໍລາພັກ",
+    },
+  },
+  {
+    name: "holiday",
+    list: "/holiday",
+    create: "/holiday/create",
+    edit: "/holiday/edit/:id",
+    show: "/holiday/show/:id",
+    icon: <Calendar />,
+    meta: {
+      label: "ວັນພັກ",
     },
   },
 ];

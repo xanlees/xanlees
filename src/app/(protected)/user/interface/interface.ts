@@ -13,6 +13,11 @@ export interface IGroup {
   name: string
 }
 
+export interface Types {
+  id: number
+  name: string
+}
+
 export interface UserProfile {
   user: number
   profile: number

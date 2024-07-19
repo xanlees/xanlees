@@ -2,19 +2,26 @@ import * as z from "zod";
 import { type IBranch } from "@career";
 
 export const holidaySchema = z.object({
-  holidayName: z.string().min(2, {
+  name: z.string().min(2, {
     message: "ກະລຸນາໃສ່ຊື່ມື້ພັກ",
   }),
-  holidayDate: z.array(z.string().min(1, {
+  date: z.array(z.string().min(1, {
     message: "ກະລຸນາເລືອກວັນ​ທີ",
   })),
+  decription: z.string().min(2, {
+    message: "ກະລຸນາໃສ່ລາຍລະອຽດມື້ພັກ",
+  }),
+  type: z.string().min(2, {
+    message: "ກະລຸນາເລືອກປະເພດວັນພັກ",
+  }),
 });
 
 export interface IHoliday {
   id: number
-  branch: number
-  holidayName: string
-  holidayDate: string[]
+  name: number
+  date: string[]
+  decription: string
+  type: string
 }
 
 export interface IHolidayExpand extends Omit<IHoliday, "branch"> {

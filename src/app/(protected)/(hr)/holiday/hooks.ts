@@ -1,26 +1,21 @@
 import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useList } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { useTable } from "@refinedev/react-table";
+import { useMemo } from "react";
 
 import { holidaySchema, type IHolidayExpand } from "./lib";
 import type * as z from "zod";
 
 export const useTableHoliday = () => {
+  const columns = useMemo(() => [], []);
   const table = useTable<IHolidayExpand>({
-    columns: [],
+    columns,
     enableSorting: true,
     enableColumnFilters: true,
     refineCoreProps: {
-      errorNotification: false,
       resource: "holiday",
-      filters: {
-        permanent: [
-          { field: "expand", operator: "eq", value: "branch" },
-        ],
-      },
     },
   });
   return { table };
@@ -32,9 +27,10 @@ export const useHolidayForm = ({ id }: { id?: number }) => {
   const { ...form } = useForm<z.infer<typeof holidaySchema>>({
     resolver: zodResolver(holidaySchema),
     defaultValues: {
-      holidayName: "",
-      leaveDate: ["", ""],
-      endDate: "",
+      name: "",
+      date: ["", ""],
+      decription: "",
+      type: "",
     },
     refineCoreProps: {
       resource: "holiday",
@@ -49,15 +45,3 @@ export const useHolidayForm = ({ id }: { id?: number }) => {
   });
   return { form };
 };
-
-export function useHolidayList({ holidayDate }: { holidayDate: string }) {
-  const { data } = useList({
-    resource: "holiday",
-    filters: [
-      { field: "holiday_date", operator: "eq", value: holidayDate },
-      { field: "paginate", operator: "eq", value: false },
-    ],
-    errorNotification: false,
-  });
-  return data;
-}

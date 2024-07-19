@@ -4,7 +4,7 @@ import React from "react";
 
 import { Edit } from "@/shadcn/components/crud";
 
-import { HolidayForm } from "../container/form";
+import { HolidayForm } from "../container/form/form";
 
 export default function HolidayCreate(): JSX.Element {
   return (

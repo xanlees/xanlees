@@ -4,7 +4,7 @@ import React from "react";
 
 import { Edit } from "@/shadcn/components/crud";
 
-import { HolidayForm } from "../../container/form";
+import { HolidayForm } from "../../container/form/form";
 
 export default function HolidayEdit({ params }: { params: { id: string } }): JSX.Element {
   const id = params?.id ? parseInt(params.id, 10) : 0;
