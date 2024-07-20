@@ -5,6 +5,11 @@ interface IValidateImageSchemaProps {
   message?: string
 }
 
+interface IValidateDateRangeDateProps {
+  required: boolean
+  message?: string
+}
+
 const acceptedImageTypes = [
   "image/jpg",
   "image/jpeg",
@@ -12,6 +17,10 @@ const acceptedImageTypes = [
 ];
 
 const maxFileSize = 10000000;
+
+const validateDateRangeDate = (dates: string[]): boolean => {
+  return dates.length === 2 && dates.every((date) => date.trim() !== "");
+};
 
 const validateFile = (file: File | null | undefined): boolean => {
   if (!file) {
@@ -30,5 +39,21 @@ export const validateImageSchema = ({ required = true, message = "Image is requi
       message,
     });
   }
+  return schema.optional().nullable();
+};
+
+export const validateDateRangeDateSchema = ({
+  required = true,
+  message = "Please select a valid date range",
+}: IValidateDateRangeDateProps) => {
+  const schema = z.array(z.string()).refine(validateDateRangeDate, {
+    message,
+  });
+  if (required) {
+    return schema.refine((dates) => dates != null && dates.length > 0, {
+      message,
+    });
+  }
+
   return schema.optional().nullable();
 };

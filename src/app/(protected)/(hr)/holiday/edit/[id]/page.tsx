@@ -6,6 +6,7 @@ import { Edit } from "@/shadcn/components/crud";
 
 import { HolidayForm } from "../../container/form/form";
 import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
+import { BranchHolidayFormEdit } from "../../container/form/formbranch";
 
 const holidaycrumbs = [
   { label: "ວັນພັກ", href: "/holiday" },
@@ -20,6 +21,7 @@ export default function HolidayEdit({ params }: { params: { id: string } }): JSX
         <div className="flex flex-col border rounded-2xl shadow-2xl ">
           <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">ຟອມແກ້ໄຂວັນພັກ</div>
           <HolidayForm id={id}/>
+          <BranchHolidayFormEdit id={id}/>
         </div>
       </div>
     </Edit>

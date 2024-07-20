@@ -10,7 +10,6 @@ import { useProfileContext } from "../../../context";
 import { FormGraduation } from "../../../graduation/containers/form/form";
 import { useGraduationSelect } from "../../hook/form/useGraduationSelect";
 import { useFormConfig } from "./config";
-import { FileInputField } from "@src/shadcn/components/form/file-input";
 
 export const EducationForm: React.FC = () => {
   const { state } = useProfileContext();
