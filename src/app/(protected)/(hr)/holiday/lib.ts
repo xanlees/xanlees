@@ -6,7 +6,7 @@ export const holidaySchema = z.object({
   name: z.string().min(2, {
     message: "ກະລຸນາໃສ່ຊື່ມື້ພັກ",
   }),
-  date: validateDateRangeDateSchema({ required: true, message: "ກະລຸນາເລືອກວັນ​ເດືອນ​ປີ​ພັກ" }),
+  // date: validateDateRangeDateSchema({ required: true, message: "ກະລຸນາເລືອກວັນ​ເດືອນ​ປີ​ພັກ" }),
   decription: z.string().min(2, {
     message: "ກະລຸນາໃສ່ລາຍລະອຽດມື້ພັກ",
   }),

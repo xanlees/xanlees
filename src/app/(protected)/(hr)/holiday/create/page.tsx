@@ -8,8 +8,17 @@ import { HolidayForm } from "../container/form/form";
 import FormStep from "@src/common/components/stepForm";
 import { BranchHolidayForm } from "../container/form/formbranch";
 import { Card } from "@src/shadcn/elements";
+import { HolidayProvider, holidayfileStorageKey } from "@src/app/(protected)/(hr)/holiday/context";
 
-export default function HolidayCreate(): JSX.Element {
+const HolidaysCreate = () => {
+  return (
+    <HolidayProvider storageKeys={holidayfileStorageKey}>
+      <HolidayFormCreate />
+    </HolidayProvider>
+  );
+};
+
+const HolidayFormCreate = () => {
   return (
     <Create title="ວັນພັກ" resource="holiday" >
       <Card className="mx-auto mt-10 mb-20 rounded-md shadow-lg max-w-[900px]">
@@ -22,7 +31,7 @@ export default function HolidayCreate(): JSX.Element {
       </Card>
     </Create>
   );
-}
+};
 
 export const FromStepData = [
   {
@@ -36,3 +45,5 @@ export const FromStepData = [
     completed: false,
   },
 ];
+
+export default HolidaysCreate;

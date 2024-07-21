@@ -33,7 +33,7 @@ export const BranchHolidayForm: React.FC<{ id?: number }> = ({ id }) => {
 const useHolidaySelect = () => {
   const branch = useSelect({
     resource: "holiday",
-    optionLabel: "holidayName",
+    optionLabel: "name",
     optionValue: "id",
   });
   return branch;

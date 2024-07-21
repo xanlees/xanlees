@@ -6,9 +6,9 @@ import { DatePickerWithRange } from "@src/shadcn/components/form/date-range-pick
 import { Input, Textarea } from "@src/shadcn/elements";
 import { useHolidayForm } from "../../hooks";
 
-export const HolidayForm: React.FC<{ id?: number }> = ({ id }) => {
-  const { form, state } = useHolidayForm({ id });
-  const isComplete = state?.id ?? 0;
+export const HolidayForm: React.FC = () => {
+  const { form, state } = useHolidayForm();
+  const isComplete = state?.holiday ?? 0;
   return (
     <div className="rounded-full w-72 sm:w-[600px] mx-20 p-10 my-3  ">
       {isComplete
