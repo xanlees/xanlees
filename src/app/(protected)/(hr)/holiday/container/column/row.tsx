@@ -1,14 +1,12 @@
+/* eslint-disable max-lines */
 import moment from "moment";
-
 import { Table } from "@/shadcn/components/table";
-import { type IHolidayExpand } from "../../lib";
-
+import { type IHolidayExpand } from "../../interface";
 interface HolidayRowProps {
   row: {
     original: IHolidayExpand
   }
 }
-
 export function DateRow({ date, header }: { date: number, header: string }) {
   return (
     <Table.Column
@@ -28,17 +26,40 @@ export function DateRow({ date, header }: { date: number, header: string }) {
   );
 }
 
+const millisecondsInASecond = 1000;
+const secondsInAnHour = 3600;
+const hoursInADay = 24;
+const millisecondsInADay = millisecondsInASecond * secondsInAnHour * hoursInADay;
+export function NoDaysOffColumn() {
+  return (
+    <Table.Column
+      header={"ຈໍານວນມື້ພັກ"}
+      id="days_off"
+      accessorKey="date"
+      enableHiding
+      cell={({ row }: HolidayRowProps) => {
+        const holidayDate = row.original?.date;
+        if (holidayDate && holidayDate?.length === 2) {
+          const startDate = new Date(holidayDate[0]);
+          const endDate = new Date(holidayDate[1]);
+          const timeDiff = endDate?.getTime() - startDate?.getTime();
+          const daysDiff = timeDiff / millisecondsInADay + 1;
+          return <div>{`${daysDiff} ມື້`}</div>;
+        }
+      }}
+    />
+  );
+}
+
 const options = [
   { value: "Annual", label: "ພັກທຸກສາຂາ" },
   { value: "Year-Specific", label: "ສະເພາະປີ" },
   { value: "One-Time", label: "ໃຊ້ຄັ້ງດຽວ" },
 ];
-
 export function getLabelByValue(value: string) {
   const option = options.find((opt) => opt.value === value);
   return option ? { label: option.label } : { label: value };
 }
-
 export function Type() {
   return (
     <Table.Column
@@ -59,7 +80,9 @@ export function BranchHolidayColumn({ holiday }: any) {
   return (
     <Table.Column
       header="ສາຂາ"
-      id="id" accessorKey="id"
+      id="branch"
+      accessorKey="id"
+      enableHiding
       cell={(props) => {
         const holidayId = props.getValue() as unknown as number;
         const branches = holiday?.filter((item: { holiday: number }) => item.holiday === holidayId);

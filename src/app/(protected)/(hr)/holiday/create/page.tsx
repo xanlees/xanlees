@@ -2,48 +2,39 @@
 
 import React from "react";
 
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@radix-ui/react-accordion";
+
 import { Create } from "@/shadcn/components/crud";
-
 import { HolidayForm } from "../container/form/form";
-import FormStep from "@src/common/components/stepForm";
 import { BranchHolidayForm } from "../container/form/formbranch";
-import { Card } from "@src/shadcn/elements";
-import { HolidayProvider, holidayfileStorageKey } from "@src/app/(protected)/(hr)/holiday/context";
+import { BreadcrumbItems } from "@src/shadcn/components/breadcrumb/items";
 
-const HolidaysCreate = () => {
-  return (
-    <HolidayProvider storageKeys={holidayfileStorageKey}>
-      <HolidayFormCreate />
-    </HolidayProvider>
-  );
-};
-
-const HolidayFormCreate = () => {
-  return (
-    <Create title="ວັນພັກ" resource="holiday" >
-      <Card className="mx-auto mt-10 mb-20 rounded-md shadow-lg max-w-[900px]">
-        <div className="p-4 shadow-lg sm:p-6 lg:p-8">
-          <div className="p-4 mx-2 my-3 text-center bg-blue-500 rounded-sm text-white">
-            <p className="text-xl font-bold">ຟອມວັນພັກ </p>
-          </div>
-          <FormStep formStepsData={FromStepData} initialStep={0} />
-        </div>
-      </Card>
-    </Create>
-  );
-};
-
-export const FromStepData = [
-  {
-    stepLabel: "ຟອມວັນພັກ",
-    stepDescription: <HolidayForm />,
-    completed: false,
-  },
-  {
-    stepLabel: "ກຳນົດວັນພັກສະເພາະສາຂາ",
-    stepDescription: <BranchHolidayForm />,
-    completed: false,
-  },
+const holidaycrumbs = [
+  { label: "ວັນພັກ", href: "/holiday" },
+  { label: "ຟອມສ້າງວັນພັກ" },
 ];
 
-export default HolidaysCreate;
+export default function HolidayCreate(): JSX.Element {
+  return (
+    <Create title="ວັນພັກ" resource="holiday" breadcrumb={<BreadcrumbItems breadcrumbs={holidaycrumbs}/>}>
+      <div className="flex justify-center">
+        <div className="flex flex-col border shadow-2xl rounded-2xl w-[700px]">
+          <div className="w-full p-5 text-2xl font-bold text-center text-white bg-blue-500 border rounded-t-2xl">
+            ຟອມສ້າງວັນພັກ
+          </div>
+          <HolidayForm />
+          <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
+            <AccordionItem value="item-1">
+              <AccordionTrigger className="italic text-blue-500 underline m-2" >
+                ກຳນົດວັນພັກສະເພາະສາຂາ, ກົດທີ່ນີ້
+              </AccordionTrigger>
+              <AccordionContent>
+                <BranchHolidayForm />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      </div>
+    </Create>
+  );
+}

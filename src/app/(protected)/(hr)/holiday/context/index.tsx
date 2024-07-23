@@ -3,9 +3,8 @@ import { HolidayReducer } from "./reducer";
 import { type IHolidayState, type IHolidayAction } from "./interface";
 import { createContextProvider } from "@src/common/components/localStorageContext/provider";
 
-export const employeeProfileStorageKey = "creatingEmployeeProfileState";
+export const branchfileStorageKey = "creatingBranchState";
 export const holidayfileStorageKey = "creatingIHolidayState";
-export const applicationProfileStorageKey = "creatingApplicationProfileState";
 
 const { LocalStorageProvider, useLocalStorageContext } = createContextProvider<
 IHolidayState,
@@ -24,3 +23,5 @@ export const HolidayProvider: React.FC<{ children: ReactNode, storageKeys: strin
 };
 
 export const useHolidayContext = useLocalStorageContext;
+
+export type { IHolidayState };

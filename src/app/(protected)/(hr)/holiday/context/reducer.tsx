@@ -8,9 +8,9 @@ export const HolidayReducer = (
 ): IHolidayState => {
   switch (action.type) {
     case "setHoliday":
-      return { ...state, holiday: action.payload };
+      return { ...state, holiday: action.payload as number };
     case "setBranch":
-      return { ...state, branch: action.payload };
+      return { ...state, branch: action.payload as number };
     case LoadFromStorage:
       return { ...(action.payload as IHolidayState) };
     case "clearState":

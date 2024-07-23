@@ -13,7 +13,7 @@ export const BranchHolidayForm: React.FC<{ id?: number }> = ({ id }) => {
   const branch = useBranchSelect({ type: "OFFICE" });
   const holiday = useHolidaySelect();
   return (
-    <div className="rounded-full w-72 sm:w-[700px]">
+    <div className="rounded-full w-72 sm:w-[600px] mx-12 p-10 my-3">
       <Form {...form}>
         <DynamicForm
           form={form} fields={fields} append={append} remove={remove} name="holidayBranch"
@@ -42,7 +42,7 @@ const useHolidaySelect = () => {
 export const BranchHolidayFormEdit: React.FC<{ id?: number }> = ({ id }) => {
   const holidayLiist = useHolidayLis({ holiday: id });
   return (
-    <div className="rounded-full w-72 sm:w-[700px]">
+    <div className="rounded-full w-72 sm:w-[600px] mx-3 p-10 my-3 ">
       {holidayLiist?.map((item: any) => {
         return <BranchHoliday key={item.id} id={item.id} />;
       })}
@@ -55,7 +55,7 @@ export const BranchHoliday: React.FC<{ id?: number }> = ({ id }) => {
   const branch = useBranchSelect({ type: "OFFICE" });
   const holiday = useHolidaySelect();
   return (
-    <div className="rounded-full w-72 sm:w-[700px]">
+    <div className="rounded-full w-72 sm:w-[600px] p-10 my-3">
       <Form {...form}>
         <div className="flex flex-wrap gap-2">
           <div className="w-full lg:w-80 ">

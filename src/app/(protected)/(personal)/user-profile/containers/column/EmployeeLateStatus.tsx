@@ -26,7 +26,7 @@ export function AttendanceTypeColumn({ employeeIsLatestData, workTimeSettingsDat
         const type = attendanceData?.find((item) => item.user === userId)?.type;
         const typeValue = getTypeValue(type ?? "");
         if (!workTimeSetting || !employee || holiday) {
-          return <Badge className="bg-gray-600">{"ມື້ນີ້ພັກວຽກ"} {holiday ? holiday.holidayName : ""}</Badge>;
+          return <Badge className="bg-gray-600">{"ມື້ນີ້ພັກວຽກ"} {holiday ? holiday.name : ""}</Badge>;
         }
         return (
           <div className="space-y-0.5">

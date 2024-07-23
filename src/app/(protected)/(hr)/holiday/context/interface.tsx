@@ -10,6 +10,6 @@ export interface IHolidayState {
 
 export interface IHolidayAction {
   type: IHolidayActionType
-  payload: number
+  payload: number | boolean | IHolidayState
   payloadType?: string
 }

@@ -1,19 +1,13 @@
-/* eslint-disable max-lines */
-import { useRouter } from "next/navigation";
 
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "@refinedev/react-hook-form";
 import { useTable } from "@refinedev/react-table";
 import { useMemo } from "react";
-import type * as z from "zod";
-import { getbranchHolidaySchema, holidaySchema, type IHolidayExpand } from "./lib";
+import { getbranchHolidaySchema, holidaySchema } from "./schema";
+import { type IHolidayExpand } from "./interface";
 import { useList } from "@refinedev/core";
-import { useHolidayContext } from "./context";
-
-import { getErrorMessageNotification } from "@src/common/lib/errorNotification";
-import { type ErrorMapMessage, FormMultipart, type IMessages } from "@src/common/interface";
-
-const defaultMessage = "";
+import { type z } from "zod";
 
 export const useTableHoliday = () => {
   const columns = useMemo(() => [], []);
@@ -34,9 +28,9 @@ export const useTableHoliday = () => {
   return { table };
 };
 
-export const useHolidayForm = () => {
-  const { state, dispatch } = useHolidayContext();
-  const { ...form } = useForm<{ id?: number }>({
+export const useHolidayForm = ({ id }: { id?: number }) => {
+  const action = id ? "edit" : "create";
+  const { ...form } = useForm<z.infer<typeof holidaySchema>>({
     resolver: zodResolver(holidaySchema),
     defaultValues: {
       name: "",
@@ -46,34 +40,14 @@ export const useHolidayForm = () => {
     },
     refineCoreProps: {
       resource: "holiday",
-      meta: FormMultipart,
-      onMutationSuccess: (data) => {
-        dispatch({ type: "setHoliday", payload: data?.data?.id ?? 0 });
-      },
-      errorNotification: (data: any) => {
-        const responseData = (data as IMessages)?.response?.data;
-        return getErrorMessageNotification({ responseData, errorMessages, defaultMessage });
-      },
-      successNotification: (data) => {
-        return { message: "ສ້າງຂໍ້ມູນສ່ວນບຸກຄົນສໍາເລັດ", type: "success", description: "" };
-      },
+      action,
+      id,
       redirect: false,
     },
     warnWhenUnsavedChanges: true,
   });
-  return { form, state };
+  return { form };
 };
-
-export const errorMessages: ErrorMapMessage[] = [
-  {
-    val: "Profile with this fullname already exists.",
-    message: "ຊື່ຂອງທ່ານມີໃນລະບົບແລ້ວ",
-  },
-  {
-    val: "Profile with this phone number already exists.",
-    message: "ເບີໂທນີ້ມີໃນລະບົບແລ້ວ",
-  },
-];
 
 export function useHolidayList({ date }: { date: string }) {
   const { data } = useList({
@@ -89,8 +63,8 @@ export function useHolidayList({ date }: { date: string }) {
 }
 
 export const useBranchHolidayForm = ({ id }: { id?: number }) => {
-  const action = id ? "edit" : "create";
   const router = useRouter();
+  const action = id ? "edit" : "create";
   const defaultValues = action === "create"
     ? { holidayBranch: [{ holiday: 0, branch: 0 }] }
     : { holiday: 0, branch: 0 };
