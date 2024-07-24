@@ -5,7 +5,7 @@ import { Table } from "@/shadcn/components/table";
 import { GenderColumn, PhoneNumberColumn, SequenceColumn } from "@src/common/containers/column";
 import { getLatestPosition, type IPosition } from "@career";
 import { useLatestPositionDetail, useLatestPositionId } from "../../(personal)/profile/hooks";
-import { getActionsColumnAgent } from "./containers/column/getActionsColumnAgent";
+import { getActionsColumn } from "./containers/column/getActionsColumnAgent";
 import { useTableConfig } from "@personal";
 import { FullNameColumn, ProfileStatus } from "../../(personal)/profile/containers/table-column";
 
@@ -23,7 +23,7 @@ export default function ProfileList(): JSX.Element {
         {getLatestPosition({ positionId, positionData: positionData.data, title: " ໜ້າວຽກ" })}
         {GenderColumn("gender")}
         {ProfileStatus()}
-        {getActionsColumnAgent()}
+        {getActionsColumn({ resource: "agent", hideEdit: true })}
       </Table>
     </List>
   );

@@ -38,7 +38,7 @@ export default function ProfileList(): JSX.Element {
         {GenderColumn("gender")}
         {MarriageColumn("maritalStatus")}
         {DateOfBirth}
-        {getActionsColumn({ resource: "profile" })}
+        {getActionsColumn({ resource: "profile", hideEdit: true })}
       </Table>
     </List>
   );

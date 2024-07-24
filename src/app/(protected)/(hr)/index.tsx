@@ -13,7 +13,7 @@ import { Skill } from "./skill/containers/Skill";
 import { WorkExperience } from "./work-experience/containers/WorkExperience";
 import { useSkill } from "./skill/hook";
 import { type ISkill } from "./skill/interface";
-import { type IHoliday } from "./holiday/schema";
+import { type IHoliday } from "./holiday/interface";
 import { useHolidayList } from "./holiday/hooks";
 
 export type {

@@ -1,10 +1,11 @@
 "use client";
-import { CardView } from "@/shadcn/components/table/card-view";
+
 import { type IWorkTimeSettings } from "../../interface";
+import { Table } from "@src/shadcn/components/table";
 
 export function DayOfWeekRow() {
   return (
-    <CardView.Row
+    <Table.Column
       header=""
       id="id"
       accessorKey="id"

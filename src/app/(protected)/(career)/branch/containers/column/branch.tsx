@@ -5,6 +5,7 @@ import { Table } from "@/shadcn/components/table";
 import { getDisplayBranchName } from "../../lib";
 
 import type { IBranchExpand, IBranch } from "../../interface";
+import { DeleteActionContainer, EditActionContainer } from "./sector";
 
 export function branchColumn({ title }: { title: string }) {
   return (
@@ -14,11 +15,24 @@ export function branchColumn({ title }: { title: string }) {
       id="branchId"
       enableSorting
       enableHiding
-      cell={({ row: { original } }) => {
-        const branchName = original.name as unknown as string;
-        const branchType = original.type as unknown as string;
+      cell={({ row }) => {
+        const branchName = row.original.name as unknown as string;
+        const branchType = row.original.type as unknown as string;
         return (
-          <div>{getDisplayBranchName(branchType)} {branchName} </div>
+          <div>
+            <div className="flex w-full">
+              <div className=" justify-center text-center text-white mt-1.5" >
+                {getDisplayBranchName(branchType)} {branchName}
+              </div>
+              <div className=" justify-end">
+                <Table.Actions>
+                  <DeleteActionContainer row={row.original} resource={"branch"} />
+                  <EditActionContainer row={row.original} resource={"branch"} />
+                </Table.Actions>
+              </div>
+            </div>
+
+          </div>
         );
       }}
     />

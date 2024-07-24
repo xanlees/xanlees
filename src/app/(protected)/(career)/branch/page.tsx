@@ -38,7 +38,6 @@ export default function BranchList(): JSX.Element {
           {sectorColumn({ title, sectorData })}
           {positionsColumn({ positionData })}
           {employeeColumn({ employeeData, title: "ພະນັກງານ (ສັງກັດຕາມສີ ພນ/ຂໜ)" })}
-          {getActionsColumn({ resource: "branch", hideShow: true })}
         </Table>
       </List>
     </div>

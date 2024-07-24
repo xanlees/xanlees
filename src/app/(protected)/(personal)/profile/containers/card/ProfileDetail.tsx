@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 "use client";
 import { Show } from "@/shadcn/components/crud";
 import { Badge as ShadcnBadge } from "@src/shadcn/elements/badge";
@@ -8,15 +9,20 @@ import moment from "moment";
 import { type IProfile } from "../../interface/model";
 import { ProfileImageDialog } from "./ProfileImageDialog";
 import { ButtonCreate } from "@src/common/elements/button";
+import { Table } from "@src/shadcn/components/table";
+import { Edit, Trash2 } from "lucide-react";
 export function ProfileDetail({ profileData, visible = false, user, disabled, userProfile }: { userProfile: number, profileData: IProfile[], visible?: boolean, user?: number, disabled: boolean }): JSX.Element {
   const { fullname, nickname, phoneNumber, gender, birthday, maritalStatus, profilePicture, uniqueNumber, typeOfUniqueNumber } = profileData?.[0] ?? {};
   const age = calculateAge(birthday);
   const redirect = `/profile/create/${user}/${userProfile}`;
+
+  const resource = visible ? "agent" : "profile";
   return (
     <Card className="pb-3 bg-white rounded-lg shadow-xl  w-full sm:w-80 dark:bg-gray-800 dark:text-white my-2 sm:my-0">
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">
         <CardTitle className="text-lg font-semibold text-gray-800">ຂໍ້ມູນສ່ວນບຸກຄົນ</CardTitle>
         <ButtonCreate redirect={redirect} disabled={disabled} />
+        {ProfileAction({ row: profileData, resource })}
       </CardHeader>
       <CardContent className=" justify-center mx-auto">
         <ProfileImage imageUrl={profilePicture ?? ""}/>
@@ -42,6 +48,33 @@ export function ProfileImage({ imageUrl }: { imageUrl: string }) {
     </Avatar>
   );
 }
+
+interface Props {
+  row: unknown
+  resource: string
+}
+
+export const ProfileAction = ({ row, resource }: Props): JSX.Element => {
+  return (
+    <>
+      <Table.Actions>
+        <Table.DeleteAction
+          title="Delete"
+          row={row}
+          withForceDelete={true}
+          resource={resource}
+          icon={<Trash2 size={16} />}
+        />
+        <Table.EditAction
+          title="Edit"
+          row={row}
+          resource={resource}
+          icon={<Edit size={16} />}
+        />
+      </Table.Actions>
+    </>
+  );
+};
 
 function calculateAge(birthday: string): string {
   const birthDate = moment(birthday);
