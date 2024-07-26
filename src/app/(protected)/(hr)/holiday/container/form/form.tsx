@@ -33,7 +33,7 @@ const HolidayNameField: React.FC<IFormProp> = ({ form }) => {
   return (
     <div className="w-full">
       <div className="relative w-full mb-3">
-        <Form.Field {...form} name={"name"} label={"ກະລຸໃສຊື່ມື້ພັກ"}>
+        <Form.Field {...form} name={"holidayName"} label={"ກະລຸໃສຊື່ມື້ພັກ"}>
           <Input className="w-full" placeholder="ວັນກຳມະກ່ອນ" />
         </Form.Field>
       </div>
@@ -45,7 +45,7 @@ const DecriptionField: React.FC<IFormProp> = ({ form }) => {
   return (
     <div className="w-full">
       <div className="relative w-full mb-3">
-        <Form.Field {...form} name={"decription"} label={"ກະລຸໃສລາຍລະອຽດວັນພັກ"}>
+        <Form.Field {...form} name={"description"} label={"ກະລຸໃສລາຍລະອຽດວັນພັກ"}>
           <Textarea className="w-full" rows={5} placeholder="ແມ່ນວັນກຳມະກ່ອນ" />
         </Form.Field>
       </div>
@@ -57,7 +57,7 @@ const DateField: React.FC<IFormProp> = ({ form }) => {
   return (
     <div className="w-full lg:w-60 ">
       <div className="relative w-full mb-3">
-        <Form.Field {...form} name="date" label="ວັນທີ">
+        <Form.Field {...form} name="holidayDate" label="ວັນທີ">
           <DatePickerWithRange />
         </Form.Field>
       </div>
@@ -67,15 +67,15 @@ const DateField: React.FC<IFormProp> = ({ form }) => {
 
 const TypeForm: React.FC<IFormProp> = ({ form }) => {
   const options = [
-    { value: "Annual", label: "ພັກທຸກສາຂາ" },
-    { value: "Year-Specific", label: "ສະເພາະປີ" },
-    { value: "One-Time", label: "ໃຊ້ຄັ້ງດຽວ" },
+    { value: "every_year", label: "ວັນພັກນີ້ໃຊ້ທຸກປີ" },
+    { value: "one_year", label: "ວັນພັກນີ້ສະເພາະປີ້ນີ້" },
+    { value: "branch_specific", label: "ວັນພັກນີ້ສະເພາະສາຂາ" },
   ];
   return (
     <div className="w-full lg:w-80 ">
       <div className="relative w-full mb-3">
         <Form.Field {...form} name="type" label="ປະເພດວັນພັກ">
-          <Form.Select options={options} className="lg:w-40 "/>
+          <Form.Select options={options} className="lg:w-56 "/>
         </Form.Field>
       </div>
     </div>

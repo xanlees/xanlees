@@ -3,9 +3,9 @@ import { type IBranch } from "@career";
 export interface IHoliday {
   id?: number
   branch: number
-  name: string
-  date: string[]
-  decription: string
+  holidayName: string
+  holidayDate: string[]
+  description: string
   type: string
 }
 

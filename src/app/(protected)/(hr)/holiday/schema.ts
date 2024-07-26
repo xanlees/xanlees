@@ -2,11 +2,11 @@ import * as z from "zod";
 import { validateDateRangeDateSchema } from "@src/common/lib/validation/validationFormUtils";
 
 export const holidaySchema = z.object({
-  name: z.string().min(2, {
+  holidayName: z.string().min(2, {
     message: "ກະລຸນາໃສ່ຊື່ມື້ພັກ",
   }),
-  date: validateDateRangeDateSchema({ required: true, message: "ກະລຸນາເລືອກວັນ​ເດືອນ​ປີ​ພັກ" }),
-  decription: z.string().min(2, {
+  holidayDate: validateDateRangeDateSchema({ required: true, message: "ກະລຸນາເລືອກວັນ​ເດືອນ​ປີ​ພັກ" }),
+  description: z.string().min(2, {
     message: "ກະລຸນາໃສ່ລາຍລະອຽດມື້ພັກ",
   }),
   type: z.string().min(2, {

@@ -2,23 +2,31 @@
 import moment from "moment";
 import { Table } from "@/shadcn/components/table";
 import { type IHolidayExpand } from "../../interface";
+import { cn } from "@src/lib/utils";
+import { Badge } from "@src/shadcn/elements";
 interface HolidayRowProps {
   row: {
     original: IHolidayExpand
   }
 }
-export function DateRow({ date, header }: { date: number, header: string }) {
+export function DateRow() {
   return (
     <Table.Column
-      header={header}
-      id="date"
-      accessorKey="date"
-      cell={({ row }: HolidayRowProps) => {
-        const holidayDate = row.original?.date?.[date];
-        const holidayType = row.original?.type;
-        if (holidayDate) {
-          const formatString = holidayType === "Annual" ? "DD MMM" : "DD MMM YYYY";
-          return moment(holidayDate).format(formatString);
+      header={"ວັນພັກ"}
+      id="holidayDate"
+      accessorKey="holidayDate"
+      cell={({ row }: any) => {
+        const startDate = row.original?.holidayDate?.[0] ?? "";
+        const endDate = row.original?.holidayDate?.[1] ?? "";
+        const isEveryYear = row.original?.type === "every_year";
+        const formatDate = (date: string) => isEveryYear ? moment(date).format("DD/MMM") : moment(date).format("DD/MMM/yyy");
+        if (startDate) {
+          return (
+            <div className={cn(isEveryYear ? "font-bold" : "font-normal")}>
+              {`(${formatDate(startDate)})`}
+              {endDate && ` ຫາ (${formatDate(endDate)})`}
+            </div>
+          );
         }
         return "";
       }}
@@ -38,13 +46,13 @@ export function NoDaysOffColumn() {
       accessorKey="date"
       enableHiding
       cell={({ row }: HolidayRowProps) => {
-        const holidayDate = row.original?.date;
+        const holidayDate = row.original?.holidayDate;
         if (holidayDate && holidayDate?.length === 2) {
           const startDate = new Date(holidayDate[0]);
           const endDate = new Date(holidayDate[1]);
           const timeDiff = endDate?.getTime() - startDate?.getTime();
           const daysDiff = timeDiff / millisecondsInADay + 1;
-          return <div>{`${daysDiff} ມື້`}</div>;
+          return <div className={cn("font-bold")}>{`${daysDiff} ມື້`}</div>;
         }
       }}
     />
@@ -52,25 +60,27 @@ export function NoDaysOffColumn() {
 }
 
 const options = [
-  { value: "Annual", label: "ພັກທຸກສາຂາ" },
-  { value: "Year-Specific", label: "ສະເພາະປີ" },
-  { value: "One-Time", label: "ໃຊ້ຄັ້ງດຽວ" },
+  { value: "every_year", label: "ວັນພັກນີ້ໃຊ້ທຸກປີ", className: "bg-green-500" },
+  { value: "one_year", label: "ວັນພັກນີ້ສະເພາະປີ້ນີ້", className: "bg-blue-500" },
+  { value: "branch_specific", label: "ວັນພັກນີ້ສະເພາະສາຂາ", className: "bg-yellow-500" },
 ];
-export function getLabelByValue(value: string) {
+
+function getLabelByValue(value: string) {
   const option = options.find((opt) => opt.value === value);
-  return option ? { label: option.label } : { label: value };
+  return option;
 }
+
 export function Type() {
   return (
     <Table.Column
       header="ປະເພດ"
       id="type"
       accessorKey="type"
-      cell={({ row }: HolidayRowProps) => {
+      cell={({ row }: any) => {
         const type = row.original?.type ?? "";
-        const { label } = getLabelByValue(type);
+        const holidayType = getLabelByValue(type);
         return (
-          <div> {label} </div>
+          <Badge variant="destructive" className={cn("rounded-sm h-9", holidayType?.className)}>{holidayType?.label}</Badge>
         );
       }}
     />
@@ -87,15 +97,13 @@ export function BranchHolidayColumn({ holiday }: any) {
         const holidayId = props.getValue() as unknown as number;
         const branches = holiday?.filter((item: { holiday: number }) => item.holiday === holidayId);
         return (
-          <>
-            {branches.map((item: any, index: number) => {
-              return (
-                <div key={index}>
-                  {item?.branch.name}
-                </div>
-              );
-            })}
-          </>
+          <div className="space-y-1">
+            {branches.map((item: any, index: number) => (
+              <div key={index} className="bg-gray-100 p-2 rounded-md text-gray-800 text-center">
+                {item?.branch.name}
+              </div>
+            ))}
+          </div>
         );
       }}
     />

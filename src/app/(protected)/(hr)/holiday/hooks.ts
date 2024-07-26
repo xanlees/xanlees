@@ -9,7 +9,7 @@ import { type IHolidayExpand } from "./interface";
 import { useList } from "@refinedev/core";
 import { type z } from "zod";
 
-export const useTableHoliday = () => {
+export const useTableHoliday = ({ type }: { type?: string }) => {
   const columns = useMemo(() => [], []);
   const table = useTable<IHolidayExpand>({
     columns,
@@ -21,6 +21,7 @@ export const useTableHoliday = () => {
       filters: {
         permanent: [
           { field: "expand", operator: "eq", value: "branch" },
+          { field: "type", operator: "eq", value: type },
         ],
       },
     },
@@ -33,9 +34,9 @@ export const useHolidayForm = ({ id }: { id?: number }) => {
   const { ...form } = useForm<z.infer<typeof holidaySchema>>({
     resolver: zodResolver(holidaySchema),
     defaultValues: {
-      name: "",
-      date: [],
-      decription: "",
+      holidayName: "",
+      holidayDate: [],
+      description: "",
       type: "",
     },
     refineCoreProps: {
@@ -49,11 +50,11 @@ export const useHolidayForm = ({ id }: { id?: number }) => {
   return { form };
 };
 
-export function useHolidayList({ date }: { date: string }) {
+export function useHolidayList({ holidayDate }: { holidayDate: string }) {
   const { data } = useList({
     resource: "holiday",
     filters: [
-      { field: "date", operator: "eq", value: date },
+      { field: "holiday_date", operator: "eq", value: holidayDate },
       { field: "paginate", operator: "eq", value: false },
     ],
     queryOptions: { retry: 0 },

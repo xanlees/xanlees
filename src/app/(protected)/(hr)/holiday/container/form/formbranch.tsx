@@ -33,7 +33,7 @@ export const BranchHolidayForm: React.FC<{ id?: number }> = ({ id }) => {
 const useHolidaySelect = () => {
   const branch = useSelect({
     resource: "holiday",
-    optionLabel: "name",
+    optionLabel: "holidayName",
     optionValue: "id",
   });
   return branch;
@@ -60,14 +60,14 @@ export const BranchHoliday: React.FC<{ id?: number }> = ({ id }) => {
         <div className="flex flex-wrap gap-2">
           <div className="w-full lg:w-80 ">
             <div className="relative w-full mb-3">
-              <Form.Field {...form} name="holiday" label="ປະເພດວັນພັກ">
+              <Form.Field {...form} name="holiday" label="ວັນພັກ">
                 <Form.Combobox {...holiday} className="lg:w-80 " />
               </Form.Field>
             </div>
           </div>
           <div className="w-full lg:w-80 ">
             <div className="relative w-full mb-3">
-              <Form.Field {...form} name="branch" label="ປະເພດວັນພັກ">
+              <Form.Field {...form} name="branch" label="ສາຂາ">
                 <Form.Combobox {...branch} className="lg:w-80 "/>
               </Form.Field>
             </div>
