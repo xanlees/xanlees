@@ -2,7 +2,7 @@ import { useTable } from "@refinedev/react-table";
 import { type ILeaveExpand } from "./lib";
 import { useMemo } from "react";
 
-export const useTableLeave = () => {
+export const useTableLeave = ({ leaveType }: { leaveType?: string }) => {
   const columns = useMemo(() => [], []);
   const table = useTable<ILeaveExpand>({
     columns,
@@ -14,6 +14,7 @@ export const useTableLeave = () => {
       filters: {
         permanent: [
           { field: "expand", operator: "eq", value: "profile" },
+          { field: "leaveType", operator: "eq", value: leaveType },
         ],
       },
     },
