@@ -17,6 +17,7 @@ export default function HolidayList(): JSX.Element {
   const BranchHolidayData = useBranchHolidayList({ holiday: holidayIds })?.data;
   return (
     <List>
+      <div className="flex p-4 bg-white dark:bg-black rounded-lg shadow-md w-fit gap-x-5 font-bold text-2xl">{"ວັນພັກສະເພາະປີ"}</div>
       <Table table={table} SearchBarTitle="ຄົ້ນຫາດ້ວຍ ວັນພັກ, ປະເພດ">
         {SequenceColumn()}
         <Table.Column header={"ວັນພັກ"} accessorKey="holidayName" id="holidayName"/>

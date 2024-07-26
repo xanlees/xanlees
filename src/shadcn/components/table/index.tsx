@@ -77,10 +77,10 @@ export type TableProps<
 > = {
   children?: ReactElement<ColumnProps<TData, TError>>[];
   showHeader?: boolean;
-  searchBarShow?: boolean;
-  dataTableToolbarShow?: boolean;
   table: UseTableReturnType<TData, TError>;
-  SearchBarTitle?: string;
+  SearchBarTitle?: string
+  searchBarShow?: boolean
+  dataTableToolbarShow?: boolean
 };
 
 export function Table<
