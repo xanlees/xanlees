@@ -12,17 +12,21 @@ import { ButtonCreate } from "@src/common/elements/button";
 import { Table } from "@src/shadcn/components/table";
 import { Edit, Trash2 } from "lucide-react";
 export function ProfileDetail({ profileData, visible = false, user, disabled, userProfile }: { userProfile: number, profileData: IProfile[], visible?: boolean, user?: number, disabled: boolean }): JSX.Element {
-  const { fullname, nickname, phoneNumber, gender, birthday, maritalStatus, profilePicture, uniqueNumber, typeOfUniqueNumber } = profileData?.[0] ?? {};
+  const { fullname, nickname, phoneNumber, gender, birthday, maritalStatus, profilePicture, uniqueNumber, typeOfUniqueNumber, id } = profileData?.[0] ?? {};
   const age = calculateAge(birthday);
   const redirect = `/profile/create/${user}/${userProfile}`;
 
-  const resource = visible ? "agent" : "profile";
+  const edit = visible ? `/agent/edit/${id}` : `/profile/edit/${id}`;
   return (
     <Card className="pb-3 bg-white rounded-lg shadow-xl  w-full sm:w-80 dark:bg-gray-800 dark:text-white my-2 sm:my-0">
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0 border-b">
-        <CardTitle className="text-lg font-semibold text-gray-800">ຂໍ້ມູນສ່ວນບຸກຄົນ</CardTitle>
-        <ButtonCreate redirect={redirect} disabled={disabled} />
-        {ProfileAction({ row: profileData, resource })}
+        <div>
+          <CardTitle className="text-lg font-semibold text-gray-100">ຂໍ້ມູນສ່ວນບຸກຄົນ</CardTitle>
+          <div className="flex justify-end space-x-2 content-end items-end ml-28">
+            <ButtonCreate redirect={redirect} disabled={disabled} />
+            <ButtonCreate redirect={edit} title="ແກ້ໄຂ" icon={<Edit size="20"/>}/>
+          </div>
+        </div>
       </CardHeader>
       <CardContent className=" justify-center mx-auto">
         <ProfileImage imageUrl={profilePicture ?? ""}/>

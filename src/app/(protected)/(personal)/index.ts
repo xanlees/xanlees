@@ -22,6 +22,7 @@ import type { IGraduation } from "./graduation/interface";
 import type { IEducation } from "./education/interface";
 import type { IAddress, IDistrict } from "./personal_address/interface";
 import type { ProfileState } from "./context/interface";
+import { ProfileImageDialog } from "./user-profile/containers/column/checkOut";
 
 export type {
   IDocument,
@@ -56,4 +57,5 @@ export {
   AddressDetail,
   useDistrictSelect,
   useProvinceSelect,
+  ProfileImageDialog,
 };

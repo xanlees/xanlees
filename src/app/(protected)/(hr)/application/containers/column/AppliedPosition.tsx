@@ -4,6 +4,7 @@
 import { Table } from "@/shadcn/components/table";
 import { type IApplication } from "../../interface";
 import UpdateApplicationStatus from "@src/shadcn/components/updateOnSelect";
+import { ProfileImageDialog } from "@personal";
 
 export const AppliedPosition = (
   <Table.Column
@@ -35,16 +36,16 @@ export function ProfileImageColumn() {
       header="ຮູບພາບ"
       id="user"
       accessorKey="user"
-      cell={({ row }: { row: { original: { profileId: { profilePicture: string } } } }) => {
-        const rows = row?.original?.profileId;
+      cell={({ row }: { row: { original: { profileId: { profilePicture: string, thumbnail: string } } } }) => {
+        const image = row?.original?.profileId.profilePicture ?? "";
+        const thumbnail = row?.original?.profileId?.thumbnail ?? "";
         return <div className="">
-          <Table.ImageTable row={rows} accessorKey={"profilePicture"} />
+          <ProfileImageDialog imageUrl={image} thumbnail={thumbnail}/>
         </div>;
       }}
     />
   );
 }
-
 export const ExpectedSalary = (
   <Table.Column
     header="ເງິນເດືອນທີຕ້ອງການ"

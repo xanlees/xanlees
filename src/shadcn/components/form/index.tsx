@@ -24,6 +24,7 @@ import { FileInputField } from "./file-input";
 import { cn } from "@src/lib/utils";
 import { RadioGroupField } from "./radio-group";
 import { DatePickerWithRange } from "./date-range-picker";
+import { DecimalInput, NumberInput } from "@src/shadcn/elements/input-number";
 
 type NativeFormProps = Omit<
   DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>,
@@ -125,5 +126,6 @@ Form.DatePicker = DatePickerField;
 Form.DatePickerWithRange = DatePickerWithRange;
 Form.FileInputImage = FileInputImage;
 Form.FileInput = FileInputField;
+Form.DecimalInput = DecimalInput;
 Form.RadioGroup = RadioGroupField;
 

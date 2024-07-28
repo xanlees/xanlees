@@ -1,5 +1,5 @@
 import React from "react";
-import { DynamicForms, InputField, RenderBadge } from "@src/common/components/dynamicForm";
+import { DynamicForms, RenderBadge } from "@src/common/components/dynamicForm";
 import { Form } from "@src/shadcn/components/form";
 import { Input } from "@src/shadcn/elements";
 import { useFieldArray } from "react-hook-form";
@@ -16,7 +16,6 @@ export const InputContainer: React.FC<CommonProps> = ({ form }) => {
         <InputFullName form={form} />
         <InputNickName form={form} />
         <PhonNumberInput form={form} />
-        <InputUniqueNumber fields={fields} append={append} remove={remove} form={form}/>
       </div>
       <div className="flex flex-wrap gap-2">
         <GenderSelect form={form} />
@@ -69,16 +68,6 @@ export const GenderSelect: React.FC<CommonProps> = ({ form }) => {
         <Form.Field {...form} name={"gender"} label={"ເພດ"}>
           <Form.RadioGroup className="" options={[{ label: "ຊາຍ", value: "MALE" }, { label: "ຍິງ", value: "FEMALE" }]} isSquare={true} />
         </Form.Field>
-      </div>
-    </div>
-  );
-};
-
-export const InputUniqueNumber: React.FC<ExtendedFieldArrayProps> = ({ append, fields }) => {
-  return (
-    <div className="w-full lg:w-80">
-      <div className="relative w-full mb-3">
-        <InputField fields={fields} append={append} name="uniqueNumber" label="ລະຫັດເຄຶ່ອງ" title="" placeholder="000" maxLength={15} numericOnly require={false} errorMessage="ເລກຊໍ້າ" />
       </div>
     </div>
   );

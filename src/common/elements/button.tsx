@@ -8,11 +8,13 @@ export function ButtonCreate({
   className,
   disabled = false,
   title,
+  icon = <Plus size="20"/>,
 }: {
   redirect: string
   className?: string
   disabled?: boolean
   title?: string
+  icon?: React.ReactNode
 }): JSX.Element {
   const router = useRouter();
   const handleButtonClick = () => {
